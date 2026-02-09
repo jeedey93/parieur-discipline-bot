@@ -4,7 +4,7 @@ from datetime import date
 def get_games_today():
     date_str = "2026-02-26"
     today = date.today().isoformat()
-    url = f"https://api-web.nhle.com/v1/schedule/{date_str}"
+    url = f"https://api-web.nhle.com/v1/schedule/{today}"
 
     response = requests.get(url, timeout=10)
     response.raise_for_status()
