@@ -1,21 +1,25 @@
+import os
 from dotenv import load_dotenv
-load_dotenv()
-
+from google import genai
+from google.genai import types
 from data.nhl_games import get_games_today
 from data.odds import get_odds, match_odds_to_games
 from datetime import date
-import os
 
-# Pull your hardcoded date games
+load_dotenv()
+
+def analyze_results(results_text):
+    api_key = os.environ["GOOGLE_API_KEY"]
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model="models/gemini-2.5-flash",
+        contents=types.Part.from_text(
+            text=f"Analyze the following NHL betting results and give a short summary:\n{results_text}"
+        ),
+    )
+    return response.candidates[0].content.parts[0].text
+
 games = get_games_today()
-
-# Fetch odds
-odds_data = get_odds()
-
-# Match them
-matched = match_odds_to_games(games, odds_data)
-
-# Save into results folder
 today_str = date.today().isoformat()
 results_folder = "results"
 os.makedirs(results_folder, exist_ok=True)
@@ -24,12 +28,28 @@ filename = os.path.join(results_folder, f"daily_results_{today_str}.txt")
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")
 
-    if not matched:
+    if not games:
         f.write("No NHL games today\n")
+        print("No NHL games today")
     else:
+        odds_data = get_odds()
+        matched = match_odds_to_games(games, odds_data)
+
+        results_text = ""
         for g in matched:
-            f.write(f"{g['away']} @ {g['home']}\n")
-            f.write(f"Home odds: {g['home_odds']}, Away odds: {g['away_odds']}, O/U: {g['over_under']}\n")
-            f.write("------\n")
+            line = (
+                f"{g['away']} @ {g['home']}\n"
+                f"Home odds: {g['home_odds']}, Away odds: {g['away_odds']}, O/U: {g['over_under']}\n"
+                "------\n"
+            )
+            f.write(line)
+            results_text += line
+
+        if results_text:
+            summary = analyze_results(results_text)
+            f.write("\nAI Analysis Summary:\n")
+            f.write(summary + "\n")
+            print("\nAI Analysis Summary:")
+            print(summary)
 
 print(f"Saved daily results to {filename}")

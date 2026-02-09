@@ -33,6 +33,7 @@ jobs:
       - name: Set environment variables
         run: |
           echo "ODDS_API_KEY=${{ secrets.ODDS_API_KEY }}" > .env
+          echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
 
       # 5️⃣ Run the bot to generate the results file
       - name: Run NHL bot
