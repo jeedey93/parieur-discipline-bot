@@ -1,9 +1,9 @@
-name: Daily NHL Best Bet Bot
+name: Daily NHL Bot Results
 
-# Run automatically every day + allow manual runs
 on:
   schedule:
-    - cron: '0 15 * * *'  # every day at 15:00 UTC (~10 AM EST)
+    # Runs every day at 10:00 AM Montreal time (UTC-5 → 15:00 UTC)
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repo
+      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -25,21 +25,25 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install python-dotenv requests pillow
+          pip install requests python-dotenv pillow
 
       # 4️⃣ Create .env from GitHub Secrets
       - name: Set environment variables
         run: |
           echo "ODDS_API_KEY=${{ secrets.ODDS_API_KEY }}" > .env
 
-      # 5️⃣ Run your bot
+      # 5️⃣ Run the bot to generate the results file
       - name: Run NHL bot
         run: python daily_run.py
 
-      # 6️⃣ Upload results as artifact
-      - name: Upload results
-        uses: actions/upload-artifact@v4
-        with:
-          name: daily-results
-          path: daily_results_*.txt
+      # 6️⃣ Commit and push the new results file
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/daily_results_*.txt
+          git commit -m "Add daily results for $(date -u +%Y-%m-%d)" || echo "No changes to commit"
+          git push
+        env:
+          # Use the GitHub token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
