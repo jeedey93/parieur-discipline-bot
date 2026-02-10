@@ -44,8 +44,12 @@ jobs:
         run: python nba_daily_run.py
 
       # 5️⃣ Run the bot to generate the results file
-      - name: Run Result bot
+      - name: Run NHL Result bot
         run: python result_daily_run.py
+
+      # 5️⃣ Run the bot to generate the results file
+      - name: Run NBA Result bot
+        run: python nba_result_daily_run.py
 
       # 6️⃣ Commit and push the new results files to the repository
       - name: Commit results
@@ -57,5 +61,6 @@ jobs:
           git add results/nhl_daily_results_*.txt
           git add results/nba_daily_results_*.txt
           git add bot_results/nhl_daily_results_*.txt
+          git add bot_results/nba_daily_results_*.txt
           git commit -m "Add daily results for $(date -u +%Y-%m-%d)" || echo "No changes to commit"
           git push --set-upstream https://$GH_PAT@github.com/${{ github.repository }} HEAD:master

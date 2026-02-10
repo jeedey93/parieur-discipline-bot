@@ -56,20 +56,3 @@ Home odds: 3.05, Away odds: 1.4, O/U: 217.5 (Over odds: 1.91, Under odds: 1.91)
 Golden State Warriors vs San Antonio Spurs
 Home odds: 2.72, Away odds: 1.49, O/U: 216.5 (Over odds: 1.91, Under odds: 1.91)
 ------
-
-AI Analysis Summary:
-As a disciplined NBA betting analyst, I've scoured the provided matchups for clear +EV opportunities, strictly avoiding coin-flip games and overly conservative favorites. My focus is on identifying situations where the market might be undervaluing a team, particularly strong home underdogs.
-
-Here are the ranked plays:
-
-1.  **Golden State Warriors vs San Antonio Spurs**
-    *   **Play:** Golden State Warriors Home ML (2.72)
-    *   **Reasoning:** The Warriors, even with their struggles, are rarely home underdogs of this magnitude against the rebuilding Spurs. This price strongly suggests the market is overreacting to recent form and undervaluing their championship pedigree and home-court advantage.
-
-2.  **Los Angeles Lakers vs San Antonio Spurs**
-    *   **Play:** Los Angeles Lakers Home ML (3.7)
-    *   **Reasoning:** Despite their inconsistencies, the Lakers at home with their talent are being significantly discounted against the Spurs. Odds of 3.7 offer substantial value for a team fully capable of winning this game on their home floor.
-
-3.  **Phoenix Suns vs Oklahoma City Thunder**
-    *   **Play:** Phoenix Suns Home ML (3.05)
-    *   **Reasoning:** The Suns possess star power and are generally strong at home, making them a potential value as significant underdogs against the Thunder. While OKC is excellent, Phoenix's home advantage and offensive firepower might be underrated at these odds.

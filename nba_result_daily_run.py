@@ -1,5 +1,6 @@
 import os
-from data.nhl_games import get_games_yesterday
+from data.nba_games import get_nba_games_yesterday
+from datetime import date, timedelta
 from google import genai
 from google.genai import types
 from datetime import date
@@ -11,7 +12,7 @@ def analyze_results_with_actuals(results_text, actuals_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
     prompt = (
-        "You are a disciplined NHL betting analyst.\n"
+        "You are a disciplined NBA betting analyst.\n"
         "You will:\n"
         "- Review the AI predictions and the actual game results\n"
         "- For each prediction, determine if it was a win or loss\n"
@@ -29,13 +30,13 @@ def analyze_results_with_actuals(results_text, actuals_text):
     return response.candidates[0].content.parts[0].text
 
 # Read the results file
-yesterday = "2026-02-03"
-result_file = f"results/nhl_daily_results_{yesterday}.txt"
+yesterday = (date.today() - timedelta(days=1)).isoformat()
+result_file = f"results/nba_daily_results_{yesterday}.txt"
 with open(result_file, "r") as f:
     results_text = f.read()
 
 # Get and format actual results
-games = get_games_yesterday()
+games = get_nba_games_yesterday()
 actuals_text = "\n".join(
     f"{g['away']} {g['away_score']} @ {g['home']} {g['home_score']}" for g in games
 )
@@ -46,10 +47,11 @@ summary = analyze_results_with_actuals(results_text, actuals_text)
 today_str = date.today().isoformat()
 results_folder = "bot_results"
 os.makedirs(results_folder, exist_ok=True)
-filename = os.path.join(results_folder, f"nhl_daily_results_{today_str}.txt")
+filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
 
 # Write summary to file
 with open(filename, "w") as out_f:
     out_f.write(summary)
+
 
 print(summary)
