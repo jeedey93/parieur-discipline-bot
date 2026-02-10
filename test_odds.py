@@ -1,6 +1,6 @@
-from data.odds import get_odds
+from data.odds import get_nhl_odds
 
-odds = get_odds()
+odds = get_nhl_odds()
 
 for game in odds:
     print(game["home_team"], "vs", game["away_team"])

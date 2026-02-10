@@ -39,6 +39,10 @@ jobs:
       - name: Run NHL bot
         run: python daily_run.py
 
+      # 5️⃣ Run the NBA bot to generate the results file
+      - name: Run NBA bot
+        run: python nba_daily_run.py
+
       # 6️⃣ Commit and push the new results file
       - name: Debug PAT length
         run: |

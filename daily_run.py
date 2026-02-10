@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from data.nhl_games import get_games_today
-from data.odds import get_odds, match_odds_to_games
+from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date
 
 load_dotenv()
@@ -39,7 +39,7 @@ with open(filename, "w") as f:
         f.write("No NHL games today\n")
         print("No NHL games today")
     else:
-        odds_data = get_odds()
+        odds_data = get_nhl_odds()
         matched = match_odds_to_games(games, odds_data)
 
         results_text = ""
