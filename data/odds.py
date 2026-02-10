@@ -129,20 +129,32 @@ def match_odds_to_games(games, odds_data, team_name_map):
         home_odds = None
         away_odds = None
         over_under = None
+        bookmakers_odds = []
 
         for odds_game in odds_data:
             if (normalize(odds_game["home_team"]) == normalize(home) and
                     normalize(odds_game["away_team"]) == normalize(away)):
-                bookmaker = odds_game["bookmakers"][0]
-                for market in bookmaker["markets"]:
-                    if market["key"] == "h2h":
-                        for outcome in market["outcomes"]:
-                            if normalize(outcome["name"]) == normalize(home):
-                                home_odds = outcome["price"]
-                            elif normalize(outcome["name"]) == normalize(away):
-                                away_odds = outcome["price"]
-                    elif market["key"] == "totals":
-                        over_under = market["outcomes"][0].get("point")
+                for bookmaker in odds_game["bookmakers"]:
+                    bookmaker_entry = {
+                        "title": bookmaker["title"],
+                        "markets": []
+                    }
+                    for market in bookmaker["markets"]:
+                        market_entry = {
+                            "key": market["key"],
+                            "outcomes": market["outcomes"]
+                        }
+                        bookmaker_entry["markets"].append(market_entry)
+                        # For summary odds (first bookmaker only, for backward compatibility)
+                        if home_odds is None and market["key"] == "h2h":
+                            for outcome in market["outcomes"]:
+                                if normalize(outcome["name"]) == normalize(home):
+                                    home_odds = outcome["price"]
+                                elif normalize(outcome["name"]) == normalize(away):
+                                    away_odds = outcome["price"]
+                        if over_under is None and market["key"] == "totals":
+                            over_under = market["outcomes"][0].get("point")
+                    bookmakers_odds.append(bookmaker_entry)
                 break
 
         if home_odds is not None and away_odds is not None:
@@ -153,7 +165,8 @@ def match_odds_to_games(games, odds_data, team_name_map):
                 "start_time": start_time,
                 "home_odds": home_odds,
                 "away_odds": away_odds,
-                "over_under": over_under
+                "over_under": over_under,
+                "bookmakers_odds": bookmakers_odds
             })
 
     return matched_games

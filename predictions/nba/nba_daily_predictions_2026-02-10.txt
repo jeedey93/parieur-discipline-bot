@@ -1,31 +1,40 @@
 Date: 2026-02-10
 
 New York Knicks vs Indiana Pacers
-Home odds: 1.16, Away odds: 5.6, O/U: 225.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 1.17, Away odds: 5.3, O/U: 225.5 (Over odds: 1.91, Under odds: 1.91)
 ------
 Houston Rockets vs Los Angeles Clippers
-Home odds: 1.33, Away odds: 3.45, O/U: 212.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 1.29, Away odds: 3.75, O/U: 213.5 (Over odds: 1.94, Under odds: 1.88)
 ------
 Phoenix Suns vs Dallas Mavericks
-Home odds: 1.3, Away odds: 3.65, O/U: 228.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 1.31, Away odds: 3.6, O/U: 228.5 (Over odds: 1.89, Under odds: 1.93)
 ------
 Los Angeles Lakers vs San Antonio Spurs
-Home odds: 3.75, Away odds: 1.29, O/U: 227.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 3.85, Away odds: 1.28, O/U: 225.5 (Over odds: 1.88, Under odds: 1.94)
 ------
 Orlando Magic vs Milwaukee Bucks
 Home odds: 1.22, Away odds: 4.5, O/U: 220.5 (Over odds: 1.91, Under odds: 1.91)
 ------
+Cleveland Cavaliers vs Washington Wizards
+Home odds: 1.06, Away odds: 10.0, O/U: 235.5 (Over odds: 1.89, Under odds: 1.93)
+------
 Toronto Raptors vs Detroit Pistons
-Home odds: 2.04, Away odds: 1.82, O/U: 223.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 2.1, Away odds: 1.77, O/U: 223.5 (Over odds: 1.91, Under odds: 1.91)
 ------
 Philadelphia 76ers vs New York Knicks
-Home odds: 2.1, Away odds: 1.77, O/U: 223.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 1.98, Away odds: 1.86, O/U: 223.5 (Over odds: 1.91, Under odds: 1.91)
+------
+Boston Celtics vs Chicago Bulls
+Home odds: 1.16, Away odds: 5.6, O/U: 226.5 (Over odds: 1.87, Under odds: 1.95)
+------
+New Orleans Pelicans vs Miami Heat
+Home odds: 1.75, Away odds: 2.14, O/U: 229.5 (Over odds: 1.87, Under odds: 1.95)
 ------
 Phoenix Suns vs Oklahoma City Thunder
 Home odds: 3.05, Away odds: 1.4, O/U: 217.5 (Over odds: 1.91, Under odds: 1.91)
 ------
 Golden State Warriors vs San Antonio Spurs
-Home odds: 2.72, Away odds: 1.49, O/U: 216.5 (Over odds: 1.91, Under odds: 1.91)
+Home odds: 2.62, Away odds: 1.52, O/U: 217.5 (Over odds: 1.91, Under odds: 1.91)
 ------
 
 AI Analysis Summary:

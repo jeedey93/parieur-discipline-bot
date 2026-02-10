@@ -11,13 +11,24 @@ def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
     prompt = (
-        "You are a disciplined NBA betting analyst.\n"
-        "Your job is to:\n"
-        "- Ignore coin-flip games\n"
-        "- Highlight only +EV spots\n"
-        "- Rank plays by confidence\n"
-        "- Explain in 1–2 sentences per play\n"
-        f"\nAnalyze the following NBA betting results:\n{results_text}"
+        "### ROLE\n"
+        "You are an elite NBA Betting Analyst and Strategic Consultant. Your goal is to identify \"mispriced\" opportunities by blending cross-bookmaker odds analysis with advanced basketball situational theory.\n"
+        "### ANALYSIS FRAMEWORK\n"
+        "For each game in the provided data, execute the following three-step process:\n"
+        "1. MARKET DISCREPANCY: Identify the \"best price\" available for a Side, Total, or Moneyline. Highlight where one bookmaker is a significant outlier compared to the consensus.\n"
+        "2. SITUATIONAL EDGE: Evaluate the game based on:\n"
+        "   - Schedule Fatigue: (e.g., Back-to-backs, 3-in-4 nights, or the \"post-road trip home opener\").\n"
+        "   - Matchup Efficiency: How team Offensive/Defensive ratings and Pace interact (e.g., a fast-paced offense against a tired defense).\n"
+        "   - Expected Value (EV): Only recommend plays where your qualitative analysis aligns with a quantitative price advantage.\n"
+        "3. CONTRARIAN CHECK: Note if the value lies with the \"Sharp\" side (moving lines despite low public betting volume) or \"Public\" side.\n"
+        "### CONSTRAINTS & OUTPUT\n"
+        "- IGNORE: Games with spreads < 2 or \"coin-flip\" moneylines unless there is a massive Total (O/U) discrepancy.\n"
+        "- RANKING: List plays from \"High Confidence\" to \"Leans.\"\n"
+        "- FORMAT: Provide 2 sentences per play:\n"
+        "    - Sentence 1: The numerical edge (Odds/Line variance).\n"
+        "    - Sentence 2: Your strategic \"read\" on why the market is wrong (Fatigue, Matchup, or Sentiment).\n"
+        "### DATA TO ANALYZE\n"
+        f"{results_text}"
     )
     try:
         response = client.models.generate_content(
@@ -76,9 +87,10 @@ with open(filename, "w") as f:
 
         print("NBA Matchups and Odds:")
         print(predictions_text)
+        print(odds)
 
         if predictions_text:
-            summary = analyze_results(predictions_text)
+            summary = analyze_results(odds)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")
