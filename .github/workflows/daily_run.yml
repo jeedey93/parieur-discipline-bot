@@ -54,6 +54,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/daily_results_*.txt
+          git add results/nhl_daily_results_*.txt
+          git add results/nba_daily_results_*.txt
+          git add bot_results/nhl_daily_results_*.txt
           git commit -m "Add daily results for $(date -u +%Y-%m-%d)" || echo "No changes to commit"
           git push --set-upstream https://$GH_PAT@github.com/${{ github.repository }} HEAD:master

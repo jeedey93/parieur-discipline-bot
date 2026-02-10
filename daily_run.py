@@ -53,9 +53,14 @@ with open(filename, "w") as f:
             f.write(line)
             results_text += line
 
+        print("NHL Matchups and Odds:")
+        print(results_text)
+
         if results_text:
             summary = analyze_results(results_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
+            print("\nAI Analysis Summary:")
+            print(summary)
 
 print(f"Saved daily results to {filename}")
