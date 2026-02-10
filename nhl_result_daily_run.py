@@ -28,11 +28,11 @@ def analyze_results_with_actuals(results_text, actuals_text):
     )
     return response.candidates[0].content.parts[0].text
 
-# Read the results file
+# Read the predictions file
 yesterday = "2026-02-03"
-result_file = f"results/nhl_daily_results_{yesterday}.txt"
-with open(result_file, "r") as f:
-    results_text = f.read()
+predictions_file = f"predictions/nhl/nhl_daily_predictions_{yesterday}.txt"
+with open(predictions_file, "r") as f:
+    predictions_text = f.read()
 
 # Get and format actual results
 games = get_games_yesterday()
@@ -41,10 +41,10 @@ actuals_text = "\n".join(
 )
 
 # Analyze
-summary = analyze_results_with_actuals(results_text, actuals_text)
+summary = analyze_results_with_actuals(predictions_text, actuals_text)
 
 today_str = date.today().isoformat()
-results_folder = "bot_results"
+results_folder = os.path.join("bot_results", "nhl")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nhl_daily_results_{today_str}.txt")
 

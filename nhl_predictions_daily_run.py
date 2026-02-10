@@ -29,9 +29,9 @@ def analyze_results(results_text):
 
 games = get_games_today()
 today_str = date.today().isoformat()
-results_folder = "results"
-os.makedirs(results_folder, exist_ok=True)
-filename = os.path.join(results_folder, f"nhl_daily_results_{today_str}.txt")
+predictions_folder = os.path.join("predictions", "nhl")
+os.makedirs(predictions_folder, exist_ok=True)
+filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
 
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")

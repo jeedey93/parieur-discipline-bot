@@ -29,10 +29,10 @@ def analyze_results_with_actuals(results_text, actuals_text):
     )
     return response.candidates[0].content.parts[0].text
 
-# Read the results file
+# Read the predictions file
 yesterday = (date.today() - timedelta(days=1)).isoformat()
-result_file = f"results/nba_daily_results_{yesterday}.txt"
-with open(result_file, "r") as f:
+predictions_file = f"predictions/nba/nba_daily_predictions_{yesterday}.txt"
+with open(predictions_file, "r") as f:
     results_text = f.read()
 
 # Get and format actual results
@@ -45,7 +45,7 @@ actuals_text = "\n".join(
 summary = analyze_results_with_actuals(results_text, actuals_text)
 
 today_str = date.today().isoformat()
-results_folder = "bot_results"
+results_folder = os.path.join("bot_results", "nba")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
 

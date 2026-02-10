@@ -35,21 +35,21 @@ jobs:
           echo "ODDS_API_KEY=${{ secrets.ODDS_API_KEY }}" > .env
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
 
-      # 5️⃣ Run the bot to generate the results file
-      - name: Run NHL bot
-        run: python daily_run.py
+      # 5️⃣ Run the NHL bot to generate the prediction file
+      - name: Run NHL daily predictions bot
+        run: python nhl_predictions_daily_run.py
+
+      # 5️⃣ Run the NBA bot to generate the prediction file
+      - name: Run NBA daily predictions bot
+        run: python nba_predictions_daily_run.py
+
+      # 5️⃣ Run the NHL bot to generate the results file
+      - name: Run NHL daily results bot
+        run: python nhl_results_daily_run.py
 
       # 5️⃣ Run the NBA bot to generate the results file
-      - name: Run NBA bot
-        run: python nba_daily_run.py
-
-      # 5️⃣ Run the bot to generate the results file
-      - name: Run NHL Result bot
-        run: python result_daily_run.py
-
-      # 5️⃣ Run the bot to generate the results file
-      - name: Run NBA Result bot
-        run: python nba_result_daily_run.py
+      - name: Run NBA daily results bot
+        run: python nba_results_daily_run.py
 
       # 6️⃣ Commit and push the new results files to the repository
       - name: Commit results
@@ -58,9 +58,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/nhl_daily_results_*.txt
-          git add results/nba_daily_results_*.txt
-          git add bot_results/nhl_daily_results_*.txt
-          git add bot_results/nba_daily_results_*.txt
+          git add predictions/nhl/nhl_daily_predictions_*.txt
+          git add predictions/nba/nba_daily_predictions_*.txt
+          git add bot_results/nhl/nhl_daily_results_*.txt
+          git add bot_results/nba/nba_daily_results_*.txt
           git commit -m "Add daily results for $(date -u +%Y-%m-%d)" || echo "No changes to commit"
           git push --set-upstream https://$GH_PAT@github.com/${{ github.repository }} HEAD:master

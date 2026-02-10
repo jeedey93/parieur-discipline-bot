@@ -26,12 +26,12 @@ def analyze_results(results_text):
     return response.candidates[0].content.parts[0].text
 
 today_str = date.today().isoformat()
-results_folder = "results"
-os.makedirs(results_folder, exist_ok=True)
-filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
+predictions_folder = os.path.join("predictions", "nba")
+os.makedirs(predictions_folder, exist_ok=True)
+filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}.txt")
 
 odds = get_nba_odds()
-results_text = ""
+predictions_text = ""
 
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")
@@ -66,19 +66,16 @@ with open(filename, "w") as f:
                 "------\n"
             )
             f.write(line)
-            results_text += line
-
-        f.write("\nNBA Matchups and Odds:\n")
-        f.write(results_text)
+            predictions_text += line
 
         print("NBA Matchups and Odds:")
-        print(results_text)
+        print(predictions_text)
 
-        if results_text:
-            summary = analyze_results(results_text)
+        if predictions_text:
+            summary = analyze_results(predictions_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")
             print(summary)
 
-print(f"Saved NBA daily results to {filename}")
+print(f"Saved NBA daily predictions to {filename}")
