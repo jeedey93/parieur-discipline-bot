@@ -21,11 +21,17 @@ def analyze_results(results_text):
         "- Explain in 1–2 sentences per play\n"
         f"\nAnalyze the following NHL betting results:\n{results_text}"
     )
-    response = client.models.generate_content(
-        model="models/gemini-2.5-flash",
-        contents=types.Part.from_text(text=prompt),
-    )
-    return response.candidates[0].content.parts[0].text
+    try:
+        response = client.models.generate_content(
+            model="models/gemini-2.5-flash",
+            contents=types.Part.from_text(text=prompt),
+        )
+        return response.candidates[0].content.parts[0].text
+    except genai.errors.ClientError as e:
+        if "RESOURCE_EXHAUSTED" in str(e) or "quota" in str(e):
+            return "AI analysis skipped: Gemini API quota exceeded."
+        else:
+            raise
 
 games = get_games_today()
 today_str = date.today().isoformat()

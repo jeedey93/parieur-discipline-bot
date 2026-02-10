@@ -23,11 +23,17 @@ def analyze_results_with_actuals(results_text, actuals_text):
         f"{actuals_text}\n"
         "Return a summary of wins and losses."
     )
-    response = client.models.generate_content(
-        model="models/gemini-2.5-flash",
-        contents=types.Part.from_text(text=prompt),
-    )
-    return response.candidates[0].content.parts[0].text
+    try:
+        response = client.models.generate_content(
+            model="models/gemini-2.5-flash",
+            contents=types.Part.from_text(text=prompt),
+        )
+        return response.candidates[0].content.parts[0].text
+    except genai.errors.ClientError as e:
+        if "RESOURCE_EXHAUSTED" in str(e) or "quota" in str(e):
+            return "AI analysis skipped: Gemini API quota exceeded."
+        else:
+            raise
 
 # Read the predictions file
 yesterday = (date.today() - timedelta(days=1)).isoformat()
