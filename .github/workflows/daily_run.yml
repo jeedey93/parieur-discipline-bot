@@ -2,8 +2,8 @@ name: Daily NHL/NBA Bot Results
 
 on:
   schedule:
-    # Runs every day at 10:00 AM Montreal time (UTC-5 → 15:00 UTC)
-    - cron: '0 15 * * *'
+    # Runs every day at 11:00 AM UTC (7:00 AM Montreal time during daylight saving, 6:00 AM during standard time)
+    - cron: '0 11 * * *'
   workflow_dispatch:
 
 jobs:
