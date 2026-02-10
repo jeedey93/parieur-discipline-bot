@@ -2,3 +2,4 @@ requests
 python-dotenv
 pillow
 google-generativeai
+python-dateutil
