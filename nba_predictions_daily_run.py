@@ -87,7 +87,6 @@ with open(filename, "w") as f:
 
         print("NBA Matchups and Odds:")
         print(predictions_text)
-        print(odds)
 
         if predictions_text:
             summary = analyze_results(odds)
