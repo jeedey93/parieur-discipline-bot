@@ -16,7 +16,6 @@ A Python tool for analyzing NHL and NBA games, matching odds, and generating dis
 
 - Fetches daily NHL and NBA games and odds
 - Analyzes results using Google Gemini API
-- Skips AI analysis if API quota is exceeded
 - Outputs ranked betting recommendations
 - Writes daily predictions and results to organized folders
 
