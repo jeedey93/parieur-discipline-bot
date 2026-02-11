@@ -1,20 +1,47 @@
 # Latest Predictions
 
-## NBA (2026-02-10)
+## NBA (2026-02-11)
 ```
-Date: 2026-02-10
+Date: 2026-02-11
 
-New York Knicks vs Indiana Pacers
-Home odds: 1.52, Away odds: 2.5, O/U: 272.5
+Orlando Magic vs Milwaukee Bucks
+Home odds: 1.22, Away odds: 4.6, O/U: 220.5
 ------
-Houston Rockets vs Los Angeles Clippers
-Home odds: 1.01, Away odds: 26.0, O/U: 199.5
+Charlotte Hornets vs Atlanta Hawks
+Home odds: 1.43, Away odds: 2.9, O/U: 232.5
 ------
-Phoenix Suns vs Dallas Mavericks
-Home odds: 1.02, Away odds: 14.0, O/U: 223.5
+Cleveland Cavaliers vs Washington Wizards
+Home odds: 1.07, Away odds: 9.7, O/U: 236.5
 ------
-Los Angeles Lakers vs San Antonio Spurs
-Home odds: 6.3, Away odds: 1.13, O/U: 224.5
+Toronto Raptors vs Detroit Pistons
+Home odds: 2.12, Away odds: 1.76, O/U: 222.5
+------
+Philadelphia 76ers vs New York Knicks
+Home odds: 1.91, Away odds: 1.94, O/U: 222.5
+------
+Boston Celtics vs Chicago Bulls
+Home odds: 1.16, Away odds: 5.6, O/U: 225.5
+------
+Brooklyn Nets vs Indiana Pacers
+Home odds: 1.56, Away odds: 2.48, O/U: 214.5
+------
+New Orleans Pelicans vs Miami Heat
+Home odds: 1.83, Away odds: 2.02, O/U: 231.5
+------
+Minnesota Timberwolves vs Portland Trail Blazers
+Home odds: 1.37, Away odds: 3.2, O/U: 237.5
+------
+Phoenix Suns vs Oklahoma City Thunder
+Home odds: 2.98, Away odds: 1.42, O/U: 217.5
+------
+Denver Nuggets vs Memphis Grizzlies
+Home odds: 1.16, Away odds: 5.6, O/U: 236.5
+------
+Utah Jazz vs Sacramento Kings
+Home odds: 1.41, Away odds: 3.0, O/U: 234.5
+------
+Golden State Warriors vs San Antonio Spurs
+Home odds: 2.76, Away odds: 1.48, O/U: 218.5
 ------
 
 AI Analysis Summary:
