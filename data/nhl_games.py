@@ -2,9 +2,9 @@ import requests
 from datetime import date, timedelta
 
 def get_games_today():
-    date_str = "2026-02-25"
+    #date_str = "2026-02-25"
     today = date.today().isoformat()
-    url = f"https://api-web.nhle.com/v1/schedule/{date_str}"
+    url = f"https://api-web.nhle.com/v1/schedule/{today}"
 
     response = requests.get(url, timeout=10)
     response.raise_for_status()

@@ -1,2 +1,4 @@
 .env
 .idea/
+bot_results/
+predictions/
