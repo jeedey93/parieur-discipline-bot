@@ -65,7 +65,7 @@ with open(filename, "w") as f:
     else:
         print("NBA Matchups and Odds:")
         for g in matched:
-            # Headline summary per game
+            # Headline summary per game (write to file + include in predictions_text)
             line = (
                 f"{g['home']} vs {g['away']}\n"
                 f"Home odds: {g.get('home_odds')}, Away odds: {g.get('away_odds')}, "
@@ -76,19 +76,16 @@ with open(filename, "w") as f:
             f.write(line)
             predictions_text += line
 
-            # Verbose per-bookmaker markets for the same game
+            # Verbose per-bookmaker markets ONLY for predictions_text (skip writing to file)
             bm_list = g.get('bookmakers_odds', [])
             if bm_list:
-                f.write("Bookmakers snapshot:\n")
                 predictions_text += "Bookmakers snapshot:\n"
                 for bm in bm_list:
                     title = bm.get('title') or bm.get('key') or 'Unknown Bookmaker'
-                    f.write(f"  {title}\n")
                     predictions_text += f"  {title}\n"
                     for m in bm.get('markets', []):
                         mkey = m.get('key', 'unknown')
                         outcomes = m.get('outcomes', [])
-                        # Render outcomes compactly: Name: price [point]
                         out_strs = []
                         for o in outcomes:
                             if isinstance(o, dict):
@@ -101,10 +98,7 @@ with open(filename, "w") as f:
                                     out_strs.append(f"{name} @ {price}")
                             else:
                                 out_strs.append(str(o))
-                        line_bm = f"    {mkey}: " + ", ".join(out_strs) + "\n"
-                        f.write(line_bm)
-                        predictions_text += line_bm
-                f.write("------\n")
+                        predictions_text += f"    {mkey}: " + ", ".join(out_strs) + "\n"
                 predictions_text += "------\n"
 
         if predictions_text:
