@@ -2,7 +2,7 @@ import os
 from data.nhl_games import get_games_yesterday
 from google import genai
 from google.genai import types
-from datetime import date
+from datetime import date, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
