@@ -111,6 +111,7 @@ def extract_first_play(predictions_text: str) -> dict | None:
             "bet": bet_desc if bet_desc else betline,
             "odds": odds,
             "game": f"{home} vs {away}" if home and away else betline,
+            "is_bod": True,
         }
 
     # 2) Fallback: first bold play line in the AI Analysis Summary
@@ -149,6 +150,7 @@ def extract_first_play(predictions_text: str) -> dict | None:
         "bet": bet_desc,
         "odds": odds,
         "game": game,
+        "is_bod": False,
     }
 
 
@@ -210,7 +212,7 @@ def generate_image_with_gemini(play: dict, api_key: str) -> bytes | None:
 def generate_image_with_pillow(play: dict, out_path: str):
     """
     Renders a clean centered NBA matchup image:
-        - Header: "NBA Matchup"
+        - Header: "NBA Matchup" (or "Bet of the Day" if detected)
         - Lines: Home, "vs", Away
         - Bet line: "<Bet> @ <Odds>"
         - Dark background, all text centered.
@@ -251,7 +253,8 @@ def generate_image_with_pillow(play: dict, out_path: str):
 
     # Header
     header_y = 36
-    center_text("NBA Matchup", header_y, font_header, color_header)
+    header_text = "Bet of the Day" if play.get("is_bod") else "NBA Matchup"
+    center_text(header_text, header_y, font_header, color_header)
 
     # Teams: three lines centered vertically
     home = play.get("home", "Home").strip()
@@ -280,11 +283,12 @@ def generate_image_with_pillow(play: dict, out_path: str):
     cur_y += away_h
 
     # Bet line: "<Bet> @ <Odds>"
-    odds = str(play.get("odds", "")).strip()
-    bet_line = f"@ {odds}"
+    bet_text = str(play.get("bet", "")).strip()
+    odds_text = str(play.get("odds", "")).strip()
+    full_bet_line = (bet_text + (f" @ {odds_text}" if odds_text else "")).strip()
 
     bet_y = cur_y + 24  # below the teams block
-    center_text(bet_line, bet_y, font_bet, color_bet)
+    center_text(full_bet_line, bet_y, font_bet, color_bet)
 
     # Save image
     img.save(out_path, format="PNG")
