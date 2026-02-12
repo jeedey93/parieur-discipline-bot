@@ -26,6 +26,7 @@ def analyze_results(results_text):
         "For each game in the provided data, execute the following three-step process:\n"
         "1. MARKET DISCREPANCY: Identify the \"best price\" for Side/Total/Moneyline and highlight bookmaker outliers.\n"
         "2. SITUATIONAL EDGE: Evaluate schedule fatigue, momentum/player form, and matchup/points context.\n"
+        "   - INJURIES: Explicitly include key injuries by player name where available (e.g., OUT/DOUBTFUL/QUESTIONABLE), and explain how those absences impact offense/defense, rotation, and pace.\n"
         "3. CONTRARIAN CHECK: Note if value aligns with sharp vs public dynamics.\n"
         "\n"
         "### CONSTRAINTS & OUTPUT\n"
@@ -33,8 +34,8 @@ def analyze_results(results_text):
         "- RANKING: List plays from \"High Confidence\" to \"Leans.\"\n"
         "- EXPLANATION TONE: Short, plain-language, user-friendly.\n"
         "- FORMAT: Provide exactly 2 short sentences per play:\n"
-        "    - Sentence 1: Summarize teams/players, fatigue, momentum, matchups, and points expectations.\n"
-        "    - Sentence 2: A simple reason grounded in matchups and current player form.\n"
+        "    - Sentence 1: Summarize teams/players, fatigue, momentum, matchups, points expectations, and notable injuries impacting the game.\n"
+        "    - Sentence 2: A simple reason grounded in matchups, current player form, and injuries.\n"
         "- Do not mention bookmakers, odds, price/line variance, EV, or market data in these two sentences.\n"
         "- NAMING: For ML plays, always use the format \"<TEAM> ML vs <OPPONENT>\" (e.g., \"New York Knicks ML vs Philadelphia 76ers\").\n"
         "- NAMING: For spreads/totals, always include the opponent using the format \"<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>\" (e.g., \"Oklahoma City Thunder -6.5 vs Milwaukee Bucks @ 1.95\").\n"
@@ -44,7 +45,7 @@ def analyze_results(results_text):
         "After listing plays, choose the single highest-confidence pick that fits the <= 2.2 odds constraint and mark it clearly as: \n"
         "\n"
         "Bet of the Day: <TEAM or MARKET> vs <OPPONENT> @ <ODDS>\n"
-        "Provide a reason in plain language focusing on form, matchup, injuries, and (when impactful) name key players involved. Do not mention bookmakers, odds, price/line variance, EV, or market data.\n"
+        "Provide a reason in plain language focusing on form, matchup, injuries (name impacted players), and momentum. Do not mention bookmakers, odds, price/line variance, EV, or market data.\n"
         "\n"
         "### DATA TO ANALYZE\n"
         f"{results_text}"
@@ -68,6 +69,9 @@ filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}.
 
 games = get_nba_games_today()
 odds = get_nba_odds()
+
+# Optional: allow passing injury notes via environment or external pre-processing
+extra_injury_notes = os.getenv("NBA_INJURY_NOTES")
 
 # Match structured odds to games
 matched = match_nba_odds_to_games(games, odds, NBA_TEAM_NAME_MAP)
@@ -119,6 +123,10 @@ with open(filename, "w") as f:
                                 out_strs.append(str(o))
                         predictions_text += f"    {mkey}: " + ", ".join(out_strs) + "\n"
                 predictions_text += "------\n"
+
+        # Append any external injury notes to give the model explicit names if provided
+        if extra_injury_notes:
+            predictions_text += "\nInjury Notes (user-supplied):\n" + extra_injury_notes + "\n"
 
         if predictions_text:
             summary = analyze_results(predictions_text)
