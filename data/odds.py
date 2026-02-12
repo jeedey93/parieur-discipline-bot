@@ -36,7 +36,7 @@ def get_nba_odds():
     params = {
         "apiKey": API_KEY,
         "regions": "us",
-        "markets": "h2h,totals",
+        "markets": "h2h,spreads,totals",
         "oddsFormat": "decimal",
         "dateFormat": "iso",
         #"commenceTimeFrom": commence_from,
@@ -172,61 +172,109 @@ def match_odds_to_games(games, odds_data, team_name_map):
     return matched_games
 
 def match_nba_odds_to_games(games, odds_data, team_name_map=NBA_TEAM_NAME_MAP):
+    """
+    Match The Odds API NBA odds to your games list and summarize moneyline, totals, and spreads.
+    - Scans all bookmakers to find moneyline (h2h), totals (point), and spreads (home/away points & prices).
+    - For spreads, chooses the most common point per side; if tie or unavailable, picks the first seen.
+    - Also returns a per-bookmaker snapshot in `bookmakers_odds` for downstream analysis.
+    """
+    def _tally_spread(spread_records):
+        # spread_records: list of dicts {point, price}
+        if not spread_records:
+            return None, None
+        # Count points frequency
+        from collections import Counter
+        points = [r["point"] for r in spread_records if r.get("point") is not None]
+        if not points:
+            # fallback first
+            first = spread_records[0]
+            return first.get("point"), first.get("price")
+        most_common_point, _ = Counter(points).most_common(1)[0]
+        # pick best price among records with that point (highest decimal price)
+        candidates = [r for r in spread_records if r.get("point") == most_common_point and r.get("price") is not None]
+        if not candidates:
+            return most_common_point, None
+        best = max(candidates, key=lambda r: r.get("price", 0))
+        return most_common_point, best.get("price")
+
     matched_games = []
+
     for game in games:
-        home_city = normalize(game["home"])
-        away_city = normalize(game["away"])
-        home = team_name_map.get(home_city, game["home"])
-        away = team_name_map.get(away_city, game["away"])
-        # NBA game objects use 'commence_time'
-        start_time = game.get("commence_time")
+        home_city = normalize(game["home"]) if isinstance(game.get("home"), str) else game.get("home")
+        away_city = normalize(game["away"]) if isinstance(game.get("away"), str) else game.get("away")
+        home = team_name_map.get(home_city, game.get("home"))
+        away = team_name_map.get(away_city, game.get("away"))
+        start_time = game.get("commence_time") or game.get("start_time")
+
         home_odds = None
         away_odds = None
         over_under = None
+
+        # collect spreads across all bookmakers
+        spread_home_records = []  # list of {point, price}
+        spread_away_records = []
+
         bookmakers_odds = []
 
         for odds_game in odds_data:
             if (normalize(odds_game.get("home_team", "")) == normalize(home) and
-                    normalize(odds_game.get("away_team", "")) == normalize(away)):
+                normalize(odds_game.get("away_team", "")) == normalize(away)):
+
                 for bookmaker in odds_game.get("bookmakers", []):
-                    bookmaker_entry = {
-                        "title": bookmaker.get("title"),
-                        "markets": []
-                    }
+                    bm_snapshot = {"title": bookmaker.get("title"), "markets": []}
+
                     for market in bookmaker.get("markets", []):
-                        market_entry = {
-                            "key": market.get("key"),
-                            "outcomes": market.get("outcomes", [])
-                        }
-                        bookmaker_entry["markets"].append(market_entry)
-                        # Extract summary odds once (first seen h2h and totals)
-                        if home_odds is None and market.get("key") == "h2h":
-                            for outcome in market.get("outcomes", []):
-                                name = outcome.get("name", "")
-                                price = outcome.get("price")
-                                if price is None:
-                                    continue
-                                if normalize(name) == normalize(home):
-                                    home_odds = price
-                                elif normalize(name) == normalize(away):
-                                    away_odds = price
-                        if over_under is None and market.get("key") == "totals":
-                            outcomes = market.get("outcomes", [])
-                            if outcomes:
+                        mkey = market.get("key")
+                        outcomes = market.get("outcomes", []) or []
+                        bm_snapshot["markets"].append({"key": mkey, "outcomes": outcomes})
+
+                        if mkey == "h2h":
+                            # moneyline summary (first seen)
+                            if home_odds is None or away_odds is None:
+                                for o in outcomes:
+                                    name = o.get("name", "")
+                                    price = o.get("price")
+                                    if price is None:
+                                        continue
+                                    if normalize(name) == normalize(home):
+                                        home_odds = price
+                                    elif normalize(name) == normalize(away):
+                                        away_odds = price
+
+                        elif mkey == "totals":
+                            if over_under is None and outcomes:
                                 over_under = outcomes[0].get("point")
-                    bookmakers_odds.append(bookmaker_entry)
+
+                        elif mkey == "spreads":
+                            for o in outcomes:
+                                name = o.get("name", "")
+                                price = o.get("price")
+                                point = o.get("point")
+                                if normalize(name) == normalize(home):
+                                    spread_home_records.append({"point": point, "price": price})
+                                elif normalize(name) == normalize(away):
+                                    spread_away_records.append({"point": point, "price": price})
+
+                    bookmakers_odds.append(bm_snapshot)
                 break
+
+        spread_home_points, spread_home_price = _tally_spread(spread_home_records)
+        spread_away_points, spread_away_price = _tally_spread(spread_away_records)
 
         if home_odds is not None and away_odds is not None:
             matched_games.append({
-                "game_id": game.get("game_id"),
+                "game_id": game.get("game_id") or odds_game.get("id"),
                 "home": home,
                 "away": away,
                 "start_time": start_time,
                 "home_odds": home_odds,
                 "away_odds": away_odds,
                 "over_under": over_under,
-                "bookmakers_odds": bookmakers_odds
+                "spread_home_points": spread_home_points,
+                "spread_home_price": spread_home_price,
+                "spread_away_points": spread_away_points,
+                "spread_away_price": spread_away_price,
+                "bookmakers_odds": bookmakers_odds,
             })
 
     return matched_games

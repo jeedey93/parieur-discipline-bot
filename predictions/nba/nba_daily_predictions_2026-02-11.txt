@@ -1,86 +1,33 @@
 Date: 2026-02-11
 
-Orlando Magic vs Milwaukee Bucks
-Home odds: 1.22, Away odds: 4.5, O/U: 220.5
-------
-Charlotte Hornets vs Atlanta Hawks
-Home odds: 1.51, Away odds: 2.66, O/U: 232.5
-------
-Cleveland Cavaliers vs Washington Wizards
-Home odds: 1.07, Away odds: 9.3, O/U: 239.5
-------
-Toronto Raptors vs Detroit Pistons
-Home odds: 2.06, Away odds: 1.81, O/U: 223.5
-------
-Philadelphia 76ers vs New York Knicks
-Home odds: 1.75, Away odds: 2.14, O/U: 221.5
-------
-Boston Celtics vs Chicago Bulls
-Home odds: 1.14, Away odds: 6.0, O/U: 224.5
-------
-Brooklyn Nets vs Indiana Pacers
-Home odds: 1.56, Away odds: 2.52, O/U: 216.5
+New Orleans Pelicans vs Miami Heat
+Home odds: 19.0, Away odds: 1.01, O/U: 239.5
+Spreads: Home 9.5 (1.87), Away -9.5 (2.02)
 ------
 Houston Rockets vs Los Angeles Clippers
-Home odds: 1.27, Away odds: 3.95, O/U: 208.5
-------
-New Orleans Pelicans vs Miami Heat
-Home odds: 1.91, Away odds: 1.94, O/U: 231.5
+Home odds: 1.3, Away odds: 3.4, O/U: 205.5
+Spreads: Home -2.5 (1.8), Away 2.5 (2.05)
 ------
 Minnesota Timberwolves vs Portland Trail Blazers
-Home odds: 1.33, Away odds: 3.45, O/U: 236.5
+Home odds: 1.01, Away odds: 34.0, O/U: 240.5
+Spreads: Home -19.5 (1.95), Away 19.5 (1.89)
 ------
 Phoenix Suns vs Oklahoma City Thunder
-Home odds: 3.15, Away odds: 1.38, O/U: 217.5
+Home odds: 23.0, Away odds: 1.0, O/U: 230.5
+Spreads: Home 21.5 (1.91), Away -21.5 (1.95)
 ------
 Denver Nuggets vs Memphis Grizzlies
-Home odds: 1.14, Away odds: 6.2, O/U: 238.5
+Home odds: 1.06, Away odds: 9.0, O/U: 230.5
+Spreads: Home -13.5 (1.93), Away 13.5 (1.95)
 ------
 Utah Jazz vs Sacramento Kings
-Home odds: 1.4, Away odds: 3.05, O/U: 230.5
+Home odds: 1.0, Away odds: 36.0, O/U: 225.5
+Spreads: Home -23.5 (2.02), Away 23.5 (1.85)
 ------
 Golden State Warriors vs San Antonio Spurs
-Home odds: 3.15, Away odds: 1.38, O/U: 221.5
+Home odds: 2.86, Away odds: 1.41, O/U: 220.5
+Spreads: Home 6.5 (1.91), Away -6.5 (1.95)
 ------
 
 AI Analysis Summary:
-Here are your top NBA betting plays, analyzed with a blend of market dynamics and situational basketball theory:
-
-### High Confidence
-
-1.  **New York Knicks ML vs Philadelphia 76ers**
-    The Philadelphia 76ers are significantly weakened without Joel Embiid, while the New York Knicks are playing exceptionally well with strong defense and fluid offense. New York's collective effort and current winning form should overcome a depleted Philadelphia team.
-
-2.  **Brooklyn Nets vs Indiana Pacers - Under 216.5**
-    The Indiana Pacers' high-octane offense is severely compromised by the absence of Tyrese Haliburton, forcing a slower pace. The Brooklyn Nets, despite their inconsistencies, possess a capable defense. Without their star playmaker, Indiana will struggle to generate enough points against a decent Nets defense, keeping the total low.
-
-3.  **Minnesota Timberwolves vs Portland Trail Blazers - Under 236.5**
-    Minnesota boasts one of the most formidable defenses in the league, consistently limiting opponent scoring. The Portland Trail Blazers are a developing team that often struggles with offensive consistency. The Timberwolves' suffocating defense, coupled with the Trail Blazers' limited scoring ability, suggests a game falling below the projected total.
-
-### Medium Confidence
-
-4.  **Cleveland Cavaliers vs Washington Wizards - Under 239.5**
-    The Cleveland Cavaliers are a defensive stronghold known for their controlled game pace, facing a Washington Wizards team that consistently ranks among the league's least efficient offenses. Cleveland's dominant defense will restrict Washington's scoring opportunities, ensuring the game total stays under the mark.
-
-5.  **Denver Nuggets vs Memphis Grizzlies - Under 238.5**
-    The Memphis Grizzlies are severely depleted by injuries, leaving their offense significantly hampered against the disciplined Denver Nuggets. Denver, while potent, can dictate a controlled pace at home. Memphis's extensive injury list severely cripples their ability to score against a top-tier Nuggets team, leading to a lower-scoring contest.
-
-6.  **Houston Rockets vs Los Angeles Clippers - Under 208.5**
-    The Los Angeles Clippers are missing Kawhi Leonard, which is a significant blow to their offensive production, playing against a Houston Rockets team that excels in home defense. Without Kawhi Leonard, the Clippers will find scoring difficult, and Houston's robust defense is well-equipped to limit their offensive output.
-
-### Leans
-
-7.  **Charlotte Hornets vs Atlanta Hawks - Over 232.5**
-    Atlanta plays at a rapid pace and frequently gives up points due to defensive lapses, leading to high-scoring games. The Charlotte Hornets possess enough offensive talent to keep pace and contribute to a high total. Atlanta's fast tempo and defensive struggles create an environment conducive to an offensive shootout.
-
-8.  **Detroit Pistons ML vs Toronto Raptors**
-    The Toronto Raptors are navigating significant roster changes following recent trades, which may lead to immediate chemistry issues and inconsistent performance. The Detroit Pistons, playing at home, have an opportunity to capitalize on a potentially disjointed opponent. Toronto's new lineup could lead to a disorganized showing, providing the Pistons a chance for a home victory.
-
-9.  **Golden State Warriors vs San Antonio Spurs - Under 221.5**
-    The Golden State Warriors will be without both Stephen Curry and Draymond Green, severely impacting their offensive firepower and defensive organization. San Antonio's offense is still in development and lacks consistent scoring. The significant absences for Golden State will severely hinder their scoring potential, leading to a lower-scoring game against a developing Spurs offense.
-
----
-
-**Bet of the Day: New York Knicks ML vs Philadelphia 76ers @ 2.17**
-
-The New York Knicks are in exceptional form, playing with high energy and stifling defense, while the Philadelphia 76ers are severely handicapped by the absence of their MVP candidate, Joel Embiid. New York's cohesive unit and current momentum create a clear advantage against a Philadelphia team missing its primary scorer and defensive anchor.
+AI analysis skipped: Gemini API quota exceeded.

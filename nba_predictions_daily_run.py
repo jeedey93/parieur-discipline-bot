@@ -85,6 +85,9 @@ with open(filename, "w") as f:
                 f"{g['home']} vs {g['away']}\n"
                 f"Home odds: {g.get('home_odds')}, Away odds: {g.get('away_odds')}, "
                 f"O/U: {g.get('over_under')}\n"
+                # Added spreads summary in the headline print
+                f"Spreads: Home {g.get('spread_home_points')} ({g.get('spread_home_price')}), "
+                f"Away {g.get('spread_away_points')} ({g.get('spread_away_price')})\n"
                 "------\n"
             )
             print(line, end="")
