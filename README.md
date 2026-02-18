@@ -8,7 +8,7 @@
 </p>
 
 
-# NHL & NBA Best Bet Bot
+# Parieur Discipliné Bot
 
 A Python tool for analyzing NHL and NBA games, matching odds, and generating disciplined betting analysis using Google Gemini AI. The bot highlights +EV spots, ranks plays by confidence, and explains each pick.
 
