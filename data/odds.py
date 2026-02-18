@@ -1,7 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
-from datetime import date
+from datetime import datetime, timedelta
+import pytz
 
 # Load your .env file
 load_dotenv()
@@ -11,17 +12,25 @@ API_KEY = os.getenv("ODDS_API_KEY")
 def get_nhl_odds():
     """Fetch NHL odds using The Odds API."""
     url = "https://api.the-odds-api.com/v4/sports/icehockey_nhl/odds"
-    today = date.today().isoformat()
-    commence_from = f"{today}T00:00:00Z"
-    commence_to = f"{today}T23:59:59Z"
+
+    eastern = pytz.timezone("America/Toronto")
+    now = datetime.now(eastern)
+
+    start_local = eastern.localize(datetime(now.year, now.month, now.day))
+    end_local = start_local + timedelta(days=1)
+
+    # Convert to UTC ISO strings with Z suffix
+    start_utc = start_local.astimezone(pytz.utc).isoformat().replace("+00:00", "Z")
+    end_utc = end_local.astimezone(pytz.utc).isoformat().replace("+00:00", "Z")
+
     params = {
         "apiKey": API_KEY,
         "regions": "us",
         "markets": "h2h,totals",
         "oddsFormat": "decimal",
         "dateFormat": "iso",
-        #"commenceTimeFrom": commence_from,
-        #"commenceTimeTo": commence_to
+        "commenceTimeFrom": start_utc,
+        "commenceTimeTo": end_utc,
     }
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()
@@ -30,17 +39,25 @@ def get_nhl_odds():
 def get_nba_odds():
     """Fetch NBA odds using The Odds API."""
     url = "https://api.the-odds-api.com/v4/sports/basketball_nba/odds"
-    today = date.today().isoformat()
-    commence_from = f"{today}T00:00:00Z"
-    commence_to = f"{today}T23:59:59Z"
+
+    eastern = pytz.timezone("America/Toronto")
+    now = datetime.now(eastern)
+
+    start_local = eastern.localize(datetime(now.year, now.month, now.day))
+    end_local = start_local + timedelta(days=1)
+
+    # Convert to UTC ISO strings with Z suffix
+    start_utc = start_local.astimezone(pytz.utc).isoformat().replace("+00:00", "Z")
+    end_utc = end_local.astimezone(pytz.utc).isoformat().replace("+00:00", "Z")
+
     params = {
         "apiKey": API_KEY,
         "regions": "us",
         "markets": "h2h,spreads,totals",
         "oddsFormat": "decimal",
         "dateFormat": "iso",
-        #"commenceTimeFrom": commence_from,
-        #"commenceTimeTo": commence_to
+        "commenceTimeFrom": start_utc,
+        "commenceTimeTo": end_utc,
     }
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()

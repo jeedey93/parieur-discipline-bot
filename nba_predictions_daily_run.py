@@ -7,53 +7,25 @@ from datetime import date
 from data.odds import NBA_TEAM_NAME_MAP
 from data.nba_games import get_nba_games_today
 
-
 load_dotenv()
 
 def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
-    prompt = (
-        "### ROLE\n"
-        "You are an elite NBA Betting Analyst and Strategic Consultant. Blend cross-bookmaker odds analysis with situational basketball theory.\n"
-        "\n"
-        "### SELECTION PHILOSOPHY (Safety-First)\n"
-        "- Only recommend plays where the decimal odds are at most 2.2 (reject any pick above 2.2).\n"
-        "- Avoid extreme odd (long shots > 2.2) unless there is a compelling, cross-book consensus and clear EV rationale — but still do not recommend odds above 2.2.\n"
-        "- If a game looks like a coin-flip, skip unless the price advantage is clear within the <= 2.2 constraint.\n"
-        "\n"
-        "### ANALYSIS FRAMEWORK\n"
-        "For each game in the provided data, execute the following three-step process:\n"
-        "1. MARKET DISCREPANCY: Identify the \"best price\" for Side/Total/Moneyline and highlight bookmaker outliers.\n"
-        "2. SITUATIONAL EDGE: Evaluate schedule fatigue, momentum/player form, and matchup/points context.\n"
-        "   - INJURIES: Explicitly include key injuries by player name where available (e.g., OUT/DOUBTFUL/QUESTIONABLE), and explain how those absences impact offense/defense, rotation, and pace.\n"
-        "3. CONTRARIAN CHECK: Note if value aligns with sharp vs public dynamics.\n"
-        "\n"
-        "### CONSTRAINTS & OUTPUT\n"
-        "- IGNORE: Games with spreads < 2 or coin-flip moneylines unless there is a massive Total (O/U) discrepancy.\n"
-        "- RANKING: List plays from \"High Confidence\" to \"Leans.\"\n"
-        "- EXPLANATION TONE: Short, plain-language, user-friendly.\n"
-        "- FORMAT: Provide exactly 2 short sentences per play:\n"
-        "    - Sentence 1: Summarize teams/players, fatigue, momentum, matchups, points expectations, and notable injuries impacting the game.\n"
-        "    - Sentence 2: A simple reason grounded in matchups, current player form, and injuries.\n"
-        "- Do not mention bookmakers, odds, price/line variance, EV, or market data in these two sentences.\n"
-        "- NAMING: For ML plays, always use the format \"<TEAM> ML vs <OPPONENT>\" (e.g., \"New York Knicks ML vs Philadelphia 76ers\").\n"
-        "- NAMING: For spreads/totals, always include the opponent using the format \"<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>\" (e.g., \"Oklahoma City Thunder -6.5 vs Milwaukee Bucks @ 1.95\").\n"
-        "- PLAYER DETAIL: When relevant, explicitly mention key players by name (e.g., star scorers, primary ball-handlers, rim protectors), especially for injury status, form, or matchup impact. Keep it fan-friendly and concise.\n"
-        "\n"
-        "### BET OF THE DAY\n"
-        "After listing plays, choose the single highest-confidence pick that fits the <= 2.2 odds constraint and mark it clearly as: \n"
-        "\n"
-        "Bet of the Day: <TEAM or MARKET> vs <OPPONENT> @ <ODDS>\n"
-        "Provide a reason in plain language focusing on form, matchup, injuries (name impacted players), and momentum. Do not mention bookmakers, odds, price/line variance, EV, or market data.\n"
-        "\n"
-        "### DATA TO ANALYZE\n"
-        f"{results_text}"
-    )
+
+    # Strictly read external prompt; no fallback
+    prompt_path = os.path.join("prompts", "nba_prompt.txt")
+    try:
+        with open(prompt_path, "r", encoding="utf-8") as pf:
+            prompt_text = pf.read().replace("{{RESULTS_TEXT}}", results_text)
+    except Exception as e:
+        # If prompt file is missing or unreadable, skip AI analysis
+        return "AI analysis skipped: prompt file not found or unreadable."
+
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",
-            contents=types.Part.from_text(text=prompt),
+            contents=types.Part.from_text(text=prompt_text),
         )
         return response.candidates[0].content.parts[0].text
     except genai.errors.ClientError as e:

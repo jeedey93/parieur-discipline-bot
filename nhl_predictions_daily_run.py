@@ -9,38 +9,23 @@ from data.odds import NHL_TEAM_NAME_MAP
 
 load_dotenv()
 
+
 def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
-    prompt = (
-        "### ROLE\n"
-        "You are a lead NHL Betting Consultant specializing in Advanced Analytics and Situational Handicapping. You identify value by finding discrepancies between bookmaker lines and \"True Performance\" metrics.\n"
-        "### ANALYSIS FRAMEWORK\n"
-        "For every game in the data, evaluate the following:\n"
-        "1. THE GOALIE GAP: Identify the projected starters.\n"
-        "   - Compare their \"Goals Saved Above Expected\" (GSAx) and recent 5-game save percentage.\n"
-        "   - Highlight if a team is starting a backup or a \"leaky\" starter against a high-volume shooting team.\n"
-        "2. POSSESSION vs. RESULTS (Corsi/PDO):\n"
-        "   - Look for \"Unlucky\" teams: High Corsi (puck possession) but low PDO (shooting % + save %). These teams are prime for positive regression (winning soon).\n"
-        "   - Look for \"Frauds\": Teams winning despite low possession numbers, likely riding a temporary hot goalie.\n"
-        "3. SITUATIONAL FATIGUE:\n"
-        "   - Check for \"3-in-4\" (3rd game in 4 nights) or \"Back-to-Back\" scenarios.\n"
-        "   - Fatigue in hockey hits the \"Defense & Goalie\" first, leading to late-game collapses and \"Over\" totals.\n"
-        "4. THE PUCK LINE (-1.5) EDGE:\n"
-        "   - Identify favorites with high \"Empty Net\" scoring rates vs. underdogs who pull their goalie early.\n"
-        "### CONSTRAINTS & OUTPUT\n"
-        "- IGNORE: Heavy favorites (-250 or higher) unless the Puck Line (-1.5) offers massive +EV.\n"
-        "- RANKING: Rank by \"Confidence Level\" (High, Medium, Lean).\n"
-        "- FORMAT: Provide 2 concise sentences per play:\n"
-        "    - Sentence 1: The Market Discrepancy (e.g., Bookie A has Under 6.0 while the market is 5.5).\n"
-        "    - Sentence 2: The Tactical Reason (e.g., Backup goalie usage or travel fatigue).\n"
-        "### DATA TO ANALYZE\n"
-        f"{results_text}"
-    )
+
+    # Strictly read external prompt file; no fallback
+    prompt_path = os.path.join("prompts", "nhl_prompt.txt")
+    try:
+        with open(prompt_path, "r", encoding="utf-8") as pf:
+            prompt_text = pf.read().replace("{{RESULTS_TEXT}}", results_text)
+    except Exception:
+        return "AI analysis skipped: prompt file not found or unreadable."
+
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",
-            contents=types.Part.from_text(text=prompt),
+            contents=types.Part.from_text(text=prompt_text),
         )
         return response.candidates[0].content.parts[0].text
     except genai.errors.ClientError as e:
@@ -48,6 +33,7 @@ def analyze_results(results_text):
             return "AI analysis skipped: Gemini API quota exceeded."
         else:
             raise
+
 
 games = get_games_today()
 today_str = date.today().isoformat()
@@ -79,7 +65,7 @@ with open(filename, "w") as f:
         print(results_text)
 
         if results_text:
-            summary = analyze_results(odds_data)
+            summary = analyze_results(results_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")
