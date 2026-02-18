@@ -1,9 +1,7 @@
-As a disciplined NHL betting analyst, I must adhere to strict protocols.
+As a disciplined NHL betting analyst, I must report my findings based on the provided information.
 
-My analysis requires reviewing both the AI's predictions and the actual game results to determine wins and losses.
+**Analysis:**
+The "AI Predictions" section for 2026-02-17 is empty. Without the AI's predictions, I am unable to determine wins or losses against the actual game results.
 
-**Upon review, I note that the "AI Predictions" section for 2026-02-17 is empty.**
-
-Without the AI's specific predictions (e.g., Moneyline, Puckline, Over/Under, or specific team picks), I am unable to determine wins or losses and, consequently, cannot provide a summary of the AI's performance.
-
-Please provide the AI's predictions to allow for a proper analysis.
+**Summary:**
+Due to the absence of AI predictions, I cannot provide a summary of wins and losses.
