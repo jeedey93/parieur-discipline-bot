@@ -14,80 +14,77 @@ A Python tool for analyzing NHL and NBA games, matching odds, and generating dis
 
 ## Features
 
-- Fetches daily NHL and NBA games and odds
-- Analyzes results using Google Gemini API
-- Outputs ranked betting recommendations
-- Writes daily predictions and results to organized folders
+- Fetches daily NHL and NBA games and odds (The Odds API)
+- Supports multi-bookmaker markets: moneyline (h2h), totals (O/U), and spreads
+- Analyzes results using Google Gemini
+- "Bet of the Day" extraction and optional image generation
+- Writes daily predictions and results
 
 ## Requirements
 
-- Python 3.8+
-- pip
+- macOS or Linux (Windows works too)
+- Python 3.10+ (3.13 supported)
+- The Odds API key
+- Google Gemini API key
 
-## Setup
+## Recommended Setup (venv)
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/nhl_best_bet_bot.git
-   cd nhl_best_bet_bot
-   ```
+Use a project-local virtual environment so installs don’t collide with your system Python.
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+# from project root
+python3 -m venv .venv
+source .venv/bin/activate
 
-3. **Set up environment variables:**
-   - Create a `.env` file in the project root:
-     ```
-     GOOGLE_API_KEY=your_google_api_key_here
-     ODDS_API_KEY=your_odds_api_key_here
-     ```
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+## Environment Variables
+
+Create a `.env` in the repo root:
+
+```bash
+GOOGLE_API_KEY=your_google_api_key
+ODDS_API_KEY=your_the_odds_api_key
+```
+
+These are read by scripts via `python-dotenv`.
 
 ## Usage
 
-Run the daily scripts:
+Run daily predictions (inside venv):
 
 ```bash
 python nhl_predictions_daily_run.py
 python nba_predictions_daily_run.py
-python nhl_result_daily_run.py
+```
+
+Run daily results (scores) summary:
+
+```bash
+python nhl_results_daily_run.py
 python nba_results_daily_run.py
 ```
 
-- The scripts will fetch game data, match odds, and (if quota allows) analyze results using Gemini AI.
-- If the Gemini API quota is exceeded, the analysis step is skipped and a message is shown.
-- Results and predictions are saved in the `predictions/` and `bot_results/` folders, organized by sport and date.
+## Daily Automation (GitHub Actions)
+
+- The workflow checks out the repo, sets up Python, installs dependencies from `requirements.txt`, writes `.env` from repo secrets, runs daily scripts, and commits changes (predictions/results/images/LATEST_PREDICTIONS.md).
 
 ## Example Output
 
 ```
-NHL Matchups and Odds:
-Buffalo Sabres @ New Jersey Devils
-Home odds: 1.97, Away odds: 1.83, O/U: None
+NBA Matchups and Odds:
+New York Knicks vs Indiana Pacers
+Home odds: 1.83, Away odds: 2.02, O/U: 223.5
+Spreads: Home -2.5 (1.91), Away +2.5 (1.91)
 ------
 ...
 
 AI Analysis Summary:
-1. Vancouver Canucks to Win @ 2.15 — High confidence: Home-ice advantage and value odds.
-...
+- Plays listed from High Confidence to Leans, with fan-friendly reasoning.
+- Bet of the Day: <TEAM or MARKET> vs <OPPONENT> @ <ODDS>
 ```
-
-Or if quota is exceeded:
-```
-AI analysis skipped: Gemini API quota exceeded.
-```
-
-## Project Structure
-
-- `data/` — Game and odds data modules
-- `predictions/` — Daily predictions by sport and date
-- `bot_results/` — Daily results by sport and date
-- `nhl_predictions_daily_run.py` — NHL prediction script
-- `nba_predictions_daily_run.py` — NBA prediction script
-- `nhl_result_daily_run.py` — NHL results/summary script
-- `nba_results_daily_run.py` — NBA results/summary script
-- `requirements.txt` — Python dependencies
 
 ## Contributing
 
