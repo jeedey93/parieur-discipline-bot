@@ -1,7 +1,3 @@
-# Latest Predictions
-
-## NBA (2026-02-19)
-```
 Date: 2026-02-19
 
 Washington Wizards vs Indiana Pacers
@@ -84,20 +80,3 @@ The Cleveland Cavaliers are a dominant defensive team currently in strong form, 
 ---
 Bet of the Day: San Antonio Spurs -7.5 vs Phoenix Suns @ 1.91
 The young San Antonio Spurs have shown flashes of brilliance, especially with Victor Wembanyama's growing impact, and are playing with increasing confidence at home. This game presents an extreme mismatch as the Phoenix Suns are expected to be without their entire star trio of Kevin Durant, Devin Booker, and Bradley Beal, leaving them severely depleted. The absence of these three perennial All-Stars turns the Suns into a skeleton crew, making them highly vulnerable to even a developing team like the Spurs, who will look to capitalize on this extraordinary opportunity at home and secure a decisive victory.
-
-```
-
-<p align="center">
-  <img src="images/generated/nba_2026-02-19.png" alt="NBA Bet of the Day" width="720" />
-</p>
-
-## NHL (2026-02-19)
-```
-Date: 2026-02-19
-
-No NHL games today
-
-```
-
-(No generated NHL image found)
-
