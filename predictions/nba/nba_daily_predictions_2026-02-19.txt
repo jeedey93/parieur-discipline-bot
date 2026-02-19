@@ -1,0 +1,84 @@
+Date: 2026-02-19
+
+Philadelphia 76ers vs Atlanta Hawks
+Home odds: 1.89, Away odds: 1.96, O/U: 240.5
+Spreads: Home -1.5 (1.98), Away 1.5 (1.88)
+------
+Cleveland Cavaliers vs Brooklyn Nets
+Home odds: 1.1, Away odds: 7.6, O/U: 229.5
+Spreads: Home -15.5 (1.91), Away 15.5 (1.95)
+------
+Charlotte Hornets vs Houston Rockets
+Home odds: 2.52, Away odds: 1.56, O/U: 218.5
+Spreads: Home 4.5 (1.93), Away -4.5 (1.96)
+------
+Washington Wizards vs Indiana Pacers
+Home odds: 2.08, Away odds: 1.79, O/U: 232.5
+Spreads: Home 2.0 (1.94), Away -2.0 (1.94)
+------
+New York Knicks vs Detroit Pistons
+Home odds: 1.61, Away odds: 2.38, O/U: 219.5
+Spreads: Home -4.0 (1.97), Away 4.0 (1.92)
+------
+Chicago Bulls vs Toronto Raptors
+Home odds: 2.88, Away odds: 1.44, O/U: 233.5
+Spreads: Home 6.5 (1.91), Away -6.5 (1.95)
+------
+San Antonio Spurs vs Phoenix Suns
+Home odds: 1.33, Away odds: 3.4, O/U: 229.5
+Spreads: Home -8.0 (1.94), Away 8.0 (1.95)
+------
+Golden State Warriors vs Boston Celtics
+Home odds: 2.88, Away odds: 1.44, O/U: 211.5
+Spreads: Home 6.0 (1.93), Away -6.0 (1.96)
+------
+Sacramento Kings vs Orlando Magic
+Home odds: 3.85, Away odds: 1.28, O/U: 225.5
+Spreads: Home 8.5 (1.92), Away -8.5 (1.97)
+------
+Los Angeles Clippers vs Denver Nuggets
+Home odds: 2.54, Away odds: 1.54, O/U: 226.5
+Spreads: Home 4.5 (1.97), Away -4.5 (1.92)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable.
+
+Indiana Pacers -2.5 vs Washington Wizards @ 1.95
+The Pacers are a significantly stronger team with better offensive and defensive metrics, playing with good rest. The Wizards continue to struggle with overall team cohesion and defensive consistency this season.
+Confidence Level: High Units: 1.5u
+
+New York Knicks -4.5 vs Detroit Pistons @ 1.95
+The Knicks boast a top-tier defensive identity and a consistent offensive approach, benefiting from home court advantage and solid current form. The Pistons are experiencing another challenging season, particularly with defensive lapses and general team struggles.
+Confidence Level: High Units: 1.5u
+
+San Antonio Spurs -8.5 vs Phoenix Suns @ 2.0
+The Spurs, playing at home, are exhibiting elite offensive and defensive capabilities this season, positioning them as a dominant force. The Suns are currently in a rebuilding phase, often lacking the talent and depth to compete with top-tier opponents.
+Confidence Level: Medium Units: 1u
+
+Boston Celtics -6.0 vs Golden State Warriors @ 1.96
+The Celtics are demonstrating strong two-way play this season, consistently performing as one of the league's top contenders. The Warriors are a home team but are showing signs of decline and inconsistency in overall team performance.
+Confidence Level: Medium Units: 1u
+
+Denver Nuggets -4.5 vs Los Angeles Clippers @ 1.92
+The Nuggets maintain an elite offensive efficiency and formidable interior presence, consistently performing as a top team in the league. The Clippers, despite home court, are showing vulnerability, especially against well-rounded, cohesive units.
+Confidence Level: Medium Units: 1u
+
+Orlando Magic -8.5 vs Sacramento Kings @ 1.97
+The Magic have established a formidable defensive identity and an increasingly efficient offense, contributing to their strong overall record this season. The Kings, while capable offensively, frequently struggle with defensive intensity and consistency, particularly against strong frontcourts.
+Confidence Level: Medium Units: 1u
+
+Houston Rockets -4.5 vs Charlotte Hornets @ 1.96
+The Rockets are showing strong defensive stability and an improving offensive system this season, consistently outperforming teams with lesser talent. The Hornets, despite being at home, often display inconsistent defensive effort and struggle to maintain offensive rhythm for entire games.
+Confidence Level: Lean Units: 0.5u
+
+Toronto Raptors -6.5 vs Chicago Bulls @ 1.95
+The Raptors are a cohesive unit known for their athletic defense and balanced scoring, demonstrating solid road form recently. The Bulls are an inconsistent team that frequently struggles against disciplined defensive schemes, even when playing at home.
+Confidence Level: Lean Units: 0.5u
+
+Philadelphia 76ers -1.5 vs Atlanta Hawks @ 1.98
+The 76ers, playing at home, are a fundamentally sound team with strong offensive and defensive anchors, providing consistent performance. The Hawks are an athletic, fast-paced team but often lack the defensive discipline to consistently win close road contests against strong opponents.
+Confidence Level: Lean Units: 0.5u
+
+Bet of the Day: Indiana Pacers -2.5 vs Washington Wizards @ 1.95
+The Pacers are in excellent form this season, showcasing robust offensive execution and improved defensive solidity. This matchup favors their up-tempo style against the Wizards, who often struggle with defensive transitions and overall team intensity. Expected injuries do not impact core rotations significantly for either side, maintaining the Pacers' inherent advantage.
