@@ -1,12 +1,12 @@
 Date: 2026-02-19
 
 Washington Wizards vs Indiana Pacers
-Home odds: 2.26, Away odds: 1.68, O/U: 233.5
-Spreads: Home 3.5 (1.91), Away -3.5 (2.0)
+Home odds: 2.28, Away odds: 1.66, O/U: 233.5
+Spreads: Home 2.5 (1.99), Away -2.5 (1.91)
 ------
 Philadelphia 76ers vs Atlanta Hawks
-Home odds: 1.85, Away odds: 2.0, O/U: 236.5
-Spreads: Home -1.0 (1.94), Away 1.0 (1.95)
+Home odds: 1.86, Away odds: 1.98, O/U: 237.5
+Spreads: Home -1.0 (1.94), Away 1.0 (1.94)
 ------
 Cleveland Cavaliers vs Brooklyn Nets
 Home odds: 1.09, Away odds: 8.3, O/U: 230.5
@@ -22,10 +22,10 @@ Spreads: Home -4.5 (1.95), Away 4.5 (1.88)
 ------
 Chicago Bulls vs Toronto Raptors
 Home odds: 2.76, Away odds: 1.48, O/U: 233.5
-Spreads: Home 5.5 (1.94), Away -5.5 (1.94)
+Spreads: Home 5.5 (1.95), Away -5.5 (1.94)
 ------
 San Antonio Spurs vs Phoenix Suns
-Home odds: 1.34, Away odds: 3.4, O/U: 227.5
+Home odds: 1.33, Away odds: 3.45, O/U: 228.5
 Spreads: Home -7.5 (1.91), Away 7.5 (1.99)
 ------
 Golden State Warriors vs Boston Celtics
@@ -33,50 +33,44 @@ Home odds: 2.76, Away odds: 1.48, O/U: 212.5
 Spreads: Home 5.5 (1.94), Away -5.5 (1.94)
 ------
 Sacramento Kings vs Orlando Magic
-Home odds: 4.2, Away odds: 1.25, O/U: 224.5
+Home odds: 4.15, Away odds: 1.25, O/U: 223.5
 Spreads: Home 8.5 (1.94), Away -8.5 (1.94)
 ------
 Los Angeles Clippers vs Denver Nuggets
 Home odds: 2.52, Away odds: 1.56, O/U: 225.5
-Spreads: Home 4.5 (1.91), Away -4.5 (2.01)
+Spreads: Home 4.0 (1.95), Away -4.0 (1.94)
 ------
 
 AI Analysis Summary:
-Here are today's mispriced probabilities:
+Current Roster Data Verified: Kevin Durant is no longer on the Suns; Bradley Beal is no longer on the Suns. All analysis proceeds with 2025-26 season rosters and current player statuses as of 2026-02-19.
 
-**High Confidence**
-San Antonio Spurs -7.5 vs Phoenix Suns @ 1.91 Units: 1.5u
-The Phoenix Suns are severely impacted by the absence of their key offensive stars, while the young San Antonio Spurs will be playing at home with Victor Wembanyama leading the charge. The Spurs' home advantage and the Suns' significant injury woes, with Kevin Durant, Devin Booker, and Bradley Beal all likely out, create a substantial mismatch for San Antonio to cover a modest spread.
+Philadelphia 76ers ML vs Atlanta Hawks @ 1.86
+The 76ers, led by Joel Embiid and Tyrese Maxey, are expected to be at full strength today, playing at home with neutral fatigue. Their dominant interior presence and strong home form create a significant advantage over the Hawks' often-inconsistent defense.
+Confidence Level: High Units: 1.5u
 
-Houston Rockets -4.5 vs Charlotte Hornets @ 1.99 Units: 1.5u
-The Charlotte Hornets are heavily depleted by injuries to core starters like LaMelo Ball and Mark Williams, facing a disciplined Houston Rockets team known for its strong defense. Houston's defensive prowess and the Hornets' struggles to generate consistent offense without key playmakers give the Rockets a clear path to win by a comfortable margin.
+New York Knicks -4.5 vs Detroit Pistons @ 1.95
+The Knicks, featuring Jalen Brunson, Julius Randle, and OG Anunoby, are healthy and poised to leverage their strong defensive identity and physical play. This matchup strongly favors New York's structured offense and top-tier defense against a developing Pistons squad.
+Confidence Level: High Units: 1.5u
 
-Boston Celtics -5.5 vs Golden State Warriors @ 1.94 Units: 1.5u
-The Boston Celtics are an elite, well-rounded team playing at home, while the Golden State Warriors often struggle with consistency and defense on the road against top opponents. Boston's dominant home court advantage and superior two-way play make them well-equipped to overcome the Warriors by more than five points.
+Orlando Magic -8.5 vs Sacramento Kings @ 1.94
+The Orlando Magic, with Paolo Banchero and Franz Wagner leading their strong two-way play, are expected to be available and possess a distinct defensive advantage. Their robust defense and improving offensive efficiency are well-suited to exploit the Kings' defensive vulnerabilities in this matchup.
+Confidence Level: High Units: 1.5u
 
-Chicago Bulls +5.5 vs Toronto Raptors @ 1.94 Units: 1.5u
-The Toronto Raptors are significantly shorthanded with key players like Scottie Barnes and Jakob Poeltl sidelined, presenting a talent advantage for the Chicago Bulls. Despite their own inconsistencies, the Bulls should be able to keep this game close or even win outright against a severely depleted Raptors roster.
+Washington Wizards +2.5 vs Indiana Pacers @ 1.99
+The Wizards' core of Kyle Kuzma, Jordan Poole, and Deni Avdija are healthy, and they typically perform better at home, where they can contain faster-paced opponents. Despite the Pacers' potent offense led by Tyrese Haliburton, the Wizards at home are often undervalued, suggesting they can keep this game close.
+Confidence Level: Medium Units: 1u
 
-**Medium Confidence**
-Indiana Pacers -3.5 vs Washington Wizards @ 2.0 Units: 1u
-The high-octane Indiana Pacers offense faces a defensively challenged Washington Wizards team, both playing on a standard schedule. The Pacers' superior offensive firepower and the Wizards' persistent defensive struggles provide a strong basis for Indiana to win by at least four points.
+Houston Rockets -4.5 vs Charlotte Hornets @ 1.99
+The Rockets, anchored by Jalen Green, Alperen Sengun, and Fred VanVleet, are anticipated to have their full lineup, showcasing their improved offensive flow and defensive intensity. Their balanced attack and better overall team form project them to comfortably cover against the youthful and often inconsistent Hornets.
+Confidence Level: Medium Units: 1u
 
-Atlanta Hawks ML vs Philadelphia 76ers @ 2.0 Units: 1u
-The Philadelphia 76ers are likely without star center Joel Embiid, which severely impacts their offensive and defensive capabilities, while the Atlanta Hawks arrive with their primary scorers ready. Atlanta's dynamic offense, led by Trae Young, should capitalize on Philadelphia's depleted lineup and lack of rim protection to secure a road victory.
+San Antonio Spurs -7.5 vs Phoenix Suns @ 1.91
+The Spurs, powered by the continued ascent of Victor Wembanyama, are healthy and demonstrate elite two-way potential, especially at home. Given the Suns' re-tooled roster without Kevin Durant and Bradley Beal, San Antonio's defensive length and offensive firepower present a significant matchup edge.
+Confidence Level: Medium Units: 1u
 
-Denver Nuggets -4.5 vs Los Angeles Clippers @ 2.01 Units: 1u
-The reigning champion Denver Nuggets, featuring Nikola Jokic, consistently perform at an elite level, facing a strong Los Angeles Clippers team that can sometimes lack consistent focus. Denver's disciplined execution and overall team cohesion give them a solid edge to defeat the Clippers on the road by more than four points.
+Boston Celtics -5.5 vs Golden State Warriors @ 1.94
+The Celtics, with their star-studded lineup of Jayson Tatum, Jaylen Brown, and Kristaps Porzingis all expected to play, boast an elite, well-rounded team. Their stifling defense and potent offense give them a substantial advantage over an aging Warriors core that struggles for consistent execution.
+Confidence Level: Medium Units: 1u
 
-Detroit Pistons +4.5 vs New York Knicks @ 1.88 Units: 1u
-The New York Knicks are without Julius Randle, and potentially OG Anunoby, which significantly hampers their two-way effectiveness against an improving Detroit Pistons squad. The Pistons' recent competitive play combined with the Knicks' substantial injury absences suggests Detroit can keep the game within a narrow margin.
-
-Under 224.5 vs Sacramento Kings @ 1.95 Units: 1u
-The Orlando Magic possess an elite defense and control tempo effectively, contrasting with the high-paced Sacramento Kings, setting up a clash of styles. Orlando's defensive strength and ability to slow down opponents will likely limit Sacramento's scoring opportunities, pushing the game total below 224.5 points.
-
-**Lean**
-Brooklyn Nets +16.0 vs Cleveland Cavaliers @ 1.93 Units: 0.5u
-The Cleveland Cavaliers are a dominant defensive team currently in strong form, but facing a Brooklyn Nets team that, while inconsistent, has shown flashes of offensive capability. While the Cavaliers are favorites, covering such a large spread is a significant challenge against an an NBA team, and the Nets may be able to secure enough late-game scoring to stay within the number.
-
----
-Bet of the Day: San Antonio Spurs -7.5 vs Phoenix Suns @ 1.91
-The young San Antonio Spurs have shown flashes of brilliance, especially with Victor Wembanyama's growing impact, and are playing with increasing confidence at home. This game presents an extreme mismatch as the Phoenix Suns are expected to be without their entire star trio of Kevin Durant, Devin Booker, and Bradley Beal, leaving them severely depleted. The absence of these three perennial All-Stars turns the Suns into a skeleton crew, making them highly vulnerable to even a developing team like the Spurs, who will look to capitalize on this extraordinary opportunity at home and secure a decisive victory.
+Bet of the Day: Philadelphia 76ers ML vs Atlanta Hawks @ 1.86
+The Philadelphia 76ers maintain strong form at home in the 2026 season. With Joel Embiid and Tyrese Maxey leading the charge, their interior defense and offensive execution provide a significant matchup edge. The Hawks' perimeter-focused offense often struggles against the 76ers' dominant defensive structure when Embiid is available.
