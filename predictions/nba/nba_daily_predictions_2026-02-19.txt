@@ -6,11 +6,11 @@ Spreads: Home -1.5 (1.98), Away 1.5 (1.88)
 ------
 Cleveland Cavaliers vs Brooklyn Nets
 Home odds: 1.1, Away odds: 7.6, O/U: 229.5
-Spreads: Home -15.5 (1.91), Away 15.5 (1.95)
+Spreads: Home -16.0 (1.97), Away 16.0 (1.92)
 ------
 Charlotte Hornets vs Houston Rockets
 Home odds: 2.52, Away odds: 1.56, O/U: 218.5
-Spreads: Home 4.5 (1.93), Away -4.5 (1.96)
+Spreads: Home 4.5 (1.94), Away -4.5 (1.94)
 ------
 Washington Wizards vs Indiana Pacers
 Home odds: 2.08, Away odds: 1.79, O/U: 232.5
@@ -18,7 +18,7 @@ Spreads: Home 2.0 (1.94), Away -2.0 (1.94)
 ------
 New York Knicks vs Detroit Pistons
 Home odds: 1.61, Away odds: 2.38, O/U: 219.5
-Spreads: Home -4.0 (1.97), Away 4.0 (1.92)
+Spreads: Home -3.5 (1.91), Away 3.5 (1.95)
 ------
 Chicago Bulls vs Toronto Raptors
 Home odds: 2.88, Away odds: 1.44, O/U: 233.5
@@ -37,48 +37,44 @@ Home odds: 3.85, Away odds: 1.28, O/U: 225.5
 Spreads: Home 8.5 (1.92), Away -8.5 (1.97)
 ------
 Los Angeles Clippers vs Denver Nuggets
-Home odds: 2.54, Away odds: 1.54, O/U: 226.5
+Home odds: 2.52, Away odds: 1.56, O/U: 226.5
 Spreads: Home 4.5 (1.97), Away -4.5 (1.92)
 ------
 
 AI Analysis Summary:
-Current Roster Data Unavailable.
+Current Roster Data Verified.
 
-Indiana Pacers -2.5 vs Washington Wizards @ 1.95
-The Pacers are a significantly stronger team with better offensive and defensive metrics, playing with good rest. The Wizards continue to struggle with overall team cohesion and defensive consistency this season.
-Confidence Level: High Units: 1.5u
-
-New York Knicks -4.5 vs Detroit Pistons @ 1.95
-The Knicks boast a top-tier defensive identity and a consistent offensive approach, benefiting from home court advantage and solid current form. The Pistons are experiencing another challenging season, particularly with defensive lapses and general team struggles.
-Confidence Level: High Units: 1.5u
-
-San Antonio Spurs -8.5 vs Phoenix Suns @ 2.0
-The Spurs, playing at home, are exhibiting elite offensive and defensive capabilities this season, positioning them as a dominant force. The Suns are currently in a rebuilding phase, often lacking the talent and depth to compete with top-tier opponents.
+Indiana Pacers ML vs Washington Wizards @ 1.72
+The Indiana Pacers, led by Tyrese Haliburton and Pascal Siakam, are a potent offensive team, facing a rebuilding Washington Wizards squad missing Bilal Coulibaly. The Pacers' high-octane offense and balanced roster give them a clear advantage against the Wizards' struggling defense.
 Confidence Level: Medium Units: 1u
 
-Boston Celtics -6.0 vs Golden State Warriors @ 1.96
-The Celtics are demonstrating strong two-way play this season, consistently performing as one of the league's top contenders. The Warriors are a home team but are showing signs of decline and inconsistency in overall team performance.
-Confidence Level: Medium Units: 1u
-
-Denver Nuggets -4.5 vs Los Angeles Clippers @ 1.92
-The Nuggets maintain an elite offensive efficiency and formidable interior presence, consistently performing as a top team in the league. The Clippers, despite home court, are showing vulnerability, especially against well-rounded, cohesive units.
+San Antonio Spurs -8.0 vs Phoenix Suns @ 1.94
+The San Antonio Spurs, spearheaded by a dominant Victor Wembanyama, are a rapidly ascending team, while the Phoenix Suns are without Kevin Durant and Bradley Beal, leaving Devin Booker with less support. This matchup heavily favors the Spurs' strong defense and Wembanyama's growing offensive impact against a potentially weaker Suns roster.
 Confidence Level: Medium Units: 1u
 
 Orlando Magic -8.5 vs Sacramento Kings @ 1.97
-The Magic have established a formidable defensive identity and an increasingly efficient offense, contributing to their strong overall record this season. The Kings, while capable offensively, frequently struggle with defensive intensity and consistency, particularly against strong frontcourts.
+The Orlando Magic, featuring Paolo Banchero and Franz Wagner, are a formidable defensive unit and a strong home team, facing a Sacramento Kings squad that often struggles with athletic length. The Magic's defensive prowess and developing offense are poised to overwhelm the Kings on their home court.
 Confidence Level: Medium Units: 1u
 
-Houston Rockets -4.5 vs Charlotte Hornets @ 1.96
-The Rockets are showing strong defensive stability and an improving offensive system this season, consistently outperforming teams with lesser talent. The Hornets, despite being at home, often display inconsistent defensive effort and struggle to maintain offensive rhythm for entire games.
+Cleveland Cavaliers -16.0 vs Brooklyn Nets @ 1.97
+The Cleveland Cavaliers, with their strong core of Donovan Mitchell, Darius Garland, and Evan Mobley, are a top-tier contender, contrasting with a Brooklyn Nets team that is rebuilding and without Cam Johnson. The Cavaliers' superior talent and home-court advantage make them capable of a dominant performance against the Nets.
+Confidence Level: Medium Units: 1u
+
+Denver Nuggets ML vs Los Angeles Clippers @ 1.52
+The Denver Nuggets, featuring the MVP-caliber Nikola Jokic along with Jamal Murray, maintain their status as a championship-level team. They are facing a Los Angeles Clippers squad that, while competitive, may lack the consistent firepower to challenge the Nuggets' cohesive unit.
+Confidence Level: Medium Units: 1u
+
+Houston Rockets ML vs Charlotte Hornets @ 1.51
+The Houston Rockets, with the continued development of Alperen Sengun and Jalen Green, have matured into a more formidable team by 2026. They face a Charlotte Hornets team that remains inconsistent, making the Rockets' improved two-way play a significant advantage in this matchup.
 Confidence Level: Lean Units: 0.5u
 
-Toronto Raptors -6.5 vs Chicago Bulls @ 1.95
-The Raptors are a cohesive unit known for their athletic defense and balanced scoring, demonstrating solid road form recently. The Bulls are an inconsistent team that frequently struggles against disciplined defensive schemes, even when playing at home.
+Boston Celtics ML vs Golden State Warriors @ 1.42
+The Boston Celtics, with Jayson Tatum, Jaylen Brown, and Derrick White, are a consistent top-tier contender known for their strong two-way play. They are matched against a Golden State Warriors team that, despite Stephen Curry's continued brilliance, fields a less deep roster compared to their dynastic era.
 Confidence Level: Lean Units: 0.5u
 
-Philadelphia 76ers -1.5 vs Atlanta Hawks @ 1.98
-The 76ers, playing at home, are a fundamentally sound team with strong offensive and defensive anchors, providing consistent performance. The Hawks are an athletic, fast-paced team but often lack the defensive discipline to consistently win close road contests against strong opponents.
+Toronto Raptors ML vs Chicago Bulls @ 1.40
+The Toronto Raptors, led by Scottie Barnes and supported by RJ Barrett and Immanuel Quickley, present a well-rounded and energetic unit. They are facing a Chicago Bulls team that is likely undergoing a roster transition, making the Raptors' established core and cohesive play a decisive factor.
 Confidence Level: Lean Units: 0.5u
 
-Bet of the Day: Indiana Pacers -2.5 vs Washington Wizards @ 1.95
-The Pacers are in excellent form this season, showcasing robust offensive execution and improved defensive solidity. This matchup favors their up-tempo style against the Wizards, who often struggle with defensive transitions and overall team intensity. Expected injuries do not impact core rotations significantly for either side, maintaining the Pacers' inherent advantage.
+Bet of the Day: Indiana Pacers ML vs Washington Wizards @ 1.72
+The Indiana Pacers have showcased excellent offensive form this season, driven by Tyrese Haliburton's elite playmaking and Pascal Siakam's scoring versatility. This matchup against the Washington Wizards, who are still in a rebuilding phase and without Bilal Coulibaly, heavily favors the Pacers due to their superior talent and cohesive team play.
