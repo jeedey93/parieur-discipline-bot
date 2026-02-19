@@ -16,9 +16,12 @@ def analyze_results(results_text):
 
     # Strictly read external prompt file; no fallback
     prompt_path = os.path.join("prompts", "nhl_prompt.txt")
+    today_str = date.today().isoformat()
     try:
         with open(prompt_path, "r", encoding="utf-8") as pf:
-            prompt_text = pf.read().replace("{{RESULTS_TEXT}}", results_text)
+            prompt_text = pf.read()
+            prompt_text = prompt_text.replace("{{RESULTS_TEXT}}", results_text)
+            prompt_text = prompt_text.replace("{{TODAY_DATE}}", today_str)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 
