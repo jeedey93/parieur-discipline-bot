@@ -1,7 +1,3 @@
-# Latest Predictions
-
-## NBA (2026-02-20)
-```
 Date: 2026-02-20
 
 Charlotte Hornets vs Cleveland Cavaliers
@@ -81,19 +77,3 @@ Confidence Level: Lean Units: 0.5u
 
 Bet of the Day: Denver Nuggets ML vs Portland Trail Blazers @ 1.75
 The Denver Nuggets are in excellent form and fully healthy, showcasing their championship-level roster including Nikola Jokic and Jamal Murray. They are facing a Portland Trail Blazers team that is rebuilding and significantly hampered by the absence of key scorer Anfernee Simons. Denver's superior talent and cohesive play will prove too much for Portland.
-
-```
-
-<p align="center">
-  <img src="images/generated/nba_2026-02-20.png" alt="NBA Bet of the Day" width="720" />
-</p>
-
-## NHL (2026-02-20)
-```
-Date: 2026-02-20
-
-
-```
-
-(No generated NHL image found)
-
