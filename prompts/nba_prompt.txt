@@ -42,16 +42,17 @@ CONFIDENCE TIERS & UNIT SIZING
 
 OUTPUT RULES (STRICT FORMAT)
 For each recommended play:
+Only propose plays with High or Medium confidence. Do not include Lean confidence plays in the output.
 Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Spread/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), or market mechanics influence the pick. Make the explanation clear and accessible for beginner bettors and NBA fans.
-Confidence Level: (High / Medium / Lean) Units: (1.5u / 1u / 0.5u)
+Confidence Level: (High / Medium) Units: (1.5u / 1u)
 
 RANKING
-Rank all recommended plays by confidence level (High > Medium > Lean) before listing Bet of the Day.
+Rank all recommended plays by confidence level (High > Medium) before listing Bet of the Day. Do not include Lean confidence plays in the ranking or output.
 
 BET OF THE DAY
 After listing plays, select the single highest-confidence play.

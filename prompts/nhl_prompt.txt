@@ -57,7 +57,6 @@ If no plays qualify → output: "No qualified plays today."
 ### CONFIDENCE TIERS (BASED ON EDGE)
 - High Confidence: Edge ≥ 6%
 - Medium Confidence: Edge 4–6%
-- Lean: Edge 3–4%
 Rank plays from: High Confidence → Medium → Leans
 ---
 ### UNIT SIZING
@@ -68,24 +67,17 @@ Include unit size next to each play.
 ---
 ### OUTPUT RULES (STRICT FORMAT)
 For each recommended play:
+Only propose plays with High or Medium confidence. Do not include Lean confidence plays in the output.
 Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Puck Line/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
 Then provide EXACTLY 2 short sentences:
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
-Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact.
-DO NOT mention:
-- Bookmakers
-- Odds value
-- Price discrepancy
-- Implied probability
-- Market variance
-- EV
-- Edge percentage
-Then add: Confidence Level: (High / Medium / Lean) Units: (1.5u / 1u / 0.5u)
+Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans.
+Then add: Confidence Level: (High / Medium) Units: (1.5u / 1u)
 ---
 ### RANKING
-Rank all recommended plays by confidence level (High > Medium > Lean) before listing Bet of the Day.
+Rank all recommended plays by confidence level (High > Medium) before listing Bet of the Day. Do not include Lean confidence plays in the ranking or output.
 ---
 ### BET OF THE DAY
 After listing plays, select the single highest-confidence play.
