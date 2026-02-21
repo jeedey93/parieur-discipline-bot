@@ -1,7 +1,3 @@
-# Latest Predictions
-
-## NBA (2026-02-21)
-```
 Date: 2026-02-21
 
 Phoenix Suns vs Orlando Magic
@@ -58,19 +54,3 @@ Confidence Level: Medium Units: 1u
 
 Bet of the Day: Miami Heat -9.5 vs Memphis Grizzlies @ 1.91
 The Heat are in excellent form, showcasing strong offensive execution and elite defensive stability, especially on their home court. They face a Grizzlies team severely depleted by multiple core player injuries and struggling through a back-to-back, creating an overwhelming matchup advantage. Miami's healthy roster and superior rest provide a significant edge over a compromised Memphis squad.
-
-```
-
-<p align="center">
-  <img src="images/generated/nba_2026-02-21.png" alt="NBA Bet of the Day" width="720" />
-</p>
-
-## NHL (2026-02-21)
-```
-Date: 2026-02-21
-
-
-```
-
-(No generated NHL image found)
-
