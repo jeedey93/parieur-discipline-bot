@@ -1,56 +1,60 @@
 Date: 2026-02-21
 
 Phoenix Suns vs Orlando Magic
-Home odds: 1.83, Away odds: 2.02, O/U: 217.5
-Spreads: Home -2.0 (1.95), Away 2.0 (1.94)
+Home odds: 1.85, Away odds: 2.0, O/U: 218.5
+Spreads: Home -1.5 (1.94), Away 1.5 (1.94)
 ------
 New Orleans Pelicans vs Philadelphia 76ers
-Home odds: 2.38, Away odds: 1.61, O/U: 230.5
-Spreads: Home 3.5 (1.94), Away -3.5 (1.94)
+Home odds: 2.52, Away odds: 1.56, O/U: 230.5
+Spreads: Home 4.0 (1.99), Away -4.0 (1.9)
 ------
 Chicago Bulls vs Detroit Pistons
-Home odds: 5.2, Away odds: 1.18, O/U: 230.5
-Spreads: Home 10.5 (1.99), Away -10.5 (1.91)
+Home odds: 5.2, Away odds: 1.18, O/U: 231.5
+Spreads: Home 10.5 (1.96), Away -10.5 (1.93)
 ------
 Miami Heat vs Memphis Grizzlies
-Home odds: 1.27, Away odds: 3.95, O/U: 238.5
-Spreads: Home -9.5 (1.91), Away 9.5 (1.95)
+Home odds: 1.22, Away odds: 4.6, O/U: 238.5
+Spreads: Home -10.5 (1.94), Away 10.5 (1.94)
 ------
 San Antonio Spurs vs Sacramento Kings
-Home odds: 1.05, Away odds: 11.4, O/U: 227.5
-Spreads: Home -18.0 (1.91), Away 18.0 (1.99)
+Home odds: 1.06, Away odds: 10.8, O/U: 228.5
+Spreads: Home -18.0 (1.91), Away 18.0 (2.04)
 ------
 New York Knicks vs Houston Rockets
-Home odds: 1.61, Away odds: 2.38, O/U: 216.5
-Spreads: Home -3.5 (1.95), Away 3.5 (1.91)
+Home odds: 1.6, Away odds: 2.4, O/U: 216.5
+Spreads: Home -3.5 (1.91), Away 3.5 (1.99)
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
-**Miami Heat -9.5 vs Memphis Grizzlies @ 1.91**
-The Heat boast a fully healthy and cohesive roster, enjoying ample rest at home, while the Grizzlies are severely hampered by multiple key injuries to their core rotation and face the fatigue of a back-to-back road game. This extreme injury mismatch, combined with Miami's elite defense and consistent offensive flow, creates significant value against a struggling Memphis squad, reflecting a clear mispricing by bookmakers on this spread.
-Confidence Level: High Units: 1.5u
-
-**Detroit Pistons -10.5 vs Chicago Bulls @ 1.91**
-The Pistons enter this matchup fully healthy and in excellent form, ready to exploit a struggling Bulls team dealing with minor depth injuries and playing on a demanding back-to-back schedule. Detroit's potent offense and solid defense are well-positioned to dominate a fatigued Chicago squad that has shown significant defensive lapses, offering a strong statistical edge over the implied probability.
-Confidence Level: High Units: 1.5u
-
-**New York Knicks -3.5 vs Houston Rockets @ 1.95**
-The Knicks bring their elite defensive intensity and improved offensive consistency to their home court, fully healthy and well-rested, against a Rockets team that is inconsistent on the road and has a key role player listed as doubtful. New York's ability to control the pace and lock down opponents provides a clear matchup advantage, suggesting a higher win probability than the market implies for covering this spread.
-Confidence Level: High Units: 1.5u
-
-**San Antonio Spurs -18.0 vs Sacramento Kings @ 1.91**
-The Spurs are at full strength, well-rested, and playing at home, while the Kings are decimated by multiple core starter injuries and are on a taxing back-to-back road trip. This monumental disparity in team health, rest, and current form creates a significant advantage for San Antonio to comfortably cover this large spread against a heavily compromised Sacramento roster.
+Sacramento Kings +18.0 vs San Antonio Spurs @ 2.04
+Both teams enter well-rested, with San Antonio featuring a generational talent anchoring their rotation and Sacramento boasting a high-octane offense. Despite San Antonio's strong home advantage and developing dominance, Sacramento's proven offensive capabilities suggest they can keep the game within a substantial 18-point margin, creating value against the market's implied probability.
 Confidence Level: Medium Units: 1u
 
-**Philadelphia 76ers -3.5 vs New Orleans Pelicans @ 1.94**
-The 76ers feature a strong, healthy core and are well-rested, bringing a high-powered offense and dominant defense to face the Pelicans, who are dealing with a minor rotation injury and have shown recent inconsistency. Philadelphia's superior talent and cohesive play, particularly against an opponent prone to defensive struggles, provide a solid edge for covering the spread as road favorites.
+Philadelphia 76ers ML vs New Orleans Pelicans @ 1.57
+The 76ers possess an elite core and strong home court advantage, while the Pelicans are talented but can be inconsistent on the road. Philadelphia's disciplined offense and stout defense provide a significant matchup edge, leading to a higher win probability than the market implies.
 Confidence Level: Medium Units: 1u
 
-**Phoenix Suns ML vs Orlando Magic @ 1.83**
-The Suns are playing at home with their core rotation healthy and well-rested, exhibiting strong offensive efficiency and reliable defense, while the Magic are potentially missing a key defensive contributor. Phoenix's overall team form and ability to execute in crucial moments, combined with Orlando's potential injury impact on their defensive identity, provide a favorable edge for a straight-up victory.
+New York Knicks ML vs Houston Rockets @ 1.62
+The Knicks are a physically tough team with strong defensive principles and a cohesive offensive unit at home, while the Rockets' young core is developing but can be prone to errors. New York's experience and home court energy provide a substantial edge over Houston's improving but still maturing roster.
 Confidence Level: Medium Units: 1u
 
-Bet of the Day: Miami Heat -9.5 vs Memphis Grizzlies @ 1.91
-The Heat are in excellent form, showcasing strong offensive execution and elite defensive stability, especially on their home court. They face a Grizzlies team severely depleted by multiple core player injuries and struggling through a back-to-back, creating an overwhelming matchup advantage. Miami's healthy roster and superior rest provide a significant edge over a compromised Memphis squad.
+Detroit Pistons -10.5 vs Chicago Bulls @ 1.93
+The Pistons' maturing core is expected to be a force, showcasing athleticism and improved execution against a Bulls team that has struggled for consistency this season. Detroit's significant talent advantage and home court environment should enable them to comfortably cover this double-digit spread against a lesser opponent.
+Confidence Level: Medium Units: 1u
+
+Phoenix Suns ML vs Orlando Magic @ 1.85
+The Suns feature potent offensive firepower and benefit from ample rest, facing a Magic squad known for its defensive prowess but sometimes inconsistent offense. Phoenix's ability to create high-quality scoring opportunities, especially at home, gives them a strong edge over Orlando's developing roster.
+Confidence Level: Medium Units: 1u
+
+Memphis Grizzlies +10.5 vs Miami Heat @ 1.94
+The Grizzlies, returning healthy and motivated, bring a dynamic, athletic style of play, while the Heat rely on veteran leadership and disciplined defense but can sometimes lack explosive scoring. Memphis's offensive ceiling and propensity to play competitive games suggest they are mispriced to cover such a large spread against Miami.
+Confidence Level: Medium Units: 1u
+
+Houston Rockets +3.5 vs New York Knicks @ 1.99
+The Rockets' young and athletic roster has shown significant improvement, capable of challenging established teams, while the Knicks rely on physicality and disciplined defense. Houston's growing offensive talent and ability to keep pace could see them cover this spread, even against a tough New York home environment.
+Confidence Level: Lean Units: 0.5u
+
+Bet of the Day: Sacramento Kings +18.0 vs San Antonio Spurs @ 2.04
+The Kings enter this contest well-rested, bringing a potent offensive attack that can score points in bunches against any opponent. While the Spurs' second-year star anchors an improving defense, Sacramento's ability to light up the scoreboard means a significant 18-point spread is highly generous. Both teams are generally healthy, allowing for a competitive matchup where the Kings can keep the scoreline closer than implied.
