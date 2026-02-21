@@ -1,45 +1,44 @@
-As a disciplined NBA betting analyst, I have reviewed the AI predictions and compared them against the actual game results. Here is the breakdown for each wager:
+As a disciplined NBA betting analyst, I have meticulously reviewed the AI's predictions against the actual game results.
 
-1.  **Indiana Pacers ML vs Washington Wizards**
-    *   AI Prediction: Indiana Pacers ML
+Here is the breakdown for each prediction:
+
+1.  **Indiana Pacers ML vs Washington Wizards @ 1.72**
+    *   AI Prediction: Pacers ML
     *   Actual Result: Washington Wizards 112, Indiana Pacers 105
     *   Outcome: **Loss**
 
-2.  **San Antonio Spurs -8.0 vs Phoenix Suns**
-    *   AI Prediction: San Antonio Spurs -8.0
-    *   Actual Result: San Antonio Spurs 121, Phoenix Suns 94
-    *   Margin: Spurs won by 27 points (121-94).
-    *   Outcome: **Win** (Spurs covered the -8.0 spread)
+2.  **San Antonio Spurs -8.0 vs Phoenix Suns @ 1.94**
+    *   AI Prediction: Spurs -8.0
+    *   Actual Result: San Antonio Spurs 121, Phoenix Suns 94 (Spurs won by 27 points)
+    *   Outcome: **Win**
 
-3.  **Orlando Magic -8.5 vs Sacramento Kings**
-    *   AI Prediction: Orlando Magic -8.5
-    *   Actual Result: Orlando Magic 131, Sacramento Kings 94
-    *   Margin: Magic won by 37 points (131-94).
-    *   Outcome: **Win** (Magic covered the -8.5 spread)
+3.  **Orlando Magic -8.5 vs Sacramento Kings @ 1.97**
+    *   AI Prediction: Magic -8.5
+    *   Actual Result: Orlando Magic 131, Sacramento Kings 94 (Magic won by 37 points)
+    *   Outcome: **Win**
 
-4.  **Cleveland Cavaliers -16.0 vs Brooklyn Nets**
-    *   AI Prediction: Cleveland Cavaliers -16.0
-    *   Actual Result: Cleveland Cavaliers 112, Brooklyn Nets 84
-    *   Margin: Cavaliers won by 28 points (112-84).
-    *   Outcome: **Win** (Cavaliers covered the -16.0 spread)
+4.  **Cleveland Cavaliers -16.0 vs Brooklyn Nets @ 1.97**
+    *   AI Prediction: Cavaliers -16.0
+    *   Actual Result: Cleveland Cavaliers 112, Brooklyn Nets 84 (Cavaliers won by 28 points)
+    *   Outcome: **Win**
 
-5.  **Denver Nuggets ML vs Los Angeles Clippers**
-    *   AI Prediction: Denver Nuggets ML
+5.  **Denver Nuggets ML vs Los Angeles Clippers @ 1.52**
+    *   AI Prediction: Nuggets ML
     *   Actual Result: Los Angeles Clippers 115, Denver Nuggets 114
     *   Outcome: **Loss**
 
-6.  **Houston Rockets ML vs Charlotte Hornets**
-    *   AI Prediction: Houston Rockets ML
+6.  **Houston Rockets ML vs Charlotte Hornets @ 1.51**
+    *   AI Prediction: Rockets ML
     *   Actual Result: Houston Rockets 105, Charlotte Hornets 101
     *   Outcome: **Win**
 
-7.  **Boston Celtics ML vs Golden State Warriors**
-    *   AI Prediction: Boston Celtics ML
+7.  **Boston Celtics ML vs Golden State Warriors @ 1.42**
+    *   AI Prediction: Celtics ML
     *   Actual Result: Boston Celtics 121, Golden State Warriors 110
     *   Outcome: **Win**
 
-8.  **Toronto Raptors ML vs Chicago Bulls**
-    *   AI Prediction: Toronto Raptors ML
+8.  **Toronto Raptors ML vs Chicago Bulls @ 1.40**
+    *   AI Prediction: Raptors ML
     *   Actual Result: Toronto Raptors 110, Chicago Bulls 101
     *   Outcome: **Win**
 
@@ -47,5 +46,5 @@ As a disciplined NBA betting analyst, I have reviewed the AI predictions and com
 
 **Summary of AI Performance:**
 
-*   **Total Wins:** 6
-*   **Total Losses:** 2
+*   **Total Wins: 6**
+*   **Total Losses: 2**

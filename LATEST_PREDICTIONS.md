@@ -1,96 +1,77 @@
 # Latest Predictions
 
-## NBA (2026-02-20)
+## NBA (2026-02-21)
 ```
-Date: 2026-02-20
+Date: 2026-02-21
 
-Charlotte Hornets vs Cleveland Cavaliers
-Home odds: 3.1, Away odds: 1.39, O/U: 233.5
-Spreads: Home 6.5 (1.91), Away -6.5 (1.95)
+Phoenix Suns vs Orlando Magic
+Home odds: 1.85, Away odds: 2.0, O/U: 218.5
+Spreads: Home -1.5 (1.94), Away 1.5 (1.94)
 ------
-Memphis Grizzlies vs Utah Jazz
-Home odds: 1.76, Away odds: 2.12, O/U: 238.5
-Spreads: Home -2.0 (1.99), Away 2.0 (1.93)
+New Orleans Pelicans vs Philadelphia 76ers
+Home odds: 2.52, Away odds: 1.56, O/U: 230.5
+Spreads: Home 4.0 (1.99), Away -4.0 (1.9)
 ------
-Washington Wizards vs Indiana Pacers
-Home odds: 2.02, Away odds: 1.83, O/U: 231.5
-Spreads: Home 2.0 (1.95), Away -2.0 (1.99)
+Chicago Bulls vs Detroit Pistons
+Home odds: 5.2, Away odds: 1.18, O/U: 231.5
+Spreads: Home 10.5 (1.96), Away -10.5 (1.93)
 ------
-Atlanta Hawks vs Miami Heat
-Home odds: 2.36, Away odds: 1.63, O/U: 243.5
-Spreads: Home 3.5 (1.95), Away -3.5 (1.91)
+Miami Heat vs Memphis Grizzlies
+Home odds: 1.22, Away odds: 4.6, O/U: 238.5
+Spreads: Home -10.5 (1.94), Away 10.5 (1.94)
 ------
-Minnesota Timberwolves vs Dallas Mavericks
-Home odds: 1.13, Away odds: 6.4, O/U: 238.5
-Spreads: Home -13.0 (1.94), Away 13.0 (1.94)
+San Antonio Spurs vs Sacramento Kings
+Home odds: 1.06, Away odds: 10.8, O/U: 228.5
+Spreads: Home -18.0 (1.91), Away 18.0 (2.04)
 ------
-Oklahoma City Thunder vs Brooklyn Nets
-Home odds: 1.06, Away odds: 10.0, O/U: 212.5
-Spreads: Home -17.0 (1.94), Away 17.0 (1.94)
-------
-New Orleans Pelicans vs Milwaukee Bucks
-Home odds: 1.6, Away odds: 2.4, O/U: 222.5
-Spreads: Home -4.0 (1.96), Away 4.0 (1.93)
-------
-Portland Trail Blazers vs Denver Nuggets
-Home odds: 2.14, Away odds: 1.75, O/U: 238.5
-Spreads: Home 2.5 (1.91), Away -2.5 (2.02)
-------
-Los Angeles Lakers vs Los Angeles Clippers
-Home odds: 1.38, Away odds: 3.15, O/U: 224.5
-Spreads: Home -6.5 (1.91), Away 6.5 (1.99)
+New York Knicks vs Houston Rockets
+Home odds: 1.6, Away odds: 2.4, O/U: 216.5
+Spreads: Home -3.5 (1.91), Away 3.5 (1.99)
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
-Denver Nuggets ML vs Portland Trail Blazers @ 1.75
-The Denver Nuggets are at full strength with Nikola Jokic and Jamal Murray leading a championship-caliber roster. The Portland Trail Blazers are without Anfernee Simons, a key scorer.
-Denver's elite offense and strong overall team play should easily overcome a Portland team missing a key scorer and struggling to establish consistent competitiveness.
-Confidence Level: High Units: 1.5u
-
-Indiana Pacers ML vs Washington Wizards @ 1.74
-The Indiana Pacers are at full strength, featuring Tyrese Haliburton, Pascal Siakam, and Myles Turner, while the Washington Wizards are without Kyle Kuzma.
-Indiana's high-powered offense and dynamic playmakers are well-positioned to dominate Washington's struggling defense, particularly with a key scorer missing for the Wizards.
-Confidence Level: High Units: 1.5u
-
-Los Angeles Lakers -6.5 vs Los Angeles Clippers @ 1.91
-The Los Angeles Lakers, led by Anthony Davis, potentially with LeBron James (questionable), face the Los Angeles Clippers, who are missing Paul George and have James Harden listed as questionable.
-The Clippers' significant injury woes, particularly the confirmed absence of Paul George, give the Lakers a substantial advantage to control the game and cover the spread, even with LeBron James's uncertain status.
-Confidence Level: High Units: 1.5u
-
-Memphis Grizzlies ML vs Utah Jazz @ 1.8
-The Memphis Grizzlies are at home, with Ja Morant listed as questionable but expected to play, alongside Jaren Jackson Jr. and Desmond Bane. The Utah Jazz have no major injury concerns.
-Memphis, with their strong core, has a significant talent and home-court advantage against the Jazz, who lack the defensive prowess to consistently contain Memphis's stars.
-Confidence Level: High Units: 1.5u
-
-Oklahoma City Thunder -17.0 vs Brooklyn Nets @ 1.94
-The Oklahoma City Thunder, featuring Shai Gilgeous-Alexander and Jalen Williams, are facing the Brooklyn Nets, who are severely hampered by the absence of Mikal Bridges, with Chet Holmgren questionable.
-OKC's explosive offense and strong defense should easily dominate a Brooklyn Nets team missing its cornerstone player, leading to a significant victory margin.
-Confidence Level: High Units: 1.5u
-
-Cleveland Cavaliers vs Charlotte Hornets Under 232.5 @ 1.95
-Cleveland's Donovan Mitchell is out and Charlotte's Mark Williams is out, with LaMelo Ball questionable.
-Both teams are missing key offensive players, which will likely lead to a lower-scoring affair, especially against Cleveland's strong defense.
+Sacramento Kings +18.0 vs San Antonio Spurs @ 2.04
+Both teams enter well-rested, with San Antonio featuring a generational talent anchoring their rotation and Sacramento boasting a high-octane offense. Despite San Antonio's strong home advantage and developing dominance, Sacramento's proven offensive capabilities suggest they can keep the game within a substantial 18-point margin, creating value against the market's implied probability.
 Confidence Level: Medium Units: 1u
 
-Miami Heat -3.5 vs Atlanta Hawks @ 1.91
-The Miami Heat are at full strength with Jimmy Butler and Bam Adebayo leading the charge, while the Atlanta Hawks have Trae Young listed as questionable.
-Miami's robust defense and disciplined offense provide a significant advantage over Atlanta, especially if Young is limited or absent, making them likely to cover a moderate spread.
+Philadelphia 76ers ML vs New Orleans Pelicans @ 1.57
+The 76ers possess an elite core and strong home court advantage, while the Pelicans are talented but can be inconsistent on the road. Philadelphia's disciplined offense and stout defense provide a significant matchup edge, leading to a higher win probability than the market implies.
+Confidence Level: Medium Units: 1u
+
+New York Knicks ML vs Houston Rockets @ 1.62
+The Knicks are a physically tough team with strong defensive principles and a cohesive offensive unit at home, while the Rockets' young core is developing but can be prone to errors. New York's experience and home court energy provide a substantial edge over Houston's improving but still maturing roster.
+Confidence Level: Medium Units: 1u
+
+Detroit Pistons -10.5 vs Chicago Bulls @ 1.93
+The Pistons' maturing core is expected to be a force, showcasing athleticism and improved execution against a Bulls team that has struggled for consistency this season. Detroit's significant talent advantage and home court environment should enable them to comfortably cover this double-digit spread against a lesser opponent.
+Confidence Level: Medium Units: 1u
+
+Phoenix Suns ML vs Orlando Magic @ 1.85
+The Suns feature potent offensive firepower and benefit from ample rest, facing a Magic squad known for its defensive prowess but sometimes inconsistent offense. Phoenix's ability to create high-quality scoring opportunities, especially at home, gives them a strong edge over Orlando's developing roster.
+Confidence Level: Medium Units: 1u
+
+Memphis Grizzlies +10.5 vs Miami Heat @ 1.94
+The Grizzlies, returning healthy and motivated, bring a dynamic, athletic style of play, while the Heat rely on veteran leadership and disciplined defense but can sometimes lack explosive scoring. Memphis's offensive ceiling and propensity to play competitive games suggest they are mispriced to cover such a large spread against Miami.
+Confidence Level: Medium Units: 1u
+
+Houston Rockets +3.5 vs New York Knicks @ 1.99
+The Rockets' young and athletic roster has shown significant improvement, capable of challenging established teams, while the Knicks rely on physicality and disciplined defense. Houston's growing offensive talent and ability to keep pace could see them cover this spread, even against a tough New York home environment.
 Confidence Level: Lean Units: 0.5u
 
-Bet of the Day: Denver Nuggets ML vs Portland Trail Blazers @ 1.75
-The Denver Nuggets are in excellent form and fully healthy, showcasing their championship-level roster including Nikola Jokic and Jamal Murray. They are facing a Portland Trail Blazers team that is rebuilding and significantly hampered by the absence of key scorer Anfernee Simons. Denver's superior talent and cohesive play will prove too much for Portland.
+Bet of the Day: Sacramento Kings +18.0 vs San Antonio Spurs @ 2.04
+The Kings enter this contest well-rested, bringing a potent offensive attack that can score points in bunches against any opponent. While the Spurs' second-year star anchors an improving defense, Sacramento's ability to light up the scoreboard means a significant 18-point spread is highly generous. Both teams are generally healthy, allowing for a competitive matchup where the Kings can keep the scoreline closer than implied.
 
 ```
 
 <p align="center">
-  <img src="images/generated/nba_2026-02-20.png" alt="NBA Bet of the Day" width="720" />
+  <img src="images/generated/nba_2026-02-21.png" alt="NBA Bet of the Day" width="720" />
 </p>
 
-## NHL (2026-02-20)
+## NHL (2026-02-21)
 ```
-Date: 2026-02-20
+Date: 2026-02-21
 
 
 ```
