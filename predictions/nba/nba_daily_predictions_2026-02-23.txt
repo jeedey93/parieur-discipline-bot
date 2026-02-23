@@ -1,7 +1,3 @@
-# Latest Predictions
-
-## NBA (2026-02-23)
-```
 Date: 2026-02-23
 
 Detroit Pistons vs San Antonio Spurs
@@ -31,20 +27,3 @@ Confidence Level: Medium Units: 1u
 ---
 Bet of the Day: Memphis Grizzlies -5.0 vs Sacramento Kings @ 2.0
 The Memphis Grizzlies are expected to be a top-tier contender by 2026, showcasing elite defensive stability and an aggressive offensive attack. Their dynamic team play and home-court advantage present a significant matchup edge against the Sacramento Kings. With their full rotation healthy, the Grizzlies are in prime form to cover this spread.
-
-```
-
-<p align="center">
-  <img src="images/generated/nba_2026-02-23.png" alt="NBA Bet of the Day" width="720" />
-</p>
-
-## NHL (2026-02-23)
-```
-Date: 2026-02-23
-
-No NHL games today
-
-```
-
-(No generated NHL image found)
-
