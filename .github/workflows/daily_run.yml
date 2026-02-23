@@ -51,10 +51,6 @@ jobs:
       - name: Run NBA daily results bot
         run: python nba_results_daily_run.py
 
-      # 5️⃣ Generate the latest prediction image
-      - name: Generate the latest prediction image
-        run: python generate_prediction_image.py
-
       # 5️⃣ Update latest predictions markdown file
       - name: Update latest predictions markdown
         run: python update_latest_predictions.py
@@ -72,8 +68,6 @@ jobs:
           git add 'predictions/nba/nba_daily_predictions_*.txt' || true
           git add 'bot_results/nhl/nhl_daily_results_*.txt' || true
           git add 'bot_results/nba/nba_daily_results_*.txt' || true
-          git add 'images/generated/nba_*.png' || true
-          git add 'images/generated/nhl_*.png' || true
           git add 'LATEST_PREDICTIONS.md' || true
           
           if ! git diff --cached --quiet; then
