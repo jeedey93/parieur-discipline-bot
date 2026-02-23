@@ -34,10 +34,6 @@ The Memphis Grizzlies are expected to be a top-tier contender by 2026, showcasin
 
 ```
 
-<p align="center">
-  <img src="images/generated/nba_2026-02-23.png" alt="NBA Bet of the Day" width="720" />
-</p>
-
 ## NHL (2026-02-23)
 ```
 Date: 2026-02-23
@@ -45,6 +41,4 @@ Date: 2026-02-23
 No NHL games today
 
 ```
-
-(No generated NHL image found)
 
