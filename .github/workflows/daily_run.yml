@@ -2,8 +2,8 @@ name: Daily NHL/NBA Bot Results
 
 on:
   schedule:
-    # Runs every day at 11:00 AM UTC (7:00 AM Montreal time during daylight saving, 6:00 AM during standard time)
-    - cron: '0 11 * * *'
+    # Runs every day at 18:00 UTC (1:00 PM Montreal time during standard time, 2:00 PM during daylight saving)
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -75,4 +75,3 @@ jobs:
             git push --set-upstream https://$GH_PAT@github.com/${{ github.repository }} HEAD:master
           else
             echo "No changes to commit"
-          fi
