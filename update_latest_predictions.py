@@ -28,7 +28,7 @@ def safe_float(val):
         return 0.0
 
 def parse_confidence(line):
-    match = re.search(r"Confidence Level: (High|Medium) Units: ([0-9.]*)u \| Confidence : ([0-9.]+)%", line)
+    match = re.search(r"Confidence Level: (High|Medium) Units: ([0-9.]*)u \| Confidence ?: ([0-9.]+)%", line)
     if match:
         level = match.group(1)
         units = match.group(2)
@@ -47,8 +47,9 @@ def format_ai_analysis(ai_content):
     bet_of_day_conf = None
     plays = []
     summary = {"High": 0, "Medium": 0, "units": 0.0}
-    i = 0
     table_lines = []
+    # Odds table parsing unchanged
+    i = 0
     in_table = False
     while i < len(lines):
         line = lines[i].strip()
@@ -61,63 +62,55 @@ def format_ai_analysis(ai_content):
         elif in_table:
             table_lines.append(f"| {line} |")
         i += 1
-    # Parse Bet of the Day
+    # Parse Bet of the Day (new format)
     i = 0
     while i < len(lines):
         line = lines[i].strip()
-        if line.startswith("BET OF THE DAY"):
+        if line.startswith("### Bet of the Day:"):
+            bet_of_day_header = line.replace("### Bet of the Day:", "").strip()
+            bet_of_day.append(f"> **{bet_of_day_header}**")
             i += 1
-            while i < len(lines) and not re.match(r"^[A-Za-z0-9 .+\-]+@ [0-9.]+", lines[i].strip()):
+            details = []
+            confidence_line = ""
+            while i < len(lines) and lines[i].strip() and not lines[i].startswith("### NBA Betting Plays:"):
+                details.append(lines[i].strip())
+                if lines[i].strip().startswith("Confidence Level:"):
+                    emoji, level, units, percent = parse_confidence(lines[i].strip())
+                    bet_of_day_conf = level
+                    bet_of_day_units = safe_float(units)
+                    confidence_line = f"{emoji} **Confidence:** {level} ({units}u, {percent}%)"
                 i += 1
-            if i < len(lines):
-                bet_of_day_header = lines[i].strip()
-                bet_of_day.append(f"> **{bet_of_day_header}**")
-                i += 1
-                details = []
-                confidence_line = ""
-                while i < len(lines) and lines[i].strip():
-                    details.append(lines[i].strip())
-                    if lines[i].strip().startswith("Confidence Level:"):
-                        emoji, level, units, percent = parse_confidence(lines[i].strip())
-                        bet_of_day_conf = level
-                        bet_of_day_units = safe_float(units)
-                        confidence_line = f"{emoji} **Confidence:** {level} ({units}u, {percent}%)"
-                    i += 1
-                for d in details:
-                    if d.startswith("Confidence Level:") and confidence_line:
-                        bet_of_day.append(f"> {confidence_line}")
-                    elif not d.startswith("Confidence Level:"):
-                        bet_of_day.append(f"> {d}")
-                bet_of_day.append("")
-                summary[bet_of_day_conf] += 1
-                summary["units"] += bet_of_day_units
+            for d in details:
+                if d.startswith("Confidence Level:") and confidence_line:
+                    bet_of_day.append(f"> {confidence_line}")
+                elif not d.startswith("Confidence Level:"):
+                    bet_of_day.append(f"> {d}")
+            bet_of_day.append("")
+            summary[bet_of_day_conf] += 1
+            summary["units"] += bet_of_day_units
             break
         i += 1
-    # Parse Recommended Plays
+    # Parse Recommended Plays (new format)
     i = 0
     in_recommended = False
     while i < len(lines):
         line = lines[i].strip()
-        if line.startswith("--- **Recommended Plays:**") or line.startswith("**Recommended Plays:**"):
+        if line.startswith("### NBA Betting Plays:"):
             in_recommended = True
             i += 1
             continue
         if in_recommended:
-            if re.match(r"^[A-Za-z0-9 .+\-]+@ [0-9.]+", line):
-                play_header = line
-                # Exclude Bet of the Day from recommended plays
-                if bet_of_day_header and play_header.strip() == bet_of_day_header:
-                    i += 1
-                    while i < len(lines) and lines[i].strip() and not re.match(r"^[A-Za-z0-9 .+\-]+@ [0-9.]+", lines[i]):
-                        i += 1
-                    continue
+            # Look for numbered play headers
+            match = re.match(r"\d+\.\s+\*\*(.+)\*\*", line)
+            if match:
+                play_header = match.group(1).strip()
                 details = []
                 confidence_emoji = ""
                 confidence_line = ""
                 play_units = 0.0
                 play_conf = None
                 i += 1
-                while i < len(lines) and lines[i].strip() and not re.match(r"^[A-Za-z0-9 .+\-]+@ [0-9.]+", lines[i]):
+                while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+\*\*.+\*\*", lines[i]):
                     details.append(lines[i].strip())
                     if lines[i].strip().startswith("Confidence Level:"):
                         confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
