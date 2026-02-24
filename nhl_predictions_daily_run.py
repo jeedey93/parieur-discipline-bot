@@ -6,6 +6,7 @@ from data.nhl_games import get_games_today
 from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date
 from data.odds import NHL_TEAM_NAME_MAP
+import glob
 
 load_dotenv()
 
@@ -13,6 +14,17 @@ load_dotenv()
 def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
+
+    # Read and concatenate all historical NHL results files
+    hist_dir = os.path.join("bot_results", "nhl")
+    hist_files = sorted(glob.glob(os.path.join(hist_dir, "nhl_daily_results_*.txt")))
+    historical_results = ""
+    for hf in hist_files:
+        try:
+            with open(hf, "r", encoding="utf-8") as hfile:
+                historical_results += f"\n---\n{os.path.basename(hf)}\n" + hfile.read()
+        except Exception:
+            continue
 
     # Strictly read external prompt file; no fallback
     prompt_path = os.path.join("prompts", "nhl_prompt.txt")
@@ -22,6 +34,7 @@ def analyze_results(results_text):
             prompt_text = pf.read()
             prompt_text = prompt_text.replace("{{RESULTS_TEXT}}", results_text)
             prompt_text = prompt_text.replace("{{TODAY_DATE}}", today_str)
+            prompt_text = prompt_text.replace("{{HISTORICAL_RESULTS}}", historical_results)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 

@@ -14,9 +14,9 @@ def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
-    # Read and concatenate all historical NBA prediction files
-    hist_dir = os.path.join("predictions", "nba")
-    hist_files = sorted(glob.glob(os.path.join(hist_dir, "nba_daily_predictions_*.txt")))
+    # Read and concatenate all historical NBA results files (not predictions)
+    hist_dir = os.path.join("bot_results", "nba")
+    hist_files = sorted(glob.glob(os.path.join(hist_dir, "nba_daily_results_*.txt")))
     historical_results = ""
     for hf in hist_files:
         try:

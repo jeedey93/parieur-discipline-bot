@@ -62,46 +62,49 @@ def format_ai_analysis(ai_content):
         elif in_table:
             table_lines.append(f"| {line} |")
         i += 1
-    # Parse Bet of the Day (new format)
+    # Parse Bet of the Day (newest format)
     i = 0
     while i < len(lines):
         line = lines[i].strip()
-        if line.startswith("### Bet of the Day:"):
-            bet_of_day_header = line.replace("### Bet of the Day:", "").strip()
-            bet_of_day.append(f"> **{bet_of_day_header}**")
+        if line.startswith("BET OF THE DAY"):
+            # The next line is the play header
             i += 1
-            details = []
-            confidence_line = ""
-            while i < len(lines) and lines[i].strip() and not lines[i].startswith("### NBA Betting Plays:"):
-                details.append(lines[i].strip())
-                if lines[i].strip().startswith("Confidence Level:"):
-                    emoji, level, units, percent = parse_confidence(lines[i].strip())
-                    bet_of_day_conf = level
-                    bet_of_day_units = safe_float(units)
-                    confidence_line = f"{emoji} **Confidence:** {level} ({units}u, {percent}%)"
+            if i < len(lines):
+                bet_of_day_header = lines[i].strip()
+                bet_of_day.append(f"> **{bet_of_day_header}**")
                 i += 1
-            for d in details:
-                if d.startswith("Confidence Level:") and confidence_line:
-                    bet_of_day.append(f"> {confidence_line}")
-                elif not d.startswith("Confidence Level:"):
-                    bet_of_day.append(f"> {d}")
-            bet_of_day.append("")
-            summary[bet_of_day_conf] += 1
-            summary["units"] += bet_of_day_units
+                details = []
+                confidence_line = ""
+                while i < len(lines) and lines[i].strip() and not lines[i].startswith("RECOMMENDED PLAYS"):
+                    details.append(lines[i].strip())
+                    if lines[i].strip().startswith("Confidence Level:"):
+                        emoji, level, units, percent = parse_confidence(lines[i].strip())
+                        bet_of_day_conf = level
+                        bet_of_day_units = safe_float(units)
+                        confidence_line = f"{emoji} **Confidence:** {level} ({units}u, {percent}%)"
+                    i += 1
+                for d in details:
+                    if d.startswith("Confidence Level:") and confidence_line:
+                        bet_of_day.append(f"> {confidence_line}")
+                    elif not d.startswith("Confidence Level:"):
+                        bet_of_day.append(f"> {d}")
+                bet_of_day.append("")
+                summary[bet_of_day_conf] += 1
+                summary["units"] += bet_of_day_units
             break
         i += 1
-    # Parse Recommended Plays (new format)
+    # Parse Recommended Plays (newest format)
     i = 0
     in_recommended = False
     while i < len(lines):
         line = lines[i].strip()
-        if line.startswith("### NBA Betting Plays:"):
+        if line.startswith("RECOMMENDED PLAYS"):
             in_recommended = True
             i += 1
             continue
         if in_recommended:
             # Look for numbered play headers
-            match = re.match(r"\d+\.\s+\*\*(.+)\*\*", line)
+            match = re.match(r"\d+\.\s+(.+)", line)
             if match:
                 play_header = match.group(1).strip()
                 details = []
@@ -110,7 +113,7 @@ def format_ai_analysis(ai_content):
                 play_units = 0.0
                 play_conf = None
                 i += 1
-                while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+\*\*.+\*\*", lines[i]):
+                while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]):
                     details.append(lines[i].strip())
                     if lines[i].strip().startswith("Confidence Level:"):
                         confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())

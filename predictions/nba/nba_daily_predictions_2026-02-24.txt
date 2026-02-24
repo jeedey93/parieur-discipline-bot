@@ -5,7 +5,7 @@ Home odds: 4.6, Away odds: 1.22, O/U: 233.5
 Spreads: Home 10.0 (1.95), Away -10.0 (1.91)
 ------
 Atlanta Hawks vs Washington Wizards
-Home odds: 1.13, Away odds: 6.4, O/U: 238.5
+Home odds: 1.12, Away odds: 6.6, O/U: 238.5
 Spreads: Home -13.0 (1.91), Away 13.0 (1.99)
 ------
 Brooklyn Nets vs Dallas Mavericks
@@ -14,18 +14,18 @@ Spreads: Home 2.0 (1.95), Away -2.0 (1.93)
 ------
 Cleveland Cavaliers vs New York Knicks
 Home odds: 1.61, Away odds: 2.38, O/U: 232.5
-Spreads: Home -4.0 (1.93), Away 4.0 (1.99)
+Spreads: Home -4.0 (1.91), Away 4.0 (1.99)
 ------
 Toronto Raptors vs Oklahoma City Thunder
 Home odds: 1.86, Away odds: 1.98, O/U: 216.5
-Spreads: Home -1.0 (1.93), Away 1.0 (1.97)
+Spreads: Home -1.5 (1.96), Away 1.5 (1.93)
 ------
 Chicago Bulls vs Charlotte Hornets
 Home odds: 3.7, Away odds: 1.3, O/U: 233.5
 Spreads: Home 8.5 (1.95), Away -8.5 (1.94)
 ------
 New Orleans Pelicans vs Golden State Warriors
-Home odds: 2.06, Away odds: 1.81, O/U: 227.5
+Home odds: 2.04, Away odds: 1.82, O/U: 227.5
 Spreads: Home 1.5 (1.93), Away -1.5 (1.97)
 ------
 Milwaukee Bucks vs Miami Heat
@@ -48,24 +48,24 @@ Spreads: Home -5.5 (1.99), Away 5.5 (1.9)
 AI Analysis Summary:
 Current Roster Data Verified.
 
-### Bet of the Day: Boston Celtics -6.5 vs Phoenix Suns @ 1.93
-The Boston Celtics are a top-tier contender with a cohesive roster and strong two-way play, facing a Phoenix team that struggles to maintain depth against elite competition. This matchup heavily favors Boston's disciplined execution and defensive prowess, making them a strong candidate to cover the spread. Bet of the Day selected based on strong historical performance in similar matchups against vulnerable teams.
-Confidence Level: High Units: 1.5u | Confidence : 59.5%
+BET OF THE DAY
+Boston Celtics -6.5 vs Phoenix Suns @ 1.93
+The Celtics possess an elite roster with dominant offensive and defensive stability, while the Suns, though competitive, often struggle against top-tier opponents on the road. Boston's consistent high-level performance and strong home advantage create a significant matchup edge, especially considering the favorable spread and their recent strong form.
+Confidence Level: High Units: 1.5u | Confidence : 60%
 
-### NBA Betting Plays:
+RECOMMENDED PLAYS
+1. Los Angeles Lakers -5.5 vs Orlando Magic @ 1.99
+The Lakers maintain a strong contender status with a formidable home court advantage, facing an Orlando team that can be inconsistent on the road. The significant statistical edge in this matchup, particularly with the Magic coming off a recent road win against the Clippers, indicates the market might be slightly undervaluing the Lakers' ability to cover this spread.
+Confidence Level: High Units: 1.5u | Confidence : 58%
 
-1.  **Charlotte Hornets -8.5 vs Chicago Bulls @ 1.94**
-    The Hornets' 2026 roster has shown strong development with athletic young talent playing with high energy at home, while the Bulls remain a struggling team in a transitional phase. Charlotte's dominant home performance and Chicago's defensive liabilities present a clear matchup edge, which bookmakers may be undervaluing.
-    Confidence Level: High Units: 1.5u | Confidence : 59.0%
+2. Minnesota Timberwolves -6.5 vs Portland Trail Blazers @ 1.91
+The Timberwolves are a strong defensive team playing at home against the rebuilding Trail Blazers, who consistently rank among the league's weaker teams. Despite a recent historical struggle to cover a larger spread, this specific matchup presents a clear opportunity for Minnesota to dominate and cover against a less competitive opponent.
+Confidence Level: High Units: 1.5u | Confidence : 60%
 
-2.  **Philadelphia 76ers -10.0 vs Indiana Pacers @ 1.91**
-    The Philadelphia 76ers, a robust home team with a dominant interior presence, are in excellent current form against a New Orleans team that can be inconsistent on the road. This favorable matchup highlights the 76ers' strong defense and efficient offense, providing significant value on the spread against a high-paced but defensively vulnerable opponent.
-    Confidence Level: High Units: 1.5u | Confidence : 58.5%
+3. Charlotte Hornets -8.5 vs Chicago Bulls @ 1.94
+The Hornets are in solid form and are facing a Chicago Bulls team that is likely struggling and potentially in a tanking posture for the 2026 season. This pick aligns with our model's positive historical performance on similar large spreads against struggling opponents, exploiting the expected performance differential and the market's pricing of a clear mismatch.
+Confidence Level: Medium Units: 1u | Confidence : 57%
 
-3.  **Miami Heat -6.5 vs Milwaukee Bucks @ 1.95**
-    The Heat are characterized by their tenacious defense and veteran leadership, maintaining steady form with their roster largely healthy and no major fatigue concerns. This disciplined unit holds a significant matchup advantage over the Bucks, whose defensive consistency can waiver on the road, creating a profitable edge on the spread.
-    Confidence Level: High Units: 1.5u | Confidence : 58.0%
-
-4.  **Los Angeles Lakers -5.5 vs Orlando Magic @ 1.99**
-    The Los Angeles Lakers are formidable at home, featuring a veteran core displaying strong current form and efficiency against a young Orlando team known for defensive prowess but occasional offensive struggles on the road. The Lakers' experience and ability to generate high-efficiency scoring against the Magic's robust defense provide a stronger win probability than implied by the odds.
-    Confidence Level: High Units: 1.5u | Confidence : 57.5%
+4. Philadelphia 76ers -10.0 vs Indiana Pacers @ 1.91
+The 76ers boast a powerful roster with strong defensive capabilities at home, presenting a tough challenge for the fast-paced but defensively vulnerable Pacers. Despite recent mixed results on larger spreads in historical self-evaluation, the matchup analysis indicates a strong statistical edge for Philadelphia to comfortably cover against a less balanced team.
+Confidence Level: Medium Units: 1u | Confidence : 57%
