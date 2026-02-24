@@ -163,21 +163,31 @@ def format_ai_analysis(ai_content):
 
 def update_latest_predictions():
     predictions_dir = "predictions"
-    sports = ["nba", "nhl"]
+    sports = ["nhl", "nba"]
     output_md = "docs/index.md"
 
-    content = "# Latest Predictions\n\n"
+    # Find the latest date among all sports
+    latest_dates = []
     for sport in sports:
         folder = os.path.join(predictions_dir, sport)
         latest_text_file = get_latest_file(folder, f"{sport}_daily_predictions", ext="txt")
         if latest_text_file:
             date_str = os.path.basename(latest_text_file).split("_")[-1].replace(".txt", "")
-            content += f"## {sport.upper()} ({date_str})\n"
+            latest_dates.append(date_str)
+    # Use the most recent date
+    overall_latest_date = max(latest_dates) if latest_dates else ""
+
+    content = f"# Latest Predictions ({overall_latest_date})\n\n"
+    for sport in sports:
+        folder = os.path.join(predictions_dir, sport)
+        latest_text_file = get_latest_file(folder, f"{sport}_daily_predictions", ext="txt")
+        content += f"## {sport.upper()}\n"
+        if latest_text_file:
             ai_content = extract_ai_analysis(read_file(latest_text_file))
             formatted_ai = format_ai_analysis(ai_content)
             content += formatted_ai + "\n\n"
         else:
-            content += f"## {sport.upper()}\nNo {sport.upper()} predictions found.\n\n"
+            content += f"No {sport.upper()} predictions found.\n\n"
 
     with open(output_md, "w") as f:
         f.write(content)

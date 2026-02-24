@@ -1,6 +1,9 @@
-# Latest Predictions
+# Latest Predictions (2026-02-24)
 
-## NBA (2026-02-24)
+## NHL
+No AI analysis found.
+
+## NBA
 ### Summary
 - High Confidence Plays: 3
 - Medium Confidence Plays: 2
@@ -35,7 +38,4 @@ Philadelphia 76ers -10.0 vs Indiana Pacers @ 1.91
 The 76ers boast a powerful roster with strong defensive capabilities at home, presenting a tough challenge for the fast-paced but defensively vulnerable Pacers. Despite recent mixed results on larger spreads in historical self-evaluation, the matchup analysis indicates a strong statistical edge for Philadelphia to comfortably cover against a less balanced team. 👍 Confidence: Medium (1u, 57%)
 
 
-
-## NHL (2026-02-24)
-No AI analysis found.
 
