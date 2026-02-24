@@ -50,7 +50,7 @@ For Spread/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), or market mechanics influence the pick. Make the explanation clear and accessible for beginner bettors and NBA fans.
-Confidence Level: (High / Medium) Units: (1.5u / 1u) | Confidence %: <XX>%
+Confidence Level: (High / Medium) Units: (1.5u / 1u) | Confidence : <XX>%
 
 RANKING
 Rank all recommended plays by confidence level, listing all High confidence plays first (sorted by descending confidence percentage), followed by all Medium confidence plays (also sorted by descending confidence percentage). Do not include Lean confidence plays in the ranking or output.

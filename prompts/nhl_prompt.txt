@@ -6,8 +6,8 @@ Today’s Date is {{TODAY_DATE}}.
 Before any analysis, you must perform a "Roster Check" to ensure you are not using historical data (e.g., players who were traded or goalies who changed teams in 2024 or 2025).
 Mandatory verification: Confirm the star skaters and starting goalies for each team as of the 2025-26 season.
 Example Check: Jonathan Huberdeau is no longer on the Panthers; Darcy Kuemper is no longer on the Avalanche.
-If your internal database for the 2025-26 season is unavailable, state: "Current Roster Data Unavailable" and provide a pick, but do not take individual players into account.
-If roster data is available, simply state: "Current Roster Data Verified."
+If your internal database for the 2025-26 season is unavailable, state: "Current Roster Data Unavailable" and provide a pick, but do not take individual players into account and do not mention any player names in your analysis.
+If roster data is available, simply state: "Current Roster Data Verified." Only mention player names if they are explicitly provided in the input data.
 
 ### SELECTION PHILOSOPHY (Safety-First + Edge-Based)
 - Only recommend plays where decimal odds are ≤ 2.20.
@@ -16,6 +16,7 @@ If roster data is available, simply state: "Current Roster Data Verified."
 - If estimated edge < 3%, skip the play.
 - Do not force picks.
 - If signals conflict or edge is unclear, skip.
+- Totals (over/under) may be recommended if a clear edge exists, following the same edge and odds criteria as for moneyline and puck line plays.
 Avoid:
 - Heavy favorites below 1.35 unless there is extreme injury/goalie mismatch.
 - Teams missing 2+ core skaters or starting a backup goalie in poor form unless market has clearly overcorrected.
@@ -29,7 +30,7 @@ For each game:
    - Convert decimal odds to implied probability (1 / odds).
 2. 2026 ROSTER & INJURY VALIDATION
    - Identify the current 2026 core rotation for both teams.
-   - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE) based on the {{TODAY_DATE}} report.
+   - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE) based on the {{TODAY_DATE}} report, but do not mention player names unless provided in the input data.
 3. TEAM & GOALIE EVALUATION (Score each category)
    Assign ratings:
    - Offensive Form (1–10)
@@ -74,16 +75,16 @@ For Puck Line/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
 Then provide EXACTLY 2 short sentences:
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
 Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans.
-Then add: Confidence Level: (High / Medium) Units: (1.5u / 1u)
+Confidence Level: (High / Medium) Units: (1.5u / 1u) | Confidence : <XX>%
 ---
 ### RANKING
-Rank all recommended plays by confidence level (High > Medium) before listing Bet of the Day. Do not include Lean confidence plays in the ranking or output.
+Rank all recommended plays by confidence level, listing all High confidence plays first (sorted by descending confidence percentage), followed by all Medium confidence plays (also sorted by descending confidence percentage). Do not include Lean confidence plays in the ranking or output.
 ---
 ### BET OF THE DAY
 After listing plays, select the single highest-confidence play.
 Format exactly:
 Bet of the Day: <TEAM or MARKET> vs <OPPONENT> @ <ODDS>
-Provide 2–3 short sentences explaining: — Form — Matchup edge — Goalie/injury impact (name players, or omit if unavailable) — Momentum.
+Provide 2–3 short sentences explaining: — Form — Matchup edge — Goalie/injury impact (team-level only, unless player names are provided in the input data) — Momentum.
 Do NOT mention odds value, EV, or market mechanics.
 ---
 ### DATA TO ANALYZE
