@@ -64,11 +64,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add 'predictions/nhl/nhl_daily_predictions_*.txt' || true
-          git add 'predictions/nba/nba_daily_predictions_*.txt' || true
-          git add 'bot_results/nhl/nhl_daily_results_*.txt' || true
-          git add 'bot_results/nba/nba_daily_results_*.txt' || true
-          git add 'LATEST_PREDICTIONS.md' || true
+          git add predictions/nhl/nhl_daily_predictions_*.txt || true
+          git add predictions/nba/nba_daily_predictions_*.txt || true
+          git add bot_results/nhl/nhl_daily_results_*.txt || true
+          git add bot_results/nba/nba_daily_results_*.txt || true
+          git add LATEST_PREDICTIONS.md || true
           
           if ! git diff --cached --quiet; then
             git commit -m "Add daily results for $(date -u +%Y-%m-%d)"
