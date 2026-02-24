@@ -69,23 +69,27 @@ Include unit size next to each play.
 ### OUTPUT RULES (STRICT FORMAT)
 For each recommended play:
 Only propose plays with High or Medium confidence. Do not include Lean confidence plays in the output.
+Do not include the Bet of the Day in the recommended plays list; it should only appear once at the top, after the summary and before the rest of the plays.
+Maximum 5 plays in total, including the Bet of the Day. If more than 5 qualified plays exist, only output the top 5 by confidence (sorted as specified below).
 Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Puck Line/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
-Then provide EXACTLY 2 short sentences:
+Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
 Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans.
 Confidence Level: (High / Medium) Units: (1.5u / 1u) | Confidence : <XX>%
 ---
 ### RANKING
-Rank all recommended plays by confidence level, listing all High confidence plays first (sorted by descending confidence percentage), followed by all Medium confidence plays (also sorted by descending confidence percentage). Do not include Lean confidence plays in the ranking or output.
+Rank all recommended plays by confidence level, listing all High confidence plays first (sorted by descending confidence percentage), followed by all Medium confidence plays (also sorted by descending confidence percentage). Do not include Lean confidence plays in the ranking or output. Do not include the Bet of the Day in the recommended plays list; it should only appear once at the top. If more than 5 qualified plays exist, only output the top 5 by confidence (including Bet of the Day).
 ---
 ### BET OF THE DAY
-After listing plays, select the single highest-confidence play.
+Show the Bet of the Day first, after the summary and before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
 Format exactly:
-Bet of the Day: <TEAM or MARKET> vs <OPPONENT> @ <ODDS>
-Provide 2–3 short sentences explaining: — Form — Matchup edge — Goalie/injury impact (team-level only, unless player names are provided in the input data) — Momentum.
-Do NOT mention odds value, EV, or market mechanics.
+<TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
+Body format (EXACTLY 2 short sentences):
+Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
+Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans.
+Confidence Level: (High / Medium) Units: (1.5u / 1u) | Confidence : <XX>%
 ---
 ### DATA TO ANALYZE
 {{RESULTS_TEXT}}
