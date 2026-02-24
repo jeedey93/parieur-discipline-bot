@@ -71,7 +71,6 @@ def format_ai_analysis(ai_content):
             i += 1
             if i < len(lines):
                 bet_of_day_header = lines[i].strip()
-                bet_of_day.append(f"> **{bet_of_day_header}**")
                 i += 1
                 details = []
                 confidence_line = ""
@@ -81,13 +80,15 @@ def format_ai_analysis(ai_content):
                         emoji, level, units, percent = parse_confidence(lines[i].strip())
                         bet_of_day_conf = level
                         bet_of_day_units = safe_float(units)
-                        confidence_line = f"{emoji} **Confidence:** {level} ({units}u, {percent}%)"
+                        confidence_line = f"{emoji} Confidence: {level} ({units}u, {percent}%)"
                     i += 1
-                for d in details:
-                    if d.startswith("Confidence Level:") and confidence_line:
-                        bet_of_day.append(f"> {confidence_line}")
-                    elif not d.startswith("Confidence Level:"):
-                        bet_of_day.append(f"> {d}")
+                # Output: header on its own line, then a blank line, then justification (including confidence) on next line
+                bet_of_day.append(f"{bet_of_day_header}")
+                bet_of_day.append("")
+                justification = " ".join([d for d in details if not d.startswith("Confidence Level:")])
+                if confidence_line:
+                    justification = justification + (" " if justification else "") + confidence_line
+                bet_of_day.append(justification)
                 bet_of_day.append("")
                 summary[bet_of_day_conf] += 1
                 summary["units"] += bet_of_day_units
@@ -119,14 +120,14 @@ def format_ai_analysis(ai_content):
                         confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
                         play_conf = level
                         play_units = safe_float(units)
-                        confidence_line = f"{confidence_emoji} **Confidence:** {level} ({units}u, {percent}%)"
+                        confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
                     i += 1
-                play_block = [f"> **{play_header}**"]
-                for d in details:
-                    if d.startswith("Confidence Level:") and confidence_line:
-                        play_block.append(f"> {confidence_line}")
-                    elif not d.startswith("Confidence Level:"):
-                        play_block.append(f"> {d}")
+                # Output: header on its own line, then a blank line, then justification (including confidence) on next line
+                play_block = [f"{play_header}", ""]
+                justification = " ".join([d for d in details if not d.startswith("Confidence Level:")])
+                if confidence_line:
+                    justification = justification + (" " if justification else "") + confidence_line
+                play_block.append(justification)
                 play_block.append("")
                 plays.append("\n".join(play_block))
                 if play_conf:
@@ -149,11 +150,15 @@ def format_ai_analysis(ai_content):
     if bet_of_day:
         output.append("---")
         output.append("🏆 **BET OF THE DAY**")
+        output.append("")  # Add blank line after Recommended Plays
         output.extend(bet_of_day)
         output.append("---\n")
+        output.append("")  # Add blank line after Bet of the Day
     if plays:
         output.append("**Other Recommended Plays**")
+        output.append("")  # Add blank line after Recommended Plays
         output.extend(plays)
+        output.append("")  # Add blank line after Recommended Plays
     return "\n".join(output)
 
 def update_latest_predictions():
