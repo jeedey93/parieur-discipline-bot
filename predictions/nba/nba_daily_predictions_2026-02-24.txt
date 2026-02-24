@@ -1,7 +1,3 @@
-# Latest Predictions
-
-## NBA (2026-02-24)
-```
 Date: 2026-02-24
 
 Indiana Pacers vs Philadelphia 76ers
@@ -86,14 +82,3 @@ Confidence Level: Medium Units: 1u | Confidence %: 4.06%
 
 Bet of the Day: Indiana Pacers +9.5 vs Philadelphia 76ers @ 1.91
 The Pacers' 2026 roster is characterized by a high-octane offense that excels at pushing the pace, which often keeps them in games against even the league's elite. While Philadelphia is a strong team, Indiana's offensive capabilities combined with home-court advantage make them a tough out, allowing them to effectively cover this spread against a team that might prefer a slower tempo.
-
-```
-
-## NHL (2026-02-24)
-```
-Date: 2026-02-24
-
-No NHL games today
-
-```
-
