@@ -164,7 +164,7 @@ def format_ai_analysis(ai_content):
 def update_latest_predictions():
     predictions_dir = "predictions"
     sports = ["nba", "nhl"]
-    output_md = "LATEST_PREDICTIONS.md"
+    output_md = "docs/index.md"
 
     content = "# Latest Predictions\n\n"
     for sport in sports:
