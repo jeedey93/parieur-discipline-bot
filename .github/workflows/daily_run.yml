@@ -68,6 +68,7 @@ jobs:
           git add predictions/nba/nba_daily_predictions_*.txt || true
           git add bot_results/nhl/nhl_daily_results_*.txt || true
           git add bot_results/nba/nba_daily_results_*.txt || true
+          git add docs/index.md || true
 
           if ! git diff --cached --quiet; then
             git commit -m "Add daily results for $(date -u +%Y-%m-%d)"
