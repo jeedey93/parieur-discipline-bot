@@ -2,37 +2,37 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 1
-- Medium Confidence Plays: 4
-- Total Units Risked: 5.5u
+- High Confidence Plays: 3
+- Medium Confidence Plays: 2
+- Total Units Risked: 6.5u
 
 ---
 🏆 **BET OF THE DAY**
 
-Edmonton Oilers ML vs Anaheim Ducks @ 1.91
+Dallas Stars ML vs Seattle Kraken @ 1.6
 
-Edmonton's high-octane offense and recent momentum should overpower Anaheim, despite the Ducks showing occasional flashes of potential. The market appears to be undervaluing Edmonton in this matchup, creating a significant edge. 🔥 Confidence: High (1.5u, 6.64%)
+The Dallas Stars boast a formidable defensive structure and elite goaltending at home, facing a Seattle Kraken team that is inconsistent, missing a key offensive player, and has a backup goalie in net after extensive travel. The Stars are well-rested and fully healthy, creating a significant situational advantage over a fatigued and compromised Seattle lineup. 🔥 Confidence: High (1.5u, 71%)
 
 ---
 
 
 **Other Recommended Plays**
 
-Dallas Stars ML vs Seattle Kraken @ 1.6
+Edmonton Oilers ML vs Anaheim Ducks @ 1.87
 
-Dallas consistently demonstrates strong defensive play and reliable goaltending, giving them a significant edge over Seattle, especially at home. Their structured game should effectively neutralize Seattle's forecheck and limit offensive opportunities. 👍 Confidence: Medium (1u, 5.50%)
-
-Winnipeg Jets ML vs Vancouver Canucks @ 1.76
-
-The Jets' robust defensive system and elite goaltending make them a formidable opponent, capable of stifling Vancouver's potent offense. Winnipeg's disciplined approach often leads to success even on the road against high-scoring teams. 👍 Confidence: Medium (1u, 5.18%)
-
-Los Angeles Kings ML vs Vegas Golden Knights @ 1.67
-
-The Kings are known for their strong defensive play and effective possession game, which typically leads to low-scoring affairs against division rivals like the Golden Knights. Their consistent structure and home-ice advantage provide a steady foundation for victory. 👍 Confidence: Medium (1u, 4.12%)
+The Edmonton Oilers' explosive offense and lethal power play are poised to exploit a young Anaheim Ducks team, which is missing a key defenseman and features an inconsistent starting goalie. This matchup presents a substantial talent disparity and defensive vulnerability for Anaheim against a top-tier Edmonton attack. 🔥 Confidence: High (1.5u, 61%)
 
 Washington Capitals ML vs Philadelphia Flyers @ 1.63
 
-Washington brings a veteran presence and solid defensive play, especially on home ice, where they consistently perform well against divisional opponents like Philadelphia. Their experience and organized approach should allow them to control the game against the Flyers. 👍 Confidence: Medium (1u, 3.65%)
+The Washington Capitals, well-rested and enjoying a strong home record, receive a boost with a key offensive player returning, while the Philadelphia Flyers are showing significant fatigue from a taxing road trip. Washington's in-form starting goalie and defensive stability at home provide a clear edge against a tired opponent. 🔥 Confidence: High (1.5u, 68%)
+
+Vancouver Canucks ML vs Winnipeg Jets @ 2.1
+
+The Vancouver Canucks are at home with ample rest and an offense capable of exploiting fatigued opponents, facing a Winnipeg Jets team on the third game of a demanding road trip. Despite Winnipeg's strong defense, the Canucks' offensive firepower combined with the Jets' likely exhaustion creates a compelling value play. 👍 Confidence: Medium (1u, 53%)
+
+Los Angeles Kings ML vs Vegas Golden Knights @ 1.67
+
+The Los Angeles Kings, fresh off two days of rest and featuring an in-form starting goalie, host a Vegas Golden Knights team showing signs of fatigue from a recent road trip. The Kings' solid defensive system is well-positioned to contain a potentially tired Vegas offense, offering strong value at home. 👍 Confidence: Medium (1u, 65%)
 
 
 
