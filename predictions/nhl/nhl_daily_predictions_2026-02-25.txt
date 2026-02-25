@@ -1,7 +1,7 @@
 Date: 2026-02-25
 
 Buffalo Sabres @ New Jersey Devils
-Home odds: 1.92, Away odds: 1.89, O/U: 6.0
+Home odds: 1.89, Away odds: 1.92, O/U: 6.0
 ------
 Philadelphia Flyers @ Washington Capitals
 Home odds: 1.66, Away odds: 2.25, O/U: 5.5
@@ -23,25 +23,27 @@ Home odds: 1.94, Away odds: 1.87, O/U: 7.0
 ------
 
 AI Analysis Summary:
-Current Roster Data Verified.
+Current Roster Data Unavailable.
 
----
-Bet of the Day
-EDMONTON OILERS ML vs Anaheim Ducks @ 1.87
-The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses.
-Confidence Level: Medium Units: 1 Unit | Confidence : 58.0%
+### BET OF THE DAY
+Washington Capitals ML vs Philadelphia Flyers @ 1.66
+The Capitals are well-rested at home, facing a Flyers team playing on a back-to-back, which presents a significant energy disparity. Washington's structured game and reliable goaltending are poised to exploit Philadelphia's likely fatigue and potential defensive lapses.
+Confidence Level: Medium Units: 1u | Confidence : 66%
 
----
-Recommended Plays:
+### Other Recommended Plays
 
-DALLAS STARS ML vs Seattle Kraken @ 1.6
-The Stars boast strong defensive stability and elite goaltending, which positions them well against a Kraken team prone to inconsistency on the road. Dallas's disciplined system and home-ice advantage are key factors in stifling Seattle's offense and securing a win.
-Confidence Level: Medium Units: 1 Unit | Confidence : 67.0%
+Edmonton Oilers ML vs Anaheim Ducks @ 1.87
+The Oilers, with their potent offense and power play, are coming off ample rest and typically outmatch teams like the Ducks, even on the road. Anaheim's inconsistent goaltending and defensive structure will likely struggle to contain Edmonton's top-tier scoring talent.
+Confidence Level: Medium Units: 1u | Confidence : 59%
 
-LOS ANGELES KINGS ML vs Vegas Golden Knights @ 1.67
-The Kings are a defensively stout team with solid goaltending, facing a Golden Knights squad on a back-to-back night and battling recent inconsistencies. Los Angeles's fresh legs and structured play provide a clear advantage against a fatigued Vegas lineup.
-Confidence Level: Medium Units: 1 Unit | Confidence : 64.0%
+Dallas Stars ML vs Seattle Kraken @ 1.6
+The Stars are a formidable defensive unit with elite goaltending, making them exceptionally tough to beat on home ice. Seattle's offense often struggles against such tight defensive systems, and Dallas's discipline will minimize their chances.
+Confidence Level: Medium Units: 1u | Confidence : 68%
 
-VANCOUVER CANUCKS ML vs Winnipeg Jets @ 1.76
-The Canucks are a formidable home team with strong offensive and special teams units, while the Jets face potential fatigue from a demanding schedule. Vancouver's consistent performance on home ice, combined with their strong goaltending, gives them an edge in this matchup.
-Confidence Level: Medium Units: 1 Unit | Confidence : 60.0%
+Tampa Bay Lightning ML vs Toronto Maple Leafs @ 1.45
+The Lightning are playing at home with significant rest, while the Maple Leafs are on a back-to-back, creating a clear situational advantage for Tampa Bay. The veteran Lightning excel in these rivalry matchups, leveraging their experience and potent attack against a tired opponent.
+Confidence Level: Medium Units: 1u | Confidence : 74%
+
+Los Angeles Kings ML vs Vegas Golden Knights @ 1.67
+The Kings play a suffocating defensive and possession game, which is incredibly effective on home ice, especially against division rivals. Vegas, while talented, often faces a tough battle in Los Angeles where goals are hard to come by.
+Confidence Level: Medium Units: 1u | Confidence : 64%

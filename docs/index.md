@@ -3,64 +3,72 @@
 ## NHL
 ### Summary
 - High Confidence Plays: 0
-- Medium Confidence Plays: 4
-- Total Units Risked: 4.0u
+- Medium Confidence Plays: 5
+- Total Units Risked: 5.0u
 
 ---
 🏆 **BET OF THE DAY**
 
-EDMONTON OILERS ML vs Anaheim Ducks @ 1.87
+Washington Capitals ML vs Philadelphia Flyers @ 1.66
 
-The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses.
-👍 Confidence: Medium (1u, 58.0%)
+The Capitals are well-rested at home, facing a Flyers team playing on a back-to-back, which presents a significant energy disparity. Washington's structured game and reliable goaltending are poised to exploit Philadelphia's likely fatigue and potential defensive lapses.
+👍 Confidence: Medium (1u, 66%)
 ---
 
 
 **Other Recommended Plays**
 
-DALLAS STARS ML vs Seattle Kraken @ 1.6
+Edmonton Oilers ML vs Anaheim Ducks @ 1.87
 
-The Stars boast strong defensive stability and elite goaltending, which positions them well against a Kraken team prone to inconsistency on the road. Dallas's disciplined system and home-ice advantage are key factors in stifling Seattle's offense and securing a win. 👍 Confidence: Medium (1u, 67.0%)
+The Oilers, with their potent offense and power play, are coming off ample rest and typically outmatch teams like the Ducks, even on the road. Anaheim's inconsistent goaltending and defensive structure will likely struggle to contain Edmonton's top-tier scoring talent. 👍 Confidence: Medium (1u, 59%)
 
-LOS ANGELES KINGS ML vs Vegas Golden Knights @ 1.67
+Dallas Stars ML vs Seattle Kraken @ 1.6
 
-The Kings are a defensively stout team with solid goaltending, facing a Golden Knights squad on a back-to-back night and battling recent inconsistencies. Los Angeles's fresh legs and structured play provide a clear advantage against a fatigued Vegas lineup. 👍 Confidence: Medium (1u, 64.0%)
+The Stars are a formidable defensive unit with elite goaltending, making them exceptionally tough to beat on home ice. Seattle's offense often struggles against such tight defensive systems, and Dallas's discipline will minimize their chances. 👍 Confidence: Medium (1u, 68%)
 
-VANCOUVER CANUCKS ML vs Winnipeg Jets @ 1.76
+Tampa Bay Lightning ML vs Toronto Maple Leafs @ 1.45
 
-The Canucks are a formidable home team with strong offensive and special teams units, while the Jets face potential fatigue from a demanding schedule. Vancouver's consistent performance on home ice, combined with their strong goaltending, gives them an edge in this matchup. 👍 Confidence: Medium (1u, 60.0%)
+The Lightning are playing at home with significant rest, while the Maple Leafs are on a back-to-back, creating a clear situational advantage for Tampa Bay. The veteran Lightning excel in these rivalry matchups, leveraging their experience and potent attack against a tired opponent. 👍 Confidence: Medium (1u, 74%)
+
+Los Angeles Kings ML vs Vegas Golden Knights @ 1.67
+
+The Kings play a suffocating defensive and possession game, which is incredibly effective on home ice, especially against division rivals. Vegas, while talented, often faces a tough battle in Los Angeles where goals are hard to come by. 👍 Confidence: Medium (1u, 64%)
 
 
 
 ## NBA
 ### Summary
-- High Confidence Plays: 1
+- High Confidence Plays: 2
 - Medium Confidence Plays: 3
-- Total Units Risked: 4.5u
+- Total Units Risked: 6.0u
 
 ---
 🏆 **BET OF THE DAY**
 
-Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99**
+Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99
 
-The Cleveland Cavaliers are expected to be at full strength and well-rested on their home court, while the Milwaukee Bucks, also assumed healthy, face them as a strong but potentially declining opponent. This pick capitalizes on the Cavaliers' elite home form in 2026 against a Bucks team that might be overvalued, creating a clear probability edge over the implied market odds.
-🔥 Confidence: High (1.5u, 57%)
+The Cavaliers are a top-tier team demonstrating elite offensive and defensive stability, while the Bucks present a strong challenge but may struggle against a dominant Cleveland performance. This play is selected for Bet of the Day based on the significant edge found, reflecting the Cavaliers' capability to cover such a spread against a competitive opponent, and taking into account the market's potential underestimation of their current form and ability to dominate.
+🔥 Confidence: High (1.5u, 7.75%)
 ---
 
 
 **Other Recommended Plays**
 
-Detroit Pistons -8.0 vs Oklahoma City Thunder @ 1.92**
+Boston Celtics +4.0 vs Denver Nuggets @ 1.99
 
-The Detroit Pistons, at home, boast a strong and healthy roster in 2026, prepared to face a talented but potentially less experienced Oklahoma City Thunder team with normal rest. The current spread understates the Pistons' consistent offensive and defensive prowess as an elite home team, offering a favorable probability gap against the Thunder. 👍 Confidence: Medium (1u, 58%)
+Both teams showcase elite talent and form, with no significant injury or fatigue impacting their core rotations in this highly anticipated matchup. The Celtics often thrive as underdogs in close contests against formidable opponents, presenting value on the spread given recent historical results where Denver's home court advantage in high-level matchups has been slightly overvalued by the market. 🔥 Confidence: High (1.5u, 6.75%)
 
-Houston Rockets -14.0 vs Sacramento Kings @ 1.97**
+Detroit Pistons -10.5 vs Oklahoma City Thunder @ 1.94
 
-The Houston Rockets, featuring a highly developed and healthy core in 2026, are on standard rest and primed to dominate a Sacramento Kings team that has shown inconsistency. This play leverages the Rockets' explosive home scoring ability against a Kings team unlikely to keep pace, presenting a valuable edge despite the large spread, consistent with past strong favorite coverages. 👍 Confidence: Medium (1u, 56%)
+The Pistons, with their improved form and potentially better rest, face a competitive Thunder team that may be feeling some fatigue from their schedule. Detroit has recently demonstrated the capability to cover significant spreads at home, suggesting bookmakers might be slightly undervaluing their ability to decisively win this matchup. 👍 Confidence: Medium (1u, 5.45%)
 
-Denver Nuggets -3.5 vs Boston Celtics @ 1.97**
+Memphis Grizzlies +3.5 vs Golden State Warriors @ 1.99
 
-The Denver Nuggets are at home with their championship-caliber roster at full strength and on regular rest, set for a high-stakes matchup against the equally elite and healthy Boston Celtics. Despite this being a clash of titans, the Nuggets' home-court advantage provides a slight undervalued edge against the Celtics, creating a profitable betting opportunity. 👍 Confidence: Medium (1u, 56%)
+The Grizzlies, known for their defensive stability and inconsistent but high-ceiling offense, host a Golden State team that can be dynamic but sometimes struggles to cover smaller road spreads. Memphis at home is often a tougher out than the market suggests, offering a solid edge against the implied probability given their potential to keep this game tight. 👍 Confidence: Medium (1u, 4.75%)
+
+Toronto Raptors +7.5 vs San Antonio Spurs @ 1.94
+
+The Raptors typically play with a scrappy intensity at home, even against stronger opponents like the Spurs, who are performing well but might not consistently blow out every team on the road. The significant +7.5 point spread provides valuable cushion for a Toronto team that, despite inconsistent form, often manages to stay within striking distance or surprise. 👍 Confidence: Medium (1u, 4.45%)
 
 
 
