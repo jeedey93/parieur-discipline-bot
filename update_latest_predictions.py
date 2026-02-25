@@ -121,12 +121,13 @@ def format_ai_analysis(ai_content):
                 bet_of_day = play_block
                 bet_of_day_conf = play_conf
                 bet_of_day_units = play_units
-                summary[bet_of_day_conf] += 1
+                if bet_of_day_conf in summary:
+                    summary[bet_of_day_conf] += 1
                 summary["units"] += bet_of_day_units
                 found_bet_of_day = True
             else:
                 plays.append("\n".join(play_block))
-                if play_conf:
+                if play_conf in summary:
                     summary[play_conf] += 1
                     summary["units"] += play_units
         else:
