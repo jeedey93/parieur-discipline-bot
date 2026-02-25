@@ -1,13 +1,13 @@
 Date: 2026-02-25
 
 Buffalo Sabres @ New Jersey Devils
-Home odds: 1.91, Away odds: 1.91, O/U: 6.0
+Home odds: 1.92, Away odds: 1.89, O/U: 6.0
 ------
 Philadelphia Flyers @ Washington Capitals
-Home odds: 1.63, Away odds: 2.3, O/U: 6.0
+Home odds: 1.66, Away odds: 2.25, O/U: 5.5
 ------
 Toronto Maple Leafs @ Tampa Bay Lightning
-Home odds: 1.45, Away odds: 2.75, O/U: 6.0
+Home odds: 1.43, Away odds: 2.8, O/U: 6.0
 ------
 Seattle Kraken @ Dallas Stars
 Home odds: 1.6, Away odds: 2.38, O/U: 5.5
@@ -19,32 +19,37 @@ Vegas Golden Knights @ Los Angeles Kings
 Home odds: 1.67, Away odds: 2.23, O/U: 5.5
 ------
 Edmonton Oilers @ Anaheim Ducks
-Home odds: 1.94, Away odds: 1.87, O/U: 6.5
+Home odds: 1.94, Away odds: 1.87, O/U: 7.0
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
----
-**Bet of the Day**
-Tampa Bay Lightning ML vs Toronto Maple Leafs @ 1.45
-The Lightning, an elite team with strong home-ice advantage and consistent goaltending, face a high-octane Maple Leafs offense. Tampa's structured defense and playoff-tested experience give them a significant edge to shut down Toronto's scoring threats at home, providing value despite the shorter odds.
-Confidence Level: Medium Units: 1u | Confidence : 72%
+**BET OF THE DAY**
+Edmonton Oilers OVER 7.0 vs Anaheim Ducks @ 1.90
+This game features the high-octane Oilers offense against a Ducks team that often struggles defensively, creating a significant opportunity for goals. Given the Oilers' scoring prowess and the Ducks' defensive vulnerabilities, a high-scoring affair is expected.
+The market for Over 7.0 at these odds implies a slightly lower probability than our analytical model, indicating value on goals from both sides in this matchup. Bet of the Day selected based on strong historical performance in similar high-total matchups involving these team profiles.
+Confidence Level: Medium Units: 1u | Confidence : 5.4%
 
 ---
-**Recommended Plays**
-Dallas Stars ML vs Seattle Kraken @ 1.6
-The Stars, known for their suffocating defense and reliable goaltending, host a hard-working but sometimes offensively inconsistent Kraken team. Dallas's ability to limit high-danger chances and control the pace at home creates a clear matchup advantage, making them a solid play against a road-weary opponent.
-Confidence Level: Medium Units: 1u | Confidence : 67%
-
-Washington Capitals ML vs Philadelphia Flyers @ 1.63
-The veteran Capitals, benefiting from strong home-ice performance and solid defensive structure, take on a developing Flyers squad. Washington's experience and consistent goaltending provide a steady foundation to overcome the Flyers' youthful energy, presenting a favorable probability for the home side.
-Confidence Level: Medium Units: 1u | Confidence : 65%
-
-Winnipeg Jets ML vs Vancouver Canucks @ 1.76
-The Jets bring a formidable defensive system and elite goaltending into a challenging road matchup against the high-scoring Canucks. Winnipeg's capacity to frustrate opposing offenses and excel in structured play gives them a tangible edge to control the game and secure a road victory.
-Confidence Level: Medium Units: 1u | Confidence : 61%
+**RECOMMENDED PLAYS**
 
 Edmonton Oilers ML vs Anaheim Ducks @ 1.87
-The Oilers, boasting an explosive offense and dangerous powerplay, travel to face a young and improving but still defensively vulnerable Ducks team. Edmonton's superior firepower is expected to overwhelm Anaheim's developing defensive core, creating strong value for the road favorite to outscore them.
-Confidence Level: Medium Units: 1u | Confidence : 57%
+The Oilers, despite playing on the road, possess superior offensive talent and should control the pace against the Ducks' rebuilding squad. Anaheim's defensive inconsistencies and goaltending challenges are expected to be exploited by Edmonton's potent attack.
+This pricing suggests a closer game than our projections indicate, offering a clear edge on a stronger Oilers team to secure a regulation win.
+Confidence Level: Medium Units: 1u | Confidence : 4.52%
+
+Dallas Stars ML vs Seattle Kraken @ 1.6
+The Dallas Stars boast a formidable defensive structure and reliable goaltending, giving them a significant edge at home against a Seattle team that can struggle with consistent offensive output. The Stars excel at limiting dangerous chances and converting on their own opportunities.
+The market undervalues Dallas's home advantage and defensive shutdown capabilities against a less potent offensive opponent.
+Confidence Level: Medium Units: 1u | Confidence : 4.5%
+
+New Jersey Devils ML vs Buffalo Sabres @ 1.92
+The Devils, known for their high-tempo offense and home-ice advantage, match up well against a Sabres team that, while talented, often lacks defensive consistency and elite goaltending. New Jersey's speed and offensive pressure should create numerous scoring opportunities.
+This play offers value as the market is pricing a near coin-flip, but our analysis points to a stronger Devils performance at home.
+Confidence Level: Medium Units: 1u | Confidence : 3.92%
+
+Washington Capitals ML vs Philadelphia Flyers @ 1.66
+The Capitals typically exhibit strong defensive play and solid goaltending at home, facing a Flyers team that, while gritty, might struggle to break through Washington's structured defense. Washington's veteran presence and opportunistic offense give them an edge in this divisional clash.
+The odds provide a slight value on the Capitals, who are historically reliable home favorites against mid-tier opposition.
+Confidence Level: Medium Units: 1u | Confidence : 3.76%
