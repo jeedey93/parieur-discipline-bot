@@ -36,13 +36,35 @@ def safe_float(val):
         return 0.0
 
 def parse_confidence(line):
-    match = re.search(r"Confidence Level: (High|Medium) Units: ([0-9.]*)u \| Confidence ?: ([0-9.]+)%", line)
+    # Accept variations like:
+    # Confidence Level: Medium Units: 1u | Confidence : 58.0%
+    # Confidence: Medium, 1u, 58%
+    # Confidence Level: Medium | Units: 1u | Confidence: 58%
+    # Confidence Level: Medium, Units: 1u, Confidence: 58%
+    # Confidence Level: Medium Units: 1 Unit | Confidence : 58.0%
+    # Confidence Level: Medium Units: 1 | Confidence : 58.0%
+    regexes = [
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+\|? ?Confidence[: ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+Confidence[: ]*([0-9.]+)%",
+        r"Confidence[: ]*([Hh]igh|[Mm]edium)[,| ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Confidence[: ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Confidence[: ]*([0-9.]+)",
+        r"Confidence[: ]*([Hh]igh|[Mm]edium)[,| ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*([0-9.]+)"
+    ]
+    for regex in regexes:
+        match = re.search(regex, line)
+        if match:
+            level = match.group(1).capitalize()
+            units = match.group(2)
+            percent = match.group(3)
+            emoji = "🔥" if level == "High" else ("👍" if level == "Medium" else "")
+            return emoji, level, units, percent
+    # Fallback: try to extract just the level
+    match = re.search(r"Confidence Level[: ]*([Hh]igh|[Mm]edium)", line)
     if match:
-        level = match.group(1)
-        units = match.group(2)
-        percent = match.group(3)
+        level = match.group(1).capitalize()
         emoji = "🔥" if level == "High" else ("👍" if level == "Medium" else "")
-        return emoji, level, units, percent
+        return emoji, level, "", ""
     return "", "", "", ""
 
 def format_ai_analysis(ai_content):

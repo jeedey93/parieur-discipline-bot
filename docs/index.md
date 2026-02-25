@@ -3,26 +3,26 @@
 ## NHL
 ### Summary
 - High Confidence Plays: 0
-- Medium Confidence Plays: 0
-- Total Units Risked: 0.0u
+- Medium Confidence Plays: 4
+- Total Units Risked: 4.0u
 
 **Other Recommended Plays**
 
 EDMONTON OILERS ML vs Anaheim Ducks @ 1.87
 
-The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses.  Confidence:  (u, %)
+The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses. 👍 Confidence: Medium (1u, 58.0%)
 
 DALLAS STARS ML vs Seattle Kraken @ 1.6
 
-The Stars boast strong defensive stability and elite goaltending, which positions them well against a Kraken team prone to inconsistency on the road. Dallas's disciplined system and home-ice advantage are key factors in stifling Seattle's offense and securing a win.  Confidence:  (u, %)
+The Stars boast strong defensive stability and elite goaltending, which positions them well against a Kraken team prone to inconsistency on the road. Dallas's disciplined system and home-ice advantage are key factors in stifling Seattle's offense and securing a win. 👍 Confidence: Medium (1u, 67.0%)
 
 LOS ANGELES KINGS ML vs Vegas Golden Knights @ 1.67
 
-The Kings are a defensively stout team with solid goaltending, facing a Golden Knights squad on a back-to-back night and battling recent inconsistencies. Los Angeles's fresh legs and structured play provide a clear advantage against a fatigued Vegas lineup.  Confidence:  (u, %)
+The Kings are a defensively stout team with solid goaltending, facing a Golden Knights squad on a back-to-back night and battling recent inconsistencies. Los Angeles's fresh legs and structured play provide a clear advantage against a fatigued Vegas lineup. 👍 Confidence: Medium (1u, 64.0%)
 
 VANCOUVER CANUCKS ML vs Winnipeg Jets @ 1.76
 
-The Canucks are a formidable home team with strong offensive and special teams units, while the Jets face potential fatigue from a demanding schedule. Vancouver's consistent performance on home ice, combined with their strong goaltending, gives them an edge in this matchup.  Confidence:  (u, %)
+The Canucks are a formidable home team with strong offensive and special teams units, while the Jets face potential fatigue from a demanding schedule. Vancouver's consistent performance on home ice, combined with their strong goaltending, gives them an edge in this matchup. 👍 Confidence: Medium (1u, 60.0%)
 
 
 
