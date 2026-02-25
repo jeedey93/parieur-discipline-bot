@@ -75,22 +75,16 @@ def format_ai_analysis(ai_content):
     bet_of_day_header = None
     bet_of_day_units = 0.0
     bet_of_day_conf = None
+    bet_of_day_justification = ""
+    bet_of_day_confidence_line = ""
     plays = []
     summary = {"High": 0, "Medium": 0, "units": 0.0}
-    table_lines = []
-    # Odds table parsing unchanged
+    # Remove table_lines and odds table parsing
     i = 0
     in_table = False
     while i < len(lines):
         line = lines[i].strip()
-        if re.match(r"^[A-Za-z ]+vs [A-Za-z ]+$", line):
-            table_lines.append("| Matchup | Odds/Spreads |")
-            table_lines.append("|:---|:---|")
-            in_table = True
-        elif in_table and line == "------":
-            in_table = False
-        elif in_table:
-            table_lines.append(f"| {line} |")
+        # Odds table parsing removed
         i += 1
     # Flexible parsing for Bet of the Day and plays
     i = 0
@@ -99,38 +93,45 @@ def format_ai_analysis(ai_content):
     temp_plays = []
     while i < len(lines):
         line = lines[i].strip()
-        # Detect Bet of the Day header anywhere
-        if line.lower().startswith("bet of the day"):
+        # Detect Bet of the Day header anywhere (with or without asterisks/colons)
+        if re.match(r"\*?\*?BET OF THE DAY:?[\*\s]*", line, re.IGNORECASE):
             found_bet_of_day = True
             i += 1
             # Next play is Bet of the Day
             # Skip empty lines
             while i < len(lines) and not lines[i].strip():
                 i += 1
-            # Parse the play header
+            # Parse the play header (must include odds)
             if i < len(lines):
                 play_header = lines[i].strip()
+                # If the play header does not contain '@', look ahead for the next line with '@'
+                if '@' not in play_header:
+                    lookahead = i + 1
+                    while lookahead < len(lines):
+                        next_line = lines[lookahead].strip()
+                        if '@' in next_line:
+                            play_header = next_line
+                            i = lookahead
+                            break
+                        lookahead += 1
                 details = []
                 confidence_emoji = ""
                 confidence_line = ""
                 play_units = 0.0
                 play_conf = None
                 i += 1
-                while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith("---") and not lines[i].strip().startswith("Recommended Plays"):
+                while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith("---") and not re.match(r"\*?\*?Recommended Plays:?[\*\s]*", lines[i].strip(), re.IGNORECASE):
                     details.append(lines[i].strip())
-                    if lines[i].strip().startswith("Confidence Level:"):
+                    if lines[i].strip().startswith("Confidence Level:") or lines[i].strip().startswith("🔥 Confidence:") or lines[i].strip().startswith("👍 Confidence:"):
                         confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
                         play_conf = level
                         play_units = safe_float(units)
                         confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
                     i += 1
-                play_block = [f"{play_header}", ""]
-                justification = " ".join([d for d in details if not d.startswith("Confidence Level:")])
-                if confidence_line:
-                    justification = justification + (" " if justification else "") + confidence_line
-                play_block.append(justification)
-                play_block.append("")
-                bet_of_day = play_block
+                justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:")])
+                bet_of_day_header = play_header
+                bet_of_day_justification = justification
+                bet_of_day_confidence_line = confidence_line
                 bet_of_day_conf = play_conf
                 bet_of_day_units = play_units
                 if bet_of_day_conf in summary:
@@ -138,7 +139,7 @@ def format_ai_analysis(ai_content):
                 summary["units"] += bet_of_day_units
             continue
         # Recommended Plays header
-        if line.lower().startswith("recommended plays"):
+        if re.match(r"\*?\*?Recommended Plays:?[\*\s]*", line, re.IGNORECASE):
             found_recommended = True
             i += 1
             continue
@@ -158,16 +159,16 @@ def format_ai_analysis(ai_content):
             play_units = 0.0
             play_conf = None
             i += 1
-            while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]) and not lines[i].strip().startswith("---") and not lines[i].strip().lower().startswith("bet of the day") and not lines[i].strip().lower().startswith("recommended plays"):
+            while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]) and not lines[i].strip().startswith("---") and not re.match(r"\*?\*?BET OF THE DAY:?[\*\s]*", lines[i].strip(), re.IGNORECASE) and not re.match(r"\*?\*?Recommended Plays:?[\*\s]*", lines[i].strip(), re.IGNORECASE):
                 details.append(lines[i].strip())
-                if lines[i].strip().startswith("Confidence Level:"):
+                if lines[i].strip().startswith("Confidence Level:") or lines[i].strip().startswith("🔥 Confidence:") or lines[i].strip().startswith("👍 Confidence:"):
                     confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
                     play_conf = level
                     play_units = safe_float(units)
                     confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
                 i += 1
             play_block = [f"{play_header}", ""]
-            justification = " ".join([d for d in details if not d.startswith("Confidence Level:")])
+            justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:")])
             if confidence_line:
                 justification = justification + (" " if justification else "") + confidence_line
             play_block.append(justification)
@@ -183,7 +184,7 @@ def format_ai_analysis(ai_content):
     # Remove Bet of the Day from recommended plays if present
     plays = []
     for play in temp_plays:
-        if bet_of_day and play["block"][0] == bet_of_day[0]:
+        if bet_of_day_header and play["block"][0] == bet_of_day_header:
             continue
         plays.append("\n".join(play["block"]))
         if play["conf"] in summary:
@@ -195,15 +196,17 @@ def format_ai_analysis(ai_content):
     summary_lines.append(f"- Total Units Risked: {summary['units']}u\n")
     output = []
     output.extend(summary_lines)
-    if table_lines:
-        output.append("### Odds & Spreads Table")
-        output.extend(table_lines)
-        output.append("")
-    if bet_of_day:
+    # Odds table removed from output
+    if bet_of_day_header:
         output.append("---")
         output.append("🏆 **BET OF THE DAY**")
         output.append("")
-        output.extend(bet_of_day)
+        output.append(bet_of_day_header)
+        output.append("")
+        if bet_of_day_justification:
+            output.append(bet_of_day_justification)
+        if bet_of_day_confidence_line:
+            output.append(bet_of_day_confidence_line)
         output.append("---\n")
         output.append("")
     if plays:

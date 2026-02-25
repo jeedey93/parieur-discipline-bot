@@ -11,8 +11,8 @@
 
 EDMONTON OILERS ML vs Anaheim Ducks @ 1.87
 
-The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses. 👍 Confidence: Medium (1u, 58.0%)
-
+The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses.
+👍 Confidence: Medium (1u, 58.0%)
 ---
 
 
@@ -34,19 +34,21 @@ The Canucks are a formidable home team with strong offensive and special teams u
 
 ## NBA
 ### Summary
-- High Confidence Plays: 2
+- High Confidence Plays: 1
 - Medium Confidence Plays: 3
-- Total Units Risked: 6.0u
+- Total Units Risked: 4.5u
 
-**Other Recommended Plays**
-
-**BET OF THE DAY: San Antonio Spurs -7.5 vs Toronto Raptors @ 1.91**
-
-The San Antonio Spurs are entering this game with their formidable 2026 core fully healthy and well-rested, facing a developing Toronto Raptors squad also on normal rest. The market is underestimating the Spurs' current dominance against mid-tier teams, and this pick aligns with our recent successful large spread bets on strong favorites, indicating a significant value edge. 🔥 Confidence: High (1.5u, 60%)
+---
+🏆 **BET OF THE DAY**
 
 Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99**
 
-The Cleveland Cavaliers are expected to be at full strength and well-rested on their home court, while the Milwaukee Bucks, also assumed healthy, face them as a strong but potentially declining opponent. This pick capitalizes on the Cavaliers' elite home form in 2026 against a Bucks team that might be overvalued, creating a clear probability edge over the implied market odds. 🔥 Confidence: High (1.5u, 57%)
+The Cleveland Cavaliers are expected to be at full strength and well-rested on their home court, while the Milwaukee Bucks, also assumed healthy, face them as a strong but potentially declining opponent. This pick capitalizes on the Cavaliers' elite home form in 2026 against a Bucks team that might be overvalued, creating a clear probability edge over the implied market odds.
+🔥 Confidence: High (1.5u, 57%)
+---
+
+
+**Other Recommended Plays**
 
 Detroit Pistons -8.0 vs Oklahoma City Thunder @ 1.92**
 
