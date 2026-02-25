@@ -86,6 +86,8 @@ Rank all recommended plays by confidence level, listing all High confidence play
 ### BET OF THE DAY
 - The Bet of the Day MUST be the single play with the highest confidence percentage among all recommended plays (High or Medium confidence only). It cannot be arbitrarily selected; it must be the top play by confidence %.
 Show the Bet of the Day first, after the summary and before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
+You must always clearly label the Bet of the Day with the header 'BET OF THE DAY' (in all caps) and format it distinctly at the top of the output, even if the play is selected based on confidence or historical evaluation.
+After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
 Body format (EXACTLY 2 short sentences):
