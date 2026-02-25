@@ -6,11 +6,17 @@
 - Medium Confidence Plays: 4
 - Total Units Risked: 4.0u
 
-**Other Recommended Plays**
+---
+🏆 **BET OF THE DAY**
 
 EDMONTON OILERS ML vs Anaheim Ducks @ 1.87
 
 The Oilers possess significant offensive firepower, and despite some defensive inconsistencies, they should outmatch the Ducks who are generally less potent. Edmonton's superior individual skill and special teams will drive their performance against Anaheim, who can struggle to contain high-octane offenses. 👍 Confidence: Medium (1u, 58.0%)
+
+---
+
+
+**Other Recommended Plays**
 
 DALLAS STARS ML vs Seattle Kraken @ 1.6
 
@@ -28,37 +34,31 @@ The Canucks are a formidable home team with strong offensive and special teams u
 
 ## NBA
 ### Summary
-- High Confidence Plays: 4
-- Medium Confidence Plays: 1
-- Total Units Risked: 7.0u
-
----
-🏆 **BET OF THE DAY**
-
-Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99
-
-The Cavaliers are in excellent form with a healthy, competitive roster, while the Bucks appear significantly hampered by injuries or recent poor performance. This pick offers strong value as Cleveland has consistently shown the ability to dominate and cover large spreads against struggling opponents this season. Bet of the Day selected based on strong historical performance in similar matchups. 🔥 Confidence: High (1.5u, 60%)
-
----
-
+- High Confidence Plays: 2
+- Medium Confidence Plays: 3
+- Total Units Risked: 6.0u
 
 **Other Recommended Plays**
 
-Detroit Pistons -8.0 vs Oklahoma City Thunder @ 1.98
+**BET OF THE DAY: San Antonio Spurs -7.5 vs Toronto Raptors @ 1.91**
 
-The Pistons are a formidable home team with strong offensive and defensive metrics, facing an Oklahoma City Thunder squad likely experiencing key absences or significant fatigue. This spread provides an excellent opportunity, as Detroit has demonstrated a capacity for commanding victories against less robust competition this season. 🔥 Confidence: High (1.5u, 59%)
+The San Antonio Spurs are entering this game with their formidable 2026 core fully healthy and well-rested, facing a developing Toronto Raptors squad also on normal rest. The market is underestimating the Spurs' current dominance against mid-tier teams, and this pick aligns with our recent successful large spread bets on strong favorites, indicating a significant value edge. 🔥 Confidence: High (1.5u, 60%)
 
-San Antonio Spurs -7.5 vs Toronto Raptors @ 1.93
+Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99**
 
-The San Antonio Spurs are playing with high efficiency and a strong core, whereas the Toronto Raptors are currently struggling with roster issues or a poor stretch of form. The Spurs have shown a consistent ability to cover similar spreads against weaker teams, making this an advantageous play reflecting the clear disparity. 🔥 Confidence: High (1.5u, 60%)
+The Cleveland Cavaliers are expected to be at full strength and well-rested on their home court, while the Milwaukee Bucks, also assumed healthy, face them as a strong but potentially declining opponent. This pick capitalizes on the Cavaliers' elite home form in 2026 against a Bucks team that might be overvalued, creating a clear probability edge over the implied market odds. 🔥 Confidence: High (1.5u, 57%)
 
-Houston Rockets -14.0 vs Sacramento Kings @ 1.97
+Detroit Pistons -8.0 vs Oklahoma City Thunder @ 1.92**
 
-The Houston Rockets are entering this game with dominant form and a robust roster, facing a Sacramento Kings team that is likely depleted by injuries or actively tanking. The market's implied probability is significantly underpricing Houston's projected margin of victory against a clearly inferior opponent. 🔥 Confidence: High (1.5u, 58%)
+The Detroit Pistons, at home, boast a strong and healthy roster in 2026, prepared to face a talented but potentially less experienced Oklahoma City Thunder team with normal rest. The current spread understates the Pistons' consistent offensive and defensive prowess as an elite home team, offering a favorable probability gap against the Thunder. 👍 Confidence: Medium (1u, 58%)
 
-Golden State Warriors -4.0 vs Memphis Grizzlies @ 1.91
+Houston Rockets -14.0 vs Sacramento Kings @ 1.97**
 
-The Warriors bring a competitive roster and solid offensive capabilities into this matchup, while the Grizzlies are likely struggling with significant injuries impacting their overall team stability. Despite some historical unpredictability, Golden State is poised to leverage their talent against a compromised Memphis squad, making this a valuable spread. 👍 Confidence: Medium (1u, 58%)
+The Houston Rockets, featuring a highly developed and healthy core in 2026, are on standard rest and primed to dominate a Sacramento Kings team that has shown inconsistency. This play leverages the Rockets' explosive home scoring ability against a Kings team unlikely to keep pace, presenting a valuable edge despite the large spread, consistent with past strong favorite coverages. 👍 Confidence: Medium (1u, 56%)
+
+Denver Nuggets -3.5 vs Boston Celtics @ 1.97**
+
+The Denver Nuggets are at home with their championship-caliber roster at full strength and on regular rest, set for a high-stakes matchup against the equally elite and healthy Boston Celtics. Despite this being a clash of titans, the Nuggets' home-court advantage provides a slight undervalued edge against the Celtics, creating a profitable betting opportunity. 👍 Confidence: Medium (1u, 56%)
 
 
 

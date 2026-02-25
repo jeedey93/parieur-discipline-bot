@@ -96,15 +96,49 @@ def format_ai_analysis(ai_content):
     i = 0
     found_bet_of_day = False
     found_recommended = False
+    temp_plays = []
     while i < len(lines):
         line = lines[i].strip()
-        # Bet of the Day header
-        if line.startswith("BET OF THE DAY") or line.startswith("Bet of the Day"):
+        # Detect Bet of the Day header anywhere
+        if line.lower().startswith("bet of the day"):
             found_bet_of_day = True
             i += 1
+            # Next play is Bet of the Day
+            # Skip empty lines
+            while i < len(lines) and not lines[i].strip():
+                i += 1
+            # Parse the play header
+            if i < len(lines):
+                play_header = lines[i].strip()
+                details = []
+                confidence_emoji = ""
+                confidence_line = ""
+                play_units = 0.0
+                play_conf = None
+                i += 1
+                while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith("---") and not lines[i].strip().startswith("Recommended Plays"):
+                    details.append(lines[i].strip())
+                    if lines[i].strip().startswith("Confidence Level:"):
+                        confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
+                        play_conf = level
+                        play_units = safe_float(units)
+                        confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
+                    i += 1
+                play_block = [f"{play_header}", ""]
+                justification = " ".join([d for d in details if not d.startswith("Confidence Level:")])
+                if confidence_line:
+                    justification = justification + (" " if justification else "") + confidence_line
+                play_block.append(justification)
+                play_block.append("")
+                bet_of_day = play_block
+                bet_of_day_conf = play_conf
+                bet_of_day_units = play_units
+                if bet_of_day_conf in summary:
+                    summary[bet_of_day_conf] += 1
+                summary["units"] += bet_of_day_units
             continue
         # Recommended Plays header
-        if line.startswith("RECOMMENDED PLAYS") or line.startswith("Recommended Plays"):
+        if line.lower().startswith("recommended plays"):
             found_recommended = True
             i += 1
             continue
@@ -124,7 +158,7 @@ def format_ai_analysis(ai_content):
             play_units = 0.0
             play_conf = None
             i += 1
-            while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]) and not lines[i].strip().startswith("BET OF THE DAY") and not lines[i].strip().startswith("RECOMMENDED PLAYS"):
+            while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]) and not lines[i].strip().startswith("---") and not lines[i].strip().lower().startswith("bet of the day") and not lines[i].strip().lower().startswith("recommended plays"):
                 details.append(lines[i].strip())
                 if lines[i].strip().startswith("Confidence Level:"):
                     confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
@@ -138,22 +172,23 @@ def format_ai_analysis(ai_content):
                 justification = justification + (" " if justification else "") + confidence_line
             play_block.append(justification)
             play_block.append("")
-            if not found_bet_of_day and not found_recommended:
-                # If Bet of the Day header not found, treat first play as Bet of the Day
-                bet_of_day = play_block
-                bet_of_day_conf = play_conf
-                bet_of_day_units = play_units
-                if bet_of_day_conf in summary:
-                    summary[bet_of_day_conf] += 1
-                summary["units"] += bet_of_day_units
-                found_bet_of_day = True
-            else:
-                plays.append("\n".join(play_block))
-                if play_conf in summary:
-                    summary[play_conf] += 1
-                    summary["units"] += play_units
+            temp_plays.append({
+                "block": play_block,
+                "conf": play_conf,
+                "units": play_units,
+                "justification": justification
+            })
         else:
             i += 1
+    # Remove Bet of the Day from recommended plays if present
+    plays = []
+    for play in temp_plays:
+        if bet_of_day and play["block"][0] == bet_of_day[0]:
+            continue
+        plays.append("\n".join(play["block"]))
+        if play["conf"] in summary:
+            summary[play["conf"]] += 1
+            summary["units"] += play["units"]
     summary_lines = ["### Summary"]
     summary_lines.append(f"- High Confidence Plays: {summary['High']}")
     summary_lines.append(f"- Medium Confidence Plays: {summary['Medium']}")
