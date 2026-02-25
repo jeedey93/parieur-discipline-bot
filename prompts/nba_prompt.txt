@@ -67,6 +67,7 @@ RANKING
 Rank all recommended plays strictly by descending confidence percentage (from highest to lowest), regardless of confidence tier. If two plays have the same confidence %, list High confidence plays first. Do not include Lean confidence plays in the ranking or output. Do not include the Bet of the Day in the recommended plays list; it should only appear once at the top. If more than 5 qualified plays exist, only output the top 5 by confidence (including Bet of the Day).
 
 BET OF THE DAY
+- The Bet of the Day MUST be the single play with the highest confidence percentage among all recommended plays (High or Medium confidence only). It cannot be arbitrarily selected; it must be the top play by confidence %.
 Show the Bet of the Day first, before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
