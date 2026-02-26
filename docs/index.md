@@ -2,33 +2,37 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 2
+- High Confidence Plays: 3
 - Medium Confidence Plays: 2
-- Total Units Risked: 5.0u
+- Total Units Risked: 6.5u
 
 ---
 🏆 **BET OF THE DAY**
 
-BOSTON BRUINS ML vs Columbus Blue Jackets @ 1.85
+New Jersey Devils vs Pittsburgh Penguins Over 5.5 @ 1.91
 
-The Boston Bruins, well-rested at home, consistently display superior defensive stability and goaltending against less structured opponents like the Columbus Blue Jackets. This pick offers significant value as the market underestimates Boston's commanding home-ice advantage and overall team quality against a rebuilding Columbus squad.
-🔥 Confidence: High (1.5u, 9.0%)
+This matchup features two teams capable of generating offense, with both often showing defensive inconsistencies and variable goaltending form. The Devils play a high-paced, rush-heavy game, while the Penguins, though older, still have significant offensive firepower. This line implies a higher probability for a lower-scoring game, but the offensive talent and potential defensive lapses on both sides suggest an exciting, higher-scoring affair is more likely.
+🔥 Confidence: High (1.5u, 7.62%)
 ---
 
 
 **Other Recommended Plays**
 
-COLORADO AVALANCHE ML vs Minnesota Wild @ 1.57
+Colorado Avalanche ML vs Minnesota Wild @ 1.57
 
-The Colorado Avalanche consistently leverage their elite offensive firepower and strong home-ice advantage to dominate divisional opponents, even against a defensively sound Minnesota Wild team. The market offers a valuable edge here, as Colorado's win probability at home against a rival is consistently higher than implied odds suggest. 🔥 Confidence: High (1.5u, 6.31%)
+The Avalanche are a formidable offensive force at home, boasting elite talent and high energy, while the Wild, despite defensive capabilities, often struggle to match such pace. Colorado's powerful home ice advantage and superior offensive depth provide a clear edge against a traveling Minnesota team that may struggle to contain their attack. 🔥 Confidence: High (1.5u, 6.31%)
 
-NASHVILLE PREDATORS ML vs Chicago Blackhawks @ 1.55
+Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64
 
-The Nashville Predators, a structured and physical team with reliable goaltending, are a challenging matchup for the young and still rebuilding Chicago Blackhawks, especially on home ice. This play presents a solid edge, as Nashville's consistent performance against lower-tier teams is often undervalued by the bookmakers. 👍 Confidence: Medium (1u, 5.48%)
+The Hurricanes' relentless forecheck, stifling defensive structure, and consistent goaltending make them an incredibly tough opponent, especially on home ice. Against a veteran Lightning team that can sometimes be prone to turnovers, Carolina's system creates a significant matchup advantage, limiting high-danger chances and controlling the flow of the game. 🔥 Confidence: High (1.5u, 6.02%)
 
-CAROLINA HURRICANES ML vs Tampa Bay Lightning @ 1.64
+Boston Bruins ML vs Columbus Blue Jackets @ 1.85
 
-The Carolina Hurricanes' relentless forecheck and superior defensive system make them a formidable opponent at home, capable of stifling even high-skill teams like the veteran Tampa Bay Lightning. Carolina's high home win rate and tight defensive structure create a slight but clear edge against a Tampa Bay team that sometimes struggles with sustained pressure. 👍 Confidence: Medium (1u, 3.02%)
+Boston's disciplined defensive play and reliable goaltending provide a strong foundation, especially when facing a Columbus team that often struggles with offensive consistency and defensive stability on the road. The Bruins' home ice advantage, combined with their structured game, creates a favorable matchup to control play and secure a win against a less consistent opponent. 👍 Confidence: Medium (1u, 5.95%)
+
+Seattle Kraken vs St. Louis Blues Under 6.0 @ 1.91
+
+Both the Kraken and the Blues are characterized by strong defensive systems and reliable goaltending, often leading to tighter, lower-scoring contests. Given Seattle's structured defensive play and St. Louis's gritty, grind-it-out style, this game is expected to be a battle in the neutral zone with limited high-danger chances, making the under a valuable play. 👍 Confidence: Medium (1u, 5.62%)
 
 
 
