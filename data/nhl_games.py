@@ -25,8 +25,6 @@ def get_games_today():
 def get_games_yesterday():
     yesterday = date.today() - timedelta(days=1)
     date_str = yesterday.isoformat()
-
-    date_str = "2026-02-03"
     url = f"https://api-web.nhle.com/v1/schedule/{date_str}"
 
     response = requests.get(url, timeout=10)
