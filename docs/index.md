@@ -9,66 +9,66 @@
 ---
 🏆 **BET OF THE DAY**
 
-Colorado Avalanche ML vs Minnesota Wild @ 1.64
+Minnesota Wild @ Colorado Avalanche ML vs Minnesota Wild @ 1.63
 
-The Colorado Avalanche, a formidable team especially at home, face a Minnesota Wild squad that struggles to match elite offenses. Colorado's high-powered offense and strong overall play give them a significant edge in this division matchup, where the market is slightly undervaluing their true home dominance.
-🔥 Confidence: High (1.5u) | Win Probability: 68%
+The Colorado Avalanche, an elite offensive team with strong goaltending, host the defensively sound but less dynamic Minnesota Wild. Colorado's powerful home-ice advantage and strong underlying metrics suggest they are undervalued against a Minnesota team that struggles to contain top offenses.
+🔥 Confidence: High (1.5u) | Win Probability: 68.5%
 ---
 
 
 **Other Recommended Plays**
 
-Nashville Predators ML vs Chicago Blackhawks @ 1.55
-
-The Nashville Predators are a playoff-caliber team at home, facing a rebuilding Chicago Blackhawks squad that often struggles on the road. This presents a strong mismatch, with Nashville's defensive stability and goaltending providing a significant advantage over Chicago's weaker offensive and defensive metrics. 👍 Confidence: Medium (1u) | Win Probability: 70%
-
-Boston Bruins ML vs Columbus Blue Jackets @ 1.85
-
-The Boston Bruins, despite a potentially challenging schedule, maintain strong defensive structure and goaltending at home against the struggling Columbus Blue Jackets. Boston typically outplays weaker opponents at home, and the implied probability on this moneyline offers a favorable edge. 👍 Confidence: Medium (1u) | Win Probability: 59%
-
-St. Louis Blues ML vs Seattle Kraken @ 1.73
-
-The St. Louis Blues are a physical team that can be tough to beat at home, facing a Seattle Kraken team that sometimes struggles to generate consistent offense on the road. St. Louis' home-ice advantage combined with Seattle's offensive inconsistencies provide a solid betting opportunity here. 👍 Confidence: Medium (1u) | Win Probability: 62%
-
 Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64
 
-The Carolina Hurricanes, known for their relentless forecheck and stellar defensive system, are playing at home against the high-powered but sometimes defensively vulnerable Tampa Bay Lightning. Carolina's ability to control pace and stifle top offenses, combined with their home-ice strength, gives them a notable edge against Tampa Bay. 👍 Confidence: Medium (1u) | Win Probability: 65%
+The Carolina Hurricanes exhibit elite defensive structure and relentless forechecking, making them a formidable home opponent for the still dangerous but aging Tampa Bay Lightning. Carolina's top-tier goaltending and suffocating system provide a clear edge against Tampa's offense, which can be limited under pressure. 👍 Confidence: Medium (1u) | Win Probability: 66.5%
+
+Toronto Maple Leafs @ Florida Panthers ML vs Toronto Maple Leafs @ 1.63
+
+The Florida Panthers, a highly structured defensive unit with excellent goaltending and a strong home record, clash with the high-flying but sometimes defensively vulnerable Toronto Maple Leafs. Florida's ability to neutralize star power and maintain disciplined play creates a significant matchup advantage, pushing their true win probability above the implied odds. 👍 Confidence: Medium (1u) | Win Probability: 66.5%
+
+New Jersey Devils vs Pittsburgh Penguins Over 5.5 @ 1.67
+
+This matchup features two teams capable of significant offense with inconsistent defensive performances and goaltending, notably the fast-paced New Jersey Devils. Given both teams' tendencies for high-scoring games and defensive lapses, the 5.5 total appears mispriced, offering value on the Over. 👍 Confidence: Medium (1u) | Win Probability: 65%
+
+Chicago Blackhawks @ Nashville Predators ML vs Chicago Blackhawks @ 1.55
+
+The Nashville Predators are a consistent, structured home team with reliable goaltending, facing a rebuilding Chicago Blackhawks squad that struggles significantly across all facets of the game. Nashville's defensive reliability and home advantage make them a strong favorite against a Chicago team typically outmatched on the road. 👍 Confidence: Medium (1u) | Win Probability: 69.5%
 
 
 
 ## NBA
 ### Summary
-- High Confidence Plays: 4
-- Medium Confidence Plays: 1
-- Total Units Risked: 7.0u
+- High Confidence Plays: 2
+- Medium Confidence Plays: 3
+- Total Units Risked: 6.0u
 
 ---
 🏆 **BET OF THE DAY**
 
-Portland Trail Blazers -4.5 vs Chicago Bulls @ 1.94
+Philadelphia 76ers ML vs Miami Heat @ 1.68
 
-The Trail Blazers are in strong offensive form, while the Bulls are on a losing streak with recent defensive struggles. The market is underestimating Portland's current dominance against a Chicago team that has failed to cover larger spreads recently; Bet of the Day selected based on strong model probability and high edge, overriding recent negative historical trends on spread plays due to the exceptional edge identified here.
-🔥 Confidence: High (1.5u) | Win Probability: 58%
+The Philadelphia 76ers are a strong unit this season, displaying consistent performance at home and currently healthy with their core rotation. This matchup presents a clear edge against the Miami Heat, where the home advantage and the 76ers' current season form create value over the bookmakers' implied probability.
+🔥 Confidence: High (1.5u) | Win Probability: 65%
 ---
 
 
 **Other Recommended Plays**
 
+Philadelphia 76ers -2.5 vs Miami Heat @ 1.93
+
+The Philadelphia 76ers are in excellent form at home with a healthy core, while the Miami Heat are a competitive road team but face a tough challenge. This play, although showing a high mathematical edge, has its confidence adjusted to Medium due to the recent systematic underperformance of the AI's spread predictions. 👍 Confidence: Medium (1u) | Win Probability: 58%
+
 San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99
 
-The Spurs are performing exceptionally well and are in excellent current form, facing a Nets team that has struggled defensively and offensively. Despite recent mixed results on large spread plays, the calculated high edge suggests bookmakers are significantly mispricing the Spurs' ability to dominate this matchup. 🔥 Confidence: High (1.5u) | Win Probability: 57%
+The San Antonio Spurs are a robust team this season, demonstrating strong offensive and defensive capabilities, while the Brooklyn Nets are currently struggling and showing signs of a losing streak. The Spurs are expected to comfortably cover this spread against a weaker Nets squad, identifying a significant market mispricing. 🔥 Confidence: High (1.5u) | Win Probability: 56%
 
-Philadelphia 76ers vs Miami Heat Over 241.0 @ 1.98
+Charlotte Hornets -13.0 vs Indiana Pacers @ 1.99
 
-Both teams are generally healthy and have shown offensive capabilities to push game totals higher, with recent form suggesting a more fluid, up-tempo contest. The matchup dynamics and recent scoring trends imply a higher probability for the total to go over, providing a significant edge over the implied bookmaker probability. 🔥 Confidence: High (1.5u) | Win Probability: 55%
+The Charlotte Hornets are performing exceptionally well, especially at home, and boast a healthy and effective core lineup, contrasting with an Indiana Pacers team that is currently struggling. This spread presents significant value due to the strong mismatch, but confidence is adjusted to Medium given the recent systematic underperformance in spread plays. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
-Dallas Mavericks -6.5 vs Sacramento Kings @ 1.91
+Houston Rockets ML vs Orlando Magic @ 1.65
 
-The Mavericks are a strong home team and are expected to perform well against an inconsistent Kings squad that has struggled to maintain momentum on the road. The spread offers value due to Dallas's strong offensive execution and Sacramento's defensive vulnerabilities, providing a favorable scenario for the Mavericks to cover. 🔥 Confidence: High (1.5u) | Win Probability: 56%
-
-Orlando Magic vs Houston Rockets Under 215.5 @ 1.98
-
-Both the Magic and Rockets are typically involved in lower-scoring games, leaning on defensive intensity and methodical offensive sets this season. The total is set slightly too high given their current form and defensive capabilities, creating a strong edge for the under. 👍 Confidence: Medium (1u) | Win Probability: 54%
+The Houston Rockets are maintaining strong form and demonstrating consistency with their core rotation this season, whereas the Orlando Magic can be inconsistent and face a tough road matchup. The Rockets' current season performance and overall team strength provide a solid edge against the Magic in this contest. 👍 Confidence: Medium (1u) | Win Probability: 64%
 
 
 

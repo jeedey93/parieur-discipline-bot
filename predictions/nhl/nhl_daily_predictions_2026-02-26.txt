@@ -4,7 +4,7 @@ Columbus Blue Jackets @ Boston Bruins
 Home odds: 1.85, Away odds: 1.96, O/U: 6.5
 ------
 Detroit Red Wings @ Ottawa Senators
-Home odds: 1.67, Away odds: 2.23, O/U: 6.0
+Home odds: 1.64, Away odds: 2.28, O/U: 6.0
 ------
 Toronto Maple Leafs @ Florida Panthers
 Home odds: 1.63, Away odds: 2.3, O/U: 6.0
@@ -22,34 +22,34 @@ Chicago Blackhawks @ Nashville Predators
 Home odds: 1.55, Away odds: 2.48, O/U: 6.0
 ------
 Minnesota Wild @ Colorado Avalanche
-Home odds: 1.64, Away odds: 2.28, O/U: 6.5
+Home odds: 1.63, Away odds: 2.3, O/U: 6.5
 ------
 Edmonton Oilers @ Los Angeles Kings
-Home odds: 1.88, Away odds: 1.93, O/U: 6.0
+Home odds: 1.88, Away odds: 1.93, O/U: 6.5
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY
-Colorado Avalanche ML vs Minnesota Wild @ 1.64
-The Colorado Avalanche, a formidable team especially at home, face a Minnesota Wild squad that struggles to match elite offenses. Colorado's high-powered offense and strong overall play give them a significant edge in this division matchup, where the market is slightly undervaluing their true home dominance.
-Confidence Level: High Units: 1.5u | Win Probability: 68%
+Minnesota Wild @ Colorado Avalanche ML vs Minnesota Wild @ 1.63
+The Colorado Avalanche, an elite offensive team with strong goaltending, host the defensively sound but less dynamic Minnesota Wild. Colorado's powerful home-ice advantage and strong underlying metrics suggest they are undervalued against a Minnesota team that struggles to contain top offenses.
+Confidence Level: High Units: 1.5u | Win Probability: 68.5%
 
 **Other Recommended Plays**
 
-Nashville Predators ML vs Chicago Blackhawks @ 1.55
-The Nashville Predators are a playoff-caliber team at home, facing a rebuilding Chicago Blackhawks squad that often struggles on the road. This presents a strong mismatch, with Nashville's defensive stability and goaltending providing a significant advantage over Chicago's weaker offensive and defensive metrics.
-Confidence Level: Medium Units: 1u | Win Probability: 70%
-
-Boston Bruins ML vs Columbus Blue Jackets @ 1.85
-The Boston Bruins, despite a potentially challenging schedule, maintain strong defensive structure and goaltending at home against the struggling Columbus Blue Jackets. Boston typically outplays weaker opponents at home, and the implied probability on this moneyline offers a favorable edge.
-Confidence Level: Medium Units: 1u | Win Probability: 59%
-
-St. Louis Blues ML vs Seattle Kraken @ 1.73
-The St. Louis Blues are a physical team that can be tough to beat at home, facing a Seattle Kraken team that sometimes struggles to generate consistent offense on the road. St. Louis' home-ice advantage combined with Seattle's offensive inconsistencies provide a solid betting opportunity here.
-Confidence Level: Medium Units: 1u | Win Probability: 62%
-
 Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64
-The Carolina Hurricanes, known for their relentless forecheck and stellar defensive system, are playing at home against the high-powered but sometimes defensively vulnerable Tampa Bay Lightning. Carolina's ability to control pace and stifle top offenses, combined with their home-ice strength, gives them a notable edge against Tampa Bay.
+The Carolina Hurricanes exhibit elite defensive structure and relentless forechecking, making them a formidable home opponent for the still dangerous but aging Tampa Bay Lightning. Carolina's top-tier goaltending and suffocating system provide a clear edge against Tampa's offense, which can be limited under pressure.
+Confidence Level: Medium Units: 1u | Win Probability: 66.5%
+
+Toronto Maple Leafs @ Florida Panthers ML vs Toronto Maple Leafs @ 1.63
+The Florida Panthers, a highly structured defensive unit with excellent goaltending and a strong home record, clash with the high-flying but sometimes defensively vulnerable Toronto Maple Leafs. Florida's ability to neutralize star power and maintain disciplined play creates a significant matchup advantage, pushing their true win probability above the implied odds.
+Confidence Level: Medium Units: 1u | Win Probability: 66.5%
+
+New Jersey Devils vs Pittsburgh Penguins Over 5.5 @ 1.67
+This matchup features two teams capable of significant offense with inconsistent defensive performances and goaltending, notably the fast-paced New Jersey Devils. Given both teams' tendencies for high-scoring games and defensive lapses, the 5.5 total appears mispriced, offering value on the Over.
 Confidence Level: Medium Units: 1u | Win Probability: 65%
+
+Chicago Blackhawks @ Nashville Predators ML vs Chicago Blackhawks @ 1.55
+The Nashville Predators are a consistent, structured home team with reliable goaltending, facing a rebuilding Chicago Blackhawks squad that struggles significantly across all facets of the game. Nashville's defensive reliability and home advantage make them a strong favorite against a Chicago team typically outmatched on the road.
+Confidence Level: Medium Units: 1u | Win Probability: 69.5%
