@@ -16,7 +16,7 @@ If roster data is available, simply state: "Current Roster Data Verified." Only 
 - If estimated edge < 3%, skip the play.
 - Do not force picks.
 - If signals conflict or edge is unclear, skip.
-- Totals (over/under) may be recommended if a clear edge exists, following the same edge and odds criteria as for moneyline and puck line plays.
+- Totals (over/under) may be recommended if a clear edge exists, following the same edge and odds criteria as for moneyline and puck line plays. Include over/under (totals) as recommended plays if they meet all edge and odds requirements, and treat them equally to moneyline and puck line plays in all output and ranking rules.
 Avoid:
 - Heavy favorites below 1.35 unless there is extreme injury/goalie mismatch.
 - Teams missing 2+ core skaters or starting a backup goalie in poor form unless market has clearly overcorrected.
@@ -75,6 +75,7 @@ Maximum 5 plays in total, including the Bet of the Day. If more than 5 qualified
 Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Puck Line/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
+For Over/Under (Totals): "<TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS>" or "<TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>"
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
 Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans. If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results in {{HISTORICAL_RESULTS}}, mention this only within the justification for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge"). Do not output a separate paragraph about reviewing historical results; only mention historical context if it directly affects a recommended play.
@@ -90,6 +91,7 @@ You must always clearly label the Bet of the Day with the header 'BET OF THE DAY
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
+For Over/Under (Totals): <TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS> or <TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names when relevant). If roster data is unavailable, omit player names and focus on team-level factors.
 Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick. If the Bet of the Day is chosen or confidence is adjusted due to historical self-evaluation, explicitly mention this in the output (e.g., "Bet of the Day selected based on strong historical performance in similar matchups").
