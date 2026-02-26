@@ -1,43 +1,43 @@
 Date: 2026-02-26
 
 Indiana Pacers vs Charlotte Hornets
-Home odds: 6.7, Away odds: 1.12, O/U: 228.5
-Spreads: Home 13.0 (1.94), Away -13.0 (1.94)
+Home odds: 7.1, Away odds: 1.11, O/U: 229.5
+Spreads: Home 13.0 (1.91), Away -13.0 (1.99)
 ------
 Philadelphia 76ers vs Miami Heat
-Home odds: 1.77, Away odds: 2.1, O/U: 240.5
-Spreads: Home -2.0 (1.94), Away 2.0 (1.94)
+Home odds: 1.68, Away odds: 2.24, O/U: 239.5
+Spreads: Home -2.5 (1.93), Away 2.5 (1.96)
 ------
 Atlanta Hawks vs Washington Wizards
-Home odds: 1.19, Away odds: 5.0, O/U: 236.5
-Spreads: Home -10.5 (1.95), Away 10.5 (1.94)
+Home odds: 1.2, Away odds: 4.85, O/U: 237.5
+Spreads: Home -10.5 (1.98), Away 10.5 (1.94)
 ------
 Brooklyn Nets vs San Antonio Spurs
-Home odds: 6.0, Away odds: 1.14, O/U: 224.5
-Spreads: Home 12.5 (1.94), Away -12.5 (1.99)
+Home odds: 5.6, Away odds: 1.16, O/U: 224.5
+Spreads: Home 12.5 (1.9), Away -12.5 (1.99)
 ------
 Orlando Magic vs Houston Rockets
-Home odds: 2.18, Away odds: 1.72, O/U: 215.5
-Spreads: Home 2.5 (1.99), Away -2.5 (1.93)
+Home odds: 2.3, Away odds: 1.65, O/U: 215.5
+Spreads: Home 3.0 (1.94), Away -3.0 (1.95)
 ------
 Chicago Bulls vs Portland Trail Blazers
-Home odds: 2.42, Away odds: 1.6, O/U: 235.5
-Spreads: Home 4.5 (1.93), Away -4.5 (1.94)
+Home odds: 2.5, Away odds: 1.56, O/U: 234.5
+Spreads: Home 4.5 (1.93), Away -4.5 (1.95)
 ------
 Dallas Mavericks vs Sacramento Kings
-Home odds: 1.38, Away odds: 3.15, O/U: 235.5
-Spreads: Home -6.5 (1.91), Away 6.5 (1.95)
+Home odds: 1.34, Away odds: 3.35, O/U: 236.5
+Spreads: Home -7.0 (1.94), Away 7.0 (1.94)
 ------
 Phoenix Suns vs Los Angeles Lakers
-Home odds: 2.76, Away odds: 1.48, O/U: 220.5
-Spreads: Home 5.5 (1.94), Away -5.5 (1.94)
+Home odds: 2.88, Away odds: 1.44, O/U: 220.5
+Spreads: Home 6.0 (1.97), Away -6.0 (1.95)
 ------
 Utah Jazz vs New Orleans Pelicans
-Home odds: 2.54, Away odds: 1.54, O/U: 242.5
-Spreads: Home 4.5 (1.99), Away -4.5 (1.91)
+Home odds: 2.56, Away odds: 1.54, O/U: 242.5
+Spreads: Home 4.5 (1.99), Away -4.5 (1.9)
 ------
 Los Angeles Clippers vs Minnesota Timberwolves
-Home odds: 2.8, Away odds: 1.47, O/U: 226.5
+Home odds: 2.76, Away odds: 1.48, O/U: 225.5
 Spreads: Home 5.5 (1.99), Away -5.5 (1.91)
 ------
 
@@ -45,24 +45,24 @@ AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY
-Portland Trail Blazers -4.5 vs Chicago Bulls @ 1.94
-The Trail Blazers are in strong offensive form, while the Bulls are on a losing streak with recent defensive struggles. The market is underestimating Portland's current dominance against a Chicago team that has failed to cover larger spreads recently; Bet of the Day selected based on strong model probability and high edge, overriding recent negative historical trends on spread plays due to the exceptional edge identified here.
-Confidence Level: High Units: 1.5u | Win Probability: 58%
+Philadelphia 76ers ML vs Miami Heat @ 1.68
+The Philadelphia 76ers are a strong unit this season, displaying consistent performance at home and currently healthy with their core rotation. This matchup presents a clear edge against the Miami Heat, where the home advantage and the 76ers' current season form create value over the bookmakers' implied probability.
+Confidence Level: High Units: 1.5u | Win Probability: 65%
 
 **Other Recommended Plays**
 
+Philadelphia 76ers -2.5 vs Miami Heat @ 1.93
+The Philadelphia 76ers are in excellent form at home with a healthy core, while the Miami Heat are a competitive road team but face a tough challenge. This play, although showing a high mathematical edge, has its confidence adjusted to Medium due to the recent systematic underperformance of the AI's spread predictions.
+Confidence Level: Medium Units: 1u | Win Probability: 58%
+
 San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99
-The Spurs are performing exceptionally well and are in excellent current form, facing a Nets team that has struggled defensively and offensively. Despite recent mixed results on large spread plays, the calculated high edge suggests bookmakers are significantly mispricing the Spurs' ability to dominate this matchup.
-Confidence Level: High Units: 1.5u | Win Probability: 57%
-
-Philadelphia 76ers vs Miami Heat Over 241.0 @ 1.98
-Both teams are generally healthy and have shown offensive capabilities to push game totals higher, with recent form suggesting a more fluid, up-tempo contest. The matchup dynamics and recent scoring trends imply a higher probability for the total to go over, providing a significant edge over the implied bookmaker probability.
-Confidence Level: High Units: 1.5u | Win Probability: 55%
-
-Dallas Mavericks -6.5 vs Sacramento Kings @ 1.91
-The Mavericks are a strong home team and are expected to perform well against an inconsistent Kings squad that has struggled to maintain momentum on the road. The spread offers value due to Dallas's strong offensive execution and Sacramento's defensive vulnerabilities, providing a favorable scenario for the Mavericks to cover.
+The San Antonio Spurs are a robust team this season, demonstrating strong offensive and defensive capabilities, while the Brooklyn Nets are currently struggling and showing signs of a losing streak. The Spurs are expected to comfortably cover this spread against a weaker Nets squad, identifying a significant market mispricing.
 Confidence Level: High Units: 1.5u | Win Probability: 56%
 
-Orlando Magic vs Houston Rockets Under 215.5 @ 1.98
-Both the Magic and Rockets are typically involved in lower-scoring games, leaning on defensive intensity and methodical offensive sets this season. The total is set slightly too high given their current form and defensive capabilities, creating a strong edge for the under.
-Confidence Level: Medium Units: 1u | Win Probability: 54%
+Charlotte Hornets -13.0 vs Indiana Pacers @ 1.99
+The Charlotte Hornets are performing exceptionally well, especially at home, and boast a healthy and effective core lineup, contrasting with an Indiana Pacers team that is currently struggling. This spread presents significant value due to the strong mismatch, but confidence is adjusted to Medium given the recent systematic underperformance in spread plays.
+Confidence Level: Medium Units: 1u | Win Probability: 55%
+
+Houston Rockets ML vs Orlando Magic @ 1.65
+The Houston Rockets are maintaining strong form and demonstrating consistency with their core rotation this season, whereas the Orlando Magic can be inconsistent and face a tough road matchup. The Rockets' current season performance and overall team strength provide a solid edge against the Magic in this contest.
+Confidence Level: Medium Units: 1u | Win Probability: 64%
