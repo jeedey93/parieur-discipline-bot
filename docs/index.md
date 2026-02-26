@@ -1,38 +1,34 @@
-# Latest Predictions (2026-02-25)
+# Latest Predictions (2026-02-26)
 
 ## NHL
 ### Summary
-- High Confidence Plays: 0
-- Medium Confidence Plays: 5
+- High Confidence Plays: 2
+- Medium Confidence Plays: 2
 - Total Units Risked: 5.0u
 
 ---
 🏆 **BET OF THE DAY**
 
-Washington Capitals ML vs Philadelphia Flyers @ 1.66
+BOSTON BRUINS ML vs Columbus Blue Jackets @ 1.85
 
-The Capitals are well-rested at home, facing a Flyers team playing on a back-to-back, which presents a significant energy disparity. Washington's structured game and reliable goaltending are poised to exploit Philadelphia's likely fatigue and potential defensive lapses.
-👍 Confidence: Medium (1u, 66%)
+The Boston Bruins, well-rested at home, consistently display superior defensive stability and goaltending against less structured opponents like the Columbus Blue Jackets. This pick offers significant value as the market underestimates Boston's commanding home-ice advantage and overall team quality against a rebuilding Columbus squad.
+🔥 Confidence: High (1.5u, 9.0%)
 ---
 
 
 **Other Recommended Plays**
 
-Edmonton Oilers ML vs Anaheim Ducks @ 1.87
+COLORADO AVALANCHE ML vs Minnesota Wild @ 1.57
 
-The Oilers, with their potent offense and power play, are coming off ample rest and typically outmatch teams like the Ducks, even on the road. Anaheim's inconsistent goaltending and defensive structure will likely struggle to contain Edmonton's top-tier scoring talent. 👍 Confidence: Medium (1u, 59%)
+The Colorado Avalanche consistently leverage their elite offensive firepower and strong home-ice advantage to dominate divisional opponents, even against a defensively sound Minnesota Wild team. The market offers a valuable edge here, as Colorado's win probability at home against a rival is consistently higher than implied odds suggest. 🔥 Confidence: High (1.5u, 6.31%)
 
-Dallas Stars ML vs Seattle Kraken @ 1.6
+NASHVILLE PREDATORS ML vs Chicago Blackhawks @ 1.55
 
-The Stars are a formidable defensive unit with elite goaltending, making them exceptionally tough to beat on home ice. Seattle's offense often struggles against such tight defensive systems, and Dallas's discipline will minimize their chances. 👍 Confidence: Medium (1u, 68%)
+The Nashville Predators, a structured and physical team with reliable goaltending, are a challenging matchup for the young and still rebuilding Chicago Blackhawks, especially on home ice. This play presents a solid edge, as Nashville's consistent performance against lower-tier teams is often undervalued by the bookmakers. 👍 Confidence: Medium (1u, 5.48%)
 
-Tampa Bay Lightning ML vs Toronto Maple Leafs @ 1.45
+CAROLINA HURRICANES ML vs Tampa Bay Lightning @ 1.64
 
-The Lightning are playing at home with significant rest, while the Maple Leafs are on a back-to-back, creating a clear situational advantage for Tampa Bay. The veteran Lightning excel in these rivalry matchups, leveraging their experience and potent attack against a tired opponent. 👍 Confidence: Medium (1u, 74%)
-
-Los Angeles Kings ML vs Vegas Golden Knights @ 1.67
-
-The Kings play a suffocating defensive and possession game, which is incredibly effective on home ice, especially against division rivals. Vegas, while talented, often faces a tough battle in Los Angeles where goals are hard to come by. 👍 Confidence: Medium (1u, 64%)
+The Carolina Hurricanes' relentless forecheck and superior defensive system make them a formidable opponent at home, capable of stifling even high-skill teams like the veteran Tampa Bay Lightning. Carolina's high home win rate and tight defensive structure create a slight but clear edge against a Tampa Bay team that sometimes struggles with sustained pressure. 👍 Confidence: Medium (1u, 3.02%)
 
 
 
@@ -45,30 +41,30 @@ The Kings play a suffocating defensive and possession game, which is incredibly 
 ---
 🏆 **BET OF THE DAY**
 
-Cleveland Cavaliers -8.5 vs Milwaukee Bucks @ 1.99
+San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.91
 
-The Cavaliers are a top-tier team demonstrating elite offensive and defensive stability, while the Bucks present a strong challenge but may struggle against a dominant Cleveland performance. This play is selected for Bet of the Day based on the significant edge found, reflecting the Cavaliers' capability to cover such a spread against a competitive opponent, and taking into account the market's potential underestimation of their current form and ability to dominate.
-🔥 Confidence: High (1.5u, 7.75%)
+The Spurs are a dominant force this season, while the Nets struggle with consistent scoring and are prone to significant losses against top-tier teams. This spread provides excellent value, as the Spurs' strong form and the Nets' defensive frailties suggest they will comfortably cover. Bet of the Day selected based on strong historical performance in similar matchups and the consistent edge observed against struggling teams.
+🔥 Confidence: High (1.5u, 59%)
 ---
 
 
 **Other Recommended Plays**
 
-Boston Celtics +4.0 vs Denver Nuggets @ 1.99
+Atlanta Hawks -11.5 vs Washington Wizards @ 1.94
 
-Both teams showcase elite talent and form, with no significant injury or fatigue impacting their core rotations in this highly anticipated matchup. The Celtics often thrive as underdogs in close contests against formidable opponents, presenting value on the spread given recent historical results where Denver's home court advantage in high-level matchups has been slightly overvalued by the market. 🔥 Confidence: High (1.5u, 6.75%)
+The Hawks, playing at home, are significantly superior to a struggling and often tanking Wizards team that lacks defensive stability. Washington's tendency for large margins of defeat makes this spread attractive, reflecting their poor form against competitive opponents. 🔥 Confidence: High (1.5u, 58%)
 
-Detroit Pistons -10.5 vs Oklahoma City Thunder @ 1.94
+Dallas Mavericks -6.5 vs Sacramento Kings @ 1.88
 
-The Pistons, with their improved form and potentially better rest, face a competitive Thunder team that may be feeling some fatigue from their schedule. Detroit has recently demonstrated the capability to cover significant spreads at home, suggesting bookmakers might be slightly undervaluing their ability to decisively win this matchup. 👍 Confidence: Medium (1u, 5.45%)
+The Mavericks are a potent offensive unit, especially on their home court, facing a Kings team that can be defensively inconsistent on the road. Dallas is well-positioned to exploit these matchups and cover this spread, which the market might be slightly undervaluing based on their home dominance. 👍 Confidence: Medium (1u, 59%)
 
-Memphis Grizzlies +3.5 vs Golden State Warriors @ 1.99
+Los Angeles Clippers +5.5 vs Minnesota Timberwolves @ 1.94
 
-The Grizzlies, known for their defensive stability and inconsistent but high-ceiling offense, host a Golden State team that can be dynamic but sometimes struggles to cover smaller road spreads. Memphis at home is often a tougher out than the market suggests, offering a solid edge against the implied probability given their potential to keep this game tight. 👍 Confidence: Medium (1u, 4.75%)
+The Clippers are a strong home team with robust defensive capabilities, and despite a recent loss, they consistently compete with elite opponents. Historically, the Timberwolves have struggled to cover larger spreads on the road, suggesting the Clippers are undervalued to keep this game within the given margin. 👍 Confidence: Medium (1u, 57%)
 
-Toronto Raptors +7.5 vs San Antonio Spurs @ 1.94
+Utah Jazz +4.5 vs New Orleans Pelicans @ 1.97
 
-The Raptors typically play with a scrappy intensity at home, even against stronger opponents like the Spurs, who are performing well but might not consistently blow out every team on the road. The significant +7.5 point spread provides valuable cushion for a Toronto team that, despite inconsistent form, often manages to stay within striking distance or surprise. 👍 Confidence: Medium (1u, 4.45%)
+The Jazz typically elevate their performance at home, often surprising more favored opponents with strong offensive output and defensive intensity. Given the Pelicans' recent road inconsistencies, and previous AI losses on Pelicans ML, the Jazz offer solid value to cover this spread in their home environment. 👍 Confidence: Medium (1u, 56%)
 
 
 
