@@ -38,37 +38,37 @@ The Carolina Hurricanes, known for their relentless forecheck and stellar defens
 
 ## NBA
 ### Summary
-- High Confidence Plays: 2
-- Medium Confidence Plays: 3
-- Total Units Risked: 0.0u
+- High Confidence Plays: 4
+- Medium Confidence Plays: 1
+- Total Units Risked: 7.0u
 
 ---
 🏆 **BET OF THE DAY**
 
-Atlanta Hawks -10.5 vs Washington Wizards @ 1.87
+Portland Trail Blazers -4.5 vs Chicago Bulls @ 1.94
 
-The Atlanta Hawks are playing at home with their core rotation intact, facing a Washington Wizards team that is struggling and likely tanking this season. This matchup presents a clear advantage for the offensively potent Hawks against the Wizards' weak defense and overall poor team form, making the large spread highly achievable given the historical performance in similar dominant home matchups.
-🔥 Confidence: High (u) | Win Probability: 53%
+The Trail Blazers are in strong offensive form, while the Bulls are on a losing streak with recent defensive struggles. The market is underestimating Portland's current dominance against a Chicago team that has failed to cover larger spreads recently; Bet of the Day selected based on strong model probability and high edge, overriding recent negative historical trends on spread plays due to the exceptional edge identified here.
+🔥 Confidence: High (1.5u) | Win Probability: 58%
 ---
 
 
 **Other Recommended Plays**
 
-San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.95
+San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99
 
-The San Antonio Spurs are a top-tier team with their full complement of players, while the Brooklyn Nets are an inconsistent squad likely to be outmatched. The Spurs' dominant two-way play provides a significant edge over the Nets, especially on offense, positioning them well to cover this substantial spread on the road. 🔥 Confidence: High (u) | Win Probability: 51%
+The Spurs are performing exceptionally well and are in excellent current form, facing a Nets team that has struggled defensively and offensively. Despite recent mixed results on large spread plays, the calculated high edge suggests bookmakers are significantly mispricing the Spurs' ability to dominate this matchup. 🔥 Confidence: High (1.5u) | Win Probability: 57%
 
-Charlotte Hornets -12.5 vs Indiana Pacers @ 1.91
+Philadelphia 76ers vs Miami Heat Over 241.0 @ 1.98
 
-The Charlotte Hornets, a strong offensive team, are facing an Indiana Pacers squad that has consistently underperformed this season. The Hornets' superior talent and home-court advantage give them a strong likelihood to cover this large spread against a weaker opponent that struggles defensively. 👍 Confidence: Medium (u) | Win Probability: 52%
+Both teams are generally healthy and have shown offensive capabilities to push game totals higher, with recent form suggesting a more fluid, up-tempo contest. The matchup dynamics and recent scoring trends imply a higher probability for the total to go over, providing a significant edge over the implied bookmaker probability. 🔥 Confidence: High (1.5u) | Win Probability: 55%
 
-Houston Rockets -2.5 vs Orlando Magic @ 1.91
+Dallas Mavericks -6.5 vs Sacramento Kings @ 1.91
 
-The Houston Rockets feature an improved and balanced roster this season, facing an Orlando Magic team that can be inconsistent. The Rockets' recent growth and solid overall play provide a slight edge against the Magic, making them a favorable pick to cover the small road spread. 👍 Confidence: Medium (u) | Win Probability: 52%
+The Mavericks are a strong home team and are expected to perform well against an inconsistent Kings squad that has struggled to maintain momentum on the road. The spread offers value due to Dallas's strong offensive execution and Sacramento's defensive vulnerabilities, providing a favorable scenario for the Mavericks to cover. 🔥 Confidence: High (1.5u) | Win Probability: 56%
 
-Dallas Mavericks -6.5 vs Sacramento Kings @ 1.87
+Orlando Magic vs Houston Rockets Under 215.5 @ 1.98
 
-The Dallas Mavericks, known for their strong offensive firepower, are at home against a Sacramento Kings team that, while capable, often shows defensive inconsistencies. The Mavericks' home-court advantage combined with their offensive strength gives them a favorable position to cover this spread against a Kings team that can struggle with consistent defensive effort. 👍 Confidence: Medium (u) | Win Probability: 53%
+Both the Magic and Rockets are typically involved in lower-scoring games, leaning on defensive intensity and methodical offensive sets this season. The total is set slightly too high given their current form and defensive capabilities, creating a strong edge for the under. 👍 Confidence: Medium (1u) | Win Probability: 54%
 
 
 

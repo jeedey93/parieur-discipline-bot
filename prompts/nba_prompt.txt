@@ -32,6 +32,39 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
 For each game:
+MARKET DATA INPUTS (MANDATORY)
+- Opening line (moneyline, spread, total)
+- Current line (moneyline, spread, total)
+- Best available line across books
+- Timestamp of last line movement
+- % change from open
+- Implied probability at open vs current
+- Market hold (vig) estimation
+- Consensus alignment indicator (3+ books within 0.03 odds)
+- Line movement direction vs money flow (if available)
+- Liquidity / limits tier (low, medium, high)
+- If market data is insufficient or missing, reject the game and do not provide a play.
+
+VIG REMOVAL STEP (MANDATORY)
+- Convert odds to implied probability for all available lines.
+- Normalize across books to estimate fair probability (vig-free).
+- Compare model probability to fair probability, not raw implied probability.
+
+LINE MOVEMENT INTERPRETATION STEP (MANDATORY)
+- Classify line movement as: Public drift, Sharp steam, Injury-driven, Neutral liquidity shift.
+- Penalize plays that move >5% against model without injury explanation.
+- Upgrade confidence if sharp steam or positive consensus alignment supports model.
+
+CLOSING LINE VALUE (CLV) TRACKING STRUCTURE
+- Define how closing line will later be logged for each play.
+- CLV will be used in future confidence scaling and historical self-evaluation.
+- If play beats closing line by >0.05, mark as positive CLV potential.
+
+REJECTION RULES (MANDATORY)
+- Reject games with insufficient market data.
+- Reject if market hold (vig) > 6%.
+- Reject if line moved >5% against model without confirmed injury data.
+
 MARKET DISCREPANCY
 - Identify best available price. Convert decimal odds to implied probability (1 / odds).
 2026 ROSTER & INJURY VALIDATION
