@@ -37,28 +37,32 @@ def safe_float(val):
 
 def parse_confidence(line):
     # Accept variations like:
-    # Confidence Level: Medium Units: 1u | Confidence : 58.0%
+    # Confidence Level: Medium Units: 1u | Win Probability: 58.0%
     # Confidence: Medium, 1u, 58%
-    # Confidence Level: Medium | Units: 1u | Confidence: 58%
-    # Confidence Level: Medium, Units: 1u, Confidence: 58%
-    # Confidence Level: Medium Units: 1 Unit | Confidence : 58.0%
-    # Confidence Level: Medium Units: 1 | Confidence : 58.0%
+    # Confidence Level: Medium | Units: 1u | Win Probability: 58%
+    # Confidence Level: Medium, Units: 1u, Win Probability: 58%
+    # Confidence Level: Medium Units: 1 Unit | Win Probability: 58.0%
+    # Confidence Level: Medium Units: 1 | Win Probability: 58.0%
     regexes = [
-        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+\|? ?Confidence[: ]*([0-9.]+)%",
-        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+Confidence[: ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+\|? ?Win Probability[: ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]+Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]+Win Probability[: ]*([0-9.]+)%",
         r"Confidence[: ]*([Hh]igh|[Mm]edium)[,| ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*([0-9.]+)%",
-        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Confidence[: ]*([0-9.]+)%",
-        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Confidence[: ]*([0-9.]+)",
-        r"Confidence[: ]*([Hh]igh|[Mm]edium)[,| ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*([0-9.]+)"
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Win Probability[: ]*([0-9.]+)%",
+        r"Confidence Level[: ]*([Hh]igh|[Mm]edium)[,| ]*Units?[: ]*([0-9.]+)[ ]*(?:u|Unit[s]?)?[,| ]*Win Probability[: ]*([0-9.]+)",
+        r"Win Probability[: ]*([0-9.]+)%"
     ]
     for regex in regexes:
         match = re.search(regex, line)
         if match:
-            level = match.group(1).capitalize()
-            units = match.group(2)
-            percent = match.group(3)
-            emoji = "🔥" if level == "High" else ("👍" if level == "Medium" else "")
-            return emoji, level, units, percent
+            if len(match.groups()) == 3:
+                level = match.group(1).capitalize()
+                units = match.group(2)
+                win_prob = match.group(3)
+                emoji = "🔥" if level == "High" else ("👍" if level == "Medium" else "")
+                return emoji, level, units, win_prob
+            elif len(match.groups()) == 1:
+                # Only win probability found
+                return "", "", "", match.group(1)
     # Fallback: try to extract just the level
     match = re.search(r"Confidence Level[: ]*([Hh]igh|[Mm]edium)", line)
     if match:
@@ -66,6 +70,13 @@ def parse_confidence(line):
         emoji = "🔥" if level == "High" else ("👍" if level == "Medium" else "")
         return emoji, level, "", ""
     return "", "", "", ""
+
+def extract_odds_from_header(header):
+    # Try to extract the odds from the play header (e.g., ...@ 1.64)
+    match = re.search(r"@\s*([0-9.]+)", header)
+    if match:
+        return float(match.group(1))
+    return None
 
 def format_ai_analysis(ai_content):
     if ai_content.strip() == "No AI analysis found.":
@@ -76,6 +87,7 @@ def format_ai_analysis(ai_content):
     bet_of_day_confidence_line = ""
     bet_of_day_units = 0.0
     bet_of_day_conf = None
+    bet_of_day_win_prob = None
     plays = []
     summary = {"High": 0, "Medium": 0, "units": 0.0}
     i = 0
@@ -103,21 +115,36 @@ def format_ai_analysis(ai_content):
                 confidence_line = ""
                 play_units = 0.0
                 play_conf = None
+                play_win_prob = None
                 i += 1
                 while i < len(lines) and lines[i].strip() and not re.match(r"^(\*+|#+)?\s*Other Recommended Plays\s*:?(\*+|#+)?$", lines[i].strip(), re.IGNORECASE) and not lines[i].strip().startswith("---"):
                     details.append(lines[i].strip())
-                    if lines[i].strip().startswith("Confidence Level:") or lines[i].strip().startswith("🔥 Confidence:") or lines[i].strip().startswith("👍 Confidence:"):
-                        confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
+                    if (lines[i].strip().startswith("Confidence Level:") or
+                        lines[i].strip().startswith("🔥 Confidence:") or
+                        lines[i].strip().startswith("👍 Confidence:") or
+                        lines[i].strip().startswith("Win Probability:")):
+                        confidence_emoji, level, units, win_prob = parse_confidence(lines[i].strip())
                         play_conf = level
                         play_units = safe_float(units)
-                        confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
+                        play_win_prob = win_prob
+                        if win_prob:
+                            confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u) | Win Probability: {win_prob}%"
+                        else:
+                            confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u)"
                     i += 1
-                justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:")])
+                justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:") and not d.startswith("Win Probability:")])
+                # If win probability is missing, try to extract from odds
+                if not play_win_prob:
+                    odds = extract_odds_from_header(play_header)
+                    if odds:
+                        play_win_prob = str(round(100 / odds))
+                        confidence_line += f" | Win Probability: {play_win_prob}%"
                 bet_of_day_header = play_header
                 bet_of_day_justification = justification
                 bet_of_day_confidence_line = confidence_line
                 bet_of_day_conf = play_conf
                 bet_of_day_units = play_units
+                bet_of_day_win_prob = play_win_prob
                 if bet_of_day_conf in summary:
                     summary[bet_of_day_conf] += 1
                 summary["units"] += bet_of_day_units
@@ -140,17 +167,31 @@ def format_ai_analysis(ai_content):
             confidence_line = ""
             play_units = 0.0
             play_conf = None
+            play_win_prob = None
             i += 1
             while i < len(lines) and lines[i].strip() and not re.match(r"\d+\.\s+.+", lines[i]) and not lines[i].strip().startswith("---") and not re.match(r"^(\*+|#+)?\s*BET OF THE DAY\s*:?(\*+|#+)?$", lines[i].strip(), re.IGNORECASE) and not re.match(r"^(\*+|#+)?\s*Other Recommended Plays\s*:?(\*+|#+)?$", lines[i].strip(), re.IGNORECASE):
                 details.append(lines[i].strip())
-                if lines[i].strip().startswith("Confidence Level:") or lines[i].strip().startswith("🔥 Confidence:") or lines[i].strip().startswith("👍 Confidence:"):
-                    confidence_emoji, level, units, percent = parse_confidence(lines[i].strip())
+                if (lines[i].strip().startswith("Confidence Level:") or
+                    lines[i].strip().startswith("🔥 Confidence:") or
+                    lines[i].strip().startswith("👍 Confidence:") or
+                    lines[i].strip().startswith("Win Probability:")):
+                    confidence_emoji, level, units, win_prob = parse_confidence(lines[i].strip())
                     play_conf = level
                     play_units = safe_float(units)
-                    confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u, {percent}%)"
+                    play_win_prob = win_prob
+                    if win_prob:
+                        confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u) | Win Probability: {win_prob}%"
+                    else:
+                        confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u)"
                 i += 1
             play_block = [f"{play_header}", ""]
-            justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:")])
+            justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:") and not d.startswith("Win Probability:")])
+            # If win probability is missing, try to extract from odds
+            if not play_win_prob:
+                odds = extract_odds_from_header(play_header)
+                if odds:
+                    play_win_prob = str(round(100 / odds))
+                    confidence_line += f" | Win Probability: {play_win_prob}%"
             if confidence_line:
                 justification = justification + (" " if justification else "") + confidence_line
             play_block.append(justification)
@@ -159,6 +200,7 @@ def format_ai_analysis(ai_content):
                 "block": play_block,
                 "conf": play_conf,
                 "units": play_units,
+                "win_prob": play_win_prob,
                 "justification": justification
             })
         else:
