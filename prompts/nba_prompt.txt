@@ -60,6 +60,7 @@ Maximum 5 plays in total, including the Bet of the Day. If more than 5 qualified
 Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Spread/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
+For Over/Under (Totals): <TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS> or <TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data. If a team is tanking or on a losing streak, mention this if relevant.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), market mechanics, or tanking/losing streak status influence the pick. Make the explanation clear and accessible for beginner bettors and NBA fans.
@@ -76,6 +77,7 @@ You must always clearly label the Bet of the Day with the header 'BET OF THE DAY
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
+For Over/Under (Totals): <TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS> or <TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), or market mechanics influence the pick. If the Bet of the Day is chosen or confidence is adjusted due to historical self-evaluation, explicitly mention this in the output (e.g., "Bet of the Day selected based on strong historical performance in similar matchups"). Make the explanation clear and accessible for beginner bettors and NBA fans.
