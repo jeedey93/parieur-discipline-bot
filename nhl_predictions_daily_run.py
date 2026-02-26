@@ -27,7 +27,7 @@ def analyze_results(results_text):
             continue
 
     # Strictly read external prompt file; no fallback
-    prompt_path = os.path.join("prompts", "nhl_prompt_v2.txt")
+    prompt_path = os.path.join("prompts", "nhl_prompt.txt")
     today_str = date.today().isoformat()
     try:
         with open(prompt_path, "r", encoding="utf-8") as pf:
