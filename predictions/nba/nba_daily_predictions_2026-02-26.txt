@@ -1,68 +1,72 @@
 Date: 2026-02-26
 
 Indiana Pacers vs Charlotte Hornets
-Home odds: 5.9, Away odds: 1.15, O/U: 229.5
-Spreads: Home 12.5 (1.95), Away -12.5 (1.94)
+Home odds: 6.6, Away odds: 1.12, O/U: 228.5
+Spreads: Home 13.0 (1.94), Away -13.0 (1.94)
 ------
 Philadelphia 76ers vs Miami Heat
-Home odds: 1.77, Away odds: 2.1, O/U: 240.5
+Home odds: 1.75, Away odds: 2.14, O/U: 240.5
 Spreads: Home -2.0 (1.94), Away 2.0 (1.95)
 ------
 Atlanta Hawks vs Washington Wizards
-Home odds: 1.17, Away odds: 5.5, O/U: 233.5
-Spreads: Home -11.5 (1.94), Away 11.5 (1.94)
+Home odds: 1.18, Away odds: 5.1, O/U: 233.5
+Spreads: Home -10.5 (1.95), Away 10.5 (1.95)
 ------
 Brooklyn Nets vs San Antonio Spurs
-Home odds: 6.2, Away odds: 1.14, O/U: 224.5
-Spreads: Home 12.5 (1.99), Away -12.5 (1.91)
+Home odds: 6.0, Away odds: 1.14, O/U: 224.5
+Spreads: Home 12.5 (1.94), Away -12.5 (1.99)
 ------
 Orlando Magic vs Houston Rockets
-Home odds: 2.16, Away odds: 1.74, O/U: 215.5
+Home odds: 2.18, Away odds: 1.72, O/U: 215.5
 Spreads: Home 2.5 (1.99), Away -2.5 (1.91)
 ------
 Chicago Bulls vs Portland Trail Blazers
-Home odds: 2.6, Away odds: 1.53, O/U: 235.5
-Spreads: Home 4.0 (1.95), Away -4.0 (1.94)
+Home odds: 2.58, Away odds: 1.53, O/U: 235.5
+Spreads: Home 4.0 (1.94), Away -4.0 (1.94)
 ------
 Dallas Mavericks vs Sacramento Kings
-Home odds: 1.38, Away odds: 3.15, O/U: 233.5
-Spreads: Home -7.0 (1.99), Away 7.0 (1.91)
+Home odds: 1.34, Away odds: 3.35, O/U: 233.5
+Spreads: Home -6.5 (1.91), Away 6.5 (1.95)
 ------
 Phoenix Suns vs Los Angeles Lakers
-Home odds: 2.66, Away odds: 1.51, O/U: 218.5
-Spreads: Home 4.5 (1.95), Away -4.5 (1.94)
+Home odds: 2.76, Away odds: 1.48, O/U: 218.5
+Spreads: Home 5.0 (1.94), Away -5.0 (1.94)
 ------
 Utah Jazz vs New Orleans Pelicans
-Home odds: 2.56, Away odds: 1.54, O/U: 240.5
+Home odds: 2.54, Away odds: 1.54, O/U: 241.5
 Spreads: Home 4.5 (1.97), Away -4.5 (1.92)
 ------
 Los Angeles Clippers vs Minnesota Timberwolves
-Home odds: 2.68, Away odds: 1.5, O/U: 226.5
+Home odds: 2.66, Away odds: 1.51, O/U: 226.5
 Spreads: Home 5.5 (1.94), Away -5.5 (1.94)
 ------
 
 AI Analysis Summary:
-Current Roster Data Verified.
+Current Roster Data Unavailable
 
 **BET OF THE DAY**
-San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.91
-The Spurs are a dominant force this season, while the Nets struggle with consistent scoring and are prone to significant losses against top-tier teams. This spread provides excellent value, as the Spurs' strong form and the Nets' defensive frailties suggest they will comfortably cover. Bet of the Day selected based on strong historical performance in similar matchups and the consistent edge observed against struggling teams.
-Confidence Level: High Units: 1.5u | Confidence : 59%
+Miami Heat ML vs Philadelphia 76ers @ 2.17
+
+The Miami Heat are a competitive road team, and despite playing a strong 76ers squad, their defensive tenacity and structured offense give them a solid chance. Bookmakers might be slightly underestimating the Heat's ability to win outright in a tight contest, presenting value here.
+
+Confidence Level: Medium | Units: 1u | Confidence: 50%
 
 **Other Recommended Plays**
 
-Atlanta Hawks -11.5 vs Washington Wizards @ 1.94
-The Hawks, playing at home, are significantly superior to a struggling and often tanking Wizards team that lacks defensive stability. Washington's tendency for large margins of defeat makes this spread attractive, reflecting their poor form against competitive opponents.
-Confidence Level: High Units: 1.5u | Confidence : 58%
+Utah Jazz vs New Orleans Pelicans Under 241.5 @ 1.98
 
-Dallas Mavericks -6.5 vs Sacramento Kings @ 1.88
-The Mavericks are a potent offensive unit, especially on their home court, facing a Kings team that can be defensively inconsistent on the road. Dallas is well-positioned to exploit these matchups and cover this spread, which the market might be slightly undervaluing based on their home dominance.
-Confidence Level: Medium Units: 1u | Confidence : 59%
+This game features a very high total, but defensive adjustments or unexpected offensive struggles could lead to a lower-scoring affair than anticipated. The market appears to lean slightly too heavily on an offensive shootout, offering an edge on the Under.
 
-Los Angeles Clippers +5.5 vs Minnesota Timberwolves @ 1.94
-The Clippers are a strong home team with robust defensive capabilities, and despite a recent loss, they consistently compete with elite opponents. Historically, the Timberwolves have struggled to cover larger spreads on the road, suggesting the Clippers are undervalued to keep this game within the given margin.
-Confidence Level: Medium Units: 1u | Confidence : 57%
+Confidence Level: Medium | Units: 1u | Confidence: 54%
 
-Utah Jazz +4.5 vs New Orleans Pelicans @ 1.97
-The Jazz typically elevate their performance at home, often surprising more favored opponents with strong offensive output and defensive intensity. Given the Pelicans' recent road inconsistencies, and previous AI losses on Pelicans ML, the Jazz offer solid value to cover this spread in their home environment.
-Confidence Level: Medium Units: 1u | Confidence : 56%
+San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99
+
+The San Antonio Spurs are projected to be significantly stronger than the Brooklyn Nets this season, and at home, they are expected to dominate. This play, although a spread pick, maintains sufficient edge after accounting for recent systematic underperformance on similar plays.
+
+Confidence Level: Medium | Units: 1u | Confidence: 53.5%
+
+Philadelphia 76ers vs Miami Heat Over 240.5 @ 1.95
+
+Both the 76ers and Heat have shown capability for high-scoring games this season, and a competitive matchup often leads to an increased pace and more scoring opportunities. The combined offensive prowess suggests that this total is attainable, providing a slight edge over the implied probability.
+
+Confidence Level: Medium | Units: 1u | Confidence: 54.5%
