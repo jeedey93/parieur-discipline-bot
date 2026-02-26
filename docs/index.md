@@ -2,31 +2,37 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 2
-- Medium Confidence Plays: 3
-- Total Units Risked: 6.0u
+- High Confidence Plays: 1
+- Medium Confidence Plays: 4
+- Total Units Risked: 0.0u
+
+---
+🏆 **BET OF THE DAY**
+
+Colorado Avalanche ML vs Minnesota Wild @ 1.64
+
+The Colorado Avalanche, a formidable team especially at home, face a Minnesota Wild squad that struggles to match elite offenses. Colorado's high-powered offense and strong overall play give them a significant edge in this division matchup, where the market is slightly undervaluing their true home dominance.
+🔥 Confidence: High (u, %)
+---
+
 
 **Other Recommended Plays**
 
-BET OF THE DAY: Florida Panthers ML vs Toronto Maple Leafs @ 1.63
+Nashville Predators ML vs Chicago Blackhawks @ 1.55
 
-The Florida Panthers boast elite defensive structure and stellar goaltending at home, consistently stifling high-octane offenses like the Toronto Maple Leafs. This matchup favors Florida's disciplined play to contain Toronto's offensive stars, providing significant value on their moneyline. 🔥 Confidence: High (1.5u, 6.65%)
-
-Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64
-
-The Carolina Hurricanes exhibit an elite defensive system and relentless forecheck that is incredibly difficult to counter on home ice, giving them an advantage over the high-powered Tampa Bay Lightning. Carolina's ability to suppress shots and maintain puck possession makes them a strong play against an offensive-minded opponent. 🔥 Confidence: High (1.5u, 6.02%)
+The Nashville Predators are a playoff-caliber team at home, facing a rebuilding Chicago Blackhawks squad that often struggles on the road. This presents a strong mismatch, with Nashville's defensive stability and goaltending providing a significant advantage over Chicago's weaker offensive and defensive metrics. 👍 Confidence: Medium (u, %)
 
 Boston Bruins ML vs Columbus Blue Jackets @ 1.85
 
-The Boston Bruins, with their strong defensive core and reliable goaltending, are a formidable opponent at home, poised to exploit the inconsistent Columbus Blue Jackets. Boston's structured play and veteran presence should control the game's tempo against a developing Blue Jackets squad. 👍 Confidence: Medium (1u, 5.95%)
+The Boston Bruins, despite a potentially challenging schedule, maintain strong defensive structure and goaltending at home against the struggling Columbus Blue Jackets. Boston typically outplays weaker opponents at home, and the implied probability on this moneyline offers a favorable edge. 👍 Confidence: Medium (u, %)
 
-Nashville Predators ML vs Chicago Blackhawks @ 1.55
+St. Louis Blues ML vs Seattle Kraken @ 1.73
 
-The Nashville Predators are a strong, playoff-contending team with solid defensive play and reliable goaltending, presenting a clear mismatch against the rebuilding Chicago Blackhawks. Nashville should dominate possession and capitalize on Chicago's significant defensive vulnerabilities, making this a strong value play. 👍 Confidence: Medium (1u, 5.48%)
+The St. Louis Blues are a physical team that can be tough to beat at home, facing a Seattle Kraken team that sometimes struggles to generate consistent offense on the road. St. Louis' home-ice advantage combined with Seattle's offensive inconsistencies provide a solid betting opportunity here. 👍 Confidence: Medium (u, %)
 
-Seattle Kraken ML @ St. Louis Blues @ 2.1
+Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64
 
-The Seattle Kraken bring a disciplined defensive style and strong goaltending that can frustrate the often-inconsistent St. Louis Blues, especially in a projected tight game. Seattle's ability to limit scoring chances provides an edge in what should be a low-scoring affair, offering good value at these odds. 👍 Confidence: Medium (1u, 5.38%)
+The Carolina Hurricanes, known for their relentless forecheck and stellar defensive system, are playing at home against the high-powered but sometimes defensively vulnerable Tampa Bay Lightning. Carolina's ability to control pace and stifle top offenses, combined with their home-ice strength, gives them a notable edge against Tampa Bay. 👍 Confidence: Medium (u, %)
 
 
 

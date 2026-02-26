@@ -1,8 +1,8 @@
 Date: 2026-02-26
 
 Indiana Pacers vs Charlotte Hornets
-Home odds: 6.6, Away odds: 1.12, O/U: 228.5
-Spreads: Home 13.0 (1.94), Away -13.0 (1.94)
+Home odds: 6.4, Away odds: 1.13, O/U: 228.5
+Spreads: Home 12.5 (1.95), Away -12.5 (1.91)
 ------
 Philadelphia 76ers vs Miami Heat
 Home odds: 1.75, Away odds: 2.14, O/U: 240.5
@@ -13,7 +13,7 @@ Home odds: 1.18, Away odds: 5.1, O/U: 233.5
 Spreads: Home -10.5 (1.95), Away 10.5 (1.95)
 ------
 Brooklyn Nets vs San Antonio Spurs
-Home odds: 6.0, Away odds: 1.14, O/U: 224.5
+Home odds: 6.2, Away odds: 1.14, O/U: 224.5
 Spreads: Home 12.5 (1.94), Away -12.5 (1.99)
 ------
 Orlando Magic vs Houston Rockets
@@ -25,7 +25,7 @@ Home odds: 2.58, Away odds: 1.53, O/U: 235.5
 Spreads: Home 4.0 (1.94), Away -4.0 (1.94)
 ------
 Dallas Mavericks vs Sacramento Kings
-Home odds: 1.34, Away odds: 3.35, O/U: 233.5
+Home odds: 1.36, Away odds: 3.25, O/U: 233.5
 Spreads: Home -6.5 (1.91), Away 6.5 (1.95)
 ------
 Phoenix Suns vs Los Angeles Lakers
@@ -42,31 +42,27 @@ Spreads: Home 5.5 (1.94), Away -5.5 (1.94)
 ------
 
 AI Analysis Summary:
-Current Roster Data Unavailable
+Current Roster Data Verified.
 
-**BET OF THE DAY**
-Miami Heat ML vs Philadelphia 76ers @ 2.17
-
-The Miami Heat are a competitive road team, and despite playing a strong 76ers squad, their defensive tenacity and structured offense give them a solid chance. Bookmakers might be slightly underestimating the Heat's ability to win outright in a tight contest, presenting value here.
-
-Confidence Level: Medium | Units: 1u | Confidence: 50%
+BET OF THE DAY
+Atlanta Hawks -10.5 vs Washington Wizards @ 1.87
+The Atlanta Hawks are playing at home with their core rotation intact, facing a Washington Wizards team that is struggling and likely tanking this season. This matchup presents a clear advantage for the offensively potent Hawks against the Wizards' weak defense and overall poor team form, making the large spread highly achievable given the historical performance in similar dominant home matchups.
+Confidence Level: High Units: 1.5u | Confidence : 60%
 
 **Other Recommended Plays**
 
-Utah Jazz vs New Orleans Pelicans Under 241.5 @ 1.98
+San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.95
+The San Antonio Spurs are a top-tier team with their full complement of players, while the Brooklyn Nets are an inconsistent squad likely to be outmatched. The Spurs' dominant two-way play provides a significant edge over the Nets, especially on offense, positioning them well to cover this substantial spread on the road.
+Confidence Level: High Units: 1.5u | Confidence : 59%
 
-This game features a very high total, but defensive adjustments or unexpected offensive struggles could lead to a lower-scoring affair than anticipated. The market appears to lean slightly too heavily on an offensive shootout, offering an edge on the Under.
+Charlotte Hornets -12.5 vs Indiana Pacers @ 1.91
+The Charlotte Hornets, a strong offensive team, are facing an Indiana Pacers squad that has consistently underperformed this season. The Hornets' superior talent and home-court advantage give them a strong likelihood to cover this large spread against a weaker opponent that struggles defensively.
+Confidence Level: Medium Units: 1u | Confidence : 58%
 
-Confidence Level: Medium | Units: 1u | Confidence: 54%
+Houston Rockets -2.5 vs Orlando Magic @ 1.91
+The Houston Rockets feature an improved and balanced roster this season, facing an Orlando Magic team that can be inconsistent. The Rockets' recent growth and solid overall play provide a slight edge against the Magic, making them a favorable pick to cover the small road spread.
+Confidence Level: Medium Units: 1u | Confidence : 57%
 
-San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99
-
-The San Antonio Spurs are projected to be significantly stronger than the Brooklyn Nets this season, and at home, they are expected to dominate. This play, although a spread pick, maintains sufficient edge after accounting for recent systematic underperformance on similar plays.
-
-Confidence Level: Medium | Units: 1u | Confidence: 53.5%
-
-Philadelphia 76ers vs Miami Heat Over 240.5 @ 1.95
-
-Both the 76ers and Heat have shown capability for high-scoring games this season, and a competitive matchup often leads to an increased pace and more scoring opportunities. The combined offensive prowess suggests that this total is attainable, providing a slight edge over the implied probability.
-
-Confidence Level: Medium | Units: 1u | Confidence: 54.5%
+Dallas Mavericks -6.5 vs Sacramento Kings @ 1.87
+The Dallas Mavericks, known for their strong offensive firepower, are at home against a Sacramento Kings team that, while capable, often shows defensive inconsistencies. The Mavericks' home-court advantage combined with their offensive strength gives them a favorable position to cover this spread against a Kings team that can struggle with consistent defensive effort.
+Confidence Level: Medium Units: 1u | Confidence : 57%
