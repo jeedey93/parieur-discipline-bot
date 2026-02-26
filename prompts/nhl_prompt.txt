@@ -40,11 +40,32 @@ For each game:
 2. 2026 ROSTER & INJURY VALIDATION
    - Identify the current 2026 core rotation for both teams.
    - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE) based on the {{TODAY_DATE}} report, but do not mention player names unless provided in the input data.
-3. TEAM & GOALIE EVALUATION (Score each category)
+3. ADVANCED METRICS VALIDATION (MANDATORY)
+   - 5v5 Expected Goals For per 60 (xGF/60)
+   - 5v5 Expected Goals Against per 60 (xGA/60)
+   - High Danger Chances Differential
+   - Last 5 Game Expected Goal Differential
+   - PDO (to detect regression risk)
+   - If team is winning but has a negative xG differential, downgrade estimated probability.
+   - If team is losing but has a positive xG differential, upgrade estimated probability.
+   - PDO > 102: regression risk downgrade.
+   - PDO < 98: positive regression candidate.
+   - These adjustments must quantitatively influence estimated win probability, not just narrative commentary.
+4. TEAM & GOALIE EVALUATION (Score each category)
    Assign ratings:
    - Offensive Form (1–10)
    - Defensive Stability (1–10)
-   - Goalie Performance (−3 to +2): Elite goalie with strong recent form: +2, Average starter: 0, Backup in poor form: -3
+   - GOALIE PERFORMANCE MODEL:
+     - Save % last 5 starts
+     - Goals Saved Above Expected (GSAx)
+     - High Danger Save %
+     - Home/Away splits
+     - Confirmed vs projected starter status
+     - Backup with negative GSAx last 5 → downgrade 3–5%.
+     - Elite goalie confirmed in strong form → upgrade 2–4%.
+     - Starter unconfirmed → reduce confidence tier by 1 level.
+     - Goalie on back-to-back → downgrade 1–2%.
+     - These adjustments must quantitatively influence estimated win probability.
    - Fatigue / Schedule Score (−3 to +1)
    Schedule Scoring:
    - Back-to-back: −2
@@ -52,17 +73,32 @@ For each game:
    - 4 games in 6 nights: -1
    - Cross-country travel: −1
    - 2+ days rest: +1
-4. SITUATIONAL EDGE
-   - Evaluate matchup advantages (forecheck pressure, defensive structure, special teams, shot quality).
-   - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE), including goalie status.
-   - Mention how absences affect offense, defense, rotations, or pace of play.
-   - Evaluate if team is tanking or post-trade deadline seller.
-5. IMPLIED EDGE CHECK
+5. LINE MOVEMENT & SHARP ACTION CHECK
+   - Opening line vs current line comparison
+   - Reverse line movement detection
+   - Steam moves (>0.08 odds move)
+   - Consensus alignment across books
+   - If edge exists but line moved strongly against position → downgrade confidence.
+   - If reverse line movement supports position → upgrade confidence.
+   - If we beat opening line by >0.05 → mark as positive CLV potential.
+   - If steam detected opposing our side → reduce unit size.
+   - These adjustments must affect confidence tier or unit sizing, not just commentary.
+6. STYLE & GAME STATE MATCHUP MODEL
+   - Pace projection (High / Medium / Low)
+   - Forecheck intensity vs defensive structure
+   - Special Teams mismatch (PP vs PK efficiency)
+   - Rush offense vs defensive gap control
+   - Home/road splits
+   - High pace + weak goalies → totals bias.
+   - Slow defensive teams + elite goalies → under bias.
+   - Special teams mismatch > 5% → adjust win probability 1–2%.
+   - These adjustments must impact both Moneyline and Totals modeling differently.
+7. IMPLIED EDGE CHECK
    - Convert odds to implied probability.
    - Assign a realistic estimated win probability.
    - Calculate edge: Edge = (Estimated Win Probability) - (Implied Probability from Odds)
    - Only recommend if: Estimated Probability ≥ Implied Probability + 3%.
-6. MARKET STRENGTH SIGNAL
+8. MARKET STRENGTH SIGNAL
    - If 3+ books align within 0.03 odds → strong consensus.
    - If 1 book is an outlier by >0.05 → potential value.
 If no plays qualify → output: "No qualified plays today."
@@ -94,7 +130,7 @@ Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and i
 Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
 
 RANKING
-Rank all recommended plays strictly by descending confidence percentage (from highest to lowest), regardless of confidence tier. If two plays have the same confidence %, list High confidence plays first. Do not include Lean confidence plays in the ranking or output. Do not include the Bet of the Day in the recommended plays list; it should only appear once at the top. If more than 5 qualified plays exist, only output the top 5 by confidence (including Bet of the Day).
+Rank all recommended plays strictly by descending confidence percentage (from highest to lowest), regardless of confidence tier. If two plays have the same confidence %, list High confidence plays first. Do not include Lean confidence plays in the ranking or output. Do not include the Bet of the Day in the recommended plays section; it should only appear once at the top. If more than 5 qualified plays exist, only output the top 5 by confidence (including Bet of the Day).
 
 BET OF THE DAY
 - The Bet of the Day MUST be the single play with the highest confidence percentage among all recommended plays (High or Medium confidence only). It cannot be arbitrarily selected; it must be the top play by confidence %.
