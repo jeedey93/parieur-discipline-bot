@@ -221,23 +221,24 @@ def format_ai_analysis(ai_content):
     summary_lines.append(f"- Total Units Risked: {summary['units']}u\n")
     output = []
     output.extend(summary_lines)
+    # Bet of the Day section
     if bet_of_day_header:
         output.append("---")
-        output.append("> 🏆 **BET OF THE DAY**")
-        output.append("> ")
-        output.append(f"> {bet_of_day_header}")
-        output.append("> ")
+        output.append("🏆 BET OF THE DAY")
+        output.append("")
+        output.append(f"{bet_of_day_header}")
         if bet_of_day_justification:
-            output.append(f"> {bet_of_day_justification}")
+            output.append(f"{bet_of_day_justification}")
         if bet_of_day_confidence_line:
-            output.append(f"> {bet_of_day_confidence_line}")
-        output.append("> ")
-        output.append("---\n")
+            output.append(f"{bet_of_day_confidence_line}")
         output.append("")
+        output.append("---")
+        output.append("")
+    # Other Recommended Plays section
     if plays:
-        output.append("**Other Recommended Plays**")
+        output.append("Other Recommended Plays")
         output.append("")
-        output.extend(plays)
+        output.extend([play.replace('> ','') for play in plays])
         output.append("")
     return "\n".join(output)
 
