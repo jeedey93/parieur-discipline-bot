@@ -227,6 +227,7 @@ def format_ai_analysis(ai_content):
         output.append("🏆 BET OF THE DAY")
         output.append("")
         output.append(f"{bet_of_day_header}")
+        output.append("")
         if bet_of_day_justification:
             output.append(f"{bet_of_day_justification}")
         if bet_of_day_confidence_line:

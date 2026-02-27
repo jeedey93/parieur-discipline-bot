@@ -10,6 +10,7 @@
 🏆 BET OF THE DAY
 
 Florida Panthers ML vs Buffalo Sabres @ 1.87
+
 Florida exhibits dominant home form with strong underlying metrics and reliable goaltending against a Buffalo team prone to defensive lapses. The Panthers' consistent performance and significant home-ice advantage create a clear value opportunity against a line that doesn't fully capture their current strength.
 🔥 Confidence: High (1.5u) | Win Probability: 60%
 
@@ -33,6 +34,7 @@ The Jets are a highly structured, defensively sound team with elite goaltending,
 🏆 BET OF THE DAY
 
 New York Knicks -8.5 vs Milwaukee Bucks @ 1.91
+
 The New York Knicks are a formidable force at home with a robust roster and solid current form, while the Milwaukee Bucks are on the road and may be facing consistency issues. The market appears to undervalue the Knicks' ability to cover this spread, presenting a strong expected value given their defensive intensity and home-court advantage.
 👍 Confidence: Medium (1u) | Win Probability: 57%
 
