@@ -184,7 +184,7 @@ def format_ai_analysis(ai_content):
                     else:
                         confidence_line = f"{confidence_emoji} Confidence: {level} ({units}u)"
                 i += 1
-            play_block = [f"{play_header}", ""]
+            play_block = [f"> {play_header}", "> "]
             justification = " ".join([d for d in details if not d.startswith("Confidence Level:") and not d.startswith("🔥 Confidence:") and not d.startswith("👍 Confidence:") and not d.startswith("Win Probability:")])
             # If win probability is missing, try to extract from odds
             if not play_win_prob:
@@ -194,8 +194,8 @@ def format_ai_analysis(ai_content):
                     confidence_line += f" | Win Probability: {play_win_prob}%"
             if confidence_line:
                 justification = justification + (" " if justification else "") + confidence_line
-            play_block.append(justification)
-            play_block.append("")
+            play_block.append(f"> {justification}")
+            play_block.append("> ")
             temp_plays.append({
                 "block": play_block,
                 "conf": play_conf,
@@ -207,7 +207,7 @@ def format_ai_analysis(ai_content):
             i += 1
     plays = []
     for play in temp_plays:
-        if bet_of_day_header and play["block"][0] == bet_of_day_header:
+        if bet_of_day_header and play["block"][0].replace('> ','') == bet_of_day_header:
             continue
         plays.append("\n".join(play["block"]))
         if play["conf"] in summary:
@@ -221,14 +221,15 @@ def format_ai_analysis(ai_content):
     output.extend(summary_lines)
     if bet_of_day_header:
         output.append("---")
-        output.append("🏆 **BET OF THE DAY**")
-        output.append("")
-        output.append(bet_of_day_header)
-        output.append("")
+        output.append("> 🏆 **BET OF THE DAY**")
+        output.append("> ")
+        output.append(f"> {bet_of_day_header}")
+        output.append("> ")
         if bet_of_day_justification:
-            output.append(bet_of_day_justification)
+            output.append(f"> {bet_of_day_justification}")
         if bet_of_day_confidence_line:
-            output.append(bet_of_day_confidence_line)
+            output.append(f"> {bet_of_day_confidence_line}")
+        output.append("> ")
         output.append("---\n")
         output.append("")
     if plays:
