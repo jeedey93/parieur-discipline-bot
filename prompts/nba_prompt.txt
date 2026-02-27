@@ -108,8 +108,6 @@ BET OF THE DAY
 Show the Bet of the Day first, before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
 You must always clearly label the Bet of the Day with the header 'BET OF THE DAY' (in all caps) and format it distinctly at the top of the output, even if the play is selected based on confidence or historical evaluation.
 
-After the 'BET OF THE DAY' header, always insert a blank line before the actual bet and justification, so the bet is always on its own line below the header.
-
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>

@@ -35,15 +35,16 @@ The Panthers are a dominant home team with elite goaltending and strong underlyi
 ## NBA
 ### Summary
 - High Confidence Plays: 0
-- Medium Confidence Plays: 3
-- Total Units Risked: 3.0u
+- Medium Confidence Plays: 4
+- Total Units Risked: 4.0u
 
 ---
 🏆 BET OF THE DAY
 
 Detroit Pistons -6.0 vs Cleveland Cavaliers @ 1.94
 
- | Win Probability: 52%
+The Pistons, leveraging their improving core, hold a significant home advantage against a Cavaliers team that may be feeling the effects of recent schedule demands. This pick is driven by Detroit's strong current form and the expectation that Cleveland's defensive stability might be compromised by fatigue, offering value against a spread that hasn't fully accounted for these factors.
+👍 Confidence: Medium (1u) | Win Probability: 55%
 
 ---
 
