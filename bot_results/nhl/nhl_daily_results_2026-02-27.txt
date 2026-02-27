@@ -1,35 +1,35 @@
-As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for February 26, 2026.
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for the games on 2026-02-26.
 
-Here's the breakdown:
+Here is the breakdown of each prediction:
 
-1.  **Minnesota Wild @ Colorado Avalanche ML vs Minnesota Wild**
-    *   AI Prediction: Colorado Avalanche ML (Colorado to win)
-    *   Actual Result: Minnesota 5 @ Colorado 2 (Colorado lost)
-    *   Outcome: **LOSS**
+1.  **Minnesota Wild @ Colorado Avalanche ML vs Colorado Avalanche**
+    *   AI Prediction: Colorado Avalanche Moneyline
+    *   Actual Result: Minnesota 5 @ Colorado 2 (Colorado Loss)
+    *   **Outcome: LOSS**
 
 2.  **Carolina Hurricanes ML vs Tampa Bay Lightning**
-    *   AI Prediction: Carolina Hurricanes ML (Carolina to win)
-    *   Actual Result: Tampa Bay 4 @ Carolina 5 (Carolina won)
-    *   Outcome: **WIN**
+    *   AI Prediction: Carolina Hurricanes Moneyline
+    *   Actual Result: Tampa Bay 4 @ Carolina 5 (Carolina Win)
+    *   **Outcome: WIN**
 
-3.  **Toronto Maple Leafs @ Florida Panthers ML vs Toronto Maple Leafs**
-    *   AI Prediction: Florida Panthers ML (Florida to win)
-    *   Actual Result: Toronto 1 @ Florida 5 (Florida won)
-    *   Outcome: **WIN**
+3.  **Toronto Maple Leafs @ Florida Panthers ML vs Florida Panthers**
+    *   AI Prediction: Florida Panthers Moneyline
+    *   Actual Result: Toronto 1 @ Florida 5 (Florida Win)
+    *   **Outcome: WIN**
 
 4.  **New Jersey Devils vs Pittsburgh Penguins Over 5.5**
-    *   AI Prediction: Over 5.5 total goals
-    *   Actual Result: New Jersey 1 @ Pittsburgh 4 (Total goals = 5)
-    *   Outcome: **LOSS**
+    *   AI Prediction: Over 5.5 goals
+    *   Actual Result: New Jersey 1 @ Pittsburgh 4 (Total 5 goals)
+    *   **Outcome: LOSS**
 
-5.  **Chicago Blackhawks @ Nashville Predators ML vs Chicago Blackhawks**
-    *   AI Prediction: Nashville Predators ML (Nashville to win)
-    *   Actual Result: Chicago 2 @ Nashville 4 (Nashville won)
-    *   Outcome: **WIN**
+5.  **Chicago Blackhawks @ Nashville Predators ML vs Nashville Predators**
+    *   AI Prediction: Nashville Predators Moneyline
+    *   Actual Result: Chicago 2 @ Nashville 4 (Nashville Win)
+    *   **Outcome: WIN**
 
 ---
 
-**Summary of AI Performance:**
+**Summary of AI Predictions:**
 
 *   **Total Wins: 3**
 *   **Total Losses: 2**
