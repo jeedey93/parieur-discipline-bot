@@ -11,8 +11,8 @@
 > 
 > Winnipeg Jets ML vs Anaheim Ducks @ 1.78
 > 
-> The Jets bring elite goaltending and a stifling defensive structure to face an Anaheim team still finding consistency, especially in their own end. Winnipeg's superior underlying metrics and form provide a strong statistical advantage, making the market price an undervalued opportunity despite Anaheim's home ice.
-> 🔥 Confidence: High (1.5u) | Win Probability: 68%
+> The Winnipeg Jets, backed by elite goaltending and a league-leading defensive structure, face a rebuilding Anaheim Ducks team prone to defensive lapses. Winnipeg's strong underlying metrics and consistent ability to suppress chances, coupled with their confirmed elite starting goalie, provide a clear value opportunity over the implied market probability.
+> 🔥 Confidence: High (1.5u) | Win Probability: 63%
 > 
 ---
 
@@ -21,41 +21,41 @@
 
 > Florida Panthers ML vs Buffalo Sabres @ 1.87
 > 
-> The Panthers, playing at home, boast a strong defensive identity and consistent offensive depth against a talented but often inconsistent Sabres squad. Florida's strong home record and superior goal prevention metrics create a significant edge over Buffalo's sometimes high-event, porous defense. 🔥 Confidence: High (1.5u) | Win Probability: 62%
+> The Florida Panthers, a dominant home team with robust offensive and defensive metrics, host a Buffalo Sabres squad that struggles with defensive consistency. Florida's elite goaltending and high-pressure forecheck create a significant matchup advantage, providing a solid edge over the implied probability. 🔥 Confidence: High (1.5u) | Win Probability: 60%
 > 
-> Vegas Golden Knights ML vs Washington Capitals @ 1.98
+> Vegas Golden Knights vs Washington Capitals Under 5.5 @ 1.90
 > 
-> Vegas, a deep and analytically strong team, faces an aging Capitals roster that often relies on veteran play rather than dominant underlying metrics. The Golden Knights' better possession and high-danger chance generation suggest they are slightly undervalued in this road matchup. 👍 Confidence: Medium (1u) | Win Probability: 56%
+> This matchup features two defensively sound teams known for structured play and reliable goaltending, suggesting a tight, low-scoring affair. Both teams emphasize gap control and limit high-danger chances, creating an undervalued opportunity for the Under despite a recent Over bet resulting in a loss. 👍 Confidence: Medium (1u) | Win Probability: 58%
 > 
 
 
 ## NBA
 ### Summary
-- High Confidence Plays: 5
-- Medium Confidence Plays: 0
-- Total Units Risked: 7.5u
+- High Confidence Plays: 1
+- Medium Confidence Plays: 4
+- Total Units Risked: 5.5u
 
 **Other Recommended Plays**
 
-> **BET OF THE DAY: Detroit Pistons ML vs Cleveland Cavaliers @ 1.43**
+> **BET OF THE DAY: Detroit Pistons -6.0 vs Cleveland Cavaliers @ 1.94**
 > 
-> The Detroit Pistons are playing at home with a fully healthy roster, showing strong form offensively and defensively after adequate rest. This pick reflects a clear matchup advantage and the current season's performance trends, where bookmakers are slightly undervalueing the Pistons' consistent home court dominance. 🔥 Confidence: High (1.5u) | Win Probability: 75%
+> The Pistons are playing at home with their primary rotation healthy and are capable of strong offensive outings, while the Cavaliers are known for their robust defensive scheme. This pick offers significant value as Detroit's strong home-court advantage and current offensive form are being underestimated by bookmakers, providing a solid edge despite some previous inconsistencies with similar spread plays; Bet of the Day selected based on strong historical performance in similar matchups from the previous day. 🔥 Confidence: High (1.5u) | Win Probability: 56%
 > 
-> **Detroit Pistons -6.0 vs Cleveland Cavaliers @ 1.94**
+> Dallas Mavericks -4.5 vs Memphis Grizzlies @ 1.94
 > 
-> The Pistons enter this game with a strong roster and good team form, benefiting from ample rest against a Cavaliers team known for occasional road inconsistencies. The implied probability suggests a tighter game than our model anticipates, presenting value on the Pistons covering the spread given their defensive stability and home-court advantage. 🔥 Confidence: High (1.5u) | Win Probability: 58%
+> The Mavericks are playing at home with their core rotation healthy and are well-rested, facing a Memphis team that has recently struggled significantly. Dallas's consistent offensive output at home gives them a strong advantage, and the market hasn't fully adjusted to Memphis's recent poor form, creating a clear expected value here. 👍 Confidence: Medium (1u) | Win Probability: 55%
 > 
-> **Oklahoma City Thunder -8.0 vs Denver Nuggets @ 1.91**
+> Boston Celtics -17.5 vs Brooklyn Nets @ 1.97
 > 
-> The Oklahoma City Thunder are in excellent form with a healthy and cohesive roster, playing at home against a Denver Nuggets team on a back-to-back with significant travel fatigue. Our analysis indicates the market might not fully account for the fatigue disparity and the Thunder's strong home performance, creating a favorable expected value on the spread. 🔥 Confidence: High (1.5u) | Win Probability: 57%
+> The dominant Celtics are at home with a full complement of players and no major fatigue concerns, facing a visiting Nets team that is a significantly weaker opponent. Boston's elite home performance and the substantial gap in team quality provide a strong mathematical edge against the large spread, with market valuation slightly underestimating their blowout potential. 👍 Confidence: Medium (1u) | Win Probability: 54%
 > 
-> **New York Knicks -8.5 vs Milwaukee Bucks @ 1.91**
+> Dallas Mavericks ML vs Memphis Grizzlies @ 1.54
 > 
-> The New York Knicks boast a strong, healthy roster and are exhibiting top-tier defensive and offensive efficiency on the road. The Milwaukee Bucks have shown inconsistency against stronger opponents this season, making the Knicks a solid play against the spread where our model finds a clear edge over the implied probability. 🔥 Confidence: High (1.5u) | Win Probability: 56%
+> The Mavericks are at home with a healthy core rotation and adequate rest, facing a Grizzlies team that has demonstrated recent struggles. This moneyline play presents a strong edge as Dallas's home-court dominance and superior current form are offering better value than implied by the odds. 👍 Confidence: Medium (1u) | Win Probability: 68%
 > 
-> **Dallas Mavericks -4.5 vs Memphis Grizzlies @ 1.94**
+> Boston Celtics vs Brooklyn Nets Under 207.5 @ 1.95
 > 
-> The Dallas Mavericks are at home with their core rotation healthy and playing strong offensive basketball, while the Memphis Grizzlies continue to battle significant roster limitations and a clear losing streak. The market has adjusted, but our model still sees a strong edge for the Mavericks to cover this spread against a depleted and struggling Grizzlies squad. 🔥 Confidence: High (1.5u) | Win Probability: 55%
+> Both teams have relatively healthy rosters without significant fatigue issues, with the Celtics' top-tier defense likely to limit scoring opportunities. The market total for this game appears slightly high given Boston's defensive prowess and the Nets' likely struggle to generate consistent offense, creating an attractive under opportunity. 👍 Confidence: Medium (1u) | Win Probability: 54%
 > 
 
 
