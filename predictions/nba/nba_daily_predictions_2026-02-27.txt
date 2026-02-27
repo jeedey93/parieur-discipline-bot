@@ -9,12 +9,12 @@ Home odds: 1.06, Away odds: 10.8, O/U: 207.5
 Spreads: Home -17.5 (1.93), Away 17.5 (1.96)
 ------
 Milwaukee Bucks vs New York Knicks
-Home odds: 3.65, Away odds: 1.3, O/U: 219.5
+Home odds: 3.65, Away odds: 1.3, O/U: 218.5
 Spreads: Home 8.5 (1.99), Away -8.5 (1.91)
 ------
 Dallas Mavericks vs Memphis Grizzlies
-Home odds: 1.53, Away odds: 2.58, O/U: 238.5
-Spreads: Home -4.5 (1.94), Away 4.5 (1.98)
+Home odds: 1.53, Away odds: 2.6, O/U: 238.5
+Spreads: Home -4.5 (1.94), Away 4.5 (1.94)
 ------
 Oklahoma City Thunder vs Denver Nuggets
 Home odds: 1.34, Away odds: 3.4, O/U: 233.5
@@ -24,16 +24,28 @@ Spreads: Home -8.0 (1.91), Away 8.0 (1.99)
 AI Analysis Summary:
 Current Roster Data Verified.
 
-### BET OF THE DAY
-Denver Nuggets +8.0 vs Oklahoma City Thunder @ 1.99
-The Nuggets, despite recent mixed results, possess a championship core and rarely falter significantly, while the young Thunder are strong at home but face a motivated veteran opponent. This spread provides value as bookmakers may be overvaluing the Thunder's home dominance against a proven, resilient Nuggets squad, especially after the AI's recent caution regarding Nuggets' spreads.
+---
+
+**BET OF THE DAY: Detroit Pistons ML vs Cleveland Cavaliers @ 1.43**
+The Detroit Pistons are playing at home with a fully healthy roster, showing strong form offensively and defensively after adequate rest. This pick reflects a clear matchup advantage and the current season's performance trends, where bookmakers are slightly undervalueing the Pistons' consistent home court dominance.
+Confidence Level: High Units: 1.5u | Win Probability: 75%
+
+---
+
+**Other Recommended Plays**
+
+**Detroit Pistons -6.0 vs Cleveland Cavaliers @ 1.94**
+The Pistons enter this game with a strong roster and good team form, benefiting from ample rest against a Cavaliers team known for occasional road inconsistencies. The implied probability suggests a tighter game than our model anticipates, presenting value on the Pistons covering the spread given their defensive stability and home-court advantage.
+Confidence Level: High Units: 1.5u | Win Probability: 58%
+
+**Oklahoma City Thunder -8.0 vs Denver Nuggets @ 1.91**
+The Oklahoma City Thunder are in excellent form with a healthy and cohesive roster, playing at home against a Denver Nuggets team on a back-to-back with significant travel fatigue. Our analysis indicates the market might not fully account for the fatigue disparity and the Thunder's strong home performance, creating a favorable expected value on the spread.
+Confidence Level: High Units: 1.5u | Win Probability: 57%
+
+**New York Knicks -8.5 vs Milwaukee Bucks @ 1.91**
+The New York Knicks boast a strong, healthy roster and are exhibiting top-tier defensive and offensive efficiency on the road. The Milwaukee Bucks have shown inconsistency against stronger opponents this season, making the Knicks a solid play against the spread where our model finds a clear edge over the implied probability.
+Confidence Level: High Units: 1.5u | Win Probability: 56%
+
+**Dallas Mavericks -4.5 vs Memphis Grizzlies @ 1.94**
+The Dallas Mavericks are at home with their core rotation healthy and playing strong offensive basketball, while the Memphis Grizzlies continue to battle significant roster limitations and a clear losing streak. The market has adjusted, but our model still sees a strong edge for the Mavericks to cover this spread against a depleted and struggling Grizzlies squad.
 Confidence Level: High Units: 1.5u | Win Probability: 55%
-
-### Other Recommended Plays
-Milwaukee Bucks +8.5 vs New York Knicks @ 1.99
-The Milwaukee Bucks, playing at home, generally exhibit strong resilience, while the New York Knicks have shown some vulnerability against the spread in recent outings. This play capitalizes on the Bucks' ability to keep games close at home, and confidence is adjusted upwards due to the Knicks' recent two spread losses in similar situations.
-Confidence Level: Medium Units: 1u | Win Probability: 54%
-
-Cleveland Cavaliers +6.5 vs Detroit Pistons @ 1.95
-The Cleveland Cavaliers are a strong, well-rounded team, and should be looking for a bounce-back performance against a rebuilding Pistons squad that recently lost a spread bet. Bookmakers are offering a favorable line for the Cavaliers to either win outright or keep the game within a comfortable margin against a team that is often inconsistent.
-Confidence Level: Medium Units: 1u | Win Probability: 55%
