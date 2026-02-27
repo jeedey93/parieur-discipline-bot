@@ -206,8 +206,10 @@ def format_ai_analysis(ai_content):
         else:
             i += 1
     plays = []
+    bet_of_day_header_normalized = bet_of_day_header.strip().lower() if bet_of_day_header else None
     for play in temp_plays:
-        if bet_of_day_header and play["block"][0].replace('> ','') == bet_of_day_header:
+        play_header_normalized = play["block"][0].replace('> ','').strip().lower()
+        if bet_of_day_header_normalized and play_header_normalized == bet_of_day_header_normalized:
             continue
         plays.append("\n".join(play["block"]))
         if play["conf"] in summary:
