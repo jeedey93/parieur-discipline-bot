@@ -2,19 +2,29 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 1
+- High Confidence Plays: 2
 - Medium Confidence Plays: 1
-- Total Units Risked: 2.5u
+- Total Units Risked: 4.0u
 
-**Other Recommended Plays**
-
-BET OF THE DAY: Florida Panthers ML vs Buffalo Sabres @ 1.88
-
-Florida brings superior offensive firepower and defensive solidity, especially at home, against a Buffalo team that can be inconsistent on the road. The Panthers' structured play and reliable goaltending give them a significant advantage over Buffalo's developing roster, presenting a clear value opportunity at these odds. 🔥 Confidence: High (1.5u) | Win Probability: 60%
+---
+🏆 **BET OF THE DAY**
 
 Winnipeg Jets ML vs Anaheim Ducks @ 1.78
 
-Winnipeg boasts an elite goaltender and a strong defensive structure, creating a tough matchup for Anaheim's young offense, even on the road. The Jets' consistent two-way game and ability to limit high-danger chances make them a sound pick against the Ducks, whose recent form and advanced metrics have been unfavorable. 👍 Confidence: Medium (1u) | Win Probability: 62%
+The Jets bring their strong defensive system and elite goaltending against an Anaheim team that consistently struggles with underlying metrics and defensive breakdowns. Winnipeg's superior form and tight structure give them a significant advantage over the Ducks, who are often outmatched.
+🔥 Confidence: High (1.5u) | Win Probability: 64%
+---
+
+
+**Other Recommended Plays**
+
+Florida Panthers ML vs Buffalo Sabres @ 1.88
+
+Florida, a perennial contender, boasts a deep roster and plays an aggressive, high-pressure game at home, while Buffalo often struggles with defensive consistency. The Panthers' strong offensive and defensive metrics, coupled with their home ice advantage, present a clear market discrepancy for this matchup. 🔥 Confidence: High (1.5u) | Win Probability: 60%
+
+Vegas Golden Knights @ Washington Capitals Under 5.5 @ 1.91
+
+This matchup features two teams capable of strong defensive play and relying on their goaltenders, with bookmakers setting a tight total suggesting a low-scoring affair. The defensive prowess of both clubs, combined with the expected disciplined game flow, indicates that the total goals will likely stay under the 5.5 mark. 👍 Confidence: Medium (1u) | Win Probability: 56%
 
 
 
