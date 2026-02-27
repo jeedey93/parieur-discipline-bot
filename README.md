@@ -7,10 +7,27 @@
   <i>Le Parieur Discipliné is the disciplined bettor—focused on smart, consistent, and value-driven bets. This project is inspired by Parieur Discipliné’s approach: using data, AI, and strict criteria to identify the best opportunities each day.</i>
 </p>
 
-
 # Parieur Discipliné Bot
 
-A Python tool for analyzing NHL and NBA games, matching odds, and generating disciplined betting analysis using Google Gemini AI. The bot highlights +EV spots, ranks plays by confidence, and explains each pick.
+A Python tool for analyzing NHL and NBA games, matching odds, and generating disciplined betting analysis using Google Gemini AI. The bot highlights +EV spots, ranks plays with confidence, and explains each pick.
+
+---
+
+## Table of Contents
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Requirements](#requirements)
+- [Quick Start](#quick-start)
+- [Environment Variables](#environment-variables)
+- [Usage](#usage)
+- [Daily Automation (GitHub Actions)](#daily-automation-github-actions)
+- [Example Output](#example-output)
+- [Customization](#customization)
+- [Contributing](#contributing)
+- [License](#license)
+- [Disclaimer](#disclaimer)
+
+---
 
 ## Features
 
@@ -20,6 +37,20 @@ A Python tool for analyzing NHL and NBA games, matching odds, and generating dis
 - "Bet of the Day" extraction and optional image generation
 - Writes daily predictions and results
 
+## Project Structure
+
+```
+parieur-discipline-bot/
+├── data/                # Odds, games, and market data modules
+├── predictions/         # Daily predictions output
+├── bot_results/         # Daily results and summaries
+├── prompts/             # Prompt templates for AI analysis
+├── docs/                # Documentation and GitHub Pages
+├── images/              # Project images and logos
+├── *.py                 # Main scripts
+└── requirements.txt     # Python dependencies
+```
+
 ## Requirements
 
 - macOS or Linux (Windows works too)
@@ -27,15 +58,12 @@ A Python tool for analyzing NHL and NBA games, matching odds, and generating dis
 - The Odds API key
 - Google Gemini API key
 
-## Recommended Setup (venv)
-
-Use a project-local virtual environment so installs don’t collide with your system Python.
+## Quick Start
 
 ```bash
 # from project root
 python3 -m venv .venv
 source .venv/bin/activate
-
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
@@ -93,3 +121,11 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 ## License
 
 MIT License
+
+## Disclaimer
+
+This project is for informational and entertainment purposes only. There are no guarantees of profit. Please bet responsibly and only wager what you can afford to lose. The authors are not responsible for any financial losses incurred.
+
+---
+
+For documentation, live predictions, and the daily Bets of the Day, visit the [project website](https://jeedey93.github.io/parieur-discipline-bot/).
