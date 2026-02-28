@@ -1,66 +1,56 @@
-# Latest Predictions (2026-02-27)
+# Latest Predictions (2026-02-28)
 
 ## NHL
 ### Summary
-- High Confidence Plays: 1
-- Medium Confidence Plays: 3
-- Total Units Risked: 4.5u
+- High Confidence Plays: 4
+- Medium Confidence Plays: 1
+- Total Units Risked: 7.0u
 
 ---
 🏆 BET OF THE DAY
 
-Winnipeg Jets vs Anaheim Ducks Under 6.5 @ 1.75
+Calgary Flames vs Los Angeles Kings Under 5.5 @ 2.00
 
-Winnipeg brings an elite defensive system and top-tier goaltending, facing a Ducks team on a back-to-back that struggles offensively against structured opponents. This matchup strongly favors a low-scoring affair as the Jets stifle offensive chances, providing a significant edge over the implied probability.
-🔥 Confidence: High (1.5u) | Win Probability: 65%
+Los Angeles, coming off ample rest, excels in defensive structure and boasts strong goaltending against a traveling Calgary team known for playing tight games. This matchup between two defensively sound Western Conference teams is likely to be a low-scoring affair.
+🔥 Confidence: High (1.5u) | Win Probability: 60%
 
 ---
 
 Other Recommended Plays
 
-Vegas Golden Knights vs Washington Capitals Under 5.5 @ 1.98
+Ottawa Senators vs Toronto Maple Leafs Over 6.0 @ 2.00
 
-Both the Golden Knights and Capitals are on the second night of back-to-backs, which often leads to reduced offensive output and more conservative play. Washington's improving defense and capable goaltending, combined with potential fatigue on both sides, presents value in the under. 👍 Confidence: Medium (1u) | Win Probability: 56%
+Both teams feature dynamic offenses but can be defensively inconsistent, with Toronto often engaging in high-event games and Ottawa always playing fast. The market undervalues the offensive firepower and defensive lapses expected in this inter-province rivalry, creating a strong edge on the Over. 🔥 Confidence: High (1.5u) | Win Probability: 59%
 
-Washington Capitals ML vs Vegas Golden Knights @ 1.85
+Detroit Red Wings vs Carolina Hurricanes Under 6.0 @ 2.00
 
-The Capitals have been solid at home and display strong form, while the Golden Knights struggle more on the road, especially on a back-to-back with travel. Washington's consistency and home ice advantage create a favorable matchup against a fatigued Vegas squad. 👍 Confidence: Medium (1u) | Win Probability: 59%
+Carolina's elite defensive system and top-tier goaltending present a tough challenge for a Detroit team on a back-to-back, traveling, and likely starting a fatigued goaltender. The Hurricanes' ability to suppress shots and the Red Wings' arduous schedule strongly suggest a game with limited scoring. 🔥 Confidence: High (1.5u) | Win Probability: 58%
 
-Florida Panthers ML vs Buffalo Sabres @ 1.87
+Nashville Predators vs Dallas Stars Under 6.0 @ 2.00
 
-The Panthers are a dominant home team with elite goaltending and strong underlying metrics, even on a back-to-back, facing an inconsistent Sabres team. Their superior defensive structure and offensive depth should overwhelm Buffalo, offering value against the implied odds. 👍 Confidence: Medium (1u) | Win Probability: 58%
+Dallas is a defensively dominant team featuring an elite goaltender and comes in well-rested, while Nashville frequently struggles to generate consistent offense, especially on the road. The Stars' formidable defensive play and home-ice advantage against a traveling Predators squad provide significant value on the Under. 🔥 Confidence: High (1.5u) | Win Probability: 56%
+
+Chicago Blackhawks vs Colorado Avalanche Over 6.5 @ 2.00
+
+Colorado's high-octane offense is potent at home and faces a Chicago team with significant defensive vulnerabilities and inconsistent goaltending. The Avalanche are expected to exploit the Blackhawks' weaknesses, driving up the score in what projects as a high-paced, offensively slanted game with clear value on the Over. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
 
 
 ## NBA
 ### Summary
 - High Confidence Plays: 0
-- Medium Confidence Plays: 4
-- Total Units Risked: 4.0u
-
----
-🏆 BET OF THE DAY
-
-Detroit Pistons -6.0 vs Cleveland Cavaliers @ 1.94
-
-The Pistons, leveraging their improving core, hold a significant home advantage against a Cavaliers team that may be feeling the effects of recent schedule demands. This pick is driven by Detroit's strong current form and the expectation that Cleveland's defensive stability might be compromised by fatigue, offering value against a spread that hasn't fully accounted for these factors.
-👍 Confidence: Medium (1u) | Win Probability: 55%
-
----
+- Medium Confidence Plays: 2
+- Total Units Risked: 2.0u
 
 Other Recommended Plays
 
-Dallas Mavericks -4.0 vs Memphis Grizzlies @ 1.95
+**BET OF THE DAY: Toronto Raptors -13.0 vs Washington Wizards @ 1.94**
 
-The Mavericks are playing at home with their dynamic offensive unit, facing a Grizzlies team that has often been impacted by injuries and inconsistent play this season. This play leverages Dallas's superior current form and home court against a struggling opponent, with the market underestimating the Mavericks' ability to cover, also considering the model's past underestimation of strong favorites against the Grizzlies. 👍 Confidence: Medium (1u) | Win Probability: 56%
+The Raptors present a strong roster and current form, facing a Washington Wizards team that is notably struggling and likely focused on future development. This matchup highlights a significant talent and motivation disparity, providing a robust edge for the Raptors to cover the large spread against a tanking Wizards squad. 👍 Confidence: Medium (1u) | Win Probability: 56%
 
-Milwaukee Bucks +8.5 vs New York Knicks @ 1.99
+**Utah Jazz +6.5 vs New Orleans Pelicans @ 1.95**
 
-The Bucks are playing at home and typically perform better in front of their crowd, despite facing a consistently strong Knicks squad. This pick identifies value in the home underdog spread, as the Knicks, while formidable, may not consistently win by a wide margin against a capable, well-rested Milwaukee team. 👍 Confidence: Medium (1u) | Win Probability: 54%
-
-Denver Nuggets +8.0 vs Oklahoma City Thunder @ 1.99
-
-The Nuggets bring championship-level experience and depth on the road against a high-octane Thunder team. Getting 8 points with Denver, a team known for grinding out wins and staying competitive, offers a clear edge as the market might be overvaluing Oklahoma City's home court in this specific matchup. 👍 Confidence: Medium (1u) | Win Probability: 54%
+The Jazz typically perform well at home, often playing in high-scoring affairs, and their current roster is capable of keeping games competitive. The historical tendency for favorites to underperform against such spreads, coupled with the Jazz's home-court advantage in what projects to be a fast-paced game, provides a clear value play. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
 
 
