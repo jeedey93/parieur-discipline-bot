@@ -1,29 +1,39 @@
 Date: 2026-02-28
 
 Charlotte Hornets vs Portland Trail Blazers
-Home odds: 1.33, Away odds: 3.45, O/U: 229.5
-Spreads: Home -7.5 (1.97), Away 7.5 (1.92)
+Home odds: 1.13, Away odds: 5.6, O/U: 205.5
+Spreads: Home -10.0 (1.87), Away 10.0 (1.87)
 ------
 Miami Heat vs Houston Rockets
-Home odds: 2.16, Away odds: 1.74, O/U: 225.5
-Spreads: Home 2.0 (1.95), Away -2.0 (1.94)
+Home odds: 2.14, Away odds: 1.75, O/U: 226.5
+Spreads: Home 2.0 (1.93), Away -2.0 (1.96)
 ------
 Washington Wizards vs Toronto Raptors
-Home odds: 6.7, Away odds: 1.12, O/U: 227.5
+Home odds: 6.7, Away odds: 1.12, O/U: 229.5
 Spreads: Home 13.5 (1.94), Away -13.5 (1.94)
 ------
 Golden State Warriors vs Los Angeles Lakers
-Home odds: 2.52, Away odds: 1.56, O/U: 229.5
+Home odds: 2.48, Away odds: 1.57, O/U: 229.5
 Spreads: Home 4.0 (1.94), Away -4.0 (1.97)
 ------
 Utah Jazz vs New Orleans Pelicans
-Home odds: 3.05, Away odds: 1.4, O/U: 245.5
-Spreads: Home 6.5 (1.94), Away -6.5 (1.94)
+Home odds: 2.98, Away odds: 1.42, O/U: 246.5
+Spreads: Home 6.0 (1.95), Away -6.0 (1.91)
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
-**BET OF THE DAY: Houston Rockets ML vs Miami Heat @ 1.75**
-The Houston Rockets are in strong form with a healthy roster, poised to outperform the Miami Heat who may be showing some fatigue from recent competitive games. The current market odds offer a favorable expected value, implying a lower win probability than the Rockets' actual chances in this matchup.
-Confidence Level: Medium Units: 1u | Win Probability: 61%
+BET OF THE DAY: Charlotte Hornets -10.5 vs Portland Trail Blazers @ 1.95
+The Hornets possess a robust and healthy core, demonstrating strong current form at home against a less consistent Trail Blazers squad. This matchup presents a clear advantage for the Hornets, as bookmakers may be slightly undervaluing their ability to cover a medium-to-large spread against a rebuilding opponent.
+Confidence Level: Medium Units: 1u | Win Probability: 56%
+
+**Other Recommended Plays**
+
+Utah Jazz vs New Orleans Pelicans Over 246.5 @ 1.91
+Both the Jazz and Pelicans feature fast-paced offenses with recent trends pointing to high-scoring affairs, and neither team is renowned for suffocating defense. The current total provides an edge as the market hasn't fully adjusted to the combined offensive efficiency and tempo expected in this contest.
+Confidence Level: Medium Units: 1u | Win Probability: 56%
+
+Toronto Raptors -13.5 vs Washington Wizards @ 1.94
+The Raptors are a well-rounded and competitive team, facing a Wizards squad that is struggling significantly and appears to be in a tanking phase. This presents a favorable scenario for the Raptors to assert dominance and cover the large spread, especially considering their recent overall performance against weaker opposition.
+Confidence Level: Medium Units: 1u | Win Probability: 55%
