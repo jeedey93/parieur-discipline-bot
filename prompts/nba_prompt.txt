@@ -32,6 +32,7 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
 For all schedule, fatigue, and recent performance analysis, you must use the content of {{RECENT_RESULTS}} as the authoritative source to determine if a team played in the last 5 days, their results, and any relevant context for back-to-back, 3-in-4, or recent form evaluation.
+- For all fatigue and schedule-related analysis, you must use the actual dates in {{RECENT_RESULTS}}. Only consider a team as being on a back-to-back if they played yesterday (the day before {{TODAY_DATE}}).
 For each game:
 MARKET DATA INPUTS (MANDATORY)
 - Opening line (moneyline, spread, total)
@@ -73,11 +74,13 @@ MARKET DISCREPANCY
 - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE) based on the {{TODAY_DATE}} report, but do not mention player names unless provided in the input data.
 TEAM EVALUATION (1–10 Ratings)
 - Offensive Form, Defensive Stability, Injury Impact (-3 to 0), Fatigue/Schedule Score (-3 to +1).
-- For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} to determine if a team played in the last 5 days and their performance (win/loss, margin, and any relevant context).
-- Schedule: If a team played yesterday (as shown in {{RECENT_RESULTS}}), apply B2B (-2). If a team played 3-in-4, use the same logic, referencing the last three days' results from {{RECENT_RESULTS}} and previous days if available.
-- Use the actual result (win/loss, margin, opponent) from {{RECENT_RESULTS}} to inform your assessment of current form, fatigue, and momentum.
+- For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} and the actual dates of each game. Only consider a team as being on a back-to-back if they played yesterday (the day before {{TODAY_DATE}}).
+- Back-to-back: −2 (only if a team played yesterday, the day before {{TODAY_DATE}}, as shown in {{RECENT_RESULTS}})
+- 3 games in 4 nights: −1.5 (if a team played 3 games including today in the last 4 days, using the actual dates in {{RECENT_RESULTS}})
+- 4 games in 6 nights: -1 (if a team played 4 games including today in the last 6 days, using the actual dates in {{RECENT_RESULTS}})
 - Cross-country (-1), West→East late-to-early travel (-0.5 additional), 2+ days rest (+1).
 - Explicitly evaluate if a team is tanking or on a significant losing streak, and factor this into the play selection and confidence.
+- Use the actual result (win/loss, margin, opponent) from {{RECENT_RESULTS}} to inform your assessment of current form, fatigue, and momentum.
 IMPLIED EDGE CHECK
 - Assign a realistic estimated win probability.
 - Calculate edge: Edge = (Estimated Win Probability) - (Implied Probability from Odds)

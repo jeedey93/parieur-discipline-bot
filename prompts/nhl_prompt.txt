@@ -34,6 +34,7 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
 For all schedule, fatigue, and recent performance analysis, you must use the content of {{RECENT_RESULTS}} as the authoritative source to determine if a team played in the last 5 days, their results, and any relevant context for back-to-back, 3-in-4, or recent form evaluation.
+- For all fatigue and schedule-related analysis, you must use the actual dates in {{RECENT_RESULTS}}. Only consider a team as being on a back-to-back if they played yesterday (the day before {{TODAY_DATE}}).
 For each game:
 1. MARKET DISCREPANCY
    - Identify best available price (Moneyline, Puck Line, Totals).
@@ -70,10 +71,10 @@ For each game:
      - These adjustments must quantitatively influence estimated win probability.
    - Fatigue / Schedule Score (−3 to +1)
    Schedule Scoring:
-   - For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} to determine if a team played in the last 5 days and their performance (win/loss, margin, and any relevant context).
-   - Back-to-back: −2 (if a team played yesterday as shown in {{RECENT_RESULTS}})
-   - 3 games in 4 nights: −1.5 (reference the last three days' results from {{RECENT_RESULTS}} and previous days if available)
-   - 4 games in 6 nights: -1
+   - For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} and the actual dates of each game. Only consider a team as being on a back-to-back if they played yesterday (the day before {{TODAY_DATE}}).
+   - Back-to-back: −2 (only if a team played yesterday, the day before {{TODAY_DATE}}, as shown in {{RECENT_RESULTS}})
+   - 3 games in 4 nights: −1.5 (if a team played 3 games including today in the last 4 days, using the actual dates in {{RECENT_RESULTS}})
+   - 4 games in 6 nights: -1 (if a team played 4 games including today in the last 6 days, using the actual dates in {{RECENT_RESULTS}})
    - Cross-country travel: −1
    - 2+ days rest: +1
 5. LINE MOVEMENT & SHARP ACTION CHECK
