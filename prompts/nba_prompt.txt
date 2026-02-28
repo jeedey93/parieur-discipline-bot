@@ -31,6 +31,7 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 - If a play is skipped or confidence is adjusted due to historical results, mention this in the output.
 
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
+For all schedule, fatigue, and recent performance analysis, you must use the content of {{RECENT_RESULTS}} as the authoritative source to determine if a team played in the last 5 days, their results, and any relevant context for back-to-back, 3-in-4, or recent form evaluation.
 For each game:
 MARKET DATA INPUTS (MANDATORY)
 - Opening line (moneyline, spread, total)
@@ -72,7 +73,10 @@ MARKET DISCREPANCY
 - Explicitly account for key injuries (OUT / DOUBTFUL / QUESTIONABLE) based on the {{TODAY_DATE}} report, but do not mention player names unless provided in the input data.
 TEAM EVALUATION (1–10 Ratings)
 - Offensive Form, Defensive Stability, Injury Impact (-3 to 0), Fatigue/Schedule Score (-3 to +1).
-- Schedule: B2B (-2), 3-in-4 nights (-1.5), Cross-country (-1), West→East late-to-early travel (-0.5 additional), 2+ days rest (+1).
+- For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} to determine if a team played in the last 5 days and their performance (win/loss, margin, and any relevant context).
+- Schedule: If a team played yesterday (as shown in {{RECENT_RESULTS}}), apply B2B (-2). If a team played 3-in-4, use the same logic, referencing the last three days' results from {{RECENT_RESULTS}} and previous days if available.
+- Use the actual result (win/loss, margin, opponent) from {{RECENT_RESULTS}} to inform your assessment of current form, fatigue, and momentum.
+- Cross-country (-1), West→East late-to-early travel (-0.5 additional), 2+ days rest (+1).
 - Explicitly evaluate if a team is tanking or on a significant losing streak, and factor this into the play selection and confidence.
 IMPLIED EDGE CHECK
 - Assign a realistic estimated win probability.
@@ -108,6 +112,14 @@ BET OF THE DAY
 Show the Bet of the Day first, before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
 You must always clearly label the Bet of the Day with the header 'BET OF THE DAY' (in all caps) and format it distinctly at the top of the output, even if the play is selected based on confidence or historical evaluation.
 
+The Bet of the Day must be output on its own line, followed by the actual bet and justification on the next line, skipping a line between the header and the bet. For example:
+
+BET OF THE DAY:
+<TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
+<Justification sentence 1>
+<Justification sentence 2>
+Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
+
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
@@ -120,3 +132,4 @@ Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
 DATA TO ANALYZE
 {{RESULTS_TEXT}}
 {{HISTORICAL_RESULTS}}
+{{RECENT_RESULTS}}

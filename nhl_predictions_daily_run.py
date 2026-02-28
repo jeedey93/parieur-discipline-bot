@@ -4,7 +4,7 @@ from google import genai
 from google.genai import types
 from data.nhl_games import get_games_today
 from data.odds import get_nhl_odds, match_odds_to_games
-from datetime import date
+from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
 
@@ -26,6 +26,16 @@ def analyze_results(results_text):
         except Exception:
             continue
 
+    # Read last 5 days' result files
+    last_5_files = hist_files[-5:] if len(hist_files) >= 5 else hist_files
+    recent_results = ""
+    for rf in last_5_files:
+        try:
+            with open(rf, "r", encoding="utf-8") as rfile:
+                recent_results += f"\n---\n{os.path.basename(rf)}\n" + rfile.read()
+        except Exception:
+            continue
+
     # Strictly read external prompt file; no fallback
     prompt_path = os.path.join("prompts", "nhl_prompt.txt")
     today_str = date.today().isoformat()
@@ -35,6 +45,7 @@ def analyze_results(results_text):
             prompt_text = prompt_text.replace("{{RESULTS_TEXT}}", results_text)
             prompt_text = prompt_text.replace("{{TODAY_DATE}}", today_str)
             prompt_text = prompt_text.replace("{{HISTORICAL_RESULTS}}", historical_results)
+            prompt_text = prompt_text.replace("{{RECENT_RESULTS}}", recent_results)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 

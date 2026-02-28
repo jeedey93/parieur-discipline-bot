@@ -33,6 +33,7 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 - If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results, mention this only within the justification for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge"). Do not output a separate paragraph about reviewing historical results.
 
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
+For all schedule, fatigue, and recent performance analysis, you must use the content of {{RECENT_RESULTS}} as the authoritative source to determine if a team played in the last 5 days, their results, and any relevant context for back-to-back, 3-in-4, or recent form evaluation.
 For each game:
 1. MARKET DISCREPANCY
    - Identify best available price (Moneyline, Puck Line, Totals).
@@ -69,8 +70,9 @@ For each game:
      - These adjustments must quantitatively influence estimated win probability.
    - Fatigue / Schedule Score (−3 to +1)
    Schedule Scoring:
-   - Back-to-back: −2
-   - 3 games in 4 nights: −1.5
+   - For all fatigue and schedule-related analysis (including back-to-back games, 3-in-4, and rest days), you must use the data in {{RECENT_RESULTS}} to determine if a team played in the last 5 days and their performance (win/loss, margin, and any relevant context).
+   - Back-to-back: −2 (if a team played yesterday as shown in {{RECENT_RESULTS}})
+   - 3 games in 4 nights: −1.5 (reference the last three days' results from {{RECENT_RESULTS}} and previous days if available)
    - 4 games in 6 nights: -1
    - Cross-country travel: −1
    - 2+ days rest: +1
@@ -159,3 +161,4 @@ Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
 DATA TO ANALYZE
 {{RESULTS_TEXT}}
 {{HISTORICAL_RESULTS}}
+{{RECENT_RESULTS}}
