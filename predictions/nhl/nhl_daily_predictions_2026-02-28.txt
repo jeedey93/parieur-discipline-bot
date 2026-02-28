@@ -1,7 +1,7 @@
 Date: 2026-02-28
 
 Boston Bruins @ Philadelphia Flyers
-Home odds: 1.81, Away odds: 2.02, O/U: 6.0
+Home odds: 1.83, Away odds: 1.94, O/U: 5.5
 ------
 New Jersey Devils @ St. Louis Blues
 Home odds: 1.93, Away odds: 1.88, O/U: 5.5
@@ -33,23 +33,23 @@ Current Roster Data Verified.
 
 BET OF THE DAY:
 Dallas Stars ML vs Nashville Predators @ 1.64
-The Dallas Stars are in peak form, boasting elite offensive metrics and stifling defense, making them a formidable home team against the Predators' average road performance. Their strong goaltending and effective special teams provide a significant advantage over Nashville's inconsistent play.
-Confidence Level: High Units: 1.5u | Win Probability: 68%
+The Stars are well-rested at home, while the Predators are on a back-to-back, creating a significant fatigue and performance mismatch. Dallas's superior depth and defensive structure against a potentially tired Nashville team presents a strong mathematical edge.
+Confidence Level: High Units: 1.5u | Win Probability: 69%
 
 **Other Recommended Plays**
 
-Carolina Hurricanes ML vs Detroit Red Wings @ 1.50
-The Hurricanes exhibit dominant home ice performance with elite defensive metrics and a high-volume offensive attack, facing a Detroit team that struggles defensively on the road. Their confirmed elite starting goalie and strong special teams provide a clear advantage at this price.
-Confidence Level: High Units: 1.5u | Win Probability: 73%
+St. Louis Blues ML vs New Jersey Devils @ 1.93
+St. Louis benefits from ample rest at home, facing a New Jersey Devils squad playing on a back-to-back, which should heavily impact their defensive and goaltending performance. The Blues are well-positioned to capitalize on the Devils' fatigue and potential deployment of a backup goalie.
+Confidence Level: High Units: 1.5u | Win Probability: 59%
 
-Chicago Blackhawks @ Colorado Avalanche Over 6.5 @ 1.85
-This matchup features Colorado's high-octane offense against a Blackhawks team prone to defensive lapses, setting the stage for a high-scoring affair. Both teams have shown tendencies towards high-event games, and the Avalanche's offensive firepower should exploit Chicago's weaknesses.
-Confidence Level: Medium Units: 1u | Win Probability: 60%
+Los Angeles Kings vs Calgary Flames Under 5.5 @ 1.91
+This matchup features two teams known for structured defensive play and strong goaltending, with both having had sufficient rest. The Kings consistently drive low-scoring games at home, and the Flames are capable of matching that defensive intensity, making the Under a compelling play.
+Confidence Level: Medium Units: 1u | Win Probability: 57.5%
 
-Tampa Bay Lightning vs Buffalo Sabres Under 6.5 @ 1.95
-The Lightning's strong goaltending and defensive capability, coupled with the Sabres' inconsistent offense, suggests a lower-scoring game than implied by the total. Tampa Bay tends to play tight games at home, and their ability to shut down opponents provides value on the under.
-Confidence Level: Medium Units: 1u | Win Probability: 56%
+Tampa Bay Lightning vs Buffalo Sabres Over 6.5 @ 1.91
+Both the Lightning and Sabres are on a back-to-back, suggesting potential defensive breakdowns and tired goaltending, which typically leads to higher-scoring affairs. Tampa Bay's potent offense combined with Buffalo's ability to score against fatigued defenses provides a clear path to the Over.
+Confidence Level: Medium Units: 1u | Win Probability: 57.5%
 
-Los Angeles Kings vs Calgary Flames Under 5.5 @ 1.90
-Both the Kings and Flames are defensively structured teams with strong goaltending, indicating a grind-it-out, low-scoring contest. This matchup aligns with the Kings' recent trend of playing tight games at home, where their defense and elite netminder excel.
-Confidence Level: Medium Units: 1u | Win Probability: 57%
+Vancouver Canucks vs Seattle Kraken Under 6.0 @ 1.91
+The Kraken play a tight, defensive style, especially at home, and the Canucks also possess strong goaltending and a capable defensive system. With both teams well-rested, this Pacific Division rivalry is expected to be a low-event, grind-it-out game, offering value on the Under.
+Confidence Level: Medium Units: 1u | Win Probability: 57.5%
