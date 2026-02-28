@@ -7,49 +7,45 @@ New Jersey Devils @ St. Louis Blues
 Home odds: 1.93, Away odds: 1.88, O/U: 5.5
 ------
 Chicago Blackhawks @ Colorado Avalanche
-Home odds: 1.28, Away odds: 3.75, O/U: 6.5
+Home odds: 1.25, Away odds: 4.0, O/U: 6.5
 ------
 Ottawa Senators @ Toronto Maple Leafs
-Home odds: 1.93, Away odds: 1.88, O/U: 6.0
+Home odds: 2.08, Away odds: 1.76, O/U: 6.0
 ------
 Buffalo Sabres @ Tampa Bay Lightning
 Home odds: 1.41, Away odds: 2.95, O/U: 6.5
 ------
 Detroit Red Wings @ Carolina Hurricanes
-Home odds: 1.56, Away odds: 2.48, O/U: 6.0
+Home odds: 1.54, Away odds: 2.5, O/U: 6.0
 ------
 Calgary Flames @ Los Angeles Kings
 Home odds: 1.62, Away odds: 2.32, O/U: 5.5
 ------
 Nashville Predators @ Dallas Stars
-Home odds: 1.6, Away odds: 2.38, O/U: 6.0
+Home odds: 1.57, Away odds: 2.4, O/U: 6.0
 ------
 Vancouver Canucks @ Seattle Kraken
-Home odds: 1.62, Away odds: 2.32, O/U: 5.5
+Home odds: 1.63, Away odds: 2.32, O/U: 6.0
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY:
-Calgary Flames vs Los Angeles Kings Under 5.5 @ 2.00
-Los Angeles, coming off ample rest, excels in defensive structure and boasts strong goaltending against a traveling Calgary team known for playing tight games. This matchup between two defensively sound Western Conference teams is likely to be a low-scoring affair.
-Confidence Level: High Units: 1.5u | Win Probability: 60%
+Calgary Flames @ Los Angeles Kings Under 5.5 @ 1.90
+The Kings and Flames are two of the most defensively sound teams in the league, consistently playing tight, low-scoring games marked by strong goaltending and structured play. Expect a grind-it-out affair with limited high-danger chances as both teams prioritize defensive stability, making the Under 5.5 a strong value play against the market's assessment.
+Confidence Level: High Units: 1.5u | Win Probability: 59%
 
 **Other Recommended Plays**
 
-Ottawa Senators vs Toronto Maple Leafs Over 6.0 @ 2.00
-Both teams feature dynamic offenses but can be defensively inconsistent, with Toronto often engaging in high-event games and Ottawa always playing fast. The market undervalues the offensive firepower and defensive lapses expected in this inter-province rivalry, creating a strong edge on the Over.
-Confidence Level: High Units: 1.5u | Win Probability: 59%
+Carolina Hurricanes vs Detroit Red Wings Under 6.0 @ 1.90
+The Carolina Hurricanes' suffocating defense and strong goaltending are poised to stifle the Detroit Red Wings' offense, which often struggles against top-tier defensive clubs. The implied probability undervalues Carolina's ability to lock down opponents at home, creating a favorable edge for the Under.
+Confidence Level: Medium Units: 1u | Win Probability: 58%
 
-Detroit Red Wings vs Carolina Hurricanes Under 6.0 @ 2.00
-Carolina's elite defensive system and top-tier goaltending present a tough challenge for a Detroit team on a back-to-back, traveling, and likely starting a fatigued goaltender. The Hurricanes' ability to suppress shots and the Red Wings' arduous schedule strongly suggest a game with limited scoring.
-Confidence Level: High Units: 1.5u | Win Probability: 58%
+Dallas Stars ML vs Nashville Predators @ 1.57
+The Stars boast elite goaltending and a disciplined defensive structure, making them incredibly tough to beat at home, especially against a Predators team that can be streaky offensively. Dallas' strong xG metrics at home suggest their win probability is higher than implied by the odds.
+Confidence Level: Medium Units: 1u | Win Probability: 68%
 
-Nashville Predators vs Dallas Stars Under 6.0 @ 2.00
-Dallas is a defensively dominant team featuring an elite goaltender and comes in well-rested, while Nashville frequently struggles to generate consistent offense, especially on the road. The Stars' formidable defensive play and home-ice advantage against a traveling Predators squad provide significant value on the Under.
-Confidence Level: High Units: 1.5u | Win Probability: 56%
-
-Chicago Blackhawks vs Colorado Avalanche Over 6.5 @ 2.00
-Colorado's high-octane offense is potent at home and faces a Chicago team with significant defensive vulnerabilities and inconsistent goaltending. The Avalanche are expected to exploit the Blackhawks' weaknesses, driving up the score in what projects as a high-paced, offensively slanted game with clear value on the Over.
-Confidence Level: Medium Units: 1u | Win Probability: 55%
+Tampa Bay Lightning ML vs Buffalo Sabres @ 1.41
+The Lightning, with their veteran core and elite goaltending, are a formidable opponent at home and are coming off a strong performance. While Buffalo showed some recent upset potential, the Sabres face a tough back-to-back travel situation against a superior Tampa Bay squad, creating a clear home-ice advantage and a mispriced moneyline.
+Confidence Level: Medium Units: 1u | Win Probability: 75%
