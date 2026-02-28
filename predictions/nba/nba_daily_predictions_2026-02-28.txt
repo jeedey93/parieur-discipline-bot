@@ -1,7 +1,7 @@
 Date: 2026-02-28
 
 Miami Heat vs Houston Rockets
-Home odds: 2.14, Away odds: 1.75, O/U: 226.5
+Home odds: 2.02, Away odds: 1.77, O/U: 226.5
 Spreads: Home 2.5 (1.94), Away -2.5 (1.94)
 ------
 Washington Wizards vs Toronto Raptors
@@ -21,20 +21,20 @@ AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY:
-New Orleans Pelicans vs Utah Jazz Over 246.5 @ 1.94
-Both the New Orleans Pelicans and Utah Jazz are rested for this matchup, suggesting both teams will be operating at full capacity. This total offers significant value given Utah's tendency for high-scoring affairs, combined with the Pelicans' strong offensive capabilities.
-Confidence Level: Medium Units: 1u | Win Probability: 55%
+New Orleans Pelicans ML vs Utah Jazz @ 1.43
+Both teams appear to be at full strength and well-rested for this matchup. The Pelicans are favored due to superior overall season performance and a clear matchup advantage, leading to a strong mathematical edge over the implied probability from current odds.
+Confidence Level: Medium Units: 1u | Win Probability: 73%
 
 **Other Recommended Plays**
 
-Houston Rockets ML vs Miami Heat @ 1.75
-The Houston Rockets, coming off a victory on a back-to-back, have the home-court advantage against a Miami Heat team also playing on zero days rest after a loss. Houston's recent form and home-court energy give them a notable edge against a potentially fatigued Miami squad.
-Confidence Level: Medium Units: 1u | Win Probability: 60%
+Houston Rockets vs Miami Heat Over 229.5 @ 1.91
+Both the Rockets and Heat are coming off games two days ago, indicating normal rest and no significant fatigue impacts; roster health is generally stable. Our models detect an undervalued total, suggesting bookmakers are underestimating the offensive efficiency and pace in this matchup, creating a favorable expected value.
+Confidence Level: Medium Units: 1u | Win Probability: 56.5%
 
 Los Angeles Lakers ML vs Golden State Warriors @ 1.63
-The Los Angeles Lakers enter this contest well-rested at home, facing a Golden State Warriors team on the second leg of a back-to-back after a high-scoring game. This rest advantage, coupled with the Lakers' talent, creates a significant probabilistic edge that the market has not fully priced in.
+The Lakers are at home with normal rest, facing a Warriors team that played two days ago and achieved a strong win. The Lakers possess a more consistent overall roster and superior defensive metrics this season, which should translate to a straightforward victory at home.
 Confidence Level: Medium Units: 1u | Win Probability: 64%
 
-New Orleans Pelicans -6.0 vs Utah Jazz @ 1.91
-With both teams well-rested, the New Orleans Pelicans possess a superior overall roster and are expected to assert their dominance against the Utah Jazz. The Pelicans' offensive firepower and defensive capabilities should allow them to cover this moderate spread against a less consistent Jazz team.
+Houston Rockets -2.5 vs Miami Heat @ 1.94
+The Rockets are playing at home after two days of rest, presenting a fresh and strong roster for this contest. Despite recent mixed results on spread bets historically, the analytical edge for this smaller spread is significant against the Heat's recent form, offering a valuable opportunity.
 Confidence Level: Medium Units: 1u | Win Probability: 54%
