@@ -42,11 +42,17 @@ Both the Kings and Flames are defensively structured teams with strong goaltendi
 - Medium Confidence Plays: 3
 - Total Units Risked: 3.0u
 
+---
+🏆 BET OF THE DAY
+
+Charlotte Hornets -10.5 vs Portland Trail Blazers @ 1.95
+
+The Hornets possess a robust and healthy core, demonstrating strong current form at home against a less consistent Trail Blazers squad. This matchup presents a clear advantage for the Hornets, as bookmakers may be slightly undervaluing their ability to cover a medium-to-large spread against a rebuilding opponent.
+👍 Confidence: Medium (1u) | Win Probability: 56%
+
+---
+
 Other Recommended Plays
-
-BET OF THE DAY: Charlotte Hornets -10.5 vs Portland Trail Blazers @ 1.95
-
-The Hornets possess a robust and healthy core, demonstrating strong current form at home against a less consistent Trail Blazers squad. This matchup presents a clear advantage for the Hornets, as bookmakers may be slightly undervaluing their ability to cover a medium-to-large spread against a rebuilding opponent. 👍 Confidence: Medium (1u) | Win Probability: 56%
 
 Utah Jazz vs New Orleans Pelicans Over 246.5 @ 1.91
 
