@@ -4,3 +4,4 @@ pillow
 google-generativeai
 python-dateutil
 pytz
+beautifulsoup4

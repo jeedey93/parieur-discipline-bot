@@ -1,17 +1,18 @@
 import os
 from dotenv import load_dotenv
-from google import genai
+import google.genai as genai
 from google.genai import types
 from data.nhl_games import get_games_today
 from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
+from nhl_injuries_daily_run import scrape_nhl_injuries_by_team
 
 load_dotenv()
 
 
-def analyze_results(results_text):
+def analyze_results(results_text, injuries_text):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
@@ -46,6 +47,7 @@ def analyze_results(results_text):
             prompt_text = prompt_text.replace("{{TODAY_DATE}}", today_str)
             prompt_text = prompt_text.replace("{{HISTORICAL_RESULTS}}", historical_results)
             prompt_text = prompt_text.replace("{{RECENT_RESULTS}}", recent_results)
+            prompt_text = prompt_text.replace("{{INJURIES}}", injuries_text)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 
@@ -67,6 +69,19 @@ today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nhl")
 os.makedirs(predictions_folder, exist_ok=True)
 filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
+
+# Get injuries as a formatted string
+injuries_list = scrape_nhl_injuries_by_team()
+if injuries_list:
+    # Format injuries by team, one team per line, indented players
+    injuries_text = "NHL Injured Players by Team:\n"
+    for team, players in injuries_list.items():
+        if players:
+            injuries_text += f"{team}:\n"
+            for player in players:
+                injuries_text += f"  - {player}\n"
+else:
+    injuries_text = "NHL Injured Players by Team: None"
 
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")
@@ -90,9 +105,10 @@ with open(filename, "w") as f:
 
         print("NHL Matchups and Odds:")
         print(results_text)
+        print(injuries_text)
 
         if results_text:
-            summary = analyze_results(results_text)
+            summary = analyze_results(results_text, injuries_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")

@@ -9,6 +9,9 @@ Example Check: Jonathan Huberdeau is no longer on the Panthers; Darcy Kuemper is
 If your internal database for the 2025-26 season is unavailable, state: "Current Roster Data Unavailable" and provide a pick, but do not take individual players into account and do not mention any player names in your analysis.
 If roster data is available, simply state: "Current Roster Data Verified." Only mention player names if they are explicitly provided in the input data.
 
+INJURY CHECK (MANDATORY)
+You are provided with a variable {{INJURIES}} containing the list of currently injured players, grouped by team. For each game, you must check this list and explicitly account for any key injuries (OUT / DOUBTFUL / QUESTIONABLE) for both teams. Only mention player names if they are present in the {{INJURIES}} variable. If a team is missing 2+ core skaters or a starting goalie due to injury, downgrade their estimated probability and confidence accordingly. If no relevant injuries are found, proceed as normal.
+
 SELECTION PHILOSOPHY (Safety-First + Edge-Based)
 - Only recommend plays where decimal odds are ≥ 1.60 and ≤ 2.20.
 - Reject any pick above 2.20 or below 1.60 under all circumstances.
@@ -168,3 +171,4 @@ DATA TO ANALYZE
 {{RESULTS_TEXT}}
 {{HISTORICAL_RESULTS}}
 {{RECENT_RESULTS}}
+{{INJURIES}}
