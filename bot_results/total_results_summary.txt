@@ -1,13 +1,15 @@
-Total Results Summary (2026-02-28)
+Total Results Summary (2026-03-01)
 
 NBA:
-TOTAL: 7 wins, 7 losses
+TOTAL: 8 wins, 10 losses
 2026-02-26: 1 win, 4 losses
 2026-02-27: 5 wins, 0 losses
 2026-02-28: 1 win, 3 losses
+2026-03-01: 1 win, 3 losses
 
 NHL:
-TOTAL: 8 wins, 6 losses
+TOTAL: 12 wins, 7 losses
 2026-02-26: 3 wins, 2 losses
 2026-02-27: 3 wins, 2 losses
 2026-02-28: 2 wins, 2 losses
+2026-03-01: 4 wins, 1 loss
