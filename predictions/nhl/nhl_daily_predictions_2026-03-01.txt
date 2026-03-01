@@ -1,19 +1,19 @@
 Date: 2026-03-01
 
 Vegas Golden Knights @ Pittsburgh Penguins
-Home odds: 2.29, Away odds: 1.67, O/U: 6.5
+Home odds: 2.25, Away odds: 1.69, O/U: 6.5
 ------
 Chicago Blackhawks @ Utah Mammoth
-Home odds: 1.31, Away odds: 3.46, O/U: 6.0
+Home odds: 1.3, Away odds: 3.5, O/U: 6.0
 ------
 Winnipeg Jets @ San Jose Sharks
 Home odds: 1.97, Away odds: 1.85, O/U: 6.5
 ------
 St Louis Blues @ Minnesota Wild
-Home odds: 1.41, Away odds: 2.94, O/U: 6.0
+Home odds: 1.42, Away odds: 2.9, O/U: 6.0
 ------
 Florida Panthers @ New York Islanders
-Home odds: 2.14, Away odds: 1.71, O/U: 6.0
+Home odds: 2.25, Away odds: 1.65, O/U: 6.0
 ------
 Calgary Flames @ Anaheim Ducks
 Home odds: 1.57, Away odds: 2.5, O/U: 6.5
@@ -23,23 +23,19 @@ AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY:
-Florida Panthers vs New York Islanders Under 6.0 @ 1.90
-This matchup features two of the league's top defensive teams with elite goaltending, making scoring chances hard to come by for both sides. The Islanders' structured system is well-suited to stifle the Panthers' potent offense, creating significant value on the Under.
-Confidence Level: High Units: 1.5u | Win Probability: 60%
+Winnipeg Jets ML vs San Jose Sharks @ 1.85
+The Jets, well-rested, face a San Jose team on a back-to-back after being shut out yesterday, creating a significant mismatch in energy and talent. Winnipeg's superior defensive structure and motivation for a bounce-back win provide a strong market edge over the fatigued Sharks.
+Confidence Level: High Units: 1.5u | Win Probability: 64%
 
 **Other Recommended Plays**
-Winnipeg Jets ML vs San Jose Sharks @ 1.85
-The Jets, a defensively sound team with strong goaltending, face a struggling San Jose squad that lacks consistent offensive output and defensive stability. Winnipeg's superior overall team play and 2 days of rest give them a strong edge on the road against a weaker opponent.
+Calgary Flames vs Anaheim Ducks Under 6.5 @ 1.90
+Calgary is on a back-to-back after a 2-0 shutout win, indicating a likely focus on tight defensive play while fatigued. Anaheim's offense is inconsistent, and the Flames' recent performance suggests a lower-scoring affair where bookmakers might be overcompensating for the Ducks' previous high-scoring game.
 Confidence Level: High Units: 1.5u | Win Probability: 61%
 
-Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.67
-Vegas, coming off two days of rest, brings a strong 5v5 game and defensive structure against a Pittsburgh team that has shown inconsistencies this season. The Golden Knights' depth and ability to control play should translate into a road victory.
+Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.69
+Vegas comes in with a day's rest and strong recent form, while Pittsburgh recently suffered a significant home loss, suggesting underlying issues that Vegas can exploit. The Golden Knights' consistent play and solid goaltending offer a clear advantage against an inconsistent Penguins squad.
 Confidence Level: High Units: 1.5u | Win Probability: 66%
 
-Winnipeg Jets vs San Jose Sharks Under 6.5 @ 1.90
-Despite Winnipeg's last game seeing 9 goals, their defensive identity and strong goaltending typically lead to lower-scoring affairs against struggling offensive teams like San Jose. The market often overestimates totals when one team struggles, creating an Under opportunity here.
-Confidence Level: Medium Units: 1u | Win Probability: 58%
-
-Florida Panthers ML vs New York Islanders @ 1.71
-The Panthers, despite a recent road loss, remain one of the league's elite teams with strong offensive firepower and defensive depth, whereas the Islanders often struggle to generate consistent offense. Florida's high-end talent and ability to bounce back provide a solid moneyline edge against a defensive-minded but less potent Islanders team.
-Confidence Level: Medium Units: 1u | Win Probability: 63%
+Chicago Blackhawks @ Utah Mammoth Over 6.0 @ 1.90
+Chicago's notoriously weak defense and Utah's potent offense, coupled with both teams having adequate rest, set the stage for an elevated goal count. The Blackhawks' inability to suppress high-danger chances consistently makes the Over a strong play, as Utah will capitalize frequently.
+Confidence Level: High Units: 1.5u | Win Probability: 59%

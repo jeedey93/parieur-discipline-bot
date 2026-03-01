@@ -1,72 +1,72 @@
 Date: 2026-03-01
 
 New York Knicks vs San Antonio Spurs
-Home odds: 1.98, Away odds: 1.86, O/U: 227.5
-Spreads: Home 1.0 (1.92), Away -1.0 (1.97)
+Home odds: 1.96, Away odds: 1.89, O/U: 227.5
+Spreads: Home 1.0 (1.91), Away -1.0 (1.95)
 ------
 Brooklyn Nets vs Cleveland Cavaliers
-Home odds: 5.4, Away odds: 1.17, O/U: 222.5
-Spreads: Home 11.5 (1.98), Away -11.5 (1.91)
+Home odds: 5.6, Away odds: 1.16, O/U: 223.5
+Spreads: Home 12.0 (1.95), Away -12.0 (1.93)
 ------
 Chicago Bulls vs Milwaukee Bucks
-Home odds: 2.3, Away odds: 1.65, O/U: 228.5
-Spreads: Home 3.0 (1.94), Away -3.0 (1.94)
+Home odds: 2.18, Away odds: 1.72, O/U: 229.5
+Spreads: Home 3.0 (1.93), Away -3.0 (1.95)
 ------
 Denver Nuggets vs Minnesota Timberwolves
-Home odds: 1.62, Away odds: 2.36, O/U: 238.5
-Spreads: Home -3.0 (1.96), Away 3.0 (1.95)
+Home odds: 1.65, Away odds: 2.3, O/U: 240.5
+Spreads: Home -3.0 (1.94), Away 3.0 (1.95)
 ------
 Indiana Pacers vs Memphis Grizzlies
-Home odds: 1.93, Away odds: 1.93, O/U: 238.5
-Spreads: Home -1.0 (1.95), Away 1.0 (1.93)
+Home odds: 1.93, Away odds: 1.93, O/U: 237.5
+Spreads: Home -1.0 (1.96), Away 1.0 (1.93)
 ------
 Atlanta Hawks vs Portland Trail Blazers
-Home odds: 1.44, Away odds: 2.88, O/U: 237.5
-Spreads: Home -6.0 (1.95), Away 6.0 (1.93)
+Home odds: 1.49, Away odds: 2.72, O/U: 236.5
+Spreads: Home -5.5 (1.95), Away 5.5 (1.91)
 ------
 Boston Celtics vs Philadelphia 76ers
-Home odds: 1.27, Away odds: 3.95, O/U: 221.5
-Spreads: Home -9.5 (1.93), Away 9.5 (1.99)
+Home odds: 1.28, Away odds: 3.85, O/U: 220.5
+Spreads: Home -9.5 (1.92), Away 9.5 (1.97)
 ------
 Orlando Magic vs Detroit Pistons
-Home odds: 2.76, Away odds: 1.48, O/U: 222.5
-Spreads: Home 5.0 (1.94), Away -5.0 (1.94)
+Home odds: 2.72, Away odds: 1.49, O/U: 223.5
+Spreads: Home 5.0 (1.96), Away -5.0 (1.93)
 ------
 Dallas Mavericks vs Oklahoma City Thunder
-Home odds: 7.6, Away odds: 1.11, O/U: 233.5
-Spreads: Home 16.0 (1.94), Away -16.0 (1.95)
+Home odds: 8.3, Away odds: 1.09, O/U: 234.5
+Spreads: Home 15.5 (1.95), Away -15.5 (1.94)
 ------
 Los Angeles Clippers vs New Orleans Pelicans
-Home odds: 1.28, Away odds: 3.85, O/U: 223.5
-Spreads: Home -9.0 (1.95), Away 9.0 (1.94)
+Home odds: 1.27, Away odds: 3.95, O/U: 222.5
+Spreads: Home -8.5 (1.9), Away 8.5 (1.99)
 ------
 Los Angeles Lakers vs Sacramento Kings
-Home odds: 1.13, Away odds: 6.4, O/U: 233.5
-Spreads: Home -13.0 (1.94), Away 13.0 (1.94)
+Home odds: 1.13, Away odds: 6.3, O/U: 233.5
+Spreads: Home -12.5 (1.94), Away 12.5 (1.94)
 ------
 
 AI Analysis Summary:
-Current Roster Data Verified.
+Current Roster Data Unavailable.
 
 BET OF THE DAY:
-Denver Nuggets ML vs Minnesota Timberwolves @ 1.67
-The Nuggets are well-rested and historically strong at home against a well-rested Timberwolves team. Our model indicates a significant edge, supported by Denver's consistent high-level performance and positive market alignment.
-Confidence Level: High Units: 1.5u | Win Probability: 68%
+New York Knicks ML vs San Antonio Spurs @ 1.96
+The Knicks are well-rested and coming off a dominant victory, showcasing strong team form and defensive stability. The Spurs are playing on a severe back-to-back, facing heavy schedule fatigue which significantly impacts their performance despite recent wins.
+Confidence Level: High Units: 1.5u | Win Probability: 58%
 
 **Other Recommended Plays**
 
-Denver Nuggets -3.0 vs Minnesota Timberwolves @ 1.96
-The Nuggets, playing at home and well-rested, are in solid form, while the Timberwolves are also well-rested but face a tough road matchup. This spread offers good value, given Denver's expected performance and the calculated edge over the implied probability.
-Confidence Level: High Units: 1.5u | Win Probability: 57%
+Los Angeles Clippers -8.5 vs New Orleans Pelicans @ 1.94
+The Clippers are rested and playing at home, while the Pelicans are on a back-to-back, which presents a significant fatigue disadvantage. This matchup strongly favors the well-rested home team against an opponent whose performance will likely be impacted by their recent rigorous schedule.
+Confidence Level: High Units: 1.5u | Win Probability: 58%
 
-Atlanta Hawks -6.0 vs Portland Trail Blazers @ 1.95
-The Hawks enter this contest well-rested and are expected to perform strongly against the similarly well-rested but significantly weaker Trail Blazers. The matchup favors the Hawks heavily, providing a clear edge against a lower-tier opponent in good market odds.
-Confidence Level: High Units: 1.5u | Win Probability: 57%
+Philadelphia 76ers +9.5 vs Boston Celtics @ 1.97
+The 76ers are coming off a solid win and enter this game well-rested, contrasting with Boston's recent concerning loss to a strong Denver team. The large spread offers significant value, as Philadelphia has demonstrated the capability to perform strongly and cover against formidable opponents, especially with Boston's recent dip.
+Confidence Level: High Units: 1.5u | Win Probability: 56%
 
-Milwaukee Bucks ML vs Chicago Bulls @ 1.67
-The Bucks, coming off a mixed recent performance but with adequate rest, are favored against a well-rested Bulls team. Our analysis finds a positive edge, favoring the Bucks' overall team strength in this divisional contest.
-Confidence Level: Medium Units: 1u | Win Probability: 65%
+Milwaukee Bucks -3.0 vs Chicago Bulls @ 1.95
+The Bucks, despite a recent heavy loss, have shown flashes of strong performance and are adequately rested for this contest. This spread is manageable for a team with Milwaukee's underlying talent, especially given Chicago's unconfirmed recent form and the relatively fair market pricing.
+Confidence Level: Medium Units: 1u | Win Probability: 56%
 
-Memphis Grizzlies ML vs Indiana Pacers @ 1.98
-The Grizzlies, showing mixed recent results but with sufficient rest, face a Pacers team that suffered a significant loss recently and is also well-rested. The market is pricing this game as very close, but our model identifies value in the Grizzlies for the outright win.
-Confidence Level: Medium Units: 1u | Win Probability: 55%
+Atlanta Hawks -5.5 vs Portland Trail Blazers @ 1.95
+Both teams are well-rested, but the Hawks possess a stronger offensive and defensive unit, especially at home. The market has priced this line efficiently, but the Hawks' superior overall season form and home-court advantage present a clear edge to cover this mid-range spread.
+Confidence Level: Medium Units: 1u | Win Probability: 56%
