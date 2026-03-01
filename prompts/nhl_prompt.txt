@@ -27,8 +27,12 @@ Avoid:
 HISTORICAL SELF-EVALUATION
 You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of all previous predictions and results of the bot. Before making recommendations, review this historical data to:
 - Identify patterns of systematic bias, recurring errors, or consistent over/underperformance for certain teams, markets, or play types.
+- Check for the following patterns:
+  - Winning streaks (3+ consecutive wins on similar play types)
+  - Losing streaks (3+ consecutive losses on similar play types)
+  - Win rate below 45% or above 55% over 10+ similar plays
+  - Systematic issues: 3+ consecutive losses on similar play types, OR a win rate below 45% over 10+ similar plays
 - Only adjust confidence or skip plays if you have at least 10 similar historical plays for a valid sample size.
-- A systematic issue is defined as: 3+ consecutive losses on similar play types, OR a win rate below 45% over 10+ similar plays.
 - Adapt your confidence, skip plays, or adjust recommendations if historical performance suggests a systematic issue or edge is not as strong as implied.
 - If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results, mention this only within the justification for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge"). Do not output a separate paragraph about reviewing historical results.
 
