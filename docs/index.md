@@ -1,70 +1,43 @@
-# Latest Predictions (2026-02-28)
+# Latest Predictions (2026-03-01)
 
 ## NHL
 ### Summary
-- High Confidence Plays: 1
-- Medium Confidence Plays: 4
-- Total Units Risked: 5.5u
+- High Confidence Plays: 0
+- Medium Confidence Plays: 1
+- Total Units Risked: 1.0u
 
 ---
 🏆 BET OF THE DAY
 
-Calgary Flames @ Los Angeles Kings Under 5.5 @ 1.95
+Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.68
 
-The Kings and Flames are two defensively structured teams known for tight games and strong goaltending, with both teams having adequate rest. Despite the Kings' last game being high-scoring, this matchup historically features fewer goals as both sides prioritize limiting high-danger chances. This Under play presents excellent value as bookmakers may be overcompensating for the Kings' previous high-total game, creating a strong edge based on expected defensive solidity.
-🔥 Confidence: High (1.5u) | Win Probability: 58%
+The Vegas Golden Knights, coming off two days of rest, face a Pittsburgh Penguins team also well-rested after their last game. Vegas typically demonstrates stronger underlying metrics and road performance against inconsistent opponents. Their strong offensive system and solid defensive structure, combined with market odds that undervalue their true win probability by 4.5%, presents a clear edge for this moneyline play.
+👍 Confidence: Medium (1u) | Win Probability: 64.0%
 
 ---
-
-Other Recommended Plays
-
-Carolina Hurricanes ML vs Detroit Red Wings @ 1.5
-
-The Hurricanes are a dominant home team with elite defensive metrics and strong goaltending, facing a Red Wings team that, while improving, typically struggles against top-tier opponents. Carolina's underlying numbers and home advantage make them a strong play despite Detroit's recent rest. 👍 Confidence: Medium (1u) | Win Probability: 72%
-
-Vancouver Canucks ML vs Seattle Kraken @ 1.62
-
-The Canucks are the superior team with strong offensive capabilities and improved defensive play, facing a Kraken team that often struggles to generate consistent offense. With both teams well-rested, Vancouver's all-around strength and higher expected goal metrics give them a significant edge on the road. 👍 Confidence: Medium (1u) | Win Probability: 67%
-
-New Jersey Devils @ St. Louis Blues ML @ 1.93
-
-The St. Louis Blues, playing at home and with a significant rest advantage, are well-positioned to exploit the New Jersey Devils' defensive inconsistencies and volatile goaltending. The market is pricing this as a near pick'em, but the Blues' structured defensive game and favorable schedule spot create a clear value opportunity. 👍 Confidence: Medium (1u) | Win Probability: 57%
-
-Buffalo Sabres @ Tampa Bay Lightning Over 6.5 @ 1.95
-
-Both the Sabres and Lightning are on severe fatigue, with Buffalo on a back-to-back and Tampa Bay playing their third game in four nights, suggesting tired legs and increased defensive breakdowns. This high-octane matchup between fatigued teams is prone to a more open, higher-scoring game than usual, making the Over an attractive play. 👍 Confidence: Medium (1u) | Win Probability: 56%
-
 
 
 ## NBA
 ### Summary
 - High Confidence Plays: 0
-- Medium Confidence Plays: 4
-- Total Units Risked: 4.0u
+- Medium Confidence Plays: 2
+- Total Units Risked: 2.0u
 
 ---
 🏆 BET OF THE DAY
 
-New Orleans Pelicans ML vs Utah Jazz @ 1.43
+Indiana Pacers ML vs Memphis Grizzlies @ 1.95
 
-Both teams appear to be at full strength and well-rested for this matchup. The Pelicans are favored due to superior overall season performance and a clear matchup advantage, leading to a strong mathematical edge over the implied probability from current odds.
-👍 Confidence: Medium (1u) | Win Probability: 73%
+The Indiana Pacers are well-rested at home, facing a Memphis Grizzlies team that is on a 3-in-4 fatigue schedule and has battled injuries this season. This favorable rest advantage and the Pacers' strong offensive form at home give them a significant edge over the fatigued and recently inconsistent Grizzlies.
+👍 Confidence: Medium (1u) | Win Probability: 57%
 
 ---
 
 Other Recommended Plays
 
-Houston Rockets vs Miami Heat Over 229.5 @ 1.91
+New York Knicks ML vs San Antonio Spurs @ 2.05
 
-Both the Rockets and Heat are coming off games two days ago, indicating normal rest and no significant fatigue impacts; roster health is generally stable. Our models detect an undervalued total, suggesting bookmakers are underestimating the offensive efficiency and pace in this matchup, creating a favorable expected value. 👍 Confidence: Medium (1u) | Win Probability: 56.5%
-
-Los Angeles Lakers ML vs Golden State Warriors @ 1.63
-
-The Lakers are at home with normal rest, facing a Warriors team that played two days ago and achieved a strong win. The Lakers possess a more consistent overall roster and superior defensive metrics this season, which should translate to a straightforward victory at home. 👍 Confidence: Medium (1u) | Win Probability: 64%
-
-Houston Rockets -2.5 vs Miami Heat @ 1.94
-
-The Rockets are playing at home after two days of rest, presenting a fresh and strong roster for this contest. Despite recent mixed results on spread bets historically, the analytical edge for this smaller spread is significant against the Heat's recent form, offering a valuable opportunity. 👍 Confidence: Medium (1u) | Win Probability: 54%
+The New York Knicks are playing at home after a normal rest period and have been in good form, while the San Antonio Spurs are facing a significant fatigue disadvantage from playing 3 games in 4 nights. This matchup presents an opportunity to back the well-rested home team against a tired opponent. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
 
 
