@@ -1,13 +1,10 @@
 Date: 2026-03-01
 
-Vegas Golden Knights @ Pittsburgh Penguins
-Home odds: 1.55, Away odds: 2.4, O/U: 5.5
-------
 Chicago Blackhawks @ Utah Mammoth
-Home odds: 1.29, Away odds: 3.7, O/U: 6.0
+Home odds: 1.31, Away odds: 3.46, O/U: 6.5
 ------
 Winnipeg Jets @ San Jose Sharks
-Home odds: 1.99, Away odds: 1.83, O/U: 6.0
+Home odds: 2.0, Away odds: 1.82, O/U: 6.0
 ------
 St Louis Blues @ Minnesota Wild
 Home odds: 1.42, Away odds: 2.89, O/U: 6.0
@@ -20,22 +17,14 @@ Home odds: 1.56, Away odds: 2.55, O/U: 6.5
 ------
 
 AI Analysis Summary:
-Current Roster Data Verified.
-
-BET OF THE DAY:
+BET OF THE DAY
 Florida Panthers vs New York Islanders Under 6.0 @ 1.90
-The Panthers are significantly hampered by injuries to core skaters Aleksander Barkov and Seth Jones, severely impacting their offensive and defensive capabilities against a tight-checking Islanders team. With the Islanders' elite goalie Sorokin expected to start due to Semyon Varlamov's injury, and key offensive players out for Florida, scoring is expected to be suppressed, offering strong value on the Under.
-Confidence Level: High Units: 1.5u | Win Probability: 62%
+
+Both the Panthers, on a back-to-back, and the Islanders are severely depleted due to key injuries, including Aleksander Barkov and Seth Jones for Florida, and Semyon Varlamov, Kyle Palmieri, and Alexander Romanov for New York. The significant absence of multiple offensive and defensive contributors, coupled with Florida's fatigue, creates a strong environment for a low-scoring affair.
+Confidence Level: High Units: 1.5u | Win Probability: 61.63%
 
 **Other Recommended Plays**
-Winnipeg Jets vs San Jose Sharks Under 6.0 @ 1.90
-Winnipeg, featuring elite goaltending and strong defensive metrics, faces a struggling San Jose offense that consistently finds it difficult to generate high-danger chances. This matchup favors a low-scoring affair as the Jets look to stifle the Sharks' limited attack.
-Confidence Level: Medium Units: 1u | Win Probability: 58%
 
-St Louis Blues vs Minnesota Wild Under 6.0 @ 1.90
-The Blues are missing core offensive talent Robert Thomas, which severely impacts their scoring potential against a defensively responsible Wild team that generally excels at home. With both teams likely to play a structured game and key offensive pieces absent, the Under presents a favorable betting opportunity.
-Confidence Level: Medium Units: 1u | Win Probability: 57%
-
-Calgary Flames vs Anaheim Ducks Under 6.5 @ 1.90
-Both the Flames and Ducks are significantly depleted by injuries to key offensive players like Jonathan Huberdeau for Calgary and Troy Terry, Mikael Granlund, and Ryan Strome for Anaheim, while Calgary is also on a back-to-back. Despite Anaheim's recent high-scoring games, the sheer volume of injured offensive talent and fatigue points to a lower-scoring contest, creating value on the Under.
-Confidence Level: Medium Units: 1u | Win Probability: 57%
+New York Islanders ML vs Florida Panthers @ 1.64
+The Islanders are playing at home and are rested, facing a Panthers team that is on a back-to-back and critically hampered by multiple significant injuries to core players like Aleksander Barkov and Seth Jones. Despite the Islanders' own injuries, the market is mispricing the combined impact of Florida's severe roster depletion and fatigue, creating a substantial edge for New York to win.
+Confidence Level: High Units: 1.5u | Win Probability: 68%
