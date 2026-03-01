@@ -1,20 +1,33 @@
 Date: 2026-03-01
 
 Vegas Golden Knights @ Pittsburgh Penguins
-Home odds: 2.24, Away odds: 1.68, O/U: 6.5
+Home odds: 2.29, Away odds: 1.67, O/U: 6.5
 ------
-St. Louis Blues @ Minnesota Wild
-Home odds: 1.41, Away odds: 3.0, O/U: 5.5
+Chicago Blackhawks @ Utah Mammoth
+Home odds: 1.32, Away odds: 3.4, O/U: 6.0
+------
+Winnipeg Jets @ San Jose Sharks
+Home odds: 1.96, Away odds: 1.85, O/U: 6.5
+------
+St Louis Blues @ Minnesota Wild
+Home odds: 1.41, Away odds: 2.94, O/U: 6.0
+------
+Florida Panthers @ New York Islanders
+Home odds: 2.14, Away odds: 1.71, O/U: 6.0
 ------
 Calgary Flames @ Anaheim Ducks
-Home odds: 1.59, Away odds: 2.42, O/U: 6.5
+Home odds: 1.57, Away odds: 2.5, O/U: 6.5
 ------
 
 AI Analysis Summary:
 Current Roster Data Verified.
 
 BET OF THE DAY:
-Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.68
-The Vegas Golden Knights, coming off two days of rest, face a Pittsburgh Penguins team also well-rested after their last game. Vegas typically demonstrates stronger underlying metrics and road performance against inconsistent opponents.
-Their strong offensive system and solid defensive structure, combined with market odds that undervalue their true win probability by 4.5%, presents a clear edge for this moneyline play.
-Confidence Level: Medium Units: 1u | Win Probability: 64.0%
+Winnipeg Jets ML vs San Jose Sharks @ 1.85
+The Winnipeg Jets, a strong defensive team with elite goaltending, face the struggling San Jose Sharks who often concede high-danger chances. Winnipeg is well-rested after two days off, contrasting with San Jose's generally weaker lineup. The market is underpricing Winnipeg's superior underlying metrics and form against a significantly weaker opponent, creating a valuable edge in this matchup.
+Confidence Level: Medium Units: 1u | Win Probability: 60%
+
+**Other Recommended Plays**
+Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.67
+The Vegas Golden Knights possess a deep roster and strong offensive capabilities, and are well-rested coming into this road matchup against an inconsistent Pittsburgh Penguins team. Vegas's advanced metrics typically favor them against teams like Pittsburgh, who can be prone to defensive lapses. Despite a recent loss, Vegas offers a solid edge at 1.67 odds, as their true win probability is higher than the implied probability from bookmakers, identifying a mispriced opportunity.
+Confidence Level: Medium Units: 1u | Win Probability: 64%
