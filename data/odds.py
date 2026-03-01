@@ -64,39 +64,39 @@ def get_nba_odds():
     return response.json()
 
 NHL_TEAM_NAME_MAP = {
-    "anaheim": "Anaheim Ducks",
-    "arizona": "Arizona Coyotes",
-    "boston": "Boston Bruins",
-    "buffalo": "Buffalo Sabres",
-    "calgary": "Calgary Flames",
-    "carolina": "Carolina Hurricanes",
-    "chicago": "Chicago Blackhawks",
-    "colorado": "Colorado Avalanche",
-    "columbus": "Columbus Blue Jackets",
-    "dallas": "Dallas Stars",
-    "detroit": "Detroit Red Wings",
-    "edmonton": "Edmonton Oilers",
-    "florida": "Florida Panthers",
-    "losangeles": "Los Angeles Kings",
-    "minnesota": "Minnesota Wild",
-    "montreal": "Montreal Canadiens",
-    "nashville": "Nashville Predators",
-    "newjersey": "New Jersey Devils",
-    "nyislanders": "New York Islanders",
-    "nyrangers": "New York Rangers",
-    "ottawa": "Ottawa Senators",
-    "philadelphia": "Philadelphia Flyers",
-    "pittsburgh": "Pittsburgh Penguins",
-    "sanJose": "San Jose Sharks",
-    "seattle": "Seattle Kraken",
-    "stlouis": "St. Louis Blues",
-    "tampabay": "Tampa Bay Lightning",
-    "toronto": "Toronto Maple Leafs",
-    "utah": "Utah Hockey Club",
-    "vancouver": "Vancouver Canucks",
-    "vegas": "Vegas Golden Knights",
-    "washington": "Washington Capitals",
-    "winnipeg": "Winnipeg Jets"
+    "anaheim": ["Anaheim Ducks"],
+    "arizona": ["Arizona Coyotes"],
+    "boston": ["Boston Bruins"],
+    "buffalo": ["Buffalo Sabres"],
+    "calgary": ["Calgary Flames"],
+    "carolina": ["Carolina Hurricanes"],
+    "chicago": ["Chicago Blackhawks"],
+    "colorado": ["Colorado Avalanche"],
+    "columbus": ["Columbus Blue Jackets"],
+    "dallas": ["Dallas Stars"],
+    "detroit": ["Detroit Red Wings"],
+    "edmonton": ["Edmonton Oilers"],
+    "florida": ["Florida Panthers"],
+    "losangeles": ["Los Angeles Kings"],
+    "minnesota": ["Minnesota Wild"],
+    "montreal": ["Montreal Canadiens"],
+    "nashville": ["Nashville Predators"],
+    "newjersey": ["New Jersey Devils"],
+    "nyislanders": ["New York Islanders"],
+    "nyrangers": ["New York Rangers"],
+    "ottawa": ["Ottawa Senators"],
+    "philadelphia": ["Philadelphia Flyers"],
+    "pittsburgh": ["Pittsburgh Penguins"],
+    "sanjose": ["San Jose Sharks"],
+    "seattle": ["Seattle Kraken"],
+    "stlouis": ["St. Louis Blues"],
+    "tampabay": ["Tampa Bay Lightning"],
+    "toronto": ["Toronto Maple Leafs"],
+    "utah": ["Utah Hockey Club", "Utah Mammoth"],
+    "vancouver": ["Vancouver Canucks"],
+    "vegas": ["Vegas Golden Knights"],
+    "washington": ["Washington Capitals"],
+    "winnipeg": ["Winnipeg Jets"]
 }
 
 NBA_TEAM_NAME_MAP = {
@@ -136,57 +136,86 @@ def normalize(name):
     return name.lower().replace('.', '').replace(' ', '')
 
 def match_odds_to_games(games, odds_data, team_name_map):
-    matched_games = []
+    """
+    Matches games (with short team names) to odds_data (with full team names) using the team_name_map.
+    Returns a list of dicts with odds and game info for matched games only.
+    Logs unmatched games for debugging.
+    Handles ambiguous city names like 'New York' by trying all possible teams.
+    """
+    def normalize(name):
+        if not name:
+            return ""
+        return name.lower().replace('.', '').replace(' ', '').replace('-', '').replace('club', '').replace('hockey', '')
+
+    # Build a reverse map: short_name -> [full_names]
+    short_to_full = {}
+    for short, fulls in team_name_map.items():
+        if isinstance(fulls, str):
+            fulls = [fulls]
+        short_to_full[short] = [normalize(f) for f in fulls]
+
+    # Add ambiguous city fallback for New York
+    ambiguous_city_map = {
+        'newyork': ['nyislanders', 'nyrangers'],
+        'stlouis': ['stlouis'],
+        'losangeles': ['losangeles'],
+        # Add more if needed
+    }
+
+    matched = []
+    unmatched = []
     for game in games:
-        home_city = normalize(game["home"])
-        away_city = normalize(game["away"])
-        home = team_name_map.get(home_city, game["home"])
-        away = team_name_map.get(away_city, game["away"])
-        start_time = game["start_time"]
-        home_odds = None
-        away_odds = None
-        over_under = None
-        bookmakers_odds = []
-
-        for odds_game in odds_data:
-            if (normalize(odds_game["home_team"]) == normalize(home) and
-                    normalize(odds_game["away_team"]) == normalize(away)):
-                for bookmaker in odds_game["bookmakers"]:
-                    bookmaker_entry = {
-                        "title": bookmaker["title"],
-                        "markets": []
-                    }
-                    for market in bookmaker["markets"]:
-                        market_entry = {
-                            "key": market["key"],
-                            "outcomes": market["outcomes"]
-                        }
-                        bookmaker_entry["markets"].append(market_entry)
-                        # For summary odds (first bookmaker only, for backward compatibility)
-                        if home_odds is None and market["key"] == "h2h":
+        home_short = normalize(game["home"])
+        away_short = normalize(game["away"])
+        # Try ambiguous fallback if not found
+        home_fulls = short_to_full.get(home_short, [])
+        away_fulls = short_to_full.get(away_short, [])
+        if not home_fulls and home_short in ambiguous_city_map:
+            # Try all possible teams for ambiguous city
+            home_fulls = []
+            for ambig in ambiguous_city_map[home_short]:
+                home_fulls.extend(short_to_full.get(ambig, []))
+        if not away_fulls and away_short in ambiguous_city_map:
+            away_fulls = []
+            for ambig in ambiguous_city_map[away_short]:
+                away_fulls.extend(short_to_full.get(ambig, []))
+        found = False
+        for odds in odds_data:
+            home_team = normalize(odds.get("home_team"))
+            away_team = normalize(odds.get("away_team"))
+            if (home_team in home_fulls and away_team in away_fulls):
+                home_odds = away_odds = over_under = None
+                for bm in odds.get("bookmakers", []):
+                    for market in bm.get("markets", []):
+                        if market["key"] == "h2h":
                             for outcome in market["outcomes"]:
-                                if normalize(outcome["name"]) == normalize(home):
+                                if normalize(outcome["name"]) == home_team:
                                     home_odds = outcome["price"]
-                                elif normalize(outcome["name"]) == normalize(away):
+                                elif normalize(outcome["name"]) == away_team:
                                     away_odds = outcome["price"]
-                        if over_under is None and market["key"] == "totals":
-                            over_under = market["outcomes"][0].get("point")
-                    bookmakers_odds.append(bookmaker_entry)
+                        elif market["key"] == "totals":
+                            for outcome in market["outcomes"]:
+                                if outcome["name"].lower() == "over":
+                                    over_under = outcome.get("point")
+                matched.append({
+                    **game,
+                    "home": odds["home_team"],
+                    "away": odds["away_team"],
+                    "home_odds": home_odds,
+                    "away_odds": away_odds,
+                    "over_under": over_under,
+                    "bookmakers_odds": odds.get("bookmakers", [])
+                })
+                found = True
                 break
-
-        if home_odds is not None and away_odds is not None:
-            matched_games.append({
-                "game_id": game["game_id"],
-                "home": home,
-                "away": away,
-                "start_time": start_time,
-                "home_odds": home_odds,
-                "away_odds": away_odds,
-                "over_under": over_under,
-                "bookmakers_odds": bookmakers_odds
-            })
-
-    return matched_games
+        if not found:
+            print(f"[match_odds_to_games] Odds not found for game: {game}, home_full: {home_fulls}, away_full: {away_fulls}")
+            unmatched.append(game)
+    if unmatched:
+        print("[match_odds_to_games] Unmatched games:")
+        for g in unmatched:
+            print(g)
+    return matched
 
 def match_nba_odds_to_games(games, odds_data, team_name_map=NBA_TEAM_NAME_MAP):
     """
