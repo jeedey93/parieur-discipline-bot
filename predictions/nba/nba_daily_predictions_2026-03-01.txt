@@ -6,11 +6,11 @@ Spreads: Home 1.0 (1.93), Away -1.0 (1.95)
 ------
 Brooklyn Nets vs Cleveland Cavaliers
 Home odds: 5.4, Away odds: 1.17, O/U: 222.5
-Spreads: Home 11.5 (1.95), Away -11.5 (1.91)
+Spreads: Home 11.5 (1.98), Away -11.5 (1.91)
 ------
 Chicago Bulls vs Milwaukee Bucks
 Home odds: 2.3, Away odds: 1.65, O/U: 228.5
-Spreads: Home 3.5 (1.93), Away -3.5 (1.96)
+Spreads: Home 3.5 (1.93), Away -3.5 (1.98)
 ------
 Denver Nuggets vs Minnesota Timberwolves
 Home odds: 1.62, Away odds: 2.36, O/U: 238.5
@@ -34,11 +34,11 @@ Spreads: Home 5.0 (1.95), Away -5.0 (1.94)
 ------
 Dallas Mavericks vs Oklahoma City Thunder
 Home odds: 8.0, Away odds: 1.09, O/U: 233.5
-Spreads: Home 16.0 (1.93), Away -16.0 (1.95)
+Spreads: Home 16.0 (1.94), Away -16.0 (1.95)
 ------
 Los Angeles Clippers vs New Orleans Pelicans
 Home odds: 1.28, Away odds: 3.85, O/U: 223.5
-Spreads: Home -8.5 (1.91), Away 8.5 (1.95)
+Spreads: Home -9.0 (1.95), Away 9.0 (1.94)
 ------
 Los Angeles Lakers vs Sacramento Kings
 Home odds: 1.13, Away odds: 6.4, O/U: 233.5
@@ -46,27 +46,30 @@ Spreads: Home -13.0 (1.94), Away 13.0 (1.94)
 ------
 
 AI Analysis Summary:
-Current Roster Data Verified.
+Current Roster Data Unavailable.
+
+**Historical Self-Evaluation Review:**
+A comprehensive review of recent AI performance reveals a systematic issue with spread plays, evidenced by a win rate below 45% over 13 plays. Specifically, the model has struggled when picking favorites to cover large spreads, often leading to significant losses. Conversely, moneyline plays have shown strong performance (75% win rate). Total plays have an insufficient sample size to draw definitive conclusions. For today's recommendations, a heightened emphasis will be placed on moneyline bets, and spread plays will only be considered with a robust edge, particularly when favoring underdogs with rest advantages against fatigued favorites.
 
 BET OF THE DAY:
-Los Angeles Clippers -9.0 vs New Orleans Pelicans @ 1.94
-The Clippers are well-rested at home, facing a Pelicans team playing on a back-to-back which presents a significant fatigue advantage. This matchup creates a strong statistical edge, with the market not fully adjusting for the Pelicans' recent schedule strain and the Clippers' overall strength.
-Confidence Level: High Units: 1.5u | Win Probability: 58%
+Minnesota Timberwolves +3.0 vs Denver Nuggets @ 1.98
+The Timberwolves are well-rested, contrasting with the Nuggets who are playing their third game in four nights and showing signs of fatigue. This rest advantage at home provides a significant edge against a tired opponent, making the +3.0 spread particularly attractive.
+Confidence Level: High Units: 1.5u | Win Probability: 56%
 
 **Other Recommended Plays**
 
-Denver Nuggets -3.0 vs Minnesota Timberwolves @ 1.96
-The Nuggets are coming off a solid win and have had two days of rest, while the Timberwolves are also rested and looking to make a statement. Our model identifies value in the Nuggets covering this modest spread, considering their consistent form and the balanced market.
-Confidence Level: Medium Units: 1u | Win Probability: 57%
+Sacramento Kings +13.5 vs Los Angeles Lakers @ 1.95
+The Kings are well-rested and face a Lakers team playing on a back-to-back, despite the Lakers' recent dominant win. Taking the points with a fresh underdog against a fatigued favorite is a strategically sound play, mitigating the model's historical issues with large favorite spreads.
+Confidence Level: High Units: 1.5u | Win Probability: 56%
 
-Milwaukee Bucks -3.5 vs Chicago Bulls @ 1.96
-The Bucks are well-rested after two days off, facing a Bulls team that is also rested but historically struggles in this type of matchup. Despite a recent loss, the underlying metrics suggest the Bucks are undervalued at this spread, presenting a favorable expected value.
-Confidence Level: Medium Units: 1u | Win Probability: 56%
+Philadelphia 76ers +9.5 vs Boston Celtics @ 1.99
+Both teams are well-rested and coming off good wins, but the 76ers receive a substantial +9.5 points against a strong Celtics team on the road. The large spread offers value for a competitive 76ers squad to keep the game within reach or even challenge for an upset.
+Confidence Level: Medium Units: 1u | Win Probability: 55%
 
-San Antonio Spurs ML vs New York Knicks @ 1.88
-The Spurs are showing strong recent form with consecutive wins and a good rest advantage over the Knicks, who are coming off a loss. This pick holds value as the market slightly underprices the Spurs' current momentum and ability to secure an outright victory at home.
-Confidence Level: Medium Units: 1u | Win Probability: 58%
+Orlando Magic +5.0 vs Detroit Pistons @ 1.98
+The Magic are well-rested at home, while the Pistons are on their third game in four nights and have shown inconsistencies covering larger spreads recently. This favorable matchup with a solid points cushion provides a clear value opportunity against a fatigued opponent.
+Confidence Level: Medium Units: 1u | Win Probability: 55%
 
-Atlanta Hawks -6.0 vs Portland Trail Blazers @ 1.95
-The Hawks are a strong home team and enter this game well-rested, facing a Trail Blazers squad that typically struggles on the road. The model finds a clear edge here as the Hawks' offensive efficiency and defensive stability should allow them to comfortably cover this spread against a weaker opponent.
+New York Knicks +1.5 vs San Antonio Spurs @ 1.93
+The Knicks are playing at home with a rest advantage, while the Spurs are on a back-to-back and played a competitive game yesterday. The small spread favors the rested home team, providing a good edge against a potentially tired opponent.
 Confidence Level: Medium Units: 1u | Win Probability: 56%
