@@ -2,33 +2,25 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 1
-- Medium Confidence Plays: 3
-- Total Units Risked: 4.5u
+- High Confidence Plays: 0
+- Medium Confidence Plays: 2
+- Total Units Risked: 2.0u
 
 ---
 🏆 BET OF THE DAY
 
-Florida Panthers vs New York Islanders Under 6.0 @ 1.90
+Calgary Flames vs Anaheim Ducks Under 6.5 @ 1.90
 
-The Panthers are significantly hampered by injuries to core skaters Aleksander Barkov and Seth Jones, severely impacting their offensive and defensive capabilities against a tight-checking Islanders team. With the Islanders' elite goalie Sorokin expected to start due to Semyon Varlamov's injury, and key offensive players out for Florida, scoring is expected to be suppressed, offering strong value on the Under.
-🔥 Confidence: High (1.5u) | Win Probability: 62%
+Calgary, playing on a back-to-back, and Anaheim both face significant offensive challenges due to key injuries, with Jonathan Huberdeau out for the Flames and Mikael Granlund, Troy Terry, and Ryan Strome sidelined for the Ducks. This confluence of factors, including player fatigue and substantial offensive absences, strongly suggests a lower-scoring game than the market anticipates.
+👍 Confidence: Medium (1u) | Win Probability: 57.63%
 
 ---
 
 Other Recommended Plays
 
-Winnipeg Jets vs San Jose Sharks Under 6.0 @ 1.90
+Florida Panthers vs New York Islanders Under 6.0 @ 1.90
 
-Winnipeg, featuring elite goaltending and strong defensive metrics, faces a struggling San Jose offense that consistently finds it difficult to generate high-danger chances. This matchup favors a low-scoring affair as the Jets look to stifle the Sharks' limited attack. 👍 Confidence: Medium (1u) | Win Probability: 58%
-
-St Louis Blues vs Minnesota Wild Under 6.0 @ 1.90
-
-The Blues are missing core offensive talent Robert Thomas, which severely impacts their scoring potential against a defensively responsible Wild team that generally excels at home. With both teams likely to play a structured game and key offensive pieces absent, the Under presents a favorable betting opportunity. 👍 Confidence: Medium (1u) | Win Probability: 57%
-
-Calgary Flames vs Anaheim Ducks Under 6.5 @ 1.90
-
-Both the Flames and Ducks are significantly depleted by injuries to key offensive players like Jonathan Huberdeau for Calgary and Troy Terry, Mikael Granlund, and Ryan Strome for Anaheim, while Calgary is also on a back-to-back. Despite Anaheim's recent high-scoring games, the sheer volume of injured offensive talent and fatigue points to a lower-scoring contest, creating value on the Under. 👍 Confidence: Medium (1u) | Win Probability: 57%
+The Panthers are missing key offensive weapons including Aleksander Barkov and Tomas Nosek, while the Islanders are without Kyle Palmieri, severely impacting both teams' scoring potential. Despite Islanders starting goalie Semyon Varlamov being out, the significant injuries to core offensive skaters on both sides create a favorable environment for an Under play, indicating the market has mispriced the total. 👍 Confidence: Medium (1u) | Win Probability: 55.63%
 
 
 

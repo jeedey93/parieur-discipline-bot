@@ -1,13 +1,13 @@
 Date: 2026-03-01
 
 Chicago Blackhawks @ Utah Mammoth
-Home odds: 1.31, Away odds: 3.46, O/U: 6.5
+Home odds: 1.35, Away odds: 3.25, O/U: 5.5
 ------
 Winnipeg Jets @ San Jose Sharks
-Home odds: 2.0, Away odds: 1.82, O/U: 6.0
+Home odds: 2.85, Away odds: 1.4, O/U: 6.5
 ------
 St Louis Blues @ Minnesota Wild
-Home odds: 1.42, Away odds: 2.89, O/U: 6.0
+Home odds: 1.41, Away odds: 2.92, O/U: 6.5
 ------
 Florida Panthers @ New York Islanders
 Home odds: 2.28, Away odds: 1.64, O/U: 6.0
@@ -18,13 +18,11 @@ Home odds: 1.56, Away odds: 2.55, O/U: 6.5
 
 AI Analysis Summary:
 BET OF THE DAY
-Florida Panthers vs New York Islanders Under 6.0 @ 1.90
-
-Both the Panthers, on a back-to-back, and the Islanders are severely depleted due to key injuries, including Aleksander Barkov and Seth Jones for Florida, and Semyon Varlamov, Kyle Palmieri, and Alexander Romanov for New York. The significant absence of multiple offensive and defensive contributors, coupled with Florida's fatigue, creates a strong environment for a low-scoring affair.
-Confidence Level: High Units: 1.5u | Win Probability: 61.63%
+Calgary Flames vs Anaheim Ducks Under 6.5 @ 1.90
+Calgary, playing on a back-to-back, and Anaheim both face significant offensive challenges due to key injuries, with Jonathan Huberdeau out for the Flames and Mikael Granlund, Troy Terry, and Ryan Strome sidelined for the Ducks. This confluence of factors, including player fatigue and substantial offensive absences, strongly suggests a lower-scoring game than the market anticipates.
+Confidence Level: Medium Units: 1u | Win Probability: 57.63%
 
 **Other Recommended Plays**
-
-New York Islanders ML vs Florida Panthers @ 1.64
-The Islanders are playing at home and are rested, facing a Panthers team that is on a back-to-back and critically hampered by multiple significant injuries to core players like Aleksander Barkov and Seth Jones. Despite the Islanders' own injuries, the market is mispricing the combined impact of Florida's severe roster depletion and fatigue, creating a substantial edge for New York to win.
-Confidence Level: High Units: 1.5u | Win Probability: 68%
+Florida Panthers vs New York Islanders Under 6.0 @ 1.90
+The Panthers are missing key offensive weapons including Aleksander Barkov and Tomas Nosek, while the Islanders are without Kyle Palmieri, severely impacting both teams' scoring potential. Despite Islanders starting goalie Semyon Varlamov being out, the significant injuries to core offensive skaters on both sides create a favorable environment for an Under play, indicating the market has mispriced the total.
+Confidence Level: Medium Units: 1u | Win Probability: 55.63%

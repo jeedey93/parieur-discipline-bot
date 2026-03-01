@@ -61,7 +61,7 @@ BET OF THE DAY
 - The Bet of the Day MUST be the single play with the highest confidence percentage among all recommended plays (High or Medium confidence only). It cannot be arbitrarily selected; it must be the top play by confidence %.
 - Show the Bet of the Day first, before any recommended plays. Do not include the Bet of the Day in the recommended plays section.
 - You must always clearly label the Bet of the Day with the header 'BET OF THE DAY' (in all caps) and format it distinctly at the top of the output, even if the play is selected based on confidence or historical evaluation.
-- The Bet of the Day must be output on its own line, followed by the actual bet and justification on the next line, skipping a line between the header and the bet.
+- The Bet of the Day must be output on its own line, immediately followed by the actual bet and justification on the next line (do not skip a line between the header and the bet).
 
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 
