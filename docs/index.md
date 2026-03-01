@@ -2,61 +2,69 @@
 
 ## NHL
 ### Summary
-- High Confidence Plays: 0
-- Medium Confidence Plays: 2
-- Total Units Risked: 2.0u
+- High Confidence Plays: 1
+- Medium Confidence Plays: 3
+- Total Units Risked: 4.5u
 
 ---
 🏆 BET OF THE DAY
 
-Winnipeg Jets ML vs San Jose Sharks @ 1.85
+Florida Panthers @ New York Islanders Under 6.0 @ 1.90
 
-The Winnipeg Jets, a strong defensive team with elite goaltending, face the struggling San Jose Sharks who often concede high-danger chances. Winnipeg is well-rested after two days off, contrasting with San Jose's generally weaker lineup. The market is underpricing Winnipeg's superior underlying metrics and form against a significantly weaker opponent, creating a valuable edge in this matchup.
-👍 Confidence: Medium (1u) | Win Probability: 60%
+This matchup features two of the league's most defensively sound teams and elite goaltending, suggesting a low-scoring affair. The projected starters, likely Sergei Bobrovsky and Ilya Sorokin, are in strong form and will be difficult to beat.
+🔥 Confidence: High (1.5u) | Win Probability: 60%
 
 ---
 
 Other Recommended Plays
 
+Winnipeg Jets @ San Jose Sharks Under 6.5 @ 1.90
+
+Winnipeg boasts a formidable defensive structure and top-tier goaltending, while San Jose typically struggles to generate high-danger scoring chances. The Jets' ability to suppress offense combined with the Sharks' offensive woes creates a strong inclination for a lower-scoring game. 👍 Confidence: Medium (1u) | Win Probability: 58%
+
 Vegas Golden Knights ML vs Pittsburgh Penguins @ 1.67
 
-The Vegas Golden Knights possess a deep roster and strong offensive capabilities, and are well-rested coming into this road matchup against an inconsistent Pittsburgh Penguins team. Vegas's advanced metrics typically favor them against teams like Pittsburgh, who can be prone to defensive lapses. Despite a recent loss, Vegas offers a solid edge at 1.67 odds, as their true win probability is higher than the implied probability from bookmakers, identifying a mispriced opportunity. 👍 Confidence: Medium (1u) | Win Probability: 64%
+The Golden Knights, with their deep roster and strong two-way play, face an inconsistent Penguins squad at home. Vegas's balanced attack and structured defense should exploit Pittsburgh's occasional defensive lapses. 👍 Confidence: Medium (1u) | Win Probability: 65%
+
+Vegas Golden Knights @ Pittsburgh Penguins Under 6.5 @ 1.90
+
+Vegas typically plays tight, defensively responsible games, often leaning on strong goaltending and a solid system. While Pittsburgh can score, the Golden Knights' defensive prowess should limit high-octane chances, contributing to an under result. 👍 Confidence: Medium (1u) | Win Probability: 57%
 
 
 
 ## NBA
 ### Summary
-- High Confidence Plays: 1
-- Medium Confidence Plays: 4
-- Total Units Risked: 5.5u
+- High Confidence Plays: 2
+- Medium Confidence Plays: 3
+- Total Units Risked: 6.0u
 
 ---
 🏆 BET OF THE DAY
 
-Los Angeles Clippers -9.0 vs New Orleans Pelicans @ 1.94
+Minnesota Timberwolves +3.0 vs Denver Nuggets @ 1.98
 
-The Clippers are well-rested at home, facing a Pelicans team playing on a back-to-back which presents a significant fatigue advantage. This matchup creates a strong statistical edge, with the market not fully adjusting for the Pelicans' recent schedule strain and the Clippers' overall strength.
-🔥 Confidence: High (1.5u) | Win Probability: 58%
+The Timberwolves are well-rested, contrasting with the Nuggets who are playing their third game in four nights and showing signs of fatigue. This rest advantage at home provides a significant edge against a tired opponent, making the +3.0 spread particularly attractive.
+🔥 Confidence: High (1.5u) | Win Probability: 56%
 
 ---
 
 Other Recommended Plays
 
-Denver Nuggets -3.0 vs Minnesota Timberwolves @ 1.96
+Sacramento Kings +13.5 vs Los Angeles Lakers @ 1.95
 
-The Nuggets are coming off a solid win and have had two days of rest, while the Timberwolves are also rested and looking to make a statement. Our model identifies value in the Nuggets covering this modest spread, considering their consistent form and the balanced market. 👍 Confidence: Medium (1u) | Win Probability: 57%
+The Kings are well-rested and face a Lakers team playing on a back-to-back, despite the Lakers' recent dominant win. Taking the points with a fresh underdog against a fatigued favorite is a strategically sound play, mitigating the model's historical issues with large favorite spreads. 🔥 Confidence: High (1.5u) | Win Probability: 56%
 
-Milwaukee Bucks -3.5 vs Chicago Bulls @ 1.96
+Philadelphia 76ers +9.5 vs Boston Celtics @ 1.99
 
-The Bucks are well-rested after two days off, facing a Bulls team that is also rested but historically struggles in this type of matchup. Despite a recent loss, the underlying metrics suggest the Bucks are undervalued at this spread, presenting a favorable expected value. 👍 Confidence: Medium (1u) | Win Probability: 56%
+Both teams are well-rested and coming off good wins, but the 76ers receive a substantial +9.5 points against a strong Celtics team on the road. The large spread offers value for a competitive 76ers squad to keep the game within reach or even challenge for an upset. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
-San Antonio Spurs ML vs New York Knicks @ 1.88
+Orlando Magic +5.0 vs Detroit Pistons @ 1.98
 
-The Spurs are showing strong recent form with consecutive wins and a good rest advantage over the Knicks, who are coming off a loss. This pick holds value as the market slightly underprices the Spurs' current momentum and ability to secure an outright victory at home. 👍 Confidence: Medium (1u) | Win Probability: 58%
+The Magic are well-rested at home, while the Pistons are on their third game in four nights and have shown inconsistencies covering larger spreads recently. This favorable matchup with a solid points cushion provides a clear value opportunity against a fatigued opponent. 👍 Confidence: Medium (1u) | Win Probability: 55%
 
-Atlanta Hawks -6.0 vs Portland Trail Blazers @ 1.95
+New York Knicks +1.5 vs San Antonio Spurs @ 1.93
 
-The Hawks are a strong home team and enter this game well-rested, facing a Trail Blazers squad that typically struggles on the road. The model finds a clear edge here as the Hawks' offensive efficiency and defensive stability should allow them to comfortably cover this spread against a weaker opponent. 👍 Confidence: Medium (1u) | Win Probability: 56%
+The Knicks are playing at home with a rest advantage, while the Spurs are on a back-to-back and played a competitive game yesterday. The small spread favors the rested home team, providing a good edge against a potentially tired opponent. 👍 Confidence: Medium (1u) | Win Probability: 56%
 
 
 
