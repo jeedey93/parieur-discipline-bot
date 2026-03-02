@@ -6,25 +6,29 @@ from datetime import date, timedelta, datetime
 from data.odds import NBA_TEAM_NAME_MAP
 from data.nba_games import get_nba_games_today
 import glob
+import pytz
 
 load_dotenv()
 
 def get_run_time_suffix():
-    """Determine if this is 7am or 12pm run based on environment variable or current time."""
-    # Check if RUN_TIME environment variable is set (for CI/CD)
+    """Determine if this is 7am or 12pm run based on environment variable or current time in Montreal timezone."""
     run_time = os.getenv("NBA_RUN_TIME")
     if run_time:
         return run_time  # Should be "7am" or "12pm"
 
-    # Fallback: use current hour (for local testing)
-    current_hour = datetime.now().hour
-    if 6 <= current_hour < 9:  # Early morning window
+    # Use Montreal time (America/Toronto)
+    tz = pytz.timezone("America/Toronto")
+    now = datetime.now(tz)
+    current_hour = now.hour
+    # 7am run: 6:00–7:59
+    if 6 <= current_hour < 8:
         return "7am"
-    elif 11 <= current_hour < 14:  # Noon window
+    # 12pm run: 11:00–12:59
+    elif 11 <= current_hour < 13:
         return "12pm"
     else:
         # Default based on which is closer
-        if current_hour < 12:
+        if current_hour < 10:
             return "7am"
         else:
             return "12pm"
@@ -87,7 +91,12 @@ os.makedirs(predictions_folder, exist_ok=True)
 # Determine which run this is
 run_time = get_run_time_suffix()
 # Use temp filename for intermediate runs
-filename = os.path.join(predictions_folder, f"nba_daily_predictions_{run_time}_{today_str}.txt")
+if run_time == "7am":
+    filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_7am.txt")
+elif run_time == "12pm":
+    filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
+else:
+    filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_{run_time}.txt")
 
 games = get_nba_games_today()
 odds = get_nba_odds()
