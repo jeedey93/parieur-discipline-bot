@@ -1,27 +1,7 @@
 # Latest Predictions (2026-03-02)
 
 ## NHL
-Here's an analysis comparing the morning and noon NHL prediction reports:
-
-**Overall Changes:**
-
-The noon report shows a significant shift in betting strategy compared to the morning report. The "Bet of the Day" changed entirely, moving from the Nashville Predators ML to the New York Rangers ML, which also saw a substantial increase in odds and confidence. Several morning recommendations were removed, while a new Under play was introduced. This indicates the AI model reacted to line movements and potentially new roster information (e.g., Brendan Smith's absence, Adam Wilsby's absence) to refine its selections and confidence levels.
-
----
-
-🏆 **BET OF THE DAY**
-
-**New York Rangers ML vs Columbus Blue Jackets @ 2.02**
-Odds improved and confidence increased, becoming the Bet of the Day at noon.
-The New York Rangers, typically dominant at home with an elite goaltender, face a struggling Columbus team dealing with the absence of key defenseman Brendan Smith. This matchup offers significant value as the market appears to undervalue a superior Rangers squad that is well-rested.
-
----
-
-**Other Recommended Plays**
-
-**Nashville Predators vs Detroit Red Wings Under 6.0 @ 1.90**
-New play added at noon based on updated odds and roster data.
-Nashville tends to play tight, defensive games at home, and their recent results show a trend towards lower-scoring affairs, especially with Adam Wilsby out on defense. Coupled with Detroit's inconsistent offense, the estimated probability of staying under the 6.0 goal total provides a solid betting edge over the implied market odds.
+No AI analysis found.
 
 ## NBA
 Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.
