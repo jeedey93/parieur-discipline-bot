@@ -35,10 +35,8 @@ jobs:
           HOUR=$(date -u +%H)
           if [ "$HOUR" = "12" ]; then
             echo "time=7am" >> $GITHUB_OUTPUT
-          elif [ "$HOUR" = "17" ]; then
-            echo "time=12pm" >> $GITHUB_OUTPUT
           else
-            echo "time=unknown" >> $GITHUB_OUTPUT
+            echo "time=12pm" >> $GITHUB_OUTPUT
           fi
       - name: Run NHL daily predictions bot
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
