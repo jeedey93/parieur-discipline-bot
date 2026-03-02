@@ -8,6 +8,8 @@ from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
 from nhl_injuries_daily_run import scrape_nhl_injuries_by_team
+import pytz
+from datetime import datetime
 
 load_dotenv()
 
@@ -64,7 +66,22 @@ def analyze_results(results_text, injuries_text):
             raise
 
 # --- New logic for 7am/12pm runs ---
-run_time = os.environ.get("NHL_RUN_TIME", "7am").lower()
+def detect_run_time():
+    env_run_time = os.environ.get("NHL_RUN_TIME")
+    if env_run_time:
+        return env_run_time.lower()
+    # Default: auto-detect based on Montreal time
+    tz = pytz.timezone("America/Toronto")
+    now = datetime.now(tz)
+    hour = now.hour
+    if 6 <= hour < 12:
+        return "7am"
+    elif 12 <= hour < 17:
+        return "12pm"
+    else:
+        return "7am"  # fallback
+
+run_time = detect_run_time()
 today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nhl")
 os.makedirs(predictions_folder, exist_ok=True)
