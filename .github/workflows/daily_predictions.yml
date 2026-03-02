@@ -30,6 +30,8 @@ jobs:
         run: python nhl_predictions_daily_run.py
       - name: Run NBA daily predictions bot
         run: python nba_predictions_daily_run.py
+      - name: Generate dual bet of the day
+        run: python dual_bet_of_the_day.py
       - name: Update latest predictions markdown
         run: python update_latest_predictions.py
       - name: Commit predictions
@@ -41,6 +43,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add predictions/nhl/nhl_daily_predictions_*.txt || true
           git add predictions/nba/nba_daily_predictions_*.txt || true
+          git add predictions/dual_bet_of_the_day.txt || true
           git add docs/index.md || true
           if ! git diff --cached --quiet; then
             git commit -m "Add daily predictions for $(date -u +%Y-%m-%d)"
