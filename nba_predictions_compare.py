@@ -66,7 +66,7 @@ def main():
     """Main function to compare morning and noon predictions."""
     today_str = date.today().isoformat()
     predictions_folder = os.path.join("predictions", "nba")
-    prompt_path = os.path.join("prompts", "nba_compare_prompt.txt")
+    prompt_path = os.path.join("prompts", "compare_prompt.txt")
 
     # Define temp file paths
     morning_file = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_7am.txt")

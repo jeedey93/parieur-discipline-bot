@@ -22,6 +22,8 @@ ANALYSIS TASK:
    - Ranked by confidence %
    - Show the "Bet of the Day" first
 
+For every play in the unified final recommendation list (including Bet of the Day and all others), you must always include the fields: Confidence Level, Units, and Win Probability, with their actual values for that play, as part of the output for that play. These fields must be present for every play, not just the Bet of the Day.
+
 For each play, keep the original reasoning/justification from the noon report (or morning if only present there), but add a line explicitly stating the line/odds/confidence change from morning to noon (e.g., "Line moved from -1.5 @ 1.91 (morning) to -1.0 @ 1.97 (noon), confidence increased from Medium to High").
 
 Format the output similarly to your original report:
@@ -29,8 +31,14 @@ Format the output similarly to your original report:
 🏆 **BET OF THE DAY**
 [Best play across both reports]
 
+[Justification for Bet of the Day]
+
 **Other Recommended Plays**
 [Remaining plays]
 
-Include a brief note about changes from morning to noon for each play (e.g., "Confidence increased due to line movement" or "New play added at noon based on updated odds")
+[For each play:]
+[Play header]
 
+[Justification]
+
+Include a brief note about changes from morning to noon for each play (e.g., "Confidence increased due to line movement" or "New play added at noon based on updated odds")
