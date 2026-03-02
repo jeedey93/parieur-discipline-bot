@@ -1,14 +1,33 @@
 import os
 from dotenv import load_dotenv
 from google import genai
-from google.genai import types
 from data.odds import get_nba_odds, match_nba_odds_to_games
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from data.odds import NBA_TEAM_NAME_MAP
 from data.nba_games import get_nba_games_today
 import glob
 
 load_dotenv()
+
+def get_run_time_suffix():
+    """Determine if this is 7am or 12pm run based on environment variable or current time."""
+    # Check if RUN_TIME environment variable is set (for CI/CD)
+    run_time = os.getenv("NBA_RUN_TIME")
+    if run_time:
+        return run_time  # Should be "7am" or "12pm"
+
+    # Fallback: use current hour (for local testing)
+    current_hour = datetime.now().hour
+    if 6 <= current_hour < 9:  # Early morning window
+        return "7am"
+    elif 11 <= current_hour < 14:  # Noon window
+        return "12pm"
+    else:
+        # Default based on which is closer
+        if current_hour < 12:
+            return "7am"
+        else:
+            return "12pm"
 
 def analyze_results(results_text):
     api_key = os.environ["GOOGLE_API_KEY"]
@@ -52,9 +71,9 @@ def analyze_results(results_text):
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",
-            contents=types.Part.from_text(text=prompt_text),
+            contents=prompt_text,
         )
-        return response.candidates[0].content.parts[0].text
+        return response.text.strip()
     except genai.errors.ClientError as e:
         if "RESOURCE_EXHAUSTED" in str(e) or "quota" in str(e):
             return "AI analysis skipped: Gemini API quota exceeded."
@@ -64,7 +83,11 @@ def analyze_results(results_text):
 today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nba")
 os.makedirs(predictions_folder, exist_ok=True)
-filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}.txt")
+
+# Determine which run this is
+run_time = get_run_time_suffix()
+# Use temp filename for intermediate runs
+filename = os.path.join(predictions_folder, f"nba_daily_predictions_{run_time}_{today_str}.txt")
 
 games = get_nba_games_today()
 odds = get_nba_odds()
