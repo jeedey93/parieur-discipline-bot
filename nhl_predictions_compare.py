@@ -92,8 +92,8 @@ def main():
     predictions_folder = os.path.join("predictions", "nhl")
 
     # Define temp file paths
-    morning_file = os.path.join(predictions_folder, f"nhl_daily_predictions_7am_{today_str}.txt")
-    noon_file = os.path.join(predictions_folder, f"nhl_daily_predictions_12pm_{today_str}.txt")
+    morning_file = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
+    noon_file = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_12pm.txt")
     output_file = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
 
     # Check if both files exist

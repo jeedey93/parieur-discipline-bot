@@ -68,7 +68,7 @@ with open(predictions_file, "r") as f:
 # Get and format actual results
 games = get_games_yesterday()
 actuals_text = "\n".join(
-    f"{g['away']} {g['away_score']} @ {g['home']} {g['home_score']}" for g in games
+    f"{g['away']} {g['away_score']} @ {g['home']} {g['home_score']} (Total goals: {g['away_score'] + g['home_score']})" for g in games
 )
 
 # Analyze
