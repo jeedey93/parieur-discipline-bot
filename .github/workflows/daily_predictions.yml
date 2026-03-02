@@ -50,12 +50,12 @@ jobs:
       - name: Compare NHL predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
         run: python nhl_predictions_compare.py
-      - name: Run Dual Bet of the Day (12pm)
-        if: steps.run_time.outputs.time == '12pm'
-        run: python dual_bet_of_the_day.py --run_time 12pm
       - name: Update latest predictions markdown
         if: steps.run_time.outputs.time == '12pm'
         run: python update_latest_predictions.py
+      - name: Run Dual Bet of the Day (12pm)
+        if: steps.run_time.outputs.time == '12pm'
+        run: python dual_bet_of_the_day.py --run_time 12pm
       - name: Commit predictions
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
         env:
