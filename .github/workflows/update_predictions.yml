@@ -1,4 +1,4 @@
-name: Daily NHL/NBA Bot Predictions
+name: Manual Generation of NHL/NBA Bot Predictions
 
 on:
   workflow_dispatch:
