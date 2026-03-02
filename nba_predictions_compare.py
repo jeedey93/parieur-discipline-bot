@@ -6,7 +6,11 @@ from google.genai import types
 
 load_dotenv()
 
-def compare_predictions(morning_file, noon_file, output_file):
+def read_prompt_file(prompt_path):
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        return f.read()
+
+def compare_predictions(morning_file, noon_file, output_file, prompt_path):
     """
     Compare morning (7am) and noon (12pm) predictions and generate a combined analysis.
     """
@@ -28,43 +32,12 @@ def compare_predictions(morning_file, noon_file, output_file):
         print(f"Noon predictions file not found: {noon_file}")
         return
 
-    # Create comparison prompt
-    comparison_prompt = f"""You are a sports betting analyst comparing two prediction reports from the same day at different times (morning and noon).
-
-MORNING PREDICTIONS (7:00 AM):
-{morning_predictions}
-
----
-
-NOON PREDICTIONS (12:00 PM):
-{noon_predictions}
-
----
-
-ANALYSIS TASK:
-1. Identify which plays appeared in both reports (consistency)
-2. Identify which plays were added/removed between reports (line movement impact)
-3. Identify confidence level changes for the same plays
-4. Identify odds changes that affected recommendations
-5. Provide a unified final recommendation list that:
-   - Prioritizes plays that appeared in both reports (stronger conviction)
-   - Includes only high/medium confidence plays
-   - Maximum 5 total plays
-   - Ranked by confidence %
-   - Show the "Bet of the Day" first
-
-For each play, keep the original reasoning/justification from the noon report (or morning if only present there), but add a line explicitly stating the line/odds/confidence change from morning to noon (e.g., "Line moved from -1.5 @ 1.91 (morning) to -1.0 @ 1.97 (noon), confidence increased from Medium to High").
-
-Format the output similarly to your original report:
-
-🏆 **BET OF THE DAY**
-[Best play across both reports]
-
-**Other Recommended Plays**
-[Remaining plays]
-
-Include a brief note about changes from morning to noon for each play (e.g., "Confidence increased due to line movement" or "New play added at noon based on updated odds")
-"""
+    # Read the comparison prompt from file
+    comparison_prompt_template = read_prompt_file(prompt_path)
+    comparison_prompt = comparison_prompt_template.format(
+        morning_predictions=morning_predictions,
+        noon_predictions=noon_predictions
+    )
 
     try:
         response = client.models.generate_content(
@@ -93,6 +66,7 @@ def main():
     """Main function to compare morning and noon predictions."""
     today_str = date.today().isoformat()
     predictions_folder = os.path.join("predictions", "nba")
+    prompt_path = os.path.join("prompts", "nba_compare_prompt.txt")
 
     # Define temp file paths
     morning_file = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_7am.txt")
@@ -113,7 +87,7 @@ def main():
     print(f"Noon file: {noon_file}")
 
     # Run comparison
-    compare_predictions(morning_file, noon_file, output_file)
+    compare_predictions(morning_file, noon_file, output_file, prompt_path)
 
     # Delete temp files after successful comparison
     for temp_file in [morning_file, noon_file]:

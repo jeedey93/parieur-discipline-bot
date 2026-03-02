@@ -13,6 +13,24 @@ def read_file(path):
     with open(path, "r") as f:
         return f.read()
 
+def extract_comparison_analysis(content):
+    # Try to extract the new comparison/unified recommendation format
+    # Accepts both NHL and NBA styles
+    compare_markers = [
+        "Here's an analysis comparing the morning and noon NHL prediction reports:",
+        "Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.",
+        "Here's a comparison and unified recommendation list based on the Morning and Noon prediction reports:",
+        "Here's an analysis of the two NHL prediction reports and the unified final recommendation list:",
+        "Here's a comparison and unified recommendation list based on the Morning and Noon prediction reports:",
+        "Here's an analysis comparing the morning and noon prediction reports:",
+    ]
+    for marker in compare_markers:
+        idx = content.find(marker)
+        if idx != -1:
+            # Extract from marker to end of file
+            return content[idx:].strip()
+    return None
+
 def extract_ai_analysis(content):
     # Accept either Verified or Unavailable, or just "AI Analysis Summary:"
     marker_verified = "AI Analysis Summary:\nCurrent Roster Data Verified."
@@ -265,9 +283,15 @@ def update_latest_predictions():
         latest_text_file = get_latest_file(folder, f"{sport}_daily_predictions", ext="txt")
         content += f"## {sport.upper()}\n"
         if latest_text_file:
-            ai_content = extract_ai_analysis(read_file(latest_text_file))
-            formatted_ai = format_ai_analysis(ai_content)
-            content += formatted_ai + "\n\n"
+            file_content = read_file(latest_text_file)
+            # Try to extract the new comparison/unified recommendation format first
+            comparison = extract_comparison_analysis(file_content)
+            if comparison:
+                content += comparison + "\n\n"
+            else:
+                ai_content = extract_ai_analysis(file_content)
+                formatted_ai = format_ai_analysis(ai_content)
+                content += formatted_ai + "\n\n"
         else:
             content += f"No {sport.upper()} predictions found.\n\n"
 

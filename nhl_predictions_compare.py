@@ -5,7 +5,11 @@ from google import genai
 
 load_dotenv()
 
-def compare_predictions(morning_file, noon_file, output_file):
+def read_prompt(prompt_path):
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        return f.read()
+
+def compare_predictions(morning_file, noon_file, output_file, prompt_path):
     """
     Compare morning (7am) and noon (12pm) NHL predictions and generate a combined analysis.
     """
@@ -27,47 +31,12 @@ def compare_predictions(morning_file, noon_file, output_file):
         print(f"Noon predictions file not found: {noon_file}")
         return
 
-    # Create comparison prompt
-    comparison_prompt = f"""You are a sports betting analyst comparing two NHL prediction reports from the same day at different times (morning and noon).
-
-MORNING PREDICTIONS (7:00 AM):
-{morning_predictions}
-
----
-
-NOON PREDICTIONS (12:00 PM):
-{noon_predictions}
-
----
-
-ANALYSIS TASK:
-1. Identify which plays appeared in both reports (consistency)
-2. Identify which plays were added/removed between reports (line movement impact)
-3. Identify confidence level changes for the same plays
-4. Identify odds changes that affected recommendations
-5. Provide a unified final recommendation list that:
-   - Prioritizes plays that appeared in both reports (stronger conviction)
-   - Includes only high/medium confidence plays
-   - Maximum 5 total plays
-   - Ranked by confidence %
-   - Show the "Bet of the Day" first
-
-For each play in the output, do the following:
-- If the play appeared in both reports, add a single explicit line before the justification, summarizing the change from morning to noon (e.g., 'Confidence increased due to line movement', 'Odds improved and confidence increased', or 'No change from morning to noon').
-- If the play was added or removed at noon, add a line such as 'New play added at noon based on updated odds' or 'Removed at noon due to odds movement'.
-- After this line, always include the original justification/reasoning from the noon report for that play, without changing or summarizing it.
-- Do not rewrite or paraphrase the original justification; keep it as-is from the noon report.
-
-Format the output similarly to your original report:
-
-🏆 **BET OF THE DAY**
-[Best play across both reports]
-
-**Other Recommended Plays**
-[Remaining plays]
-
-Include a brief note about changes from morning to noon for each play (as above), but always keep the original noon justification for each play.
-"""
+    # Read the comparison prompt from file
+    comparison_prompt_template = read_prompt(prompt_path)
+    comparison_prompt = comparison_prompt_template.format(
+        morning_predictions=morning_predictions,
+        noon_predictions=noon_predictions
+    )
 
     try:
         response = client.models.generate_content(
@@ -96,6 +65,7 @@ def main():
     """Main function to compare morning and noon NHL predictions."""
     today_str = date.today().isoformat()
     predictions_folder = os.path.join("predictions", "nhl")
+    prompt_path = os.path.join("prompts", "nhl_compare_prompt.txt")
 
     # Define temp file paths
     morning_file = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
@@ -116,7 +86,7 @@ def main():
     print(f"Noon file: {noon_file}")
 
     # Run comparison
-    compare_predictions(morning_file, noon_file, output_file)
+    compare_predictions(morning_file, noon_file, output_file, prompt_path)
 
     # Delete temp files after successful comparison
     for temp_file in [morning_file, noon_file]:
@@ -131,4 +101,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
