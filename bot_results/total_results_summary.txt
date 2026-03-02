@@ -9,9 +9,9 @@ TOTAL: 10 wins, 13 losses
 2026-03-02: 2 wins, 3 losses
 
 NHL:
-TOTAL: 12 wins, 7 losses
+TOTAL: 13 wins, 8 losses
 2026-02-26: 3 wins, 2 losses
 2026-02-27: 3 wins, 2 losses
 2026-02-28: 2 wins, 2 losses
 2026-03-01: 4 wins, 1 loss
-2026-03-02: 0 wins, 0 losses
+2026-03-02: 1 win, 1 loss

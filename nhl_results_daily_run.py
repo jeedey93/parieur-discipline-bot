@@ -7,21 +7,46 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def analyze_results_with_actuals(results_text, actuals_text):
+def analyze_results_with_actuals(results_text, actuals_text, summary_date):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
-    prompt = (
-        "You are a disciplined NHL betting analyst.\n"
-        "You will:\n"
-        "- Review the AI predictions and the actual game results\n"
-        "- For each prediction, determine if it was a win or loss\n"
-        "- Summarize the total number of wins and losses\n"
-        "\nAI Predictions:\n"
-        f"{results_text}\n"
-        "\nActual Results:\n"
-        f"{actuals_text}\n"
-        "Return a summary of wins and losses."
-    )
+    prompt = f"""
+You are a disciplined NHL betting analyst. Review the AI's predictions against the actual game results for {summary_date}.
+
+For each recommended play:
+- List the play header (as in the predictions file).
+- Show the actual result in the format: Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
+- State the outcome: WIN or LOSS, with a short reason (e.g., '5 is under 6.5').
+
+After all plays, output a summary section:
+---
+Summary of AI Prediction Performance:
+- Total Wins: <number>
+- Total Losses: <number>
+
+Use this exact format:
+
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for {summary_date}.
+
+Here's the breakdown:
+
+1.  <PLAY HEADER>
+    *   Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
+    *   Outcome: **WIN** or **LOSS** (<short reason>)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: <number>**
+*   **Total Losses: <number>**
+
+AI Predictions:
+{results_text}
+
+Actual Results:
+{actuals_text}
+"""
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",
@@ -47,7 +72,8 @@ actuals_text = "\n".join(
 )
 
 # Analyze
-summary = analyze_results_with_actuals(predictions_text, actuals_text)
+summary_date = yesterday
+summary = analyze_results_with_actuals(predictions_text, actuals_text, summary_date)
 
 today_str = date.today().isoformat()
 results_folder = os.path.join("bot_results", "nhl")

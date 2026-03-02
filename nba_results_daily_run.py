@@ -8,21 +8,51 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def analyze_results_with_actuals(results_text, actuals_text):
+def analyze_results_with_actuals(results_text, actuals_text, date_str):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
-    prompt = (
-        "You are a disciplined NBA betting analyst.\n"
-        "You will:\n"
-        "- Review the AI predictions and the actual game results\n"
-        "- For each prediction, determine if it was a win or loss\n"
-        "- Summarize the total number of wins and losses\n"
-        "\nAI Predictions:\n"
-        f"{results_text}\n"
-        "\nActual Results:\n"
-        f"{actuals_text}\n"
-        "Return a summary of wins and losses."
-    )
+    prompt = f"""
+You are a disciplined NBA betting analyst. Your job is to review the AI's predictions against the actual game results for {{DATE}}.
+
+For each recommended play:
+- Match the prediction to the actual game result.
+- For totals (over/under), compare the predicted total to the actual total points scored and state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
+- For spreads, compare the predicted spread to the actual margin and state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
+- For moneyline, state if the predicted team won or lost (e.g., 'Outcome: WIN (Team won)').
+- For each play, output:
+    * The bet header (as in the predictions)
+    * The actual result (e.g., 'TeamA 110 @ TeamB 105')
+    * The outcome (WIN/LOSS) with a short justification
+
+After all plays, output a summary section:
+- Total Wins
+- Total Losses
+
+Format exactly as this example:
+
+As a disciplined NBA betting analyst, I have reviewed the AI's predictions against the actual game results for {{DATE}}.
+
+Here's the breakdown:
+
+1.  **<BET HEADER>**
+    *   Actual Result: <AWAY> <AWAY_SCORE> @ <HOME> <HOME_SCORE>
+    *   Outcome: **WIN/LOSS** (<short justification>)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: X**
+*   **Total Losses: Y**
+
+---
+
+AI Predictions:
+{results_text}
+
+Actual Results:
+{actuals_text}
+""".replace("{{DATE}}", date_str)
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",
@@ -47,10 +77,9 @@ actuals_text = "\n".join(
     f"{g['away']} {g['away_score']} @ {g['home']} {g['home_score']}" for g in games
 )
 
-# Analyze
-summary = analyze_results_with_actuals(results_text, actuals_text)
-
 today_str = date.today().isoformat()
+summary = analyze_results_with_actuals(results_text, actuals_text, yesterday)
+
 results_folder = os.path.join("bot_results", "nba")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
@@ -58,6 +87,5 @@ filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
 # Write summary to file
 with open(filename, "w") as out_f:
     out_f.write(summary)
-
 
 print(summary)
