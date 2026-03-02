@@ -63,12 +63,18 @@ def analyze_results(results_text, injuries_text):
         else:
             raise
 
-
-games = get_games_today()
+# --- New logic for 7am/12pm runs ---
+run_time = os.environ.get("NHL_RUN_TIME", "7am").lower()
 today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nhl")
 os.makedirs(predictions_folder, exist_ok=True)
-filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
+
+if run_time == "7am":
+    filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
+elif run_time == "12pm":
+    filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_12pm.txt")
+else:
+    filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
 
 # Get injuries as a formatted string
 injuries_list = scrape_nhl_injuries_by_team()
@@ -83,6 +89,7 @@ if injuries_list:
 else:
     injuries_text = "NHL Injured Players by Team: None"
 
+games = get_games_today()
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")
 
@@ -115,3 +122,29 @@ with open(filename, "w") as f:
             print(summary)
 
 print(f"Saved daily results to {filename}")
+
+# --- If 12pm run, compare/analyze both 7am and 12pm predictions ---
+if run_time == "12pm":
+    file_7am = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
+    file_12pm = filename
+    if os.path.exists(file_7am) and os.path.exists(file_12pm):
+        with open(file_7am, "r", encoding="utf-8") as f7, open(file_12pm, "r", encoding="utf-8") as f12:
+            content_7am = f7.read()
+            content_12pm = f12.read()
+        # Simple comparison: print differences (could be improved)
+        print("\n--- NHL 7am vs 12pm Prediction Comparison ---\n")
+        if content_7am == content_12pm:
+            print("No changes between 7am and 12pm predictions.")
+        else:
+            print("Differences detected between 7am and 12pm predictions.")
+            # Optionally, print a diff or summary
+            import difflib
+            diff = difflib.unified_diff(
+                content_7am.splitlines(),
+                content_12pm.splitlines(),
+                fromfile="7am",
+                tofile="12pm",
+                lineterm=""
+            )
+            for line in diff:
+                print(line)
