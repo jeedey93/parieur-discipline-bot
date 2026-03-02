@@ -5,3 +5,4 @@ google-generativeai
 python-dateutil
 pytz
 beautifulsoup4
+google-genai
