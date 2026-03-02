@@ -113,15 +113,16 @@ def main():
     # Run comparison
     compare_predictions(morning_file, noon_file, output_file)
 
-    # Optional: Delete temp files after successful comparison
-    try:
-        os.remove(morning_file)
-        os.remove(noon_file)
-        print("✅ Temporary files cleaned up")
-    except Exception as e:
-        print(f"⚠️  Could not clean up temp files: {e}")
-
+    # Delete temp files after successful comparison
+    for temp_file in [morning_file, noon_file]:
+        try:
+            if os.path.exists(temp_file):
+                os.remove(temp_file)
+                print(f"✅ Deleted temp file: {temp_file}")
+            else:
+                print(f"⚠️  Temp file not found for deletion: {temp_file}")
+        except Exception as e:
+            print(f"⚠️  Could not delete temp file {temp_file}: {e}")
 
 if __name__ == "__main__":
     main()
-
