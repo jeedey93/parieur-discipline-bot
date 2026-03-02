@@ -17,6 +17,7 @@ def extract_comparison_analysis(content):
     # Try to extract the new comparison/unified recommendation format
     # Accepts both NHL and NBA styles
     compare_markers = [
+        "**Comparison and Unified Final Recommendations**",
         "Here's an analysis comparing the morning and noon NHL prediction reports:",
         "Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.",
         "Here's a comparison and unified recommendation list based on the Morning and Noon prediction reports:",
