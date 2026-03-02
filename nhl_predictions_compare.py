@@ -52,6 +52,12 @@ ANALYSIS TASK:
    - Ranked by confidence %
    - Show the "Bet of the Day" first
 
+For each play in the output, do the following:
+- If the play appeared in both reports, add a single explicit line before the justification, summarizing the change from morning to noon (e.g., 'Confidence increased due to line movement', 'Odds improved and confidence increased', or 'No change from morning to noon').
+- If the play was added or removed at noon, add a line such as 'New play added at noon based on updated odds' or 'Removed at noon due to odds movement'.
+- After this line, always include the original justification/reasoning from the noon report for that play, without changing or summarizing it.
+- Do not rewrite or paraphrase the original justification; keep it as-is from the noon report.
+
 Format the output similarly to your original report:
 
 🏆 **BET OF THE DAY**
@@ -60,7 +66,7 @@ Format the output similarly to your original report:
 **Other Recommended Plays**
 [Remaining plays]
 
-Include a brief note about changes from morning to noon for each play (e.g., "Confidence increased due to line movement" or "New play added at noon based on updated odds")
+Include a brief note about changes from morning to noon for each play (as above), but always keep the original noon justification for each play.
 """
 
     try:

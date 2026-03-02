@@ -29,7 +29,7 @@ def compare_predictions(morning_file, noon_file, output_file):
         return
 
     # Create comparison prompt
-    comparison_prompt = f"""You are a sports betting analyst comparing two prediction reports from the same day at different times (morning and evening).
+    comparison_prompt = f"""You are a sports betting analyst comparing two prediction reports from the same day at different times (morning and noon).
 
 MORNING PREDICTIONS (7:00 AM):
 {morning_predictions}
@@ -52,6 +52,8 @@ ANALYSIS TASK:
    - Maximum 5 total plays
    - Ranked by confidence %
    - Show the "Bet of the Day" first
+
+For each play, keep the original reasoning/justification from the noon report (or morning if only present there), but add a line explicitly stating the line/odds/confidence change from morning to noon (e.g., "Line moved from -1.5 @ 1.91 (morning) to -1.0 @ 1.97 (noon), confidence increased from Medium to High").
 
 Format the output similarly to your original report:
 
