@@ -27,10 +27,10 @@ def analyze_results(results_text, injuries_text):
         except Exception:
             continue
 
-    # Read last 5 days' result files
-    last_5_files = hist_files[-5:] if len(hist_files) >= 5 else hist_files
+    # Read last 10 days' result files
+    last_10_files = hist_files[-10:] if len(hist_files) >= 10 else hist_files
     recent_results = ""
-    for rf in last_5_files:
+    for rf in last_10_files:
         try:
             with open(rf, "r", encoding="utf-8") as rfile:
                 recent_results += f"\n---\n{os.path.basename(rf)}\n" + rfile.read()
