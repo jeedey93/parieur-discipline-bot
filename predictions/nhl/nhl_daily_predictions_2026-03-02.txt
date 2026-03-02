@@ -1,0 +1,42 @@
+Here's an analysis of the two NHL prediction reports and the unified final recommendation list:
+
+---
+
+**Report Comparison Insights (Morning vs. Noon):**
+
+The shift from the morning to the noon report reveals dynamic market adjustments and refined AI analysis. Key observations include:
+
+*   **Line Movement Impact:** A significant move in the New York Rangers ML odds (from 1.80 to 2.03) transformed it from a standard recommendation to the "BET OF THE DAY" with vastly increased confidence. Conversely, the Toronto Maple Leafs ML odds shifted against the recommended play (from 1.74 to 1.78 for home odds), leading to its removal, along with the Toronto Over play, suggesting decreased perceived value or a change in underlying factors.
+*   **Confidence Refinement:** For plays appearing in both reports, confidence levels generally increased at noon, indicating stronger conviction as game time approaches and more data/market movements are observed.
+*   **Focus Shift:** The noon report introduced three new "Under" plays, specifically targeting games featuring strong defensive teams and elite goaltending, suggesting a potential shift in the model's focus or updated information regarding team matchups and expected game flow.
+
+---
+
+🏆 **BET OF THE DAY**
+New York Rangers ML vs Columbus Blue Jackets @ 2.03 (Noon Odds)
+*Morning: 1.80, Medium Confidence (60%)*
+*Noon: 2.03, High Confidence (73%)*
+**Note:** Elevated to 'BET OF THE DAY' with a significant increase in both odds and confidence. The market has clearly mispriced the Rangers as an underdog despite minor depth injuries, presenting immense value at 2.03.
+
+---
+
+**Other Recommended Plays**
+
+Nashville Predators ML vs Detroit Red Wings @ 1.93 (Noon Odds)
+*Morning: 1.94, Medium Confidence (57%) - BET OF THE DAY*
+*Noon: 1.93, High Confidence (61%)*
+**Note:** Maintained as a strong recommendation, with confidence increasing from medium to high, despite a slight decrease in odds. The underlying analysis, strong defensive structure, and likely Saros start at home reinforce the conviction in Nashville.
+
+Dallas Stars vs Vancouver Canucks Under 6.0 @ 1.90 (Noon Odds)
+*Noon: 1.90, High Confidence (59%)*
+**Note:** New play added at noon. High confidence based on the matchup between two strong defensive teams with elite goaltending (Oettinger and Demko) and a positive trend in recent Under picks from the model.
+
+Colorado Avalanche vs Los Angeles Kings Under 6.0 @ 1.90 (Noon Odds)
+*Noon: 1.90, Medium Confidence (54%)*
+**Note:** New play added at noon. Medium confidence due to the Kings' stifling defensive system and their ability to slow down high-powered offenses, especially at home.
+
+Carolina Hurricanes vs Seattle Kraken Under 6.0 @ 1.90 (Noon Odds)
+*Noon: 1.90, Medium Confidence (53%)*
+**Note:** New play added at noon. Medium confidence, leveraging Carolina's elite defensive system and quality goaltending to suppress Seattle's offense.
+
+---
