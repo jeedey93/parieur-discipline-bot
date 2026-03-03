@@ -1,6 +1,6 @@
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def parse_results_from_file(filepath):
     wins = 0
@@ -20,10 +20,15 @@ def parse_results_from_file(filepath):
     return wins, losses
 
 def get_date_from_filename(filename):
-    # Try to extract date from filename (YYYY-MM-DD)
+    # Extract date from filename (YYYY-MM-DD), then subtract one day for game date
     match = re.search(r'(\d{4}-\d{2}-\d{2})', filename)
     if match:
-        return match.group(1)
+        try:
+            date_obj = datetime.strptime(match.group(1), "%Y-%m-%d")
+            prev_date = date_obj - timedelta(days=1)
+            return prev_date.strftime("%Y-%m-%d")
+        except Exception:
+            return match.group(1)
     return filename
 
 def per_date_results(results_dir):
@@ -48,11 +53,13 @@ def main():
     output.append(f"Total Results Summary ({datetime.now().strftime('%Y-%m-%d')})\n")
     output.append('NBA:')
     output.append(f'TOTAL: {nba_wins} wins, {nba_losses} losses')
+    output.append('Game Date (results for games played on this date):')
     for date, wins, losses in nba_results:
         output.append(f'{date}: {wins} win' + ('' if wins == 1 else 's') + f', {losses} loss' + ('' if losses == 1 else 'es'))
     output.append('')
     output.append('NHL:')
     output.append(f'TOTAL: {nhl_wins} wins, {nhl_losses} losses')
+    output.append('Game Date (results for games played on this date):')
     for date, wins, losses in nhl_results:
         output.append(f'{date}: {wins} win' + ('' if wins == 1 else 's') + f', {losses} loss' + ('' if losses == 1 else 'es'))
     output.append('')
