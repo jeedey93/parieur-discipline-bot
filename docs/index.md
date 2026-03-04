@@ -94,10 +94,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.3u</div>
 </div>
 <div class='stat-card'>
-<div class='stat-label'>Last Week</div>
-<div class='stat-value'>45%</div>
-<div class='stat-record'>19W - 23L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+3.8u</div>
+<div class='stat-label'>This Week</div>
+<div class='stat-value'>42%</div>
+<div class='stat-record'>8W - 11L</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-2.5u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>
