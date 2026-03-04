@@ -782,6 +782,18 @@ def update_latest_predictions():
     nice_date = format_date_nice(overall_latest_date)
     content = ""
 
+    # ── Add HTML head with title and meta tags ──
+    content += "<!DOCTYPE html>\n"
+    content += "<html lang='en'>\n"
+    content += "<head>\n"
+    content += "<meta charset='UTF-8'>\n"
+    content += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
+    content += "<title>🎯 Parieur Discipliné - AI NHL & NBA Betting Predictions</title>\n"
+    content += "<meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
+    content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
+    content += "</head>\n"
+    content += "<body>\n\n"
+
     # ── Sports Blog CSS ──
     content += "<style>\n"
     content += "* { margin: 0; padding: 0; box-sizing: border-box; }\n"
@@ -985,6 +997,10 @@ def update_latest_predictions():
     # Add Vercel Analytics and Speed Insights
     content += "<script defer src='/_vercel/insights/script.js'></script>\n"
     content += "<script defer src='/_vercel/speed-insights/script.js'></script>\n\n"
+
+    # Close HTML tags
+    content += "</body>\n"
+    content += "</html>\n\n"
 
 
     with open(output_md, "w", encoding="utf-8") as f:
