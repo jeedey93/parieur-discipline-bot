@@ -366,8 +366,14 @@ def format_recommendations_section(recs_text):
             i += 1
             continue
 
-        # Detect a bet line (starts with ** and has @ for odds)
-        if line.startswith('**') and '@' in line and 'BET OF THE DAY' not in line:
+        # Detect a bet line (starts with ** and looks like a bet)
+        # Format: **Team vs Team** or **Team ML vs Team** or **Team +X.X vs Team @ odds**
+        is_bet_line = (line.startswith('**') and line.endswith('**') and
+                      'BET OF THE DAY' not in line and
+                      'Unified Final' not in line and
+                      'Other Recommended' not in line and
+                      ('vs' in line.lower() or 'ML' in line or 'over' in line.lower() or 'under' in line.lower() or '+' in line or '-' in line))
+        if is_bet_line:
             # Save previous pick
             if current_pick:
                 output.append(format_pick_card(current_pick, is_bet_of_day))
@@ -422,8 +428,18 @@ def format_pick_card(pick, is_featured=False):
         if pick['number']:
             html += f"<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#{pick['number']}</div>\n\n"
 
+    # Extract odds from changes note if not in bet text
+    bet_display = pick['bet']
+    if '@' not in bet_display and pick['changes']:
+        # Try to extract odds from changes note
+        # Patterns: "from 1.74 (morning) to 1.77 (noon)" or "remained the same as morning (1.67)"
+        odds_match = re.search(r'to (\d+\.\d+) \(noon\)|same as morning \((\d+\.\d+)\)', pick['changes'])
+        if odds_match:
+            odds = odds_match.group(1) or odds_match.group(2)
+            bet_display = f"{bet_display} @ {odds}"
+
     # Bet line - large and bold
-    html += f"<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>{pick['bet']}</div>\n\n"
+    html += f"<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>{bet_display}</div>\n\n"
 
     # Confidence details in a styled bar with colored badge
     if pick['confidence']:
@@ -901,11 +917,22 @@ def format_dual_bet(raw_text):
         # Parse confidence and description
         confidence_text = ""
         description_text = ""
+        odds_value = None
         for line in body_lines:
             if "Confidence Level:" in line or "Confidence:" in line:
                 confidence_text = line
             else:
                 description_text += " " + line
+                # Try to extract odds from the description
+                if not odds_value:
+                    # Look for patterns like "@ 1.77" or "at 1.91"
+                    odds_match = re.search(r'[@at]\s*(\d+\.\d+)', line)
+                    if odds_match:
+                        odds_value = odds_match.group(1)
+
+        # Add odds to bet line if found and not already present
+        if odds_value and '@' not in bet_line:
+            bet_line = f"{bet_line} @ {odds_value}"
 
         # Create card
         md += "<div class='pick-card'>\n"

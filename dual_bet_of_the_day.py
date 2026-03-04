@@ -25,6 +25,7 @@ def extract_bet_of_the_day(section_lines):
     """
     bet = None
     justification_lines = []
+    odds_value = None
     for i, line in enumerate(section_lines):
         stripped = line.strip()
         # Find the BET OF THE DAY header
@@ -48,8 +49,13 @@ def extract_bet_of_the_day(section_lines):
                            jline.startswith('🏆'):
                             break
                         if jline:
-                            # Skip lines that start with *Change (change notes)
+                            # Extract odds from change notes before skipping
                             if jline.startswith('*Change') or jline.startswith('*Changes'):
+                                # Try to extract odds: "to 1.77 (noon)" or "same as morning (1.67)"
+                                import re
+                                odds_match = re.search(r'to (\d+\.\d+) \(noon\)|same as morning \((\d+\.\d+)\)', jline)
+                                if odds_match and not odds_value:
+                                    odds_value = odds_match.group(1) or odds_match.group(2)
                                 continue
                             justification_lines.append(jline)
                     break
@@ -57,37 +63,38 @@ def extract_bet_of_the_day(section_lines):
 
     # Join all justification lines into one text
     justification = ' '.join(justification_lines).strip() if justification_lines else None
+
+    # Add odds to bet if found and not already present
+    if odds_value and bet and '@' not in bet:
+        bet = f"{bet} @ {odds_value}"
+
     return bet, justification
 
+def get_latest_file(folder, prefix, ext="txt"):
+    """Find the latest prediction file by creation time."""
+    from glob import glob
+    files = glob(os.path.join(folder, f"{prefix}_*.{ext}"))
+    if not files:
+        return None
+    latest = max(files, key=os.path.getctime)
+    return latest
+
 def get_sections_from_index():
-    with open(INDEX_MD_PATH, 'r') as f:
-        lines = f.readlines()
+    # Read from latest prediction files instead of index.md (which is now HTML)
+    nhl_file = get_latest_file("predictions/nhl", "nhl_daily_predictions")
+    nba_file = get_latest_file("predictions/nba", "nba_daily_predictions")
 
     nhl_section = []
     nba_section = []
-    in_nhl = False
-    in_nba = False
-    for line in lines:
-        stripped = line.strip()
-        # Match headings like "## 🏒 NHL Predictions" or "## NHL"
-        if stripped.startswith('## ') and 'NHL' in stripped:
-            in_nhl = True
-            in_nba = False
-            continue
-        if stripped.startswith('## ') and 'NBA' in stripped:
-            in_nba = True
-            in_nhl = False
-            continue
-        # Stop at other ## headers (e.g., "## 📈 Overall Performance")
-        if stripped.startswith('## ') and 'NHL' not in stripped and 'NBA' not in stripped:
-            if in_nhl:
-                in_nhl = False
-            if in_nba:
-                in_nba = False
-        if in_nhl:
-            nhl_section.append(line)
-        if in_nba:
-            nba_section.append(line)
+
+    if nhl_file:
+        with open(nhl_file, 'r', encoding='utf-8') as f:
+            nhl_section = f.readlines()
+
+    if nba_file:
+        with open(nba_file, 'r', encoding='utf-8') as f:
+            nba_section = f.readlines()
+
     return nhl_section, nba_section
 
 def build_gemini_prompt(nhl_bet, nhl_just, nba_bet, nba_just):

@@ -78,9 +78,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.1u</div>
+<div class='stat-value'>50%</div>
+<div class='stat-record'>5W - 5L</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-0.1u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
@@ -126,14 +126,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
-<div class='pick-title'>Washington Capitals ML vs Utah Mammoth @ 1.83</div>
-<div class='pick-meta'><span class='confidence-medium'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
+<div class='pick-title'>Detroit Red Wings ML vs Vegas Golden Knights</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 69.5% The Detroit Red Wings, enjoying adequate rest and recent strong form (2 wins in last 2 games), face a severely depleted Golden Knights squad at home. Vegas is missing key players Mark Stone and William Karlsson, along with starting goalie Carter Hart, which significantly impacts their offensive and defensive capabilities. Bookmakers seem to undervalue Detroit's home advantage and the profound impact of Vegas's injuries, creating a strong value play with a calculated edge of 13.0%.</div>
 </div>
 
 <div class='pick-card'>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
-<div class='pick-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
+<div class='pick-title'>Indiana Pacers +12.5 vs Los Angeles Clippers</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 65.0% The Pacers are coming off significant rest while the Clippers played on a back-to-back last night. This substantial fatigue differential for the Clippers creates a clear value against a market that is over-adjusting for their strength. *Line moved from -12.0 @ 1.94 (morning for Clippers) to -12.5 @ 1.99 (noon for Clippers), making Pacers +12.5 @ 1.91 a new, high-conviction play in the noon report.*</div>
 </div>
 
 </div>
@@ -152,45 +152,45 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>BET OF THE DAY: Minnesota Wild @ Colorado Avalanche ML vs Minnesota Wild @ 1.63</span>
+<span class='result-title'>Washington Capitals ML vs Utah Mammoth @ 1.83</span>
 </div>
-<div class='result-score'>Minnesota 5 @ Colorado 2</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64</span>
-</div>
-<div class='result-score'>Tampa Bay 4 @ Carolina 5</div>
+<div class='result-score'>Utah 3 @ Washington 2 (Total goals: 5)</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Toronto Maple Leafs @ Florida Panthers ML vs Toronto Maple Leafs @ 1.63</span>
+<span class='result-title'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</span>
 </div>
-<div class='result-score'>Toronto 1 @ Florida 5</div>
+<div class='result-score'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</div>
 </div>
 
 <div class='result-card result-loss'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>New Jersey Devils vs Pittsburgh Penguins Over 5.5 @ 1.67</span>
+<span class='result-title'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</span>
 </div>
-<div class='result-score'>New Jersey 1 @ Pittsburgh 4 (Total Goals: 5)</div>
+<div class='result-score'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Chicago Blackhawks @ Nashville Predators ML vs Chicago Blackhawks @ 1.55</span>
+<span class='result-title'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</span>
 </div>
-<div class='result-score'>Chicago 2 @ Nashville 4</div>
+<div class='result-score'>Florida 1 @ New Jersey 5 (Total goals: 6)</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Calgary Flames ML vs Dallas Stars @ 2.1</span>
+</div>
+<div class='result-score'>Dallas 6 @ Calgary 1 (Total goals: 7)</div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>
@@ -199,45 +199,45 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>BET OF THE DAY: Philadelphia 76ers ML vs Miami Heat @ 1.68</span>
+<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
 </div>
-<div class='result-score'>Philadelphia 76ers 124, Miami Heat 117.</div>
+<div class='result-score'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
+</div>
+<div class='result-score'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
+</div>
+<div class='result-score'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Philadelphia 76ers -2.5 vs Miami Heat @ 1.93</span>
+<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
 </div>
-<div class='result-score'>Philadelphia 76ers 124, Miami Heat 117 (76ers won by 7 points).</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99</span>
-</div>
-<div class='result-score'>San Antonio Spurs 126, Brooklyn Nets 110 (Spurs won by 16 points).</div>
+<div class='result-score'>New York Knicks 111 @ Toronto Raptors 95</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Charlotte Hornets -13.0 vs Indiana Pacers @ 1.99</span>
+<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
 </div>
-<div class='result-score'>Charlotte Hornets 133, Indiana Pacers 109 (Hornets won by 24 points).</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Houston Rockets ML vs Orlando Magic @ 1.65</span>
-</div>
-<div class='result-score'>Houston Rockets 113, Orlando Magic 108.</div>
+<div class='result-score'>Phoenix Suns 114 @ Sacramento Kings 103</div>
 </div>
 
 </div>
@@ -284,8 +284,49 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 </details>
 
+<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
+
+<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Detroit Red Wings ML vs Vegas Golden Knights @ 1.77</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 69.5%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Detroit Red Wings, enjoying adequate rest and recent strong form (2 wins in last 2 games), face a severely depleted Golden Knights squad at home. Vegas is missing key players Mark Stone and William Karlsson, along with starting goalie Carter Hart, which significantly impacts their offensive and defensive capabilities. Bookmakers seem to undervalue Detroit's home advantage and the profound impact of Vegas's injuries, creating a strong value play with a calculated edge of 13.0%.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning to Noon:* The odds for Detroit ML moved favorably from 1.74 (morning) to 1.77 (noon). The AI's calculated Win Probability increased from 66% to 69.5%, solidifying its position as the Bet of the Day.</div>
+
+</div>
+
+
 
 <h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Seattle Kraken ML vs St Louis Blues @ 1.67</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 64%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Kraken are playing at home with ample rest and no significant injuries, facing an inconsistent Blues team also coming off a long break. Seattle's strong defensive play at home gives them a notable edge against St. Louis, making their moneyline a reasonable play.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning to Noon:* The odds remained the same as morning (1.67), and the confidence level was Medium. While considered a viable play in the morning report, it was not explicitly included in the noon report's list of recommendations.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New York Islanders ML vs Anaheim Ducks @ 1.91</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 60%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Islanders, a defensively sound team, face an Anaheim Ducks squad severely depleted by injuries to four key offensive players: Mikael Granlund, Troy Terry, Ryan Strome, and Frank Vatrano. This massive hit to Anaheim's scoring capability significantly increases New York's probability of securing a road win at favorable odds.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning to Noon:* The odds remained the same as morning (1.91), and the confidence level was High. While considered a strong play in the morning report, it was not explicitly included in the noon report's list of recommendations.</div>
+
+</div>
 
 
 
@@ -330,8 +371,65 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 </details>
 
+<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
+
+<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Indiana Pacers +12.5 vs Los Angeles Clippers</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 65.0%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Pacers are coming off significant rest while the Clippers played on a back-to-back last night. This substantial fatigue differential for the Clippers creates a clear value against a market that is over-adjusting for their strength. *Line moved from -12.0 @ 1.94 (morning for Clippers) to -12.5 @ 1.99 (noon for Clippers), making Pacers +12.5 @ 1.91 a new, high-conviction play in the noon report.*</div>
+
+</div>
+
+
 
 <h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New York Knicks +4.0 vs Oklahoma City Thunder</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 59.5%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Knicks are in strong recent form, but are on a back-to-back, facing a Thunder team that has enjoyed considerable rest. Despite the Knicks' fatigue, the market is offering good value on them covering a generous spread at home. Confidence increased due to recent positive performance on Knicks spreads. *Line moved from +4.5 @ 1.91 (morning) to +4.0 @ 1.94 (noon), and confidence increased from Medium to High with increased units from 1u to 1.5u.*</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Atlanta Hawks +1.5 vs Milwaukee Bucks</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 58.5%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Hawks enter this game well-rested, contrasting with a Milwaukee team on a back-to-back and demonstrating very poor recent form. This significant fatigue and form advantage provides a strong edge against a Milwaukee team that has been consistently overvalued by the market, as identified by our historical analysis of past Bucks plays. *This play was newly introduced in the noon report, as the Hawks spread moved from +1.0 @ 1.91 (morning) to +1.5 @ 1.99 (noon), making it a more attractive bet.*</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Philadelphia 76ers -8.5 vs Utah Jazz</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 58.0%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The 76ers are coming in well-rested and historically perform well in favorable matchups, while the Jazz are severely fatigued on a back-to-back with cross-country travel. This significant rest and travel disparity creates a strong probability for the 76ers to comfortably cover the spread at home. *This play was introduced in the noon report, completely reversing the morning's recommendation of Utah Jazz +9.5 @ 1.95 (Medium Confidence). The 76ers' spread moved from -9.5 (morning) to -8.5 (noon).*</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Boston Celtics vs Charlotte Hornets Under 213.5</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 58.0%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both teams are on a back-to-back, which often leads to slower pace and lower scoring outcomes, especially for the Celtics who have trended towards lower totals in recent games. This matchup presents value on the Under as the market total might not fully account for the combined fatigue and defensive potential. *This play was introduced in the noon report, shifting from the morning's recommendation of Charlotte Hornets +6.5 @ 1.98 (Medium Confidence). The O/U total moved from 212.5 (morning) to 213.5 (noon).*</div>
+
+</div>
 
 
 

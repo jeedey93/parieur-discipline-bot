@@ -11,8 +11,9 @@ def read_prompt(prompt_path):
         return f.read()
 
 def ensure_confidence_line(text):
-    # Regex to find play headers (e.g., **Boston Bruins ML vs Philadelphia Flyers @ 1.94**)
-    play_header_pattern = re.compile(r"^(\*\*.+?@ \d+\.\d+\*\*)$", re.MULTILINE)
+    # Regex to find play headers (e.g., **Boston Bruins ML vs Philadelphia Flyers @ 1.94** or without @)
+    # Updated to match headers with or without odds
+    play_header_pattern = re.compile(r"^(\*\*.+?(vs|ML|over|under|\+|-).+?\*\*)$", re.MULTILINE)
     # Regex to find confidence line
     confidence_pattern = re.compile(r"Confidence Level: .+?Units: .+?Win Probability: .+?%", re.IGNORECASE)
 

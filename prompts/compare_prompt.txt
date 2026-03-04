@@ -24,6 +24,11 @@ ANALYSIS TASK:
 
 For every play in the unified final recommendation list (including Bet of the Day and all others), you must always include the fields: Confidence Level, Units, and Win Probability, with their actual values for that play, as part of the output for that play. These fields must be present for every play, not just the Bet of the Day.
 
+**CRITICAL FORMATTING REQUIREMENT**: Every play header MUST include the odds in the format: **Team/Bet @ odds**
+Example: **Detroit Red Wings ML vs Vegas Golden Knights @ 1.77**
+Example: **Indiana Pacers +12.5 vs Los Angeles Clippers @ 1.91**
+Always use the NOON odds (or the latest available odds) in the play header.
+
 For each play, keep the original reasoning/justification from the noon report (or morning if only present there), but add a line explicitly stating the line/odds/confidence change from morning to noon (e.g., "Line moved from -1.5 @ 1.91 (morning) to -1.0 @ 1.97 (noon), confidence increased from Medium to High").
 
 Format the output similarly to your original report:
