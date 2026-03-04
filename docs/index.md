@@ -78,9 +78,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.1u</div>
+<div class='stat-value'>50%</div>
+<div class='stat-record'>5W - 5L</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-0.1u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
@@ -126,14 +126,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
-<div class='pick-title'>Detroit Red Wings ML vs Vegas Golden Knights</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 69.5% The Detroit Red Wings, enjoying adequate rest and recent strong form (2 wins in last 2 games), face a severely depleted Golden Knights squad at home. Vegas is missing key players Mark Stone and William Karlsson, along with starting goalie Carter Hart, which significantly impacts their offensive and defensive capabilities. Bookmakers seem to undervalue Detroit's home advantage and the profound impact of Vegas's injuries, creating a strong value play with a calculated edge of 13.0%.</div>
+<div class='pick-title'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5% The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
 </div>
 
 <div class='pick-card'>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
-<div class='pick-title'>Indiana Pacers +12.5 vs Los Angeles Clippers</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 65.0% The Pacers are coming off significant rest while the Clippers played on a back-to-back last night. This substantial fatigue differential for the Clippers creates a clear value against a market that is over-adjusting for their strength. *Line moved from -12.0 @ 1.94 (morning for Clippers) to -12.5 @ 1.99 (noon for Clippers), making Pacers +12.5 @ 1.91 a new, high-conviction play in the noon report.*</div>
+<div class='pick-title'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25% The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
 </div>
 
 </div>
@@ -152,45 +152,45 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>BET OF THE DAY: Minnesota Wild @ Colorado Avalanche ML vs Minnesota Wild @ 1.63</span>
+<span class='result-title'>Washington Capitals ML vs Utah Mammoth @ 1.83</span>
 </div>
-<div class='result-score'>Minnesota 5 @ Colorado 2</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Carolina Hurricanes ML vs Tampa Bay Lightning @ 1.64</span>
-</div>
-<div class='result-score'>Tampa Bay 4 @ Carolina 5</div>
+<div class='result-score'>Utah 3 @ Washington 2 (Total goals: 5)</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Toronto Maple Leafs @ Florida Panthers ML vs Toronto Maple Leafs @ 1.63</span>
+<span class='result-title'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</span>
 </div>
-<div class='result-score'>Toronto 1 @ Florida 5</div>
+<div class='result-score'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</div>
 </div>
 
 <div class='result-card result-loss'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>New Jersey Devils vs Pittsburgh Penguins Over 5.5 @ 1.67</span>
+<span class='result-title'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</span>
 </div>
-<div class='result-score'>New Jersey 1 @ Pittsburgh 4 (Total Goals: 5)</div>
+<div class='result-score'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Chicago Blackhawks @ Nashville Predators ML vs Chicago Blackhawks @ 1.55</span>
+<span class='result-title'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</span>
 </div>
-<div class='result-score'>Chicago 2 @ Nashville 4</div>
+<div class='result-score'>Florida 1 @ New Jersey 5 (Total goals: 6)</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Calgary Flames ML vs Dallas Stars @ 2.1</span>
+</div>
+<div class='result-score'>Dallas 6 @ Calgary 1 (Total goals: 7)</div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>
@@ -199,45 +199,45 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>BET OF THE DAY: Philadelphia 76ers ML vs Miami Heat @ 1.68</span>
+<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
 </div>
-<div class='result-score'>Philadelphia 76ers 124, Miami Heat 117.</div>
+<div class='result-score'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
+</div>
+<div class='result-score'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
+</div>
+
+<div class='result-card result-loss'>
+<div class='result-header'>
+<span style='font-size: 1.5em;'>❌</span>
+<span class='result-badge badge-loss'>LOSS</span>
+<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
+</div>
+<div class='result-score'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Philadelphia 76ers -2.5 vs Miami Heat @ 1.93</span>
+<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
 </div>
-<div class='result-score'>Philadelphia 76ers 124, Miami Heat 117 (76ers won by 7 points).</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: San Antonio Spurs -12.5 vs Brooklyn Nets @ 1.99</span>
-</div>
-<div class='result-score'>San Antonio Spurs 126, Brooklyn Nets 110 (Spurs won by 16 points).</div>
+<div class='result-score'>New York Knicks 111 @ Toronto Raptors 95</div>
 </div>
 
 <div class='result-card result-win'>
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Charlotte Hornets -13.0 vs Indiana Pacers @ 1.99</span>
+<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
 </div>
-<div class='result-score'>Charlotte Hornets 133, Indiana Pacers 109 (Hornets won by 24 points).</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Other Recommended Play: Houston Rockets ML vs Orlando Magic @ 1.65</span>
-</div>
-<div class='result-score'>Houston Rockets 113, Orlando Magic 108.</div>
+<div class='result-score'>Phoenix Suns 114 @ Sacramento Kings 103</div>
 </div>
 
 </div>
