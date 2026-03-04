@@ -115,7 +115,7 @@ def ensure_line_breaks_after_plays(text):
         # Also handle numbered plays like "**1. Team vs Opponent ...**"
         if not is_play_header and stripped.startswith("**") and stripped.endswith("**"):
             inner = stripped.strip("*").strip()
-            if re.match(r'^\d+\.?\s+', inner) and ("vs" in inner.lower() or "@" in inner):
+            if re.match(r'^\d+\.?\\s+', inner) and ("vs" in inner.lower() or "@" in inner):
                 is_play_header = True
 
         if is_play_header:
@@ -211,7 +211,7 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
         # Add a hint for the collapsible section
         md += "<details>\n"
-        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to see more details)</span></summary>\n\n"
+        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>\n\n"
         md += cleaned + "\n\n"
         md += "</details>\n\n"
 
