@@ -530,8 +530,12 @@ def parse_last_n_days_results(sport_key, days=5):
                         current_pick["outcome"] = "WIN"
                     elif "**LOSS**" in outcome_text:
                         current_pick["outcome"] = "LOSS"
+                    elif "**PUSH**" in outcome_text:
+                        current_pick["outcome"] = "PUSH"
                     elif "WIN" in outcome_text.upper() and "not a win" not in outcome_text.lower():
                         current_pick["outcome"] = "WIN"
+                    elif "PUSH" in outcome_text.upper():
+                        current_pick["outcome"] = "PUSH"
                     elif "LOSS" in outcome_text.upper():
                         current_pick["outcome"] = "LOSS"
                     continue
@@ -637,8 +641,12 @@ def parse_all_results(sport_key):
                         current_pick["outcome"] = "WIN"
                     elif "**LOSS**" in outcome_text:
                         current_pick["outcome"] = "LOSS"
+                    elif "**PUSH**" in outcome_text:
+                        current_pick["outcome"] = "PUSH"
                     elif "WIN" in outcome_text.upper() and "not a win" not in outcome_text.lower():
                         current_pick["outcome"] = "WIN"
+                    elif "PUSH" in outcome_text.upper():
+                        current_pick["outcome"] = "PUSH"
                     elif "LOSS" in outcome_text.upper():
                         current_pick["outcome"] = "LOSS"
                     continue
@@ -744,19 +752,23 @@ def parse_yesterday_results(sport_key):
                 current_pick["result"] = re.sub(r'^\*\s+Actual Result:\s*', '', stripped)
                 continue
 
-            # Match outcome lines (WIN/LOSS) (with * bullet)
+            # Match outcome lines (WIN/LOSS/PUSH) (with * bullet)
             if current_pick and re.match(r'^\*\s+Outcome:', stripped):
                 outcome_text = re.sub(r'^\*\s+Outcome:\s*', '', stripped)
-                # Check for **WIN** or **LOSS** (bolded outcomes are the actual results)
+                # Check for **WIN**, **LOSS**, or **PUSH** (bolded outcomes are the actual results)
                 if "**WIN**" in outcome_text:
                     current_pick["outcome"] = "WIN"
                 elif "**LOSS**" in outcome_text:
                     current_pick["outcome"] = "LOSS"
+                elif "**PUSH**" in outcome_text:
+                    current_pick["outcome"] = "PUSH"
                 # Fallback to uppercase check only if bolded version not found
                 elif "WIN" in outcome_text.upper() and "**LOSS**" not in outcome_text:
                     # Make sure it's actually indicating a win and not "not a win"
                     if "not a win" not in outcome_text.lower():
                         current_pick["outcome"] = "WIN"
+                elif "PUSH" in outcome_text.upper():
+                    current_pick["outcome"] = "PUSH"
                 elif "LOSS" in outcome_text.upper():
                     current_pick["outcome"] = "LOSS"
                 continue

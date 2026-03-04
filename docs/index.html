@@ -168,10 +168,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-score'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</div>
 </div>
 
-<div class='result-card result-loss'>
+<div class='result-card result-push'>
 <div class='result-header'>
-<span style='font-size: 1.5em;'>❌</span>
-<span class='result-badge badge-loss'>LOSS</span>
+<span style='font-size: 1.5em;'>↔️</span>
+<span class='result-badge badge-push'>PUSH</span>
 <span class='result-title'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</span>
 </div>
 <div class='result-score'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</div>
