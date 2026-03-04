@@ -86,6 +86,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>Last Week</div>
 <div class='stat-value'>44%</div>
 <div class='stat-record'>19W - 24L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.8u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>

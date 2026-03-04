@@ -443,18 +443,20 @@ def format_pick_card(pick, is_featured=False):
 
 
 def parse_last_n_days_results(sport_key, days=5):
-    """Parse last N days of results for a sport and return combined record."""
+    """Parse last N days of results for a sport and return combined record with units."""
     results_dir = os.path.join("bot_results", sport_key)
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
-        return {"wins": 0, "losses": 0}
+        return {"wins": 0, "losses": 0, "units_won": 0, "units_lost": 0, "net_units": 0}
 
     # Get last N files
     recent_files = results_files[-days:] if len(results_files) >= days else results_files
 
     total_wins = 0
     total_losses = 0
+    total_units_won = 0
+    total_units_lost = 0
 
     for file_path in recent_files:
         try:
@@ -468,10 +470,74 @@ def parse_last_n_days_results(sport_key, days=5):
                 total_wins += int(win_match.group(1))
             if loss_match:
                 total_losses += int(loss_match.group(1))
+
+            # Parse individual picks to calculate units
+            lines = content.strip().splitlines()
+            current_pick = None
+
+            for line in lines:
+                stripped = line.strip()
+
+                # Match numbered pick lines
+                pick_match = re.match(r'^\d+\.\s+\*\*(.+?)\*\*', stripped)
+                if pick_match:
+                    if current_pick:
+                        # Process previous pick
+                        if current_pick["outcome"] == "WIN":
+                            total_units_won += (current_pick["odds"] - 1) * current_pick["units"]
+                        elif current_pick["outcome"] == "LOSS":
+                            total_units_lost += current_pick["units"]
+
+                    bet_text = pick_match.group(1)
+                    odds_match = re.search(r'@\s*(\d+\.?\d*)', bet_text)
+                    odds = float(odds_match.group(1)) if odds_match else 1.0
+
+                    current_pick = {
+                        "units": 1.0,
+                        "odds": odds,
+                        "outcome": None
+                    }
+                    continue
+
+                # Extract confidence/units
+                if current_pick and ('Confidence Level:' in stripped or 'Confidence:' in stripped):
+                    if 'High' in stripped:
+                        current_pick["units"] = 1.5
+                    elif 'Medium' in stripped:
+                        current_pick["units"] = 1.0
+                    continue
+
+                # Match outcome
+                if current_pick and re.match(r'^\*\s+Outcome:', stripped):
+                    outcome_text = re.sub(r'^\*\s+Outcome:\s*', '', stripped)
+                    if "**WIN**" in outcome_text:
+                        current_pick["outcome"] = "WIN"
+                    elif "**LOSS**" in outcome_text:
+                        current_pick["outcome"] = "LOSS"
+                    elif "WIN" in outcome_text.upper() and "not a win" not in outcome_text.lower():
+                        current_pick["outcome"] = "WIN"
+                    elif "LOSS" in outcome_text.upper():
+                        current_pick["outcome"] = "LOSS"
+                    continue
+
+            # Don't forget last pick
+            if current_pick and current_pick["outcome"]:
+                if current_pick["outcome"] == "WIN":
+                    total_units_won += (current_pick["odds"] - 1) * current_pick["units"]
+                elif current_pick["outcome"] == "LOSS":
+                    total_units_lost += current_pick["units"]
+
         except Exception:
             continue
 
-    return {"wins": total_wins, "losses": total_losses}
+    net_units = total_units_won - total_units_lost
+    return {
+        "wins": total_wins,
+        "losses": total_losses,
+        "units_won": total_units_won,
+        "units_lost": total_units_lost,
+        "net_units": net_units
+    }
 
 
 def parse_yesterday_results(sport_key):
@@ -912,12 +978,16 @@ def update_latest_predictions():
     yesterday_net_units = yesterday_units_won - yesterday_units_lost
     yesterday_units_display = f"+{yesterday_net_units:.1f}u" if yesterday_net_units >= 0 else f"{yesterday_net_units:.1f}u"
 
-    # Calculate last 7 days stats
+    # Calculate last 7 days stats including units
     nhl_last7 = parse_last_n_days_results("nhl", 7)
     nba_last7 = parse_last_n_days_results("nba", 7)
     last7_total_w = nhl_last7["wins"] + nba_last7["wins"]
     last7_total_l = nhl_last7["losses"] + nba_last7["losses"]
     last7_wr = f"{(last7_total_w / (last7_total_w + last7_total_l) * 100):.0f}%" if (last7_total_w + last7_total_l) > 0 else "N/A"
+
+    # Calculate last week's units
+    last7_net_units = nhl_last7["net_units"] + nba_last7["net_units"]
+    last7_units_display = f"+{last7_net_units:.1f}u" if last7_net_units >= 0 else f"{last7_net_units:.1f}u"
 
     # Calculate season stats
     overall_total_w = nhl_record["wins"] + nba_record["wins"]
@@ -934,11 +1004,12 @@ def update_latest_predictions():
     content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if yesterday_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{yesterday_units_display}</div>\n"
     content += "</div>\n"
 
-    # Last 7 Days Win Rate Card
+    # Last 7 Days Win Rate Card with Units
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>Last Week</div>\n"
     content += f"<div class='stat-value'>{last7_wr}</div>\n"
     content += f"<div class='stat-record'>{last7_total_w}W - {last7_total_l}L</div>\n"
+    content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if last7_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{last7_units_display}</div>\n"
     content += "</div>\n"
 
     # Season Win Rate Card
