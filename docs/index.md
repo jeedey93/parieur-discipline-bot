@@ -145,47 +145,85 @@
 
 </details>
 
-### Unified Final Recommendation List
+<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
 
-Based on the latest noon report and prioritizing consistency while ranking by Win Probability, here are the top 5 plays:
+<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
 
-🏆 **BET OF THE DAY**
-**Washington Capitals ML vs Utah Mammoth @ 1.83**
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Washington Capitals ML vs Utah Mammoth @ 1.83</div>
 
-Confidence Level: Medium, Units: 1u, Win Probability: 60%
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium, Units: 1u, Win Probability: 60%</div>
 
-The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.
-*Changes: This play was added at noon based on updated odds and analysis; it was not present in the morning report.*
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
 
-**Other Recommended Plays**
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Changes: This play was added at noon based on updated odds and analysis; it was not present in the morning report.*</div>
 
-**1. Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95**
+</div>
 
-Confidence Level: High, Units: 1.5u, Win Probability: 59%
 
-The Senators are coming off a high-scoring win, while the Oilers' last game was an 11-goal affair, suggesting both teams are inclined towards offensive output. The current odds offer a strong edge, indicating the market may be underestimating the potential for a high-scoring contest.
-*Changes: The odds moved from 1.90 (morning) to 1.95 (noon). Confidence level remained High, but Win Probability decreased from 65% to 59%. This play was consistent across both reports.*
 
-**2. Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
+<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
 
-Confidence Level: High, Units: 1.5u, Win Probability: 58%
 
-Both teams are well-rested after playing last week, and both were involved in high-scoring games previously. This total presents significant value given the offensive capabilities and recent tendencies of these two teams.
-*Changes: This play was added at noon and was designated as the "Bet of the Day" in the noon report. It was not present in the morning report.*
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 
-**3. Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95**
+<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#1</div>
 
-Confidence Level: High, Units: 1.5u, Win Probability: 58%
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</div>
 
-The Panthers' last game saw nine goals, and while the Devils are rested, their game history suggests offensive potential. This total is mispriced given Florida's recent high-scoring tendencies and New Jersey's capacity to engage in open play.
-*Changes: This specific Over 5.5 play was added at noon. The morning report had a Florida ML pick for the same game (Florida ML @ 1.91, Medium Confidence, 1u, 63% Win Probability), which was removed.*
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 59%</div>
 
-**4. Calgary Flames ML vs Dallas Stars @ 2.1**
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Senators are coming off a high-scoring win, while the Oilers' last game was an 11-goal affair, suggesting both teams are inclined towards offensive output. The current odds offer a strong edge, indicating the market may be underestimating the potential for a high-scoring contest.</div>
 
-Confidence Level: Medium, Units: 1u, Win Probability: 53%
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Changes: The odds moved from 1.90 (morning) to 1.95 (noon). Confidence level remained High, but Win Probability decreased from 65% to 59%. This play was consistent across both reports.*</div>
 
-The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, Radek Faksa, Mikko Rantanen, and Tyler Seguin, significantly dampening their offensive threat. Calgary has been strong defensively and should capitalize on the Stars' depleted lineup, making their moneyline an attractive value.
-*Changes: This specific Calgary ML play was added at noon. The morning report had a Dallas vs Calgary Under 5.5 pick for the same game (@ 1.90, High Confidence, 1.5u, 62% Win Probability), which was removed.*
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#2</div>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both teams are well-rested after playing last week, and both were involved in high-scoring games previously. This total presents significant value given the offensive capabilities and recent tendencies of these two teams.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Changes: This play was added at noon and was designated as the "Bet of the Day" in the noon report. It was not present in the morning report.*</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#3</div>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Panthers' last game saw nine goals, and while the Devils are rested, their game history suggests offensive potential. This total is mispriced given Florida's recent high-scoring tendencies and New Jersey's capacity to engage in open play.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Changes: This specific Over 5.5 play was added at noon. The morning report had a Florida ML pick for the same game (Florida ML @ 1.91, Medium Confidence, 1u, 63% Win Probability), which was removed.*</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#4</div>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Calgary Flames ML vs Dallas Stars @ 2.1</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium, Units: 1u, Win Probability: 53%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, Radek Faksa, Mikko Rantanen, and Tyler Seguin, significantly dampening their offensive threat. Calgary has been strong defensively and should capitalize on the Stars' depleted lineup, making their moneyline an attractive value.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Changes: This specific Calgary ML play was added at noon. The morning report had a Dallas vs Calgary Under 5.5 pick for the same game (@ 1.90, High Confidence, 1.5u, 62% Win Probability), which was removed.*</div>
+
+</div>
+
+
 
 </div>
 
@@ -227,47 +265,77 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 
 </details>
 
-**Unified Final Recommendation List**
+<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
 
-🏆 **BET OF THE DAY**
-**Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
+<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
 
-Confidence Level: High Units: 1.5u | Win Probability: 56%
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</div>
 
-The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
-*Change from Morning:* This was a new play and the Bet of the Day in the noon report. The O/U line moved from 239.5 (morning) to 242.5 (noon), making the Under 243.0 a valuable high-confidence pick.
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 56%</div>
 
----
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
 
-**Other Recommended Plays**
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning:* This was a new play and the Bet of the Day in the noon report. The O/U line moved from 239.5 (morning) to 242.5 (noon), making the Under 243.0 a valuable high-confidence pick.</div>
 
-**Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98**
+</div>
 
-Confidence Level: High Units: 1.5u | Win Probability: 55%
 
-The Charlotte Hornets are in exceptional form and well-rested, while the Dallas Mavericks are also rested but recently suffered a significant loss. Given Charlotte's recent offensive efficiency and Dallas's defensive struggles, this game projects to be a higher-scoring affair, exceeding the set total.
-*Change from Morning:* This was a new play in the noon report. The O/U line moved from 230.5 (morning) to 231.5 (noon), prompting this high-confidence Over recommendation.
 
-**Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99**
+<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
 
-Confidence Level: High Units: 1.5u | Win Probability: 55%
 
-Both the Pistons and Cavaliers are moderately fatigued from recent congested schedules, but Detroit enters this game with superior recent form, having won their last two outings including a recent victory over the Cavaliers. This small spread is favorable for the Pistons given their momentum and home advantage, indicating a strong value play.
-*Change from Morning:* The morning report recommended "Cleveland Cavaliers vs Detroit Pistons Under 226.5 @ 1.94" with Medium confidence. By noon, the O/U moved to 228.5, and the Pistons' spread became -2.5 @ 1.99, shifting the recommendation entirely to a Pistons spread bet with increased High confidence.
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 
-**New York Knicks -2.5 vs Toronto Raptors @ 1.98**
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</div>
 
-Confidence Level: Medium Units: 1u | Win Probability: 55%
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
 
-Both the New York Knicks and Toronto Raptors are rested and in good form, setting up a competitive contest between two performing teams. The Knicks, playing at home, have a slight edge in recent performance and overall stability, making the modest spread a valuable opportunity against the market's implied probability.
-*Change from Morning:* This play was present in both reports. The line (spread) remained -2.5, but the odds improved significantly from 1.91 (morning) to 1.98 (noon), maintaining its Medium confidence and Win Probability.
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Charlotte Hornets are in exceptional form and well-rested, while the Dallas Mavericks are also rested but recently suffered a significant loss. Given Charlotte's recent offensive efficiency and Dallas's defensive struggles, this game projects to be a higher-scoring affair, exceeding the set total.</div>
 
-**Phoenix Suns -10.0 vs Sacramento Kings @ 1.99**
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning:* This was a new play in the noon report. The O/U line moved from 230.5 (morning) to 231.5 (noon), prompting this high-confidence Over recommendation.</div>
 
-Confidence Level: Medium Units: 1u | Win Probability: 53.5%
+</div>
 
-The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicating full strength and preparation from both sides. Despite Sacramento's solid play, Phoenix's consistent high-level performance suggests they can cover this double-digit spread at home, offering a compelling edge over the bookmakers' line.
-*Change from Morning:* This was a new play in the noon report. The Suns' spread moved favorably from -10.5 @ 1.95 (morning) to -10.0 @ 1.99 (noon), making it a new Medium confidence recommendation.
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the Pistons and Cavaliers are moderately fatigued from recent congested schedules, but Detroit enters this game with superior recent form, having won their last two outings including a recent victory over the Cavaliers. This small spread is favorable for the Pistons given their momentum and home advantage, indicating a strong value play.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning:* The morning report recommended "Cleveland Cavaliers vs Detroit Pistons Under 226.5 @ 1.94" with Medium confidence. By noon, the O/U moved to 228.5, and the Pistons' spread became -2.5 @ 1.99, shifting the recommendation entirely to a Pistons spread bet with increased High confidence.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium Units: 1u | Win Probability: 55%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the New York Knicks and Toronto Raptors are rested and in good form, setting up a competitive contest between two performing teams. The Knicks, playing at home, have a slight edge in recent performance and overall stability, making the modest spread a valuable opportunity against the market's implied probability.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning:* This play was present in both reports. The line (spread) remained -2.5, but the odds improved significantly from 1.91 (morning) to 1.98 (noon), maintaining its Medium confidence and Win Probability.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium Units: 1u | Win Probability: 53.5%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicating full strength and preparation from both sides. Despite Sacramento's solid play, Phoenix's consistent high-level performance suggests they can cover this double-digit spread at home, offering a compelling edge over the bookmakers' line.</div>
+
+<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning:* This was a new play in the noon report. The Suns' spread moved favorably from -10.5 @ 1.95 (morning) to -10.0 @ 1.99 (noon), making it a new Medium confidence recommendation.</div>
+
+</div>
+
+
 
 </div>
 

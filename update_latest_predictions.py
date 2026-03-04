@@ -326,12 +326,119 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
         md += "</div>\n\n"
         md += "</details>\n\n"
 
-    # Format recommendations as cards
+    # Format recommendations as styled cards
     if recs_text:
-        formatted_recs = format_recommendations_as_cards(recs_text)
+        formatted_recs = format_recommendations_section(recs_text)
         md += formatted_recs + "\n\n"
 
     return md
+
+
+def format_recommendations_section(recs_text):
+    """Parse and format recommendation text into styled cards."""
+    if not recs_text:
+        return ""
+
+    lines = recs_text.split('\n')
+    output = []
+    current_pick = None
+    is_bet_of_day = False
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+
+        # Detect BET OF THE DAY
+        if '🏆' in line and 'BET OF THE DAY' in line.upper():
+            if current_pick:
+                output.append(format_pick_card(current_pick, is_bet_of_day))
+            is_bet_of_day = True
+            i += 1
+            continue
+
+        # Detect "Other Recommended Plays" header
+        if 'Other Recommended' in line:
+            if current_pick:
+                output.append(format_pick_card(current_pick, is_bet_of_day))
+                current_pick = None
+            is_bet_of_day = False
+            output.append("\n<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>\n\n")
+            i += 1
+            continue
+
+        # Detect a bet line (starts with ** and has @ for odds)
+        if line.startswith('**') and '@' in line and 'BET OF THE DAY' not in line:
+            # Save previous pick
+            if current_pick:
+                output.append(format_pick_card(current_pick, is_bet_of_day))
+
+            # Extract play number if it exists
+            play_num = None
+            bet_text = line.strip('*')
+            if bet_text[0].isdigit() and '.' in bet_text[:3]:
+                parts = bet_text.split('.', 1)
+                play_num = parts[0].strip()
+                bet_text = parts[1].strip() if len(parts) > 1 else bet_text
+
+            current_pick = {
+                'number': play_num,
+                'bet': bet_text,
+                'confidence': '',
+                'description': '',
+                'changes': ''
+            }
+            i += 1
+            continue
+
+        # Collect details for current pick
+        if current_pick:
+            if 'Confidence Level:' in line or 'Confidence:' in line:
+                current_pick['confidence'] = line
+            elif line.startswith('*Changes:') or line.startswith('*Change from'):
+                current_pick['changes'] = line.lstrip('*').strip()
+            elif line and not line.startswith('---') and not line.startswith('Based on'):
+                if current_pick['description']:
+                    current_pick['description'] += ' '
+                current_pick['description'] += line
+
+        i += 1
+
+    # Don't forget the last pick
+    if current_pick:
+        output.append(format_pick_card(current_pick, is_bet_of_day))
+
+    return '\n'.join(output)
+
+
+def format_pick_card(pick, is_featured=False):
+    """Format a single pick as a styled card."""
+    if is_featured:
+        # Gold gradient for Bet of the Day
+        html = "<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>\n\n"
+        html += "<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>\n\n"
+    else:
+        # Clean white card with blue accent
+        html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
+        if pick['number']:
+            html += f"<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#{pick['number']}</div>\n\n"
+
+    # Bet line - large and bold
+    html += f"<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>{pick['bet']}</div>\n\n"
+
+    # Confidence details in a styled bar
+    if pick['confidence']:
+        html += f"<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>{pick['confidence']}</div>\n\n"
+
+    # Description
+    if pick['description']:
+        html += f"<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>{pick['description'].strip()}</div>\n\n"
+
+    # Changes note in lighter style
+    if pick['changes']:
+        html += f"<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 {pick['changes']}</div>\n\n"
+
+    html += "</div>\n\n"
+    return html
 
 
 def parse_yesterday_results(sport_key):
