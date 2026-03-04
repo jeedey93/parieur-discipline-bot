@@ -31,7 +31,7 @@
    - Utah 3 @ Washington 2 (Total goals: 5)
 2. ✅ **Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95**
    - Ottawa 4 @ Edmonton 5 (Total goals: 9)
-3. ✅ **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
+3. ❌ **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
    - Tampa Bay 1 @ Minnesota 5 (Total goals: 6)
 4. ✅ **Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95**
    - Florida 1 @ New Jersey 5 (Total goals: 6)

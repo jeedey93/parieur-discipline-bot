@@ -292,9 +292,17 @@ def parse_yesterday_results(sport_key):
             # Match outcome lines (WIN/LOSS) (with * bullet)
             if current_pick and re.match(r'^\*\s+Outcome:', stripped):
                 outcome_text = re.sub(r'^\*\s+Outcome:\s*', '', stripped)
-                if "**WIN**" in outcome_text or "WIN" in outcome_text.upper():
+                # Check for **WIN** or **LOSS** (bolded outcomes are the actual results)
+                if "**WIN**" in outcome_text:
                     current_pick["outcome"] = "WIN"
-                elif "**LOSS**" in outcome_text or "LOSS" in outcome_text.upper():
+                elif "**LOSS**" in outcome_text:
+                    current_pick["outcome"] = "LOSS"
+                # Fallback to uppercase check only if bolded version not found
+                elif "WIN" in outcome_text.upper() and "**LOSS**" not in outcome_text:
+                    # Make sure it's actually indicating a win and not "not a win"
+                    if "not a win" not in outcome_text.lower():
+                        current_pick["outcome"] = "WIN"
+                elif "LOSS" in outcome_text.upper():
                     current_pick["outcome"] = "LOSS"
                 continue
 
