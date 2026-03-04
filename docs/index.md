@@ -138,13 +138,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
 <div class='pick-title'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5% The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
+<div class='pick-description'>The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
 </div>
 
 <div class='pick-card'>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
 <div class='pick-title'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25% The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25%</div>
+<div class='pick-description'>The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
 </div>
 
 </div>
