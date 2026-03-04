@@ -43,7 +43,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .badge-nba { background: #fed7aa; color: #ea580c; }
 .badge-featured { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
 .pick-title { font-size: 1.25em; font-weight: 700; color: #111827; margin-bottom: 15px; line-height: 1.4; }
-.pick-meta { display: inline-block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 12px; }
+.pick-meta { display: inline-block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 18px; }
 .confidence-high { display: inline-block; background: #10b981; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }
 .confidence-medium { display: inline-block; background: #f59e0b; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }
 .pick-description { color: #4b5563; line-height: 1.7; font-size: 0.95em; }
