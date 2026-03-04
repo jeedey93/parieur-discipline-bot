@@ -147,9 +147,9 @@ Header format:
 For Moneyline: "<TEAM> ML vs <OPPONENT> @ <ODDS>"
 For Puck Line/Total: "<TEAM> <MARKET> vs <OPPONENT> @ <ODDS>"
 For Over/Under (Totals): "<TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS>" or "<TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>"
-Body format (EXACTLY 2 short sentences):
+Body format (3-4 sentences):
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names only if present in {{INJURIES}}). If roster data is unavailable, omit player names and focus on team-level factors.
-Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans. If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results in {{HISTORICAL_RESULTS}}, mention this only within the justification for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge"). Do not output a separate paragraph about reviewing historical results; only mention historical context if it directly affects a recommended play.
+Sentences 2-4: Provide detailed, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick, making it accessible for beginner bettors and NHL fans. Include specific context about why this matchup creates value and how the various factors combine to create an edge. If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results in {{HISTORICAL_RESULTS}}, mention this only within the justification for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge"). Do not output a separate paragraph about reviewing historical results; only mention historical context if it directly affects a recommended play.
 Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 RANKING
@@ -172,9 +172,9 @@ After the Bet of the Day, group all other recommended plays under a header such 
 Format exactly:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
 For Over/Under (Totals): <TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS> or <TEAM> vs <OPPONENT> Under <TOTAL> @ <ODDS>
-Body format (EXACTLY 2 short sentences):
+Body format (3-4 sentences):
 Sentence 1: Summarize teams, fatigue, momentum, matchup context, and key injuries/goalie status (mention player names only if present in {{INJURIES}}). If roster data is unavailable, omit player names and focus on team-level factors.
-Sentence 2: Simple, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick. If the Bet of the Day is chosen or confidence is adjusted due to historical self-evaluation, explicitly mention this in the output (e.g., "Bet of the Day selected based on strong historical performance in similar matchups").
+Sentences 2-4: Provide detailed, fan-friendly reasoning grounded in matchup edge, form, and injury impact. If relevant, explain in user-friendly terms how bookmakers, expected value (EV), or market mechanics influence the pick. Include specific context about why this matchup creates value and how the various factors combine to create an edge. If the Bet of the Day is chosen or confidence is adjusted due to historical self-evaluation, explicitly mention this in the output (e.g., "Bet of the Day selected based on strong historical performance in similar matchups").
 Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 DATA TO ANALYZE
