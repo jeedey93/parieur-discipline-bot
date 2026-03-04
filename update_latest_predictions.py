@@ -757,6 +757,7 @@ def update_latest_predictions():
         {"key": "nba", "name": "NBA", "emoji": "🏀"},
     ]
     output_md = "docs/index.md"
+    output_html = "docs/index.html"  # Add HTML output for Vercel
     summary_path = "bot_results/total_results_summary.txt"
     dual_bet_path = os.path.join(predictions_dir, "dual_bet_of_the_day.txt")
 
@@ -985,6 +986,11 @@ def update_latest_predictions():
     with open(output_md, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Updated {output_md}")
+
+    # Also write HTML version for Vercel
+    with open(output_html, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"✅ Updated {output_html}")
 
 
 if __name__ == "__main__":
