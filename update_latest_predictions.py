@@ -788,7 +788,7 @@ def update_latest_predictions():
     content += "<head>\n"
     content += "<meta charset='UTF-8'>\n"
     content += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
-    content += "<title>🎯 Parieur Discipliné - AI NHL & NBA Betting Predictions</title>\n"
+    content += "<title>Parieur Discipliné - AI Betting Predictions</title>\n"
     content += "<meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
     content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
     content += "</head>\n"

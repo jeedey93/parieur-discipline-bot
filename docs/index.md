@@ -3,7 +3,7 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>🎯 Parieur Discipliné - AI NHL & NBA Betting Predictions</title>
+<title>Parieur Discipliné - AI Betting Predictions</title>
 <meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>
 <link rel='icon' type='image/png' href='parieur_discipline.png'>
 </head>
