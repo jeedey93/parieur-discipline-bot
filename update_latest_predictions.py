@@ -1141,7 +1141,7 @@ def update_latest_predictions():
     content += ".badge-nba { background: #fed7aa; color: #ea580c; }\n"
     content += ".badge-featured { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }\n"
     content += ".pick-title { font-size: 1.25em; font-weight: 700; color: #111827; margin-bottom: 15px; line-height: 1.4; }\n"
-    content += ".pick-meta { display: inline-block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 18px; }\n"
+    content += ".pick-meta { display: block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 18px; }\n"
     content += ".confidence-high { display: inline-block; background: #10b981; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
     content += ".confidence-medium { display: inline-block; background: #f59e0b; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
     content += ".pick-description { color: #4b5563; line-height: 1.7; font-size: 0.95em; }\n"
