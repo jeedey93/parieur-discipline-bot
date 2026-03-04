@@ -1278,7 +1278,7 @@ def update_latest_predictions():
     content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
     content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>\n"
     content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>\n"
-    content += "<a href='#yesterday-results' class='nav-tab'>📋 Yesterday</a>\n"
+    content += "<a href='#yesterday-results' class='nav-tab'>📋 Yesterday's Results</a>\n"
     content += "</div>\n\n"
 
     # ── Dual Bet of the Day (Featured Picks) ──
