@@ -87,6 +87,47 @@ def format_sport_content(raw_text, sport_emoji, sport_name):
     return analysis_text, recs_text
 
 
+def ensure_line_breaks_after_plays(text):
+    """Ensure there is a blank line after each play header line so the
+    justification renders on a new line in markdown.
+
+    A 'play header' is a bold line like **Team vs Opponent ...** that is
+    immediately followed by a non-blank line (Confidence Level or justification).
+    We also handle the BET OF THE DAY header + play combo.
+    """
+    lines = text.split("\n")
+    result = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        result.append(line)
+
+        # Check if this line is a play header (bold play line)
+        is_play_header = (
+            stripped.startswith("**") and stripped.endswith("**")
+            and ("vs" in stripped.lower() or "over" in stripped.lower() or "under" in stripped.lower() or "@" in stripped)
+            and "BET OF THE DAY" not in stripped
+            and "Other Recommended" not in stripped
+            and "Unified Final" not in stripped
+        )
+
+        # Also handle numbered plays like "**1. Team vs Opponent ...**"
+        if not is_play_header and stripped.startswith("**") and stripped.endswith("**"):
+            inner = stripped.strip("*").strip()
+            if re.match(r'^\d+\.?\s+', inner) and ("vs" in inner.lower() or "@" in inner):
+                is_play_header = True
+
+        if is_play_header:
+            # Check if next non-blank line exists and is NOT already separated
+            if i + 1 < len(lines) and lines[i + 1].strip() != "":
+                result.append("")  # Insert blank line
+
+        i += 1
+
+    return "\n".join(result)
+
+
 def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
     """Build a complete sport section with nice formatting."""
     if not raw_text:
@@ -175,6 +216,7 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
     # Recommendations
     if recs_text:
+        recs_text = ensure_line_breaks_after_plays(recs_text)
         md += recs_text + "\n\n"
 
     return md
