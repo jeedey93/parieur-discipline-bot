@@ -106,8 +106,21 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
     # Analysis summary (collapsible)
     if analysis_text:
-        md += "<details>\n<summary>📋 <strong>Morning vs Noon Comparison & Analysis</strong> (click to expand)</summary>\n\n"
-        md += analysis_text + "\n\n"
+        # Clean up the analysis text for better rendering inside <details>
+        cleaned = analysis_text.strip()
+        # Remove leading "Here's an analysis..." intro line if present
+        intro_patterns = [
+            r"^Here'?s an analysis.*?:\s*\n",
+            r"^Here'?s a comparison.*?:\s*\n",
+        ]
+        for pat in intro_patterns:
+            cleaned = re.sub(pat, "", cleaned, flags=re.IGNORECASE)
+        cleaned = cleaned.strip().lstrip("-").strip()
+
+        md += "<details>\n"
+        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>\n"
+        md += "<br>\n\n"
+        md += cleaned + "\n\n"
         md += "</details>\n\n"
 
     # Recommendations
