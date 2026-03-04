@@ -505,7 +505,7 @@ def parse_yesterday_results(sport_key):
         if loss_match:
             losses = int(loss_match.group(1))
 
-        # Extract individual picks with their outcomes
+        # Extract individual picks with their outcomes, units, and odds
         picks = []
         lines = content.strip().splitlines()
         current_pick = None
@@ -513,16 +513,41 @@ def parse_yesterday_results(sport_key):
         for line in lines:
             stripped = line.strip()
 
-            # Match numbered pick lines like "1. **Washington Capitals ML..." or "1.  **Washington Capitals ML..."
+            # Match numbered pick lines like "1. **Washington Capitals ML vs Utah @ 1.83**"
             pick_match = re.match(r'^\d+\.\s+\*\*(.+?)\*\*', stripped)
             if pick_match:
                 if current_pick:
                     picks.append(current_pick)
+
+                bet_text = pick_match.group(1)
+                # Extract odds from bet text (e.g., "@ 1.83" or "@1.94")
+                odds_match = re.search(r'@\s*(\d+\.?\d*)', bet_text)
+                odds = float(odds_match.group(1)) if odds_match else 1.0
+
                 current_pick = {
-                    "bet": pick_match.group(1),
+                    "bet": bet_text,
                     "result": None,
-                    "outcome": None
+                    "outcome": None,
+                    "units": 1.0,  # Default to 1 unit
+                    "confidence": None,
+                    "odds": odds
                 }
+                continue
+
+            # Extract confidence level and units from confidence line
+            if current_pick and ('Confidence Level:' in stripped or 'Confidence:' in stripped):
+                # Extract units (1u or 1.5u)
+                units_match = re.search(r'Units?:\s*(\d+\.?\d*)u', stripped, re.IGNORECASE)
+                if units_match:
+                    current_pick["units"] = float(units_match.group(1))
+
+                # Extract confidence level
+                if 'High' in stripped:
+                    current_pick["confidence"] = "High"
+                    current_pick["units"] = 1.5  # High confidence = 1.5 units
+                elif 'Medium' in stripped:
+                    current_pick["confidence"] = "Medium"
+                    current_pick["units"] = 1.0  # Medium confidence = 1 unit
                 continue
 
             # Match actual result lines (with * bullet)
@@ -551,11 +576,21 @@ def parse_yesterday_results(sport_key):
         if current_pick:
             picks.append(current_pick)
 
+        # Calculate total units won/lost based on odds
+        # Win = profit only (odds - 1) * units
+        # Loss = -units
+        units_won = sum((pick["odds"] - 1) * pick["units"] for pick in picks if pick["outcome"] == "WIN")
+        units_lost = sum(pick["units"] for pick in picks if pick["outcome"] == "LOSS")
+        net_units = units_won - units_lost
+
         return {
             "date": results_date,
             "wins": wins,
             "losses": losses,
-            "picks": picks
+            "picks": picks,
+            "units_won": units_won,
+            "units_lost": units_lost,
+            "net_units": net_units
         }
     except Exception as e:
         print(f"Error parsing results for {sport_key}: {e}")
@@ -866,10 +901,16 @@ def update_latest_predictions():
     nhl_yesterday = parse_yesterday_results("nhl")
     nba_yesterday = parse_yesterday_results("nba")
 
-    # Calculate yesterday's stats
+    # Calculate yesterday's stats including units
     yesterday_total_w = (nhl_yesterday["wins"] if nhl_yesterday else 0) + (nba_yesterday["wins"] if nba_yesterday else 0)
     yesterday_total_l = (nhl_yesterday["losses"] if nhl_yesterday else 0) + (nba_yesterday["losses"] if nba_yesterday else 0)
     yesterday_wr = f"{(yesterday_total_w / (yesterday_total_w + yesterday_total_l) * 100):.0f}%" if (yesterday_total_w + yesterday_total_l) > 0 else "N/A"
+
+    # Calculate yesterday's units
+    yesterday_units_won = (nhl_yesterday.get("units_won", 0) if nhl_yesterday else 0) + (nba_yesterday.get("units_won", 0) if nba_yesterday else 0)
+    yesterday_units_lost = (nhl_yesterday.get("units_lost", 0) if nhl_yesterday else 0) + (nba_yesterday.get("units_lost", 0) if nba_yesterday else 0)
+    yesterday_net_units = yesterday_units_won - yesterday_units_lost
+    yesterday_units_display = f"+{yesterday_net_units:.1f}u" if yesterday_net_units >= 0 else f"{yesterday_net_units:.1f}u"
 
     # Calculate last 7 days stats
     nhl_last7 = parse_last_n_days_results("nhl", 7)
@@ -885,11 +926,12 @@ def update_latest_predictions():
 
     content += "<div class='stats-grid'>\n"
 
-    # Yesterday's Win Rate Card
+    # Yesterday's Win Rate Card with Units
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>Yesterday</div>\n"
     content += f"<div class='stat-value'>{yesterday_wr}</div>\n"
     content += f"<div class='stat-record'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
+    content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if yesterday_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{yesterday_units_display}</div>\n"
     content += "</div>\n"
 
     # Last 7 Days Win Rate Card

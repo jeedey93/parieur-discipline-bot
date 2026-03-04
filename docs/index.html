@@ -80,6 +80,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>Yesterday</div>
 <div class='stat-value'>50%</div>
 <div class='stat-record'>5W - 5L</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-0.1u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
