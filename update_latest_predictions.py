@@ -757,6 +757,7 @@ def update_latest_predictions():
     content += f"<div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>\n"
     content += f"<h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>\n"
     content += f"<p style='font-size: 1.4em; color: #666; margin: 10px 0;'>{nice_date}</p>\n"
+    content += f"<p style='font-size: 0.9em; color: #999; margin-top: 8px;'>🕐 Updated daily at 12:00 PM (Noon) with the latest picks</p>\n"
     content += f"</div>\n\n"
 
     # ── Quick Navigation Menu ──

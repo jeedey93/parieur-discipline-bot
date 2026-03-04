@@ -10,6 +10,7 @@
 <div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>
 <h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>
 <p style='font-size: 1.4em; color: #666; margin: 10px 0;'>March 3, 2026</p>
+<p style='font-size: 0.9em; color: #999; margin-top: 8px;'>🕐 Updated daily at 12:00 PM (Noon) with the latest picks</p>
 </div>
 
 <div style='background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px 20px; margin: 20px 0; text-align: center;'>
