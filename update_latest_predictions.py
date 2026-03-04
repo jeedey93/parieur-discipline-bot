@@ -380,11 +380,6 @@ def update_latest_predictions():
 
         content += "---\n\n"
 
-    # ── Footer ──
-    content += '<div align="center">\n\n'
-    content += "*Powered by AI analysis with morning & noon odds comparison*\n\n"
-    content += "**Discipline > Emotion** 🎯\n\n"
-    content += "</div>\n"
 
     with open(output_md, "w") as f:
         f.write(content)
