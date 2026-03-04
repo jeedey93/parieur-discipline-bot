@@ -710,41 +710,58 @@ def parse_yesterday_results(sport_key):
         for line in lines:
             stripped = line.strip()
 
-            # Match numbered pick lines like "1. **Washington Capitals ML vs Utah @ 1.83**"
+            # Match numbered pick lines like "1. **Washington Capitals ML vs Utah @ 1.83 - Confidence: High, Units: 1.5u**"
             pick_match = re.match(r'^\d+\.\s+\*\*(.+?)\*\*', stripped)
             if pick_match:
                 if current_pick:
                     picks.append(current_pick)
 
                 bet_text = pick_match.group(1)
-                # Extract odds from bet text (e.g., "@ 1.83" or "@1.94")
+                # Extract odds from bet text (e.g., "@ 1.83")
                 odds_match = re.search(r'@\s*(\d+\.?\d*)', bet_text)
                 odds = float(odds_match.group(1)) if odds_match else 1.0
+
+                # Extract units from bet text (e.g., "Units: 1.5u")
+                units_match = re.search(r'Units?:\s*(\d+\.?\d*)u', bet_text, re.IGNORECASE)
+                units = float(units_match.group(1)) if units_match else 1.0
+
+                # Extract confidence level
+                confidence = None
+                if 'High' in bet_text:
+                    confidence = "High"
+                elif 'Medium' in bet_text:
+                    confidence = "Medium"
 
                 current_pick = {
                     "bet": bet_text,
                     "result": None,
                     "outcome": None,
-                    "units": 1.0,  # Default to 1 unit
-                    "confidence": None,
+                    "units": units,
+                    "confidence": confidence,
                     "odds": odds
                 }
                 continue
 
             # Extract confidence level and units from confidence line
             if current_pick and ('Confidence Level:' in stripped or 'Confidence:' in stripped):
-                # Extract units (1u or 1.5u)
+                # Extract units (1u or 1.5u) - this takes priority
                 units_match = re.search(r'Units?:\s*(\d+\.?\d*)u', stripped, re.IGNORECASE)
                 if units_match:
                     current_pick["units"] = float(units_match.group(1))
+                else:
+                    # Fallback: Extract confidence level and set default units
+                    if 'High' in stripped:
+                        current_pick["confidence"] = "High"
+                        current_pick["units"] = 1.5  # High confidence = 1.5 units
+                    elif 'Medium' in stripped:
+                        current_pick["confidence"] = "Medium"
+                        current_pick["units"] = 1.0  # Medium confidence = 1 unit
 
-                # Extract confidence level
+                # Extract confidence level (even if units were explicitly set)
                 if 'High' in stripped:
                     current_pick["confidence"] = "High"
-                    current_pick["units"] = 1.5  # High confidence = 1.5 units
                 elif 'Medium' in stripped:
                     current_pick["confidence"] = "Medium"
-                    current_pick["units"] = 1.0  # Medium confidence = 1 unit
                 continue
 
             # Match actual result lines (with * bullet)
@@ -841,6 +858,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 bet_short = pick['bet']
                 # Remove odds from display to save space
                 bet_short = re.sub(r'\s*@\s*\d+\.?\d*', '', bet_short)
+                # Remove confidence and units from display
+                bet_short = re.sub(r'\s*-\s*Confidence.*', '', bet_short)
                 # Truncate long team names if needed
                 if len(bet_short) > 50:
                     bet_short = bet_short[:47] + "..."
@@ -880,6 +899,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 bet_short = pick['bet']
                 # Remove odds from display to save space
                 bet_short = re.sub(r'\s*@\s*\d+\.?\d*', '', bet_short)
+                # Remove confidence and units from display
+                bet_short = re.sub(r'\s*-\s*Confidence.*', '', bet_short)
                 # Truncate long team names if needed
                 if len(bet_short) > 50:
                     bet_short = bet_short[:47] + "..."

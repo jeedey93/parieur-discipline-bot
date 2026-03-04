@@ -23,8 +23,8 @@ CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
 
 For each recommended play:
 - Match the prediction to the actual game result.
-- IMPORTANT: Always include the odds in the bet header in the format: **<BET> @ <ODDS>**
-  Example: **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
+- IMPORTANT: Always include the odds AND confidence/units in the bet header
+  Example: **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99 - Confidence: High, Units: 1.5u**
 - For totals (over/under), compare the predicted total to the actual total points scored:
   - If the result exactly equals the line (e.g., Over 232.0 with exactly 232 points), it's a **PUSH** (not a loss!).
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
@@ -33,7 +33,7 @@ For each recommended play:
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
 - For moneyline, state if the predicted team won or lost (e.g., 'Outcome: WIN (Team won)').
 - For each play, output:
-    * The bet header WITH ODDS (as in the predictions, e.g., **Team vs Team @ odds**)
+    * The bet header WITH ODDS AND CONFIDENCE (e.g., **Team vs Team @ odds - Confidence: High, Units: 1.5u**)
     * The actual result (e.g., 'TeamA 110 @ TeamB 105')
     * The outcome (WIN/LOSS/PUSH) with a short justification
 
@@ -50,7 +50,7 @@ As a disciplined NBA betting analyst, I have reviewed the AI's predictions again
 
 Here's the breakdown:
 
-1.  **<BET HEADER WITH @ ODDS>**
+1.  **<BET HEADER WITH @ ODDS AND CONFIDENCE>**
     *   Actual Result: <AWAY> <AWAY_SCORE> @ <HOME> <HOME_SCORE>
     *   Outcome: **WIN/LOSS/PUSH** (<short justification>)
 

@@ -91,7 +91,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>Yesterday</div>
 <div class='stat-value'>56%</div>
 <div class='stat-record'>5W - 4L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.3u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
@@ -168,7 +168,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Ottawa Senators vs Edmonton Oilers Over 6.5</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.95u</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.42u</div>
 </div>
 <div class='result-tile result-tile-push'>
 <div class='result-tile-emoji'>↔️</div>
@@ -178,7 +178,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Florida Panthers vs New Jersey Devils Over 5.5</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.95u</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.42u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
@@ -193,17 +193,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Los Angeles Lakers vs New Orleans Pelicans Unde...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.48u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Charlotte Hornets vs Dallas Mavericks Over 231.0</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Detroit Pistons -2.5 vs Cleveland Cavaliers</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
