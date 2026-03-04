@@ -1,47 +1,41 @@
-Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list:
+Here's an analysis comparing the morning and noon prediction reports, followed by the unified final recommendations.
 
-**Analysis of Reports (Morning vs. Noon)**
+### Report Comparison and Changes
 
-1.  **Consistent Plays (appeared in both reports):**
-    *   Detroit Red Wings ML vs Vegas Golden Knights
+**1. Vegas Golden Knights @ Detroit Red Wings**
+*   **Morning Recommendation:** Detroit Red Wings ML @ 1.74 (BET OF THE DAY), High Confidence (1.5u, 66% Win Probability).
+*   **Noon Status:** Recommendation removed.
+*   **Odds Change:** Detroit's moneyline odds shifted from 1.74 to 1.77 (moved against the bettor).
+*   **Analysis:** The Red Wings ML, initially the Bet of the Day, was removed. This suggests that the market movement, where Detroit's odds worsened, likely erased the value the AI initially identified, or new information made the bet less appealing.
 
-2.  **Plays Added/Removed between reports:**
-    *   **Removed:**
-        *   Seattle Kraken ML vs St Louis Blues (present in Morning, not explicitly listed in Noon recommendations).
-        *   New York Islanders ML vs Anaheim Ducks (present in Morning, not explicitly listed in Noon recommendations).
-    *   **Added:** No new plays were added; the Noon report only provided the "BET OF THE DAY".
+**2. Toronto Maple Leafs @ New Jersey Devils**
+*   **Morning Recommendation:** None.
+*   **Noon Recommendation:** Toronto Maple Leafs ML @ 1.95 (BET OF THE DAY), High Confidence (1.5u, 57.5% Win Probability).
+*   **Odds Change:** Toronto's moneyline odds shifted from 2.0 (morning) to 1.95 (noon). O/U moved from 5.5 to 6.0.
+*   **Analysis:** This play was added as the new Bet of the Day in the noon report. The odds movement in Toronto's favor (from 2.0 to 1.95), combined with the Devils' back-to-back situation and potential fatigued/backup goalie, created a new high-value opportunity according to the AI.
 
-3.  **Confidence Level Changes for the same plays:**
-    *   **Detroit Red Wings ML:** The overall confidence level remained "High", but the calculated Win Probability increased from 66% (morning) to 69.5% (noon).
+**3. New York Islanders @ Anaheim Ducks**
+*   **Morning Recommendation:** New York Islanders ML @ 1.91, High Confidence (1.5u, 60% Win Probability).
+*   **Noon Status:** Recommendation removed.
+*   **Odds Change:** No change in moneyline odds (remained 1.91 for both sides) or O/U.
+*   **Analysis:** Despite no adverse odds movement, this play was removed from the noon recommendations. This indicates that updated roster data, relative value shifts compared to other potential bets, or a reassessment of the Islanders' edge against the depleted Ducks led the AI to no longer endorse this play.
 
-4.  **Odds Changes affecting recommendations:**
-    *   **Detroit Red Wings ML:** The odds for Detroit ML moved favorably from 1.74 (morning) to 1.77 (noon). This odds improvement, combined with the AI's updated analysis, contributed to the increased Win Probability and solidified its "Bet of the Day" status.
-    *   **Seattle Kraken ML:** The odds for Seattle ML remained unchanged at 1.67 from morning to noon. The Over/Under line shifted from 5.5 to 6.0. Despite no adverse odds movement, the play was not explicitly reiterated in the noon report.
-    *   **New York Islanders ML:** The odds for New York Islanders ML remained unchanged at 1.91 from morning to noon. The Over/Under line also remained unchanged. Despite no adverse odds movement, the play was not explicitly reiterated in the noon report.
-
----
-
-**Unified Final Recommendation List**
-
-🏆 **BET OF THE DAY**
-**Detroit Red Wings ML vs Vegas Golden Knights**
-Confidence Level: High Units: 1.5u, Win Probability: 69.5%
-
-The Detroit Red Wings, enjoying adequate rest and recent strong form (2 wins in last 2 games), face a severely depleted Golden Knights squad at home. Vegas is missing key players Mark Stone and William Karlsson, along with starting goalie Carter Hart, which significantly impacts their offensive and defensive capabilities. Bookmakers seem to undervalue Detroit's home advantage and the profound impact of Vegas's injuries, creating a strong value play with a calculated edge of 13.0%.
-*Change from Morning to Noon:* The odds for Detroit ML moved favorably from 1.74 (morning) to 1.77 (noon). The AI's calculated Win Probability increased from 66% to 69.5%, solidifying its position as the Bet of the Day.
+**4. St Louis Blues @ Seattle Kraken**
+*   **Morning Recommendation:** Seattle Kraken ML @ 1.67, Medium Confidence (1u, 64% Win Probability).
+*   **Noon Status:** Recommendation removed.
+*   **Odds Change:** No change in moneyline odds (remained 1.67 for Seattle). O/U moved from 5.5 to 6.0.
+*   **Analysis:** Similar to the Islanders, this medium-confidence play was removed even with stable moneyline odds. The increase in the O/U might suggest a higher-scoring game than previously expected, but the removal likely points to a revised internal probability assessment or other factors that diminished the value of the Seattle ML bet.
 
 ---
+
+### 🏆 **BET OF THE DAY**
+
+**Toronto Maple Leafs ML vs New Jersey Devils @ 1.95**
+Confidence Level: High Units: 1.5u, Win Probability: 57.5%
+
+The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.
+
+*Change from Morning to Noon:* This play was added as the Bet of the Day in the noon report. Toronto's moneyline odds shifted from 2.0 (morning) to 1.95 (noon), which the AI identified as a strong value opportunity.
 
 **Other Recommended Plays**
-
-**Seattle Kraken ML vs St Louis Blues**
-Confidence Level: Medium Units: 1u, Win Probability: 64%
-
-The Kraken are playing at home with ample rest and no significant injuries, facing an inconsistent Blues team also coming off a long break. Seattle's strong defensive play at home gives them a notable edge against St. Louis, making their moneyline a reasonable play.
-*Change from Morning to Noon:* The odds remained the same as morning (1.67), and the confidence level was Medium. While considered a viable play in the morning report, it was not explicitly included in the noon report's list of recommendations.
-
-**New York Islanders ML vs Anaheim Ducks**
-Confidence Level: High Units: 1.5u, Win Probability: 60%
-
-The Islanders, a defensively sound team, face an Anaheim Ducks squad severely depleted by injuries to four key offensive players: Mikael Granlund, Troy Terry, Ryan Strome, and Frank Vatrano. This massive hit to Anaheim's scoring capability significantly increases New York's probability of securing a road win at favorable odds.
-*Change from Morning to Noon:* The odds remained the same as morning (1.91), and the confidence level was High. While considered a strong play in the morning report, it was not explicitly included in the noon report's list of recommendations.
+*(No other high/medium confidence plays remained from either report after the noon re-evaluation.)*
