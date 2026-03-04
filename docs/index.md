@@ -1,6 +1,25 @@
+<style>
+.content-wrapper { max-width: 1200px; margin: 0 auto; }
+#back-to-top { position: fixed; bottom: 30px; right: 30px; background: #667eea; color: white; padding: 12px 16px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; font-size: 1.2em; display: none; z-index: 1000; border: none; }
+#back-to-top:hover { background: #5568d3; transform: translateY(-2px); transition: all 0.3s; }
+@media (max-width: 768px) { .content-wrapper { padding: 0 15px; } #back-to-top { bottom: 20px; right: 20px; padding: 10px 14px; } }
+</style>
+
+<div class='content-wrapper'>
+
 <div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>
 <h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>
 <p style='font-size: 1.4em; color: #666; margin: 10px 0;'>March 3, 2026</p>
+</div>
+
+<div style='background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px 20px; margin: 20px 0; text-align: center;'>
+<div style='font-size: 0.9em; color: #666; margin-bottom: 8px;'>⚡ Quick Navigation</div>
+<div style='display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;'>
+<a href='#featured-picks' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #667eea; font-weight: 600; font-size: 0.9em;'>🔥 Featured Picks</a>
+<a href='#nhl-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E74C3C; font-weight: 600; font-size: 0.9em;'>🏒 NHL</a>
+<a href='#nba-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E67E22; font-weight: 600; font-size: 0.9em;'>🏀 NBA</a>
+<a href='#yesterday-results' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #666; font-weight: 600; font-size: 0.9em;'>📋 Yesterday</a>
+</div>
 </div>
 
 <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;'>
@@ -31,7 +50,7 @@
 
 </div>
 
-<div style='margin: 30px 0;'>
+<div id='featured-picks' style='margin: 30px 0;'>
 <h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🔥 Featured Picks of the Day</h2>
 <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;'>
 
@@ -41,7 +60,7 @@
 
 <div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>Washington Capitals ML vs Utah Mammoth @ 1.83</div>
 
-<div style='color: #666; line-height: 1.6;'>Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
 
 </div>
 
@@ -51,7 +70,7 @@
 
 <div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</div>
 
-<div style='color: #666; line-height: 1.6;'>Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
 
 </div>
 
@@ -59,6 +78,9 @@
 
 </div>
 
+<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>
+
+<div id='yesterday-results'>
 <details style='margin: 20px 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
 <summary style='cursor:pointer; padding: 15px; background: #f8f9fa; font-weight: bold; color: #667eea; font-size: 1.1em;'><span style='font-size:1.2em;'>📋</span> View Yesterday's Detailed Results (March 4, 2026)</summary>
 
@@ -94,7 +116,11 @@
 
 </details>
 
-<div style='margin: 40px 0;'>
+</div>
+
+<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>
+
+<div id='nhl-predictions' style='margin: 40px 0;'>
 <h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🏒 NHL Predictions</h2>
 
 <details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
@@ -151,7 +177,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Washington Capitals ML vs Utah Mammoth @ 1.83</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium, Units: 1u, Win Probability: 60%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 60%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
 
@@ -170,7 +196,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 59%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 59%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Senators are coming off a high-scoring win, while the Oilers' last game was an 11-goal affair, suggesting both teams are inclined towards offensive output. The current odds offer a strong edge, indicating the market may be underestimating the potential for a high-scoring contest.</div>
 
@@ -185,7 +211,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both teams are well-rested after playing last week, and both were involved in high-scoring games previously. This total presents significant value given the offensive capabilities and recent tendencies of these two teams.</div>
 
@@ -200,7 +226,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Panthers' last game saw nine goals, and while the Devils are rested, their game history suggests offensive potential. This total is mispriced given Florida's recent high-scoring tendencies and New Jersey's capacity to engage in open play.</div>
 
@@ -215,7 +241,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Calgary Flames ML vs Dallas Stars @ 2.1</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium, Units: 1u, Win Probability: 53%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 53%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, Radek Faksa, Mikko Rantanen, and Tyler Seguin, significantly dampening their offensive threat. Calgary has been strong defensively and should capitalize on the Stars' depleted lineup, making their moneyline an attractive value.</div>
 
@@ -227,7 +253,9 @@
 
 </div>
 
-<div style='margin: 40px 0;'>
+<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>
+
+<div id='nba-predictions' style='margin: 40px 0;'>
 <h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🏀 NBA Predictions</h2>
 
 <details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
@@ -271,7 +299,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 56%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u | Win Probability: 56%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
 
@@ -288,7 +316,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Charlotte Hornets are in exceptional form and well-rested, while the Dallas Mavericks are also rested but recently suffered a significant loss. Given Charlotte's recent offensive efficiency and Dallas's defensive struggles, this game projects to be a higher-scoring affair, exceeding the set total.</div>
 
@@ -301,7 +329,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u | Win Probability: 55%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the Pistons and Cavaliers are moderately fatigued from recent congested schedules, but Detroit enters this game with superior recent form, having won their last two outings including a recent victory over the Cavaliers. This small spread is favorable for the Pistons given their momentum and home advantage, indicating a strong value play.</div>
 
@@ -314,7 +342,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium Units: 1u | Win Probability: 55%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u | Win Probability: 55%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the New York Knicks and Toronto Raptors are rested and in good form, setting up a competitive contest between two performing teams. The Knicks, playing at home, have a slight edge in recent performance and overall stability, making the modest spread a valuable opportunity against the market's implied probability.</div>
 
@@ -327,7 +355,7 @@
 
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>Confidence Level: Medium Units: 1u | Win Probability: 53.5%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u | Win Probability: 53.5%</div>
 
 <div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicating full strength and preparation from both sides. Despite Sacramento's solid play, Phoenix's consistent high-level performance suggests they can cover this double-digit spread at home, offering a compelling edge over the bookmakers' line.</div>
 
@@ -338,4 +366,16 @@
 
 
 </div>
+
+</div>
+
+<button id='back-to-top' onclick='window.scrollTo({top: 0, behavior: "smooth"})'>↑</button>
+
+<script>
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('back-to-top');
+  if (window.pageYOffset > 300) { btn.style.display = 'block'; }
+  else { btn.style.display = 'none'; }
+});
+</script>
 

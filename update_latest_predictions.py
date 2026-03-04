@@ -425,9 +425,10 @@ def format_pick_card(pick, is_featured=False):
     # Bet line - large and bold
     html += f"<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>{pick['bet']}</div>\n\n"
 
-    # Confidence details in a styled bar
+    # Confidence details in a styled bar with colored badge
     if pick['confidence']:
-        html += f"<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>{pick['confidence']}</div>\n\n"
+        confidence_badge = get_confidence_badge(pick['confidence'])
+        html += f"<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'>{confidence_badge} {pick['confidence']}</div>\n\n"
 
     # Description
     if pick['description']:
@@ -625,7 +626,7 @@ def format_dual_bet(raw_text):
 
     for pick in picks:
         header = pick["header"]
-        body = " ".join(pick["body"])  # Join body as single paragraph
+        body_lines = pick["body"]
 
         # Extract the sport emoji for the card accent
         if "NHL" in header:
@@ -651,17 +652,44 @@ def format_dual_bet(raw_text):
         pick_num = "1" if "#1" in header else "2"
         sport_label = "NHL" if "NHL" in header else "NBA"
 
+        # Parse confidence and description
+        confidence_text = ""
+        description_text = ""
+        for line in body_lines:
+            if "Confidence Level:" in line or "Confidence:" in line:
+                confidence_text = line
+            else:
+                description_text += " " + line
+
         # Create card
         md += f"<div style='background: linear-gradient(135deg, {sport_color}15 0%, {sport_color}05 100%); border-left: 4px solid {sport_color}; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>\n\n"
         md += f"<div style='font-size: 0.9em; color: {sport_color}; font-weight: bold; margin-bottom: 10px;'>{sport_accent} PICK #{pick_num} — {sport_label}</div>\n\n"
         md += f"<div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>{bet_line}</div>\n\n"
-        if body:
-            md += f"<div style='color: #666; line-height: 1.6;'>{body}</div>\n\n"
+
+        # Add confidence bar with badge
+        if confidence_text:
+            confidence_badge = get_confidence_badge(confidence_text)
+            md += f"<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; margin-bottom: 15px;'>{confidence_badge} {confidence_text}</div>\n\n"
+
+        if description_text:
+            md += f"<div style='color: #666; line-height: 1.6;'>{description_text.strip()}</div>\n\n"
         md += "</div>\n\n"
 
     md += "</div>\n\n"
 
     return md
+
+
+def get_confidence_badge(text):
+    """Return a colored badge for confidence level."""
+    text_upper = text.upper()
+    if "HIGH" in text_upper:
+        return "<span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span>"
+    elif "MEDIUM" in text_upper:
+        return "<span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span>"
+    elif "LOW" in text_upper:
+        return "<span style='display: inline-block; background: #6c757d; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>LOW</span>"
+    return ""
 
 
 def update_latest_predictions():
@@ -695,11 +723,32 @@ def update_latest_predictions():
     nice_date = format_date_nice(overall_latest_date)
     content = ""
 
+    # ── Add max-width wrapper and back-to-top button ──
+    content += "<style>\n"
+    content += ".content-wrapper { max-width: 1200px; margin: 0 auto; }\n"
+    content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: #667eea; color: white; padding: 12px 16px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; font-size: 1.2em; display: none; z-index: 1000; border: none; }\n"
+    content += "#back-to-top:hover { background: #5568d3; transform: translateY(-2px); transition: all 0.3s; }\n"
+    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 15px; } #back-to-top { bottom: 20px; right: 20px; padding: 10px 14px; } }\n"
+    content += "</style>\n\n"
+
+    content += "<div class='content-wrapper'>\n\n"
+
     # ── Hero Header with Today's Date ──
     content += f"<div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>\n"
     content += f"<h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>\n"
     content += f"<p style='font-size: 1.4em; color: #666; margin: 10px 0;'>{nice_date}</p>\n"
     content += f"</div>\n\n"
+
+    # ── Quick Navigation Menu ──
+    content += "<div style='background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px 20px; margin: 20px 0; text-align: center;'>\n"
+    content += "<div style='font-size: 0.9em; color: #666; margin-bottom: 8px;'>⚡ Quick Navigation</div>\n"
+    content += "<div style='display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;'>\n"
+    content += "<a href='#featured-picks' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #667eea; font-weight: 600; font-size: 0.9em;'>🔥 Featured Picks</a>\n"
+    content += "<a href='#nhl-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E74C3C; font-weight: 600; font-size: 0.9em;'>🏒 NHL</a>\n"
+    content += "<a href='#nba-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E67E22; font-weight: 600; font-size: 0.9em;'>🏀 NBA</a>\n"
+    content += "<a href='#yesterday-results' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #666; font-weight: 600; font-size: 0.9em;'>📋 Yesterday</a>\n"
+    content += "</div>\n"
+    content += "</div>\n\n"
 
     # ── Quick Stats Row ──
     nhl_yesterday = parse_yesterday_results("nhl")
@@ -751,14 +800,18 @@ def update_latest_predictions():
     if os.path.exists(dual_bet_path):
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
-            content += "<div style='margin: 30px 0;'>\n"
+            content += "<div id='featured-picks' style='margin: 30px 0;'>\n"
             content += "<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🔥 Featured Picks of the Day</h2>\n"
             content += format_dual_bet(dual_content)
             content += "</div>\n\n"
+            content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
 
     # ── Compact Stats Banner (Yesterday + Season Performance) ──
     stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
+    content += "<div id='yesterday-results'>\n"
     content += stats_banner
+    content += "</div>\n\n"
+    content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
 
     # ── Sport sections ──
     for cfg in sports_config:
@@ -766,7 +819,7 @@ def update_latest_predictions():
         name = cfg["name"]
         emoji = cfg["emoji"]
 
-        content += f"<div style='margin: 40px 0;'>\n"
+        content += f"<div id='{sport}-predictions' style='margin: 40px 0;'>\n"
         content += f"<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>{emoji} {name} Predictions</h2>\n\n"
 
         latest_file = sport_files.get(sport)
@@ -777,6 +830,23 @@ def update_latest_predictions():
             content += f"> ℹ️ No {name} predictions available today.\n\n"
 
         content += "</div>\n\n"
+
+        # Add divider between sports
+        if sport != sports_config[-1]["key"]:
+            content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
+
+    # ── Close content wrapper ──
+    content += "</div>\n\n"
+
+    # ── Back to Top Button with JavaScript ──
+    content += "<button id='back-to-top' onclick='window.scrollTo({top: 0, behavior: \"smooth\"})'>↑</button>\n\n"
+    content += "<script>\n"
+    content += "window.addEventListener('scroll', function() {\n"
+    content += "  var btn = document.getElementById('back-to-top');\n"
+    content += "  if (window.pageYOffset > 300) { btn.style.display = 'block'; }\n"
+    content += "  else { btn.style.display = 'none'; }\n"
+    content += "});\n"
+    content += "</script>\n\n"
 
 
     with open(output_md, "w") as f:
