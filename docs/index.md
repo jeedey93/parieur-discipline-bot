@@ -1,8 +1,10 @@
 <div align="center">
 
+<img src="../images/parieur_discipline.png" alt="Parieur Discipliné" width="200">
+
 # 🎯 Parieur Discipliné
 ### *AI-Powered Sports Betting Predictions*
-#### March 3, 2026
+#### 📅 March 3, 2026
 
 </div>
 
@@ -10,18 +12,27 @@
 
 <div align="center">
 
-🔥 DUAL BET OF THE DAY 🤖📊 Deux ligues. Même discipline. Même standard. On reste structurés.
-⸻
-🎯 PICK #1 – NHL 🏒 New York Rangers ML vs Columbus Blue Jackets @ 2.02
-Les cotes se sont améliorées et la confiance a augmenté, devenant le Pari du Jour à midi.
-⸻
-🎯 PICK #2 – NBA 🏀 Boston Celtics ML vs Milwaukee Bucks @ 1.64
-Les Celtics abordent ce match bien reposés, bénéficiant d'une longue pause, tandis que les Bucks sont en back-to-back après une lourde défaite hier, ce qui contribue à une fatigue importante. Cette confrontation favorise grandement les Celtics en raison de leur effectif globalement supérieur et de l'énergie et de la forme récente compromises de l'adversaire, ce qui en fait un pari à forte valeur.
-⸻
-Deux sports. Une seule approche.
-On suit la value. On protège le bankroll. Discipline > émotion. 🎯
+## 🔥 DUAL BET OF THE DAY 🔥
+*Deux ligues. Même discipline. Même standard. On reste structurés.*
 
 </div>
+
+> ### 🏒 PICK #1 — NHL
+> **Washington Capitals ML vs Utah Mammoth @ 1.83**
+>
+> Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.
+
+> ### 🏀 PICK #2 — NBA
+> **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
+>
+> Confidence Level: High Units: 1.5u | Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
+
+<div align="center">
+
+*Deux sports. Une seule approche. On suit la value. On protège le bankroll. Discipline > émotion.* 🎯
+
+</div>
+
 
 ---
 

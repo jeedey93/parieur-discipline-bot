@@ -117,6 +117,105 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
     return md
 
 
+def format_dual_bet(raw_text):
+    """Format the dual bet of the day into a nicely styled markdown section."""
+    lines = raw_text.strip().splitlines()
+
+    md = '<div align="center">\n\n'
+    md += "## 🔥 DUAL BET OF THE DAY 🔥\n"
+    md += "*Deux ligues. Même discipline. Même standard. On reste structurés.*\n\n"
+    md += "</div>\n\n"
+
+    # Parse picks from the raw text
+    picks = []
+    current_pick = None
+    footer_lines = []
+    in_footer = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Skip the header line and separator lines
+        if stripped.startswith("🔥 DUAL BET OF THE DAY"):
+            continue
+        if stripped == "⸻":
+            if current_pick:
+                picks.append(current_pick)
+                current_pick = None
+            continue
+
+        # Detect pick headers
+        if stripped.startswith("🎯 PICK #"):
+            current_pick = {"header": stripped, "body": []}
+            continue
+
+        # Detect footer (starts with "Deux sports" or similar closing)
+        if stripped.startswith("Deux sports") or stripped.startswith("On suit la value"):
+            in_footer = True
+
+        if in_footer:
+            if stripped:
+                footer_lines.append(stripped)
+            continue
+
+        # Add body text to current pick
+        if current_pick is not None and stripped:
+            current_pick["body"].append(stripped)
+        elif current_pick is None and stripped and not stripped.startswith("Deux ligues"):
+            # Stray line before any pick – skip
+            pass
+
+    # Flush last pick if not yet added
+    if current_pick:
+        picks.append(current_pick)
+
+    # Render each pick as a blockquote card
+    for pick in picks:
+        header = pick["header"]
+        body = "\n>\n> ".join(pick["body"])
+
+        # Extract the sport emoji for the card accent
+        if "NHL" in header:
+            sport_accent = "🏒"
+        elif "NBA" in header:
+            sport_accent = "🏀"
+        else:
+            sport_accent = "🎯"
+
+        # Extract the bet line (e.g. "Washington Capitals ML vs Utah Mammoth @ 1.83")
+        # It's usually everything after the sport emoji tag
+        bet_line = header
+        for tag in ["🎯 PICK #1 – NHL 🏒", "🎯 PICK #2 – NBA 🏀",
+                     "🎯 PICK #1 – NBA 🏀", "🎯 PICK #2 – NHL 🏒",
+                     "🎯 PICK #1 –", "🎯 PICK #2 –"]:
+            if bet_line.startswith(tag):
+                bet_line = bet_line[len(tag):].strip()
+                break
+
+        # Determine pick number
+        pick_num = "1" if "#1" in header else "2"
+        sport_label = "NHL" if "NHL" in header else "NBA"
+
+        md += f"> ### {sport_accent} PICK #{pick_num} — {sport_label}\n"
+        md += f"> **{bet_line}**\n"
+        md += f">\n"
+        if body:
+            md += f"> {body}\n"
+        md += "\n"
+
+    # Footer
+    if footer_lines:
+        md += '<div align="center">\n\n'
+        md += "*" + " ".join(footer_lines) + "*\n\n"
+        md += "</div>\n\n"
+    else:
+        md += '<div align="center">\n\n'
+        md += "*Deux sports. Une seule approche. On suit la value. On protège le bankroll. Discipline > émotion.* 🎯\n\n"
+        md += "</div>\n\n"
+
+    return md
+
+
 def update_latest_predictions():
     predictions_dir = "predictions"
     sports_config = [
@@ -148,11 +247,12 @@ def update_latest_predictions():
     # ── Build the page ──
     content = ""
 
-    # Header with branding
+    # Header with branding + logo
     content += '<div align="center">\n\n'
+    content += '<img src="../images/parieur_discipline.png" alt="Parieur Discipliné" width="200">\n\n'
     content += "# 🎯 Parieur Discipliné\n"
     content += f"### *AI-Powered Sports Betting Predictions*\n"
-    content += f"#### {nice_date}\n\n"
+    content += f"#### 📅 {nice_date}\n\n"
     content += "</div>\n\n"
 
     content += "---\n\n"
@@ -161,10 +261,8 @@ def update_latest_predictions():
     if os.path.exists(dual_bet_path):
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
-            content += '<div align="center">\n\n'
-            content += dual_content + "\n\n"
-            content += "</div>\n\n"
-            content += "---\n\n"
+            content += format_dual_bet(dual_content)
+            content += "\n---\n\n"
 
     # ── Overall record summary ──
     total_w = nba_record["wins"] + nhl_record["wins"]

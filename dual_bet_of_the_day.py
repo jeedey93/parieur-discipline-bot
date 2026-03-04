@@ -1,6 +1,4 @@
 import os
-import re
-from google import genai
 # Try to load environment variables from .env if present
 try:
     from dotenv import load_dotenv
@@ -104,21 +102,6 @@ def build_gemini_prompt(nhl_bet, nhl_just, nba_bet, nba_just):
         nba_just=nba_just
     ).strip()
 
-def call_gemini_translate(client, text):
-    """Call Gemini to translate the given text to French and return only the translation."""
-    prompt_text = f"Traduis ce texte en français, sans rien ajouter d'autre :\n{text}"
-    try:
-        response = client.models.generate_content(
-            model="models/gemini-2.5-flash",
-            contents=prompt_text,
-        )
-        # The new google.genai returns a response with .text
-        return response.text.strip()
-    except Exception as e:
-        if "RESOURCE_EXHAUSTED" in str(e) or "quota" in str(e):
-            return "AI analysis skipped: Gemini API quota exceeded."
-        else:
-            raise
 
 def save_to_file(content):
     """Save the content to a txt file in the predictions folder."""
@@ -140,14 +123,8 @@ def main():
     if not (nhl_bet and nba_bet):
         print("Could not find both Bet of the Day entries.")
         return
-    # Set up Gemini model
-    api_key = os.environ["GOOGLE_API_KEY"]
-    client = genai.Client(api_key=api_key)
-    # Translate justifications to French using Gemini
-    nhl_just_fr = call_gemini_translate(client, nhl_just) if nhl_just else None
-    nba_just_fr = call_gemini_translate(client, nba_just) if nba_just else None
-    # Build output in the requested format
-    output = build_gemini_prompt(nhl_bet, nhl_just_fr, nba_bet, nba_just_fr)
+    # Build output in the requested format (keep text as-is, no translation)
+    output = build_gemini_prompt(nhl_bet, nhl_just, nba_bet, nba_just)
     print(output)
     save_to_file(output)
 
