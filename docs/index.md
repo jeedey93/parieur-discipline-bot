@@ -23,12 +23,18 @@
 </div>
 </div>
 
-<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;'>
+<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 30px 0;'>
 
 <div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 <div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Yesterday</div>
 <div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>50%</div>
 <div style='font-size: 0.9em; color: #666;'>5W - 5L</div>
+</div>
+
+<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Last 5 Days</div>
+<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>45%</div>
+<div style='font-size: 0.9em; color: #666;'>15W - 18L</div>
 </div>
 
 <div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>

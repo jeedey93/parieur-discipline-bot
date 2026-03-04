@@ -442,6 +442,38 @@ def format_pick_card(pick, is_featured=False):
     return html
 
 
+def parse_last_n_days_results(sport_key, days=5):
+    """Parse last N days of results for a sport and return combined record."""
+    results_dir = os.path.join("bot_results", sport_key)
+    results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
+
+    if not results_files:
+        return {"wins": 0, "losses": 0}
+
+    # Get last N files
+    recent_files = results_files[-days:] if len(results_files) >= days else results_files
+
+    total_wins = 0
+    total_losses = 0
+
+    for file_path in recent_files:
+        try:
+            content = read_file(file_path)
+
+            # Parse wins and losses from the summary
+            win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
+            loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
+
+            if win_match:
+                total_wins += int(win_match.group(1))
+            if loss_match:
+                total_losses += int(loss_match.group(1))
+        except Exception:
+            continue
+
+    return {"wins": total_wins, "losses": total_losses}
+
+
 def parse_yesterday_results(sport_key):
     """Parse yesterday's results file for a sport and extract summary."""
     results_dir = os.path.join("bot_results", sport_key)
@@ -775,21 +807,37 @@ def update_latest_predictions():
     nhl_yesterday = parse_yesterday_results("nhl")
     nba_yesterday = parse_yesterday_results("nba")
 
+    # Calculate yesterday's stats
     yesterday_total_w = (nhl_yesterday["wins"] if nhl_yesterday else 0) + (nba_yesterday["wins"] if nba_yesterday else 0)
     yesterday_total_l = (nhl_yesterday["losses"] if nhl_yesterday else 0) + (nba_yesterday["losses"] if nba_yesterday else 0)
     yesterday_wr = f"{(yesterday_total_w / (yesterday_total_w + yesterday_total_l) * 100):.0f}%" if (yesterday_total_w + yesterday_total_l) > 0 else "N/A"
 
+    # Calculate last 5 days stats
+    nhl_last5 = parse_last_n_days_results("nhl", 5)
+    nba_last5 = parse_last_n_days_results("nba", 5)
+    last5_total_w = nhl_last5["wins"] + nba_last5["wins"]
+    last5_total_l = nhl_last5["losses"] + nba_last5["losses"]
+    last5_wr = f"{(last5_total_w / (last5_total_w + last5_total_l) * 100):.0f}%" if (last5_total_w + last5_total_l) > 0 else "N/A"
+
+    # Calculate season stats
     overall_total_w = nhl_record["wins"] + nba_record["wins"]
     overall_total_l = nhl_record["losses"] + nba_record["losses"]
     overall_wr = f"{(overall_total_w / (overall_total_w + overall_total_l) * 100):.0f}%" if (overall_total_w + overall_total_l) > 0 else "N/A"
 
-    content += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;'>\n\n"
+    content += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 30px 0;'>\n\n"
 
     # Yesterday's Win Rate Card
     content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
     content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Yesterday</div>\n"
     content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{yesterday_wr}</div>\n"
     content += f"<div style='font-size: 0.9em; color: #666;'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
+    content += "</div>\n\n"
+
+    # Last 5 Days Win Rate Card
+    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
+    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Last 5 Days</div>\n"
+    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{last5_wr}</div>\n"
+    content += f"<div style='font-size: 0.9em; color: #666;'>{last5_total_w}W - {last5_total_l}L</div>\n"
     content += "</div>\n\n"
 
     # Season Win Rate Card
