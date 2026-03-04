@@ -1,5 +1,3 @@
-### 📅 March 3, 2026
-
 > ### 🏒 PICK #1 — NHL
 > **Washington Capitals ML vs Utah Mammoth @ 1.83**
 >

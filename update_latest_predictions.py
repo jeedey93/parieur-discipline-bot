@@ -338,8 +338,8 @@ def update_latest_predictions():
 
     # ── Build the page ──
     nice_date = format_date_nice(overall_latest_date)
-    content = f"### 📅 {nice_date}\n\n" if nice_date else ""
-
+    # content = f"### 📅 {nice_date}\n\n" if nice_date else ""
+    content = ""
 
     # ── Dual Bet of the Day (hero section) ──
     if os.path.exists(dual_bet_path):

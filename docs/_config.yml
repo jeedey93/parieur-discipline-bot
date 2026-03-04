@@ -1,5 +1,6 @@
 title: "Parieur Discipliné"
 description: "AI-Powered NHL & NBA Betting Predictions"
+date: "March 3, 2026"  # Added today's date for top banner
 theme: jekyll-theme-cayman
 show_downloads: false
 logo: "parieur_discipline.png"
@@ -26,4 +27,3 @@ exclude:
 # Plugins
 plugins:
   - jekyll-seo-tag
-
