@@ -26,7 +26,7 @@
 > 📊 **Season Record:** 13W - 12L (52.0%)
 
 <details>
-<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
+<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
 
 <h3>Sports Betting Analyst Report: Morning vs. Noon Prediction Comparison (2026-03-03)</h3>
 <br>
@@ -115,7 +115,7 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 > 📊 **Season Record:** 12W - 15L (44.4%)
 
 <details>
-<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
+<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
 
 <strong>Analysis Summary:</strong>
 <br>

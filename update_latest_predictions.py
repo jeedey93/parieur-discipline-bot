@@ -209,9 +209,9 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
             new_lines.append('</ul>')
         cleaned = '\n'.join(new_lines)
 
-        # Add a hint for the collapsible section
+        # Add a hint for the collapsible section with a visual arrow
         md += "<details>\n"
-        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>\n\n"
+        md += "<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>\n\n"
         md += cleaned + "\n\n"
         md += "</details>\n\n"
 
