@@ -1291,7 +1291,14 @@ def update_latest_predictions():
     content += "<div id='yesterday-results'>\n"
     content += "<div class='section-header'>\n"
     content += "<div class='section-title'>📋 Yesterday's Results</div>\n"
-    content += f"<div class='section-subtitle'>Performance breakdown for {format_date_nice(overall_latest_date)}</div>\n"
+    # Get yesterday's actual date from the results
+    yesterday_date = None
+    if nhl_yesterday and nhl_yesterday.get("date"):
+        yesterday_date = nhl_yesterday["date"]
+    elif nba_yesterday and nba_yesterday.get("date"):
+        yesterday_date = nba_yesterday["date"]
+    yesterday_date_nice = format_date_nice(yesterday_date) if yesterday_date else "Yesterday"
+    content += f"<div class='section-subtitle'>Performance breakdown for {yesterday_date_nice}</div>\n"
     content += "</div>\n"
     stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
     content += stats_banner
