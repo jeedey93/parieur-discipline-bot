@@ -1,11 +1,4 @@
-<div align="center">
-  <img src="parieur_discipline.png" alt="Parieur Discipliné" width="180" style="border-radius: 50%; margin-bottom: 10px;">
-  <h1>🎯 Parieur Discipliné</h1>
-  <p><em>AI-Powered Sports Betting Predictions</em></p>
-  <p>📅 <strong>March 3, 2026</strong></p>
-</div>
-
----
+### 📅 March 3, 2026
 
 > ### 🏒 PICK #1 — NHL
 > **Washington Capitals ML vs Utah Mammoth @ 1.83**

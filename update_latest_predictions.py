@@ -335,15 +335,11 @@ def update_latest_predictions():
             date_str = os.path.basename(latest_text_file).split("_")[-1].replace(".txt", "")
             latest_dates.append(date_str)
     overall_latest_date = max(latest_dates) if latest_dates else ""
-    nice_date = format_date_nice(overall_latest_date)
 
     # ── Build the page ──
-    content = ""
+    nice_date = format_date_nice(overall_latest_date)
+    content = f"### 📅 {nice_date}\n\n" if nice_date else ""
 
-    # Date + logo (title & description come from _config.yml / Cayman theme banner)
-    content += '<div align="center">\n'
-    content += f'  <h3>📅 {nice_date}</h3>\n'
-    content += '</div>\n\n'
 
     # ── Dual Bet of the Day (hero section) ──
     if os.path.exists(dual_bet_path):
