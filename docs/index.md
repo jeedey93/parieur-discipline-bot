@@ -11,19 +11,63 @@
 
 ---
 
+## 📊 Yesterday's Results
+
+### 📅 March 4, 2026
+
+> ### 🎯 Daily Summary
+> **5W - 5L** (50.0%)
+>
+> 🏒 NHL: **2W - 3L** (40.0%)
+>
+> 🏀 NBA: **3W - 2L** (60.0%)
+
+<details>
+<summary style='cursor:pointer;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Results</b></summary>
+
+#### 🏒 NHL Results
+
+1. ❌ **Washington Capitals ML vs Utah Mammoth @ 1.83**
+   - Utah 3 @ Washington 2 (Total goals: 5)
+2. ✅ **Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95**
+   - Ottawa 4 @ Edmonton 5 (Total goals: 9)
+3. ✅ **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
+   - Tampa Bay 1 @ Minnesota 5 (Total goals: 6)
+4. ✅ **Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95**
+   - Florida 1 @ New Jersey 5 (Total goals: 6)
+5. ❌ **Calgary Flames ML vs Dallas Stars @ 2.1**
+   - Dallas 6 @ Calgary 1 (Total goals: 7)
+
+#### 🏀 NBA Results
+
+1. ✅ **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
+   - New Orleans Pelicans 101 @ Los Angeles Lakers 110
+2. ❌ **Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98**
+   - Dallas Mavericks 90 @ Charlotte Hornets 117
+3. ❌ **Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99**
+   - Detroit Pistons 109 @ Cleveland Cavaliers 113
+4. ✅ **New York Knicks -2.5 vs Toronto Raptors @ 1.98**
+   - New York Knicks 111 @ Toronto Raptors 95
+5. ✅ **Phoenix Suns -10.0 vs Sacramento Kings @ 1.99**
+   - Phoenix Suns 114 @ Sacramento Kings 103
+
+</details>
+
+---
+
 ## 📈 Overall Performance
 
 | | Wins | Losses | Win % |
 |---|:---:|:---:|:---:|
-| 🏒 NHL | 13 | 12 | 52.0% |
-| 🏀 NBA | 12 | 15 | 44.4% |
-| **Total** | **25** | **27** | **48.1%** |
+| 🏒 NHL | 15 | 15 | 50.0% |
+| 🏀 NBA | 15 | 17 | 46.9% |
+| **Total** | **30** | **32** | **48.4%** |
 
 ---
 
 ## 🏒 NHL Predictions
 
-> 📊 **Season Record:** 13W - 12L (52.0%)
+> 📊 **Season Record:** 15W - 15L (50.0%)
 
 <details>
 <summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
@@ -117,7 +161,7 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 
 ## 🏀 NBA Predictions
 
-> 📊 **Season Record:** 12W - 15L (44.4%)
+> 📊 **Season Record:** 15W - 17L (46.9%)
 
 <details>
 <summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>

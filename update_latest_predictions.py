@@ -233,6 +233,163 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
     return md
 
 
+def parse_yesterday_results(sport_key):
+    """Parse yesterday's results file for a sport and extract summary."""
+    results_dir = os.path.join("bot_results", sport_key)
+    results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
+
+    if not results_files:
+        return None
+
+    # Get the most recent results file
+    latest_results_file = max(results_files, key=os.path.getctime)
+
+    try:
+        content = read_file(latest_results_file)
+
+        # Extract date from filename
+        date_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(latest_results_file))
+        results_date = date_match.group(1) if date_match else "Unknown"
+
+        # Parse wins and losses from the summary
+        wins = 0
+        losses = 0
+
+        # Look for "Total Wins: X" and "Total Losses: Y"
+        win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
+        loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
+
+        if win_match:
+            wins = int(win_match.group(1))
+        if loss_match:
+            losses = int(loss_match.group(1))
+
+        # Extract individual picks with their outcomes
+        picks = []
+        lines = content.strip().splitlines()
+        current_pick = None
+
+        for line in lines:
+            stripped = line.strip()
+
+            # Match numbered pick lines like "1. **Washington Capitals ML..." or "1.  **Washington Capitals ML..."
+            pick_match = re.match(r'^\d+\.\s+\*\*(.+?)\*\*', stripped)
+            if pick_match:
+                if current_pick:
+                    picks.append(current_pick)
+                current_pick = {
+                    "bet": pick_match.group(1),
+                    "result": None,
+                    "outcome": None
+                }
+                continue
+
+            # Match actual result lines (with * bullet)
+            if current_pick and re.match(r'^\*\s+Actual Result:', stripped):
+                current_pick["result"] = re.sub(r'^\*\s+Actual Result:\s*', '', stripped)
+                continue
+
+            # Match outcome lines (WIN/LOSS) (with * bullet)
+            if current_pick and re.match(r'^\*\s+Outcome:', stripped):
+                outcome_text = re.sub(r'^\*\s+Outcome:\s*', '', stripped)
+                if "**WIN**" in outcome_text or "WIN" in outcome_text.upper():
+                    current_pick["outcome"] = "WIN"
+                elif "**LOSS**" in outcome_text or "LOSS" in outcome_text.upper():
+                    current_pick["outcome"] = "LOSS"
+                continue
+
+        # Don't forget the last pick
+        if current_pick:
+            picks.append(current_pick)
+
+        return {
+            "date": results_date,
+            "wins": wins,
+            "losses": losses,
+            "picks": picks
+        }
+    except Exception as e:
+        print(f"Error parsing results for {sport_key}: {e}")
+        return None
+
+
+def format_yesterday_results(nhl_results, nba_results):
+    """Format yesterday's results into a nice markdown section."""
+    if not nhl_results and not nba_results:
+        return ""
+
+    md = "## 📊 Yesterday's Results\n\n"
+
+    # Determine the date (use whichever is available)
+    results_date = None
+    if nhl_results and nhl_results.get("date"):
+        results_date = nhl_results["date"]
+    elif nba_results and nba_results.get("date"):
+        results_date = nba_results["date"]
+
+    if results_date:
+        nice_date = format_date_nice(results_date)
+        md += f"### 📅 {nice_date}\n\n"
+
+    # Combined summary
+    total_wins = 0
+    total_losses = 0
+
+    if nhl_results:
+        total_wins += nhl_results["wins"]
+        total_losses += nhl_results["losses"]
+
+    if nba_results:
+        total_wins += nba_results["wins"]
+        total_losses += nba_results["losses"]
+
+    total_picks = total_wins + total_losses
+    win_rate = f"{(total_wins / total_picks * 100):.1f}%" if total_picks > 0 else "N/A"
+
+    # Summary box
+    md += "> ### 🎯 Daily Summary\n"
+    md += f"> **{total_wins}W - {total_losses}L** ({win_rate})\n"
+    md += ">\n"
+
+    if nhl_results:
+        nhl_wr = f"{(nhl_results['wins'] / (nhl_results['wins'] + nhl_results['losses']) * 100):.1f}%" if (nhl_results['wins'] + nhl_results['losses']) > 0 else "N/A"
+        md += f"> 🏒 NHL: **{nhl_results['wins']}W - {nhl_results['losses']}L** ({nhl_wr})\n"
+        md += ">\n"
+
+    if nba_results:
+        nba_wr = f"{(nba_results['wins'] / (nba_results['wins'] + nba_results['losses']) * 100):.1f}%" if (nba_results['wins'] + nba_results['losses']) > 0 else "N/A"
+        md += f"> 🏀 NBA: **{nba_results['wins']}W - {nba_results['losses']}L** ({nba_wr})\n"
+
+    md += "\n"
+
+    # Detailed breakdown in collapsible sections
+    md += "<details>\n"
+    md += "<summary style='cursor:pointer;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Results</b></summary>\n\n"
+
+    if nhl_results and nhl_results.get("picks"):
+        md += "#### 🏒 NHL Results\n\n"
+        for i, pick in enumerate(nhl_results["picks"], 1):
+            outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
+            md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+            if pick.get("result"):
+                md += f"   - {pick['result']}\n"
+        md += "\n"
+
+    if nba_results and nba_results.get("picks"):
+        md += "#### 🏀 NBA Results\n\n"
+        for i, pick in enumerate(nba_results["picks"], 1):
+            outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
+            md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+            if pick.get("result"):
+                md += f"   - {pick['result']}\n"
+        md += "\n"
+
+    md += "</details>\n\n"
+    md += "---\n\n"
+
+    return md
+
+
 def format_dual_bet(raw_text):
     """Format the dual bet of the day into a nicely styled markdown section."""
     lines = raw_text.strip().splitlines()
@@ -358,6 +515,13 @@ def update_latest_predictions():
         if dual_content:
             content += format_dual_bet(dual_content)
             content += "\n---\n\n"
+
+    # ── Yesterday's Results ──
+    nhl_yesterday = parse_yesterday_results("nhl")
+    nba_yesterday = parse_yesterday_results("nba")
+    results_section = format_yesterday_results(nhl_yesterday, nba_yesterday)
+    if results_section:
+        content += results_section
 
     # ── Overall record summary ──
     total_w = nba_record["wins"] + nhl_record["wins"]
