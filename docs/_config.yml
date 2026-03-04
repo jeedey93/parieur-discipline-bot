@@ -1,0 +1,29 @@
+title: "Parieur Discipliné"
+description: "AI-Powered NHL & NBA Betting Predictions"
+theme: jekyll-theme-cayman
+show_downloads: false
+
+# SEO & metadata
+url: "https://jeedey93.github.io"
+baseurl: "/parieur-discipline-bot"
+logo: "parieur_discipline.png"
+
+# Exclude unnecessary files from build
+exclude:
+  - __pycache__
+  - "*.py"
+  - "*.pyc"
+  - .env
+  - .gitignore
+  - requirements.txt
+  - bot_results
+  - predictions
+  - prompts
+  - data
+  - images
+  - .github
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+
