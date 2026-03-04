@@ -13,7 +13,7 @@ def get_latest_file(folder, prefix, ext="txt"):
 
 
 def read_file(path):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
@@ -563,10 +563,10 @@ def parse_yesterday_results(sport_key):
 
 
 def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record):
-    """Format a compact stats banner with collapsible yesterday's details."""
+    """Format yesterday's results in a blog-style section."""
     md = ""
 
-    # Add collapsible detailed yesterday's results if available
+    # Add yesterday's results if available
     if (nhl_results and nhl_results.get("picks")) or (nba_results and nba_results.get("picks")):
         yesterday_date = None
         if nhl_results and nhl_results.get("date"):
@@ -576,50 +576,49 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
 
         nice_date = format_date_nice(yesterday_date) if yesterday_date else "Yesterday"
 
-        md += "<details style='margin: 20px 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>\n"
-        md += f"<summary style='cursor:pointer; padding: 15px; background: #f8f9fa; font-weight: bold; color: #667eea; font-size: 1.1em;'><span style='font-size:1.2em;'>📋</span> View Yesterday's Detailed Results ({nice_date})</summary>\n\n"
-        md += "<div style='padding: 20px; background: white;'>\n\n"
+        md += "<div class='yesterday-section'>\n"
 
         if nhl_results and nhl_results.get("picks"):
-            md += "<h3 style='color: #E74C3C; margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏒</span> NHL Results</h3>\n\n"
+            md += "<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏒 NHL Results</h3>\n\n"
 
             for i, pick in enumerate(nhl_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                outcome_color = "#28a745" if pick["outcome"] == "WIN" else "#dc3545"
-                outcome_bg = "#28a74515" if pick["outcome"] == "WIN" else "#dc354515"
-                outcome_text = "WIN" if pick["outcome"] == "WIN" else "LOSS"
+                is_win = pick["outcome"] == "WIN"
+                result_class = "result-card result-win" if is_win else "result-card result-loss"
+                badge_class = "badge-win" if is_win else "badge-loss"
+                badge_text = "WIN" if is_win else "LOSS"
 
-                md += f"<div style='background: {outcome_bg}; border-left: 4px solid {outcome_color}; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>\n"
-                md += f"<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>\n"
+                md += f"<div class='{result_class}'>\n"
+                md += "<div class='result-header'>\n"
                 md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
-                md += f"<span style='display: inline-block; background: {outcome_color}; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>{outcome_text}</span>\n"
-                md += f"<span style='font-weight: bold; color: #333;'>{pick['bet']}</span>\n"
-                md += f"</div>\n"
+                md += f"<span class='result-badge {badge_class}'>{badge_text}</span>\n"
+                md += f"<span class='result-title'>{pick['bet']}</span>\n"
+                md += "</div>\n"
                 if pick.get("result"):
-                    md += f"<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>{pick['result']}</div>\n"
-                md += f"</div>\n\n"
+                    md += f"<div class='result-score'>{pick['result']}</div>\n"
+                md += "</div>\n\n"
 
         if nba_results and nba_results.get("picks"):
-            md += "<h3 style='color: #E67E22; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏀</span> NBA Results</h3>\n\n"
+            md += "<h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>\n\n"
 
             for i, pick in enumerate(nba_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                outcome_color = "#28a745" if pick["outcome"] == "WIN" else "#dc3545"
-                outcome_bg = "#28a74515" if pick["outcome"] == "WIN" else "#dc354515"
-                outcome_text = "WIN" if pick["outcome"] == "WIN" else "LOSS"
+                is_win = pick["outcome"] == "WIN"
+                result_class = "result-card result-win" if is_win else "result-card result-loss"
+                badge_class = "badge-win" if is_win else "badge-loss"
+                badge_text = "WIN" if is_win else "LOSS"
 
-                md += f"<div style='background: {outcome_bg}; border-left: 4px solid {outcome_color}; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>\n"
-                md += f"<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>\n"
+                md += f"<div class='{result_class}'>\n"
+                md += "<div class='result-header'>\n"
                 md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
-                md += f"<span style='display: inline-block; background: {outcome_color}; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>{outcome_text}</span>\n"
-                md += f"<span style='font-weight: bold; color: #333;'>{pick['bet']}</span>\n"
-                md += f"</div>\n"
+                md += f"<span class='result-badge {badge_class}'>{badge_text}</span>\n"
+                md += f"<span class='result-title'>{pick['bet']}</span>\n"
+                md += "</div>\n"
                 if pick.get("result"):
-                    md += f"<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>{pick['result']}</div>\n"
-                md += f"</div>\n\n"
+                    md += f"<div class='result-score'>{pick['result']}</div>\n"
+                md += "</div>\n\n"
 
         md += "</div>\n\n"
-        md += "</details>\n\n"
 
     return md
 
@@ -674,7 +673,7 @@ def format_dual_bet(raw_text):
         picks.append(current_pick)
 
     # Render picks as modern card-style layout
-    md += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;'>\n\n"
+    md += "<div class='featured-grid'>\n\n"
 
     for pick in picks:
         header = pick["header"]
@@ -682,14 +681,14 @@ def format_dual_bet(raw_text):
 
         # Extract the sport emoji for the card accent
         if "NHL" in header:
-            sport_accent = "🏒"
-            sport_color = "#E74C3C"
+            sport_badge_class = "badge-nhl"
+            sport_label = "NHL"
         elif "NBA" in header:
-            sport_accent = "🏀"
-            sport_color = "#E67E22"
+            sport_badge_class = "badge-nba"
+            sport_label = "NBA"
         else:
-            sport_accent = "🎯"
-            sport_color = "#667eea"
+            sport_badge_class = "badge-featured"
+            sport_label = "Featured"
 
         # Extract the bet line
         bet_line = header
@@ -702,7 +701,6 @@ def format_dual_bet(raw_text):
 
         # Determine pick number
         pick_num = "1" if "#1" in header else "2"
-        sport_label = "NHL" if "NHL" in header else "NBA"
 
         # Parse confidence and description
         confidence_text = ""
@@ -714,17 +712,25 @@ def format_dual_bet(raw_text):
                 description_text += " " + line
 
         # Create card
-        md += f"<div style='background: linear-gradient(135deg, {sport_color}15 0%, {sport_color}05 100%); border-left: 4px solid {sport_color}; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>\n\n"
-        md += f"<div style='font-size: 0.9em; color: {sport_color}; font-weight: bold; margin-bottom: 10px;'>{sport_accent} PICK #{pick_num} — {sport_label}</div>\n\n"
-        md += f"<div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>{bet_line}</div>\n\n"
+        md += "<div class='pick-card'>\n"
+        md += f"<div class='pick-badge {sport_badge_class}'>PICK #{pick_num} — {sport_label}</div>\n"
+        md += f"<div class='pick-title'>{bet_line}</div>\n"
 
-        # Add confidence bar with badge
+        # Add confidence and meta info
         if confidence_text:
-            confidence_badge = get_confidence_badge(confidence_text)
-            md += f"<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; margin-bottom: 15px;'>{confidence_badge} {confidence_text}</div>\n\n"
+            # Extract confidence level
+            conf_level = "MEDIUM"
+            if "High" in confidence_text:
+                conf_level = "HIGH"
+            elif "Low" in confidence_text:
+                conf_level = "LOW"
+
+            confidence_badge_html = f"<span class='confidence-{conf_level.lower()}'>{conf_level}</span>"
+            md += f"<div class='pick-meta'>{confidence_badge_html} {confidence_text}</div>\n"
 
         if description_text:
-            md += f"<div style='color: #666; line-height: 1.6;'>{description_text.strip()}</div>\n\n"
+            md += f"<div class='pick-description'>{description_text.strip()}</div>\n"
+
         md += "</div>\n\n"
 
     md += "</div>\n\n"
@@ -775,31 +781,70 @@ def update_latest_predictions():
     nice_date = format_date_nice(overall_latest_date)
     content = ""
 
-    # ── Add max-width wrapper and back-to-top button ──
+    # ── Sports Blog CSS ──
     content += "<style>\n"
-    content += ".content-wrapper { max-width: 1200px; margin: 0 auto; }\n"
-    content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: #667eea; color: white; padding: 12px 16px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; font-size: 1.2em; display: none; z-index: 1000; border: none; }\n"
-    content += "#back-to-top:hover { background: #5568d3; transform: translateY(-2px); transition: all 0.3s; }\n"
-    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 15px; } #back-to-top { bottom: 20px; right: 20px; padding: 10px 14px; } }\n"
+    content += "* { margin: 0; padding: 0; box-sizing: border-box; }\n"
+    content += "body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #1a1a1a; background: #f5f7fa; }\n"
+    content += ".blog-container { max-width: 1100px; margin: 0 auto; background: white; }\n"
+    content += ".hero-section { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 50px 40px; text-align: center; position: relative; overflow: hidden; }\n"
+    content += ".hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M0 0h60v60H0z\" fill=\"none\"/%3E%3Cpath d=\"M30 0l30 30-30 30L0 30z\" fill=\"%23ffffff\" fill-opacity=\".03\"/%3E%3C/svg%3E'); opacity: 0.3; }\n"
+    content += ".hero-content { position: relative; z-index: 1; }\n"
+    content += ".hero-logo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px auto; display: block; border: 4px solid rgba(255,255,255,0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }\n"
+    content += ".blog-title { font-size: 3em; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }\n"
+    content += ".blog-subtitle { font-size: 1.3em; opacity: 0.95; margin-bottom: 10px; font-weight: 300; }\n"
+    content += ".blog-date { font-size: 1.1em; opacity: 0.85; font-weight: 500; }\n"
+    content += ".blog-update-time { font-size: 0.9em; opacity: 0.75; margin-top: 10px; }\n"
+    content += ".content-wrapper { padding: 0 40px 40px 40px; }\n"
+    content += ".stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: -40px 40px 40px 40px; position: relative; z-index: 10; }\n"
+    content += ".stat-card { background: white; border-radius: 12px; padding: 25px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e8ecf1; }\n"
+    content += ".stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }\n"
+    content += ".stat-label { font-size: 0.8em; color: #6b7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; }\n"
+    content += ".stat-value { font-size: 2.5em; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }\n"
+    content += ".stat-record { font-size: 0.95em; color: #4b5563; font-weight: 500; }\n"
+    content += ".nav-tabs { display: flex; gap: 10px; margin: 30px 0; padding: 10px; background: #f9fafb; border-radius: 12px; flex-wrap: wrap; }\n"
+    content += ".nav-tab { flex: 1; min-width: 120px; padding: 12px 20px; background: white; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; font-size: 0.95em; transition: all 0.2s; color: #374151; }\n"
+    content += ".nav-tab:hover { border-color: #667eea; color: #667eea; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(102,126,234,0.1); }\n"
+    content += ".section-header { margin: 50px 0 30px 0; padding-bottom: 15px; border-bottom: 3px solid #e5e7eb; }\n"
+    content += ".section-title { font-size: 2.2em; font-weight: 800; color: #111827; display: flex; align-items: center; gap: 12px; }\n"
+    content += ".section-subtitle { font-size: 0.95em; color: #6b7280; margin-top: 8px; font-weight: 400; }\n"
+    content += ".featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin: 25px 0; }\n"
+    content += ".pick-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 12px; padding: 25px; border: 2px solid #e5e7eb; transition: all 0.3s; }\n"
+    content += ".pick-card:hover { border-color: #667eea; box-shadow: 0 8px 25px rgba(102,126,234,0.15); transform: translateY(-3px); }\n"
+    content += ".pick-badge { display: inline-block; padding: 6px 12px; border-radius: 6px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }\n"
+    content += ".badge-nhl { background: #fee2e2; color: #dc2626; }\n"
+    content += ".badge-nba { background: #fed7aa; color: #ea580c; }\n"
+    content += ".badge-featured { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }\n"
+    content += ".pick-title { font-size: 1.25em; font-weight: 700; color: #111827; margin-bottom: 15px; line-height: 1.4; }\n"
+    content += ".pick-meta { display: inline-block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 12px; }\n"
+    content += ".confidence-high { display: inline-block; background: #10b981; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
+    content += ".confidence-medium { display: inline-block; background: #f59e0b; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
+    content += ".pick-description { color: #4b5563; line-height: 1.7; font-size: 0.95em; }\n"
+    content += ".yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }\n"
+    content += ".result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }\n"
+    content += ".result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }\n"
+    content += ".result-win { border-left-color: #10b981; background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 100%); }\n"
+    content += ".result-loss { border-left-color: #ef4444; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }\n"
+    content += ".result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }\n"
+    content += ".result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }\n"
+    content += ".badge-win { background: #10b981; color: white; }\n"
+    content += ".badge-loss { background: #ef4444; color: white; }\n"
+    content += ".result-title { font-weight: 600; color: #111827; font-size: 1.05em; }\n"
+    content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
+    content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
+    content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }\n"
+    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -40px 20px 30px 20px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; } .stat-card { padding: 18px 15px; } .blog-title { font-size: 2em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.6em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .hero-section { padding: 35px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } }\n"
     content += "</style>\n\n"
 
-    content += "<div class='content-wrapper'>\n\n"
+    content += "<div class='blog-container'>\n\n"
 
-    # ── Hero Header with Today's Date ──
-    content += f"<div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>\n"
-    content += f"<h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>\n"
-    content += f"<p style='font-size: 1.4em; color: #666; margin: 10px 0;'>{nice_date}</p>\n"
-    content += f"<p style='font-size: 0.9em; color: #999; margin-top: 8px;'>🕐 Updated daily at 12:00 PM (Noon) with the latest picks</p>\n"
-    content += f"</div>\n\n"
-
-    # ── Quick Navigation Menu ──
-    content += "<div style='background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px 20px; margin: 20px 0; text-align: center;'>\n"
-    content += "<div style='font-size: 0.9em; color: #666; margin-bottom: 8px;'>⚡ Quick Navigation</div>\n"
-    content += "<div style='display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;'>\n"
-    content += "<a href='#featured-picks' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #667eea; font-weight: 600; font-size: 0.9em;'>🔥 Featured Picks</a>\n"
-    content += "<a href='#nhl-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E74C3C; font-weight: 600; font-size: 0.9em;'>🏒 NHL</a>\n"
-    content += "<a href='#nba-predictions' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #E67E22; font-weight: 600; font-size: 0.9em;'>🏀 NBA</a>\n"
-    content += "<a href='#yesterday-results' style='background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; text-decoration: none; color: #666; font-weight: 600; font-size: 0.9em;'>📋 Yesterday</a>\n"
+    # ── Hero Section ──
+    content += "<div class='hero-section'>\n"
+    content += "<div class='hero-content'>\n"
+    content += "<img src='parieur_discipline.png' alt='Parieur Discipliné' class='hero-logo'>\n"
+    content += "<div class='blog-title'>🎯 Parieur Discipliné</div>\n"
+    content += "<div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>\n"
+    content += f"<div class='blog-date'>{nice_date}</div>\n"
+    content += "<div class='blog-update-time'>📡 Updated daily at 12:00 PM ET</div>\n"
     content += "</div>\n"
     content += "</div>\n\n"
 
@@ -824,63 +869,79 @@ def update_latest_predictions():
     overall_total_l = nhl_record["losses"] + nba_record["losses"]
     overall_wr = f"{(overall_total_w / (overall_total_w + overall_total_l) * 100):.0f}%" if (overall_total_w + overall_total_l) > 0 else "N/A"
 
-    content += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 30px 0;'>\n\n"
+    content += "<div class='stats-grid'>\n"
 
     # Yesterday's Win Rate Card
-    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
-    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Yesterday</div>\n"
-    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{yesterday_wr}</div>\n"
-    content += f"<div style='font-size: 0.9em; color: #666;'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
-    content += "</div>\n\n"
+    content += "<div class='stat-card'>\n"
+    content += "<div class='stat-label'>Yesterday</div>\n"
+    content += f"<div class='stat-value'>{yesterday_wr}</div>\n"
+    content += f"<div class='stat-record'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
+    content += "</div>\n"
 
     # Last 5 Days Win Rate Card
-    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
-    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Last 5 Days</div>\n"
-    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{last5_wr}</div>\n"
-    content += f"<div style='font-size: 0.9em; color: #666;'>{last5_total_w}W - {last5_total_l}L</div>\n"
-    content += "</div>\n\n"
+    content += "<div class='stat-card'>\n"
+    content += "<div class='stat-label'>Last 5 Days</div>\n"
+    content += f"<div class='stat-value'>{last5_wr}</div>\n"
+    content += f"<div class='stat-record'>{last5_total_w}W - {last5_total_l}L</div>\n"
+    content += "</div>\n"
 
     # Season Win Rate Card
-    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
-    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Season</div>\n"
-    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{overall_wr}</div>\n"
-    content += f"<div style='font-size: 0.9em; color: #666;'>{overall_total_w}W - {overall_total_l}L</div>\n"
-    content += "</div>\n\n"
+    content += "<div class='stat-card'>\n"
+    content += "<div class='stat-label'>Season</div>\n"
+    content += f"<div class='stat-value'>{overall_wr}</div>\n"
+    content += f"<div class='stat-record'>{overall_total_w}W - {overall_total_l}L</div>\n"
+    content += "</div>\n"
 
     # NHL Record Card
     nhl_wr = f"{(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.0f}%" if (nhl_record['wins'] + nhl_record['losses']) > 0 else "N/A"
-    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
-    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏒 NHL</div>\n"
-    content += f"<div style='font-size: 2em; font-weight: bold; color: #E74C3C; margin-bottom: 5px;'>{nhl_wr}</div>\n"
-    content += f"<div style='font-size: 0.9em; color: #666;'>{nhl_record['wins']}W - {nhl_record['losses']}L</div>\n"
-    content += "</div>\n\n"
+    content += "<div class='stat-card'>\n"
+    content += "<div class='stat-label'>🏒 NHL</div>\n"
+    content += f"<div class='stat-value'>{nhl_wr}</div>\n"
+    content += f"<div class='stat-record'>{nhl_record['wins']}W - {nhl_record['losses']}L</div>\n"
+    content += "</div>\n"
 
     # NBA Record Card
     nba_wr = f"{(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.0f}%" if (nba_record['wins'] + nba_record['losses']) > 0 else "N/A"
-    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
-    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏀 NBA</div>\n"
-    content += f"<div style='font-size: 2em; font-weight: bold; color: #E67E22; margin-bottom: 5px;'>{nba_wr}</div>\n"
-    content += f"<div style='font-size: 0.9em; color: #666;'>{nba_record['wins']}W - {nba_record['losses']}L</div>\n"
+    content += "<div class='stat-card'>\n"
+    content += "<div class='stat-label'>🏀 NBA</div>\n"
+    content += f"<div class='stat-value'>{nba_wr}</div>\n"
+    content += f"<div class='stat-record'>{nba_record['wins']}W - {nba_record['losses']}L</div>\n"
+    content += "</div>\n"
+
     content += "</div>\n\n"
 
+    # ── Content wrapper starts here ──
+    content += "<div class='content-wrapper'>\n\n"
+
+    # ── Navigation Tabs ──
+    content += "<div class='nav-tabs'>\n"
+    content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
+    content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL</a>\n"
+    content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA</a>\n"
+    content += "<a href='#yesterday-results' class='nav-tab'>📋 Yesterday</a>\n"
     content += "</div>\n\n"
 
     # ── Dual Bet of the Day (Featured Picks) ──
     if os.path.exists(dual_bet_path):
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
-            content += "<div id='featured-picks' style='margin: 30px 0;'>\n"
-            content += "<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🔥 Featured Picks of the Day</h2>\n"
+            content += "<div id='featured-picks'>\n"
+            content += "<div class='section-header'>\n"
+            content += "<div class='section-title'>🔥 Featured Picks of the Day</div>\n"
+            content += "<div class='section-subtitle'>Our top AI-selected plays with the highest edge</div>\n"
+            content += "</div>\n"
             content += format_dual_bet(dual_content)
             content += "</div>\n\n"
-            content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
 
-    # ── Compact Stats Banner (Yesterday + Season Performance) ──
-    stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
+    # ── Yesterday's Results ──
     content += "<div id='yesterday-results'>\n"
+    content += "<div class='section-header'>\n"
+    content += "<div class='section-title'>📋 Yesterday's Results</div>\n"
+    content += f"<div class='section-subtitle'>Performance breakdown for {format_date_nice(overall_latest_date)}</div>\n"
+    content += "</div>\n"
+    stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
     content += stats_banner
     content += "</div>\n\n"
-    content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
 
     # ── Sport sections ──
     for cfg in sports_config:
@@ -888,23 +949,25 @@ def update_latest_predictions():
         name = cfg["name"]
         emoji = cfg["emoji"]
 
-        content += f"<div id='{sport}-predictions' style='margin: 40px 0;'>\n"
-        content += f"<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>{emoji} {name} Predictions</h2>\n\n"
+        content += f"<div id='{sport}-predictions'>\n"
+        content += "<div class='section-header'>\n"
+        content += f"<div class='section-title'>{emoji} {name} Predictions</div>\n"
+        content += f"<div class='section-subtitle'>Today's {name} picks with full analysis</div>\n"
+        content += "</div>\n\n"
 
         latest_file = sport_files.get(sport)
         if latest_file:
             raw = read_file(latest_file)
             content += build_sport_section(raw, sport, name, emoji, records[sport])
         else:
-            content += f"> ℹ️ No {name} predictions available today.\n\n"
+            content += f"<p style='color: #6b7280; font-style: italic;'>No {name} predictions available today.</p>\n\n"
 
         content += "</div>\n\n"
 
-        # Add divider between sports
-        if sport != sports_config[-1]["key"]:
-            content += "<hr style='border: none; border-top: 2px solid #f0f0f0; margin: 40px 0;'>\n\n"
-
     # ── Close content wrapper ──
+    content += "</div>\n\n"
+
+    # ── Close blog container ──
     content += "</div>\n\n"
 
     # ── Back to Top Button with JavaScript ──
@@ -918,7 +981,7 @@ def update_latest_predictions():
     content += "</script>\n\n"
 
 
-    with open(output_md, "w") as f:
+    with open(output_md, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Updated {output_md}")
 
