@@ -1,11 +1,8 @@
 <div align="center">
-
-<img src="parieur_discipline.png" alt="Parieur Discipliné" width="200">
-
-# 🎯 Parieur Discipliné
-### *AI-Powered Sports Betting Predictions*
-#### 📅 March 3, 2026
-
+  <img src="parieur_discipline.png" alt="Parieur Discipliné" width="180" style="border-radius: 50%; margin-bottom: 10px;">
+  <h1>🎯 Parieur Discipliné</h1>
+  <p><em>AI-Powered Sports Betting Predictions</em></p>
+  <p>📅 <strong>March 3, 2026</strong></p>
 </div>
 
 ---

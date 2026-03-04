@@ -235,15 +235,14 @@ def update_latest_predictions():
     # ── Build the page ──
     content = ""
 
-    # Header with branding + logo
-    content += '<div align="center">\n\n'
-    content += '<img src="parieur_discipline.png" alt="Parieur Discipliné" width="200">\n\n'
-    content += "# 🎯 Parieur Discipliné\n"
-    content += f"### *AI-Powered Sports Betting Predictions*\n"
-    content += f"#### 📅 {nice_date}\n\n"
-    content += "</div>\n\n"
-
-    content += "---\n\n"
+    # Header with branding + logo (pure HTML so it renders inside <div>)
+    content += '<div align="center">\n'
+    content += '  <img src="parieur_discipline.png" alt="Parieur Discipliné" width="180" style="border-radius: 50%; margin-bottom: 10px;">\n'
+    content += '  <h1>🎯 Parieur Discipliné</h1>\n'
+    content += '  <p><em>AI-Powered Sports Betting Predictions</em></p>\n'
+    content += f'  <p>📅 <strong>{nice_date}</strong></p>\n'
+    content += '</div>\n\n'
+    content += '---\n\n'
 
     # ── Dual Bet of the Day (hero section) ──
     if os.path.exists(dual_bet_path):
