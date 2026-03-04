@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="../images/parieur_discipline.png" alt="Parieur Discipliné" width="200">
+<img src="parieur_discipline.png" alt="Parieur Discipliné" width="200">
 
 # 🎯 Parieur Discipliné
 ### *AI-Powered Sports Betting Predictions*
@@ -9,13 +9,6 @@
 </div>
 
 ---
-
-<div align="center">
-
-## 🔥 DUAL BET OF THE DAY 🔥
-*Two leagues. Same discipline. Same standard. We stay structured.*
-
-</div>
 
 > ### 🏒 PICK #1 — NHL
 > **Washington Capitals ML vs Utah Mammoth @ 1.83**
@@ -26,12 +19,6 @@
 > **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
 >
 > Confidence Level: High Units: 1.5u | Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
-
-<div align="center">
-
-*Deux sports. Une seule approche. On suit la value. On protège le bankroll. Discipline > émotion.* 🎯
-
-</div>
 
 
 ---

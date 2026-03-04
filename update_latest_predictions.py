@@ -121,10 +121,7 @@ def format_dual_bet(raw_text):
     """Format the dual bet of the day into a nicely styled markdown section."""
     lines = raw_text.strip().splitlines()
 
-    md = '<div align="center">\n\n'
-    md += "## 🔥 DUAL BET OF THE DAY 🔥\n"
-    md += "*Two leagues. Same discipline. Same standard. We stay structured.*\n\n"
-    md += "</div>\n\n"
+    md = ""
 
     # Parse picks from the raw text
     picks = []
@@ -203,15 +200,6 @@ def format_dual_bet(raw_text):
             md += f"> {body}\n"
         md += "\n"
 
-    # Footer
-    if footer_lines:
-        md += '<div align="center">\n\n'
-        md += "*" + " ".join(footer_lines) + "*\n\n"
-        md += "</div>\n\n"
-    else:
-        md += '<div align="center">\n\n'
-        md += "*Two sports. One approach. We follow the value. We protect the bankroll. Discipline > emotion.* 🎯\n\n"
-        md += "</div>\n\n"
 
     return md
 
@@ -249,7 +237,7 @@ def update_latest_predictions():
 
     # Header with branding + logo
     content += '<div align="center">\n\n'
-    content += '<img src="../images/parieur_discipline.png" alt="Parieur Discipliné" width="200">\n\n'
+    content += '<img src="parieur_discipline.png" alt="Parieur Discipliné" width="200">\n\n'
     content += "# 🎯 Parieur Discipliné\n"
     content += f"### *AI-Powered Sports Betting Predictions*\n"
     content += f"#### 📅 {nice_date}\n\n"
