@@ -685,9 +685,15 @@ def parse_yesterday_results(sport_key):
     try:
         content = read_file(latest_results_file)
 
-        # Extract date from filename
-        date_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(latest_results_file))
-        results_date = date_match.group(1) if date_match else "Unknown"
+        # Extract date from content (first line mentions the actual game date)
+        # e.g., "I have reviewed the AI's predictions against the actual game results for 2026-03-03."
+        date_match_content = re.search(r'game results for (\d{4}-\d{2}-\d{2})', content)
+        if date_match_content:
+            results_date = date_match_content.group(1)
+        else:
+            # Fallback: Extract date from filename
+            date_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(latest_results_file))
+            results_date = date_match.group(1) if date_match else "Unknown"
 
         # Parse wins and losses from the summary
         wins = 0

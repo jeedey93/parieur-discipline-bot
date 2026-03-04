@@ -154,7 +154,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for March 4, 2026</div>
+<div class='section-subtitle'>Performance breakdown for March 3, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
