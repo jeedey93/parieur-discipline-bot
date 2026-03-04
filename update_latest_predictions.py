@@ -94,6 +94,7 @@ def ensure_line_breaks_after_plays(text):
     A 'play header' is a bold line like **Team vs Opponent ...** that is
     immediately followed by a non-blank line (Confidence Level or justification).
     We also handle the BET OF THE DAY header + play combo.
+    Additionally, ensure a blank line after the confidence/unit/win probability line.
     """
     lines = text.split("\n")
     result = []
@@ -122,6 +123,15 @@ def ensure_line_breaks_after_plays(text):
             # Check if next non-blank line exists and is NOT already separated
             if i + 1 < len(lines) and lines[i + 1].strip() != "":
                 result.append("")  # Insert blank line
+
+        # Insert a blank line after confidence/unit/win probability line
+        if (
+            re.match(r"^Confidence Level:\s*", stripped, re.IGNORECASE)
+            or re.match(r"^Confidence:\s*", stripped, re.IGNORECASE)
+        ):
+            # Only insert if next line is not already blank
+            if i + 1 < len(lines) and lines[i + 1].strip() != "":
+                result.append("")
 
         i += 1
 
