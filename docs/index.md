@@ -11,19 +11,32 @@
 
 ---
 
-## 📊 Yesterday's Results
+<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;'>
 
-### 📅 March 4, 2026
+<h3 style='margin-top: 0; color: white;'>📊 Yesterday's Results - March 4, 2026</h3>
 
-> ### 🎯 Daily Summary
-> **5W - 5L** (50.0%)
->
-> 🏒 NHL: **2W - 3L** (40.0%)
->
-> 🏀 NBA: **3W - 2L** (60.0%)
+<p style='font-size: 1.3em; margin: 10px 0;'><strong>5W - 5L</strong> (50.0%)</p>
 
-<details>
-<summary style='cursor:pointer;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Results</b></summary>
+<span style='margin-right: 20px;'>🏒 NHL: 2W - 3L (40.0%)</span>
+
+<span>🏀 NBA: 3W - 2L (60.0%)</span>
+
+<hr style='border: 1px solid rgba(255,255,255,0.3); margin: 15px 0;'>
+
+<h3 style='color: white; margin-bottom: 10px;'>📈 Season Performance</h3>
+
+<p style='font-size: 1.3em; margin: 10px 0;'><strong>30W - 32L</strong> (48.4%)</p>
+
+<span style='margin-right: 20px;'>🏒 NHL: 15W - 15L (50.0%)</span>
+
+<span>🏀 NBA: 15W - 17L (46.9%)</span>
+
+</div>
+
+<details style='margin-bottom: 20px;'>
+<summary style='cursor:pointer; padding: 10px; background: #f0f0f0; border-radius: 5px;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Yesterday's Results</b></summary>
+
+<div style='padding: 15px;'>
 
 #### 🏒 NHL Results
 
@@ -51,23 +64,13 @@
 5. ✅ **Phoenix Suns -10.0 vs Sacramento Kings @ 1.99**
    - Phoenix Suns 114 @ Sacramento Kings 103
 
+</div>
+
 </details>
 
 ---
 
-## 📈 Overall Performance
-
-| | Wins | Losses | Win % |
-|---|:---:|:---:|:---:|
-| 🏒 NHL | 15 | 15 | 50.0% |
-| 🏀 NBA | 15 | 17 | 46.9% |
-| **Total** | **30** | **32** | **48.4%** |
-
----
-
 ## 🏒 NHL Predictions
-
-> 📊 **Season Record:** 15W - 15L (50.0%)
 
 <details>
 <summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
@@ -160,8 +163,6 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 ---
 
 ## 🏀 NBA Predictions
-
-> 📊 **Season Record:** 15W - 17L (46.9%)
 
 <details>
 <summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>

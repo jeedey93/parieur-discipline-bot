@@ -145,15 +145,7 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
     analysis_text, recs_text = format_sport_content(raw_text, sport_emoji, sport_name)
 
-    wins = record["wins"]
-    losses = record["losses"]
-    total = wins + losses
-    win_pct = f"{(wins / total * 100):.1f}%" if total > 0 else "N/A"
-
     md = ""
-
-    # Record bar
-    md += f"> 📊 **Season Record:** {wins}W - {losses}L ({win_pct})\n\n"
 
     # Analysis summary (collapsible)
     if analysis_text:
@@ -321,78 +313,93 @@ def parse_yesterday_results(sport_key):
         return None
 
 
-def format_yesterday_results(nhl_results, nba_results):
-    """Format yesterday's results into a nice markdown section."""
-    if not nhl_results and not nba_results:
-        return ""
+def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record):
+    """Format a compact stats banner combining yesterday's results and overall performance."""
+    md = ""
 
-    md = "## 📊 Yesterday's Results\n\n"
-
-    # Determine the date (use whichever is available)
-    results_date = None
-    if nhl_results and nhl_results.get("date"):
-        results_date = nhl_results["date"]
-    elif nba_results and nba_results.get("date"):
-        results_date = nba_results["date"]
-
-    if results_date:
-        nice_date = format_date_nice(results_date)
-        md += f"### 📅 {nice_date}\n\n"
-
-    # Combined summary
-    total_wins = 0
-    total_losses = 0
+    # Calculate yesterday's stats
+    yesterday_total_w = 0
+    yesterday_total_l = 0
+    yesterday_date = None
 
     if nhl_results:
-        total_wins += nhl_results["wins"]
-        total_losses += nhl_results["losses"]
+        yesterday_total_w += nhl_results["wins"]
+        yesterday_total_l += nhl_results["losses"]
+        yesterday_date = nhl_results.get("date")
 
     if nba_results:
-        total_wins += nba_results["wins"]
-        total_losses += nba_results["losses"]
+        yesterday_total_w += nba_results["wins"]
+        yesterday_total_l += nba_results["losses"]
+        if not yesterday_date:
+            yesterday_date = nba_results.get("date")
 
-    total_picks = total_wins + total_losses
-    win_rate = f"{(total_wins / total_picks * 100):.1f}%" if total_picks > 0 else "N/A"
+    yesterday_total = yesterday_total_w + yesterday_total_l
+    yesterday_wr = f"{(yesterday_total_w / yesterday_total * 100):.1f}%" if yesterday_total > 0 else "N/A"
 
-    # Summary box
-    md += "> ### 🎯 Daily Summary\n"
-    md += f"> **{total_wins}W - {total_losses}L** ({win_rate})\n"
-    md += ">\n"
+    # Calculate overall stats
+    overall_total_w = nhl_record["wins"] + nba_record["wins"]
+    overall_total_l = nhl_record["losses"] + nba_record["losses"]
+    overall_total = overall_total_w + overall_total_l
+    overall_wr = f"{(overall_total_w / overall_total * 100):.1f}%" if overall_total > 0 else "N/A"
 
-    if nhl_results:
-        nhl_wr = f"{(nhl_results['wins'] / (nhl_results['wins'] + nhl_results['losses']) * 100):.1f}%" if (nhl_results['wins'] + nhl_results['losses']) > 0 else "N/A"
-        md += f"> 🏒 NHL: **{nhl_results['wins']}W - {nhl_results['losses']}L** ({nhl_wr})\n"
-        md += ">\n"
+    # Create compact banner
+    md += "<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;'>\n\n"
 
-    if nba_results:
-        nba_wr = f"{(nba_results['wins'] / (nba_results['wins'] + nba_results['losses']) * 100):.1f}%" if (nba_results['wins'] + nba_results['losses']) > 0 else "N/A"
-        md += f"> 🏀 NBA: **{nba_results['wins']}W - {nba_results['losses']}L** ({nba_wr})\n"
+    # Yesterday's results (if available)
+    if yesterday_date:
+        nice_date = format_date_nice(yesterday_date)
+        md += f"<h3 style='margin-top: 0; color: white;'>📊 Yesterday's Results - {nice_date}</h3>\n\n"
+        md += f"<p style='font-size: 1.3em; margin: 10px 0;'><strong>{yesterday_total_w}W - {yesterday_total_l}L</strong> ({yesterday_wr})</p>\n\n"
 
-    md += "\n"
+        if nhl_results:
+            nhl_yesterday_wr = f"{(nhl_results['wins'] / (nhl_results['wins'] + nhl_results['losses']) * 100):.1f}%" if (nhl_results['wins'] + nhl_results['losses']) > 0 else "N/A"
+            md += f"<span style='margin-right: 20px;'>🏒 NHL: {nhl_results['wins']}W - {nhl_results['losses']}L ({nhl_yesterday_wr})</span>\n\n"
 
-    # Detailed breakdown in collapsible sections
-    md += "<details>\n"
-    md += "<summary style='cursor:pointer;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Results</b></summary>\n\n"
+        if nba_results:
+            nba_yesterday_wr = f"{(nba_results['wins'] / (nba_results['wins'] + nba_results['losses']) * 100):.1f}%" if (nba_results['wins'] + nba_results['losses']) > 0 else "N/A"
+            md += f"<span>🏀 NBA: {nba_results['wins']}W - {nba_results['losses']}L ({nba_yesterday_wr})</span>\n\n"
 
-    if nhl_results and nhl_results.get("picks"):
-        md += "#### 🏒 NHL Results\n\n"
-        for i, pick in enumerate(nhl_results["picks"], 1):
-            outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-            md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
-            if pick.get("result"):
-                md += f"   - {pick['result']}\n"
-        md += "\n"
+        md += "<hr style='border: 1px solid rgba(255,255,255,0.3); margin: 15px 0;'>\n\n"
 
-    if nba_results and nba_results.get("picks"):
-        md += "#### 🏀 NBA Results\n\n"
-        for i, pick in enumerate(nba_results["picks"], 1):
-            outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-            md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
-            if pick.get("result"):
-                md += f"   - {pick['result']}\n"
-        md += "\n"
+    # Overall season performance
+    md += "<h3 style='color: white; margin-bottom: 10px;'>📈 Season Performance</h3>\n\n"
+    md += f"<p style='font-size: 1.3em; margin: 10px 0;'><strong>{overall_total_w}W - {overall_total_l}L</strong> ({overall_wr})</p>\n\n"
 
-    md += "</details>\n\n"
+    nhl_season_wr = f"{(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.1f}%" if (nhl_record['wins'] + nhl_record['losses']) > 0 else "N/A"
+    nba_season_wr = f"{(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.1f}%" if (nba_record['wins'] + nba_record['losses']) > 0 else "N/A"
+
+    md += f"<span style='margin-right: 20px;'>🏒 NHL: {nhl_record['wins']}W - {nhl_record['losses']}L ({nhl_season_wr})</span>\n\n"
+    md += f"<span>🏀 NBA: {nba_record['wins']}W - {nba_record['losses']}L ({nba_season_wr})</span>\n\n"
+
+    md += "</div>\n\n"
+
+    # Add collapsible detailed yesterday's results if available
+    if (nhl_results and nhl_results.get("picks")) or (nba_results and nba_results.get("picks")):
+        md += "<details style='margin-bottom: 20px;'>\n"
+        md += "<summary style='cursor:pointer; padding: 10px; background: #f0f0f0; border-radius: 5px;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Yesterday's Results</b></summary>\n\n"
+        md += "<div style='padding: 15px;'>\n\n"
+
+        if nhl_results and nhl_results.get("picks"):
+            md += "#### 🏒 NHL Results\n\n"
+            for i, pick in enumerate(nhl_results["picks"], 1):
+                outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
+                md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+                if pick.get("result"):
+                    md += f"   - {pick['result']}\n"
+            md += "\n"
+
+        if nba_results and nba_results.get("picks"):
+            md += "#### 🏀 NBA Results\n\n"
+            for i, pick in enumerate(nba_results["picks"], 1):
+                outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
+                md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+                if pick.get("result"):
+                    md += f"   - {pick['result']}\n"
+            md += "\n"
+
+        md += "</div>\n\n"
+        md += "</details>\n\n"
+
     md += "---\n\n"
 
     return md
@@ -524,27 +531,11 @@ def update_latest_predictions():
             content += format_dual_bet(dual_content)
             content += "\n---\n\n"
 
-    # ── Yesterday's Results ──
+    # ── Compact Stats Banner (Yesterday + Season Performance) ──
     nhl_yesterday = parse_yesterday_results("nhl")
     nba_yesterday = parse_yesterday_results("nba")
-    results_section = format_yesterday_results(nhl_yesterday, nba_yesterday)
-    if results_section:
-        content += results_section
-
-    # ── Overall record summary ──
-    total_w = nba_record["wins"] + nhl_record["wins"]
-    total_l = nba_record["losses"] + nhl_record["losses"]
-    total_games = total_w + total_l
-    overall_pct = f"{(total_w / total_games * 100):.1f}%" if total_games > 0 else "N/A"
-
-    content += "## 📈 Overall Performance\n\n"
-    content += "| | Wins | Losses | Win % |\n"
-    content += "|---|:---:|:---:|:---:|\n"
-    content += f"| 🏒 NHL | {nhl_record['wins']} | {nhl_record['losses']} | {(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.1f}% |\n" if (nhl_record['wins'] + nhl_record['losses']) > 0 else f"| 🏒 NHL | 0 | 0 | N/A |\n"
-    content += f"| 🏀 NBA | {nba_record['wins']} | {nba_record['losses']} | {(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.1f}% |\n" if (nba_record['wins'] + nba_record['losses']) > 0 else f"| 🏀 NBA | 0 | 0 | N/A |\n"
-    content += f"| **Total** | **{total_w}** | **{total_l}** | **{overall_pct}** |\n\n"
-
-    content += "---\n\n"
+    stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
+    content += stats_banner
 
     # ── Sport sections ──
     for cfg in sports_config:
