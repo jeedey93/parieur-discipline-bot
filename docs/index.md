@@ -86,31 +86,99 @@
 
 <div style='padding: 20px; background: white;'>
 
-### 🏒 NHL Results
+<h3 style='color: #E74C3C; margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏒</span> NHL Results</h3>
 
-1. ❌ **Washington Capitals ML vs Utah Mammoth @ 1.83**
-   <br><span style='color: #999; font-size: 0.9em;'>Utah 3 @ Washington 2 (Total goals: 5)</span>
-2. ✅ **Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95**
-   <br><span style='color: #999; font-size: 0.9em;'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</span>
-3. ❌ **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
-   <br><span style='color: #999; font-size: 0.9em;'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</span>
-4. ✅ **Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95**
-   <br><span style='color: #999; font-size: 0.9em;'>Florida 1 @ New Jersey 5 (Total goals: 6)</span>
-5. ❌ **Calgary Flames ML vs Dallas Stars @ 2.1**
-   <br><span style='color: #999; font-size: 0.9em;'>Dallas 6 @ Calgary 1 (Total goals: 7)</span>
+<div style='background: #dc354515; border-left: 4px solid #dc3545; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>❌</span>
+<span style='display: inline-block; background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>LOSS</span>
+<span style='font-weight: bold; color: #333;'>Washington Capitals ML vs Utah Mammoth @ 1.83</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Utah 3 @ Washington 2 (Total goals: 5)</div>
+</div>
 
-### 🏀 NBA Results
+<div style='background: #28a74515; border-left: 4px solid #28a745; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>✅</span>
+<span style='display: inline-block; background: #28a745; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>WIN</span>
+<span style='font-weight: bold; color: #333;'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</div>
+</div>
 
-1. ✅ **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
-   <br><span style='color: #999; font-size: 0.9em;'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</span>
-2. ❌ **Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98**
-   <br><span style='color: #999; font-size: 0.9em;'>Dallas Mavericks 90 @ Charlotte Hornets 117</span>
-3. ❌ **Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99**
-   <br><span style='color: #999; font-size: 0.9em;'>Detroit Pistons 109 @ Cleveland Cavaliers 113</span>
-4. ✅ **New York Knicks -2.5 vs Toronto Raptors @ 1.98**
-   <br><span style='color: #999; font-size: 0.9em;'>New York Knicks 111 @ Toronto Raptors 95</span>
-5. ✅ **Phoenix Suns -10.0 vs Sacramento Kings @ 1.99**
-   <br><span style='color: #999; font-size: 0.9em;'>Phoenix Suns 114 @ Sacramento Kings 103</span>
+<div style='background: #dc354515; border-left: 4px solid #dc3545; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>❌</span>
+<span style='display: inline-block; background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>LOSS</span>
+<span style='font-weight: bold; color: #333;'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</div>
+</div>
+
+<div style='background: #28a74515; border-left: 4px solid #28a745; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>✅</span>
+<span style='display: inline-block; background: #28a745; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>WIN</span>
+<span style='font-weight: bold; color: #333;'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Florida 1 @ New Jersey 5 (Total goals: 6)</div>
+</div>
+
+<div style='background: #dc354515; border-left: 4px solid #dc3545; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>❌</span>
+<span style='display: inline-block; background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>LOSS</span>
+<span style='font-weight: bold; color: #333;'>Calgary Flames ML vs Dallas Stars @ 2.1</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Dallas 6 @ Calgary 1 (Total goals: 7)</div>
+</div>
+
+<h3 style='color: #E67E22; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏀</span> NBA Results</h3>
+
+<div style='background: #28a74515; border-left: 4px solid #28a745; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>✅</span>
+<span style='display: inline-block; background: #28a745; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>WIN</span>
+<span style='font-weight: bold; color: #333;'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
+</div>
+
+<div style='background: #dc354515; border-left: 4px solid #dc3545; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>❌</span>
+<span style='display: inline-block; background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>LOSS</span>
+<span style='font-weight: bold; color: #333;'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
+</div>
+
+<div style='background: #dc354515; border-left: 4px solid #dc3545; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>❌</span>
+<span style='display: inline-block; background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>LOSS</span>
+<span style='font-weight: bold; color: #333;'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
+</div>
+
+<div style='background: #28a74515; border-left: 4px solid #28a745; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>✅</span>
+<span style='display: inline-block; background: #28a745; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>WIN</span>
+<span style='font-weight: bold; color: #333;'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>New York Knicks 111 @ Toronto Raptors 95</div>
+</div>
+
+<div style='background: #28a74515; border-left: 4px solid #28a745; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>
+<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>
+<span style='font-size: 1.5em;'>✅</span>
+<span style='display: inline-block; background: #28a745; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>WIN</span>
+<span style='font-weight: bold; color: #333;'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
+</div>
+<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>Phoenix Suns 114 @ Sacramento Kings 103</div>
+</div>
 
 </div>
 

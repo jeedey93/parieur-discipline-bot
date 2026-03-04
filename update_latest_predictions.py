@@ -549,22 +549,42 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
         md += "<div style='padding: 20px; background: white;'>\n\n"
 
         if nhl_results and nhl_results.get("picks"):
-            md += "### 🏒 NHL Results\n\n"
+            md += "<h3 style='color: #E74C3C; margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏒</span> NHL Results</h3>\n\n"
+
             for i, pick in enumerate(nhl_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+                outcome_color = "#28a745" if pick["outcome"] == "WIN" else "#dc3545"
+                outcome_bg = "#28a74515" if pick["outcome"] == "WIN" else "#dc354515"
+                outcome_text = "WIN" if pick["outcome"] == "WIN" else "LOSS"
+
+                md += f"<div style='background: {outcome_bg}; border-left: 4px solid {outcome_color}; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>\n"
+                md += f"<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>\n"
+                md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
+                md += f"<span style='display: inline-block; background: {outcome_color}; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>{outcome_text}</span>\n"
+                md += f"<span style='font-weight: bold; color: #333;'>{pick['bet']}</span>\n"
+                md += f"</div>\n"
                 if pick.get("result"):
-                    md += f"   <br><span style='color: #999; font-size: 0.9em;'>{pick['result']}</span>\n"
-            md += "\n"
+                    md += f"<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>{pick['result']}</div>\n"
+                md += f"</div>\n\n"
 
         if nba_results and nba_results.get("picks"):
-            md += "### 🏀 NBA Results\n\n"
+            md += "<h3 style='color: #E67E22; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;'><span>🏀</span> NBA Results</h3>\n\n"
+
             for i, pick in enumerate(nba_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
+                outcome_color = "#28a745" if pick["outcome"] == "WIN" else "#dc3545"
+                outcome_bg = "#28a74515" if pick["outcome"] == "WIN" else "#dc354515"
+                outcome_text = "WIN" if pick["outcome"] == "WIN" else "LOSS"
+
+                md += f"<div style='background: {outcome_bg}; border-left: 4px solid {outcome_color}; padding: 15px; border-radius: 6px; margin-bottom: 12px;'>\n"
+                md += f"<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 8px;'>\n"
+                md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
+                md += f"<span style='display: inline-block; background: {outcome_color}; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold;'>{outcome_text}</span>\n"
+                md += f"<span style='font-weight: bold; color: #333;'>{pick['bet']}</span>\n"
+                md += f"</div>\n"
                 if pick.get("result"):
-                    md += f"   <br><span style='color: #999; font-size: 0.9em;'>{pick['result']}</span>\n"
-            md += "\n"
+                    md += f"<div style='color: #666; font-size: 0.9em; padding-left: 45px;'>{pick['result']}</div>\n"
+                md += f"</div>\n\n"
 
         md += "</div>\n\n"
         md += "</details>\n\n"
