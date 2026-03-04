@@ -36,40 +36,47 @@
 
 <details>
 <summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>
+
+<h3>Sports Betting Analyst Report: Morning vs. Noon Prediction Comparison (2026-03-03)</h3>
 <br>
-
-### Sports Betting Analyst Report: Morning vs. Noon Prediction Comparison (2026-03-03)
-
-**Overall Observations:**
-The noon report shows significant shifts in recommended plays, indicating that fresh data and updated line movements have led the AI model to re-evaluate its strongest convictions. Several morning picks were dropped entirely, replaced by new opportunities, and the "Bet of the Day" changed. This highlights the dynamic nature of sports betting markets and the AI's adaptability.
-
-**1. Plays Appearing in Both Reports (Consistency):**
-Only one specific play remained consistent across both reports:
-*   **Ottawa Senators vs. Edmonton Oilers Over 6.5**
-
-**2. Plays Added/Removed Between Reports (Line Movement Impact):**
-
-*   **Removed from Noon Report (Morning Only Plays):**
-    *   Pittsburgh vs Boston Under 6.5 (Morning BET OF THE DAY)
-    *   Colorado ML vs Anaheim
-    *   Florida ML vs New Jersey (Replaced by an Over/Under pick for the same game)
-    *   Dallas vs Calgary Under 5.5 (Replaced by a Moneyline pick for the same game)
-
-*   **Added to Noon Report (Noon Only Plays):**
-    *   Tampa Bay Lightning vs Minnesota Wild Over 6.0 (Noon BET OF THE DAY)
-    *   Florida Panthers vs New Jersey Devils Over 5.5
-    *   Calgary Flames ML vs Dallas Stars
-    *   Washington Capitals ML vs Utah Mammoth
-
-**3. Confidence Level Changes for Same Plays:**
-*   For **Ottawa Senators vs. Edmonton Oilers Over 6.5**: The confidence level remained **High** in both reports. However, the Win Probability decreased from 65% (morning) to 59% (noon).
-
-**4. Odds Changes Affecting Recommendations:**
-*   For **Ottawa Senators vs. Edmonton Oilers Over 6.5**: The odds improved for the bettor, moving from @1.90 (morning) to @1.95 (noon). This line movement, despite a slight drop in Win Probability, kept it as a strong recommendation.
-*   For the **Florida Panthers vs New Jersey Devils** game, the morning report favored Florida ML at 1.91 odds. By noon, the odds for Florida ML had shifted to 1.95, while New Jersey's ML dropped to 1.87. However, the AI pivoted entirely to an Over 5.5 bet at 1.95, suggesting the value shifted away from the Moneyline and towards the total.
-*   Similarly, for the **Dallas Stars vs Calgary Flames** game, the morning report recommended Under 5.5 at 1.90 odds. By noon, the odds for Dallas ML had moved from 2.05 to 2.10 and Calgary ML from 1.80 to 1.77. The AI's recommendation pivoted to Calgary ML at 2.1 odds, indicating significant perceived value from the line movement and perhaps updated injury impact for Dallas.
-
----
+<strong>Overall Observations:</strong>
+<p>The noon report shows significant shifts in recommended plays, indicating that fresh data and updated line movements have led the AI model to re-evaluate its strongest convictions. Several morning picks were dropped entirely, replaced by new opportunities, and the "Bet of the Day" changed. This highlights the dynamic nature of sports betting markets and the AI's adaptability.</p>
+<br>
+<strong>1. Plays Appearing in Both Reports (Consistency):</strong>
+<p>Only one specific play remained consistent across both reports:</p>
+<ul>
+<li>  <strong>Ottawa Senators vs. Edmonton Oilers Over 6.5</strong></li>
+</ul>
+<br>
+<strong>2. Plays Added/Removed Between Reports (Line Movement Impact):</strong>
+<br>
+<ul>
+<li>  <strong>Removed from Noon Report (Morning Only Plays):</strong></li>
+  <li>  Pittsburgh vs Boston Under 6.5 (Morning BET OF THE DAY)</li>
+  <li>  Colorado ML vs Anaheim</li>
+  <li>  Florida ML vs New Jersey (Replaced by an Over/Under pick for the same game)</li>
+  <li>  Dallas vs Calgary Under 5.5 (Replaced by a Moneyline pick for the same game)</li>
+</ul>
+<br>
+<ul>
+<li>  <strong>Added to Noon Report (Noon Only Plays):</strong></li>
+  <li>  Tampa Bay Lightning vs Minnesota Wild Over 6.0 (Noon BET OF THE DAY)</li>
+  <li>  Florida Panthers vs New Jersey Devils Over 5.5</li>
+  <li>  Calgary Flames ML vs Dallas Stars</li>
+  <li>  Washington Capitals ML vs Utah Mammoth</li>
+</ul>
+<br>
+<strong>3. Confidence Level Changes for Same Plays:</strong>
+<ul>
+<li>  For <strong>Ottawa Senators vs. Edmonton Oilers Over 6.5</strong>: The confidence level remained <strong>High</strong> in both reports. However, the Win Probability decreased from 65% (morning) to 59% (noon).</li>
+</ul>
+<br>
+<strong>4. Odds Changes Affecting Recommendations:</strong>
+<ul>
+<li>  For <strong>Ottawa Senators vs. Edmonton Oilers Over 6.5</strong>: The odds improved for the bettor, moving from @1.90 (morning) to @1.95 (noon). This line movement, despite a slight drop in Win Probability, kept it as a strong recommendation.</li>
+<li>  For the <strong>Florida Panthers vs New Jersey Devils</strong> game, the morning report favored Florida ML at 1.91 odds. By noon, the odds for Florida ML had shifted to 1.95, while New Jersey's ML dropped to 1.87. However, the AI pivoted entirely to an Over 5.5 bet at 1.95, suggesting the value shifted away from the Moneyline and towards the total.</li>
+<li>  Similarly, for the <strong>Dallas Stars vs Calgary Flames</strong> game, the morning report recommended Under 5.5 at 1.90 odds. By noon, the odds for Dallas ML had moved from 2.05 to 2.10 and Calgary ML from 1.80 to 1.77. The AI's recommendation pivoted to Calgary ML at 2.1 odds, indicating significant perceived value from the line movement and perhaps updated injury impact for Dallas.</li>
+</ul>
 
 </details>
 
@@ -113,35 +120,34 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 
 <details>
 <summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>
+
+<strong>Analysis Summary:</strong>
 <br>
-
-**Analysis Summary:**
-
-The comparison between the morning and noon reports reveals significant shifts in market perception and the AI model's conviction. Several plays that were recommended in the morning were removed by noon, suggesting updated data or line movements made them less appealing. Conversely, new high-conviction plays emerged in the noon report.
-
-*   **Consistency:** Only one play, **New York Knicks -2.5 vs Toronto Raptors**, appeared in both reports, indicating a strong, consistent conviction despite odds movement.
-*   **Added Plays (Noon Report):**
-    *   Los Angeles Lakers vs New Orleans Pelicans Under 243.0 (elevated to Bet of the Day)
-    *   Charlotte Hornets vs Dallas Mavericks Over 231.0
-    *   Detroit Pistons -2.5 vs Cleveland Cavaliers (a complete shift from the morning's 'Under' bet for this game)
-    *   Phoenix Suns -10.0 vs Sacramento Kings
-*   **Removed Plays (From Morning Report):**
-    *   Philadelphia 76ers +8.0 vs San Antonio Spurs (morning's Bet of the Day)
-    *   Brooklyn Nets +13.5 vs Miami Heat
-    *   Memphis Grizzlies +13.5 vs Minnesota Timberwolves
-    *   Cleveland Cavaliers vs Detroit Pistons Under 226.5 (replaced by a spread bet on Detroit)
-*   **Confidence Level Changes:** For the New York Knicks -2.5 play, the confidence level remained Medium, but the odds improved. For the Cavaliers vs Pistons game, the entire recommendation changed from an 'Under' bet (Medium confidence) to a 'Pistons Spread' bet (High confidence), reflecting a significant change in the model's read on the game's outcome.
-*   **Odds & Line Movement Impact:**
-    *   The Lakers vs Pelicans O/U moved from 239.5 (morning) to 242.5 (noon), which made the Under 243.0 a compelling new play.
-    *   The Hornets vs Mavericks O/U moved from 230.5 (morning) to 231.5 (noon), making the Over 231.0 a new high-confidence play.
-    *   The Cavaliers vs Pistons O/U moved from 226.5 to 228.5, and the Pistons spread shifted from Home 2.5 (1.94) to Away -2.5 (1.99), leading to the new Pistons spread recommendation.
-    *   The Knicks -2.5 odds improved from 1.91 to 1.98, maintaining its recommendation.
-    *   The Suns spread moved from -10.5 (1.95) to -10.0 (1.99), making the -10.0 an attractive new play.
-    *   The 76ers +8.0 odds worsened from 1.99 to 1.95, and the play was removed.
-    *   The Nets +13.5 spread moved to +13.0, and the odds worsened from 1.99 to 1.96, leading to its removal.
-    *   The Grizzlies spread moved from +13.5 to +14.5, but odds slightly worsened from 1.95 to 1.94, and the play was removed.
-
----
+<p>The comparison between the morning and noon reports reveals significant shifts in market perception and the AI model's conviction. Several plays that were recommended in the morning were removed by noon, suggesting updated data or line movements made them less appealing. Conversely, new high-conviction plays emerged in the noon report.</p>
+<br>
+<ul>
+<li>  <strong>Consistency:</strong> Only one play, <strong>New York Knicks -2.5 vs Toronto Raptors</strong>, appeared in both reports, indicating a strong, consistent conviction despite odds movement.</li>
+<li>  <strong>Added Plays (Noon Report):</strong></li>
+  <li>  Los Angeles Lakers vs New Orleans Pelicans Under 243.0 (elevated to Bet of the Day)</li>
+  <li>  Charlotte Hornets vs Dallas Mavericks Over 231.0</li>
+  <li>  Detroit Pistons -2.5 vs Cleveland Cavaliers (a complete shift from the morning's 'Under' bet for this game)</li>
+  <li>  Phoenix Suns -10.0 vs Sacramento Kings</li>
+<li>  <strong>Removed Plays (From Morning Report):</strong></li>
+  <li>  Philadelphia 76ers +8.0 vs San Antonio Spurs (morning's Bet of the Day)</li>
+  <li>  Brooklyn Nets +13.5 vs Miami Heat</li>
+  <li>  Memphis Grizzlies +13.5 vs Minnesota Timberwolves</li>
+  <li>  Cleveland Cavaliers vs Detroit Pistons Under 226.5 (replaced by a spread bet on Detroit)</li>
+<li>  <strong>Confidence Level Changes:</strong> For the New York Knicks -2.5 play, the confidence level remained Medium, but the odds improved. For the Cavaliers vs Pistons game, the entire recommendation changed from an 'Under' bet (Medium confidence) to a 'Pistons Spread' bet (High confidence), reflecting a significant change in the model's read on the game's outcome.</li>
+<li>  <strong>Odds & Line Movement Impact:</strong></li>
+  <li>  The Lakers vs Pelicans O/U moved from 239.5 (morning) to 242.5 (noon), which made the Under 243.0 a compelling new play.</li>
+  <li>  The Hornets vs Mavericks O/U moved from 230.5 (morning) to 231.5 (noon), making the Over 231.0 a new high-confidence play.</li>
+  <li>  The Cavaliers vs Pistons O/U moved from 226.5 to 228.5, and the Pistons spread shifted from Home 2.5 (1.94) to Away -2.5 (1.99), leading to the new Pistons spread recommendation.</li>
+  <li>  The Knicks -2.5 odds improved from 1.91 to 1.98, maintaining its recommendation.</li>
+  <li>  The Suns spread moved from -10.5 (1.95) to -10.0 (1.99), making the -10.0 an attractive new play.</li>
+  <li>  The 76ers +8.0 odds worsened from 1.99 to 1.95, and the play was removed.</li>
+  <li>  The Nets +13.5 spread moved to +13.0, and the odds worsened from 1.99 to 1.96, leading to its removal.</li>
+  <li>  The Grizzlies spread moved from +13.5 to +14.5, but odds slightly worsened from 1.95 to 1.94, and the play was removed.</li>
+</ul>
 
 </details>
 

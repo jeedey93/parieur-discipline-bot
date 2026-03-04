@@ -117,9 +117,59 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
             cleaned = re.sub(pat, "", cleaned, flags=re.IGNORECASE)
         cleaned = cleaned.strip().lstrip("-").strip()
 
+        # Remove trailing --- that looks messy inside details
+        cleaned = re.sub(r'\n---\s*$', '', cleaned).strip()
+        # Remove leading --- as well
+        cleaned = re.sub(r'^---\s*\n', '', cleaned).strip()
+
+        # Convert markdown headings to HTML for reliable rendering inside <details>
+        def heading_to_html(m):
+            level = len(m.group(1))
+            text = m.group(2).strip()
+            return f"<h{level}>{text}</h{level}>"
+        cleaned = re.sub(r'^(#{1,6})\s+(.+)$', heading_to_html, cleaned, flags=re.MULTILINE)
+
+        # Convert --- separators to <hr> for reliable rendering
+        cleaned = re.sub(r'^\s*---\s*$', '<hr>', cleaned, flags=re.MULTILINE)
+
+        # Convert **bold** to <strong> for reliable rendering inside HTML
+        cleaned = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', cleaned)
+
+        # Convert *italic* to <em> (but not bullet points)
+        cleaned = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', cleaned)
+
+        # Convert bullet points (* item) to HTML list items
+        lines_list = cleaned.split('\n')
+        in_list = False
+        new_lines = []
+        for line in lines_list:
+            stripped = line.strip()
+            if stripped.startswith('* ') or stripped.startswith('- '):
+                if not in_list:
+                    new_lines.append('<ul>')
+                    in_list = True
+                # Handle nested bullets (4 spaces indent)
+                if line.startswith('    ') or line.startswith('\t'):
+                    item_text = stripped[2:]
+                    new_lines.append(f'  <li>{item_text}</li>')
+                else:
+                    item_text = stripped[2:]
+                    new_lines.append(f'<li>{item_text}</li>')
+            else:
+                if in_list:
+                    new_lines.append('</ul>')
+                    in_list = False
+                # Convert blank lines to <br> for spacing
+                if stripped == '':
+                    new_lines.append('<br>')
+                else:
+                    new_lines.append(f'<p>{stripped}</p>' if stripped and not stripped.startswith('<') else stripped)
+        if in_list:
+            new_lines.append('</ul>')
+        cleaned = '\n'.join(new_lines)
+
         md += "<details>\n"
-        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>\n"
-        md += "<br>\n\n"
+        md += "<summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>\n\n"
         md += cleaned + "\n\n"
         md += "</details>\n\n"
 
