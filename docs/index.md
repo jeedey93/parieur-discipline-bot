@@ -123,8 +123,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div class='nav-tabs'>
 <a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>
-<a href='#nhl-predictions' class='nav-tab'>🏒 NHL</a>
-<a href='#nba-predictions' class='nav-tab'>🏀 NBA</a>
+<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>
+<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>
 <a href='#yesterday-results' class='nav-tab'>📋 Yesterday</a>
 </div>
 

@@ -1276,8 +1276,8 @@ def update_latest_predictions():
     # ── Navigation Tabs ──
     content += "<div class='nav-tabs'>\n"
     content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
-    content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL</a>\n"
-    content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA</a>\n"
+    content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>\n"
+    content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>\n"
     content += "<a href='#yesterday-results' class='nav-tab'>📋 Yesterday</a>\n"
     content += "</div>\n\n"
 
