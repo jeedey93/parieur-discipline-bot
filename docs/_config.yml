@@ -1,12 +1,11 @@
-title: "Parieur Discipliné"
-description: "AI-Powered NHL & NBA Betting Predictions"
+title: "🎯 Parieur Discipliné"
+description: "AI-Powered NHL & NBA Betting Predictions | Discipline > Emotion"
 theme: jekyll-theme-cayman
 show_downloads: false
 
 # SEO & metadata
 url: "https://jeedey93.github.io"
 baseurl: "/parieur-discipline-bot"
-logo: "parieur_discipline.png"
 
 # Exclude unnecessary files from build
 exclude:
