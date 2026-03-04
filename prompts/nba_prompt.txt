@@ -106,7 +106,7 @@ Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data. If a team is tanking or on a losing streak, mention this if relevant.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), market mechanics, or tanking/losing streak status influence the pick. Make the explanation clear and accessible for beginner bettors and NBA fans.
 If a play is skipped, confidence is adjusted, or reasoning is changed due to historical results in {{HISTORICAL_RESULTS}}, explicitly mention this in the output for that play (e.g., "Confidence reduced due to recent poor performance in similar spots" or "Play skipped due to negative historical edge").
-Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
+Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 RANKING
 Rank all recommended plays strictly by descending confidence percentage (from highest to lowest), regardless of confidence tier. If two plays have the same confidence %, list High confidence plays first. Do not include Lean confidence plays in the ranking or output. Do not include the Bet of the Day in the recommended plays list; it should only appear once at the top. If more than 5 qualified plays exist, only output the top 5 by confidence (including Bet of the Day).
@@ -122,7 +122,7 @@ BET OF THE DAY:
 <TEAM or MARKET> <MARKET> vs <OPPONENT> @ <ODDS>
 <Justification sentence 1>
 <Justification sentence 2>
-Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
+Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 After the Bet of the Day, group all other recommended plays under a header such as '**Other Recommended Plays**', and list them separately. Do not repeat the Bet of the Day in the recommended plays section.
 Format exactly:
@@ -131,7 +131,7 @@ For Over/Under (Totals): <TEAM> vs <OPPONENT> Over <TOTAL> @ <ODDS> or <TEAM> vs
 Body format (EXACTLY 2 short sentences):
 Sentence 1: Summarize current 2026 rosters, fatigue, and injury status at the team level. Do not mention player names unless they are explicitly provided in the input data.
 Sentence 2: Provide user-friendly reasoning that explains the matchup edge, current season form, injury impact, and, if relevant, how bookmakers, expected value (EV), or market mechanics influence the pick. If the Bet of the Day is chosen or confidence is adjusted due to historical self-evaluation, explicitly mention this in the output (e.g., "Bet of the Day selected based on strong historical performance in similar matchups"). Make the explanation clear and accessible for beginner bettors and NBA fans.
-Confidence Level: (High / Medium) Units: (1.5u / 1u) | Win Probability: <XX>%
+Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 DATA TO ANALYZE
 {{RESULTS_TEXT}}

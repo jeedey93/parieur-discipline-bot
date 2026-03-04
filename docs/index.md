@@ -15,7 +15,7 @@
 > ### 🏀 PICK #2 — NBA
 > **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
 >
-> Confidence Level: High Units: 1.5u | Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
+> Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
 
 
 ---
