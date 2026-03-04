@@ -26,7 +26,7 @@
 > 📊 **Season Record:** 13W - 12L (52.0%)
 
 <details>
-<summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>
+<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
 
 <h3>Sports Betting Analyst Report: Morning vs. Noon Prediction Comparison (2026-03-03)</h3>
 <br>
@@ -115,7 +115,7 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
 > 📊 **Season Record:** 12W - 15L (44.4%)
 
 <details>
-<summary>📋 <b>Morning vs Noon Comparison & Analysis</b></summary>
+<summary>📋 <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
 
 <strong>Analysis Summary:</strong>
 <br>
@@ -186,10 +186,3 @@ The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicati
 
 ---
 
-<div align="center">
-
-*Powered by AI analysis with morning & noon odds comparison*
-
-**Discipline > Emotion** 🎯
-
-</div>
