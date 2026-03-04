@@ -799,7 +799,7 @@ def parse_yesterday_results(sport_key):
 
 
 def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record):
-    """Format yesterday's results in a blog-style section."""
+    """Format yesterday's results in a compact grid of square tiles."""
     md = ""
 
     # Add yesterday's results if available
@@ -815,64 +815,64 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
         md += "<div class='yesterday-section'>\n"
 
         if nhl_results and nhl_results.get("picks"):
-            md += "<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏒 NHL Results</h3>\n\n"
+            md += "<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>\n\n"
+            md += "<div class='results-grid'>\n"
 
             for i, pick in enumerate(nhl_results["picks"], 1):
                 if pick["outcome"] == "WIN":
                     outcome_emoji = "✅"
-                    result_class = "result-card result-win"
-                    badge_class = "badge-win"
-                    badge_text = "WIN"
+                    tile_class = "result-tile result-tile-win"
                 elif pick["outcome"] == "PUSH":
                     outcome_emoji = "↔️"
-                    result_class = "result-card result-push"
-                    badge_class = "badge-push"
-                    badge_text = "PUSH"
+                    tile_class = "result-tile result-tile-push"
                 else:  # LOSS
                     outcome_emoji = "❌"
-                    result_class = "result-card result-loss"
-                    badge_class = "badge-loss"
-                    badge_text = "LOSS"
+                    tile_class = "result-tile result-tile-loss"
 
-                md += f"<div class='{result_class}'>\n"
-                md += "<div class='result-header'>\n"
-                md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
-                md += f"<span class='result-badge {badge_class}'>{badge_text}</span>\n"
-                md += f"<span class='result-title'>{pick['bet']}</span>\n"
+                # Shorten bet text for compact display
+                bet_short = pick['bet']
+                # Remove odds from display to save space
+                bet_short = re.sub(r'\s*@\s*\d+\.?\d*', '', bet_short)
+                # Truncate long team names if needed
+                if len(bet_short) > 50:
+                    bet_short = bet_short[:47] + "..."
+
+                md += f"<div class='{tile_class}'>\n"
+                md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
+                md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
                 md += "</div>\n"
-                if pick.get("result"):
-                    md += f"<div class='result-score'>{pick['result']}</div>\n"
-                md += "</div>\n\n"
+
+            md += "</div>\n\n"
 
         if nba_results and nba_results.get("picks"):
-            md += "<h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>\n\n"
+            md += "<h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>\n\n"
+            md += "<div class='results-grid'>\n"
 
             for i, pick in enumerate(nba_results["picks"], 1):
                 if pick["outcome"] == "WIN":
                     outcome_emoji = "✅"
-                    result_class = "result-card result-win"
-                    badge_class = "badge-win"
-                    badge_text = "WIN"
+                    tile_class = "result-tile result-tile-win"
                 elif pick["outcome"] == "PUSH":
                     outcome_emoji = "↔️"
-                    result_class = "result-card result-push"
-                    badge_class = "badge-push"
-                    badge_text = "PUSH"
+                    tile_class = "result-tile result-tile-push"
                 else:  # LOSS
                     outcome_emoji = "❌"
-                    result_class = "result-card result-loss"
-                    badge_class = "badge-loss"
-                    badge_text = "LOSS"
+                    tile_class = "result-tile result-tile-loss"
 
-                md += f"<div class='{result_class}'>\n"
-                md += "<div class='result-header'>\n"
-                md += f"<span style='font-size: 1.5em;'>{outcome_emoji}</span>\n"
-                md += f"<span class='result-badge {badge_class}'>{badge_text}</span>\n"
-                md += f"<span class='result-title'>{pick['bet']}</span>\n"
+                # Shorten bet text for compact display
+                bet_short = pick['bet']
+                # Remove odds from display to save space
+                bet_short = re.sub(r'\s*@\s*\d+\.?\d*', '', bet_short)
+                # Truncate long team names if needed
+                if len(bet_short) > 50:
+                    bet_short = bet_short[:47] + "..."
+
+                md += f"<div class='{tile_class}'>\n"
+                md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
+                md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
                 md += "</div>\n"
-                if pick.get("result"):
-                    md += f"<div class='result-score'>{pick['result']}</div>\n"
-                md += "</div>\n\n"
+
+            md += "</div>\n\n"
 
         md += "</div>\n\n"
 
@@ -1106,6 +1106,14 @@ def update_latest_predictions():
     content += ".result-win { border-left-color: #10b981; background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 100%); }\n"
     content += ".result-loss { border-left-color: #ef4444; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }\n"
     content += ".result-push { border-left-color: #f59e0b; background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%); }\n"
+    content += ".results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }\n"
+    content += ".result-tile { background: white; border-radius: 8px; padding: 15px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.2s; min-height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; }\n"
+    content += ".result-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }\n"
+    content += ".result-tile-win { border-color: #10b981; background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%); }\n"
+    content += ".result-tile-loss { border-color: #ef4444; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }\n"
+    content += ".result-tile-push { border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }\n"
+    content += ".result-tile-emoji { font-size: 2em; margin-bottom: 8px; }\n"
+    content += ".result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; }\n"
     content += ".result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }\n"
     content += ".result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }\n"
     content += ".badge-win { background: #10b981; color: white; }\n"
@@ -1115,7 +1123,7 @@ def update_latest_predictions():
     content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
     content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
     content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }\n"
-    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
+    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
     content += "</style>\n\n"
 
     content += "<div class='blog-container'>\n\n"

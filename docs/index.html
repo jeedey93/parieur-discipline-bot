@@ -53,6 +53,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-win { border-left-color: #10b981; background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 100%); }
 .result-loss { border-left-color: #ef4444; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }
 .result-push { border-left-color: #f59e0b; background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%); }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.result-tile { background: white; border-radius: 8px; padding: 15px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.2s; min-height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.result-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.result-tile-win { border-color: #10b981; background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%); }
+.result-tile-loss { border-color: #ef4444; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }
+.result-tile-push { border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }
+.result-tile-emoji { font-size: 2em; margin-bottom: 8px; }
+.result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; }
 .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }
 .badge-win { background: #10b981; color: white; }
@@ -62,7 +70,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }
 #back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }
 #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }
-@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
+@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
 </style>
 
 <div class='blog-container'>
@@ -148,98 +156,54 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-subtitle'>Performance breakdown for March 4, 2026</div>
 </div>
 <div class='yesterday-section'>
-<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏒 NHL Results</h3>
+<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
-<div class='result-card result-loss'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>❌</span>
-<span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Washington Capitals ML vs Utah Mammoth @ 1.83</span>
+<div class='results-grid'>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Washington Capitals ML vs Utah Mammoth</div>
 </div>
-<div class='result-score'>Utah 3 @ Washington 2 (Total goals: 5)</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Ottawa Senators vs Edmonton Oilers Over 6.5</div>
 </div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95</span>
+<div class='result-tile result-tile-push'>
+<div class='result-tile-emoji'>↔️</div>
+<div class='result-tile-bet'>Tampa Bay Lightning vs Minnesota Wild Over 6.0</div>
 </div>
-<div class='result-score'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Florida Panthers vs New Jersey Devils Over 5.5</div>
 </div>
-
-<div class='result-card result-push'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>↔️</span>
-<span class='result-badge badge-push'>PUSH</span>
-<span class='result-title'>Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18</span>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Calgary Flames ML vs Dallas Stars</div>
 </div>
-<div class='result-score'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</div>
 </div>
 
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95</span>
-</div>
-<div class='result-score'>Florida 1 @ New Jersey 5 (Total goals: 6)</div>
-</div>
+<h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
-<div class='result-card result-loss'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>❌</span>
-<span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Calgary Flames ML vs Dallas Stars @ 2.1</span>
+<div class='results-grid'>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Los Angeles Lakers vs New Orleans Pelicans Unde...</div>
 </div>
-<div class='result-score'>Dallas 6 @ Calgary 1 (Total goals: 7)</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Charlotte Hornets vs Dallas Mavericks Over 231.0</div>
 </div>
-
-<h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Detroit Pistons -2.5 vs Cleveland Cavaliers</div>
 </div>
-<div class='result-score'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>New York Knicks -2.5 vs Toronto Raptors</div>
 </div>
-
-<div class='result-card result-loss'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>❌</span>
-<span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Phoenix Suns -10.0 vs Sacramento Kings</div>
 </div>
-<div class='result-score'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
-</div>
-
-<div class='result-card result-loss'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>❌</span>
-<span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
-</div>
-<div class='result-score'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
-</div>
-<div class='result-score'>New York Knicks 111 @ Toronto Raptors 95</div>
-</div>
-
-<div class='result-card result-win'>
-<div class='result-header'>
-<span style='font-size: 1.5em;'>✅</span>
-<span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
-</div>
-<div class='result-score'>Phoenix Suns 114 @ Sacramento Kings 103</div>
 </div>
 
 </div>
