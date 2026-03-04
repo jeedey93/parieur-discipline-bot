@@ -557,30 +557,42 @@ def parse_last_n_days_results(sport_key, days=5):
 
 
 def parse_all_results(sport_key):
-    """Parse all results files for a sport to get season totals with units."""
+    """Parse all results files for a sport to get season totals with units.
+
+    First tries to read wins/losses from total_results_summary.txt for accuracy,
+    then parses individual files for units calculation.
+    """
+    # Read wins/losses from total_results_summary.txt
+    summary_path = os.path.join("bot_results", "total_results_summary.txt")
+    total_wins = 0
+    total_losses = 0
+
+    if os.path.exists(summary_path):
+        try:
+            summary_content = read_file(summary_path)
+            # Find the sport section
+            sport_upper = sport_key.upper()
+            sport_section_match = re.search(rf'{sport_upper}:.*?TOTAL:\s*(\d+)\s*wins?,\s*(\d+)\s*losses?',
+                                           summary_content, re.DOTALL | re.IGNORECASE)
+            if sport_section_match:
+                total_wins = int(sport_section_match.group(1))
+                total_losses = int(sport_section_match.group(2))
+        except Exception:
+            pass  # Fall back to parsing individual files
+
+    # Parse individual results files for units calculation
     results_dir = os.path.join("bot_results", sport_key)
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
-        return {"wins": 0, "losses": 0, "units_won": 0, "units_lost": 0, "net_units": 0}
+        return {"wins": total_wins, "losses": total_losses, "units_won": 0, "units_lost": 0, "net_units": 0}
 
-    total_wins = 0
-    total_losses = 0
     total_units_won = 0
     total_units_lost = 0
 
     for file_path in results_files:
         try:
             content = read_file(file_path)
-
-            # Parse wins and losses from the summary
-            win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
-            loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
-
-            if win_match:
-                total_wins += int(win_match.group(1))
-            if loss_match:
-                total_losses += int(loss_match.group(1))
 
             # Parse individual picks to calculate units
             lines = content.strip().splitlines()
