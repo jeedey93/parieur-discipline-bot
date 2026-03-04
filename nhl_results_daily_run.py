@@ -13,13 +13,22 @@ def analyze_results_with_actuals(results_text, actuals_text, summary_date):
     prompt = f"""
 You are a disciplined NHL betting analyst. Review the AI's predictions against the actual game results for {summary_date}.
 
+CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
+- PUSH: When the result EXACTLY equals the line. The stake is returned. This is NOT a loss, NOT a win. It's neutral.
+  Example: Over 6.0 with exactly 6 total goals = PUSH
+  Example: Team -1.5 and team wins by exactly 1.5 (not possible in hockey due to whole goals)
+- WIN: When the bet wins
+- LOSS: When the bet loses (but NOT when it's a push!)
+
 For each recommended play:
 - List the play header (as in the predictions file).
 - Show the actual result in the format: Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
 - State the outcome: WIN, LOSS, or PUSH, with a short reason.
-  - PUSH occurs when the result exactly equals the line (e.g., Over 6.0 with exactly 6 total goals = PUSH, not a loss).
-  - For totals: If the line is 6.0 and total goals is exactly 6, it's a PUSH (stake returned, no profit/loss).
-  - For spreads: If the spread is -1.5 and team wins by exactly 1.5 goals (not possible in hockey), or if ML and it goes to shootout with specific rules.
+  - If the result EXACTLY equals the line, you MUST mark it as **PUSH** (not LOSS).
+  - For totals: If the line is 6.0 and total goals is exactly 6, it's a **PUSH** (stake returned, no profit/loss).
+  - For spreads: If the margin exactly equals the spread.
+
+IMPORTANT: In the summary section, you MUST always include Total Pushes, even if it's 0.
 
 After all plays, output a summary section:
 ---

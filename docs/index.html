@@ -52,10 +52,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .result-win { border-left-color: #10b981; background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 100%); }
 .result-loss { border-left-color: #ef4444; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }
+.result-push { border-left-color: #f59e0b; background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%); }
 .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }
 .badge-win { background: #10b981; color: white; }
 .badge-loss { background: #ef4444; color: white; }
+.badge-push { background: #f59e0b; color: white; }
 .result-title { font-weight: 600; color: #111827; font-size: 1.05em; }
 .result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }
 #back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }
@@ -78,33 +80,33 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>50%</div>
-<div class='stat-record'>5W - 5L</div>
-<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-0.1u</div>
+<div class='stat-value'>56%</div>
+<div class='stat-record'>5W - 4L</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-2.1u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
-<div class='stat-value'>44%</div>
-<div class='stat-record'>19W - 24L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.8u</div>
+<div class='stat-value'>45%</div>
+<div class='stat-record'>19W - 23L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>
-<div class='stat-value'>48%</div>
-<div class='stat-record'>30W - 32L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.8u</div>
+<div class='stat-value'>49%</div>
+<div class='stat-record'>30W - 31L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏒 NHL</div>
-<div class='stat-value'>50%</div>
-<div class='stat-record'>15W - 15L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.0u</div>
+<div class='stat-value'>52%</div>
+<div class='stat-record'>15W - 14L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.0u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏀 NBA</div>
 <div class='stat-value'>47%</div>
 <div class='stat-record'>15W - 17L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.8u</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-1.2u</div>
 </div>
 </div>
 
@@ -199,7 +201,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
+<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0</span>
 </div>
 <div class='result-score'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
 </div>
@@ -208,7 +210,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
+<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0</span>
 </div>
 <div class='result-score'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
 </div>
@@ -217,7 +219,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
+<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers</span>
 </div>
 <div class='result-score'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
 </div>
@@ -226,7 +228,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
+<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors</span>
 </div>
 <div class='result-score'>New York Knicks 111 @ Toronto Raptors 95</div>
 </div>
@@ -235,7 +237,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
+<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings</span>
 </div>
 <div class='result-score'>Phoenix Suns 114 @ Sacramento Kings 103</div>
 </div>

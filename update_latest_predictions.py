@@ -806,11 +806,21 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
             md += "<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏒 NHL Results</h3>\n\n"
 
             for i, pick in enumerate(nhl_results["picks"], 1):
-                outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                is_win = pick["outcome"] == "WIN"
-                result_class = "result-card result-win" if is_win else "result-card result-loss"
-                badge_class = "badge-win" if is_win else "badge-loss"
-                badge_text = "WIN" if is_win else "LOSS"
+                if pick["outcome"] == "WIN":
+                    outcome_emoji = "✅"
+                    result_class = "result-card result-win"
+                    badge_class = "badge-win"
+                    badge_text = "WIN"
+                elif pick["outcome"] == "PUSH":
+                    outcome_emoji = "↔️"
+                    result_class = "result-card result-push"
+                    badge_class = "badge-push"
+                    badge_text = "PUSH"
+                else:  # LOSS
+                    outcome_emoji = "❌"
+                    result_class = "result-card result-loss"
+                    badge_class = "badge-loss"
+                    badge_text = "LOSS"
 
                 md += f"<div class='{result_class}'>\n"
                 md += "<div class='result-header'>\n"
@@ -826,11 +836,21 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
             md += "<h3 style='color: #ea580c; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em; font-weight: 700;'>🏀 NBA Results</h3>\n\n"
 
             for i, pick in enumerate(nba_results["picks"], 1):
-                outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
-                is_win = pick["outcome"] == "WIN"
-                result_class = "result-card result-win" if is_win else "result-card result-loss"
-                badge_class = "badge-win" if is_win else "badge-loss"
-                badge_text = "WIN" if is_win else "LOSS"
+                if pick["outcome"] == "WIN":
+                    outcome_emoji = "✅"
+                    result_class = "result-card result-win"
+                    badge_class = "badge-win"
+                    badge_text = "WIN"
+                elif pick["outcome"] == "PUSH":
+                    outcome_emoji = "↔️"
+                    result_class = "result-card result-push"
+                    badge_class = "badge-push"
+                    badge_text = "PUSH"
+                else:  # LOSS
+                    outcome_emoji = "❌"
+                    result_class = "result-card result-loss"
+                    badge_class = "badge-loss"
+                    badge_text = "LOSS"
 
                 md += f"<div class='{result_class}'>\n"
                 md += "<div class='result-header'>\n"
@@ -1073,10 +1093,12 @@ def update_latest_predictions():
     content += ".result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }\n"
     content += ".result-win { border-left-color: #10b981; background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 100%); }\n"
     content += ".result-loss { border-left-color: #ef4444; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }\n"
+    content += ".result-push { border-left-color: #f59e0b; background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%); }\n"
     content += ".result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }\n"
     content += ".result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }\n"
     content += ".badge-win { background: #10b981; color: white; }\n"
     content += ".badge-loss { background: #ef4444; color: white; }\n"
+    content += ".badge-push { background: #f59e0b; color: white; }\n"
     content += ".result-title { font-weight: 600; color: #111827; font-size: 1.05em; }\n"
     content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
     content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"

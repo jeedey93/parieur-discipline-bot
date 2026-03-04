@@ -14,19 +14,28 @@ def analyze_results_with_actuals(results_text, actuals_text, date_str):
     prompt = f"""
 You are a disciplined NBA betting analyst. Your job is to review the AI's predictions against the actual game results for {{DATE}}.
 
+CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
+- PUSH: When the result EXACTLY equals the line. The stake is returned. This is NOT a loss, NOT a win. It's neutral.
+  Example: Over 232.0 with exactly 232 total points = PUSH
+  Example: Team -3.0 and team wins by exactly 3 points = PUSH
+- WIN: When the bet wins
+- LOSS: When the bet loses (but NOT when it's a push!)
+
 For each recommended play:
 - Match the prediction to the actual game result.
 - For totals (over/under), compare the predicted total to the actual total points scored:
-  - If the result exactly equals the line (e.g., Over 232.0 with exactly 232 points), it's a PUSH (stake returned, no profit/loss).
+  - If the result exactly equals the line (e.g., Over 232.0 with exactly 232 points), it's a **PUSH** (not a loss!).
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
 - For spreads, compare the predicted spread to the actual margin:
-  - If the margin exactly equals the spread (e.g., -3.0 and team wins by exactly 3), it's a PUSH.
+  - If the margin exactly equals the spread (e.g., -3.0 and team wins by exactly 3), it's a **PUSH** (not a loss!).
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
 - For moneyline, state if the predicted team won or lost (e.g., 'Outcome: WIN (Team won)').
 - For each play, output:
     * The bet header (as in the predictions)
     * The actual result (e.g., 'TeamA 110 @ TeamB 105')
     * The outcome (WIN/LOSS/PUSH) with a short justification
+
+IMPORTANT: In the summary section, you MUST always include Total Pushes, even if it's 0.
 
 After all plays, output a summary section:
 - Total Wins
@@ -54,11 +63,6 @@ Here's the breakdown:
 ---
 
 AI Predictions:
-{results_text}
-
-Actual Results:
-{actuals_text}
-"""
 {results_text}
 
 Actual Results:
