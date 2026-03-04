@@ -138,6 +138,113 @@ def ensure_line_breaks_after_plays(text):
     return "\n".join(result)
 
 
+def format_recommendations_as_cards(recs_text):
+    """Format plain recommendation text into styled cards."""
+    if not recs_text:
+        return ""
+
+    lines = recs_text.split('\n')
+    formatted = []
+    current_card = None
+    in_bet_of_day = False
+    in_other_plays = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Detect BET OF THE DAY section
+        if '🏆' in stripped and 'BET OF THE DAY' in stripped.upper():
+            if current_card:
+                formatted.append(format_single_card(current_card, is_featured=in_bet_of_day))
+            in_bet_of_day = True
+            continue
+
+        # Detect "Other Recommended Plays" section
+        if 'Other Recommended' in stripped or 'Unified Final Recommendation' in stripped:
+            if current_card:
+                formatted.append(format_single_card(current_card, is_featured=in_bet_of_day))
+                current_card = None
+            in_bet_of_day = False
+            in_other_plays = True
+            formatted.append(f"\n<h3 style='margin: 30px 0 20px 0; color: #333;'>Other Recommended Plays</h3>\n\n")
+            continue
+
+        # Detect new play (starts with ** and contains vs or @)
+        if stripped.startswith('**') and ('vs' in stripped or '@' in stripped) and not 'BET OF THE DAY' in stripped.upper():
+            # Save previous card
+            if current_card:
+                formatted.append(format_single_card(current_card, is_featured=in_bet_of_day))
+
+            # Extract play number if present
+            play_num = None
+            match = re.match(r'^\*\*(\d+)\.\s+(.+?)\*\*', stripped)
+            if match:
+                play_num = match.group(1)
+                bet_line = match.group(2)
+            else:
+                bet_line = stripped.strip('*')
+
+            current_card = {
+                'number': play_num,
+                'bet': bet_line,
+                'details': [],
+                'description': '',
+                'changes': ''
+            }
+            continue
+
+        # Collect card details
+        if current_card:
+            if 'Confidence Level:' in stripped or 'Confidence:' in stripped:
+                current_card['details'].append(stripped)
+            elif stripped.startswith('*Changes:') or stripped.startswith('*Change from'):
+                current_card['changes'] = stripped.lstrip('*').strip()
+            elif stripped and not stripped.startswith('---') and not stripped.startswith('Based on'):
+                current_card['description'] += ' ' + stripped
+
+    # Don't forget last card
+    if current_card:
+        formatted.append(format_single_card(current_card, is_featured=in_bet_of_day))
+
+    return '\n'.join(formatted)
+
+
+def format_single_card(card, is_featured=False):
+    """Format a single recommendation card."""
+    if is_featured:
+        # Featured "Bet of the Day" card
+        card_html = "<div style='background: linear-gradient(135deg, #FFD70015 0%, #FFA50005 100%); border: 2px solid #FFA500; border-radius: 8px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.2);'>\n\n"
+        card_html += "<div style='display: flex; align-items: center; margin-bottom: 15px;'>\n"
+        card_html += "<span style='font-size: 2em; margin-right: 10px;'>🏆</span>\n"
+        card_html += "<span style='font-size: 1.3em; font-weight: bold; color: #FF8C00;'>BET OF THE DAY</span>\n"
+        card_html += "</div>\n\n"
+    else:
+        # Regular play card
+        card_html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
+        if card['number']:
+            card_html += f"<div style='font-size: 0.85em; color: #667eea; font-weight: bold; margin-bottom: 8px;'>PLAY #{card['number']}</div>\n\n"
+
+    # Bet line
+    card_html += f"<div style='font-size: 1.25em; font-weight: bold; color: #333; margin-bottom: 12px;'>{card['bet']}</div>\n\n"
+
+    # Details (Confidence, Units, Win Prob)
+    if card['details']:
+        details_html = ' | '.join(card['details'])
+        card_html += f"<div style='font-size: 0.9em; color: #667eea; font-weight: 600; margin-bottom: 12px; padding: 8px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;'>{details_html}</div>\n\n"
+
+    # Description
+    if card['description']:
+        card_html += f"<div style='color: #666; line-height: 1.6; margin-bottom: 10px;'>{card['description'].strip()}</div>\n\n"
+
+    # Changes (if any)
+    if card['changes']:
+        card_html += f"<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 10px; border-top: 1px dashed #e0e0e0;'>{card['changes']}</div>\n\n"
+
+    card_html += "</div>\n\n"
+
+    return card_html
+
+
 def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
     """Build a complete sport section with nice formatting."""
     if not raw_text:
@@ -219,10 +326,10 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
         md += "</div>\n\n"
         md += "</details>\n\n"
 
-    # Recommendations - keep as-is for now
+    # Format recommendations as cards
     if recs_text:
-        recs_text = ensure_line_breaks_after_plays(recs_text)
-        md += recs_text + "\n\n"
+        formatted_recs = format_recommendations_as_cards(recs_text)
+        md += formatted_recs + "\n\n"
 
     return md
 
