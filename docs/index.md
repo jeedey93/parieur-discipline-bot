@@ -1,80 +1,106 @@
-> ### 🏒 PICK #1 — NHL
-> **Washington Capitals ML vs Utah Mammoth @ 1.83**
->
-> Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.
+<div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>
+<h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>
+<p style='font-size: 1.4em; color: #666; margin: 10px 0;'>March 3, 2026</p>
+</div>
 
-> ### 🏀 PICK #2 — NBA
-> **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
->
-> Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.
+<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;'>
 
+<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Yesterday</div>
+<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>50%</div>
+<div style='font-size: 0.9em; color: #666;'>5W - 5L</div>
+</div>
 
----
+<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Season</div>
+<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>48%</div>
+<div style='font-size: 0.9em; color: #666;'>30W - 32L</div>
+</div>
 
-<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;'>
+<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏒 NHL</div>
+<div style='font-size: 2em; font-weight: bold; color: #E74C3C; margin-bottom: 5px;'>50%</div>
+<div style='font-size: 0.9em; color: #666;'>15W - 15L</div>
+</div>
 
-<h3 style='margin-top: 0; color: white;'>📊 Yesterday's Results - March 4, 2026</h3>
-
-<p style='font-size: 1.3em; margin: 10px 0;'><strong>5W - 5L</strong> (50.0%)</p>
-
-<span style='margin-right: 20px;'>🏒 NHL: 2W - 3L (40.0%)</span>
-
-<span>🏀 NBA: 3W - 2L (60.0%)</span>
-
-<hr style='border: 1px solid rgba(255,255,255,0.3); margin: 15px 0;'>
-
-<h3 style='color: white; margin-bottom: 10px;'>📈 Season Performance</h3>
-
-<p style='font-size: 1.3em; margin: 10px 0;'><strong>30W - 32L</strong> (48.4%)</p>
-
-<span style='margin-right: 20px;'>🏒 NHL: 15W - 15L (50.0%)</span>
-
-<span>🏀 NBA: 15W - 17L (46.9%)</span>
+<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏀 NBA</div>
+<div style='font-size: 2em; font-weight: bold; color: #E67E22; margin-bottom: 5px;'>47%</div>
+<div style='font-size: 0.9em; color: #666;'>15W - 17L</div>
+</div>
 
 </div>
 
-<details style='margin-bottom: 20px;'>
-<summary style='cursor:pointer; padding: 10px; background: #f0f0f0; border-radius: 5px;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Yesterday's Results</b></summary>
+<div style='margin: 30px 0;'>
+<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🔥 Featured Picks of the Day</h2>
+<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;'>
 
-<div style='padding: 15px;'>
+<div style='background: linear-gradient(135deg, #E74C3C15 0%, #E74C3C05 100%); border-left: 4px solid #E74C3C; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>
 
-#### 🏒 NHL Results
+<div style='font-size: 0.9em; color: #E74C3C; font-weight: bold; margin-bottom: 10px;'>🏒 PICK #1 — NHL</div>
+
+<div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>Washington Capitals ML vs Utah Mammoth @ 1.83</div>
+
+<div style='color: #666; line-height: 1.6;'>Confidence Level: Medium, Units: 1u, Win Probability: 60% The Capitals are well-rested and have shown strong form with recent wins, while Utah is a weaker opponent. Washington has consistently been a reliable pick for our model in similar matchups, demonstrating a strong historical edge.</div>
+
+</div>
+
+<div style='background: linear-gradient(135deg, #E67E2215 0%, #E67E2205 100%); border-left: 4px solid #E67E22; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>
+
+<div style='font-size: 0.9em; color: #E67E22; font-weight: bold; margin-bottom: 10px;'>🏀 PICK #2 — NBA</div>
+
+<div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</div>
+
+<div style='color: #666; line-height: 1.6;'>Confidence Level: High Units: 1.5u, Win Probability: 56% The Lakers and Pelicans are both well-rested and coming off wins, suggesting stable overall team performance for this matchup. Our model indicates that despite their strong offensive forms, the combined total is likely to stay under the generous line due to expected tighter defensive schemes in a competitive game.</div>
+
+</div>
+
+</div>
+
+</div>
+
+<details style='margin: 20px 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+<summary style='cursor:pointer; padding: 15px; background: #f8f9fa; font-weight: bold; color: #667eea; font-size: 1.1em;'><span style='font-size:1.2em;'>📋</span> View Yesterday's Detailed Results (March 4, 2026)</summary>
+
+<div style='padding: 20px; background: white;'>
+
+### 🏒 NHL Results
 
 1. ❌ **Washington Capitals ML vs Utah Mammoth @ 1.83**
-   - Utah 3 @ Washington 2 (Total goals: 5)
+   <br><span style='color: #999; font-size: 0.9em;'>Utah 3 @ Washington 2 (Total goals: 5)</span>
 2. ✅ **Ottawa Senators vs Edmonton Oilers Over 6.5 @ 1.95**
-   - Ottawa 4 @ Edmonton 5 (Total goals: 9)
+   <br><span style='color: #999; font-size: 0.9em;'>Ottawa 4 @ Edmonton 5 (Total goals: 9)</span>
 3. ❌ **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
-   - Tampa Bay 1 @ Minnesota 5 (Total goals: 6)
+   <br><span style='color: #999; font-size: 0.9em;'>Tampa Bay 1 @ Minnesota 5 (Total goals: 6)</span>
 4. ✅ **Florida Panthers vs New Jersey Devils Over 5.5 @ 1.95**
-   - Florida 1 @ New Jersey 5 (Total goals: 6)
+   <br><span style='color: #999; font-size: 0.9em;'>Florida 1 @ New Jersey 5 (Total goals: 6)</span>
 5. ❌ **Calgary Flames ML vs Dallas Stars @ 2.1**
-   - Dallas 6 @ Calgary 1 (Total goals: 7)
+   <br><span style='color: #999; font-size: 0.9em;'>Dallas 6 @ Calgary 1 (Total goals: 7)</span>
 
-#### 🏀 NBA Results
+### 🏀 NBA Results
 
 1. ✅ **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
-   - New Orleans Pelicans 101 @ Los Angeles Lakers 110
+   <br><span style='color: #999; font-size: 0.9em;'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</span>
 2. ❌ **Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98**
-   - Dallas Mavericks 90 @ Charlotte Hornets 117
+   <br><span style='color: #999; font-size: 0.9em;'>Dallas Mavericks 90 @ Charlotte Hornets 117</span>
 3. ❌ **Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99**
-   - Detroit Pistons 109 @ Cleveland Cavaliers 113
+   <br><span style='color: #999; font-size: 0.9em;'>Detroit Pistons 109 @ Cleveland Cavaliers 113</span>
 4. ✅ **New York Knicks -2.5 vs Toronto Raptors @ 1.98**
-   - New York Knicks 111 @ Toronto Raptors 95
+   <br><span style='color: #999; font-size: 0.9em;'>New York Knicks 111 @ Toronto Raptors 95</span>
 5. ✅ **Phoenix Suns -10.0 vs Sacramento Kings @ 1.99**
-   - Phoenix Suns 114 @ Sacramento Kings 103
+   <br><span style='color: #999; font-size: 0.9em;'>Phoenix Suns 114 @ Sacramento Kings 103</span>
 
 </div>
 
 </details>
 
----
+<div style='margin: 40px 0;'>
+<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🏒 NHL Predictions</h2>
 
-## 🏒 NHL Predictions
+<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
+<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #667eea;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
 
-<details>
-<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
-
+<div style='margin-top: 15px;'>
 <h3>Sports Betting Analyst Report: Morning vs. Noon Prediction Comparison (2026-03-03)</h3>
 <br>
 <strong>Overall Observations:</strong>
@@ -115,6 +141,7 @@
 <li>  For the <strong>Florida Panthers vs New Jersey Devils</strong> game, the morning report favored Florida ML at 1.91 odds. By noon, the odds for Florida ML had shifted to 1.95, while New Jersey's ML dropped to 1.87. However, the AI pivoted entirely to an Over 5.5 bet at 1.95, suggesting the value shifted away from the Moneyline and towards the total.</li>
 <li>  Similarly, for the <strong>Dallas Stars vs Calgary Flames</strong> game, the morning report recommended Under 5.5 at 1.90 odds. By noon, the odds for Dallas ML had moved from 2.05 to 2.10 and Calgary ML from 1.80 to 1.77. The AI's recommendation pivoted to Calgary ML at 2.1 odds, indicating significant perceived value from the line movement and perhaps updated injury impact for Dallas.</li>
 </ul>
+</div>
 
 </details>
 
@@ -160,13 +187,15 @@ Confidence Level: Medium, Units: 1u, Win Probability: 53%
 The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, Radek Faksa, Mikko Rantanen, and Tyler Seguin, significantly dampening their offensive threat. Calgary has been strong defensively and should capitalize on the Stars' depleted lineup, making their moneyline an attractive value.
 *Changes: This specific Calgary ML play was added at noon. The morning report had a Dallas vs Calgary Under 5.5 pick for the same game (@ 1.90, High Confidence, 1.5u, 62% Win Probability), which was removed.*
 
----
+</div>
 
-## 🏀 NBA Predictions
+<div style='margin: 40px 0;'>
+<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🏀 NBA Predictions</h2>
 
-<details>
-<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>
+<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
+<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #667eea;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
 
+<div style='margin-top: 15px;'>
 <strong>Analysis Summary:</strong>
 <br>
 <p>The comparison between the morning and noon reports reveals significant shifts in market perception and the AI model's conviction. Several plays that were recommended in the morning were removed by noon, suggesting updated data or line movements made them less appealing. Conversely, new high-conviction plays emerged in the noon report.</p>
@@ -194,6 +223,7 @@ The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, 
   <li>  The Nets +13.5 spread moved to +13.0, and the odds worsened from 1.99 to 1.96, leading to its removal.</li>
   <li>  The Grizzlies spread moved from +13.5 to +14.5, but odds slightly worsened from 1.95 to 1.94, and the play was removed.</li>
 </ul>
+</div>
 
 </details>
 
@@ -239,5 +269,5 @@ Confidence Level: Medium Units: 1u | Win Probability: 53.5%
 The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicating full strength and preparation from both sides. Despite Sacramento's solid play, Phoenix's consistent high-level performance suggests they can cover this double-digit spread at home, offering a compelling edge over the bookmakers' line.
 *Change from Morning:* This was a new play in the noon report. The Suns' spread moved favorably from -10.5 @ 1.95 (morning) to -10.0 @ 1.99 (noon), making it a new Medium confidence recommendation.
 
----
+</div>
 

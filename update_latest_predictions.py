@@ -212,12 +212,14 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
         cleaned = '\n'.join(new_lines)
 
         # Add a hint for the collapsible section with a visual arrow
-        md += "<details>\n"
-        md += "<summary style='cursor:pointer;font-size:1.1em;'><span style='font-size:1.2em;'>▶️</span> <b>Morning vs Noon Comparison & Analysis</b> <span style='color:gray'>(click to expand for details)</span></summary>\n\n"
-        md += cleaned + "\n\n"
+        md += "<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>\n"
+        md += "<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #667eea;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>\n\n"
+        md += "<div style='margin-top: 15px;'>\n"
+        md += cleaned + "\n"
+        md += "</div>\n\n"
         md += "</details>\n\n"
 
-    # Recommendations
+    # Recommendations - keep as-is for now
     if recs_text:
         recs_text = ensure_line_breaks_after_plays(recs_text)
         md += recs_text + "\n\n"
@@ -314,93 +316,43 @@ def parse_yesterday_results(sport_key):
 
 
 def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record):
-    """Format a compact stats banner combining yesterday's results and overall performance."""
+    """Format a compact stats banner with collapsible yesterday's details."""
     md = ""
-
-    # Calculate yesterday's stats
-    yesterday_total_w = 0
-    yesterday_total_l = 0
-    yesterday_date = None
-
-    if nhl_results:
-        yesterday_total_w += nhl_results["wins"]
-        yesterday_total_l += nhl_results["losses"]
-        yesterday_date = nhl_results.get("date")
-
-    if nba_results:
-        yesterday_total_w += nba_results["wins"]
-        yesterday_total_l += nba_results["losses"]
-        if not yesterday_date:
-            yesterday_date = nba_results.get("date")
-
-    yesterday_total = yesterday_total_w + yesterday_total_l
-    yesterday_wr = f"{(yesterday_total_w / yesterday_total * 100):.1f}%" if yesterday_total > 0 else "N/A"
-
-    # Calculate overall stats
-    overall_total_w = nhl_record["wins"] + nba_record["wins"]
-    overall_total_l = nhl_record["losses"] + nba_record["losses"]
-    overall_total = overall_total_w + overall_total_l
-    overall_wr = f"{(overall_total_w / overall_total * 100):.1f}%" if overall_total > 0 else "N/A"
-
-    # Create compact banner
-    md += "<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;'>\n\n"
-
-    # Yesterday's results (if available)
-    if yesterday_date:
-        nice_date = format_date_nice(yesterday_date)
-        md += f"<h3 style='margin-top: 0; color: white;'>📊 Yesterday's Results - {nice_date}</h3>\n\n"
-        md += f"<p style='font-size: 1.3em; margin: 10px 0;'><strong>{yesterday_total_w}W - {yesterday_total_l}L</strong> ({yesterday_wr})</p>\n\n"
-
-        if nhl_results:
-            nhl_yesterday_wr = f"{(nhl_results['wins'] / (nhl_results['wins'] + nhl_results['losses']) * 100):.1f}%" if (nhl_results['wins'] + nhl_results['losses']) > 0 else "N/A"
-            md += f"<span style='margin-right: 20px;'>🏒 NHL: {nhl_results['wins']}W - {nhl_results['losses']}L ({nhl_yesterday_wr})</span>\n\n"
-
-        if nba_results:
-            nba_yesterday_wr = f"{(nba_results['wins'] / (nba_results['wins'] + nba_results['losses']) * 100):.1f}%" if (nba_results['wins'] + nba_results['losses']) > 0 else "N/A"
-            md += f"<span>🏀 NBA: {nba_results['wins']}W - {nba_results['losses']}L ({nba_yesterday_wr})</span>\n\n"
-
-        md += "<hr style='border: 1px solid rgba(255,255,255,0.3); margin: 15px 0;'>\n\n"
-
-    # Overall season performance
-    md += "<h3 style='color: white; margin-bottom: 10px;'>📈 Season Performance</h3>\n\n"
-    md += f"<p style='font-size: 1.3em; margin: 10px 0;'><strong>{overall_total_w}W - {overall_total_l}L</strong> ({overall_wr})</p>\n\n"
-
-    nhl_season_wr = f"{(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.1f}%" if (nhl_record['wins'] + nhl_record['losses']) > 0 else "N/A"
-    nba_season_wr = f"{(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.1f}%" if (nba_record['wins'] + nba_record['losses']) > 0 else "N/A"
-
-    md += f"<span style='margin-right: 20px;'>🏒 NHL: {nhl_record['wins']}W - {nhl_record['losses']}L ({nhl_season_wr})</span>\n\n"
-    md += f"<span>🏀 NBA: {nba_record['wins']}W - {nba_record['losses']}L ({nba_season_wr})</span>\n\n"
-
-    md += "</div>\n\n"
 
     # Add collapsible detailed yesterday's results if available
     if (nhl_results and nhl_results.get("picks")) or (nba_results and nba_results.get("picks")):
-        md += "<details style='margin-bottom: 20px;'>\n"
-        md += "<summary style='cursor:pointer; padding: 10px; background: #f0f0f0; border-radius: 5px;'><span style='font-size:1.2em;'>▶️</span> <b>View Detailed Yesterday's Results</b></summary>\n\n"
-        md += "<div style='padding: 15px;'>\n\n"
+        yesterday_date = None
+        if nhl_results and nhl_results.get("date"):
+            yesterday_date = nhl_results["date"]
+        elif nba_results and nba_results.get("date"):
+            yesterday_date = nba_results.get("date")
+
+        nice_date = format_date_nice(yesterday_date) if yesterday_date else "Yesterday"
+
+        md += "<details style='margin: 20px 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>\n"
+        md += f"<summary style='cursor:pointer; padding: 15px; background: #f8f9fa; font-weight: bold; color: #667eea; font-size: 1.1em;'><span style='font-size:1.2em;'>📋</span> View Yesterday's Detailed Results ({nice_date})</summary>\n\n"
+        md += "<div style='padding: 20px; background: white;'>\n\n"
 
         if nhl_results and nhl_results.get("picks"):
-            md += "#### 🏒 NHL Results\n\n"
+            md += "### 🏒 NHL Results\n\n"
             for i, pick in enumerate(nhl_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
                 md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
                 if pick.get("result"):
-                    md += f"   - {pick['result']}\n"
+                    md += f"   <br><span style='color: #999; font-size: 0.9em;'>{pick['result']}</span>\n"
             md += "\n"
 
         if nba_results and nba_results.get("picks"):
-            md += "#### 🏀 NBA Results\n\n"
+            md += "### 🏀 NBA Results\n\n"
             for i, pick in enumerate(nba_results["picks"], 1):
                 outcome_emoji = "✅" if pick["outcome"] == "WIN" else "❌"
                 md += f"{i}. {outcome_emoji} **{pick['bet']}**\n"
                 if pick.get("result"):
-                    md += f"   - {pick['result']}\n"
+                    md += f"   <br><span style='color: #999; font-size: 0.9em;'>{pick['result']}</span>\n"
             md += "\n"
 
         md += "</div>\n\n"
         md += "</details>\n\n"
-
-    md += "---\n\n"
 
     return md
 
@@ -454,21 +406,25 @@ def format_dual_bet(raw_text):
     if current_pick:
         picks.append(current_pick)
 
-    # Render each pick as a blockquote card
+    # Render picks as modern card-style layout
+    md += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;'>\n\n"
+
     for pick in picks:
         header = pick["header"]
-        body = "\n>\n> ".join(pick["body"])
+        body = " ".join(pick["body"])  # Join body as single paragraph
 
         # Extract the sport emoji for the card accent
         if "NHL" in header:
             sport_accent = "🏒"
+            sport_color = "#E74C3C"
         elif "NBA" in header:
             sport_accent = "🏀"
+            sport_color = "#E67E22"
         else:
             sport_accent = "🎯"
+            sport_color = "#667eea"
 
-        # Extract the bet line (e.g. "Washington Capitals ML vs Utah Mammoth @ 1.83")
-        # It's usually everything after the sport emoji tag
+        # Extract the bet line
         bet_line = header
         for tag in ["🎯 PICK #1 – NHL 🏒", "🎯 PICK #2 – NBA 🏀",
                      "🎯 PICK #1 – NBA 🏀", "🎯 PICK #2 – NHL 🏒",
@@ -481,13 +437,15 @@ def format_dual_bet(raw_text):
         pick_num = "1" if "#1" in header else "2"
         sport_label = "NHL" if "NHL" in header else "NBA"
 
-        md += f"> ### {sport_accent} PICK #{pick_num} — {sport_label}\n"
-        md += f"> **{bet_line}**\n"
-        md += f">\n"
+        # Create card
+        md += f"<div style='background: linear-gradient(135deg, {sport_color}15 0%, {sport_color}05 100%); border-left: 4px solid {sport_color}; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>\n\n"
+        md += f"<div style='font-size: 0.9em; color: {sport_color}; font-weight: bold; margin-bottom: 10px;'>{sport_accent} PICK #{pick_num} — {sport_label}</div>\n\n"
+        md += f"<div style='font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px;'>{bet_line}</div>\n\n"
         if body:
-            md += f"> {body}\n"
-        md += "\n"
+            md += f"<div style='color: #666; line-height: 1.6;'>{body}</div>\n\n"
+        md += "</div>\n\n"
 
+    md += "</div>\n\n"
 
     return md
 
@@ -521,19 +479,70 @@ def update_latest_predictions():
 
     # ── Build the page ──
     nice_date = format_date_nice(overall_latest_date)
-    # content = f"### 📅 {nice_date}\n\n" if nice_date else ""
     content = ""
 
-    # ── Dual Bet of the Day (hero section) ──
+    # ── Hero Header with Today's Date ──
+    content += f"<div style='text-align: center; padding: 30px 0; border-bottom: 3px solid #667eea;'>\n"
+    content += f"<h1 style='font-size: 2.5em; margin: 0; color: #667eea;'>📰 Daily Picks</h1>\n"
+    content += f"<p style='font-size: 1.4em; color: #666; margin: 10px 0;'>{nice_date}</p>\n"
+    content += f"</div>\n\n"
+
+    # ── Quick Stats Row ──
+    nhl_yesterday = parse_yesterday_results("nhl")
+    nba_yesterday = parse_yesterday_results("nba")
+
+    yesterday_total_w = (nhl_yesterday["wins"] if nhl_yesterday else 0) + (nba_yesterday["wins"] if nba_yesterday else 0)
+    yesterday_total_l = (nhl_yesterday["losses"] if nhl_yesterday else 0) + (nba_yesterday["losses"] if nba_yesterday else 0)
+    yesterday_wr = f"{(yesterday_total_w / (yesterday_total_w + yesterday_total_l) * 100):.0f}%" if (yesterday_total_w + yesterday_total_l) > 0 else "N/A"
+
+    overall_total_w = nhl_record["wins"] + nba_record["wins"]
+    overall_total_l = nhl_record["losses"] + nba_record["losses"]
+    overall_wr = f"{(overall_total_w / (overall_total_w + overall_total_l) * 100):.0f}%" if (overall_total_w + overall_total_l) > 0 else "N/A"
+
+    content += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;'>\n\n"
+
+    # Yesterday's Win Rate Card
+    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
+    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Yesterday</div>\n"
+    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{yesterday_wr}</div>\n"
+    content += f"<div style='font-size: 0.9em; color: #666;'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
+    content += "</div>\n\n"
+
+    # Season Win Rate Card
+    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
+    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>Season</div>\n"
+    content += f"<div style='font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 5px;'>{overall_wr}</div>\n"
+    content += f"<div style='font-size: 0.9em; color: #666;'>{overall_total_w}W - {overall_total_l}L</div>\n"
+    content += "</div>\n\n"
+
+    # NHL Record Card
+    nhl_wr = f"{(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.0f}%" if (nhl_record['wins'] + nhl_record['losses']) > 0 else "N/A"
+    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
+    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏒 NHL</div>\n"
+    content += f"<div style='font-size: 2em; font-weight: bold; color: #E74C3C; margin-bottom: 5px;'>{nhl_wr}</div>\n"
+    content += f"<div style='font-size: 0.9em; color: #666;'>{nhl_record['wins']}W - {nhl_record['losses']}L</div>\n"
+    content += "</div>\n\n"
+
+    # NBA Record Card
+    nba_wr = f"{(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.0f}%" if (nba_record['wins'] + nba_record['losses']) > 0 else "N/A"
+    content += "<div style='background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n"
+    content += "<div style='font-size: 0.85em; color: #999; text-transform: uppercase; font-weight: bold; margin-bottom: 8px;'>🏀 NBA</div>\n"
+    content += f"<div style='font-size: 2em; font-weight: bold; color: #E67E22; margin-bottom: 5px;'>{nba_wr}</div>\n"
+    content += f"<div style='font-size: 0.9em; color: #666;'>{nba_record['wins']}W - {nba_record['losses']}L</div>\n"
+    content += "</div>\n\n"
+
+    content += "</div>\n\n"
+
+    # ── Dual Bet of the Day (Featured Picks) ──
     if os.path.exists(dual_bet_path):
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
+            content += "<div style='margin: 30px 0;'>\n"
+            content += "<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>🔥 Featured Picks of the Day</h2>\n"
             content += format_dual_bet(dual_content)
-            content += "\n---\n\n"
+            content += "</div>\n\n"
 
     # ── Compact Stats Banner (Yesterday + Season Performance) ──
-    nhl_yesterday = parse_yesterday_results("nhl")
-    nba_yesterday = parse_yesterday_results("nba")
     stats_banner = format_compact_stats_banner(nhl_yesterday, nba_yesterday, nba_record, nhl_record)
     content += stats_banner
 
@@ -543,7 +552,8 @@ def update_latest_predictions():
         name = cfg["name"]
         emoji = cfg["emoji"]
 
-        content += f"## {emoji} {name} Predictions\n\n"
+        content += f"<div style='margin: 40px 0;'>\n"
+        content += f"<h2 style='font-size: 2em; color: #333; border-left: 5px solid #667eea; padding-left: 15px; margin-bottom: 20px;'>{emoji} {name} Predictions</h2>\n\n"
 
         latest_file = sport_files.get(sport)
         if latest_file:
@@ -552,7 +562,7 @@ def update_latest_predictions():
         else:
             content += f"> ℹ️ No {name} predictions available today.\n\n"
 
-        content += "---\n\n"
+        content += "</div>\n\n"
 
 
     with open(output_md, "w") as f:
