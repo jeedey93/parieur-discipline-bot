@@ -91,31 +91,31 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>Yesterday</div>
 <div class='stat-value'>56%</div>
 <div class='stat-record'>5W - 4L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.3u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.3 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
 <div class='stat-value'>42%</div>
 <div class='stat-record'>8W - 11L</div>
-<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-2.5u</div>
+<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-2.5 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>
 <div class='stat-value'>49%</div>
 <div class='stat-record'>30W - 31L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+3.8u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+3.8 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏒 NHL</div>
 <div class='stat-value'>52%</div>
 <div class='stat-record'>15W - 14L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.0u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.0 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏀 NBA</div>
 <div class='stat-value'>47%</div>
 <div class='stat-record'>15W - 17L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.8u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.8 units</div>
 </div>
 </div>
 
