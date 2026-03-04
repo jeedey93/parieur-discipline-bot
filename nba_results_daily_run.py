@@ -16,17 +16,22 @@ You are a disciplined NBA betting analyst. Your job is to review the AI's predic
 
 For each recommended play:
 - Match the prediction to the actual game result.
-- For totals (over/under), compare the predicted total to the actual total points scored and state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
-- For spreads, compare the predicted spread to the actual margin and state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
+- For totals (over/under), compare the predicted total to the actual total points scored:
+  - If the result exactly equals the line (e.g., Over 232.0 with exactly 232 points), it's a PUSH (stake returned, no profit/loss).
+  - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
+- For spreads, compare the predicted spread to the actual margin:
+  - If the margin exactly equals the spread (e.g., -3.0 and team wins by exactly 3), it's a PUSH.
+  - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
 - For moneyline, state if the predicted team won or lost (e.g., 'Outcome: WIN (Team won)').
 - For each play, output:
     * The bet header (as in the predictions)
     * The actual result (e.g., 'TeamA 110 @ TeamB 105')
-    * The outcome (WIN/LOSS) with a short justification
+    * The outcome (WIN/LOSS/PUSH) with a short justification
 
 After all plays, output a summary section:
 - Total Wins
 - Total Losses
+- Total Pushes
 
 Format exactly as this example:
 
@@ -36,7 +41,7 @@ Here's the breakdown:
 
 1.  **<BET HEADER>**
     *   Actual Result: <AWAY> <AWAY_SCORE> @ <HOME> <HOME_SCORE>
-    *   Outcome: **WIN/LOSS** (<short justification>)
+    *   Outcome: **WIN/LOSS/PUSH** (<short justification>)
 
 ---
 
@@ -44,10 +49,16 @@ Here's the breakdown:
 
 *   **Total Wins: X**
 *   **Total Losses: Y**
+*   **Total Pushes: Z**
 
 ---
 
 AI Predictions:
+{results_text}
+
+Actual Results:
+{actuals_text}
+"""
 {results_text}
 
 Actual Results:

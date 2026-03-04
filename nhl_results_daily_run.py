@@ -16,13 +16,17 @@ You are a disciplined NHL betting analyst. Review the AI's predictions against t
 For each recommended play:
 - List the play header (as in the predictions file).
 - Show the actual result in the format: Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
-- State the outcome: WIN or LOSS, with a short reason (e.g., '5 is under 6.5').
+- State the outcome: WIN, LOSS, or PUSH, with a short reason.
+  - PUSH occurs when the result exactly equals the line (e.g., Over 6.0 with exactly 6 total goals = PUSH, not a loss).
+  - For totals: If the line is 6.0 and total goals is exactly 6, it's a PUSH (stake returned, no profit/loss).
+  - For spreads: If the spread is -1.5 and team wins by exactly 1.5 goals (not possible in hockey), or if ML and it goes to shootout with specific rules.
 
 After all plays, output a summary section:
 ---
 Summary of AI Prediction Performance:
 - Total Wins: <number>
 - Total Losses: <number>
+- Total Pushes: <number>
 
 Use this exact format:
 
@@ -32,7 +36,7 @@ Here's the breakdown:
 
 1.  <PLAY HEADER>
     *   Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
-    *   Outcome: **WIN** or **LOSS** (<short reason>)
+    *   Outcome: **WIN**, **LOSS**, or **PUSH** (<short reason>)
 
 ---
 
@@ -40,6 +44,7 @@ Here's the breakdown:
 
 *   **Total Wins: <number>**
 *   **Total Losses: <number>**
+*   **Total Pushes: <number>**
 
 AI Predictions:
 {results_text}
