@@ -13,7 +13,7 @@
 <div align="center">
 
 ## 🔥 DUAL BET OF THE DAY 🔥
-*Deux ligues. Même discipline. Même standard. On reste structurés.*
+*Two leagues. Same discipline. Same standard. We stay structured.*
 
 </div>
 

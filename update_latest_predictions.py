@@ -123,7 +123,7 @@ def format_dual_bet(raw_text):
 
     md = '<div align="center">\n\n'
     md += "## 🔥 DUAL BET OF THE DAY 🔥\n"
-    md += "*Deux ligues. Même discipline. Même standard. On reste structurés.*\n\n"
+    md += "*Two leagues. Same discipline. Same standard. We stay structured.*\n\n"
     md += "</div>\n\n"
 
     # Parse picks from the raw text
@@ -149,8 +149,8 @@ def format_dual_bet(raw_text):
             current_pick = {"header": stripped, "body": []}
             continue
 
-        # Detect footer (starts with "Deux sports" or similar closing)
-        if stripped.startswith("Deux sports") or stripped.startswith("On suit la value"):
+        # Detect footer (starts with "Two sports" or legacy French closing)
+        if stripped.startswith("Two sports") or stripped.startswith("We follow the value") or stripped.startswith("Deux sports") or stripped.startswith("On suit la value"):
             in_footer = True
 
         if in_footer:
@@ -161,7 +161,7 @@ def format_dual_bet(raw_text):
         # Add body text to current pick
         if current_pick is not None and stripped:
             current_pick["body"].append(stripped)
-        elif current_pick is None and stripped and not stripped.startswith("Deux ligues"):
+        elif current_pick is None and stripped and not stripped.startswith("Two leagues") and not stripped.startswith("Deux ligues"):
             # Stray line before any pick – skip
             pass
 
@@ -210,7 +210,7 @@ def format_dual_bet(raw_text):
         md += "</div>\n\n"
     else:
         md += '<div align="center">\n\n'
-        md += "*Deux sports. Une seule approche. On suit la value. On protège le bankroll. Discipline > émotion.* 🎯\n\n"
+        md += "*Two sports. One approach. We follow the value. We protect the bankroll. Discipline > emotion.* 🎯\n\n"
         md += "</div>\n\n"
 
     return md
