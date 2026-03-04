@@ -16,25 +16,49 @@ PREDICTIONS_DIR = "predictions"
 LATEST_PREDICTIONS_MD = "docs/index.md"  # Adjust if needed
 
 def extract_bet_of_the_day(section_lines):
-    """Extracts the Bet of the Day bet and justification from a section."""
+    """Extracts the Bet of the Day bet and justification from a section.
+
+    Handles format like:
+        🏆 **BET OF THE DAY**
+        **Washington Capitals ML vs Utah Mammoth @ 1.83**
+        Confidence Level: Medium, Units: 1u, Win Probability: 60%
+        The Capitals are well-rested and have shown strong form...
+        *Changes: ...*
+    """
     bet = None
-    justification = None
+    justification_lines = []
     for i, line in enumerate(section_lines):
-        # Accept both bold and non-bold headers
-        if line.strip().startswith('🏆 BET OF THE DAY') or line.strip().startswith('🏆 **BET OF THE DAY**'):
-            # The bet is the next non-empty line (may be bolded)
+        stripped = line.strip()
+        # Find the BET OF THE DAY header
+        if '🏆' in stripped and 'BET OF THE DAY' in stripped.upper():
+            # Find the bet line (next non-empty line, usually bolded)
             for j in range(i+1, len(section_lines)):
                 bet_line = section_lines[j].strip()
                 if bet_line:
-                    # Remove bold if present
+                    # Remove bold markdown if present
                     bet = bet_line.strip('*').strip()
-                    # The justification is the next non-empty line after the bet
+                    # Collect justification: all meaningful lines after the bet
+                    # until we hit "Other Recommended Plays", a section break (---),
+                    # or another header
                     for k in range(j+1, len(section_lines)):
-                        just_line = section_lines[k].strip()
-                        if just_line:
-                            justification = just_line.strip()
-                            return bet, justification
+                        jline = section_lines[k].strip()
+                        # Stop at section boundaries
+                        if jline.startswith('**Other Recommended Plays') or \
+                           jline == '---' or \
+                           jline.startswith('## ') or \
+                           jline.startswith('### ') or \
+                           jline.startswith('🏆'):
+                            break
+                        if jline:
+                            # Skip lines that start with *Change (change notes)
+                            if jline.startswith('*Change') or jline.startswith('*Changes'):
+                                continue
+                            justification_lines.append(jline)
+                    break
             break
+
+    # Join all justification lines into one text
+    justification = ' '.join(justification_lines).strip() if justification_lines else None
     return bet, justification
 
 def get_sections_from_index():
@@ -46,14 +70,22 @@ def get_sections_from_index():
     in_nhl = False
     in_nba = False
     for line in lines:
-        if line.strip().startswith('## NHL'):
+        stripped = line.strip()
+        # Match headings like "## 🏒 NHL Predictions" or "## NHL"
+        if stripped.startswith('## ') and 'NHL' in stripped:
             in_nhl = True
             in_nba = False
             continue
-        if line.strip().startswith('## NBA'):
+        if stripped.startswith('## ') and 'NBA' in stripped:
             in_nba = True
             in_nhl = False
             continue
+        # Stop at other ## headers (e.g., "## 📈 Overall Performance")
+        if stripped.startswith('## ') and 'NHL' not in stripped and 'NBA' not in stripped:
+            if in_nhl:
+                in_nhl = False
+            if in_nba:
+                in_nba = False
         if in_nhl:
             nhl_section.append(line)
         if in_nba:

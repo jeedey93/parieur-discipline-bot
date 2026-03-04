@@ -1,6 +1,47 @@
-# Latest Predictions (2026-03-03)
+<div align="center">
 
-## NHL
+# 🎯 Parieur Discipliné
+### *AI-Powered Sports Betting Predictions*
+#### March 3, 2026
+
+</div>
+
+---
+
+<div align="center">
+
+🔥 DUAL BET OF THE DAY 🤖📊 Deux ligues. Même discipline. Même standard. On reste structurés.
+⸻
+🎯 PICK #1 – NHL 🏒 New York Rangers ML vs Columbus Blue Jackets @ 2.02
+Les cotes se sont améliorées et la confiance a augmenté, devenant le Pari du Jour à midi.
+⸻
+🎯 PICK #2 – NBA 🏀 Boston Celtics ML vs Milwaukee Bucks @ 1.64
+Les Celtics abordent ce match bien reposés, bénéficiant d'une longue pause, tandis que les Bucks sont en back-to-back après une lourde défaite hier, ce qui contribue à une fatigue importante. Cette confrontation favorise grandement les Celtics en raison de leur effectif globalement supérieur et de l'énergie et de la forme récente compromises de l'adversaire, ce qui en fait un pari à forte valeur.
+⸻
+Deux sports. Une seule approche.
+On suit la value. On protège le bankroll. Discipline > émotion. 🎯
+
+</div>
+
+---
+
+## 📈 Overall Performance
+
+| | Wins | Losses | Win % |
+|---|:---:|:---:|:---:|
+| 🏒 NHL | 13 | 12 | 52.0% |
+| 🏀 NBA | 12 | 15 | 44.4% |
+| **Total** | **25** | **27** | **48.1%** |
+
+---
+
+## 🏒 NHL Predictions
+
+> 📊 **Season Record:** 13W - 12L (52.0%)
+
+<details>
+<summary>📋 <strong>Morning vs Noon Comparison & Analysis</strong> (click to expand)</summary>
+
 Here's an analysis of the two prediction reports and a unified final recommendation list:
 
 ---
@@ -38,6 +79,8 @@ Only one specific play remained consistent across both reports:
 
 ---
 
+</details>
+
 ### Unified Final Recommendation List
 
 Based on the latest noon report and prioritizing consistency while ranking by Win Probability, here are the top 5 plays:
@@ -70,7 +113,15 @@ Confidence Level: Medium, Units: 1u, Win Probability: 53%
 The Dallas Stars are severely impacted by injuries to key forwards Roope Hintz, Radek Faksa, Mikko Rantanen, and Tyler Seguin, significantly dampening their offensive threat. Calgary has been strong defensively and should capitalize on the Stars' depleted lineup, making their moneyline an attractive value.
 *Changes: This specific Calgary ML play was added at noon. The morning report had a Dallas vs Calgary Under 5.5 pick for the same game (@ 1.90, High Confidence, 1.5u, 62% Win Probability), which was removed.*
 
-## NBA
+---
+
+## 🏀 NBA Predictions
+
+> 📊 **Season Record:** 12W - 15L (44.4%)
+
+<details>
+<summary>📋 <strong>Morning vs Noon Comparison & Analysis</strong> (click to expand)</summary>
+
 Here's a comparison of the morning and noon prediction reports, followed by a unified final recommendation list:
 
 **Analysis Summary:**
@@ -100,6 +151,8 @@ The comparison between the morning and noon reports reveals significant shifts i
     *   The Grizzlies spread moved from +13.5 to +14.5, but odds slightly worsened from 1.95 to 1.94, and the play was removed.
 
 ---
+
+</details>
 
 **Unified Final Recommendation List**
 
@@ -133,3 +186,12 @@ Confidence Level: Medium Units: 1u | Win Probability: 53.5%
 The Phoenix Suns and Sacramento Kings enter this game both well-rested, indicating full strength and preparation from both sides. Despite Sacramento's solid play, Phoenix's consistent high-level performance suggests they can cover this double-digit spread at home, offering a compelling edge over the bookmakers' line.
 *Change from Morning:* This was a new play in the noon report. The Suns' spread moved favorably from -10.5 @ 1.95 (morning) to -10.0 @ 1.99 (noon), making it a new Medium confidence recommendation.
 
+---
+
+<div align="center">
+
+*Powered by AI analysis with morning & noon odds comparison*
+
+**Discipline > Emotion** 🎯
+
+</div>
