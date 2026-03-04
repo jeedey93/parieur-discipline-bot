@@ -493,3 +493,5 @@ window.addEventListener('scroll', function() {
 });
 </script>
 
+<script defer src='/_vercel/insights/script.js'></script>
+

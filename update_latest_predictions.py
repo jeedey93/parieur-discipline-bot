@@ -982,6 +982,9 @@ def update_latest_predictions():
     content += "});\n"
     content += "</script>\n\n"
 
+    # Add Vercel Analytics
+    content += "<script defer src='/_vercel/insights/script.js'></script>\n\n"
+
 
     with open(output_md, "w", encoding="utf-8") as f:
         f.write(content)
