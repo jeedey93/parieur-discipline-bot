@@ -90,18 +90,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>
-<div class='stat-value'>48%</div>
-<div class='stat-record'>30W - 32L</div>
+<div class='stat-value'>44%</div>
+<div class='stat-record'>19W - 24L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+2.8u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏒 NHL</div>
-<div class='stat-value'>50%</div>
-<div class='stat-record'>15W - 15L</div>
+<div class='stat-value'>48%</div>
+<div class='stat-record'>12W - 13L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.0u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏀 NBA</div>
-<div class='stat-value'>47%</div>
-<div class='stat-record'>15W - 17L</div>
+<div class='stat-value'>39%</div>
+<div class='stat-record'>7W - 11L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.8u</div>
 </div>
 </div>
 

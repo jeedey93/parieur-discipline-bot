@@ -540,6 +540,101 @@ def parse_last_n_days_results(sport_key, days=5):
     }
 
 
+def parse_all_results(sport_key):
+    """Parse all results files for a sport to get season totals with units."""
+    results_dir = os.path.join("bot_results", sport_key)
+    results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
+
+    if not results_files:
+        return {"wins": 0, "losses": 0, "units_won": 0, "units_lost": 0, "net_units": 0}
+
+    total_wins = 0
+    total_losses = 0
+    total_units_won = 0
+    total_units_lost = 0
+
+    for file_path in results_files:
+        try:
+            content = read_file(file_path)
+
+            # Parse wins and losses from the summary
+            win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
+            loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
+
+            if win_match:
+                total_wins += int(win_match.group(1))
+            if loss_match:
+                total_losses += int(loss_match.group(1))
+
+            # Parse individual picks to calculate units
+            lines = content.strip().splitlines()
+            current_pick = None
+
+            for line in lines:
+                stripped = line.strip()
+
+                # Match numbered pick lines
+                pick_match = re.match(r'^\d+\.\s+\*\*(.+?)\*\*', stripped)
+                if pick_match:
+                    if current_pick:
+                        # Process previous pick
+                        if current_pick["outcome"] == "WIN":
+                            total_units_won += (current_pick["odds"] - 1) * current_pick["units"]
+                        elif current_pick["outcome"] == "LOSS":
+                            total_units_lost += current_pick["units"]
+
+                    bet_text = pick_match.group(1)
+                    odds_match = re.search(r'@\s*(\d+\.?\d*)', bet_text)
+                    odds = float(odds_match.group(1)) if odds_match else 1.0
+
+                    current_pick = {
+                        "units": 1.0,
+                        "odds": odds,
+                        "outcome": None
+                    }
+                    continue
+
+                # Extract confidence/units
+                if current_pick and ('Confidence Level:' in stripped or 'Confidence:' in stripped):
+                    if 'High' in stripped:
+                        current_pick["units"] = 1.5
+                    elif 'Medium' in stripped:
+                        current_pick["units"] = 1.0
+                    continue
+
+                # Match outcome
+                if current_pick and re.match(r'^\*\s+Outcome:', stripped):
+                    outcome_text = re.sub(r'^\*\s+Outcome:\s*', '', stripped)
+                    if "**WIN**" in outcome_text:
+                        current_pick["outcome"] = "WIN"
+                    elif "**LOSS**" in outcome_text:
+                        current_pick["outcome"] = "LOSS"
+                    elif "WIN" in outcome_text.upper() and "not a win" not in outcome_text.lower():
+                        current_pick["outcome"] = "WIN"
+                    elif "LOSS" in outcome_text.upper():
+                        current_pick["outcome"] = "LOSS"
+                    continue
+
+            # Don't forget last pick
+            if current_pick and current_pick["outcome"]:
+                if current_pick["outcome"] == "WIN":
+                    total_units_won += (current_pick["odds"] - 1) * current_pick["units"]
+                elif current_pick["outcome"] == "LOSS":
+                    total_units_lost += current_pick["units"]
+
+        except Exception:
+            continue
+
+    net_units = total_units_won - total_units_lost
+    return {
+        "wins": total_wins,
+        "losses": total_losses,
+        "units_won": total_units_won,
+        "units_lost": total_units_lost,
+        "net_units": net_units
+    }
+
+
 def parse_yesterday_results(sport_key):
     """Parse yesterday's results file for a sport and extract summary."""
     results_dir = os.path.join("bot_results", sport_key)
@@ -989,10 +1084,16 @@ def update_latest_predictions():
     last7_net_units = nhl_last7["net_units"] + nba_last7["net_units"]
     last7_units_display = f"+{last7_net_units:.1f}u" if last7_net_units >= 0 else f"{last7_net_units:.1f}u"
 
-    # Calculate season stats
-    overall_total_w = nhl_record["wins"] + nba_record["wins"]
-    overall_total_l = nhl_record["losses"] + nba_record["losses"]
+    # Calculate season stats including units
+    nhl_all = parse_all_results("nhl")
+    nba_all = parse_all_results("nba")
+    overall_total_w = nhl_all["wins"] + nba_all["wins"]
+    overall_total_l = nhl_all["losses"] + nba_all["losses"]
     overall_wr = f"{(overall_total_w / (overall_total_w + overall_total_l) * 100):.0f}%" if (overall_total_w + overall_total_l) > 0 else "N/A"
+
+    # Calculate season units
+    season_net_units = nhl_all["net_units"] + nba_all["net_units"]
+    season_units_display = f"+{season_net_units:.1f}u" if season_net_units >= 0 else f"{season_net_units:.1f}u"
 
     content += "<div class='stats-grid'>\n"
 
@@ -1012,27 +1113,32 @@ def update_latest_predictions():
     content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if last7_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{last7_units_display}</div>\n"
     content += "</div>\n"
 
-    # Season Win Rate Card
+    # Season Win Rate Card with Units
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>Season</div>\n"
     content += f"<div class='stat-value'>{overall_wr}</div>\n"
     content += f"<div class='stat-record'>{overall_total_w}W - {overall_total_l}L</div>\n"
+    content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if season_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{season_units_display}</div>\n"
     content += "</div>\n"
 
-    # NHL Record Card
-    nhl_wr = f"{(nhl_record['wins'] / (nhl_record['wins'] + nhl_record['losses']) * 100):.0f}%" if (nhl_record['wins'] + nhl_record['losses']) > 0 else "N/A"
+    # NHL Record Card with Units
+    nhl_wr = f"{(nhl_all['wins'] / (nhl_all['wins'] + nhl_all['losses']) * 100):.0f}%" if (nhl_all['wins'] + nhl_all['losses']) > 0 else "N/A"
+    nhl_units_display = f"+{nhl_all['net_units']:.1f}u" if nhl_all['net_units'] >= 0 else f"{nhl_all['net_units']:.1f}u"
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>🏒 NHL</div>\n"
     content += f"<div class='stat-value'>{nhl_wr}</div>\n"
-    content += f"<div class='stat-record'>{nhl_record['wins']}W - {nhl_record['losses']}L</div>\n"
+    content += f"<div class='stat-record'>{nhl_all['wins']}W - {nhl_all['losses']}L</div>\n"
+    content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if nhl_all['net_units'] >= 0 else '#ef4444'}; font-weight: 600;'>{nhl_units_display}</div>\n"
     content += "</div>\n"
 
-    # NBA Record Card
-    nba_wr = f"{(nba_record['wins'] / (nba_record['wins'] + nba_record['losses']) * 100):.0f}%" if (nba_record['wins'] + nba_record['losses']) > 0 else "N/A"
+    # NBA Record Card with Units
+    nba_wr = f"{(nba_all['wins'] / (nba_all['wins'] + nba_all['losses']) * 100):.0f}%" if (nba_all['wins'] + nba_all['losses']) > 0 else "N/A"
+    nba_units_display = f"+{nba_all['net_units']:.1f}u" if nba_all['net_units'] >= 0 else f"{nba_all['net_units']:.1f}u"
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>🏀 NBA</div>\n"
     content += f"<div class='stat-value'>{nba_wr}</div>\n"
-    content += f"<div class='stat-record'>{nba_record['wins']}W - {nba_record['losses']}L</div>\n"
+    content += f"<div class='stat-record'>{nba_all['wins']}W - {nba_all['losses']}L</div>\n"
+    content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if nba_all['net_units'] >= 0 else '#ef4444'}; font-weight: 600;'>{nba_units_display}</div>\n"
     content += "</div>\n"
 
     content += "</div>\n\n"
