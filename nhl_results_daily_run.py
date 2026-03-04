@@ -21,7 +21,9 @@ CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
 - LOSS: When the bet loses (but NOT when it's a push!)
 
 For each recommended play:
-- List the play header (as in the predictions file).
+- List the play header WITH ODDS (as in the predictions file, e.g., **Team ML vs Team @ odds**).
+- IMPORTANT: Always include the odds in the bet header in the format: **<BET> @ <ODDS>**
+  Example: **Tampa Bay Lightning vs Minnesota Wild Over 6.0 @ 2.18**
 - Show the actual result in the format: Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
 - State the outcome: WIN, LOSS, or PUSH, with a short reason.
   - If the result EXACTLY equals the line, you MUST mark it as **PUSH** (not LOSS).
@@ -43,7 +45,7 @@ As a disciplined NHL betting analyst, I have reviewed the AI's predictions again
 
 Here's the breakdown:
 
-1.  <PLAY HEADER>
+1.  **<PLAY HEADER WITH @ ODDS>**
     *   Actual Result: <away> <away_score> @ <home> <home_score> (Total goals: <total>)
     *   Outcome: **WIN**, **LOSS**, or **PUSH** (<short reason>)
 

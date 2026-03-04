@@ -12,7 +12,7 @@ def analyze_results_with_actuals(results_text, actuals_text, date_str):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
     prompt = f"""
-You are a disciplined NBA betting analyst. Your job is to review the AI's predictions against the actual game results for {{DATE}}.
+You are a disciplined NBA betting analyst. Your job is to review the AI's predictions against the actual game results for {date_str}.
 
 CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
 - PUSH: When the result EXACTLY equals the line. The stake is returned. This is NOT a loss, NOT a win. It's neutral.
@@ -23,6 +23,8 @@ CRITICAL: Understand the difference between PUSH, WIN, and LOSS:
 
 For each recommended play:
 - Match the prediction to the actual game result.
+- IMPORTANT: Always include the odds in the bet header in the format: **<BET> @ <ODDS>**
+  Example: **Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99**
 - For totals (over/under), compare the predicted total to the actual total points scored:
   - If the result exactly equals the line (e.g., Over 232.0 with exactly 232 points), it's a **PUSH** (not a loss!).
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (234 is over 232.5)').
@@ -31,7 +33,7 @@ For each recommended play:
   - Otherwise, state if it is a WIN or LOSS (e.g., 'Outcome: WIN (Team covered -3.5)').
 - For moneyline, state if the predicted team won or lost (e.g., 'Outcome: WIN (Team won)').
 - For each play, output:
-    * The bet header (as in the predictions)
+    * The bet header WITH ODDS (as in the predictions, e.g., **Team vs Team @ odds**)
     * The actual result (e.g., 'TeamA 110 @ TeamB 105')
     * The outcome (WIN/LOSS/PUSH) with a short justification
 
@@ -44,11 +46,11 @@ After all plays, output a summary section:
 
 Format exactly as this example:
 
-As a disciplined NBA betting analyst, I have reviewed the AI's predictions against the actual game results for {{DATE}}.
+As a disciplined NBA betting analyst, I have reviewed the AI's predictions against the actual game results for {date_str}.
 
 Here's the breakdown:
 
-1.  **<BET HEADER>**
+1.  **<BET HEADER WITH @ ODDS>**
     *   Actual Result: <AWAY> <AWAY_SCORE> @ <HOME> <HOME_SCORE>
     *   Outcome: **WIN/LOSS/PUSH** (<short justification>)
 
@@ -67,7 +69,7 @@ AI Predictions:
 
 Actual Results:
 {actuals_text}
-""".replace("{{DATE}}", date_str)
+"""
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash",

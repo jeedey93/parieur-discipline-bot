@@ -82,19 +82,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>Yesterday</div>
 <div class='stat-value'>56%</div>
 <div class='stat-record'>5W - 4L</div>
-<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-2.1u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Last Week</div>
 <div class='stat-value'>45%</div>
 <div class='stat-record'>19W - 23L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+3.8u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>
 <div class='stat-value'>49%</div>
 <div class='stat-record'>30W - 31L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.9u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+3.8u</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>🏒 NHL</div>
@@ -106,7 +106,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-label'>🏀 NBA</div>
 <div class='stat-value'>47%</div>
 <div class='stat-record'>15W - 17L</div>
-<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-1.2u</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.8u</div>
 </div>
 </div>
 
@@ -201,7 +201,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0</span>
+<span class='result-title'>Los Angeles Lakers vs New Orleans Pelicans Under 243.0 @ 1.99</span>
 </div>
 <div class='result-score'>New Orleans Pelicans 101 @ Los Angeles Lakers 110</div>
 </div>
@@ -210,7 +210,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0</span>
+<span class='result-title'>Charlotte Hornets vs Dallas Mavericks Over 231.0 @ 1.98</span>
 </div>
 <div class='result-score'>Dallas Mavericks 90 @ Charlotte Hornets 117</div>
 </div>
@@ -219,7 +219,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>❌</span>
 <span class='result-badge badge-loss'>LOSS</span>
-<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers</span>
+<span class='result-title'>Detroit Pistons -2.5 vs Cleveland Cavaliers @ 1.99</span>
 </div>
 <div class='result-score'>Detroit Pistons 109 @ Cleveland Cavaliers 113</div>
 </div>
@@ -228,7 +228,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors</span>
+<span class='result-title'>New York Knicks -2.5 vs Toronto Raptors @ 1.98</span>
 </div>
 <div class='result-score'>New York Knicks 111 @ Toronto Raptors 95</div>
 </div>
@@ -237,7 +237,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-header'>
 <span style='font-size: 1.5em;'>✅</span>
 <span class='result-badge badge-win'>WIN</span>
-<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings</span>
+<span class='result-title'>Phoenix Suns -10.0 vs Sacramento Kings @ 1.99</span>
 </div>
 <div class='result-score'>Phoenix Suns 114 @ Sacramento Kings 103</div>
 </div>
