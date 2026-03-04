@@ -71,9 +71,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-record'>5W - 5L</div>
 </div>
 <div class='stat-card'>
-<div class='stat-label'>Last 5 Days</div>
-<div class='stat-value'>45%</div>
-<div class='stat-record'>15W - 18L</div>
+<div class='stat-label'>Last Week</div>
+<div class='stat-value'>44%</div>
+<div class='stat-record'>19W - 24L</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>Season</div>

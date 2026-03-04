@@ -859,12 +859,12 @@ def update_latest_predictions():
     yesterday_total_l = (nhl_yesterday["losses"] if nhl_yesterday else 0) + (nba_yesterday["losses"] if nba_yesterday else 0)
     yesterday_wr = f"{(yesterday_total_w / (yesterday_total_w + yesterday_total_l) * 100):.0f}%" if (yesterday_total_w + yesterday_total_l) > 0 else "N/A"
 
-    # Calculate last 5 days stats
-    nhl_last5 = parse_last_n_days_results("nhl", 5)
-    nba_last5 = parse_last_n_days_results("nba", 5)
-    last5_total_w = nhl_last5["wins"] + nba_last5["wins"]
-    last5_total_l = nhl_last5["losses"] + nba_last5["losses"]
-    last5_wr = f"{(last5_total_w / (last5_total_w + last5_total_l) * 100):.0f}%" if (last5_total_w + last5_total_l) > 0 else "N/A"
+    # Calculate last 7 days stats
+    nhl_last7 = parse_last_n_days_results("nhl", 7)
+    nba_last7 = parse_last_n_days_results("nba", 7)
+    last7_total_w = nhl_last7["wins"] + nba_last7["wins"]
+    last7_total_l = nhl_last7["losses"] + nba_last7["losses"]
+    last7_wr = f"{(last7_total_w / (last7_total_w + last7_total_l) * 100):.0f}%" if (last7_total_w + last7_total_l) > 0 else "N/A"
 
     # Calculate season stats
     overall_total_w = nhl_record["wins"] + nba_record["wins"]
@@ -880,11 +880,11 @@ def update_latest_predictions():
     content += f"<div class='stat-record'>{yesterday_total_w}W - {yesterday_total_l}L</div>\n"
     content += "</div>\n"
 
-    # Last 5 Days Win Rate Card
+    # Last 7 Days Win Rate Card
     content += "<div class='stat-card'>\n"
-    content += "<div class='stat-label'>Last 5 Days</div>\n"
-    content += f"<div class='stat-value'>{last5_wr}</div>\n"
-    content += f"<div class='stat-record'>{last5_total_w}W - {last5_total_l}L</div>\n"
+    content += "<div class='stat-label'>Last Week</div>\n"
+    content += f"<div class='stat-value'>{last7_wr}</div>\n"
+    content += f"<div class='stat-record'>{last7_total_w}W - {last7_total_l}L</div>\n"
     content += "</div>\n"
 
     # Season Win Rate Card
