@@ -60,7 +60,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-tile-loss { border-color: #ef4444; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }
 .result-tile-push { border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }
 .result-tile-emoji { font-size: 2em; margin-bottom: 8px; }
-.result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; }
+.result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; margin-bottom: 6px; }
+.result-tile-units { font-size: 0.9em; font-weight: 700; margin-top: 6px; }
 .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }
 .badge-win { background: #10b981; color: white; }
@@ -70,7 +71,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }
 #back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }
 #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }
-@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
+@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
 </style>
 
 <div class='blog-container'>
@@ -162,22 +163,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Washington Capitals ML vs Utah Mammoth</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Ottawa Senators vs Edmonton Oilers Over 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.95u</div>
 </div>
 <div class='result-tile result-tile-push'>
 <div class='result-tile-emoji'>↔️</div>
 <div class='result-tile-bet'>Tampa Bay Lightning vs Minnesota Wild Over 6.0</div>
+<div class='result-tile-units' style='color: #f59e0b;'>0.00u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Florida Panthers vs New Jersey Devils Over 5.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.95u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Calgary Flames ML vs Dallas Stars</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 </div>
 
@@ -187,22 +193,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Los Angeles Lakers vs New Orleans Pelicans Unde...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Charlotte Hornets vs Dallas Mavericks Over 231.0</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Detroit Pistons -2.5 vs Cleveland Cavaliers</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>New York Knicks -2.5 vs Toronto Raptors</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.98u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Phoenix Suns -10.0 vs Sacramento Kings</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
 </div>
 </div>
 

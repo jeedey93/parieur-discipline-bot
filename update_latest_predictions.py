@@ -822,12 +822,20 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 if pick["outcome"] == "WIN":
                     outcome_emoji = "✅"
                     tile_class = "result-tile result-tile-win"
+                    # Calculate profit: (odds - 1) * units
+                    units_display = f"+{(pick.get('odds', 1.0) - 1) * pick.get('units', 1.0):.2f}u"
+                    units_color = "#10b981"
                 elif pick["outcome"] == "PUSH":
                     outcome_emoji = "↔️"
                     tile_class = "result-tile result-tile-push"
+                    units_display = "0.00u"
+                    units_color = "#f59e0b"
                 else:  # LOSS
                     outcome_emoji = "❌"
                     tile_class = "result-tile result-tile-loss"
+                    # Loss: -units
+                    units_display = f"-{pick.get('units', 1.0):.2f}u"
+                    units_color = "#ef4444"
 
                 # Shorten bet text for compact display
                 bet_short = pick['bet']
@@ -840,6 +848,7 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 md += f"<div class='{tile_class}'>\n"
                 md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
                 md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
+                md += f"<div class='result-tile-units' style='color: {units_color};'>{units_display}</div>\n"
                 md += "</div>\n"
 
             md += "</div>\n\n"
@@ -852,12 +861,20 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 if pick["outcome"] == "WIN":
                     outcome_emoji = "✅"
                     tile_class = "result-tile result-tile-win"
+                    # Calculate profit: (odds - 1) * units
+                    units_display = f"+{(pick.get('odds', 1.0) - 1) * pick.get('units', 1.0):.2f}u"
+                    units_color = "#10b981"
                 elif pick["outcome"] == "PUSH":
                     outcome_emoji = "↔️"
                     tile_class = "result-tile result-tile-push"
+                    units_display = "0.00u"
+                    units_color = "#f59e0b"
                 else:  # LOSS
                     outcome_emoji = "❌"
                     tile_class = "result-tile result-tile-loss"
+                    # Loss: -units
+                    units_display = f"-{pick.get('units', 1.0):.2f}u"
+                    units_color = "#ef4444"
 
                 # Shorten bet text for compact display
                 bet_short = pick['bet']
@@ -870,6 +887,7 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                 md += f"<div class='{tile_class}'>\n"
                 md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
                 md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
+                md += f"<div class='result-tile-units' style='color: {units_color};'>{units_display}</div>\n"
                 md += "</div>\n"
 
             md += "</div>\n\n"
@@ -1113,7 +1131,8 @@ def update_latest_predictions():
     content += ".result-tile-loss { border-color: #ef4444; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }\n"
     content += ".result-tile-push { border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }\n"
     content += ".result-tile-emoji { font-size: 2em; margin-bottom: 8px; }\n"
-    content += ".result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; }\n"
+    content += ".result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; margin-bottom: 6px; }\n"
+    content += ".result-tile-units { font-size: 0.9em; font-weight: 700; margin-top: 6px; }\n"
     content += ".result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }\n"
     content += ".result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }\n"
     content += ".badge-win { background: #10b981; color: white; }\n"
@@ -1123,7 +1142,7 @@ def update_latest_predictions():
     content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
     content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
     content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }\n"
-    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
+    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -30px 15px 30px 15px; grid-template-columns: 1fr; gap: 10px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 15px 12px; } .stat-label { font-size: 0.75em; } .stat-value { font-size: 2.2em; } .stat-record { font-size: 0.9em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
     content += "</style>\n\n"
 
     content += "<div class='blog-container'>\n\n"
