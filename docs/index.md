@@ -84,17 +84,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <img src='parieur_discipline.png' alt='Parieur Discipliné' class='hero-logo'>
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
-<div class='blog-date'>March 4, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 01:16 PM ET</div>
+<div class='blog-date'>March 5, 2026</div>
+<div class='blog-update-time'>⏱️ Updated at 01:33 PM ET</div>
 </div>
 </div>
 
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>50%</div>
-<div class='stat-record'>3W - 3L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.05 units</div>
+<div class='stat-value'>60%</div>
+<div class='stat-record'>3W - 2L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.06 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -125,93 +125,257 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='content-wrapper'>
 
 <div class='nav-tabs'>
-<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks (Potential)</a>
+<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>
+<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>
+<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>
 <a href='#yesterday-results' class='nav-tab'>📋 Yesterday's Results</a>
-</div>
-
-<div style='background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 25px 40px; text-align: center; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 15px rgba(74,144,226,0.3);'>
-<div style='font-size: 1.4em; font-weight: 700; margin-bottom: 8px;'>🕐 Preliminary Analysis Available</div>
-<div style='font-size: 1em; opacity: 0.95;'>7am predictions shown below. Final picks with line movement analysis available at <strong>12:00 PM ET</strong></div>
 </div>
 
 <div id='featured-picks'>
 <div class='section-header'>
-<div class='section-title'>🔥 Featured Picks (Potential)</div>
-<div class='section-subtitle'>7am predictions - subject to change at 12pm after line movement analysis</div>
+<div class='section-title'>🔥 Featured Picks of the Day</div>
+<div class='section-subtitle'>Our top AI-selected plays with the highest edge</div>
 </div>
 <div class='featured-grid'>
-<div class='pick-card' style='border: 2px solid #FFA500;'>
-<div class='pick-badge badge-featured'>🏒 NHL</div>
-<div class='pick-title'>Los Angeles Kings ML vs New York Islanders @ 1.74</div>
-<div class='pick-meta'>Confidence Level: High, Units: 1.5u, Win Probability: 70.5%</div>
-<div class='pick-description'>The Los Angeles Kings are significantly favored in this matchup due to the New York Islanders' extensive injury list, including starting goaltender Semyon Varlamov, key forward Kyle Palmieri, and top defensemen Alexander Romanov and Ryan Pulock. The Kings are well-rested, having last played on February 28, while the Islanders, though also rested, face a monumental challenge with so many core players out. This severe talent deficit for the Islanders, compounded by starting a backup goalie against a healthy Kings squad, creates a substantial mispricing by bookmakers, offering excellent value on the Kings' moneyline.</div>
-<div style='margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;'>
-<div style='font-size: 0.85em; color: #92400e; font-weight: 600;'>⚠️ Preliminary Pick</div>
-<div style='font-size: 0.8em; color: #78350f; margin-top: 4px;'>This pick may change after 12pm line movement analysis</div>
+
+<div class='pick-card'>
+<div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
+<div class='pick-title'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
+<div class='pick-description'>The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
 </div>
+
+<div class='pick-card'>
+<div class='pick-badge badge-nba'>PICK #2 — NBA</div>
+<div class='pick-title'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25%</div>
+<div class='pick-description'>The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
 </div>
-<div class='pick-card' style='border: 2px solid #FFA500;'>
-<div class='pick-badge badge-featured'>🏀 NBA</div>
-<div class='pick-title'>Sacramento Kings vs New Orleans Pelicans Under 234.5 @ 1.91</div>
-<div class='pick-meta'>Confidence Level: High Units: 1.5u, Win Probability: 65%</div>
-<div class='pick-description'>The Kings and Pelicans both come into this matchup relatively rested after playing on March 3rd. Recent trends show that both teams have been involved in lower-scoring games, with their last three combined totals for the Pelicans and the Kings' recent game all falling significantly below the current line of 234.5 points. Our model has historically performed well predicting Unders in Pelicans games, identifying a consistent market overestimation of totals for their matchups. This pattern, combined with the teams' recent scoring outputs, creates a strong edge against the implied probability.</div>
-<div style='margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;'>
-<div style='font-size: 0.85em; color: #92400e; font-weight: 600;'>⚠️ Preliminary Pick</div>
-<div style='font-size: 0.8em; color: #78350f; margin-top: 4px;'>This pick may change after 12pm line movement analysis</div>
+
 </div>
-</div>
-</div>
+
 </div>
 
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for March 4, 2026</div>
+<div class='section-subtitle'>Performance breakdown for February 27, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-loss result-tile-featured'>
-<div class='botd-badge'>🔥 BET OF THE DAY</div>
+<div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>Toronto Maple Leafs ML vs New Jersey Devils</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
+<div class='result-tile-bet'>BET OF THE DAY: Minnesota Wild @ Colorado Avala...</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Carolina Hurricanes ML vs Tampa Bay Lightning</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.64u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Toronto Maple Leafs @ Florida Panthers ML vs To...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.63u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>New Jersey Devils vs Pittsburgh Penguins Over 5.5</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Chicago Blackhawks @ Nashville Predators ML vs ...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.55u</div>
 </div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-loss result-tile-featured'>
-<div class='botd-badge'>🔥 BET OF THE DAY</div>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>Boston Celtics -6.5 vs Charlotte Hornets</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>BET OF THE DAY: Philadelphia 76ers ML vs Miami ...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.68u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Atlanta Hawks +1.5 vs Milwaukee Bucks</div>
-<div class='result-tile-units' style='color: #10b981;'>+1.48u</div>
+<div class='result-tile-bet'>Other Recommended Play: Philadelphia 76ers -2.5...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.93u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Atlanta Hawks ML vs Milwaukee Bucks</div>
-<div class='result-tile-units' style='color: #10b981;'>+1.57u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Los Angeles Clippers -12.5 vs Indiana Pacers</div>
+<div class='result-tile-bet'>Other Recommended Play: San Antonio Spurs -12.5...</div>
 <div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
 </div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>Oklahoma City Thunder -4.0 vs New York Knicks</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Other Recommended Play: Charlotte Hornets -13.0...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Other Recommended Play: Houston Rockets ML vs O...</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.65u</div>
 </div>
 </div>
 
 </div>
+
+</div>
+
+<div id='nhl-predictions'>
+<div class='section-header'>
+<div class='section-title'>🏒 NHL Predictions</div>
+<div class='section-subtitle'>Today's NHL picks with full analysis</div>
+</div>
+
+<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
+<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
+
+<div style='margin-top: 15px;'>
+<p>As a sports betting analyst, I've compared the morning (7:00 AM) and noon (12:00 PM) prediction reports for March 5, 2026, noting significant shifts in market perception and analytical focus.</p>
+<br>
+<strong>Key Observations:</strong>
+<br>
+<p>1.  <strong>Consistency of Plays:</strong> No specific betting recommendations (e.g., "Kings ML" or "Over 5.5") appeared identically in both reports. The analysis underwent a significant refresh at noon, leading to new recommendations or complete reversals on previously identified games.</p>
+<p>2.  <strong>Added/Removed Plays:</strong></p>
+<ul>
+  <li>  <strong>Removed from Morning Report:</strong> Los Angeles Kings ML (Morning's Bet of the Day), Ottawa Senators ML, and New York Rangers ML were no longer recommended at noon.</li>
+  <li>  <strong>Added in Noon Report:</strong> Utah Mammoth vs Philadelphia Flyers Under 6.0 (Noon's Bet of the Day), Boston Bruins ML, and Buffalo Sabres @ Pittsburgh Penguins Under 6.5 were new recommendations.</li>
+</ul>
+<p>3.  <strong>Confidence/Recommendation Reversals:</strong></p>
+<em>   For the <strong>New York Islanders @ Los Angeles Kings</strong> game, the morning report recommended <strong>Over 5.5</strong>, citing significant Islanders injuries. The noon report completely reversed this, recommending <strong>Under 5.5</strong>, citing strong defensive structures and no significant </em>offensive* injuries. This highlights a drastic re-evaluation of the game's likely scoring outcome.
+<ul>
+  <li>  Similarly, for the <strong>Florida Panthers @ Columbus Blue Jackets</strong> game, the morning recommended <strong>Over 6.5</strong>, noting offensive tendencies. The noon report switched to <strong>Under 6.5</strong>, emphasizing the absence of elite Panthers forward Aleksander Barkov. This suggests critical new injury information became available between reports.</li>
+</ul>
+<p>4.  <strong>Odds Changes Affecting Recommendations:</strong></p>
+<ul>
+  <li>  In the <strong>Boston Bruins ML</strong> play, the odds for the Bruins improved from 1.94 (morning) to 1.95 (noon), making it a more attractive pick at noon.</li>
+  <li>  For the <strong>New York Islanders @ Los Angeles Kings</strong> and <strong>Florida Panthers @ Columbus Blue Jackets</strong> totals, while the specific odds for the recommended "Under" play remained steady or slightly shifted, the underlying rationale completely changed due to updated roster information.</li>
+</ul>
+</div>
+
+</details>
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Boston Bruins ML vs Nashville Predators @ 1.95</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Boston Bruins face a Nashville Predators team severely hampered by the absence of elite forward Ryan O'Reilly due to an upper body injury, which is a significant blow to their offensive capabilities. Nashville is also coming off two consecutive losses, indicating a dip in form. With the Predators missing a key player and struggling for momentum, the Bruins present value at 1.95 odds despite playing on the road. New play added at noon. Morning odds for Bruins ML were 1.94; noon odds improved to 1.95.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Buffalo Sabres @ Pittsburgh Penguins Under 6.5 @ 1.90</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>This matchup features two teams dealing with significant offensive injuries, notably Sidney Crosby for the Penguins and multiple core forwards including Jordan Greenway, Jiri Kulich, and Justin Danforth for the Sabres. The absence of these key playmakers is expected to dampen both teams' scoring potential. Given these substantial injuries to top offensive talent, the game is highly likely to be a lower-scoring affair, making the Under 6.5 total at 1.90 odds a compelling play. New play added at noon. Morning O/U was 6.5, but no specific bet was recommended.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New York Islanders @ Los Angeles Kings Under 5.5 @ 1.90</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the New York Islanders and Los Angeles Kings are known for their defensive structures and often play in low-scoring games. While the Islanders had one recent game go over, the Kings consistently participate in tight contests, as evidenced by their 2-0 victory on February 28. With no significant offensive injuries for either team listed, the strong defensive identities suggest that the 5.5 total is inflated, offering value on the Under at 1.90 odds. This play is a reversal from the morning, which recommended Over 5.5 @ 1.90 (Confidence Medium, Win Probability 56%), citing Islanders injuries. The noon analysis shifted to Under 5.5 @ 1.90 (Confidence Medium, Win Probability 58%) due to emphasis on defensive structures and lack of *offensive* injuries.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Florida Panthers @ Columbus Blue Jackets Under 6.5 @ 1.90</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 56%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Florida Panthers are significantly impacted by the absence of elite forward Aleksander Barkov and several other key forwards. While Columbus has some defensive injuries, Florida's primary offensive driver being out will significantly hinder their goal-scoring ability. Despite the Blue Jackets' recent high-scoring game, the Panthers' current injury situation and overall strong defensive play suggest this game will stay under the 6.5 total, providing a valuable betting opportunity at 1.90 odds. This play is a reversal from the morning, which recommended Over 6.5 @ 1.94 (Confidence Medium, Win Probability 55%). The noon analysis shifted to Under 6.5 @ 1.90 (Confidence Medium, Win Probability 56%) based on significant new injury information for the Panthers.</div>
+
+</div>
+
+
+
+</div>
+
+<div id='nba-predictions'>
+<div class='section-header'>
+<div class='section-title'>🏀 NBA Predictions</div>
+<div class='section-subtitle'>Today's NBA picks with full analysis</div>
+</div>
+
+<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
+<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
+
+<div style='margin-top: 15px;'>
+<p>Here's an analysis comparing the morning and noon prediction reports, along with a unified final recommendation list based on the latest information and model conviction.</p>
+<br>
+<strong>Comparison Summary:</strong>
+<br>
+<p>The noon report shows several significant line movements and a shift in recommended plays, indicating that new information or market dynamics have influenced the AI's analysis throughout the day.</p>
+<ul>
+<li>  <strong>Consistency:</strong> Only one play, Minnesota Timberwolves vs Toronto Raptors, appeared in both reports, though with a different spread and slight change in win probability.</li>
+<li>  <strong>Removals:</strong> The morning's "Bet of the Day" (Sacramento Kings vs New Orleans Pelicans Under 234.5) and two other high-confidence plays (Sacramento Kings +5.5, San Antonio Spurs -3.5, Miami Heat -12.5) were removed from the noon recommendations. This suggests a decrease in conviction for these bets despite some favorable line movements.</li>
+<li>  <strong>Additions:</strong> The noon report introduced four new plays: Phoenix Suns -10.5, Golden State Warriors +8.5, Dallas Mavericks +9.0, and Utah Jazz +4.5.</li>
+<li>  <strong>Confidence Shifts:</strong> For the consistent play (Timberwolves), confidence remained High, but the win probability slightly decreased from 60% to 59.5%.</li>
+</ul>
+</div>
+
+</details>
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Sacramento Kings vs New Orleans Pelicans Under 234.5 @ 1.91</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 65%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Kings and Pelicans both come into this matchup relatively rested after playing on March 3rd. Recent trends show that both teams have been involved in lower-scoring games, with their last three combined totals for the Pelicans and the Kings' recent game all falling significantly below the current line of 234.5 points. Our model has historically performed well predicting Unders in Pelicans games, identifying a consistent market overestimation of totals for their matchups. This pattern, combined with the teams' recent scoring outputs, creates a strong edge against the implied probability. The O/U line remained 234.5 from morning to noon, but this play was removed from the noon recommendations despite being the "Bet of the Day" in the morning.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Sacramento Kings +5.5 vs New Orleans Pelicans @ 1.95</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 64%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Kings, playing at home, benefit from a fatigue advantage as the Pelicans have played 3 games in the last 5 nights compared to the Kings' more favorable schedule. Despite the Pelicans' mixed recent form, the Kings are a formidable home team, and the market appears to be underpricing their ability to keep this game close or win outright. Given the fatigue differential and home court, the Kings covering this spread offers significant value. The spread line remained +5.5, and the odds slightly improved from 1.94 (morning) to 1.95 (noon). This play was removed from the noon recommendations.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>San Antonio Spurs -3.5 vs Detroit Pistons @ 1.95</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 60%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Spurs enter this game on a strong 3-game winning streak and are notably more rested than the Pistons, who have played 4 games in the last 6 nights, including a loss in their most recent outing. Our historical performance data highlights a systematic issue with the Pistons covering spreads when favored, having lost 3 of their last 4 such bets. This combined with the Spurs' current momentum and rest advantage makes the Spurs a compelling pick to cover a relatively small spread at home. The spread line remained -3.5, but the odds slightly decreased from 1.96 (morning) to 1.95 (noon). This play was removed from the noon recommendations.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Golden State Warriors +8.5 vs Houston Rockets @ 1.94</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 59.0%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Houston Rockets enter this game on a back-to-back, having also played three games in the last four nights, leading to significant fatigue. Conversely, the Golden State Warriors are relatively rested despite a mixed recent form. The fatigue differential heavily favors the Warriors, suggesting they will be more competitive than the market implies with an 8.5-point spread. This play offers value on the underdog capitalizing on the favorite's strenuous schedule. This is a new play added in the noon report. The spread moved from GSW +9.5 (morning) to +8.5 (noon), with odds changing from 1.91 to 1.94.</div>
+
+</div>
+
+
 
 </div>
 
