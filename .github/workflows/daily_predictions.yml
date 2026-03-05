@@ -85,9 +85,9 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
+          secure: false
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          secure: true
           subject: "🎯 Parieur Discipliné - ${{ steps.run_time.outputs.time }} Predictions Ready"
           html_body: |
             <!DOCTYPE html>
