@@ -1,5 +1,25 @@
+# Environment
 .env
+
+# IDE
 .idea/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# macOS
+.DS_Store
+
+# Data cache
 data/__pycache__/
 data/**/*.pyc
-.DS_Store
