@@ -1,5 +1,10 @@
 import os
+import sys
 import shutil
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from dotenv import load_dotenv
 import google.genai as genai
 from google.genai import types
@@ -8,7 +13,7 @@ from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
-from nhl_injuries_daily_run import scrape_nhl_injuries_by_team
+from scripts.nhl_injuries_daily_run import scrape_nhl_injuries_by_team
 import pytz
 from datetime import datetime
 

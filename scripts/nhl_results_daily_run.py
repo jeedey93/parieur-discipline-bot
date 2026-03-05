@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from data.nhl_games import get_games_yesterday
 from google import genai
 from google.genai import types

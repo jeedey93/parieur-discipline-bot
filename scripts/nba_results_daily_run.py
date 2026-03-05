@@ -1,9 +1,13 @@
 import os
+import sys
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from data.nba_games import get_nba_games_yesterday
 from datetime import date, timedelta
 from google import genai
 from google.genai import types
-from datetime import date
 from dotenv import load_dotenv
 
 load_dotenv()

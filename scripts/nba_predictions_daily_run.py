@@ -1,5 +1,10 @@
 import os
+import sys
 import shutil
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from dotenv import load_dotenv
 from google import genai
 from data.odds import get_nba_odds, match_nba_odds_to_games
