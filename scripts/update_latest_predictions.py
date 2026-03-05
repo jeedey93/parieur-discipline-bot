@@ -1416,7 +1416,7 @@ def update_latest_predictions(results_only=False):
     yesterday_units_won = (nhl_yesterday.get("units_won", 0) if nhl_yesterday else 0) + (nba_yesterday.get("units_won", 0) if nba_yesterday else 0)
     yesterday_units_lost = (nhl_yesterday.get("units_lost", 0) if nhl_yesterday else 0) + (nba_yesterday.get("units_lost", 0) if nba_yesterday else 0)
     yesterday_net_units = yesterday_units_won - yesterday_units_lost
-    yesterday_units_display = f"+{yesterday_net_units:.1f} units" if yesterday_net_units >= 0 else f"{yesterday_net_units:.1f} units"
+    yesterday_units_display = f"+{yesterday_net_units:.2f} units" if yesterday_net_units >= 0 else f"{yesterday_net_units:.2f} units"
 
     # Calculate this week's stats (Monday to Sunday) including units
     nhl_week = parse_this_week_results("nhl")
@@ -1427,7 +1427,7 @@ def update_latest_predictions(results_only=False):
 
     # Calculate this week's units
     week_net_units = nhl_week["net_units"] + nba_week["net_units"]
-    week_units_display = f"+{week_net_units:.1f} units" if week_net_units >= 0 else f"{week_net_units:.1f} units"
+    week_units_display = f"+{week_net_units:.2f} units" if week_net_units >= 0 else f"{week_net_units:.2f} units"
 
     # Calculate season stats including units
     nhl_all = parse_all_results("nhl")
@@ -1438,7 +1438,7 @@ def update_latest_predictions(results_only=False):
 
     # Calculate season units
     season_net_units = nhl_all["net_units"] + nba_all["net_units"]
-    season_units_display = f"+{season_net_units:.1f} units" if season_net_units >= 0 else f"{season_net_units:.1f} units"
+    season_units_display = f"+{season_net_units:.2f} units" if season_net_units >= 0 else f"{season_net_units:.2f} units"
 
     content += "<div class='stats-grid'>\n"
 
@@ -1468,7 +1468,7 @@ def update_latest_predictions(results_only=False):
 
     # NHL Record Card with Units
     nhl_wr = f"{(nhl_all['wins'] / (nhl_all['wins'] + nhl_all['losses']) * 100):.0f}%" if (nhl_all['wins'] + nhl_all['losses']) > 0 else "N/A"
-    nhl_units_display = f"+{nhl_all['net_units']:.1f} units" if nhl_all['net_units'] >= 0 else f"{nhl_all['net_units']:.1f} units"
+    nhl_units_display = f"+{nhl_all['net_units']:.2f} units" if nhl_all['net_units'] >= 0 else f"{nhl_all['net_units']:.2f} units"
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>🏒 NHL</div>\n"
     content += f"<div class='stat-value'>{nhl_wr}</div>\n"
@@ -1478,7 +1478,7 @@ def update_latest_predictions(results_only=False):
 
     # NBA Record Card with Units
     nba_wr = f"{(nba_all['wins'] / (nba_all['wins'] + nba_all['losses']) * 100):.0f}%" if (nba_all['wins'] + nba_all['losses']) > 0 else "N/A"
-    nba_units_display = f"+{nba_all['net_units']:.1f} units" if nba_all['net_units'] >= 0 else f"{nba_all['net_units']:.1f} units"
+    nba_units_display = f"+{nba_all['net_units']:.2f} units" if nba_all['net_units'] >= 0 else f"{nba_all['net_units']:.2f} units"
     content += "<div class='stat-card'>\n"
     content += "<div class='stat-label'>🏀 NBA</div>\n"
     content += f"<div class='stat-value'>{nba_wr}</div>\n"
