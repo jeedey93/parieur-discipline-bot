@@ -1227,12 +1227,13 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
 
     for i in range(bet_start + 1, len(lines)):
         line = lines[i].strip()
+
+        # Stop immediately if we hit another section (like "**Other Recommended Plays**")
+        if line.startswith("**"):
+            break
+
         if not line:
             continue
-
-        # Stop at next section or empty lines
-        if line.startswith("**") and i > bet_start + 5:
-            break
 
         # First non-empty line after BET OF THE DAY is the bet
         if not bet_line and not line.startswith("Confidence"):
@@ -1240,7 +1241,9 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
         # Confidence line
         elif line.startswith("Confidence"):
             confidence_line = line
-        # Description (lines between bet and confidence, or after confidence)
+            # Stop after getting confidence - we have everything we need
+            break
+        # Description (lines between bet and confidence)
         elif bet_line and not line.startswith("Confidence"):
             if description:
                 description += " "
@@ -1509,8 +1512,9 @@ def update_latest_predictions(results_only=False):
     # ── Featured Picks Section ──
     # At 7am (results_only), read from daily_runs folder; at 12pm, read from dual_bet_of_the_day
     if results_only:
-        # Get today's date for 7am files
-        today_str = overall_latest_date
+        # Get today's date for 7am files (not overall_latest_date which might be yesterday)
+        from datetime import date as date_module
+        today_str = date_module.today().isoformat()
         nhl_7am_file = os.path.join(predictions_dir, "nhl", "daily_runs", f"nhl_daily_predictions_{today_str}_7am.txt")
         nba_7am_file = os.path.join(predictions_dir, "nba", "daily_runs", f"nba_daily_predictions_{today_str}_7am.txt")
 

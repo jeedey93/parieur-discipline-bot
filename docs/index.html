@@ -82,16 +82,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 4, 2026</div>
-<div class='blog-update-time'>⏱️ Updated 2 minutes ago</div>
+<div class='blog-update-time'>⏱️ Updated 18 hours ago</div>
 </div>
 </div>
 
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.1 units</div>
+<div class='stat-value'>50%</div>
+<div class='stat-record'>3W - 3L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.0 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -136,13 +136,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-title'>🔥 Featured Picks (Potential)</div>
 <div class='section-subtitle'>7am predictions - subject to change at 12pm after line movement analysis</div>
 </div>
-<p style='color: #6b7280; font-style: italic;'>No featured picks available yet.</p>
+<div class='featured-grid'>
+<div class='pick-card' style='border: 2px solid #FFA500;'>
+<div class='pick-badge badge-featured'>🏒 NHL</div>
+<div class='pick-title'>Los Angeles Kings ML vs New York Islanders @ 1.74</div>
+<div class='pick-meta'>Confidence Level: High, Units: 1.5u, Win Probability: 70.5%</div>
+<div class='pick-description'>The Los Angeles Kings are significantly favored in this matchup due to the New York Islanders' extensive injury list, including starting goaltender Semyon Varlamov, key forward Kyle Palmieri, and top defensemen Alexander Romanov and Ryan Pulock. The Kings are well-rested, having last played on February 28, while the Islanders, though also rested, face a monumental challenge with so many core players out. This severe talent deficit for the Islanders, compounded by starting a backup goalie against a healthy Kings squad, creates a substantial mispricing by bookmakers, offering excellent value on the Kings' moneyline.</div>
+<div style='margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;'>
+<div style='font-size: 0.85em; color: #92400e; font-weight: 600;'>⚠️ Preliminary Pick</div>
+<div style='font-size: 0.8em; color: #78350f; margin-top: 4px;'>This pick may change after 12pm line movement analysis</div>
+</div>
+</div>
+<div class='pick-card' style='border: 2px solid #FFA500;'>
+<div class='pick-badge badge-featured'>🏀 NBA</div>
+<div class='pick-title'>Sacramento Kings vs New Orleans Pelicans Under 234.5 @ 1.91</div>
+<div class='pick-meta'>Confidence Level: High Units: 1.5u, Win Probability: 65%</div>
+<div class='pick-description'>The Kings and Pelicans both come into this matchup relatively rested after playing on March 3rd. Recent trends show that both teams have been involved in lower-scoring games, with their last three combined totals for the Pelicans and the Kings' recent game all falling significantly below the current line of 234.5 points. Our model has historically performed well predicting Unders in Pelicans games, identifying a consistent market overestimation of totals for their matchups. This pattern, combined with the teams' recent scoring outputs, creates a strong edge against the implied probability.</div>
+<div style='margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;'>
+<div style='font-size: 0.85em; color: #92400e; font-weight: 600;'>⚠️ Preliminary Pick</div>
+<div style='font-size: 0.8em; color: #78350f; margin-top: 4px;'>This pick may change after 12pm line movement analysis</div>
+</div>
+</div>
+</div>
 </div>
 
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for February 27, 2026</div>
+<div class='section-subtitle'>Performance breakdown for March 4, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
@@ -150,58 +171,38 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='results-grid'>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>BET OF THE DAY: Minnesota Wild @ Colorado Avala...</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Carolina Hurricanes ML vs Tampa Bay Lightning</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.64u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Toronto Maple Leafs @ Florida Panthers ML vs To...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.63u</div>
-</div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>New Jersey Devils vs Pittsburgh Penguins Over 5.5</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Chicago Blackhawks @ Nashville Predators ML vs ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.55u</div>
+<div class='result-tile-bet'>Toronto Maple Leafs ML vs New Jersey Devils</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>BET OF THE DAY: Philadelphia 76ers ML vs Miami ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.68u</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Boston Celtics -6.5 vs Charlotte Hornets</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Philadelphia 76ers -2.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.93u</div>
+<div class='result-tile-bet'>Atlanta Hawks +1.5 vs Milwaukee Bucks</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.48u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: San Antonio Spurs -12.5...</div>
+<div class='result-tile-bet'>Atlanta Hawks ML vs Milwaukee Bucks</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.57u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Los Angeles Clippers -12.5 vs Indiana Pacers</div>
 <div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
 </div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Charlotte Hornets -13.0...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Houston Rockets ML vs O...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.65u</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Oklahoma City Thunder -4.0 vs New York Knicks</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 </div>
 
