@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/parieur_discipline.png" alt="Project Logo" width="250"/>
+  <img src="docs/parieur_discipline.png" alt="Project Logo" width="250"/>
 </p>
 
 <p align="center">
