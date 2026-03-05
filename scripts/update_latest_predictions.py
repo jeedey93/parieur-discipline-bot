@@ -223,9 +223,9 @@ def format_single_card(card, is_featured=False):
         card_html += "</div>\n\n"
     else:
         # Regular play card
-        card_html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
+        card_html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
         if card['number']:
-            card_html += f"<div style='font-size: 0.85em; color: #667eea; font-weight: bold; margin-bottom: 8px;'>PLAY #{card['number']}</div>\n\n"
+            card_html += f"<div style='font-size: 0.85em; color: #4a90e2; font-weight: bold; margin-bottom: 8px;'>PLAY #{card['number']}</div>\n\n"
 
     # Bet line
     card_html += f"<div style='font-size: 1.25em; font-weight: bold; color: #333; margin-bottom: 12px;'>{card['bet']}</div>\n\n"
@@ -233,7 +233,7 @@ def format_single_card(card, is_featured=False):
     # Details (Confidence, Units, Win Prob)
     if card['details']:
         details_html = ' | '.join(card['details'])
-        card_html += f"<div style='font-size: 0.9em; color: #667eea; font-weight: 600; margin-bottom: 12px; padding: 8px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;'>{details_html}</div>\n\n"
+        card_html += f"<div style='font-size: 0.9em; color: #4a90e2; font-weight: 600; margin-bottom: 12px; padding: 8px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;'>{details_html}</div>\n\n"
 
     # Description
     if card['description']:
@@ -323,7 +323,7 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
         # Add a hint for the collapsible section with a visual arrow
         md += "<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>\n"
-        md += "<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #667eea;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>\n\n"
+        md += "<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>\n\n"
         md += "<div style='margin-top: 15px;'>\n"
         md += cleaned + "\n"
         md += "</div>\n\n"
@@ -439,9 +439,9 @@ def format_pick_card(pick, is_featured=False):
         html += "<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>\n\n"
     else:
         # Clean white card with blue accent
-        html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
+        html = "<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>\n\n"
         if pick['number']:
-            html += f"<div style='display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#{pick['number']}</div>\n\n"
+            html += f"<div style='display: inline-block; background: #4a90e2; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;'>#{pick['number']}</div>\n\n"
 
     # Extract odds from changes note if not in bet text
     bet_display = pick['bet']
@@ -1332,21 +1332,21 @@ def update_latest_predictions(results_only=False):
     content += ".stat-card { background: white; border-radius: 10px; padding: 18px 15px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e8ecf1; }\n"
     content += ".stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }\n"
     content += ".stat-label { font-size: 0.75em; color: #6b7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 8px; }\n"
-    content += ".stat-value { font-size: 2.2em; font-weight: 800; margin-bottom: 6px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }\n"
+    content += ".stat-value { font-size: 2.2em; font-weight: 800; margin-bottom: 6px; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }\n"
     content += ".stat-record { font-size: 0.9em; color: #4b5563; font-weight: 500; }\n"
     content += ".nav-tabs { display: flex; gap: 10px; margin: 30px 0; padding: 10px; background: #f9fafb; border-radius: 12px; flex-wrap: wrap; }\n"
     content += ".nav-tab { flex: 1; min-width: 120px; padding: 12px 20px; background: white; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; font-size: 0.95em; transition: all 0.2s; color: #374151; }\n"
-    content += ".nav-tab:hover { border-color: #667eea; color: #667eea; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(102,126,234,0.1); }\n"
+    content += ".nav-tab:hover { border-color: #4a90e2; color: #4a90e2; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(74,144,226,0.1); }\n"
     content += ".section-header { margin: 50px 0 30px 0; padding-bottom: 15px; border-bottom: 3px solid #e5e7eb; }\n"
     content += ".section-title { font-size: 2.2em; font-weight: 800; color: #111827; display: flex; align-items: center; gap: 12px; }\n"
     content += ".section-subtitle { font-size: 0.95em; color: #6b7280; margin-top: 8px; font-weight: 400; }\n"
     content += ".featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin: 25px 0; }\n"
     content += ".pick-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 12px; padding: 25px; border: 2px solid #e5e7eb; transition: all 0.3s; }\n"
-    content += ".pick-card:hover { border-color: #667eea; box-shadow: 0 8px 25px rgba(102,126,234,0.15); transform: translateY(-3px); }\n"
+    content += ".pick-card:hover { border-color: #4a90e2; box-shadow: 0 8px 25px rgba(74,144,226,0.15); transform: translateY(-3px); }\n"
     content += ".pick-badge { display: inline-block; padding: 6px 12px; border-radius: 6px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }\n"
     content += ".badge-nhl { background: #fee2e2; color: #dc2626; }\n"
     content += ".badge-nba { background: #fed7aa; color: #ea580c; }\n"
-    content += ".badge-featured { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }\n"
+    content += ".badge-featured { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; }\n"
     content += ".pick-title { font-size: 1.25em; font-weight: 700; color: #111827; margin-bottom: 15px; line-height: 1.4; }\n"
     content += ".pick-meta { display: block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 18px; }\n"
     content += ".confidence-high { display: inline-block; background: #10b981; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
@@ -1374,8 +1374,8 @@ def update_latest_predictions(results_only=False):
     content += ".badge-push { background: #f59e0b; color: white; }\n"
     content += ".result-title { font-weight: 600; color: #111827; font-size: 1.05em; }\n"
     content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
-    content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(102,126,234,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
-    content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(102,126,234,0.6); }\n"
+    content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(74,144,226,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
+    content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(74,144,226,0.6); }\n"
     content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -25px 15px 25px 15px; grid-template-columns: 1fr; gap: 8px; max-width: 100%; padding: 0 15px; } .stat-card { padding: 12px 10px; } .stat-label { font-size: 0.7em; } .stat-value { font-size: 1.9em; } .stat-record { font-size: 0.85em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
     content += "</style>\n\n"
 
