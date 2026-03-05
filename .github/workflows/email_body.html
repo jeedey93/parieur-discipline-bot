@@ -2,54 +2,301 @@
 <html>
 <head>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
-    .header { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
-    .header h1 { margin: 0; font-size: 24px; }
-    .header img { width: 150px; height: 150px; margin-bottom: 20px; }
-    .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; }
-    .status { display: inline-block; padding: 8px 16px; border-radius: 6px; font-weight: 600; margin: 15px 0; }
-    .status-success { background: #10b981; color: white; }
-    .status-failure { background: #ef4444; color: white; }
-    .info-box { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 4px solid #4a90e2; }
-    .info-row { margin: 10px 0; }
-    .label { font-weight: 600; color: #6b7280; display: inline-block; width: 100px; }
-    .button { display: inline-block; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 10px 5px; }
-    .button:hover { background: linear-gradient(135deg, #357abd 0%, #2868a8 100%); }
-    .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f3f4f6;
+      padding: 20px;
+    }
+    .email-container {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #2868a8 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
+    .header img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      font-weight: 800;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+    .header .tagline {
+      font-size: 16px;
+      opacity: 0.95;
+      font-weight: 500;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .alert-banner {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+    .alert-banner .emoji {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    .content {
+      background: #ffffff;
+      padding: 40px 30px;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 3px solid #f59e0b;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+    }
+    .highlight-box h2 {
+      margin: 0 0 10px 0;
+      color: #92400e;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .highlight-box p {
+      margin: 0;
+      color: #78350f;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid #4a90e2;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #1e3a8a;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 24px;
+      color: #1e40af;
+      font-weight: 800;
+    }
+    .cta-section {
+      text-align: center;
+      margin: 35px 0;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      border-radius: 12px;
+    }
+    .cta-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 20px;
+    }
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+      color: white !important;
+      padding: 18px 40px;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 10px 10px;
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .button:hover {
+      background: linear-gradient(135deg, #357abd 0%, #2868a8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
+    }
+    .button-secondary {
+      background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+      box-shadow: 0 6px 20px rgba(107, 114, 128, 0.3);
+    }
+    .button-secondary:hover {
+      background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+      box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+    }
+    .info-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 5px solid #4a90e2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .info-row {
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+    }
+    .label {
+      font-weight: 700;
+      color: #4b5563;
+      display: inline-block;
+      min-width: 100px;
+      font-size: 14px;
+    }
+    .value {
+      font-weight: 600;
+      color: #111827;
+      font-size: 15px;
+    }
+    .status {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-success {
+      background: #10b981;
+      color: white;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+    .status-failure {
+      background: #ef4444;
+      color: white;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #9ca3af;
+      font-size: 13px;
+      background: #f9fafb;
+      border-radius: 0 0 16px 16px;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #e5e7eb 50%, transparent 100%);
+      margin: 25px 0;
+    }
   </style>
 </head>
 <body>
-  <div class="header">
-    <img src="https://parieur-discipline-bot.vercel.app/parieur_discipline.png" alt="Parieur Discipliné Logo">
-    <h1>🎯 Parieur Discipliné</h1>
-    <p style="margin: 5px 0; opacity: 0.9;">${{ steps.run_time.outputs.time }} Predictions Update</p>
-  </div>
+  <div class="email-container">
+    <div class="header">
+      <img src="https://parieur-discipline-bot.vercel.app/parieur_discipline.png" alt="Parieur Discipliné Logo">
+      <h1>🎯 Parieur Discipliné</h1>
+      <p class="tagline">AI-Powered NHL & NBA Betting Intelligence</p>
+    </div>
 
-  <div class="content">
-    <div class="info-box">
-      <div class="info-row">
-        <span class="label">Status:</span>
-        <span class="status status-${{ job.status == 'success' && 'success' || 'failure' }}">${{ job.status }}</span>
+    <div class="alert-banner">
+      <span class="emoji">🔥</span> NEW PREDICTIONS AVAILABLE - ${{ steps.run_time.outputs.time }} UPDATE
+    </div>
+
+    <div class="content">
+      <div class="highlight-box">
+        <h2>⚡ Today's Picks Are Ready!</h2>
+        <p>Data-driven analysis • Line movement tracking • Disciplined betting</p>
       </div>
-      <div class="info-row">
-        <span class="label">Run Time:</span>
-        <span>${{ steps.run_time.outputs.time }}</span>
+
+      <div class="divider"></div>
+
+      <div class="info-box">
+        <div class="info-row">
+          <span class="label">📊 Status:</span>
+          <span class="value"><span class="status status-${{ job.status == 'success' && 'success' || 'failure' }}">${{ job.status }}</span></span>
+        </div>
+        <div class="info-row">
+          <span class="label">⏰ Run Time:</span>
+          <span class="value">${{ steps.run_time.outputs.time }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">📅 Date:</span>
+          <span class="value">$(date -u +%Y-%m-%d)</span>
+        </div>
       </div>
-      <div class="info-row">
-        <span class="label">Date:</span>
-        <span>$(date -u +%Y-%m-%d)</span>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">🏒 NHL</div>
+          <div class="stat-value">NEW</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">🏀 NBA</div>
+          <div class="stat-value">NEW</div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <div class="cta-text">
+          💎 Don't miss today's value plays
+        </div>
+        <a href="https://parieur-discipline-bot.vercel.app/" class="button">
+          📊 VIEW PREDICTIONS NOW
+        </a>
+        <br>
+        <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" class="button button-secondary">
+          🔍 View Workflow Details
+        </a>
+      </div>
+
+      <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-top: 25px;">
+        <p style="margin: 0; color: #92400e; font-size: 14px; font-weight: 600;">
+          💡 <strong>Reminder:</strong> Bet responsibly. All predictions are for entertainment purposes. Past performance does not guarantee future results.
+        </p>
       </div>
     </div>
 
-    <div style="text-align: center; margin: 30px 0;">
-      <a href="https://parieur-discipline-bot.vercel.app/" class="button">📊 View Predictions</a>
-      <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" class="button" style="background: #6b7280;">🔍 View Workflow</a>
+    <div class="footer">
+      <p style="font-weight: 600; color: #6b7280;">🤖 Automated Notification from GitHub Actions</p>
+      <p>Repository: ${{ github.repository }}</p>
+      <p style="margin-top: 15px; font-size: 11px;">Discipline > Emotion 🎯</p>
     </div>
-  </div>
-
-  <div class="footer">
-    <p>Automated notification from GitHub Actions</p>
-    <p>Repository: ${{ github.repository }}</p>
   </div>
 </body>
 </html>
