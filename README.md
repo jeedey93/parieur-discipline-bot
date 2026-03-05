@@ -31,11 +31,19 @@ A Python tool for analyzing NHL and NBA games, matching odds, and generating dis
 
 ## Features
 
-- Fetches daily NHL and NBA games and odds (The Odds API)
-- Supports multi-bookmaker markets: moneyline (h2h), totals (O/U), and spreads
-- Analyzes results using Google Gemini
-- "Bet of the Day" extraction and optional image generation
-- Writes daily predictions and results
+- **Dual-Run System**: NBA predictions run twice daily (7am & 12pm Montreal time) to capture line movement
+- **Line Movement Analysis**: Compares morning vs noon predictions to identify consensus plays and odds changes
+- **Multi-Sport Coverage**: Fetches daily NHL and NBA games with comprehensive odds data
+- **Multi-Bookmaker Markets**: Supports moneyline (h2h), totals (over/under), and spreads across multiple bookmakers
+- **AI-Powered Analysis**: Uses Google Gemini 2.5 for probabilistic edge calculation and play selection
+- **Historical Self-Evaluation**: AI reviews past performance to avoid systematic errors and biased patterns
+- **Confidence-Based Betting**: High confidence (1.5 units) and Medium confidence (1 unit) with strict edge requirements (+3% minimum)
+- **Featured Picks**: Daily "Bet of the Day" extraction with detailed reasoning (3-4 sentences)
+- **Injury Integration**: NHL predictions account for real-time injury reports and goalie status
+- **Performance Tracking**: Comprehensive results tracking with unit profit/loss calculations
+- **Weekly Stats**: Performance metrics organized by week (Monday-Sunday) with season totals
+- **GitHub Pages Site**: Auto-updating website with clean, mobile-optimized UI
+- **Automated Deployment**: GitHub Actions runs predictions twice daily and publishes results
 
 ## Project Structure
 

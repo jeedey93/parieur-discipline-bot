@@ -1,4 +1,5 @@
 import os
+import shutil
 from dotenv import load_dotenv
 import google.genai as genai
 from google.genai import types
@@ -165,3 +166,8 @@ if run_time == "12pm":
             )
             for line in diff:
                 print(line)
+
+# Also save a copy to temp folder (backup for compare script)
+if temp_filename:
+    shutil.copy2(filename, temp_filename)
+    print(f"Also saved backup to temp: {temp_filename}")
