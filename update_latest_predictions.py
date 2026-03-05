@@ -2,6 +2,7 @@ import os
 import re
 from glob import glob
 from datetime import datetime, timedelta
+import json
 
 
 def get_latest_file(folder, prefix, ext="txt"):
@@ -1316,13 +1317,21 @@ def update_latest_predictions():
     content += "<div class='blog-container'>\n\n"
 
     # ── Hero Section ──
+    # Get time since last update from the most recent prediction file
+    latest_file_for_timestamp = None
+    for sport_file in sport_files.values():
+        if sport_file:
+            latest_file_for_timestamp = sport_file
+            break
+    time_since = get_time_since_update(latest_file_for_timestamp) if latest_file_for_timestamp else "Unknown"
+
     content += "<div class='hero-section'>\n"
     content += "<div class='hero-content'>\n"
     content += "<img src='parieur_discipline.png' alt='Parieur Discipliné' class='hero-logo'>\n"
     content += "<div class='blog-title'>🎯 Parieur Discipliné</div>\n"
     content += "<div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>\n"
     content += f"<div class='blog-date'>{nice_date}</div>\n"
-    content += "<div class='blog-update-time'>📡 Updated daily at 12:00 PM ET</div>\n"
+    content += f"<div class='blog-update-time'>⏱️ Updated {time_since}</div>\n"
     content += "</div>\n"
     content += "</div>\n\n"
 
@@ -1480,7 +1489,9 @@ def update_latest_predictions():
 
     # ── Back to Top Button with JavaScript ──
     content += "<button id='back-to-top' onclick='window.scrollTo({top: 0, behavior: \"smooth\"})'>↑</button>\n\n"
+
     content += "<script>\n"
+    # Back to top functionality
     content += "window.addEventListener('scroll', function() {\n"
     content += "  var btn = document.getElementById('back-to-top');\n"
     content += "  if (window.pageYOffset > 300) { btn.style.display = 'block'; }\n"
@@ -1505,6 +1516,102 @@ def update_latest_predictions():
     with open(output_html, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Updated {output_html}")
+
+
+def get_time_since_update(file_path):
+    """Calculate human-readable time since file was last modified."""
+    if not os.path.exists(file_path):
+        return "Unknown"
+
+    mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+    now = datetime.now()
+    diff = now - mod_time
+
+    hours = int(diff.total_seconds() / 3600)
+    minutes = int((diff.total_seconds() % 3600) / 60)
+
+    if hours == 0:
+        if minutes == 0:
+            return "Just now"
+        elif minutes == 1:
+            return "1 minute ago"
+        else:
+            return f"{minutes} minutes ago"
+    elif hours == 1:
+        return "1 hour ago"
+    else:
+        return f"{hours} hours ago"
+
+
+def build_chart_data_for_last_30_days():
+    """Build chart data for win rate trends over last 30 days."""
+    nhl_dir = "bot_results/nhl"
+    nba_dir = "bot_results/nba"
+
+    # Get all result files from both sports
+    nhl_files = sorted(glob(os.path.join(nhl_dir, "nhl_daily_results_*.txt")))
+    nba_files = sorted(glob(os.path.join(nba_dir, "nba_daily_results_*.txt")))
+
+    # Build daily stats for last 30 days
+    dates = []
+    nhl_wr_data = []
+    nba_wr_data = []
+    combined_wr_data = []
+
+    # Get date range
+    end_date = datetime.now().date()
+    start_date = end_date - timedelta(days=29)
+
+    for i in range(30):
+        date = start_date + timedelta(days=i)
+        date_str = date.strftime("%Y-%m-%d")
+        dates.append(date.strftime("%b %d"))
+
+        # Find files for this date
+        nhl_file = os.path.join(nhl_dir, f"nhl_daily_results_{date_str}.txt")
+        nba_file = os.path.join(nba_dir, f"nba_daily_results_{date_str}.txt")
+
+        nhl_w = nhl_l = nba_w = nba_l = 0
+
+        # Parse NHL results
+        if os.path.exists(nhl_file):
+            content = read_file(nhl_file)
+            win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
+            loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
+            if win_match:
+                nhl_w = int(win_match.group(1))
+            if loss_match:
+                nhl_l = int(loss_match.group(1))
+
+        # Parse NBA results
+        if os.path.exists(nba_file):
+            content = read_file(nba_file)
+            win_match = re.search(r'\*\*Total Wins:\s*(\d+)\*\*', content)
+            loss_match = re.search(r'\*\*Total Losses:\s*(\d+)\*\*', content)
+            if win_match:
+                nba_w = int(win_match.group(1))
+            if loss_match:
+                nba_l = int(loss_match.group(1))
+
+        # Calculate win rates (use None for days with no games)
+        nhl_total = nhl_w + nhl_l
+        nba_total = nba_w + nba_l
+        combined_total = nhl_total + nba_total
+
+        nhl_wr = (nhl_w / nhl_total * 100) if nhl_total > 0 else None
+        nba_wr = (nba_w / nba_total * 100) if nba_total > 0 else None
+        combined_wr = ((nhl_w + nba_w) / combined_total * 100) if combined_total > 0 else None
+
+        nhl_wr_data.append(nhl_wr)
+        nba_wr_data.append(nba_wr)
+        combined_wr_data.append(combined_wr)
+
+    return {
+        "labels": dates,
+        "nhl_data": nhl_wr_data,
+        "nba_data": nba_wr_data,
+        "combined_data": combined_wr_data
+    }
 
 
 if __name__ == "__main__":
