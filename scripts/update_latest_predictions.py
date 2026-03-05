@@ -1206,6 +1206,69 @@ def get_confidence_badge(text):
     return ""
 
 
+def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
+    """Extract the Bet of the Day section from a prediction file."""
+    lines = content.strip().splitlines()
+
+    # Find "BET OF THE DAY:" section
+    bet_start = -1
+    for i, line in enumerate(lines):
+        if "BET OF THE DAY" in line.upper():
+            bet_start = i
+            break
+
+    if bet_start == -1:
+        return None
+
+    # Extract bet details
+    bet_line = ""
+    confidence_line = ""
+    description = ""
+
+    for i in range(bet_start + 1, len(lines)):
+        line = lines[i].strip()
+        if not line:
+            continue
+
+        # Stop at next section or empty lines
+        if line.startswith("**") and i > bet_start + 5:
+            break
+
+        # First non-empty line after BET OF THE DAY is the bet
+        if not bet_line and not line.startswith("Confidence"):
+            bet_line = line
+        # Confidence line
+        elif line.startswith("Confidence"):
+            confidence_line = line
+        # Description (lines between bet and confidence, or after confidence)
+        elif bet_line and not line.startswith("Confidence"):
+            if description:
+                description += " "
+            description += line
+
+    if not bet_line:
+        return None
+
+    # Format as a card
+    html = "<div class='pick-card' style='border: 2px solid #FFA500;'>\n"
+    html += f"<div class='pick-badge badge-featured'>{sport_emoji} {sport_name}</div>\n"
+    html += f"<div class='pick-title'>{bet_line}</div>\n"
+
+    if confidence_line:
+        html += f"<div class='pick-meta'>{confidence_line}</div>\n"
+
+    if description:
+        html += f"<div class='pick-description'>{description}</div>\n"
+
+    html += "<div style='margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;'>\n"
+    html += "<div style='font-size: 0.85em; color: #92400e; font-weight: 600;'>⚠️ Preliminary Pick</div>\n"
+    html += "<div style='font-size: 0.8em; color: #78350f; margin-top: 4px;'>This pick may change after 12pm line movement analysis</div>\n"
+    html += "</div>\n"
+
+    html += "</div>\n"
+    return html
+
+
 def update_latest_predictions(results_only=False):
     predictions_dir = "predictions"
     sports_config = [
@@ -1427,7 +1490,9 @@ def update_latest_predictions(results_only=False):
 
     # ── Navigation Tabs ──
     content += "<div class='nav-tabs'>\n"
-    if not results_only:
+    if results_only:
+        content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks (Potential)</a>\n"
+    else:
         content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
         content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>\n"
         content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>\n"
@@ -1437,12 +1502,50 @@ def update_latest_predictions(results_only=False):
     # ── Add "Predictions coming soon" message for results-only mode ──
     if results_only:
         content += "<div style='background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 25px 40px; text-align: center; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 15px rgba(74,144,226,0.3);'>\n"
-        content += "<div style='font-size: 1.4em; font-weight: 700; margin-bottom: 8px;'>🕐 Today's Predictions Coming Soon</div>\n"
-        content += "<div style='font-size: 1em; opacity: 0.95;'>Our AI is analyzing today's games. Check back at <strong>12:00 PM ET</strong> for predictions!</div>\n"
+        content += "<div style='font-size: 1.4em; font-weight: 700; margin-bottom: 8px;'>🕐 Preliminary Analysis Available</div>\n"
+        content += "<div style='font-size: 1em; opacity: 0.95;'>7am predictions shown below. Final picks with line movement analysis available at <strong>12:00 PM ET</strong></div>\n"
         content += "</div>\n\n"
 
-    # ── Dual Bet of the Day (Featured Picks) ──
-    if not results_only and os.path.exists(dual_bet_path):
+    # ── Featured Picks Section ──
+    # At 7am (results_only), read from daily_runs folder; at 12pm, read from dual_bet_of_the_day
+    if results_only:
+        # Get today's date for 7am files
+        today_str = overall_latest_date
+        nhl_7am_file = os.path.join(predictions_dir, "nhl", "daily_runs", f"nhl_daily_predictions_{today_str}_7am.txt")
+        nba_7am_file = os.path.join(predictions_dir, "nba", "daily_runs", f"nba_daily_predictions_{today_str}_7am.txt")
+
+        content += "<div id='featured-picks'>\n"
+        content += "<div class='section-header'>\n"
+        content += "<div class='section-title'>🔥 Featured Picks (Potential)</div>\n"
+        content += "<div class='section-subtitle'>7am predictions - subject to change at 12pm after line movement analysis</div>\n"
+        content += "</div>\n"
+
+        # Extract bet of the day from each sport's 7am file
+        featured_picks = []
+        if os.path.exists(nhl_7am_file):
+            nhl_content = read_file(nhl_7am_file)
+            nhl_pick = extract_bet_of_day_from_prediction(nhl_content, "NHL", "🏒")
+            if nhl_pick:
+                featured_picks.append(nhl_pick)
+
+        if os.path.exists(nba_7am_file):
+            nba_content = read_file(nba_7am_file)
+            nba_pick = extract_bet_of_day_from_prediction(nba_content, "NBA", "🏀")
+            if nba_pick:
+                featured_picks.append(nba_pick)
+
+        if featured_picks:
+            content += "<div class='featured-grid'>\n"
+            for pick in featured_picks:
+                content += pick
+            content += "</div>\n"
+        else:
+            content += "<p style='color: #6b7280; font-style: italic;'>No featured picks available yet.</p>\n"
+
+        content += "</div>\n\n"
+
+    elif os.path.exists(dual_bet_path):
+        # 12pm version - use dual bet of the day as before
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
             content += "<div id='featured-picks'>\n"
