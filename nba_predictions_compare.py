@@ -66,11 +66,13 @@ def main():
     """Main function to compare morning and noon predictions."""
     today_str = date.today().isoformat()
     predictions_folder = os.path.join("predictions", "nba")
+    daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
     prompt_path = os.path.join("prompts", "compare_prompt.txt")
 
-    # Define temp file paths
-    morning_file = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_7am.txt")
-    noon_file = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
+    # Read from daily_runs folder
+    morning_file = os.path.join(daily_runs_folder, f"nba_daily_predictions_{today_str}_7am.txt")
+    noon_file = os.path.join(daily_runs_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
+    # Write final output to main predictions folder
     output_file = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}.txt")
 
     # Check if both files exist
@@ -88,17 +90,6 @@ def main():
 
     # Run comparison
     compare_predictions(morning_file, noon_file, output_file, prompt_path)
-
-    # Delete temp files after successful comparison
-    for temp_file in [morning_file, noon_file]:
-        try:
-            if os.path.exists(temp_file):
-                os.remove(temp_file)
-                print(f"✅ Deleted temp file: {temp_file}")
-            else:
-                print(f"⚠️  Temp file not found for deletion: {temp_file}")
-        except Exception as e:
-            print(f"⚠️  Could not delete temp file {temp_file}: {e}")
 
 if __name__ == "__main__":
     main()

@@ -87,22 +87,20 @@ def analyze_results(results_text):
 
 today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nba")
-temp_folder = os.path.join(predictions_folder, "temp")
+daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
 os.makedirs(predictions_folder, exist_ok=True)
-os.makedirs(temp_folder, exist_ok=True)
+os.makedirs(daily_runs_folder, exist_ok=True)
 
 # Determine which run this is
 run_time = get_run_time_suffix()
-# Use temp filename for intermediate runs
+# Write directly to daily_runs folder for 7am/12pm runs
 if run_time == "7am":
-    filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_7am.txt")
-    temp_filename = os.path.join(temp_folder, f"nba_daily_predictions_{today_str}_7am.txt")
+    filename = os.path.join(daily_runs_folder, f"nba_daily_predictions_{today_str}_7am.txt")
 elif run_time == "12pm":
-    filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
-    temp_filename = os.path.join(temp_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
+    filename = os.path.join(daily_runs_folder, f"nba_daily_predictions_{today_str}_12pm.txt")
 else:
+    # Fallback goes to main folder
     filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_{run_time}.txt")
-    temp_filename = None
 
 games = get_nba_games_today()
 odds = get_nba_odds()
@@ -173,8 +171,3 @@ with open(filename, "w") as f:
             print(summary)
 
 print(f"Saved NBA daily predictions to {filename}")
-
-# Also save a copy to temp folder (backup for compare script)
-if temp_filename:
-    shutil.copy2(filename, temp_filename)
-    print(f"Also saved backup to temp: {temp_filename}")

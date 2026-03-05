@@ -85,13 +85,17 @@ def detect_run_time():
 run_time = detect_run_time()
 today_str = date.today().isoformat()
 predictions_folder = os.path.join("predictions", "nhl")
+daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
 os.makedirs(predictions_folder, exist_ok=True)
+os.makedirs(daily_runs_folder, exist_ok=True)
 
+# Write directly to daily_runs folder for 7am/12pm runs
 if run_time == "7am":
-    filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
+    filename = os.path.join(daily_runs_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
 elif run_time == "12pm":
-    filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_12pm.txt")
+    filename = os.path.join(daily_runs_folder, f"nhl_daily_predictions_{today_str}_12pm.txt")
 else:
+    # Fallback goes to main folder
     filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
 
 # Get injuries as a formatted string
@@ -166,8 +170,3 @@ if run_time == "12pm":
             )
             for line in diff:
                 print(line)
-
-# Also save a copy to temp folder (backup for compare script)
-if temp_filename:
-    shutil.copy2(filename, temp_filename)
-    print(f"Also saved backup to temp: {temp_filename}")
