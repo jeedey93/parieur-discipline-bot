@@ -5,6 +5,7 @@ from glob import glob
 from datetime import datetime, timedelta
 import json
 import argparse
+from zoneinfo import ZoneInfo
 
 
 def get_latest_file(folder, prefix, ext="txt"):
@@ -1662,28 +1663,14 @@ def update_latest_predictions(results_only=False):
 
 
 def get_time_since_update(file_path):
-    """Calculate human-readable time since file was last modified."""
+    """Get the actual time when file was last modified in Montreal/Eastern timezone."""
     if not os.path.exists(file_path):
         return "Unknown"
 
-    mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
-    now = datetime.now()
-    diff = now - mod_time
-
-    hours = int(diff.total_seconds() / 3600)
-    minutes = int((diff.total_seconds() % 3600) / 60)
-
-    if hours == 0:
-        if minutes == 0:
-            return "Just now"
-        elif minutes == 1:
-            return "1 minute ago"
-        else:
-            return f"{minutes} minutes ago"
-    elif hours == 1:
-        return "1 hour ago"
-    else:
-        return f"{hours} hours ago"
+    # Get file modification time and convert to Eastern timezone
+    mod_time = datetime.fromtimestamp(os.path.getmtime(file_path), tz=ZoneInfo('America/Toronto'))
+    # Format as "at HH:MM AM/PM ET"
+    return f"at {mod_time.strftime('%I:%M %p')} ET"
 
 
 def build_chart_data_for_last_30_days():

@@ -85,7 +85,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 4, 2026</div>
-<div class='blog-update-time'>⏱️ Updated 20 hours ago</div>
+<div class='blog-update-time'>⏱️ Updated at 01:16 PM ET</div>
 </div>
 </div>
 
