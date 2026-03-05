@@ -27,42 +27,42 @@ Required environment variables in `.env`:
 ### Run Daily Predictions
 ```bash
 # NHL predictions (uses today's date automatically)
-python nhl_predictions_daily_run.py
+python scripts/nhl_predictions_daily_run.py
 
 # NBA predictions (detects 7am vs 12pm run based on Montreal time)
-python nba_predictions_daily_run.py
+python scripts/nba_predictions_daily_run.py
 
 # Manual override for NBA run time
-NBA_RUN_TIME=7am python nba_predictions_daily_run.py
-NBA_RUN_TIME=12pm python nba_predictions_daily_run.py
+NBA_RUN_TIME=7am python scripts/nba_predictions_daily_run.py
+NBA_RUN_TIME=12pm python scripts/nba_predictions_daily_run.py
 ```
 
 ### Run Daily Results
 ```bash
 # Fetch yesterday's game results and analyze predictions
-python nhl_results_daily_run.py
-python nba_results_daily_run.py
+python scripts/nhl_results_daily_run.py
+python scripts/nba_results_daily_run.py
 
 # Generate combined results summary
-python total_results_daily_run.py
+python scripts/total_results_daily_run.py
 ```
 
 ### Compare Predictions (12pm only)
 ```bash
 # Compare 7am vs 12pm predictions to identify line movement
-python nhl_predictions_compare.py
-python nba_predictions_compare.py
+python scripts/nhl_predictions_compare.py
+python scripts/nba_predictions_compare.py
 ```
 
 ### Generate Bet of the Day
 ```bash
 # Extract best plays from both sports
-python dual_bet_of_the_day.py --run_time 12pm
+python scripts/dual_bet_of_the_day.py --run_time 12pm
 ```
 
 ### Update Latest Predictions (for GitHub Pages)
 ```bash
-python update_latest_predictions.py
+python scripts/update_latest_predictions.py
 ```
 
 ### Testing
@@ -234,6 +234,6 @@ docs/                              # GitHub Pages site
 ### Updating AI Prompts
 
 1. Edit files in `prompts/` directory
-2. Test locally with manual run: `python {sport}_predictions_daily_run.py`
+2. Test locally with manual run: `python scripts/{sport}_predictions_daily_run.py`
 3. Verify output format matches expected structure
 4. Commit changes - GitHub Actions will use updated prompts next run

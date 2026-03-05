@@ -27,11 +27,11 @@ jobs:
           echo "ODDS_API_KEY=${{ secrets.ODDS_API_KEY }}" > .env
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
       - name: Run NHL daily results bot
-        run: python nhl_results_daily_run.py
+        run: python scripts/nhl_results_daily_run.py
       - name: Run NBA daily results bot
-        run: python nba_results_daily_run.py
+        run: python scripts/nba_results_daily_run.py
       - name: Run daily results summary
-        run: python total_results_daily_run.py
+        run: python scripts/total_results_daily_run.py
       - name: Commit results
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
