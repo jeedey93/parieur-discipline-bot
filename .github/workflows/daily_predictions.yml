@@ -79,3 +79,69 @@ jobs:
             echo "No changes to commit"
           fi
           echo "Predictions workflow completed"
+      - name: Send email notification
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          secure: true
+          subject: "🎯 Parieur Discipliné - ${{ steps.run_time.outputs.time }} Predictions Ready"
+          html_body: |
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+                .header { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+                .header h1 { margin: 0; font-size: 24px; }
+                .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; }
+                .status { display: inline-block; padding: 8px 16px; border-radius: 6px; font-weight: 600; margin: 15px 0; }
+                .status-success { background: #10b981; color: white; }
+                .status-failure { background: #ef4444; color: white; }
+                .info-box { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 4px solid #4a90e2; }
+                .info-row { margin: 10px 0; }
+                .label { font-weight: 600; color: #6b7280; display: inline-block; width: 100px; }
+                .button { display: inline-block; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 10px 5px; }
+                .button:hover { background: linear-gradient(135deg, #357abd 0%, #2868a8 100%); }
+                .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; }
+              </style>
+            </head>
+            <body>
+              <div class="header">
+                <h1>🎯 Parieur Discipliné</h1>
+                <p style="margin: 5px 0; opacity: 0.9;">${{ steps.run_time.outputs.time }} Predictions Update</p>
+              </div>
+
+              <div class="content">
+                <div class="info-box">
+                  <div class="info-row">
+                    <span class="label">Status:</span>
+                    <span class="status status-${{ job.status == 'success' && 'success' || 'failure' }}">${{ job.status }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="label">Run Time:</span>
+                    <span>${{ steps.run_time.outputs.time }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="label">Date:</span>
+                    <span>$(date -u +%Y-%m-%d)</span>
+                  </div>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                  <a href="https://parieur-discipline-bot.vercel.app/" class="button">📊 View Predictions</a>
+                  <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" class="button" style="background: #6b7280;">🔍 View Workflow</a>
+                </div>
+              </div>
+
+              <div class="footer">
+                <p>Automated notification from GitHub Actions</p>
+                <p>Repository: ${{ github.repository }}</p>
+              </div>
+            </body>
+            </html>
+          to: ${{ secrets.EMAIL_TO }}
+          from: Parieur Discipliné Bot
