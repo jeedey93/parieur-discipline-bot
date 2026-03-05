@@ -85,16 +85,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 5, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 01:33 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 01:36 PM ET</div>
 </div>
 </div>
 
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.06 units</div>
+<div class='stat-value'>50%</div>
+<div class='stat-record'>3W - 3L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.05 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -140,16 +140,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
-<div class='pick-title'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
-<div class='pick-description'>The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
+<div class='pick-title'>Utah Mammoth vs Philadelphia Flyers Under 6.0 @ 1.90</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 60%</div>
+<div class='pick-description'>Both the Utah Mammoth and Philadelphia Flyers have shown a tendency towards lower-scoring games in their recent outings, with all listed results for both teams staying under the 6.0 total. The Flyers, despite some offensive injuries, have played a tight defensive style, and the Mammoth's sole recent game also finished with 5 goals. The market currently prices the Under 6.0 at 1.90, giving a significant edge given the recent scoring trends and defensive capabilities. New play added at noon. Morning O/U was 6.0, but no specific bet was recommended.</div>
 </div>
 
 <div class='pick-card'>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
-<div class='pick-title'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25%</div>
-<div class='pick-description'>The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
+<div class='pick-title'>Minnesota Timberwolves -5.0 vs Toronto Raptors @ 1.94</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 59.5%</div>
+<div class='pick-description'>The Minnesota Timberwolves are in excellent form with a 4-0 record in their recent available games and benefit from home court advantage. They face a Toronto Raptors team that has been struggling, holding a 1-3 record over the same period. Despite both teams having similar recent game loads, Minnesota's superior momentum and performance at home against a weaker opponent suggest they are well-positioned to cover this spread. Line moved from -6.0 @ 1.99 (morning) to -5.0 @ 1.94 (noon), Win Probability slightly decreased from 60% to 59.5%, but confidence remained High.</div>
 </div>
 
 </div>
@@ -159,66 +159,48 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for February 27, 2026</div>
+<div class='section-subtitle'>Performance breakdown for March 4, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-loss'>
+<div class='result-tile result-tile-loss result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>BET OF THE DAY: Minnesota Wild @ Colorado Avala...</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Carolina Hurricanes ML vs Tampa Bay Lightning</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.64u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Toronto Maple Leafs @ Florida Panthers ML vs To...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.63u</div>
-</div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>New Jersey Devils vs Pittsburgh Penguins Over 5.5</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Chicago Blackhawks @ Nashville Predators ML vs ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.55u</div>
+<div class='result-tile-bet'>Toronto Maple Leafs ML vs New Jersey Devils</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>BET OF THE DAY: Philadelphia 76ers ML vs Miami ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.68u</div>
+<div class='result-tile result-tile-loss result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Boston Celtics -6.5 vs Charlotte Hornets</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Philadelphia 76ers -2.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.93u</div>
+<div class='result-tile-bet'>Atlanta Hawks +1.5 vs Milwaukee Bucks</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.48u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: San Antonio Spurs -12.5...</div>
+<div class='result-tile-bet'>Atlanta Hawks ML vs Milwaukee Bucks</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.57u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Los Angeles Clippers -12.5 vs Indiana Pacers</div>
 <div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
 </div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Charlotte Hornets -13.0...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Houston Rockets ML vs O...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.65u</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Oklahoma City Thunder -4.0 vs New York Knicks</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 </div>
 
