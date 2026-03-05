@@ -974,6 +974,9 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
             md += "<h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>\n\n"
             md += "<div class='results-grid'>\n"
 
+            # Track if we've already marked a Bet of the Day for NHL
+            nhl_botd_shown = False
+
             for i, pick in enumerate(nhl_results["picks"], 1):
                 if pick["outcome"] == "WIN":
                     outcome_emoji = "✅"
@@ -993,6 +996,12 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     units_display = f"-{pick.get('units', 1.0):.2f}u"
                     units_color = "#ef4444"
 
+                # Check if this is the FIRST Bet of the Day (1.5u = High confidence)
+                is_botd = not nhl_botd_shown and pick.get('units', 1.0) >= 1.5
+                if is_botd:
+                    tile_class += " result-tile-featured"
+                    nhl_botd_shown = True
+
                 # Shorten bet text for compact display
                 bet_short = pick['bet']
                 # Remove odds from display to save space
@@ -1004,6 +1013,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     bet_short = bet_short[:47] + "..."
 
                 md += f"<div class='{tile_class}'>\n"
+                if is_botd:
+                    md += "<div class='botd-badge'>🔥 BET OF THE DAY</div>\n"
                 md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
                 md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
                 md += f"<div class='result-tile-units' style='color: {units_color};'>{units_display}</div>\n"
@@ -1014,6 +1025,9 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
         if nba_results and nba_results.get("picks"):
             md += "<h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>\n\n"
             md += "<div class='results-grid'>\n"
+
+            # Track if we've already marked a Bet of the Day for NBA
+            nba_botd_shown = False
 
             for i, pick in enumerate(nba_results["picks"], 1):
                 if pick["outcome"] == "WIN":
@@ -1034,6 +1048,12 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     units_display = f"-{pick.get('units', 1.0):.2f}u"
                     units_color = "#ef4444"
 
+                # Check if this is the FIRST Bet of the Day (1.5u = High confidence)
+                is_botd = not nba_botd_shown and pick.get('units', 1.0) >= 1.5
+                if is_botd:
+                    tile_class += " result-tile-featured"
+                    nba_botd_shown = True
+
                 # Shorten bet text for compact display
                 bet_short = pick['bet']
                 # Remove odds from display to save space
@@ -1045,6 +1065,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     bet_short = bet_short[:47] + "..."
 
                 md += f"<div class='{tile_class}'>\n"
+                if is_botd:
+                    md += "<div class='botd-badge'>🔥 BET OF THE DAY</div>\n"
                 md += f"<div class='result-tile-emoji'>{outcome_emoji}</div>\n"
                 md += f"<div class='result-tile-bet'>{bet_short}</div>\n"
                 md += f"<div class='result-tile-units' style='color: {units_color};'>{units_display}</div>\n"
@@ -1370,6 +1392,9 @@ def update_latest_predictions(results_only=False):
     content += ".result-tile-emoji { font-size: 2em; margin-bottom: 8px; }\n"
     content += ".result-tile-bet { font-size: 0.85em; color: #374151; font-weight: 500; line-height: 1.3; margin-bottom: 6px; }\n"
     content += ".result-tile-units { font-size: 0.9em; font-weight: 700; margin-top: 6px; }\n"
+    content += ".result-tile-featured { border-width: 3px; box-shadow: 0 6px 20px rgba(234, 88, 12, 0.25); transform: scale(1.05); position: relative; }\n"
+    content += ".result-tile-featured:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 8px 30px rgba(234, 88, 12, 0.35); }\n"
+    content += ".botd-badge { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4); }\n"
     content += ".result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }\n"
     content += ".result-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; }\n"
     content += ".badge-win { background: #10b981; color: white; }\n"
@@ -1379,7 +1404,7 @@ def update_latest_predictions(results_only=False):
     content += ".result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }\n"
     content += "#back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(74,144,226,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }\n"
     content += "#back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(74,144,226,0.6); }\n"
-    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -25px 0px 25px 0px; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 100%; padding: 0 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; } .stat-card { padding: 12px 8px; min-width: 110px; } .stat-label { font-size: 0.65em; } .stat-value { font-size: 1.6em; } .stat-record { font-size: 0.75em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
+    content += "@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -25px 0px 25px 0px; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 100%; padding: 0 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; } .stat-card { padding: 12px 8px; min-width: 110px; } .stat-label { font-size: 0.65em; } .stat-value { font-size: 1.6em; } .stat-record { font-size: 0.75em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-featured { min-height: 100px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .botd-badge { font-size: 0.65em; padding: 3px 10px; top: -6px; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }\n"
     content += "</style>\n\n"
 
     content += "<div class='blog-container'>\n\n"
