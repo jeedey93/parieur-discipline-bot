@@ -98,6 +98,12 @@ else:
     # Fallback goes to main folder
     filename = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}.txt")
 
+# Check if file already exists - skip if it does
+if os.path.exists(filename):
+    print(f"⚠️  Predictions file already exists: {filename}")
+    print("Skipping prediction generation to avoid overwriting existing file.")
+    exit(0)
+
 # Get injuries as a formatted string
 injuries_list = scrape_nhl_injuries_by_team()
 if injuries_list:
@@ -144,29 +150,3 @@ with open(filename, "w") as f:
             print(summary)
 
 print(f"Saved daily results to {filename}")
-
-# --- If 12pm run, compare/analyze both 7am and 12pm predictions ---
-if run_time == "12pm":
-    file_7am = os.path.join(predictions_folder, f"nhl_daily_predictions_{today_str}_7am.txt")
-    file_12pm = filename
-    if os.path.exists(file_7am) and os.path.exists(file_12pm):
-        with open(file_7am, "r", encoding="utf-8") as f7, open(file_12pm, "r", encoding="utf-8") as f12:
-            content_7am = f7.read()
-            content_12pm = f12.read()
-        # Simple comparison: print differences (could be improved)
-        print("\n--- NHL 7am vs 12pm Prediction Comparison ---\n")
-        if content_7am == content_12pm:
-            print("No changes between 7am and 12pm predictions.")
-        else:
-            print("Differences detected between 7am and 12pm predictions.")
-            # Optionally, print a diff or summary
-            import difflib
-            diff = difflib.unified_diff(
-                content_7am.splitlines(),
-                content_12pm.splitlines(),
-                fromfile="7am",
-                tofile="12pm",
-                lineterm=""
-            )
-            for line in diff:
-                print(line)

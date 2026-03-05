@@ -102,6 +102,12 @@ else:
     # Fallback goes to main folder
     filename = os.path.join(predictions_folder, f"nba_daily_predictions_{today_str}_{run_time}.txt")
 
+# Check if file already exists - skip if it does
+if os.path.exists(filename):
+    print(f"⚠️  Predictions file already exists: {filename}")
+    print("Skipping prediction generation to avoid overwriting existing file.")
+    exit(0)
+
 games = get_nba_games_today()
 odds = get_nba_odds()
 
