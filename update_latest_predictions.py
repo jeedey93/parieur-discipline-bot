@@ -348,12 +348,18 @@ def format_recommendations_section(recs_text):
     while i < len(lines):
         line = lines[i].strip()
 
-        # Detect BET OF THE DAY
+        # Detect BET OF THE DAY - skip it since it's already shown in featured picks section
         if '🏆' in line and 'BET OF THE DAY' in line.upper():
             if current_pick:
                 output.append(format_pick_card(current_pick, is_bet_of_day))
-            is_bet_of_day = True
+                current_pick = None
+            # Skip the entire Bet of the Day section until we hit "Other Recommended Plays"
             i += 1
+            while i < len(lines):
+                if 'Other Recommended' in lines[i]:
+                    break
+                i += 1
+            is_bet_of_day = False
             continue
 
         # Detect "Other Recommended Plays" header

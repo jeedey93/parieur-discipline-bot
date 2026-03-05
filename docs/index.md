@@ -229,21 +229,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-subtitle'>Today's NHL picks with full analysis</div>
 </div>
 
-<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
-
-<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
-
-<div style='font-size: 0.85em; color: #999; font-style: italic; padding-top: 12px; border-top: 1px dashed #e0e0e0; margin-top: 10px;'>💡 Change from Morning to Noon:* This play was added as the Bet of the Day in the noon report. Toronto's moneyline odds shifted from 2.0 (morning) to 1.95 (noon), which the AI identified as a strong value opportunity.</div>
-
-</div>
-
-
 
 <h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
 
@@ -285,19 +270,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 
 </details>
-
-<div style='background: linear-gradient(135deg, #FFD70020 0%, #FFA50010 100%); border: 2px solid #FFA500; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255,165,0,0.15);'>
-
-<div style='display: inline-block; background: #FFA500; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-bottom: 15px;'>🏆 BET OF THE DAY</div>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread. *Changes from Morning to Noon:* This play was introduced in the noon report as the new Bet of the Day. The original morning Bet of the Day, Charlotte Hornets +6.5, was removed, indicating a significant shift in conviction and an increased confidence in the Celtics' ability to cover. The odds for Celtics -6.5 moved from 1.92 (morning) to 1.97 (noon).</div>
-
-</div>
-
 
 
 <h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
