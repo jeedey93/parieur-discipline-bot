@@ -156,57 +156,26 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
     }
-    .button-secondary {
-      background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-      box-shadow: 0 6px 20px rgba(107, 114, 128, 0.3);
-    }
-    .button-secondary:hover {
-      background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
-      box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
-    }
-    .info-box {
-      background: white;
+    .features-box {
+      background: #f9fafb;
       border-radius: 10px;
-      padding: 20px;
-      margin: 20px 0;
-      border-left: 5px solid #4a90e2;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin: 25px 0;
     }
-    .info-row {
-      margin: 12px 0;
+    .feature-item {
       display: flex;
       align-items: center;
-    }
-    .label {
-      font-weight: 700;
-      color: #4b5563;
-      display: inline-block;
-      min-width: 100px;
-      font-size: 14px;
-    }
-    .value {
-      font-weight: 600;
-      color: #111827;
+      margin: 15px 0;
       font-size: 15px;
     }
-    .status {
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .feature-icon {
+      font-size: 24px;
+      margin-right: 15px;
+      min-width: 30px;
     }
-    .status-success {
-      background: #10b981;
-      color: white;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-    }
-    .status-failure {
-      background: #ef4444;
-      color: white;
-      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    .feature-text {
+      color: #374151;
+      font-weight: 500;
     }
     .footer {
       text-align: center;
@@ -244,31 +213,33 @@
         <p>Data-driven analysis • Line movement tracking • Disciplined betting</p>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="info-box">
-        <div class="info-row">
-          <span class="label">📊 Status:</span>
-          <span class="value"><span class="status status-${{ job.status == 'success' && 'success' || 'failure' }}">${{ job.status }}</span></span>
-        </div>
-        <div class="info-row">
-          <span class="label">⏰ Run Time:</span>
-          <span class="value">${{ steps.run_time.outputs.time }}</span>
-        </div>
-        <div class="info-row">
-          <span class="label">📅 Date:</span>
-          <span class="value">$(date -u +%Y-%m-%d)</span>
-        </div>
-      </div>
-
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-label">🏒 NHL</div>
-          <div class="stat-value">NEW</div>
+          <div class="stat-value">READY</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">🏀 NBA</div>
-          <div class="stat-value">NEW</div>
+          <div class="stat-value">READY</div>
+        </div>
+      </div>
+
+      <div class="features-box">
+        <div class="feature-item">
+          <span class="feature-icon">🎯</span>
+          <span class="feature-text"><strong>Bet of the Day</strong> - Our highest confidence pick</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📊</span>
+          <span class="feature-text"><strong>AI Analysis</strong> - Advanced statistical modeling</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💰</span>
+          <span class="feature-text"><strong>Value Plays</strong> - Line movement opportunities</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📈</span>
+          <span class="feature-text"><strong>Track Record</strong> - Full transparency on results</span>
         </div>
       </div>
 
@@ -278,10 +249,6 @@
         </div>
         <a href="https://parieur-discipline-bot.vercel.app/" class="button">
           📊 VIEW PREDICTIONS NOW
-        </a>
-        <br>
-        <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" class="button button-secondary">
-          🔍 View Workflow Details
         </a>
       </div>
 
@@ -293,8 +260,7 @@
     </div>
 
     <div class="footer">
-      <p style="font-weight: 600; color: #6b7280;">🤖 Automated Notification from GitHub Actions</p>
-      <p>Repository: ${{ github.repository }}</p>
+      <p style="font-weight: 600; color: #6b7280;">📧 You're receiving this because you subscribed to Parieur Discipliné predictions</p>
       <p style="margin-top: 15px; font-size: 11px;">Discipline > Emotion 🎯</p>
     </div>
   </div>
