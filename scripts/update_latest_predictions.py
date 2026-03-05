@@ -1,8 +1,10 @@
 import os
+import sys
 import re
 from glob import glob
 from datetime import datetime, timedelta
 import json
+import argparse
 
 
 def get_latest_file(folder, prefix, ext="txt"):
@@ -1204,7 +1206,7 @@ def get_confidence_badge(text):
     return ""
 
 
-def update_latest_predictions():
+def update_latest_predictions(results_only=False):
     predictions_dir = "predictions"
     sports_config = [
         {"key": "nhl", "name": "NHL", "emoji": "🏒"},
@@ -1425,14 +1427,22 @@ def update_latest_predictions():
 
     # ── Navigation Tabs ──
     content += "<div class='nav-tabs'>\n"
-    content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
-    content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>\n"
-    content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>\n"
+    if not results_only:
+        content += "<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>\n"
+        content += "<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>\n"
+        content += "<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>\n"
     content += "<a href='#yesterday-results' class='nav-tab'>📋 Yesterday's Results</a>\n"
     content += "</div>\n\n"
 
+    # ── Add "Predictions coming soon" message for results-only mode ──
+    if results_only:
+        content += "<div style='background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 25px 40px; text-align: center; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 15px rgba(74,144,226,0.3);'>\n"
+        content += "<div style='font-size: 1.4em; font-weight: 700; margin-bottom: 8px;'>🕐 Today's Predictions Coming Soon</div>\n"
+        content += "<div style='font-size: 1em; opacity: 0.95;'>Our AI is analyzing today's games. Check back at <strong>12:00 PM ET</strong> for predictions!</div>\n"
+        content += "</div>\n\n"
+
     # ── Dual Bet of the Day (Featured Picks) ──
-    if os.path.exists(dual_bet_path):
+    if not results_only and os.path.exists(dual_bet_path):
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
             content += "<div id='featured-picks'>\n"
@@ -1461,25 +1471,26 @@ def update_latest_predictions():
     content += "</div>\n\n"
 
     # ── Sport sections ──
-    for cfg in sports_config:
-        sport = cfg["key"]
-        name = cfg["name"]
-        emoji = cfg["emoji"]
+    if not results_only:
+        for cfg in sports_config:
+            sport = cfg["key"]
+            name = cfg["name"]
+            emoji = cfg["emoji"]
 
-        content += f"<div id='{sport}-predictions'>\n"
-        content += "<div class='section-header'>\n"
-        content += f"<div class='section-title'>{emoji} {name} Predictions</div>\n"
-        content += f"<div class='section-subtitle'>Today's {name} picks with full analysis</div>\n"
-        content += "</div>\n\n"
+            content += f"<div id='{sport}-predictions'>\n"
+            content += "<div class='section-header'>\n"
+            content += f"<div class='section-title'>{emoji} {name} Predictions</div>\n"
+            content += f"<div class='section-subtitle'>Today's {name} picks with full analysis</div>\n"
+            content += "</div>\n\n"
 
-        latest_file = sport_files.get(sport)
-        if latest_file:
-            raw = read_file(latest_file)
-            content += build_sport_section(raw, sport, name, emoji, records[sport])
-        else:
-            content += f"<p style='color: #6b7280; font-style: italic;'>No {name} predictions available today.</p>\n\n"
+            latest_file = sport_files.get(sport)
+            if latest_file:
+                raw = read_file(latest_file)
+                content += build_sport_section(raw, sport, name, emoji, records[sport])
+            else:
+                content += f"<p style='color: #6b7280; font-style: italic;'>No {name} predictions available today.</p>\n\n"
 
-        content += "</div>\n\n"
+            content += "</div>\n\n"
 
     # ── Close content wrapper ──
     content += "</div>\n\n"
@@ -1615,4 +1626,9 @@ def build_chart_data_for_last_30_days():
 
 
 if __name__ == "__main__":
-    update_latest_predictions()
+    parser = argparse.ArgumentParser(description='Update latest predictions website')
+    parser.add_argument('--results-only', action='store_true',
+                        help='Only show stats and yesterday results, skip predictions')
+    args = parser.parse_args()
+
+    update_latest_predictions(results_only=args.results_only)

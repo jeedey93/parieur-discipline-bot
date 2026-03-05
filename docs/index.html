@@ -82,7 +82,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 4, 2026</div>
-<div class='blog-update-time'>⏱️ Updated 8 hours ago</div>
+<div class='blog-update-time'>⏱️ Updated 9 hours ago</div>
 </div>
 </div>
 
@@ -122,35 +122,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='content-wrapper'>
 
 <div class='nav-tabs'>
-<a href='#featured-picks' class='nav-tab'>🔥 Featured Picks</a>
-<a href='#nhl-predictions' class='nav-tab'>🏒 NHL Predictions</a>
-<a href='#nba-predictions' class='nav-tab'>🏀 NBA Predictions</a>
 <a href='#yesterday-results' class='nav-tab'>📋 Yesterday's Results</a>
 </div>
 
-<div id='featured-picks'>
-<div class='section-header'>
-<div class='section-title'>🔥 Featured Picks of the Day</div>
-<div class='section-subtitle'>Our top AI-selected plays with the highest edge</div>
-</div>
-<div class='featured-grid'>
-
-<div class='pick-card'>
-<div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
-<div class='pick-title'>Toronto Maple Leafs ML vs New Jersey Devils @ 1.95</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
-<div class='pick-description'>The Toronto Maple Leafs, despite recent poor form, benefit significantly from playing a New Jersey Devils team on the second leg of a back-to-back, likely starting a fatigued or backup goalie. Key injuries like Chris Tanev for Toronto are noted, but the Devils' fatigue and likely backup goalie present a strong probabilistic edge over the implied odds.</div>
-</div>
-
-<div class='pick-card'>
-<div class='pick-badge badge-nba'>PICK #2 — NBA</div>
-<div class='pick-title'>Boston Celtics -6.5 vs Charlotte Hornets @ 1.97</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 67.25%</div>
-<div class='pick-description'>The Celtics are well-rested at home, facing a Hornets team on the second night of a back-to-back. This significant fatigue advantage, combined with the Celtics' consistent performance, creates a substantial edge against the spread.</div>
-</div>
-
-</div>
-
+<div style='background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 25px 40px; text-align: center; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 15px rgba(74,144,226,0.3);'>
+<div style='font-size: 1.4em; font-weight: 700; margin-bottom: 8px;'>🕐 Today's Predictions Coming Soon</div>
+<div style='font-size: 1em; opacity: 0.95;'>Our AI is analyzing today's games. Check back at <strong>12:00 PM ET</strong> for predictions!</div>
 </div>
 
 <div id='yesterday-results'>
@@ -220,100 +197,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 
 </div>
-
-</div>
-
-<div id='nhl-predictions'>
-<div class='section-header'>
-<div class='section-title'>🏒 NHL Predictions</div>
-<div class='section-subtitle'>Today's NHL picks with full analysis</div>
-</div>
-
-<div style='background: #f9fafb; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; color: #6b7280; font-style: italic;'>
-No other recommended plays today.
-</div>
-
-</div>
-
-<div id='nba-predictions'>
-<div class='section-header'>
-<div class='section-title'>🏀 NBA Predictions</div>
-<div class='section-subtitle'>Today's NBA picks with full analysis</div>
-</div>
-
-<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
-<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #667eea;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
-
-<div style='margin-top: 15px;'>
-<p>Here's a comparison of the morning and noon prediction reports, followed by the unified final recommendation list.</p>
-<br>
-<strong>Report Comparison Insights:</strong>
-<br>
-<ul>
-<li>  <strong>Consistency (Plays appearing in both reports):</strong> There were no identical plays (same team/bet type) recommended in both reports. In two instances (Celtics/Hornets and Knicks/Thunder), the recommendation completely flipped from the morning report to the noon report, indicating a significant change in the AI's conviction.</li>
-<li>  <strong>Added/Removed Plays & Line Movement Impact:</strong></li>
-  <li>  <strong>Removed from Noon Report:</strong></li>
-  <li>  New York Knicks +4.5 vs Oklahoma City Thunder (Morning)</li>
-  <li>  Utah Jazz +9.5 vs Philadelphia 76ers (Morning)</li>
-  <li>  Charlotte Hornets +6.5 vs Boston Celtics (Morning - was Bet of the Day)</li>
-  <li>  <strong>Added in Noon Report:</strong></li>
-  <li>  Boston Celtics -6.5 vs Charlotte Hornets (New Bet of the Day)</li>
-  <li>  Atlanta Hawks +1.5 vs Milwaukee Bucks</li>
-  <li>  Atlanta Hawks ML vs Milwaukee Bucks</li>
-  <li>  Los Angeles Clippers -12.5 vs Indiana Pacers</li>
-  <li>  Oklahoma City Thunder -4.0 vs New York Knicks</li>
-  <li>  <strong>Line Movement Impact:</strong> Significant line movements influenced these changes. For instance, the odds for Celtics -6.5 improved from 1.92 to 1.97, while Hornets +6.5 odds worsened from 1.98 to 1.95, contributing to the dramatic flip in the Bet of the Day. Similarly, the spread for the Bucks/Hawks game shifted, and the odds for Hawks +1.5 significantly increased from 1.91 to 1.99, making it an attractive play. The Clippers' spread also shifted, and odds improved for their side.</li>
-<li>  <strong>Confidence Level Changes:</strong> For the games where recommendations flipped, the confidence levels saw significant changes, notably the Celtics -6.5 moving to High (67.25%) as the new Bet of the Day, replacing the Medium (54%) confidence for Hornets +6.5. This indicates a strong shift in the model's analytical output.</li>
-<li>  <strong>Odds Changes Affecting Recommendations:</strong> As highlighted above, favorable odds movements for the Celtics, Hawks, Clippers, and Thunder (after spread adjustment) were key factors in the new recommendations and increased confidence levels in the noon report.</li>
-</ul>
-</div>
-
-</details>
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Atlanta Hawks +1.5 vs Milwaukee Bucks @ 1.99</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 59%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Hawks enter this matchup with a significant advantage due to the Bucks' ongoing four-game losing streak and overall poor form. The market has not fully adjusted to Milwaukee's recent struggles, presenting a clear value opportunity. *Changes from Morning to Noon:* This play was newly added in the noon report. The line for Hawks +1.0 (morning) moved to Hawks +1.5 (noon), with odds increasing from 1.91 to 1.99, making this bet more attractive.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Atlanta Hawks ML vs Milwaukee Bucks @ 2.05</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 56%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Milwaukee Bucks are on a severe losing streak, showing considerable vulnerability despite their home advantage, while the Hawks benefit from this downturn in form. This historical pattern of the Bucks underperforming in recent picks further supports the strong value found in the Hawks' moneyline. *Changes from Morning to Noon:* This play was newly added in the noon report, identified due to the Bucks' recent poor form and the appealing moneyline odds.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Los Angeles Clippers -12.5 vs Indiana Pacers @ 1.99</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 56%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Clippers are at home and well-rested, while the Pacers also had adequate rest. Despite the large spread, the Clippers' strong roster depth and home-court advantage position them to comfortably cover against a less dominant Pacers squad. *Changes from Morning to Noon:* This play was newly added in the noon report. The spread for Clippers moved from -12.0 (morning) to -12.5 (noon), with the odds for Clippers -12.5 improving from 1.94 to 1.99.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Oklahoma City Thunder -4.0 vs New York Knicks @ 1.95</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 56%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Thunder are well-rested, contrasting with the Knicks who are on a back-to-back and facing significant fatigue from their recent schedule. This substantial rest advantage for Oklahoma City creates a solid edge, as the market slightly undervalues their ability to cover the spread. *Changes from Morning to Noon:* This play was newly added in the noon report, taking the opposite side of the morning's recommendation (Knicks +4.5). The spread moved from Thunder -4.5 (morning) to Thunder -4.0 (noon), with odds for Thunder -4.0 @ 1.95 (noon). This suggests a shift in the model's assessment towards the Thunder covering a slightly reduced spread.</div>
-
-</div>
-
-
 
 </div>
 

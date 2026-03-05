@@ -44,13 +44,16 @@ jobs:
       - name: Run NBA daily predictions bot
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
         run: python scripts/nba_predictions_daily_run.py
+      - name: Update website with results only (7am)
+        if: steps.run_time.outputs.time == '7am'
+        run: python scripts/update_latest_predictions.py --results-only
       - name: Compare NBA predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
         run: python scripts/nba_predictions_compare.py
       - name: Compare NHL predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
         run: python scripts/nhl_predictions_compare.py
-      - name: Update latest predictions markdown
+      - name: Update website with predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
         run: python scripts/update_latest_predictions.py
       - name: Run Dual Bet of the Day (12pm)
@@ -66,7 +69,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Add daily dual predictions for $(date -u +%Y-%m-%d)"
+            if [ "${{ steps.run_time.outputs.time }}" = "7am" ]; then
+              git commit -m "Update website with results for $(date -u +%Y-%m-%d)"
+            else
+              git commit -m "Add final predictions for $(date -u +%Y-%m-%d)"
+            fi
             git push --set-upstream https://$GH_PAT@github.com/${{ github.repository }} HEAD:master
           else
             echo "No changes to commit"
