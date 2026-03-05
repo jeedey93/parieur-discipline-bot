@@ -229,10 +229,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-subtitle'>Today's NHL picks with full analysis</div>
 </div>
 
-
-<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
-
-
+<div style='background: #f9fafb; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; color: #6b7280; font-style: italic;'>
+No other recommended plays today.
+</div>
 
 </div>
 
@@ -270,10 +269,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 
 </details>
-
-
-<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>
-
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 

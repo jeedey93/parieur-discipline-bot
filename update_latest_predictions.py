@@ -362,13 +362,13 @@ def format_recommendations_section(recs_text):
             is_bet_of_day = False
             continue
 
-        # Detect "Other Recommended Plays" header
+        # Detect "Other Recommended Plays" header - skip it since we're already in the sport section
         if 'Other Recommended' in line:
             if current_pick:
                 output.append(format_pick_card(current_pick, is_bet_of_day))
                 current_pick = None
             is_bet_of_day = False
-            output.append("\n<h3 style='margin: 30px 0 20px 0; color: #333; font-size: 1.5em;'>📋 Other Recommended Plays</h3>\n\n")
+            # Don't add the header, just continue parsing
             i += 1
             continue
 
@@ -418,6 +418,12 @@ def format_recommendations_section(recs_text):
     # Don't forget the last pick
     if current_pick:
         output.append(format_pick_card(current_pick, is_bet_of_day))
+
+    # If no picks were added (only Bet of the Day was present), show a message
+    if not output:
+        output.append("<div style='background: #f9fafb; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; color: #6b7280; font-style: italic;'>")
+        output.append("No other recommended plays today.")
+        output.append("</div>")
 
     return '\n'.join(output)
 
