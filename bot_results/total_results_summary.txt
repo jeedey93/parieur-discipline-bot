@@ -1,7 +1,7 @@
-Total Results Summary (2026-03-05)
+Total Results Summary (2026-03-06)
 
 NBA:
-TOTAL: 18 wins, 19 losses
+TOTAL: 21 wins, 21 losses
 Game Date (results for games played on this date):
 2026-02-25: 1 win, 4 losses
 2026-02-26: 5 wins, 0 losses
@@ -11,9 +11,10 @@ Game Date (results for games played on this date):
 2026-03-02: 2 wins, 2 losses
 2026-03-03: 3 wins, 2 losses
 2026-03-04: 3 wins, 2 losses
+2026-03-05: 3 wins, 2 losses
 
 NHL:
-TOTAL: 15 wins, 15 losses
+TOTAL: 18 wins, 17 losses
 Game Date (results for games played on this date):
 2026-02-25: 3 wins, 2 losses
 2026-02-26: 3 wins, 2 losses
@@ -23,3 +24,4 @@ Game Date (results for games played on this date):
 2026-03-02: 0 wins, 4 losses
 2026-03-03: 2 wins, 2 losses
 2026-03-04: 0 wins, 1 loss
+2026-03-05: 3 wins, 2 losses
