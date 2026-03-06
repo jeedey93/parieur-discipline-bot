@@ -132,14 +132,14 @@ print(f"✅ Saved raw games data to: {games_data_file}")
 injuries_list = scrape_nhl_injuries_by_team()
 if injuries_list:
     # Format injuries by team, one team per line, indented players
-    injuries_text = "NHL Injured Players by Team:\n"
+    injuries_text = "NHL Injured/Scratched Players by Team:\n"
     for team, players in injuries_list.items():
         if players:
             injuries_text += f"{team}:\n"
             for player in players:
                 injuries_text += f"  - {player}\n"
 else:
-    injuries_text = "NHL Injured Players by Team: None"
+    injuries_text = "NHL Injured/Scratched Players by Team: None"
 
 # Read last 7 days of games from saved files
 games_dir = os.path.join("data", "games", "nhl")
