@@ -79,7 +79,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .result-score { color: #6b7280; font-size: 0.9em; padding-left: 50px; }
 #back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 14px 18px; border-radius: 50%; box-shadow: 0 4px 20px rgba(74,144,226,0.4); cursor: pointer; font-size: 1.3em; display: none; z-index: 1000; border: none; transition: all 0.3s; }
 #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 30px rgba(74,144,226,0.6); }
-@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -25px 0px 25px 0px; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 100%; padding: 0 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; } .stat-card { padding: 12px 8px; min-width: 110px; } .stat-label { font-size: 0.65em; } .stat-value { font-size: 1.6em; } .stat-record { font-size: 0.75em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 15px; } .pick-card { padding: 20px; } .pick-title { font-size: 1.1em; } .pick-badge { font-size: 0.7em; padding: 5px 10px; } .pick-meta { font-size: 0.8em; padding: 6px 12px; } .pick-description { font-size: 0.9em; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-featured { min-height: 100px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .botd-badge { font-size: 0.65em; padding: 3px 10px; top: -6px; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
+@media (max-width: 768px) { .content-wrapper { padding: 0 20px 30px 20px; } .stats-grid { margin: -25px 0px 25px 0px; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 100%; padding: 0 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; } .stat-card { padding: 12px 8px; min-width: 110px; } .stat-label { font-size: 0.65em; } .stat-value { font-size: 1.6em; } .stat-record { font-size: 0.75em; } .blog-title { font-size: 1.8em; } .blog-subtitle { font-size: 1em; } .blog-date { font-size: 0.95em; } .blog-update-time { font-size: 0.8em; } .hero-logo { width: 90px; height: 90px; margin-bottom: 15px; } .section-title { font-size: 1.5em; } .section-subtitle { font-size: 0.85em; } .featured-grid { grid-template-columns: 1fr; gap: 20px; margin: 20px 0; } .pick-card { padding: 20px 15px; border-radius: 12px; } .pick-card::before { display: none; } .pick-title { font-size: 1em; line-height: 1.3; padding: 0 25px 0 5px; } .pick-badge { font-size: 0.7em; padding: 8px 12px; margin-bottom: 12px; } .pick-meta { font-size: 0.8em; padding: 10px 12px; margin-bottom: 15px; } .pick-description { font-size: 0.85em; line-height: 1.6; } .hero-section { padding: 30px 20px; } .nav-tabs { gap: 8px; padding: 8px; } .nav-tab { padding: 10px 12px; font-size: 0.85em; min-width: 100px; } .result-card { padding: 15px; } .result-title { font-size: 0.95em; } .result-score { font-size: 0.85em; padding-left: 40px; } .results-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } .result-tile { min-height: 90px; padding: 12px; } .result-tile-featured { min-height: 100px; } .result-tile-emoji { font-size: 1.8em; } .result-tile-bet { font-size: 0.8em; } .result-tile-units { font-size: 0.85em; } .botd-badge { font-size: 0.65em; padding: 3px 10px; top: -6px; } .yesterday-section { padding: 20px; } #back-to-top { bottom: 20px; right: 20px; padding: 12px 16px; font-size: 1.1em; } }
 </style>
 
 <div class='blog-container'>
@@ -90,7 +90,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 02:35 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 02:37 PM ET</div>
 </div>
 </div>
 
@@ -136,12 +136,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <a href='#yesterday-results' class='nav-tab'>📋 Yesterday's Results</a>
 </div>
 
-<div id='featured-picks' style='position: relative;'>
-<div style='background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%); padding: 8px; text-align: center; border-radius: 12px 12px 0 0; margin-bottom: -5px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5); animation: shine 3s ease-in-out infinite;'>
+<div id='featured-picks' style='position: relative; margin: 0 -15px;'>
+<div class='premium-banner' style='background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%); padding: 8px; text-align: center; border-radius: 12px 12px 0 0; margin-bottom: -5px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5); animation: shine 3s ease-in-out infinite;'>
 <div style='color: #78350f; font-weight: 900; font-size: 0.9em; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);'>⭐ Today's Premium Selections ⭐</div>
 </div>
-<style>@keyframes shine { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.1); } }</style>
-<div style='background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); padding: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15); border: 3px solid #fbbf24; border-top: none;'>
+<style>@keyframes shine { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.1); } } @media (max-width: 768px) { #featured-picks { margin: 0 -10px; } .premium-banner { border-radius: 8px 8px 0 0; padding: 6px; } .premium-banner div { font-size: 0.75em; letter-spacing: 1px; } .section-title { font-size: 1.4em !important; line-height: 1.2; } .section-subtitle { font-size: 0.9em !important; } }</style>
+<div class='premium-content' style='background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); padding: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15); border: 3px solid #fbbf24; border-top: none;'>
+<style>@media (max-width: 768px) { .premium-content { padding: 15px; border-radius: 0 0 8px 8px; border-width: 2px; } }</style>
 <div class='section-header' style='margin-bottom: 25px; text-align: center;'>
 <div class='section-title' style='font-size: 2em; background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block !important; text-align: center !important; justify-content: center;'>🔥 Featured Picks of the Day</div>
 <div class='section-subtitle' style='font-size: 1.05em; color: #78350f; font-weight: 600;'>Our top AI-selected plays with the highest edge</div>
@@ -149,7 +150,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='featured-grid'>
 
 <div class='pick-card' style='position: relative;'>
-<div style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
+<div class='botd-ribbon' style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
+<style>@media (max-width: 768px) { .botd-ribbon { top: 12px; right: -3px; padding: 5px 12px 5px 10px; font-size: 0.6em; letter-spacing: 0.5px; } }</style>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
 <div class='pick-title'>Detroit Red Wings ML vs Florida Panthers @ 1.67</div>
 <div class='pick-meta'><span class='confidence-medium'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 68%</div>
@@ -157,7 +159,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 
 <div class='pick-card' style='position: relative;'>
-<div style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
+<div class='botd-ribbon' style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
+<style>@media (max-width: 768px) { .botd-ribbon { top: 12px; right: -3px; padding: 5px 12px 5px 10px; font-size: 0.6em; letter-spacing: 0.5px; } }</style>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
 <div class='pick-title'>Charlotte Hornets -8.0 vs Miami Heat @ 1.91</div>
 <div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 59%</div>
