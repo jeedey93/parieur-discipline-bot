@@ -91,7 +91,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 02:40 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 02:41 PM ET</div>
 </div>
 </div>
 
@@ -151,8 +151,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='featured-grid'>
 
 <div class='pick-card' style='position: relative;'>
-<div class='botd-ribbon' style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
-<style>@media (max-width: 768px) { .botd-ribbon { position: static; clip-path: none; border-radius: 8px; padding: 6px 12px; font-size: 0.65em; letter-spacing: 0.5px; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4); } }</style>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
 <div class='pick-title'>Detroit Red Wings ML vs Florida Panthers @ 1.67</div>
 <div class='pick-meta'><span class='confidence-medium'>MEDIUM</span><span class='pick-meta-text'>Confidence Level: Medium Units: 1u, Win Probability: 68%</span></div>
@@ -160,8 +158,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 </div>
 
 <div class='pick-card' style='position: relative;'>
-<div class='botd-ribbon' style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>
-<style>@media (max-width: 768px) { .botd-ribbon { position: static; clip-path: none; border-radius: 8px; padding: 6px 12px; font-size: 0.65em; letter-spacing: 0.5px; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4); } }</style>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
 <div class='pick-title'>Charlotte Hornets -8.0 vs Miami Heat @ 1.91</div>
 <div class='pick-meta'><span class='confidence-high'>HIGH</span><span class='pick-meta-text'>Confidence Level: High, Units: 1.5u, Win Probability: 59%</span></div>

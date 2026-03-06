@@ -1355,11 +1355,8 @@ def format_dual_bet(raw_text):
         if odds_value and '@' not in bet_line:
             bet_line = f"{bet_line} @ {odds_value}"
 
-        # Create card with special BOTD styling
+        # Create card
         md += "<div class='pick-card' style='position: relative;'>\n"
-        # Add corner ribbon
-        md += "<div class='botd-ribbon' style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>\n"
-        md += "<style>@media (max-width: 768px) { .botd-ribbon { position: static; clip-path: none; border-radius: 8px; padding: 6px 12px; font-size: 0.65em; letter-spacing: 0.5px; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4); } }</style>\n"
         md += f"<div class='pick-badge {sport_badge_class}'>PICK #{pick_num} — {sport_label}</div>\n"
         md += f"<div class='pick-title'>{bet_line}</div>\n"
 
