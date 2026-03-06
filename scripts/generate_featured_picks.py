@@ -8,7 +8,7 @@ except ImportError:
 
 # Path to the index.md file
 INDEX_MD_PATH = "docs/index.md"
-PREDICTIONS_DIR = "predictions"
+PREDICTIONS_DIR = "data/predictions"
 
 # New: Path to latest predictions markdown
 LATEST_PREDICTIONS_MD = "docs/index.md"  # Adjust if needed
@@ -81,8 +81,8 @@ def get_latest_file(folder, prefix, ext="txt"):
 
 def get_sections_from_index():
     # Read from latest prediction files instead of index.md (which is now HTML)
-    nhl_file = get_latest_file("predictions/nhl", "nhl_daily_predictions")
-    nba_file = get_latest_file("predictions/nba", "nba_daily_predictions")
+    nhl_file = get_latest_file("data/predictions/nhl", "nhl_daily_predictions")
+    nba_file = get_latest_file("data/predictions/nba", "nba_daily_predictions")
 
     nhl_section = []
     nba_section = []

@@ -44,7 +44,7 @@ def analyze_results(results_text, recent_games):
     client = genai.Client(api_key=api_key)
 
     # Read and concatenate all historical NBA results files (not predictions)
-    hist_dir = os.path.join("bot_results", "nba")
+    hist_dir = os.path.join("data", "bot_results", "nba")
     hist_files = sorted(glob.glob(os.path.join(hist_dir, "nba_daily_results_*.txt")))
     historical_results = ""
     for hf in hist_files:
@@ -92,7 +92,7 @@ def analyze_results(results_text, recent_games):
             raise
 
 today_str = date.today().isoformat()
-predictions_folder = os.path.join("predictions", "nba")
+predictions_folder = os.path.join("data", "predictions", "nba")
 daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
 os.makedirs(predictions_folder, exist_ok=True)
 os.makedirs(daily_runs_folder, exist_ok=True)

@@ -25,7 +25,7 @@ def analyze_results(results_text, injuries_text, recent_games):
     client = genai.Client(api_key=api_key)
 
     # Read and concatenate all historical NHL results files
-    hist_dir = os.path.join("bot_results", "nhl")
+    hist_dir = os.path.join("data", "bot_results", "nhl")
     hist_files = sorted(glob.glob(os.path.join(hist_dir, "nhl_daily_results_*.txt")))
     historical_results = ""
     for hf in hist_files:
@@ -90,7 +90,7 @@ def detect_run_time():
 
 run_time = detect_run_time()
 today_str = date.today().isoformat()
-predictions_folder = os.path.join("predictions", "nhl")
+predictions_folder = os.path.join("data", "predictions", "nhl")
 daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
 os.makedirs(predictions_folder, exist_ok=True)
 os.makedirs(daily_runs_folder, exist_ok=True)

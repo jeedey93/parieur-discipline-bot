@@ -36,8 +36,8 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add predictions/nhl/nhl_daily_predictions_*.txt || true
-          git add predictions/nba/nba_daily_predictions_*.txt || true
+          git add data/predictions/nhl/nhl_daily_predictions_*.txt || true
+          git add data/predictions/nba/nba_daily_predictions_*.txt || true
           git add docs/index.md || true
           if ! git diff --cached --quiet; then
             git commit -m "Add daily predictions for $(date -u +%Y-%m-%d)"

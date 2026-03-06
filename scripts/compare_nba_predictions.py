@@ -65,7 +65,7 @@ def compare_predictions(morning_file, noon_file, output_file, prompt_path):
 def main():
     """Main function to compare morning and noon predictions."""
     today_str = date.today().isoformat()
-    predictions_folder = os.path.join("predictions", "nba")
+    predictions_folder = os.path.join("data", "predictions", "nba")
     daily_runs_folder = os.path.join(predictions_folder, "daily_runs")
     prompt_path = os.path.join("prompts", "compare_prompt.txt")
 

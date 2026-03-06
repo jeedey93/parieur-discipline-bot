@@ -476,7 +476,7 @@ def format_pick_card(pick, is_featured=False):
 
 def parse_last_n_days_results(sport_key, days=5):
     """Parse last N days of results for a sport and return combined record with units."""
-    results_dir = os.path.join("bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key)
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
@@ -578,7 +578,7 @@ def parse_last_n_days_results(sport_key, days=5):
 
 def parse_this_week_results(sport_key):
     """Parse this week's results (Monday to Sunday) for a sport and return combined record with units."""
-    results_dir = os.path.join("bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key)
     results_files = glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt"))
 
     if not results_files:
@@ -701,7 +701,7 @@ def parse_all_results(sport_key):
     then parses individual files for units calculation.
     """
     # Read wins/losses from total_results_summary.txt
-    summary_path = os.path.join("bot_results", "total_results_summary.txt")
+    summary_path = os.path.join("data", "bot_results", "total_results_summary.txt")
     total_wins = 0
     total_losses = 0
 
@@ -719,7 +719,7 @@ def parse_all_results(sport_key):
             pass  # Fall back to parsing individual files
 
     # Parse individual results files for units calculation
-    results_dir = os.path.join("bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key)
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
@@ -807,7 +807,7 @@ def parse_all_results(sport_key):
 
 def parse_yesterday_results(sport_key):
     """Parse yesterday's results file for a sport and extract summary."""
-    results_dir = os.path.join("bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key)
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
@@ -1296,14 +1296,14 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
 
 
 def update_latest_predictions(results_only=False):
-    predictions_dir = "predictions"
+    predictions_dir = "data/predictions"
     sports_config = [
         {"key": "nhl", "name": "NHL", "emoji": "🏒"},
         {"key": "nba", "name": "NBA", "emoji": "🏀"},
     ]
     output_md = "docs/index.md"
     output_html = "docs/index.html"  # Add HTML output for Vercel
-    summary_path = "bot_results/total_results_summary.txt"
+    summary_path = "data/bot_results/total_results_summary.txt"
     dual_bet_path = os.path.join(predictions_dir, "dual_bet_of_the_day.txt")
 
     # Parse records
@@ -1673,8 +1673,8 @@ def get_time_since_update(file_path):
 
 def build_chart_data_for_last_30_days():
     """Build chart data for win rate trends over last 30 days."""
-    nhl_dir = "bot_results/nhl"
-    nba_dir = "bot_results/nba"
+    nhl_dir = "data/bot_results/nhl"
+    nba_dir = "data/bot_results/nba"
 
     # Get all result files from both sports
     nhl_files = sorted(glob(os.path.join(nhl_dir, "nhl_daily_results_*.txt")))

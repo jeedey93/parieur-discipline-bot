@@ -41,8 +41,8 @@ def per_date_results(results_dir):
     return date_results
 
 def main():
-    nba_dir = os.path.join('bot_results', 'nba')
-    nhl_dir = os.path.join('bot_results', 'nhl')
+    nba_dir = os.path.join('data', 'bot_results', 'nba')
+    nhl_dir = os.path.join('data', 'bot_results', 'nhl')
     nba_results = per_date_results(nba_dir)
     nhl_results = per_date_results(nhl_dir)
     nba_wins = sum(x[1] for x in nba_results)
@@ -66,7 +66,7 @@ def main():
     summary_text = '\n'.join(output)
     print(summary_text)
     # Write to file
-    summary_path = os.path.join('bot_results', 'total_results_summary.txt')
+    summary_path = os.path.join('data', 'bot_results', 'total_results_summary.txt')
     with open(summary_path, 'w', encoding='utf-8') as f:
         f.write(summary_text)
 

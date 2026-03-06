@@ -82,7 +82,7 @@ Actual Results:
 
 # Read the predictions file
 yesterday = (date.today() - timedelta(days=1)).isoformat()
-predictions_file = f"predictions/nhl/nhl_daily_predictions_{yesterday}.txt"
+predictions_file = f"data/predictions/nhl/nhl_daily_predictions_{yesterday}.txt"
 with open(predictions_file, "r") as f:
     predictions_text = f.read()
 
@@ -97,7 +97,7 @@ summary_date = yesterday
 summary = analyze_results_with_actuals(predictions_text, actuals_text, summary_date)
 
 today_str = date.today().isoformat()
-results_folder = os.path.join("bot_results", "nhl")
+results_folder = os.path.join("data", "bot_results", "nhl")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nhl_daily_results_{today_str}.txt")
 
