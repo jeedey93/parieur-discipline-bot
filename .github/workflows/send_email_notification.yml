@@ -24,13 +24,25 @@ jobs:
             # Extract NHL pick (PICK #1)
             NHL_LINE=$(grep "PICK #1.*NHL" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NHL_LINE" ]; then
-              NHL_PICK=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract pick text and format with line breaks
+              PICK_TEXT=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Replace " vs " with line breaks and separate the bet type
+              NHL_PICK=$(echo "$PICK_TEXT" | sed 's/ vs /<br\/><span style="font-size: 12px; color: #93c5fd;">vs<\/span><br\/>/g' | sed 's/\(.*\) \(Under\|Over\|[-+][0-9.]*\)/<span style="font-size: 14px;">\1<\/span><br\/><br\/><span style="font-size: 18px; color: #fbbf24;">\2<\/span>/')
             fi
 
             # Extract NBA pick (PICK #2)
             NBA_LINE=$(grep "PICK #2.*NBA" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NBA_LINE" ]; then
-              NBA_PICK=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract pick text and format with line breaks
+              PICK_TEXT=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Check if it's a totals bet (contains "Under" or "Over") or a spread bet
+              if echo "$PICK_TEXT" | grep -q -E "(Under|Over)"; then
+                # Format totals bets: split teams and highlight the total
+                NBA_PICK=$(echo "$PICK_TEXT" | sed 's/ vs /<br\/><span style="font-size: 12px; color: #fed7aa;">vs<\/span><br\/>/g' | sed 's/\(.*\) \(Under\|Over\) \([0-9.]*\)/<span style="font-size: 14px;">\1<\/span><br\/><br\/><span style="font-size: 18px; color: #fbbf24;">\2 \3<\/span>/')
+              else
+                # Format spread bets: keep spread with team, show vs opponent
+                NBA_PICK=$(echo "$PICK_TEXT" | sed 's/\(.*\) \([-+][0-9.]*\) vs \(.*\)/<span style="font-size: 16px; font-weight: bold; color: #fbbf24;">\1 \2<\/span><br\/><span style="font-size: 12px; color: #fed7aa;">vs<\/span><br\/><span style="font-size: 14px;">\3<\/span>/')
+              fi
             fi
           fi
 
