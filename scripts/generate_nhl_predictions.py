@@ -13,14 +13,14 @@ from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
-from scripts.scrape_nhl_injuries import scrape_nhl_injuries_by_team
+from scripts.scrape_nhl_absences import scrape_nhl_absences_by_team
 import pytz
 from datetime import datetime
 
 load_dotenv()
 
 
-def analyze_results(results_text, injuries_text, recent_games):
+def analyze_results(results_text, absences_text, recent_games):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
@@ -55,7 +55,7 @@ def analyze_results(results_text, injuries_text, recent_games):
             prompt_text = prompt_text.replace("{{TODAY_DATE}}", today_str)
             prompt_text = prompt_text.replace("{{HISTORICAL_RESULTS}}", historical_results)
             prompt_text = prompt_text.replace("{{RECENT_RESULTS}}", recent_results)
-            prompt_text = prompt_text.replace("{{INJURIES}}", injuries_text)
+            prompt_text = prompt_text.replace("{{ABSENCES}}", absences_text)
             prompt_text = prompt_text.replace("{{RECENT_GAMES}}", recent_games)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
@@ -128,18 +128,18 @@ with open(games_data_file, "w") as gf:
 
 print(f"✅ Saved raw games data to: {games_data_file}")
 
-# Get injuries as a formatted string
-injuries_list = scrape_nhl_injuries_by_team()
-if injuries_list:
-    # Format injuries by team, one team per line, indented players
-    injuries_text = "NHL Injured/Scratched Players by Team:\n"
-    for team, players in injuries_list.items():
+# Get player absences (injuries and scratches) as a formatted string
+absences_list = scrape_nhl_absences_by_team()
+if absences_list:
+    # Format absences by team, one team per line, indented players
+    absences_text = "NHL Player Absences by Team:\n"
+    for team, players in absences_list.items():
         if players:
-            injuries_text += f"{team}:\n"
+            absences_text += f"{team}:\n"
             for player in players:
-                injuries_text += f"  - {player}\n"
+                absences_text += f"  - {player}\n"
 else:
-    injuries_text = "NHL Injured/Scratched Players by Team: None"
+    absences_text = "NHL Player Absences by Team: None"
 
 # Read last 7 days of games from saved files
 games_dir = os.path.join("data", "games", "nhl")
@@ -178,10 +178,10 @@ with open(filename, "w") as f:
 
         print("NHL Matchups and Odds:")
         print(results_text)
-        print(injuries_text)
+        print(absences_text)
 
         if results_text:
-            summary = analyze_results(results_text, injuries_text, recent_games)
+            summary = analyze_results(results_text, absences_text, recent_games)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")

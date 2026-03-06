@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-def scrape_nhl_injuries_by_team():
+def scrape_nhl_absences_by_team():
     url = "https://www.nhl.com/news/nhl-lineup-projections-2025-26-season"
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
-    injuries_by_team = {}
+    absences_by_team = {}
 
     # Find all elements that could be a team section header
     for header in soup.find_all(['strong', 'b']):
@@ -19,7 +19,7 @@ def scrape_nhl_injuries_by_team():
             # Search for both "Scratched:" and "Injured:" tags after this header
             next_tag = header.find_next(['strong', 'b'])
 
-            # Look for scratched players
+            # Look for scratched and injured players
             while next_tag:
                 next_text = next_tag.get_text(strip=True).lower()
 
@@ -54,14 +54,14 @@ def scrape_nhl_injuries_by_team():
                 next_tag = next_tag.find_next(['strong', 'b'])
 
             if team_players:
-                injuries_by_team[team_name] = team_players
+                absences_by_team[team_name] = team_players
 
-    return injuries_by_team
+    return absences_by_team
 
 if __name__ == "__main__":
-    injuries_by_team = scrape_nhl_injuries_by_team()
-    print("NHL Injured/Scratched Players by Team:")
-    for team, players in injuries_by_team.items():
+    absences_by_team = scrape_nhl_absences_by_team()
+    print("NHL Player Absences by Team:")
+    for team, players in absences_by_team.items():
         print(f"{team}:")
         for player in players:
             print(f"  {player}")
