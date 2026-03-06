@@ -85,7 +85,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 12:56 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 01:09 PM ET</div>
 </div>
 </div>
 
@@ -141,8 +141,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
 <div class='pick-title'>Detroit Red Wings ML vs Florida Panthers @ 1.67</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 70%</div>
-<div class='pick-description'>The Detroit Red Wings are well-rested and playing at home, facing a severely depleted Florida Panthers team on a road back-to-back. Florida is missing key players like elite center Aleksander Barkov and top defenseman Seth Jones, alongside other core skaters, which significantly impacts their offensive and defensive capabilities. Detroit's advantages in rest and health, coupled with Florida's fatigue and extensive injury list, create a strong mispriced opportunity. This play was a new addition to the noon report and was immediately elevated to "Bet of the Day," indicating a strong shift in conviction regarding the Red Wings' advantage over the injured Panthers.</div>
+<div class='pick-meta'><span class='confidence-medium'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 68%</div>
+<div class='pick-description'>The Detroit Red Wings enter this contest well-rested after having three days off, while the Florida Panthers are on the second leg of a road back-to-back, facing significant fatigue. Florida is also severely hampered by key absences, including star Aleksander Barkov (knee) and top defenseman Seth Jones (collarbone), alongside David Perron (lower body) for Detroit. Considering Florida's poor recent form (1-4-0) and the critical injuries impacting their lineup and depth, the rested Red Wings have a strong advantage. Despite our model's recent struggles with moneyline picks (0-7 in the last 7 ML plays), this particular matchup presents an overwhelming edge, although confidence is slightly reduced for this ML play due to that historical trend. New play added at noon based on updated market analysis and model adjustments, becoming the top recommendation.</div>
 </div>
 
 <div class='pick-card'>
@@ -238,31 +238,72 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
 
 <div style='margin-top: 15px;'>
-<p>Here's an updated analysis and final recommendation list, incorporating the changes and insights between the morning and noon prediction reports:</p>
+<p>Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.</p>
 <br>
-<strong>Summary of Changes from Morning to Noon Report:</strong>
+<strong>Report Comparison & Analysis:</strong>
 <br>
+<p>1.  <strong>Consistency:</strong></p>
 <ul>
-<li>  <strong>New "Bet of the Day":</strong> The noon report introduced a new "Bet of the Day" – Detroit Red Wings ML vs Florida Panthers with a high conviction (70% win probability). This play was not present in the morning report.</li>
-<li>  <strong>Downgraded "Bet of the Day":</strong> The Carolina Hurricanes vs Edmonton Oilers Over 6.5, which was the "Bet of the Day" in the morning (65% win probability), saw its win probability reduced to 60% and was moved to "Other Recommended Plays" in the noon report.</li>
-<li>  <strong>Odds Movement:</strong> The odds for Carolina Hurricanes vs Edmonton Oilers Over 6.5 moved from 1.85 (morning) to 1.90 (noon), indicating a slight increase in the payout for the Over.</li>
-<li>  <strong>Removed Plays:</strong> Several plays from the morning report were entirely removed in the noon report, indicating a significant loss of conviction by the AI or a re-prioritization of more favorable opportunities. These include:</li>
+  <li>  The play <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5</strong> appeared in both reports.</li>
+</ul>
+<br>
+<p>2.  <strong>Added/Removed Plays:</strong></p>
+<ul>
+  <li>  <strong>Removed from Noon:</strong></li>
   <li>  Florida Panthers vs Detroit Red Wings Under 6.0</li>
   <li>  Colorado Avalanche ML vs Dallas Stars</li>
   <li>  Colorado Avalanche vs Dallas Stars Under 6.0</li>
+  <li>  <strong>Added in Noon:</strong></li>
+  <li>  Detroit Red Wings ML vs Florida Panthers (became Bet of the Day)</li>
+  <li>  Montréal Canadiens vs Anaheim Ducks Over 6.5 (game not in morning report)</li>
+  <li>  St Louis Blues ML vs San Jose Sharks</li>
 </ul>
-<p>The removal of the Florida/Detroit Under play, while a new Detroit ML play was added, suggests a complete flip in the AI's perspective on that specific game.</p>
+<br>
+<p>3.  <strong>Confidence Level Changes (for consistent plays):</strong></p>
+<ul>
+  <li>  Carolina Hurricanes vs Edmonton Oilers Over 6.5: Confidence remained High, but Win Probability decreased from 65% (morning) to 60% (noon).</li>
+</ul>
+<br>
+<p>4.  <strong>Odds Changes (affecting recommendations):</strong></p>
+<ul>
+  <li>  <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5:</strong> Odds improved from 1.85 (morning) to 1.97 (noon). This improved line might have contributed to the play remaining a high-confidence pick despite a slight drop in win probability.</li>
+  <li>  <strong>Detroit Red Wings ML vs Florida Panthers:</strong> This play was added at noon, with the Red Wings ML at 1.67. The morning report had a play on the Under for this game, which was subsequently removed. The shift suggests a significant re-evaluation of the game's outcome rather than just the total, potentially driven by further injury confirmation or betting line movement on the Moneyline.</li>
+  <li>  <strong>St Louis Blues ML vs San Jose Sharks:</strong> The St. Louis ML odds slightly improved from 2.11 (morning) to 2.12 (noon), leading to its inclusion as a recommended play at noon.</li>
+  <li>  <strong>Colorado Avalanche ML/Under:</strong> Both Avalanche plays were removed. For the ML, the reasoning of Dallas's fatigue/backup goalie might have been re-evaluated or the line moved against Colorado. For the Under, perhaps new information suggested a higher-scoring potential or the value disappeared.</li>
+</ul>
 </div>
 
 </details>
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Carolina Hurricanes vs Edmonton Oilers Over 6.5 @ 1.90</div>
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Carolina Hurricanes vs Edmonton Oilers Over 6.5 @ 1.97</div>
 
 <div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 60%</div>
 
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>This game projects as a high-scoring affair given the recent offensive trends of both teams. Edmonton's last two games have seen totals of 11 and 9 goals, while Carolina's recent outing also featured 9 goals. With both teams well-rested and capable of generating offense, the market appears to undervalue the probability of this game surpassing the 6.5 goal total.</div>
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>This matchup features two teams that have been involved in high-scoring affairs recently. Carolina's last game saw nine total goals, while Edmonton's most recent two games finished with nine and eleven goals respectively. Both teams are well-rested, suggesting offensive energy should be high. Given their recent trends towards higher-scoring contests, the Over 6.5 line offers significant value as bookmakers may be underestimating the combined offensive firepower. Odds improved from 1.85 (morning) to 1.97 (noon). Win probability adjusted from 65% to 60%, but confidence remained High.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Montréal Canadiens vs Anaheim Ducks Over 6.5 @ 1.91</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 58%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Anaheim Ducks are coming into this game on a hot streak with three consecutive wins, and their recent games have been notably high-scoring, with totals of 5, 9, and 11 goals in their last three outings. While Montreal's recent form is not available, Anaheim's offensive momentum and tendency to participate in higher-scoring games suggest the Over 6.5 is a strong play. The odds at 1.91 provide a solid implied probability that our model finds mispriced. New play added at noon based on updated game schedule and recent team form.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>St Louis Blues ML vs San Jose Sharks @ 2.12</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 55%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The St. Louis Blues face a San Jose Sharks team that typically ranks lower in league standings, and the market odds are reversed from what might be expected for such a matchup, presenting a potential value play. With both teams having sufficient rest and no significant absences reported, this game should highlight the talent differential between the two clubs. Despite our system's recent cold streak on moneyline bets (0-7 in the last 7 ML plays), the underlying fundamental mismatch provides a substantial edge for St. Louis, leading to a confidence reduction from High to Medium. Odds improved slightly from 2.11 (morning) to 2.12 (noon). New play added based on model re-evaluation of value.</div>
 
 </div>
 
