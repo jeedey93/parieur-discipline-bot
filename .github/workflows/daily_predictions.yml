@@ -81,11 +81,13 @@ jobs:
           echo "Predictions workflow completed"
       - name: Prepare email body
         id: prepare_email
+        env:
+          RUN_TIME: ${{ steps.run_time.outputs.time }}
         run: |
           # Read the email template and substitute variables
-          BODY=$(cat .github/workflows/email_body.html | sed "s/\${{ steps.run_time.outputs.time }}/${{ steps.run_time.outputs.time }}/g")
+          sed "s/\${RUN_TIME}/${RUN_TIME}/g" .github/workflows/email_body.html > /tmp/email_body.html
           echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$BODY" >> $GITHUB_OUTPUT
+          cat /tmp/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       - name: Send email notification
         if: always()
