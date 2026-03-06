@@ -29,6 +29,9 @@ jobs:
           echo "body<<EOF" >> $GITHUB_OUTPUT
           cat /tmp/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+          # Generate email subject with date
+          EMAIL_DATE=$(date +"%B %d, %Y")
+          echo "subject=$EMAIL_DATE - NHL/NBA Daily Picks" >> $GITHUB_OUTPUT
       - name: Send email notification
         if: always()
         uses: dawidd6/action-send-mail@v3
@@ -38,7 +41,7 @@ jobs:
           secure: false
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "🎯 Parieur Discipliné - ${{ github.event.inputs.run_time || '12pm' }} Predictions Ready"
+          subject: ${{ steps.prepare_email.outputs.subject }}
           html_body: ${{ steps.prepare_email.outputs.body }}
           to: ${{ secrets.EMAIL_TO }}
           from: Parieur Discipliné Bot
