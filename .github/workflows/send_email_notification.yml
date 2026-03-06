@@ -14,10 +14,40 @@ jobs:
       - name: Prepare email body
         id: prepare_email
         run: |
-          # Read email body directly - no replacement needed
+          # Get today's date for finding prediction files
+          TODAY=$(TZ='America/Toronto' date +"%Y-%m-%d")
+
+          # Extract NHL Bet of the Day
+          NHL_PICK="No NHL pick available"
+          NHL_FILE="predictions/nhl/nhl_daily_predictions_${TODAY}.txt"
+          if [ -f "$NHL_FILE" ]; then
+            # Extract the bet line after "BET OF THE DAY:" and remove odds
+            NHL_PICK=$(sed -n '/BET OF THE DAY:/,/^$/p' "$NHL_FILE" | sed -n '2p' | sed 's/^[[:space:]]*//' | sed 's/@.*$//')
+            if [ -z "$NHL_PICK" ]; then
+              NHL_PICK="No NHL pick available"
+            fi
+          fi
+
+          # Extract NBA Bet of the Day
+          NBA_PICK="No NBA pick available"
+          NBA_FILE="predictions/nba/nba_daily_predictions_${TODAY}.txt"
+          if [ -f "$NBA_FILE" ]; then
+            # Extract the bet line after "BET OF THE DAY:" and remove odds
+            NBA_PICK=$(sed -n '/BET OF THE DAY:/,/^$/p' "$NBA_FILE" | sed -n '2p' | sed 's/^[[:space:]]*//' | sed 's/@.*$//')
+            if [ -z "$NBA_PICK" ]; then
+              NBA_PICK="No NBA pick available"
+            fi
+          fi
+
+          # Replace placeholders in email template
+          sed -e "s|\${NHL_PICK}|$NHL_PICK|g" \
+              -e "s|\${NBA_PICK}|$NBA_PICK|g" \
+              .github/workflows/email_body.html > /tmp/email_body.html
+
           echo "body<<EOF" >> $GITHUB_OUTPUT
-          cat .github/workflows/email_body.html >> $GITHUB_OUTPUT
+          cat /tmp/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+
           # Generate email subject with day and date in Montreal timezone
           EMAIL_DATE=$(TZ='America/Toronto' date +"%A, %B %d, %Y")
           echo "subject=$EMAIL_DATE - NHL/NBA Daily Picks" >> $GITHUB_OUTPUT
