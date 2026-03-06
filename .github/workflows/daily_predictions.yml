@@ -80,6 +80,7 @@ jobs:
           fi
           echo "Predictions workflow completed"
       - name: Prepare email body
+        if: steps.run_time.outputs.time == '12pm'
         id: prepare_email
         run: |
           # Extract picks from dual bet of the day file
@@ -226,7 +227,7 @@ jobs:
           EMAIL_DATE=$(TZ='America/Toronto' date +"%A, %B %d, %Y")
           echo "subject=$EMAIL_DATE - NHL/NBA Daily Picks" >> $GITHUB_OUTPUT
       - name: Send email notification
-        if: always()
+        if: steps.run_time.outputs.time == '12pm'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
