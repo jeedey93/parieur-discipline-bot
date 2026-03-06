@@ -40,25 +40,25 @@ jobs:
           fi
       - name: Run NHL daily predictions bot
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
-        run: python scripts/nhl_predictions_daily_run.py
+        run: python scripts/generate_nhl_predictions.py
       - name: Run NBA daily predictions bot
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
-        run: python scripts/nba_predictions_daily_run.py
+        run: python scripts/generate_nba_predictions.py
       - name: Update website with results only (7am)
         if: steps.run_time.outputs.time == '7am'
-        run: python scripts/update_latest_predictions.py --results-only
+        run: python scripts/generate_website.py --results-only
       - name: Compare NBA predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
-        run: python scripts/nba_predictions_compare.py
+        run: python scripts/compare_nba_predictions.py
       - name: Compare NHL predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
-        run: python scripts/nhl_predictions_compare.py
+        run: python scripts/compare_nhl_predictions.py
       - name: Update website with predictions (12pm)
         if: steps.run_time.outputs.time == '12pm'
-        run: python scripts/update_latest_predictions.py
+        run: python scripts/generate_website.py
       - name: Run Dual Bet of the Day (12pm)
         if: steps.run_time.outputs.time == '12pm'
-        run: python scripts/dual_bet_of_the_day.py --run_time 12pm
+        run: python scripts/generate_featured_picks.py --run_time 12pm
       - name: Commit predictions
         if: steps.run_time.outputs.time == '7am' || steps.run_time.outputs.time == '12pm'
         env:
