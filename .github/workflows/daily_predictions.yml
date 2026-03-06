@@ -79,6 +79,14 @@ jobs:
             echo "No changes to commit"
           fi
           echo "Predictions workflow completed"
+      - name: Prepare email body
+        id: prepare_email
+        run: |
+          # Read the email template and substitute variables
+          BODY=$(cat .github/workflows/email_body.html | sed "s/\${{ steps.run_time.outputs.time }}/${{ steps.run_time.outputs.time }}/g")
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
       - name: Send email notification
         if: always()
         uses: dawidd6/action-send-mail@v3
@@ -89,12 +97,6 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "🎯 Parieur Discipliné - ${{ steps.run_time.outputs.time }} Predictions Ready"
-          html_body: ${{ steps.read_email_body.outputs.body }}
+          html_body: ${{ steps.prepare_email.outputs.body }}
           to: ${{ secrets.EMAIL_TO }}
           from: Parieur Discipliné Bot
-      - name: Read email body
-        id: read_email_body
-        run: |
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          cat .github/workflows/email_body.html >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
