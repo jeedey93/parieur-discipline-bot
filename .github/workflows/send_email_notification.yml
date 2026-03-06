@@ -24,37 +24,97 @@ jobs:
             # Extract NHL pick (PICK #1)
             NHL_LINE=$(grep "PICK #1.*NHL" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NHL_LINE" ]; then
-              # Extract pick text and format with line breaks
-              PICK_TEXT=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-              # Check if it's a totals bet (contains "Under" or "Over") or a spread bet
-              if echo "$PICK_TEXT" | grep -q -E "(Under|Over)"; then
-                # Format totals bets: split teams and highlight the total
-                NHL_PICK=$(echo "$PICK_TEXT" | sed 's/ vs /<br\/><span style="font-size: 12px; color: #93c5fd;">vs<\/span><br\/>/g' | sed 's/\(.*\) \(Under\|Over\) \([0-9.]*\)/<span style="font-size: 14px;">\1<\/span><br\/><br\/><span style="font-size: 16px;">\2 \3<\/span>/')
-              else
-                # Format spread bets: keep spread with team, show vs opponent
-                NHL_PICK=$(echo "$PICK_TEXT" | sed 's/\(.*\) \([-+][0-9.]*\) vs \(.*\)/<span style="font-size: 16px;">\1 \2<\/span><br\/><span style="font-size: 12px; color: #93c5fd;">vs<\/span><br\/><span style="font-size: 14px;">\3<\/span>/')
-              fi
+              # Extract full pick text with odds
+              NHL_PICK=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
             fi
 
             # Extract NBA pick (PICK #2)
             NBA_LINE=$(grep "PICK #2.*NBA" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NBA_LINE" ]; then
-              # Extract pick text and format with line breaks
-              PICK_TEXT=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-              # Check if it's a totals bet (contains "Under" or "Over") or a spread bet
-              if echo "$PICK_TEXT" | grep -q -E "(Under|Over)"; then
-                # Format totals bets: split teams and highlight the total
-                NBA_PICK=$(echo "$PICK_TEXT" | sed 's/ vs /<br\/><span style="font-size: 12px; color: #fed7aa;">vs<\/span><br\/>/g' | sed 's/\(.*\) \(Under\|Over\) \([0-9.]*\)/<span style="font-size: 14px;">\1<\/span><br\/><br\/><span style="font-size: 16px;">\2 \3<\/span>/')
-              else
-                # Format spread bets: keep spread with team, show vs opponent
-                NBA_PICK=$(echo "$PICK_TEXT" | sed 's/\(.*\) \([-+][0-9.]*\) vs \(.*\)/<span style="font-size: 16px;">\1 \2<\/span><br\/><span style="font-size: 12px; color: #fed7aa;">vs<\/span><br\/><span style="font-size: 14px;">\3<\/span>/')
+              # Extract full pick text with odds
+              NBA_PICK=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+            fi
+          fi
+
+          # Extract yesterday's results
+          YESTERDAY=$(TZ='America/Toronto' date -d 'yesterday' +"%Y-%m-%d" 2>/dev/null || TZ='America/Toronto' date -v-1d +"%Y-%m-%d")
+          RESULTS_FILE="bot_results/total_results_summary.txt"
+          NHL_RESULTS_FILE="bot_results/nhl/nhl_daily_results_${YESTERDAY}.txt"
+          NBA_RESULTS_FILE="bot_results/nba/nba_daily_results_${YESTERDAY}.txt"
+          YESTERDAY_BANNER="NEW PREDICTIONS AVAILABLE - DAILY UPDATE"
+
+          if [ -f "$RESULTS_FILE" ]; then
+            # Extract NBA yesterday's record
+            NBA_YESTERDAY=$(grep "^$YESTERDAY:" "$RESULTS_FILE" | head -1 || echo "")
+            # Extract NHL yesterday's record (second occurrence of the date)
+            NHL_YESTERDAY=$(grep "^$YESTERDAY:" "$RESULTS_FILE" | tail -1 || echo "")
+
+            if [ -n "$NBA_YESTERDAY" ] || [ -n "$NHL_YESTERDAY" ]; then
+              TOTAL_WINS=0
+              TOTAL_LOSSES=0
+              TOTAL_UNITS=0
+
+              # Calculate NHL units
+              if [ -f "$NHL_RESULTS_FILE" ]; then
+                while IFS= read -r line; do
+                  if echo "$line" | grep -q "Units:"; then
+                    UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
+                    if echo "$line" | grep -q "Outcome: \*\*WIN\*\*"; then
+                      ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\).*/\1/')
+                      PROFIT=$(echo "scale=2; $UNITS * ($ODDS - 1)" | bc)
+                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
+                    elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*"; then
+                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $UNITS" | bc)
+                    fi
+                  fi
+                done < "$NHL_RESULTS_FILE"
               fi
+
+              # Calculate NBA units
+              if [ -f "$NBA_RESULTS_FILE" ]; then
+                while IFS= read -r line; do
+                  if echo "$line" | grep -q "Units:"; then
+                    UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
+                    if echo "$line" | grep -q "Outcome: \*\*WIN\*\*"; then
+                      ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\).*/\1/')
+                      PROFIT=$(echo "scale=2; $UNITS * ($ODDS - 1)" | bc)
+                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
+                    elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*"; then
+                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $UNITS" | bc)
+                    fi
+                  fi
+                done < "$NBA_RESULTS_FILE"
+              fi
+
+              if [ -n "$NBA_YESTERDAY" ]; then
+                NBA_WINS=$(echo "$NBA_YESTERDAY" | sed 's/.*: \([0-9]*\) win.*/\1/')
+                NBA_LOSSES=$(echo "$NBA_YESTERDAY" | sed 's/.* \([0-9]*\) loss.*/\1/')
+                TOTAL_WINS=$((TOTAL_WINS + NBA_WINS))
+                TOTAL_LOSSES=$((TOTAL_LOSSES + NBA_LOSSES))
+              fi
+
+              if [ -n "$NHL_YESTERDAY" ]; then
+                NHL_WINS=$(echo "$NHL_YESTERDAY" | sed 's/.*: \([0-9]*\) win.*/\1/')
+                NHL_LOSSES=$(echo "$NHL_YESTERDAY" | sed 's/.* \([0-9]*\) loss.*/\1/')
+                TOTAL_WINS=$((TOTAL_WINS + NHL_WINS))
+                TOTAL_LOSSES=$((TOTAL_LOSSES + NHL_LOSSES))
+              fi
+
+              # Format units with + or - sign
+              if [ $(echo "$TOTAL_UNITS >= 0" | bc) -eq 1 ]; then
+                UNITS_TEXT="+${TOTAL_UNITS}u"
+              else
+                UNITS_TEXT="${TOTAL_UNITS}u"
+              fi
+
+              YESTERDAY_BANNER="YESTERDAY: ${TOTAL_WINS}W - ${TOTAL_LOSSES}L (${UNITS_TEXT})"
             fi
           fi
 
           # Replace placeholders in email template
           sed -e "s|\${NHL_PICK}|$NHL_PICK|g" \
               -e "s|\${NBA_PICK}|$NBA_PICK|g" \
+              -e "s|NEW PREDICTIONS AVAILABLE - DAILY UPDATE|$YESTERDAY_BANNER|g" \
               .github/workflows/email_body.html > /tmp/email_body.html
 
           echo "body<<EOF" >> $GITHUB_OUTPUT
