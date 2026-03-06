@@ -92,15 +92,21 @@ jobs:
             # Extract NHL pick (PICK #1)
             NHL_LINE=$(grep "PICK #1.*NHL" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NHL_LINE" ]; then
-              # Extract full pick text with odds
-              NHL_PICK=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract pick text without odds
+              PICK_WITHOUT_ODDS=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract odds
+              ODDS=$(echo "$NHL_LINE" | sed 's/.*@ \([0-9.]*\).*/\1/')
+              NHL_PICK="${PICK_WITHOUT_ODDS}<br/><span style='font-size: 14px; color: #93c5fd;'>@${ODDS}</span>"
             fi
 
             # Extract NBA pick (PICK #2)
             NBA_LINE=$(grep "PICK #2.*NBA" "$DUAL_BET_FILE" || echo "")
             if [ -n "$NBA_LINE" ]; then
-              # Extract full pick text with odds
-              NBA_PICK=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract pick text without odds
+              PICK_WITHOUT_ODDS=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+              # Extract odds
+              ODDS=$(echo "$NBA_LINE" | sed 's/.*@ \([0-9.]*\).*/\1/')
+              NBA_PICK="${PICK_WITHOUT_ODDS}<br/><span style='font-size: 14px; color: #fed7aa;'>@${ODDS}</span>"
             fi
           fi
 
@@ -168,11 +174,14 @@ jobs:
                 TOTAL_LOSSES=$((TOTAL_LOSSES + NHL_LOSSES))
               fi
 
-              # Format units with + or - sign
-              if [ $(echo "$TOTAL_UNITS >= 0" | bc) -eq 1 ]; then
-                UNITS_TEXT="+${TOTAL_UNITS}u"
+              # Format units with + or - sign and 2 decimals
+              TOTAL_UNITS=$(printf "%.2f" $TOTAL_UNITS)
+              if [ $(echo "$TOTAL_UNITS > 0" | bc) -eq 1 ]; then
+                UNITS_TEXT="<span style='color: #10b981;'>+${TOTAL_UNITS}u</span>"
+              elif [ $(echo "$TOTAL_UNITS < 0" | bc) -eq 1 ]; then
+                UNITS_TEXT="<span style='color: #ef4444;'>${TOTAL_UNITS}u</span>"
               else
-                UNITS_TEXT="${TOTAL_UNITS}u"
+                UNITS_TEXT="+${TOTAL_UNITS}u"
               fi
 
               YESTERDAY_BANNER="YESTERDAY: ${TOTAL_WINS}W - ${TOTAL_LOSSES}L (${UNITS_TEXT})"
