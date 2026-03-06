@@ -14,28 +14,23 @@ jobs:
       - name: Prepare email body
         id: prepare_email
         run: |
-          # Get today's date for finding prediction files
-          TODAY=$(TZ='America/Toronto' date +"%Y-%m-%d")
+          # Extract picks from dual bet of the day file
+          DUAL_BET_FILE="predictions/dual_bet_of_the_day.txt"
 
-          # Extract NHL Bet of the Day
-          NHL_PICK="No NHL pick available"
-          NHL_FILE="predictions/nhl/nhl_daily_predictions_${TODAY}.txt"
-          if [ -f "$NHL_FILE" ]; then
-            # Extract the bet line after "BET OF THE DAY:" and remove odds
-            NHL_PICK=$(sed -n '/BET OF THE DAY:/,/^$/p' "$NHL_FILE" | sed -n '2p' | sed 's/^[[:space:]]*//' | sed 's/@.*$//')
-            if [ -z "$NHL_PICK" ]; then
-              NHL_PICK="No NHL pick available"
+          NHL_PICK="Check website for today's pick"
+          NBA_PICK="Check website for today's pick"
+
+          if [ -f "$DUAL_BET_FILE" ]; then
+            # Extract NHL pick (PICK #1)
+            NHL_LINE=$(grep "PICK #1.*NHL" "$DUAL_BET_FILE" || echo "")
+            if [ -n "$NHL_LINE" ]; then
+              NHL_PICK=$(echo "$NHL_LINE" | sed 's/.*🏒//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
             fi
-          fi
 
-          # Extract NBA Bet of the Day
-          NBA_PICK="No NBA pick available"
-          NBA_FILE="predictions/nba/nba_daily_predictions_${TODAY}.txt"
-          if [ -f "$NBA_FILE" ]; then
-            # Extract the bet line after "BET OF THE DAY:" and remove odds
-            NBA_PICK=$(sed -n '/BET OF THE DAY:/,/^$/p' "$NBA_FILE" | sed -n '2p' | sed 's/^[[:space:]]*//' | sed 's/@.*$//')
-            if [ -z "$NBA_PICK" ]; then
-              NBA_PICK="No NBA pick available"
+            # Extract NBA pick (PICK #2)
+            NBA_LINE=$(grep "PICK #2.*NBA" "$DUAL_BET_FILE" || echo "")
+            if [ -n "$NBA_LINE" ]; then
+              NBA_PICK=$(echo "$NBA_LINE" | sed 's/.*🏀//' | sed 's/@.*$//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
             fi
           fi
 
