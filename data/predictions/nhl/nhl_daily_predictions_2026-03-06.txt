@@ -1,0 +1,50 @@
+Here's an analysis comparing the morning and noon prediction reports, followed by the unified final recommendation list.
+
+**Analysis Summary:**
+
+1.  **Consistent Plays (appeared in both reports):**
+    *   Carolina Hurricanes vs Edmonton Oilers Over 6.5
+
+2.  **Added/Removed Plays:**
+    *   **Removed (present in morning, absent in noon):**
+        *   Florida Panthers vs Detroit Red Wings Under 6.0
+        *   Colorado Avalanche ML vs Dallas Stars
+        *   Colorado Avalanche vs Dallas Stars Under 6.0
+    *   **Added (present in noon, absent in morning):** None.
+
+3.  **Confidence Level Changes:**
+    *   **Carolina Hurricanes vs Edmonton Oilers Over 6.5:** Confidence decreased from High (65% Win Probability) in the morning to Medium (55% Win Probability) in the noon report.
+
+4.  **Odds Changes Affecting Recommendations:**
+    *   **Carolina Hurricanes vs Edmonton Oilers Over 6.5:** The odds for this specific bet increased from 1.85 (morning) to 1.97 (noon). While higher odds generally offer better value, the AI's confidence and win probability simultaneously decreased, indicating a re-evaluation despite the more favorable market price.
+    *   **Colorado Avalanche ML vs Dallas Stars:** The odds for Colorado ML slightly improved from 1.99 (morning) to 2.01 (noon). However, this play was still removed, suggesting other factors (e.g., updated roster data, goalie confirmations) outweighed the minor odds improvement.
+    *   For the other removed plays (Florida/Detroit Under 6.0 and Colorado/Dallas Under 6.0), the Over/Under line remained constant at 6.0 in both reports, implying their associated odds likely remained stable or changed minimally before the plays were removed from consideration.
+
+---
+
+🏆 **BET OF THE DAY**
+**Carolina Hurricanes vs Edmonton Oilers Over 6.5 @ 1.97**
+Confidence Level: Medium Units: 1u, Win Probability: 55%
+Both the Hurricanes and Oilers have shown a propensity for high-scoring affairs in their recent outings, with Edmonton's last two visible games and Carolina's most recent game all exceeding 6.5 total goals. With no significant absences affecting either team's offensive or defensive core, and both squads having adequate rest, the conditions are ripe for another high-event game. The odds of 1.97 present a solid value against our estimated probability, indicating the market might be slightly undervaluing the scoring potential in this matchup.
+
+This play was present in both reports. The odds increased from 1.85 (morning) to 1.97 (noon). However, confidence decreased from High (65%) to Medium (55%), and units decreased from 1.5u to 1u.
+
+**Other Recommended Plays**
+
+**Florida Panthers vs Detroit Red Wings Under 6.0 @ 1.90**
+Confidence Level: High Units: 1.5u, Win Probability: 60%
+The Panthers are significantly hampered by injuries, with elite forward Aleksander Barkov and top defenseman Seth Jones both out. This, combined with playing on a back-to-back, will likely suppress their offensive output and could lead to a more conservative game plan. Historically, Florida's recent games have consistently stayed at or below six total goals, including three games with exactly six goals in their last four appearances. Detroit also had a 6-goal game recently, and with Florida's offensive struggles exacerbated by key absences, the "Under" holds strong value despite defensive injuries potentially making Florida more vulnerable.
+
+This play was removed in the noon report. The O/U line for this game remained 6.0, and the odds were consistent at 1.90 in the morning report.
+
+**Colorado Avalanche ML vs Dallas Stars @ 2.01**
+Confidence Level: High Units: 1.5u, Win Probability: 57.5%
+The Colorado Avalanche enter this contest well-rested, contrasting sharply with the Dallas Stars who are playing on a back-to-back after a dominant 6-1 win yesterday. While Dallas has been in strong recent form (3 wins in 3 observed games), their fatigue and likely backup goalie due to the back-to-back will heavily favor a rested Avalanche squad playing at home. Colorado's last game was a loss, but with key rest and a strong offensive lineup, they are well-positioned to capitalize on Dallas's tired legs and potential secondary goaltending.
+
+This play was removed in the noon report. The Avalanche ML odds slightly improved from 1.99 (morning) to 2.01 (noon) before its removal.
+
+**Colorado Avalanche vs Dallas Stars Under 6.0 @ 1.90**
+Confidence Level: Medium Units: 1u, Win Probability: 57%
+Despite Dallas's recent high-scoring 6-1 game, their general trend, especially when rested (like their 3-2 and 4-1 games previously), and very strong defensive performance (allowing 1, 2, 1 goals) suggests they can limit opponents. The Avalanche, while potent, have a rested starting goaltender. Dallas's back-to-back often leads to lower offensive output, balancing out the slight defensive weakness from fatigue. This matchup sets up for a tighter, more defensively oriented game than the 6.0 total might suggest, especially with Dallas's excellent recent defensive record.
+
+This play was removed in the noon report. The O/U line for this game remained 6.0, and the odds were consistent at 1.90 in the morning report.
