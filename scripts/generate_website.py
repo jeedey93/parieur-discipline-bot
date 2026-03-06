@@ -1355,8 +1355,10 @@ def format_dual_bet(raw_text):
         if odds_value and '@' not in bet_line:
             bet_line = f"{bet_line} @ {odds_value}"
 
-        # Create card
-        md += "<div class='pick-card'>\n"
+        # Create card with special BOTD styling
+        md += "<div class='pick-card' style='position: relative;'>\n"
+        # Add corner ribbon
+        md += "<div style='position: absolute; top: 20px; right: -5px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 8px 20px 8px 15px; font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5), -2px 0 8px rgba(0, 0, 0, 0.1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); z-index: 10;'>🏆 BET OF THE DAY</div>\n"
         md += f"<div class='pick-badge {sport_badge_class}'>PICK #{pick_num} — {sport_label}</div>\n"
         md += f"<div class='pick-title'>{bet_line}</div>\n"
 
@@ -1531,18 +1533,23 @@ def update_latest_predictions(results_only=False):
     content += ".section-header { margin: 50px 0 30px 0; padding-bottom: 15px; border-bottom: 3px solid #e5e7eb; }\n"
     content += ".section-title { font-size: 2.2em; font-weight: 800; color: #111827; display: flex; align-items: center; gap: 12px; }\n"
     content += ".section-subtitle { font-size: 0.95em; color: #6b7280; margin-top: 8px; font-weight: 400; }\n"
-    content += ".featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin: 25px 0; }\n"
-    content += ".pick-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 12px; padding: 25px; border: 2px solid #e5e7eb; transition: all 0.3s; }\n"
-    content += ".pick-card:hover { border-color: #4a90e2; box-shadow: 0 8px 25px rgba(74,144,226,0.15); transform: translateY(-3px); }\n"
-    content += ".pick-badge { display: inline-block; padding: 6px 12px; border-radius: 6px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }\n"
-    content += ".badge-nhl { background: #fee2e2; color: #dc2626; }\n"
-    content += ".badge-nba { background: #fed7aa; color: #ea580c; }\n"
-    content += ".badge-featured { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; }\n"
-    content += ".pick-title { font-size: 1.25em; font-weight: 700; color: #111827; margin-bottom: 15px; line-height: 1.4; }\n"
-    content += ".pick-meta { display: block; padding: 8px 14px; background: #f3f4f6; border-radius: 8px; font-size: 0.85em; margin-bottom: 18px; }\n"
-    content += ".confidence-high { display: inline-block; background: #10b981; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
-    content += ".confidence-medium { display: inline-block; background: #f59e0b; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75em; font-weight: 700; margin-right: 8px; }\n"
-    content += ".pick-description { color: #4b5563; line-height: 1.7; font-size: 0.95em; }\n"
+    content += ".featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin: 35px 0; }\n"
+    content += ".pick-card { background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%); border-radius: 20px; padding: 35px; border: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-origin: border-box; background-clip: padding-box, border-box; box-shadow: 0 15px 45px rgba(102, 126, 234, 0.25), 0 5px 15px rgba(0, 0, 0, 0.08); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }\n"
+    content += ".pick-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent); transform: rotate(45deg); transition: all 0.6s; z-index: 0; }\n"
+    content += ".pick-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 60px rgba(102, 126, 234, 0.35), 0 10px 25px rgba(0, 0, 0, 0.12); border-color: rgba(102, 126, 234, 0.5); }\n"
+    content += ".pick-card:hover::before { left: 100%; }\n"
+    content += ".pick-card > * { position: relative; z-index: 1; }\n"
+    content += ".pick-badge { display: block; text-align: center; padding: 10px 20px; border-radius: 25px; font-size: 0.85em; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); animation: pulse 2s ease-in-out infinite; }\n"
+    content += "@keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); } 50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); } }\n"
+    content += "@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3); } 50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.5); } }\n"
+    content += ".badge-nhl { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }\n"
+    content += ".badge-nba { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }\n"
+    content += ".badge-featured { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }\n"
+    content += ".pick-title { font-size: 1.5em; font-weight: 800; color: #2563eb; margin-bottom: 20px; line-height: 1.4; text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2); text-align: center; }\n"
+    content += ".pick-meta { display: block; padding: 15px 20px; background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 50%, #f3f4f6 100%); border-radius: 12px; font-size: 0.9em; margin-bottom: 20px; border: 2px solid #e5e7eb; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); }\n"
+    content += ".confidence-high { display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.8em; font-weight: 800; margin-right: 10px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4); animation: glow 2s ease-in-out infinite; }\n"
+    content += ".confidence-medium { display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.8em; font-weight: 800; margin-right: 10px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4); }\n"
+    content += ".pick-description { color: #374151; line-height: 1.8; font-size: 1em; font-weight: 500; }\n"
     content += ".yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }\n"
     content += ".result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }\n"
     content += ".result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }\n"
@@ -1743,12 +1750,19 @@ def update_latest_predictions(results_only=False):
         # 12pm version - use dual bet of the day as before
         dual_content = read_file(dual_bet_path).strip()
         if dual_content:
-            content += "<div id='featured-picks'>\n"
-            content += "<div class='section-header'>\n"
-            content += "<div class='section-title'>🔥 Featured Picks of the Day</div>\n"
-            content += "<div class='section-subtitle'>Our top AI-selected plays with the highest edge</div>\n"
+            content += "<div id='featured-picks' style='position: relative;'>\n"
+            # Add eye-catching banner
+            content += "<div style='background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%); padding: 8px; text-align: center; border-radius: 12px 12px 0 0; margin-bottom: -5px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5); animation: shine 3s ease-in-out infinite;'>\n"
+            content += "<div style='color: #78350f; font-weight: 900; font-size: 0.9em; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);'>⭐ Today's Premium Selections ⭐</div>\n"
+            content += "</div>\n"
+            content += "<style>@keyframes shine { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.1); } }</style>\n"
+            content += "<div style='background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); padding: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15); border: 3px solid #fbbf24; border-top: none;'>\n"
+            content += "<div class='section-header' style='margin-bottom: 25px; text-align: center;'>\n"
+            content += "<div class='section-title' style='font-size: 2em; background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block !important; text-align: center !important; justify-content: center;'>🔥 Featured Picks of the Day</div>\n"
+            content += "<div class='section-subtitle' style='font-size: 1.05em; color: #78350f; font-weight: 600;'>Our top AI-selected plays with the highest edge</div>\n"
             content += "</div>\n"
             content += format_dual_bet(dual_content)
+            content += "</div>\n"
             content += "</div>\n\n"
 
     # ── Yesterday's Results ──
