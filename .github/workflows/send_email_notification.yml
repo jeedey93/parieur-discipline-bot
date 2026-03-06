@@ -2,15 +2,6 @@ name: Send Email Notification
 
 on:
   workflow_dispatch:
-    inputs:
-      run_time:
-        description: 'Run time (7am or 12pm)'
-        required: false
-        default: '12pm'
-        type: choice
-        options:
-          - 7am
-          - 12pm
 
 jobs:
   send-email:
@@ -23,14 +14,13 @@ jobs:
       - name: Prepare email body
         id: prepare_email
         run: |
-          # Use input or default to 12pm
-          RUN_TIME="${{ github.event.inputs.run_time || '12pm' }}"
-          sed "s/\${RUN_TIME}/$RUN_TIME/g" .github/workflows/email_body.html > /tmp/email_body.html
+          # Replace RUN_TIME with "Daily" for manual sends
+          sed "s/\${RUN_TIME}/Daily/g" .github/workflows/email_body.html > /tmp/email_body.html
           echo "body<<EOF" >> $GITHUB_OUTPUT
           cat /tmp/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          # Generate email subject with date
-          EMAIL_DATE=$(date +"%B %d, %Y")
+          # Generate email subject with date in Montreal timezone
+          EMAIL_DATE=$(TZ='America/Toronto' date +"%B %d, %Y")
           echo "subject=$EMAIL_DATE - NHL/NBA Daily Picks" >> $GITHUB_OUTPUT
       - name: Send email notification
         if: always()
