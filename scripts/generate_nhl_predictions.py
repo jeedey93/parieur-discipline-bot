@@ -13,7 +13,7 @@ from data.odds import get_nhl_odds, match_odds_to_games
 from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
-from scripts.nhl_injuries_daily_run import scrape_nhl_injuries_by_team
+from scripts.scrape_nhl_injuries import scrape_nhl_injuries_by_team
 import pytz
 from datetime import datetime
 
