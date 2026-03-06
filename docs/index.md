@@ -89,8 +89,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <img src='parieur_discipline.png' alt='Parieur Discipliné' class='hero-logo'>
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
-<div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 02:48 PM ET</div>
+<div class='blog-date'>Friday, March 6, 2026</div>
+<div class='blog-update-time'>⏱️ Last Updated at 2:58 PM</div>
 </div>
 </div>
 
@@ -171,7 +171,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for March 5, 2026</div>
+<div class='section-subtitle'>Performance breakdown for Thursday, March 5, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>

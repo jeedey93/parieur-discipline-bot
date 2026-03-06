@@ -22,10 +22,10 @@ def read_file(path):
 
 
 def format_date_nice(date_str):
-    """Convert 2026-03-03 to March 3, 2026"""
+    """Convert 2026-03-03 to Friday, March 3, 2026"""
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
-        return dt.strftime("%B %d, %Y").replace(" 0", " ")
+        return dt.strftime("%A, %B %d, %Y").replace(" 0", " ")
     except Exception:
         return date_str
 
@@ -1595,7 +1595,7 @@ def update_latest_predictions(results_only=False):
     content += "<div class='blog-title'>🎯 Parieur Discipliné</div>\n"
     content += "<div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>\n"
     content += f"<div class='blog-date'>{nice_date}</div>\n"
-    content += f"<div class='blog-update-time'>⏱️ Updated {time_since}</div>\n"
+    content += f"<div class='blog-update-time'>⏱️ {time_since}</div>\n"
     content += "</div>\n"
     content += "</div>\n\n"
 
@@ -1845,8 +1845,9 @@ def get_time_since_update(file_path):
     # Use current time instead of file modification time
     montreal_tz = ZoneInfo('America/Toronto')
     current_time = datetime.now(montreal_tz)
-    # Format as "at HH:MM AM/PM ET"
-    return f"at {current_time.strftime('%I:%M %p')} ET"
+    # Format as "Last Updated at H:MM PM"
+    time_str = current_time.strftime('%I:%M %p').lstrip('0')  # Remove leading zero from hour
+    return f"Last Updated at {time_str}"
 
 
 def build_chart_data_for_last_30_days():
