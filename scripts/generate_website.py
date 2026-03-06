@@ -1663,14 +1663,12 @@ def update_latest_predictions(results_only=False):
 
 
 def get_time_since_update(file_path):
-    """Get the actual time when file was last modified in Montreal/Eastern timezone."""
-    if not os.path.exists(file_path):
-        return "Unknown"
-
-    # Get file modification time and convert to Eastern timezone
-    mod_time = datetime.fromtimestamp(os.path.getmtime(file_path), tz=ZoneInfo('America/Toronto'))
+    """Get the current time in Montreal/Eastern timezone when website is generated."""
+    # Use current time instead of file modification time
+    montreal_tz = ZoneInfo('America/Toronto')
+    current_time = datetime.now(montreal_tz)
     # Format as "at HH:MM AM/PM ET"
-    return f"at {mod_time.strftime('%I:%M %p')} ET"
+    return f"at {current_time.strftime('%I:%M %p')} ET"
 
 
 def build_chart_data_for_last_30_days():
