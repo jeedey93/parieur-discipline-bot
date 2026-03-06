@@ -81,11 +81,10 @@ jobs:
           echo "Predictions workflow completed"
       - name: Prepare email body
         id: prepare_email
-        env:
-          RUN_TIME: ${{ steps.run_time.outputs.time }}
         run: |
-          # Read the email template and substitute variables
-          sed "s/\${RUN_TIME}/${RUN_TIME}/g" .github/workflows/email_body.html > /tmp/email_body.html
+          # Simple bash variable replacement
+          RUN_TIME="${{ steps.run_time.outputs.time }}"
+          sed "s/\${RUN_TIME}/$RUN_TIME/g" .github/workflows/email_body.html > /tmp/email_body.html
           echo "body<<EOF" >> $GITHUB_OUTPUT
           cat /tmp/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
