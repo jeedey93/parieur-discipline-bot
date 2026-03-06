@@ -42,18 +42,32 @@ You are provided with a variable {{HISTORICAL_RESULTS}} containing the text of a
 ANALYSIS FRAMEWORK (MANDATORY INTERNAL PROCESS)
 Use {{RECENT_RESULTS}} as your primary data source for all schedule, fatigue, and recent performance analysis. This variable contains the actual game dates and outcomes for the last 5 days for each team.
 
+IMPORTANT: You also have access to {{RECENT_GAMES}}, which contains the last 7 days of NHL game schedules. Use this variable to:
+- Identify which teams have been playing frequently vs teams with more rest
+- Detect back-to-back games (teams playing on consecutive days)
+- Calculate rest days between games for each team
+- Determine travel schedules and potential fatigue factors
+- Identify teams on long road trips or home stands
+This schedule context is critical for understanding team fatigue and rest advantages, which should significantly impact your probability estimates.
+
 For each game, follow this systematic analysis:
 
-1. SCHEDULE & FATIGUE ANALYSIS (Use {{RECENT_RESULTS}} exclusively)
-   - Only consider a team on a back-to-back if they played yesterday (day before {{TODAY_DATE}})
-   - Check actual dates in {{RECENT_RESULTS}} to verify:
+1. SCHEDULE & FATIGUE ANALYSIS (Use {{RECENT_GAMES}} as primary source)
+   - PRIMARY: Use {{RECENT_GAMES}} for all schedule and fatigue analysis - this contains ALL games played in the last 7 days
+   - SECONDARY: Use {{RECENT_RESULTS}} only for additional context on game outcomes and performance
+   - IMPORTANT: {{RECENT_RESULTS}} only contains games where predictions were made, so it may be incomplete. Always use {{RECENT_GAMES}} to determine actual schedule patterns.
+   - Only consider a team on a back-to-back if they played yesterday (day before {{TODAY_DATE}}) - verify using {{RECENT_GAMES}}
+   - Check {{RECENT_GAMES}} dates to calculate rest and fatigue:
      * Back-to-back: Team played yesterday → -2 fatigue score
      * 3 in 4 nights: Team played 3 games in last 4 days → -1.5 fatigue score
      * 4 in 6 nights: Team played 4 games in last 6 days → -1 fatigue score
      * 2+ days rest: Last game was 2+ days ago → +1 fatigue score
+   - Use {{RECENT_GAMES}} to identify home vs away games in the schedule (look for @ symbol: "Team A @ Team B" means Team A is away)
+   - Road back-to-backs are more fatiguing than home back-to-backs: Add -0.5 additional fatigue for road B2B
    - Each fatigue point of difference (-2 vs +1 = 3 points) should adjust win probability by approximately 2-3%
 
-2. RECENT FORM & MOMENTUM ANALYSIS (Use {{RECENT_RESULTS}} exclusively)
+2. RECENT FORM & MOMENTUM ANALYSIS (Use {{RECENT_RESULTS}} for performance)
+   - Use {{RECENT_RESULTS}} to analyze team performance (wins, losses, scores, margins)
    - Review last 5 games from {{RECENT_RESULTS}} for each team
    - Identify patterns:
      * Win/loss streak (3+ games)
@@ -179,6 +193,7 @@ Confidence Level: (High / Medium) Units: (1.5u / 1u), Win Probability: <XX>%
 
 DATA TO ANALYZE
 {{RESULTS_TEXT}}
-{{HISTORICAL_RESULTS}}
+{{HISTORICAL_RESULTS}}x
 {{RECENT_RESULTS}}
+{{RECENT_GAMES}}
 {{INJURIES}}

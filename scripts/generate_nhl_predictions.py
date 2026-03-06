@@ -20,7 +20,7 @@ from datetime import datetime
 load_dotenv()
 
 
-def analyze_results(results_text, injuries_text):
+def analyze_results(results_text, injuries_text, recent_games):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
@@ -56,6 +56,7 @@ def analyze_results(results_text, injuries_text):
             prompt_text = prompt_text.replace("{{HISTORICAL_RESULTS}}", historical_results)
             prompt_text = prompt_text.replace("{{RECENT_RESULTS}}", recent_results)
             prompt_text = prompt_text.replace("{{INJURIES}}", injuries_text)
+            prompt_text = prompt_text.replace("{{RECENT_GAMES}}", recent_games)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 
@@ -109,6 +110,24 @@ if os.path.exists(filename):
     print("Skipping prediction generation to avoid overwriting existing file.")
     exit(0)
 
+# Fetch and save games data
+games = get_games_today()
+
+# Save raw games data to file
+games_data_folder = os.path.join("data", "games", "nhl")
+os.makedirs(games_data_folder, exist_ok=True)
+games_data_file = os.path.join(games_data_folder, f"nhl_games_{today_str}.txt")
+
+with open(games_data_file, "w") as gf:
+    gf.write(f"Date: {today_str}\n\n")
+    if games:
+        for game in games:
+            gf.write(f"{game['away']} @ {game['home']}\n")
+    else:
+        gf.write("No games today\n")
+
+print(f"✅ Saved raw games data to: {games_data_file}")
+
 # Get injuries as a formatted string
 injuries_list = scrape_nhl_injuries_by_team()
 if injuries_list:
@@ -122,7 +141,21 @@ if injuries_list:
 else:
     injuries_text = "NHL Injured Players by Team: None"
 
-games = get_games_today()
+# Read last 7 days of games from saved files
+games_dir = os.path.join("data", "games", "nhl")
+games_files = sorted(glob.glob(os.path.join(games_dir, "nhl_games_*.txt")))
+last_7_files = games_files[-7:] if len(games_files) >= 7 else games_files
+recent_games = ""
+for gf in last_7_files:
+    try:
+        with open(gf, "r", encoding="utf-8") as gfile:
+            recent_games += f"\n---\n{os.path.basename(gf)}\n" + gfile.read()
+    except Exception:
+        continue
+
+if not recent_games:
+    recent_games = "No recent games data available"
+
 with open(filename, "w") as f:
     f.write(f"Date: {today_str}\n\n")
 
@@ -148,7 +181,7 @@ with open(filename, "w") as f:
         print(injuries_text)
 
         if results_text:
-            summary = analyze_results(results_text, injuries_text)
+            summary = analyze_results(results_text, injuries_text, recent_games)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")
