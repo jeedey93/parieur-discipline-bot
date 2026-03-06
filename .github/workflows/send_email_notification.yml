@@ -62,32 +62,54 @@ jobs:
 
               # Calculate NHL units
               if [ -f "$NHL_RESULTS_FILE" ]; then
+                CURRENT_UNITS=""
+                CURRENT_ODDS=""
                 while IFS= read -r line; do
-                  if echo "$line" | grep -q "Units:"; then
-                    UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
-                    if echo "$line" | grep -q "Outcome: \*\*WIN\*\*"; then
-                      ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\).*/\1/')
-                      PROFIT=$(echo "scale=2; $UNITS * ($ODDS - 1)" | bc)
-                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
-                    elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*"; then
-                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $UNITS" | bc)
-                    fi
+                  # Extract units and odds from bet line
+                  if echo "$line" | grep -q "@ [0-9.]* - .*Units: [0-9.]*u"; then
+                    CURRENT_ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\) -.*/\1/')
+                    CURRENT_UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
+                  fi
+                  # Check outcome and calculate
+                  if echo "$line" | grep -q "Outcome: \*\*WIN\*\*" && [ -n "$CURRENT_UNITS" ] && [ -n "$CURRENT_ODDS" ]; then
+                    PROFIT=$(echo "scale=2; $CURRENT_UNITS * ($CURRENT_ODDS - 1)" | bc)
+                    TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
+                  elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*" && [ -n "$CURRENT_UNITS" ]; then
+                    TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $CURRENT_UNITS" | bc)
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
+                  elif echo "$line" | grep -q "Outcome: \*\*PUSH\*\*"; then
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
                   fi
                 done < "$NHL_RESULTS_FILE"
               fi
 
               # Calculate NBA units
               if [ -f "$NBA_RESULTS_FILE" ]; then
+                CURRENT_UNITS=""
+                CURRENT_ODDS=""
                 while IFS= read -r line; do
-                  if echo "$line" | grep -q "Units:"; then
-                    UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
-                    if echo "$line" | grep -q "Outcome: \*\*WIN\*\*"; then
-                      ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\).*/\1/')
-                      PROFIT=$(echo "scale=2; $UNITS * ($ODDS - 1)" | bc)
-                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
-                    elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*"; then
-                      TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $UNITS" | bc)
-                    fi
+                  # Extract units and odds from bet line
+                  if echo "$line" | grep -q "@ [0-9.]* - .*Units: [0-9.]*u"; then
+                    CURRENT_ODDS=$(echo "$line" | sed 's/.*@ \([0-9.]*\) -.*/\1/')
+                    CURRENT_UNITS=$(echo "$line" | sed 's/.*Units: \([0-9.]*\)u.*/\1/')
+                  fi
+                  # Check outcome and calculate
+                  if echo "$line" | grep -q "Outcome: \*\*WIN\*\*" && [ -n "$CURRENT_UNITS" ] && [ -n "$CURRENT_ODDS" ]; then
+                    PROFIT=$(echo "scale=2; $CURRENT_UNITS * ($CURRENT_ODDS - 1)" | bc)
+                    TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS + $PROFIT" | bc)
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
+                  elif echo "$line" | grep -q "Outcome: \*\*LOSS\*\*" && [ -n "$CURRENT_UNITS" ]; then
+                    TOTAL_UNITS=$(echo "scale=2; $TOTAL_UNITS - $CURRENT_UNITS" | bc)
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
+                  elif echo "$line" | grep -q "Outcome: \*\*PUSH\*\*"; then
+                    CURRENT_UNITS=""
+                    CURRENT_ODDS=""
                   fi
                 done < "$NBA_RESULTS_FILE"
               fi
