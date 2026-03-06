@@ -249,6 +249,238 @@ def format_single_card(card, is_featured=False):
     return card_html
 
 
+def format_comparison_analysis(analysis_text):
+    """Format the morning vs noon comparison analysis with enhanced visual styling."""
+    if not analysis_text:
+        return ""
+
+    # Clean up the analysis text
+    cleaned = analysis_text.strip()
+
+    # Remove leading intro patterns
+    intro_patterns = [
+        r"^Here'?s an analysis.*?:\s*\n",
+        r"^Here'?s a comparison.*?:\s*\n",
+    ]
+    for pat in intro_patterns:
+        cleaned = re.sub(pat, "", cleaned, flags=re.IGNORECASE)
+    cleaned = cleaned.strip().lstrip("-").strip()
+
+    # Split into comparison section and final recommendations
+    parts = re.split(r'═+\s*\n\s*🎯 FINAL UNIFIED RECOMMENDATIONS\s*\n\s*═+', cleaned, maxsplit=1)
+    comparison_section = parts[0] if parts else cleaned
+
+    # Start building the styled output
+    html = "<details style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);'>\n"
+    html += "<summary style='cursor:pointer; font-size:1.2em; font-weight: bold; color: white; padding: 18px 20px; border-radius: 10px;'>"
+    html += "<span style='font-size:1.3em; margin-right: 8px;'>📊</span> Morning vs Noon Analysis "
+    html += "<span style='color: rgba(255,255,255,0.7); font-weight: normal; font-size: 0.85em;'>(click to expand)</span>"
+    html += "</summary>\n\n"
+
+    html += "<div style='background: white; padding: 25px; border-radius: 10px; margin-top: 2px;'>\n"
+
+    # Parse and format the comparison section
+    sections = re.split(r'─{20,}', comparison_section)
+
+    for section in sections:
+        section = section.strip()
+        if not section:
+            continue
+
+        # Handle the header with double bars
+        if section.startswith('═'):
+            header_match = re.search(r'📊 MORNING vs NOON ANALYSIS', section)
+            if header_match:
+                html += "<div style='text-align: center; margin-bottom: 25px;'>\n"
+                html += "<h2 style='color: #667eea; margin: 0; font-size: 1.8em;'>📊 Morning vs Noon Analysis</h2>\n"
+                html += "</div>\n"
+                continue
+
+        # Handle Quick Stats section
+        if '**📈 QUICK STATS**' in section:
+            html += "<div style='background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; border-radius: 10px; margin-bottom: 20px; color: white;'>\n"
+            html += "<h3 style='margin: 0 0 15px 0; font-size: 1.3em;'>📈 Quick Stats</h3>\n"
+            html += "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;'>\n"
+
+            stats = re.findall(r'• (.+?):\s*\[?(\d+|X)\]?\s*(✓|➕|➖|📉📈)?', section)
+            for stat_name, stat_value, emoji in stats:
+                html += f"<div style='background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; text-align: center;'>\n"
+                html += f"<div style='font-size: 2em; font-weight: bold;'>{stat_value}</div>\n"
+                html += f"<div style='font-size: 0.9em; opacity: 0.9;'>{stat_name} {emoji}</div>\n"
+                html += "</div>\n"
+
+            html += "</div></div>\n"
+            continue
+
+        # Handle Consistent Plays section
+        if '**✓ CONSISTENT PLAYS**' in section:
+            html += "<div style='background: #f0fdf4; border-left: 4px solid #10b981; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>\n"
+            html += "<h3 style='color: #10b981; margin: 0 0 15px 0; font-size: 1.3em;'>✓ Consistent Plays</h3>\n"
+            html += "<div style='color: #666; line-height: 1.8;'>\n"
+
+            # Parse bullet points
+            plays = re.findall(r'• \*\*(.+?)\*\* - (.+?)(?=\n  └─|\n• |\n\n|$)', section, re.DOTALL)
+            for play, details in plays:
+                html += f"<div style='margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #d1d5db;'>\n"
+                html += f"<div style='font-weight: 600; color: #111827; margin-bottom: 8px;'>• {play}</div>\n"
+                html += f"<div style='font-size: 0.9em; color: #6b7280; margin-left: 20px;'>{details.strip()}</div>\n"
+
+                # Parse sub-details (└─ lines)
+                sub_details = re.findall(r'└─ (.+?)(?=\n|$)', section)
+                for sub in sub_details:
+                    html += f"<div style='font-size: 0.85em; color: #9ca3af; margin-left: 30px; margin-top: 4px;'>└─ {sub}</div>\n"
+
+                html += "</div>\n"
+
+            html += "</div></div>\n"
+            continue
+
+        # Handle Added Plays section
+        if '**➕ ADDED PLAYS**' in section:
+            html += "<div style='background: #eff6ff; border-left: 4px solid #3b82f6; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>\n"
+            html += "<h3 style='color: #3b82f6; margin: 0 0 15px 0; font-size: 1.3em;'>➕ Added Plays</h3>\n"
+            html += "<div style='color: #666; line-height: 1.8;'>\n"
+            html += format_play_bullets(section)
+            html += "</div></div>\n"
+            continue
+
+        # Handle Removed Plays section
+        if '**➖ REMOVED PLAYS**' in section:
+            html += "<div style='background: #fef2f2; border-left: 4px solid #ef4444; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>\n"
+            html += "<h3 style='color: #ef4444; margin: 0 0 15px 0; font-size: 1.3em;'>➖ Removed Plays</h3>\n"
+            html += "<div style='color: #666; line-height: 1.8;'>\n"
+            html += format_play_bullets(section)
+            html += "</div></div>\n"
+            continue
+
+        # Handle Line Movement Analysis section
+        if '**📉📈 LINE MOVEMENT ANALYSIS**' in section:
+            html += "<div style='background: #fefce8; border-left: 4px solid #eab308; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>\n"
+            html += "<h3 style='color: #eab308; margin: 0 0 15px 0; font-size: 1.3em;'>📉📈 Line Movement Analysis</h3>\n"
+
+            # Extract table content
+            table_match = re.search(r'```\n(.*?)\n```', section, re.DOTALL)
+            if table_match:
+                table_text = table_match.group(1)
+                html += format_line_movement_table(table_text)
+
+            html += "</div>\n"
+            continue
+
+        # Handle Key Insights section
+        if '**💡 KEY INSIGHTS**' in section:
+            html += "<div style='background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 20px; border-radius: 10px; margin-bottom: 20px; color: white;'>\n"
+            html += "<h3 style='margin: 0 0 15px 0; font-size: 1.3em;'>💡 Key Insights</h3>\n"
+            html += "<ul style='margin: 0; padding-left: 20px; line-height: 1.8;'>\n"
+
+            insights = re.findall(r'• (.+?)(?=\n• |\n\n|$)', section, re.DOTALL)
+            for insight in insights:
+                html += f"<li style='margin-bottom: 10px;'>{insight.strip()}</li>\n"
+
+            html += "</ul></div>\n"
+            continue
+
+        # Default: format as regular content
+        if section:
+            formatted = format_generic_section(section)
+            if formatted:
+                html += formatted
+
+    html += "</div>\n"
+    html += "</details>\n\n"
+
+    return html
+
+
+def format_play_bullets(section_text):
+    """Format play bullets with consistent styling."""
+    html = ""
+    plays = re.findall(r'• \*\*(.+?)\*\*\s*(?:@\s*[\d.]+)?\s*(?:\((.+?)\))?\s*\n  └─ Reason: (.+?)(?=\n• |\n\n|$)', section_text, re.DOTALL)
+
+    for play, extra_info, reason in plays:
+        html += f"<div style='margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #d1d5db;'>\n"
+        html += f"<div style='font-weight: 600; color: #111827; margin-bottom: 8px;'>• {play}"
+        if extra_info:
+            html += f" <span style='font-size: 0.9em; color: #6b7280;'>({extra_info})</span>"
+        html += "</div>\n"
+        html += f"<div style='font-size: 0.9em; color: #6b7280; margin-left: 20px; line-height: 1.6;'>└─ {reason.strip()}</div>\n"
+        html += "</div>\n"
+
+    return html
+
+
+def format_line_movement_table(table_text):
+    """Format the line movement table with nice styling."""
+    lines = [line for line in table_text.split('\n') if line.strip() and not line.strip().startswith('─')]
+
+    if len(lines) < 2:
+        return "<div style='color: #666;'>No line movement data available</div>"
+
+    html = "<div style='overflow-x: auto; margin-top: 15px;'>\n"
+    html += "<table style='width: 100%; border-collapse: collapse; font-size: 0.9em;'>\n"
+
+    # Header row
+    headers = [h.strip() for h in lines[0].split('|') if h.strip()]
+    html += "<thead style='background: #78350f; color: white;'>\n<tr>\n"
+    for header in headers:
+        html += f"<th style='padding: 12px 8px; text-align: left; font-weight: 600;'>{header}</th>\n"
+    html += "</tr>\n</thead>\n"
+
+    # Data rows
+    html += "<tbody>\n"
+    for i, line in enumerate(lines[1:]):
+        cells = [c.strip() for c in line.split('|') if c.strip()]
+        if len(cells) < len(headers):
+            continue
+
+        bg_color = '#fefce8' if i % 2 == 0 else 'white'
+        html += f"<tr style='background: {bg_color};'>\n"
+        for cell in cells:
+            html += f"<td style='padding: 10px 8px; border-bottom: 1px solid #e5e7eb;'>{cell}</td>\n"
+        html += "</tr>\n"
+
+    html += "</tbody>\n</table>\n</div>\n"
+    return html
+
+
+def format_generic_section(section_text):
+    """Format generic sections with basic HTML conversion."""
+    if not section_text.strip():
+        return ""
+
+    html = "<div style='margin-bottom: 15px; color: #374151; line-height: 1.6;'>\n"
+
+    # Convert **bold** to <strong>
+    section_text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', section_text)
+
+    # Convert *italic* to <em>
+    section_text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', section_text)
+
+    # Convert bullet points
+    lines = section_text.split('\n')
+    in_list = False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith('• ') or stripped.startswith('- '):
+            if not in_list:
+                html += '<ul style="margin: 10px 0; padding-left: 25px;">\n'
+                in_list = True
+            item_text = stripped[2:]
+            html += f'<li style="margin-bottom: 8px;">{item_text}</li>\n'
+        else:
+            if in_list:
+                html += '</ul>\n'
+                in_list = False
+            if stripped:
+                html += f'<p style="margin: 10px 0;">{stripped}</p>\n'
+
+    if in_list:
+        html += '</ul>\n'
+
+    html += "</div>\n"
+    return html
+
+
 def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
     """Build a complete sport section with nice formatting."""
     if not raw_text:
@@ -260,75 +492,8 @@ def build_sport_section(raw_text, sport_key, sport_name, sport_emoji, record):
 
     # Analysis summary (collapsible)
     if analysis_text:
-        # Clean up the analysis text for better rendering inside <details>
-        cleaned = analysis_text.strip()
-        # Remove leading "Here's an analysis..." intro line if present
-        intro_patterns = [
-            r"^Here'?s an analysis.*?:\s*\n",
-            r"^Here'?s a comparison.*?:\s*\n",
-        ]
-        for pat in intro_patterns:
-            cleaned = re.sub(pat, "", cleaned, flags=re.IGNORECASE)
-        cleaned = cleaned.strip().lstrip("-").strip()
-
-        # Remove trailing --- that looks messy inside details
-        cleaned = re.sub(r'\n---\s*$', '', cleaned).strip()
-        # Remove leading --- as well
-        cleaned = re.sub(r'^---\s*\n', '', cleaned).strip()
-
-        # Convert markdown headings to HTML for reliable rendering inside <details>
-        def heading_to_html(m):
-            level = len(m.group(1))
-            text = m.group(2).strip()
-            return f"<h{level}>{text}</h{level}>"
-        cleaned = re.sub(r'^(#{1,6})\s+(.+)$', heading_to_html, cleaned, flags=re.MULTILINE)
-
-        # Convert --- separators to <hr> for reliable rendering
-        cleaned = re.sub(r'^\s*---\s*$', '<hr>', cleaned, flags=re.MULTILINE)
-
-        # Convert **bold** to <strong> for reliable rendering inside HTML
-        cleaned = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', cleaned)
-
-        # Convert *italic* to <em> (but not bullet points)
-        cleaned = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', cleaned)
-
-        # Convert bullet points (* item) to HTML list items
-        lines_list = cleaned.split('\n')
-        in_list = False
-        new_lines = []
-        for line in lines_list:
-            stripped = line.strip()
-            if stripped.startswith('* ') or stripped.startswith('- '):
-                if not in_list:
-                    new_lines.append('<ul>')
-                    in_list = True
-                # Handle nested bullets (4 spaces indent)
-                if line.startswith('    ') or line.startswith('\t'):
-                    item_text = stripped[2:]
-                    new_lines.append(f'  <li>{item_text}</li>')
-                else:
-                    item_text = stripped[2:]
-                    new_lines.append(f'<li>{item_text}</li>')
-            else:
-                if in_list:
-                    new_lines.append('</ul>')
-                    in_list = False
-                # Convert blank lines to <br> for spacing
-                if stripped == '':
-                    new_lines.append('<br>')
-                else:
-                    new_lines.append(f'<p>{stripped}</p>' if stripped and not stripped.startswith('<') else stripped)
-        if in_list:
-            new_lines.append('</ul>')
-        cleaned = '\n'.join(new_lines)
-
-        # Add a hint for the collapsible section with a visual arrow
-        md += "<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>\n"
-        md += "<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>\n\n"
-        md += "<div style='margin-top: 15px;'>\n"
-        md += cleaned + "\n"
-        md += "</div>\n\n"
-        md += "</details>\n\n"
+        formatted_analysis = format_comparison_analysis(analysis_text)
+        md += formatted_analysis
 
     # Format recommendations as styled cards
     if recs_text:

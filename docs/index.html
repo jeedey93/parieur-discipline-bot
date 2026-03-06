@@ -85,7 +85,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 01:09 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 02:18 PM ET</div>
 </div>
 </div>
 
@@ -234,45 +234,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-subtitle'>Today's NHL picks with full analysis</div>
 </div>
 
-<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
-<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
+<details style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);'>
+<summary style='cursor:pointer; font-size:1.2em; font-weight: bold; color: white; padding: 18px 20px; border-radius: 10px;'><span style='font-size:1.3em; margin-right: 8px;'>📊</span> Morning vs Noon Analysis <span style='color: rgba(255,255,255,0.7); font-weight: normal; font-size: 0.85em;'>(click to expand)</span></summary>
 
-<div style='margin-top: 15px;'>
-<p>Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.</p>
-<br>
-<strong>Report Comparison & Analysis:</strong>
-<br>
-<p>1.  <strong>Consistency:</strong></p>
-<ul>
-  <li>  The play <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5</strong> appeared in both reports.</li>
-</ul>
-<br>
-<p>2.  <strong>Added/Removed Plays:</strong></p>
-<ul>
-  <li>  <strong>Removed from Noon:</strong></li>
-  <li>  Florida Panthers vs Detroit Red Wings Under 6.0</li>
-  <li>  Colorado Avalanche ML vs Dallas Stars</li>
-  <li>  Colorado Avalanche vs Dallas Stars Under 6.0</li>
-  <li>  <strong>Added in Noon:</strong></li>
-  <li>  Detroit Red Wings ML vs Florida Panthers (became Bet of the Day)</li>
-  <li>  Montréal Canadiens vs Anaheim Ducks Over 6.5 (game not in morning report)</li>
-  <li>  St Louis Blues ML vs San Jose Sharks</li>
-</ul>
-<br>
-<p>3.  <strong>Confidence Level Changes (for consistent plays):</strong></p>
-<ul>
-  <li>  Carolina Hurricanes vs Edmonton Oilers Over 6.5: Confidence remained High, but Win Probability decreased from 65% (morning) to 60% (noon).</li>
-</ul>
-<br>
-<p>4.  <strong>Odds Changes (affecting recommendations):</strong></p>
-<ul>
-  <li>  <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5:</strong> Odds improved from 1.85 (morning) to 1.97 (noon). This improved line might have contributed to the play remaining a high-confidence pick despite a slight drop in win probability.</li>
-  <li>  <strong>Detroit Red Wings ML vs Florida Panthers:</strong> This play was added at noon, with the Red Wings ML at 1.67. The morning report had a play on the Under for this game, which was subsequently removed. The shift suggests a significant re-evaluation of the game's outcome rather than just the total, potentially driven by further injury confirmation or betting line movement on the Moneyline.</li>
-  <li>  <strong>St Louis Blues ML vs San Jose Sharks:</strong> The St. Louis ML odds slightly improved from 2.11 (morning) to 2.12 (noon), leading to its inclusion as a recommended play at noon.</li>
-  <li>  <strong>Colorado Avalanche ML/Under:</strong> Both Avalanche plays were removed. For the ML, the reasoning of Dallas's fatigue/backup goalie might have been re-evaluated or the line moved against Colorado. For the Under, perhaps new information suggested a higher-scoring potential or the value disappeared.</li>
-</ul>
+<div style='background: white; padding: 25px; border-radius: 10px; margin-top: 2px;'>
+<div style='margin-bottom: 15px; color: #374151; line-height: 1.6;'>
+<p style="margin: 10px 0;">Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.</p>
+<p style="margin: 10px 0;"><strong>Report Comparison & Analysis:</strong></p>
+<p style="margin: 10px 0;">1.  <strong>Consistency:</strong></p>
+<p style="margin: 10px 0;">*   The play <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5</strong> appeared in both reports.</p>
+<p style="margin: 10px 0;">2.  <strong>Added/Removed Plays:</strong></p>
+<p style="margin: 10px 0;">*   <strong>Removed from Noon:</strong></p>
+<p style="margin: 10px 0;">*   Florida Panthers vs Detroit Red Wings Under 6.0</p>
+<p style="margin: 10px 0;">*   Colorado Avalanche ML vs Dallas Stars</p>
+<p style="margin: 10px 0;">*   Colorado Avalanche vs Dallas Stars Under 6.0</p>
+<p style="margin: 10px 0;">*   <strong>Added in Noon:</strong></p>
+<p style="margin: 10px 0;">*   Detroit Red Wings ML vs Florida Panthers (became Bet of the Day)</p>
+<p style="margin: 10px 0;">*   Montréal Canadiens vs Anaheim Ducks Over 6.5 (game not in morning report)</p>
+<p style="margin: 10px 0;">*   St Louis Blues ML vs San Jose Sharks</p>
+<p style="margin: 10px 0;">3.  <strong>Confidence Level Changes (for consistent plays):</strong></p>
+<p style="margin: 10px 0;">*   Carolina Hurricanes vs Edmonton Oilers Over 6.5: Confidence remained High, but Win Probability decreased from 65% (morning) to 60% (noon).</p>
+<p style="margin: 10px 0;">4.  <strong>Odds Changes (affecting recommendations):</strong></p>
+<p style="margin: 10px 0;">*   <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5:</strong> Odds improved from 1.85 (morning) to 1.97 (noon). This improved line might have contributed to the play remaining a high-confidence pick despite a slight drop in win probability.</p>
+<p style="margin: 10px 0;">*   <strong>Detroit Red Wings ML vs Florida Panthers:</strong> This play was added at noon, with the Red Wings ML at 1.67. The morning report had a play on the Under for this game, which was subsequently removed. The shift suggests a significant re-evaluation of the game's outcome rather than just the total, potentially driven by further injury confirmation or betting line movement on the Moneyline.</p>
+<p style="margin: 10px 0;">*   <strong>St Louis Blues ML vs San Jose Sharks:</strong> The St. Louis ML odds slightly improved from 2.11 (morning) to 2.12 (noon), leading to its inclusion as a recommended play at noon.</p>
+<p style="margin: 10px 0;">*   <strong>Colorado Avalanche ML/Under:</strong> Both Avalanche plays were removed. For the ML, the reasoning of Dallas's fatigue/backup goalie might have been re-evaluated or the line moved against Colorado. For the Under, perhaps new information suggested a higher-scoring potential or the value disappeared.</p>
+<p style="margin: 10px 0;">---</p>
 </div>
-
+</div>
 </details>
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
@@ -317,43 +306,32 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='section-subtitle'>Today's NBA picks with full analysis</div>
 </div>
 
-<details style='background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>
-<summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
+<details style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);'>
+<summary style='cursor:pointer; font-size:1.2em; font-weight: bold; color: white; padding: 18px 20px; border-radius: 10px;'><span style='font-size:1.3em; margin-right: 8px;'>📊</span> Morning vs Noon Analysis <span style='color: rgba(255,255,255,0.7); font-weight: normal; font-size: 0.85em;'>(click to expand)</span></summary>
 
-<div style='margin-top: 15px;'>
-<p>The prediction reports from 7:00 AM and 12:00 PM show several significant shifts in market perception and AI recommendations. While some plays remained consistent, many were either dropped, added, or reversed, highlighting dynamic line movements and updated assessments based on new information or closer market scrutiny.</p>
-<br>
-<strong>Key Observations on Report Changes:</strong>
-<br>
-<p>1.  <strong>Consistent Plays (appeared in both reports):</strong></p>
-<ul>
-  <li>  Portland Trail Blazers vs Houston Rockets (Spread)</li>
-  <li>  Los Angeles Clippers vs San Antonio Spurs (Spread)</li>
-</ul>
-<br>
-<p>2.  <strong>Removed Plays (present in Morning, absent in Noon):</strong></p>
-<ul>
-  <li>  Denver Nuggets ML vs New York Knicks (Morning's "Bet of the Day")</li>
-  <li>  Phoenix Suns -6.0 vs New Orleans Pelicans</li>
-  <li>  Los Angeles Lakers -10.0 vs Indiana Pacers</li>
-</ul>
-<em>   </em>Observation<em>: All three removed plays were "High Confidence" in the morning. Their removal, or in the latter two cases, the recommendation of the opposing spread, indicates a significant shift in the AI's probabilistic edge. For the Nuggets, the ML odds moved from 2.02 to 2.08, making it a </em>more* favorable bet from an odds perspective, yet it was dropped, suggesting underlying factors (perhaps team news, roster updates, or internal model adjustments) outweighed the improving odds.
-<br>
-<p>3.  <strong>Added Plays (present in Noon, absent in Morning):</strong></p>
-<ul>
-  <li>  Charlotte Hornets -8.0 vs Miami Heat (Noon's "Bet of the Day")</li>
-  <li>  New Orleans Pelicans +5.5 vs Phoenix Suns (Reversing Morning's Suns -6.0)</li>
-  <li>  Indiana Pacers +9.5 vs Los Angeles Lakers (Reversing Morning's Lakers -10.0)</li>
-</ul>
-<em>   </em>Observation*: The addition of the Hornets as the new "Bet of the Day" signifies a strong new conviction. The reversals for the Suns/Pelicans and Lakers/Pacers games are particularly notable, indicating that the market or the AI's internal model adjusted significantly against the initial morning favorites covering large spreads.
-<br>
-<p>4.  <strong>Confidence & Odds/Line Changes (for consistent plays):</strong></p>
-<ul>
-  <li>  <strong>Portland Trail Blazers +6.5 vs Houston Rockets</strong>: Line moved from +6.5 to +6.0 (less favorable), odds moved from 1.91 to 1.96 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 56%.</li>
-  <li>  <strong>Los Angeles Clippers +7.5 vs San Antonio Spurs</strong>: Line moved from +7.5 to +6.5 (less favorable), odds moved from 1.91 to 1.95 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 57%.</li>
-</ul>
+<div style='background: white; padding: 25px; border-radius: 10px; margin-top: 2px;'>
+<div style='margin-bottom: 15px; color: #374151; line-height: 1.6;'>
+<p style="margin: 10px 0;">The prediction reports from 7:00 AM and 12:00 PM show several significant shifts in market perception and AI recommendations. While some plays remained consistent, many were either dropped, added, or reversed, highlighting dynamic line movements and updated assessments based on new information or closer market scrutiny.</p>
+<p style="margin: 10px 0;"><strong>Key Observations on Report Changes:</strong></p>
+<p style="margin: 10px 0;">1.  <strong>Consistent Plays (appeared in both reports):</strong></p>
+<p style="margin: 10px 0;">*   Portland Trail Blazers vs Houston Rockets (Spread)</p>
+<p style="margin: 10px 0;">*   Los Angeles Clippers vs San Antonio Spurs (Spread)</p>
+<p style="margin: 10px 0;">2.  <strong>Removed Plays (present in Morning, absent in Noon):</strong></p>
+<p style="margin: 10px 0;">*   Denver Nuggets ML vs New York Knicks (Morning's "Bet of the Day")</p>
+<p style="margin: 10px 0;">*   Phoenix Suns -6.0 vs New Orleans Pelicans</p>
+<p style="margin: 10px 0;">*   Los Angeles Lakers -10.0 vs Indiana Pacers</p>
+<p style="margin: 10px 0;"><em>   </em>Observation<em>: All three removed plays were "High Confidence" in the morning. Their removal, or in the latter two cases, the recommendation of the opposing spread, indicates a significant shift in the AI's probabilistic edge. For the Nuggets, the ML odds moved from 2.02 to 2.08, making it a </em>more* favorable bet from an odds perspective, yet it was dropped, suggesting underlying factors (perhaps team news, roster updates, or internal model adjustments) outweighed the improving odds.</p>
+<p style="margin: 10px 0;">3.  <strong>Added Plays (present in Noon, absent in Morning):</strong></p>
+<p style="margin: 10px 0;">*   Charlotte Hornets -8.0 vs Miami Heat (Noon's "Bet of the Day")</p>
+<p style="margin: 10px 0;">*   New Orleans Pelicans +5.5 vs Phoenix Suns (Reversing Morning's Suns -6.0)</p>
+<p style="margin: 10px 0;">*   Indiana Pacers +9.5 vs Los Angeles Lakers (Reversing Morning's Lakers -10.0)</p>
+<p style="margin: 10px 0;"><em>   </em>Observation*: The addition of the Hornets as the new "Bet of the Day" signifies a strong new conviction. The reversals for the Suns/Pelicans and Lakers/Pacers games are particularly notable, indicating that the market or the AI's internal model adjusted significantly against the initial morning favorites covering large spreads.</p>
+<p style="margin: 10px 0;">4.  <strong>Confidence & Odds/Line Changes (for consistent plays):</strong></p>
+<p style="margin: 10px 0;">*   <strong>Portland Trail Blazers +6.5 vs Houston Rockets</strong>: Line moved from +6.5 to +6.0 (less favorable), odds moved from 1.91 to 1.96 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 56%.</p>
+<p style="margin: 10px 0;">*   <strong>Los Angeles Clippers +7.5 vs San Antonio Spurs</strong>: Line moved from +7.5 to +6.5 (less favorable), odds moved from 1.91 to 1.95 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 57%.</p>
+<p style="margin: 10px 0;">---</p>
 </div>
-
+</div>
 </details>
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
