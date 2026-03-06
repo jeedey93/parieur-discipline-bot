@@ -85,7 +85,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Updated at 12:27 PM ET</div>
+<div class='blog-update-time'>⏱️ Updated at 12:56 PM ET</div>
 </div>
 </div>
 
@@ -93,8 +93,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
 <div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.06 units</div>
+<div class='stat-record'>6W - 4L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+1.89 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -140,16 +140,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div class='pick-card'>
 <div class='pick-badge badge-nhl'>PICK #1 — NHL</div>
-<div class='pick-title'>Carolina Hurricanes vs Edmonton Oilers Over 6.5 @ 1.97</div>
-<div class='pick-meta'><span class='confidence-medium'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 55%</div>
-<div class='pick-description'>Both the Hurricanes and Oilers have shown a propensity for high-scoring affairs in their recent outings, with Edmonton's last two visible games and Carolina's most recent game all exceeding 6.5 total goals. With no significant absences affecting either team's offensive or defensive core, and both squads having adequate rest, the conditions are ripe for another high-event game. The odds of 1.97 present a solid value against our estimated probability, indicating the market might be slightly undervaluing the scoring potential in this matchup. This play was present in both reports. The odds increased from 1.85 (morning) to 1.97 (noon). However, confidence decreased from High (65%) to Medium (55%), and units decreased from 1.5u to 1u.</div>
+<div class='pick-title'>Detroit Red Wings ML vs Florida Panthers @ 1.67</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 70%</div>
+<div class='pick-description'>The Detroit Red Wings are well-rested and playing at home, facing a severely depleted Florida Panthers team on a road back-to-back. Florida is missing key players like elite center Aleksander Barkov and top defenseman Seth Jones, alongside other core skaters, which significantly impacts their offensive and defensive capabilities. Detroit's advantages in rest and health, coupled with Florida's fatigue and extensive injury list, create a strong mispriced opportunity. This play was a new addition to the noon report and was immediately elevated to "Bet of the Day," indicating a strong shift in conviction regarding the Red Wings' advantage over the injured Panthers.</div>
 </div>
 
 <div class='pick-card'>
 <div class='pick-badge badge-nba'>PICK #2 — NBA</div>
-<div class='pick-title'>Los Angeles Lakers -9.5 vs Indiana Pacers @ 1.98</div>
-<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 74%</div>
-<div class='pick-description'>The Los Angeles Lakers are entering this home matchup well-rested after two days off, showcasing strong recent form with consecutive dominant wins. The Indiana Pacers, conversely, are on the road and in poor form, having suffered two significant blowout losses recently, highlighting their struggle to cover large spreads. This favorable scheduling, coupled with the Lakers' offensive firepower and the Pacers' defensive frailties, creates a significant probabilistic edge that the market has not fully accounted for, making the Lakers a high-value play to cover this spread. The AI has also shown consistent success with Lakers picks and poor performance with Pacers picks historically. Line moved from -10.0 @ 1.91 (morning) to -9.5 @ 1.98 (noon), Win Probability increased from 60% to 74%. This play moved from an "Other Recommended Play" in the morning to the "Bet of the Day" at noon due to significant improvements in its perceived value and probability.</div>
+<div class='pick-title'>Charlotte Hornets -8.0 vs Miami Heat @ 1.91</div>
+<div class='pick-meta'><span class='confidence-high'>HIGH</span> Confidence Level: High, Units: 1.5u, Win Probability: 59%</div>
+<div class='pick-description'>The Charlotte Hornets are at home and come into this game with two days of rest, providing a significant fatigue advantage over the Miami Heat who are playing on a back-to-back after traveling from Brooklyn. The Hornets have also shown strong recent form, securing multiple wins in their last few tracked games. This combination of rest, home court advantage, and momentum against a fatigued opponent creates a strong statistical edge, making the -8.0 spread highly attractive. This play was added as Bet of the Day in the Noon report.</div>
 </div>
 
 </div>
@@ -159,66 +159,68 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for February 27, 2026</div>
+<div class='section-subtitle'>Performance breakdown for March 5, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
 <div class='results-grid'>
+<div class='result-tile result-tile-win result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Utah Mammoth vs Philadelphia Flyers Under 6.0</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.35u</div>
+</div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>BET OF THE DAY: Minnesota Wild @ Colorado Avala...</div>
+<div class='result-tile-bet'>Boston Bruins ML vs Nashville Predators</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Buffalo Sabres @ Pittsburgh Penguins Under 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.90u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>New York Islanders @ Los Angeles Kings Under 5.5</div>
 <div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Carolina Hurricanes ML vs Tampa Bay Lightning</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.64u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Toronto Maple Leafs @ Florida Panthers ML vs To...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.63u</div>
-</div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>New Jersey Devils vs Pittsburgh Penguins Over 5.5</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Chicago Blackhawks @ Nashville Predators ML vs ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.55u</div>
+<div class='result-tile-bet'>Florida Panthers @ Columbus Blue Jackets Under 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.90u</div>
 </div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-win'>
+<div class='result-tile result-tile-win result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>BET OF THE DAY: Philadelphia 76ers ML vs Miami ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.68u</div>
+<div class='result-tile-bet'>Minnesota Timberwolves -5.0 vs Toronto Raptors</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.41u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Sacramento Kings vs New Orleans Pelicans Under ...</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Sacramento Kings +5.5 vs New Orleans Pelicans</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Philadelphia 76ers -2.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.93u</div>
+<div class='result-tile-bet'>San Antonio Spurs -3.5 vs Detroit Pistons</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.42u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: San Antonio Spurs -12.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Charlotte Hornets -13.0...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Houston Rockets ML vs O...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.65u</div>
+<div class='result-tile-bet'>Golden State Warriors +8.5 vs Houston Rockets</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.41u</div>
 </div>
 </div>
 
@@ -236,68 +238,31 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
 
 <div style='margin-top: 15px;'>
-<p>Here's an analysis comparing the morning and noon prediction reports, followed by the unified final recommendation list.</p>
+<p>Here's an updated analysis and final recommendation list, incorporating the changes and insights between the morning and noon prediction reports:</p>
 <br>
-<strong>Analysis Summary:</strong>
+<strong>Summary of Changes from Morning to Noon Report:</strong>
 <br>
-<p>1.  <strong>Consistent Plays (appeared in both reports):</strong></p>
 <ul>
-  <li>  Carolina Hurricanes vs Edmonton Oilers Over 6.5</li>
-</ul>
-<br>
-<p>2.  <strong>Added/Removed Plays:</strong></p>
-<ul>
-  <li>  <strong>Removed (present in morning, absent in noon):</strong></li>
+<li>  <strong>New "Bet of the Day":</strong> The noon report introduced a new "Bet of the Day" – Detroit Red Wings ML vs Florida Panthers with a high conviction (70% win probability). This play was not present in the morning report.</li>
+<li>  <strong>Downgraded "Bet of the Day":</strong> The Carolina Hurricanes vs Edmonton Oilers Over 6.5, which was the "Bet of the Day" in the morning (65% win probability), saw its win probability reduced to 60% and was moved to "Other Recommended Plays" in the noon report.</li>
+<li>  <strong>Odds Movement:</strong> The odds for Carolina Hurricanes vs Edmonton Oilers Over 6.5 moved from 1.85 (morning) to 1.90 (noon), indicating a slight increase in the payout for the Over.</li>
+<li>  <strong>Removed Plays:</strong> Several plays from the morning report were entirely removed in the noon report, indicating a significant loss of conviction by the AI or a re-prioritization of more favorable opportunities. These include:</li>
   <li>  Florida Panthers vs Detroit Red Wings Under 6.0</li>
   <li>  Colorado Avalanche ML vs Dallas Stars</li>
   <li>  Colorado Avalanche vs Dallas Stars Under 6.0</li>
-  <li>  <strong>Added (present in noon, absent in morning):</strong> None.</li>
 </ul>
-<br>
-<p>3.  <strong>Confidence Level Changes:</strong></p>
-<ul>
-  <li>  <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5:</strong> Confidence decreased from High (65% Win Probability) in the morning to Medium (55% Win Probability) in the noon report.</li>
-</ul>
-<br>
-<p>4.  <strong>Odds Changes Affecting Recommendations:</strong></p>
-<ul>
-  <li>  <strong>Carolina Hurricanes vs Edmonton Oilers Over 6.5:</strong> The odds for this specific bet increased from 1.85 (morning) to 1.97 (noon). While higher odds generally offer better value, the AI's confidence and win probability simultaneously decreased, indicating a re-evaluation despite the more favorable market price.</li>
-  <li>  <strong>Colorado Avalanche ML vs Dallas Stars:</strong> The odds for Colorado ML slightly improved from 1.99 (morning) to 2.01 (noon). However, this play was still removed, suggesting other factors (e.g., updated roster data, goalie confirmations) outweighed the minor odds improvement.</li>
-  <li>  For the other removed plays (Florida/Detroit Under 6.0 and Colorado/Dallas Under 6.0), the Over/Under line remained constant at 6.0 in both reports, implying their associated odds likely remained stable or changed minimally before the plays were removed from consideration.</li>
-</ul>
+<p>The removal of the Florida/Detroit Under play, while a new Detroit ML play was added, suggests a complete flip in the AI's perspective on that specific game.</p>
 </div>
 
 </details>
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Florida Panthers vs Detroit Red Wings Under 6.0 @ 1.90</div>
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Carolina Hurricanes vs Edmonton Oilers Over 6.5 @ 1.90</div>
 
 <div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 60%</div>
 
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Panthers are significantly hampered by injuries, with elite forward Aleksander Barkov and top defenseman Seth Jones both out. This, combined with playing on a back-to-back, will likely suppress their offensive output and could lead to a more conservative game plan. Historically, Florida's recent games have consistently stayed at or below six total goals, including three games with exactly six goals in their last four appearances. Detroit also had a 6-goal game recently, and with Florida's offensive struggles exacerbated by key absences, the "Under" holds strong value despite defensive injuries potentially making Florida more vulnerable. This play was removed in the noon report. The O/U line for this game remained 6.0, and the odds were consistent at 1.90 in the morning report.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Colorado Avalanche ML vs Dallas Stars @ 2.01</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 57.5%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Colorado Avalanche enter this contest well-rested, contrasting sharply with the Dallas Stars who are playing on a back-to-back after a dominant 6-1 win yesterday. While Dallas has been in strong recent form (3 wins in 3 observed games), their fatigue and likely backup goalie due to the back-to-back will heavily favor a rested Avalanche squad playing at home. Colorado's last game was a loss, but with key rest and a strong offensive lineup, they are well-positioned to capitalize on Dallas's tired legs and potential secondary goaltending. This play was removed in the noon report. The Avalanche ML odds slightly improved from 1.99 (morning) to 2.01 (noon) before its removal.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Colorado Avalanche vs Dallas Stars Under 6.0 @ 1.90</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 57%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Despite Dallas's recent high-scoring 6-1 game, their general trend, especially when rested (like their 3-2 and 4-1 games previously), and very strong defensive performance (allowing 1, 2, 1 goals) suggests they can limit opponents. The Avalanche, while potent, have a rested starting goaltender. Dallas's back-to-back often leads to lower offensive output, balancing out the slight defensive weakness from fatigue. This matchup sets up for a tighter, more defensively oriented game than the 6.0 total might suggest, especially with Dallas's excellent recent defensive record. This play was removed in the noon report. The O/U line for this game remained 6.0, and the odds were consistent at 1.90 in the morning report.</div>
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>This game projects as a high-scoring affair given the recent offensive trends of both teams. Edmonton's last two games have seen totals of 11 and 9 goals, while Carolina's recent outing also featured 9 goals. With both teams well-rested and capable of generating offense, the market appears to undervalue the probability of this game surpassing the 6.5 goal total.</div>
 
 </div>
 
@@ -315,20 +280,36 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <summary style='cursor:pointer;font-size:1.1em; font-weight: bold; color: #4a90e2;'><span style='font-size:1.2em;'>▶️</span> Morning vs Noon Analysis <span style='color:#999; font-weight: normal;'>(click to expand)</span></summary>
 
 <div style='margin-top: 15px;'>
-<strong>Summary of Changes Between Reports:</strong>
+<p>The prediction reports from 7:00 AM and 12:00 PM show several significant shifts in market perception and AI recommendations. While some plays remained consistent, many were either dropped, added, or reversed, highlighting dynamic line movements and updated assessments based on new information or closer market scrutiny.</p>
 <br>
+<strong>Key Observations on Report Changes:</strong>
+<br>
+<p>1.  <strong>Consistent Plays (appeared in both reports):</strong></p>
 <ul>
-<li>  <strong>Consistency:</strong> The following plays appeared in both reports, indicating sustained conviction: Denver Nuggets ML, Phoenix Suns Spread, Los Angeles Lakers Spread, Los Angeles Clippers Spread.</li>
-<li>  <strong>Added Plays:</strong> The Charlotte Hornets Spread was a new recommendation in the noon report.</li>
-<li>  <strong>Removed Plays:</strong> The Portland Trail Blazers Spread, which was a "Medium Confidence" play in the morning report, was removed from the noon report's recommendations.</li>
-<li>  <strong>Bet of the Day Shift:</strong> The Los Angeles Lakers Spread became the "Bet of the Day" in the noon report, replacing the Denver Nuggets ML which was the "Bet of the Day" in the morning.</li>
-<li>  <strong>Odds/Line Movement:</strong></li>
-  <li>  <strong>Lakers Spread:</strong> Line moved from -10.0 to -9.5, odds improved from 1.91 to 1.98, and Win Probability significantly increased (60% to 74%).</li>
-  <li>  <strong>Suns Spread:</strong> Line moved from -6.0 to -5.0, odds slightly decreased from 1.94 to 1.93, but Win Probability increased (60% to 68%).</li>
-  <li>  <strong>Nuggets ML:</strong> Moneyline odds increased from 2.02 to 2.06, and Win Probability slightly increased (61.5% to 63%).</li>
-  <li>  <strong>Clippers Spread:</strong> Line moved from +7.5 to +6.5, odds improved from 1.91 to 1.95, but Win Probability decreased (58% to 56%).</li>
-  <li>  <strong>Rockets/Blazers:</strong> Spread moved from Blazers +6.5 to Rockets -6.0 (effectively Blazers +6.0) and was no longer recommended.</li>
-<li>  <strong>Confidence Level Changes:</strong> Confidence levels remained consistent for the plays that appeared in both reports (High for Lakers, Suns, Nuggets; Medium for Clippers). The new Charlotte play was High confidence.</li>
+  <li>  Portland Trail Blazers vs Houston Rockets (Spread)</li>
+  <li>  Los Angeles Clippers vs San Antonio Spurs (Spread)</li>
+</ul>
+<br>
+<p>2.  <strong>Removed Plays (present in Morning, absent in Noon):</strong></p>
+<ul>
+  <li>  Denver Nuggets ML vs New York Knicks (Morning's "Bet of the Day")</li>
+  <li>  Phoenix Suns -6.0 vs New Orleans Pelicans</li>
+  <li>  Los Angeles Lakers -10.0 vs Indiana Pacers</li>
+</ul>
+<em>   </em>Observation<em>: All three removed plays were "High Confidence" in the morning. Their removal, or in the latter two cases, the recommendation of the opposing spread, indicates a significant shift in the AI's probabilistic edge. For the Nuggets, the ML odds moved from 2.02 to 2.08, making it a </em>more* favorable bet from an odds perspective, yet it was dropped, suggesting underlying factors (perhaps team news, roster updates, or internal model adjustments) outweighed the improving odds.
+<br>
+<p>3.  <strong>Added Plays (present in Noon, absent in Morning):</strong></p>
+<ul>
+  <li>  Charlotte Hornets -8.0 vs Miami Heat (Noon's "Bet of the Day")</li>
+  <li>  New Orleans Pelicans +5.5 vs Phoenix Suns (Reversing Morning's Suns -6.0)</li>
+  <li>  Indiana Pacers +9.5 vs Los Angeles Lakers (Reversing Morning's Lakers -10.0)</li>
+</ul>
+<em>   </em>Observation*: The addition of the Hornets as the new "Bet of the Day" signifies a strong new conviction. The reversals for the Suns/Pelicans and Lakers/Pacers games are particularly notable, indicating that the market or the AI's internal model adjusted significantly against the initial morning favorites covering large spreads.
+<br>
+<p>4.  <strong>Confidence & Odds/Line Changes (for consistent plays):</strong></p>
+<ul>
+  <li>  <strong>Portland Trail Blazers +6.5 vs Houston Rockets</strong>: Line moved from +6.5 to +6.0 (less favorable), odds moved from 1.91 to 1.96 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 56%.</li>
+  <li>  <strong>Los Angeles Clippers +7.5 vs San Antonio Spurs</strong>: Line moved from +7.5 to +6.5 (less favorable), odds moved from 1.91 to 1.95 (more favorable). Confidence remained Medium, but Win Probability decreased from 58% to 57%.</li>
 </ul>
 </div>
 
@@ -336,44 +317,44 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 
 <div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
 
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Phoenix Suns -5.0 vs New Orleans Pelicans @ 1.93</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 68%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Phoenix Suns are at home and well-rested, enjoying two days off, while the New Orleans Pelicans are on a strenuous road back-to-back, traveling from Sacramento to Phoenix after playing yesterday. This substantial fatigue disparity gives the Suns a considerable advantage, and their recent performance suggests they are fully capable of exploiting such matchups. The market appears to be underestimating the impact of the Pelicans' travel and back-to-back schedule against a strong home team. Line moved from -6.0 @ 1.94 (morning) to -5.0 @ 1.93 (noon), Win Probability increased from 60% to 68%.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Denver Nuggets ML vs New York Knicks @ 2.06</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 63%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Denver Nuggets are playing at home with three days of rest, providing a significant advantage over the New York Knicks, who are on a demanding road back-to-back. While the Knicks have displayed strong recent form with a 3-1 record, facing a rested Nuggets team at altitude on consecutive nights is one of the toughest tests in the NBA. The odds of 2.08 offer excellent value given the Nuggets' clear advantages in rest and home court, as the market seems to be overrating the Knicks' recent streak and undervaluing the fatigue factor.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
-<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Charlotte Hornets -7.5 vs Miami Heat @ 1.92</div>
-
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>HIGH</span> Confidence Level: High Units: 1.5u, Win Probability: 61%</div>
-
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Charlotte Hornets are on a remarkable hot streak, winning their last three games by substantial margins, demonstrating impressive scoring prowess and defensive intensity at home. They have had one day of rest, similar to the Heat, but their recent dominant performances against both strong and weaker opposition point to a significant momentum advantage. This strong form suggests they are poised to continue covering spreads, as the market valuation does not fully capture their current exceptional performance. New play added at noon based on updated market dynamics and Hornets' recent exceptional performance.</div>
-
-</div>
-
-
-<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
-
 <div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Los Angeles Clippers +6.5 vs San Antonio Spurs @ 1.95</div>
 
-<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium Units: 1u, Win Probability: 56%</div>
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 57%</div>
 
-<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Los Angeles Clippers enter this road contest well-rested with one day off and are in excellent recent form, including strong wins against quality opponents. The San Antonio Spurs, while also playing well recently, are on a demanding home back-to-back, which presents a notable fatigue disadvantage. This combination of the Clippers' superior rest and strong momentum against a potentially tired Spurs team provides a valuable edge, indicating the Clippers are likely to cover this spread, or even challenge for an outright victory. Line moved from +7.5 @ 1.91 (morning) to +6.5 @ 1.95 (noon), Win Probability decreased from 58% to 56%.</div>
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Los Angeles Clippers enter this contest well-rested, having not played yesterday, while the San Antonio Spurs are on the second night of a back-to-back after a home game. Despite the Spurs' recent positive form, the fatigue differential strongly favors the Clippers, who are generally considered a more potent team. Receiving 6.5 points against a tired Spurs squad on the road presents a valuable opportunity, as the market likely underestimates the impact of San Antonio's back-to-back. The line moved from +7.5 @ 1.91 (morning) to +6.5 @ 1.95 (noon). Confidence remained Medium, Win Probability decreased from 58% to 57%.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Portland Trail Blazers +6.0 vs Houston Rockets @ 1.96</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 56%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Portland Trail Blazers have a rest advantage, facing a Houston Rockets team on a back-to-back following a game against the Golden State Warriors. The Rockets' recent performance has been inconsistent, and playing on consecutive nights without full recovery is likely to impact their effectiveness. This fatigue factor for Houston, combined with the Trail Blazers getting 6.0 points, creates a favorable spread play where the market may not fully account for the Rockets' strenuous schedule. The line moved from +6.5 @ 1.91 (morning) to +6.0 @ 1.96 (noon). Confidence remained Medium, Win Probability decreased from 58% to 56%.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>Indiana Pacers +9.5 vs Los Angeles Lakers @ 1.97</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 55%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>The Indiana Pacers, despite recent struggles and cross-country travel, come into this game with a day of rest, contrasting with the Los Angeles Lakers who are on a back-to-back after playing in Denver. While the Lakers are in strong form, the exhaustion from playing on consecutive nights, especially after a road game, significantly reduces their probability of covering a large 9.5-point spread. The market slightly undervalues the Pacers' fresh legs and the challenge the Lakers face in maintaining intensity on a back-to-back. This play was added in the Noon report, reversing the Morning's recommendation for Lakers -10.0.</div>
+
+</div>
+
+
+<div style='background: white; border: 1px solid #e0e0e0; border-left: 4px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);'>
+
+<div style='font-size: 1.3em; font-weight: bold; color: #222; margin-bottom: 15px; line-height: 1.3;'>New Orleans Pelicans +5.5 vs Phoenix Suns @ 1.96</div>
+
+<div style='background: #f8f9fa; padding: 10px 15px; border-radius: 6px; font-size: 0.9em; color: #555; margin-bottom: 15px;'><span style='display: inline-block; background: #ffc107; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; margin-right: 8px;'>MEDIUM</span> Confidence Level: Medium, Units: 1u, Win Probability: 55%</div>
+
+<div style='color: #666; line-height: 1.7; margin-bottom: 12px;'>Both the New Orleans Pelicans and the Phoenix Suns are playing on a back-to-back, with the Pelicans having played a road game and the Suns at home yesterday. With both teams facing similar fatigue levels, the 5.5-point spread for the New Orleans Pelicans offers solid value against a competitive Suns team. The market is not fully accounting for the balanced fatigue in this matchup, giving the Pelicans a decent probability to keep the game within reach or even pull off an upset. This play was added in the Noon report, reversing the Morning's recommendation for Suns -6.0.</div>
 
 </div>
 
