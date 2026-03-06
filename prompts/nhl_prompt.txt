@@ -21,6 +21,7 @@ SELECTION PHILOSOPHY (Safety-First + Edge-Based)
 - If signals conflict or edge is unclear, skip.
 - Totals (over/under) may be recommended if a clear edge exists, following the same edge and odds criteria as for moneyline and puck line plays. Include over/under (totals) as recommended plays if they meet all edge and odds requirements, and treat them equally to moneyline and puck line plays in all output and ranking rules.
 - When multiple plays qualify, prioritize over/under (totals) bets if they meet all edge and odds requirements and are closer to 1.9 odds. If a totals play and a moneyline/puck line play have similar confidence and edge, select the totals play first.
+- **MONTREAL CANADIENS PRIORITY (MANDATORY):** Whenever the Montreal Canadiens (Montréal Canadiens) are playing, you MUST include at least one play involving their game in your recommended plays, provided the odds are within the 1.60-2.20 range. This can be a moneyline, puck line, or totals (over/under) play. If the Montreal play has at least a +1% edge (lower threshold than standard +3%), include it even if it doesn't meet the normal +3% edge requirement. If Montreal has multiple qualifying plays, select the one with the highest edge. The Montreal play should be included in addition to your other recommended plays (up to 5 total plays including Bet of the Day).
 Avoid:
 - Heavy favorites below 1.35 unless there is extreme absence/goalie mismatch.
 - Teams missing 2+ core skaters or starting a backup goalie in poor form unless market has clearly overcorrected.

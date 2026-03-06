@@ -145,6 +145,9 @@ def match_odds_to_games(games, odds_data, team_name_map):
     def normalize(name):
         if not name:
             return ""
+        import unicodedata
+        # Remove accents by decomposing and filtering out combining characters
+        name = ''.join(c for c in unicodedata.normalize('NFD', name) if unicodedata.category(c) != 'Mn')
         return name.lower().replace('.', '').replace(' ', '').replace('-', '').replace('club', '').replace('hockey', '')
 
     # Build a reverse map: short_name -> [full_names]
