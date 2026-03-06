@@ -18,8 +18,8 @@ jobs:
           echo "body<<EOF" >> $GITHUB_OUTPUT
           cat .github/workflows/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          # Generate email subject with date in Montreal timezone
-          EMAIL_DATE=$(TZ='America/Toronto' date +"%B %d, %Y")
+          # Generate email subject with day and date in Montreal timezone
+          EMAIL_DATE=$(TZ='America/Toronto' date +"%A, %B %d, %Y")
           echo "subject=$EMAIL_DATE - NHL/NBA Daily Picks" >> $GITHUB_OUTPUT
       - name: Send email notification
         if: always()
@@ -33,5 +33,5 @@ jobs:
           subject: ${{ steps.prepare_email.outputs.subject }}
           html_body: ${{ steps.prepare_email.outputs.body }}
           to: ${{ secrets.EMAIL_TO }}
-          from: Parieur Discipliné Bot
+          from: Parieur Discipliné
 
