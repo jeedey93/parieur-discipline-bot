@@ -14,10 +14,9 @@ jobs:
       - name: Prepare email body
         id: prepare_email
         run: |
-          # Replace RUN_TIME with "Daily" for manual sends
-          sed "s/\${RUN_TIME}/Daily/g" .github/workflows/email_body.html > /tmp/email_body.html
+          # Read email body directly - no replacement needed
           echo "body<<EOF" >> $GITHUB_OUTPUT
-          cat /tmp/email_body.html >> $GITHUB_OUTPUT
+          cat .github/workflows/email_body.html >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           # Generate email subject with date in Montreal timezone
           EMAIL_DATE=$(TZ='America/Toronto' date +"%B %d, %Y")
