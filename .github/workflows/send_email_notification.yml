@@ -1,0 +1,33 @@
+name: Send Email Notification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Read email body
+        id: read_email_body
+        run: |
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          cat .github/workflows/email_body.html >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Send email notification
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "🎯 Parieur Discipliné - Predictions Ready"
+          html_body: ${{ steps.read_email_body.outputs.body }}
+          to: ${{ secrets.EMAIL_TO }}
+          from: Parieur Discipliné Bot
+
