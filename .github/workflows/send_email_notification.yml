@@ -43,10 +43,12 @@ jobs:
           fi
 
           # Extract yesterday's results
+          # Note: Results for yesterday's games are in today's result files
+          TODAY=$(TZ='America/Toronto' date +"%Y-%m-%d")
           YESTERDAY=$(TZ='America/Toronto' date -d 'yesterday' +"%Y-%m-%d" 2>/dev/null || TZ='America/Toronto' date -v-1d +"%Y-%m-%d")
           RESULTS_FILE="bot_results/total_results_summary.txt"
-          NHL_RESULTS_FILE="bot_results/nhl/nhl_daily_results_${YESTERDAY}.txt"
-          NBA_RESULTS_FILE="bot_results/nba/nba_daily_results_${YESTERDAY}.txt"
+          NHL_RESULTS_FILE="bot_results/nhl/nhl_daily_results_${TODAY}.txt"
+          NBA_RESULTS_FILE="bot_results/nba/nba_daily_results_${TODAY}.txt"
           YESTERDAY_BANNER="NEW PREDICTIONS AVAILABLE - DAILY UPDATE"
 
           if [ -f "$RESULTS_FILE" ]; then
