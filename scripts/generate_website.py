@@ -1647,9 +1647,9 @@ def update_latest_predictions(results_only=False):
 
     # Combined subscriber count + subscribe banner
     content += "<div style='margin-top: 25px; padding: 20px 30px; background: rgba(255, 255, 255, 0.25); border-radius: 20px; display: inline-block; backdrop-filter: blur(15px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); border: 2px solid rgba(255, 255, 255, 0.3); max-width: 450px;'>\n"
-    content += "<div style='font-size: 1.15em; font-weight: 700; margin-bottom: 12px; color: white;'>📬 Daily Picks Delivered at 12pm ET</div>\n"
-    content += f"<div style='font-size: 0.95em; margin-bottom: 16px; color: rgba(255, 255, 255, 0.9);'><strong style='color: #fbbf24; font-size: 1.2em;'>{subscriber_count}</strong> subscribers already joined</div>\n"
-    content += "<a href='https://forms.gle/vhuvwMLDzeBbRkrT6' target='_blank' style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 12px 32px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: 0.95em; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4); transition: all 0.3s; letter-spacing: 0.5px; text-transform: uppercase;' onmouseover=\"this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(251, 191, 36, 0.6)'\" onmouseout=\"this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(251, 191, 36, 0.4)'\">Subscribe Now</a>\n"
+    content += "<div style='font-size: 1.05em; font-weight: 700; margin-bottom: 10px; color: white;'>📬 Daily Picks at 12pm</div>\n"
+    content += f"<div style='font-size: 0.9em; margin-bottom: 14px; color: rgba(255, 255, 255, 0.9);'><strong style='color: #fbbf24;'>{subscriber_count}</strong> subscribers</div>\n"
+    content += "<a href='https://forms.gle/vhuvwMLDzeBbRkrT6' target='_blank' style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 10px 28px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: 0.9em; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4); transition: all 0.3s; letter-spacing: 0.5px; text-transform: uppercase;' onmouseover=\"this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(251, 191, 36, 0.6)'\" onmouseout=\"this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(251, 191, 36, 0.4)'\">Subscribe</a>\n"
     content += "</div>\n"
 
     content += "</div>\n"
