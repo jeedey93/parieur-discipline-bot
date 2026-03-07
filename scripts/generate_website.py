@@ -1440,9 +1440,12 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
     if not bet_line:
         return None
 
+    # Determine sport badge class
+    sport_badge_class = "badge-nhl" if sport_name == "NHL" else "badge-nba"
+
     # Format as a card
-    html = "<div class='pick-card' style='border: 2px solid #FFA500;'>\n"
-    html += f"<div class='pick-badge badge-featured'>{sport_emoji} {sport_name}</div>\n"
+    html = "<div class='pick-card'>\n"
+    html += f"<div class='pick-badge {sport_badge_class}'>{sport_emoji} {sport_name}</div>\n"
     html += f"<div class='pick-title'>{bet_line}</div>\n"
 
     if confidence_line:
@@ -1714,10 +1717,16 @@ def update_latest_predictions(results_only=False):
         nhl_7am_file = os.path.join(predictions_dir, "nhl", "daily_runs", f"nhl_daily_predictions_{today_str}_7am.txt")
         nba_7am_file = os.path.join(predictions_dir, "nba", "daily_runs", f"nba_daily_predictions_{today_str}_7am.txt")
 
-        content += "<div id='featured-picks'>\n"
-        content += "<div class='section-header'>\n"
-        content += "<div class='section-title'>🔥 Featured Picks (Potential)</div>\n"
-        content += "<div class='section-subtitle'>7am predictions - subject to change at 12pm after line movement analysis</div>\n"
+        content += "<div id='featured-picks' style='position: relative; margin: 0 -15px;'>\n"
+        # Add eye-catching banner
+        content += "<div class='premium-banner' style='background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%); padding: 8px; text-align: center; border-radius: 12px 12px 0 0; margin-bottom: -5px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5); animation: shine 3s ease-in-out infinite;'>\n"
+        content += "<div style='color: #78350f; font-weight: 900; font-size: 0.9em; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);'>⭐ Featured Picks of the Day (Preliminary) ⭐</div>\n"
+        content += "</div>\n"
+        content += "<style>@keyframes shine { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.1); } } @media (max-width: 768px) { #featured-picks { margin: 0 -10px; } .premium-banner { border-radius: 8px 8px 0 0; padding: 6px; } .premium-banner div { font-size: 0.75em; letter-spacing: 1px; } .section-title { font-size: 1.4em !important; line-height: 1.2; } .section-subtitle { font-size: 0.9em !important; } }</style>\n"
+        content += "<div class='premium-content' style='background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); padding: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15); border: 3px solid #fbbf24; border-top: none;'>\n"
+        content += "<style>@media (max-width: 768px) { .premium-content { padding: 15px; border-radius: 0 0 8px 8px; border-width: 2px; } }</style>\n"
+        content += "<div class='section-header' style='margin-bottom: 25px; text-align: center;'>\n"
+        content += "<div class='section-subtitle' style='font-size: 1.05em; color: #78350f; font-weight: 600;'>7am predictions - Final picks with line movement analysis available at 12:00 PM ET</div>\n"
         content += "</div>\n"
 
         # Extract bet of the day from each sport's 7am file
@@ -1742,6 +1751,7 @@ def update_latest_predictions(results_only=False):
         else:
             content += "<p style='color: #6b7280; font-style: italic;'>No featured picks available yet.</p>\n"
 
+        content += "</div>\n"
         content += "</div>\n\n"
 
     elif os.path.exists(dual_bet_path):
