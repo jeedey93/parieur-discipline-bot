@@ -33,6 +33,8 @@ jobs:
       - name: Run daily results summary
         run: python scripts/generate_combined_summary.py
       - name: Update website with new results
+        env:
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python scripts/generate_website.py --results-only
       - name: Commit results
         env:
