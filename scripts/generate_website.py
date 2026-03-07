@@ -1490,8 +1490,7 @@ def update_latest_predictions(results_only=False):
         {"key": "nhl", "name": "NHL", "emoji": "🏒"},
         {"key": "nba", "name": "NBA", "emoji": "🏀"},
     ]
-    output_md = "docs/index.md"
-    output_html = "docs/index.html"  # Add HTML output for Vercel
+    output_html = "docs/index.html"
     summary_path = "data/bot_results/total_results_summary.txt"
     dual_bet_path = os.path.join(predictions_dir, "dual_bet_of_the_day.txt")
 
@@ -1525,6 +1524,20 @@ def update_latest_predictions(results_only=False):
     content += "<title>Parieur Discipliné - AI Betting Predictions</title>\n"
     content += "<meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
     content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
+
+    # Open Graph meta tags for social media sharing
+    content += "<meta property='og:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
+    content += "<meta property='og:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
+    content += "<meta property='og:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+    content += "<meta property='og:url' content='https://parieurdiscipline.com/'>\n"
+    content += "<meta property='og:type' content='website'>\n"
+
+    # Twitter Card meta tags
+    content += "<meta name='twitter:card' content='summary_large_image'>\n"
+    content += "<meta name='twitter:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
+    content += "<meta name='twitter:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
+    content += "<meta name='twitter:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+
     content += "</head>\n"
     content += "<body>\n\n"
 
@@ -1869,12 +1882,7 @@ def update_latest_predictions(results_only=False):
     content += "</body>\n"
     content += "</html>\n\n"
 
-
-    with open(output_md, "w", encoding="utf-8") as f:
-        f.write(content)
-    print(f"✅ Updated {output_md}")
-
-    # Also write HTML version for Vercel
+    # Write HTML file
     with open(output_html, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Updated {output_html}")
