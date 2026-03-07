@@ -90,16 +90,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>Friday, March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Last Updated at 7:33 AM</div>
+<div class='blog-update-time'>⏱️ Last Updated at 8:26 AM</div>
 </div>
 </div>
 
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>60%</div>
-<div class='stat-record'>3W - 2L</div>
-<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+4.06 units</div>
+<div class='stat-value'>56%</div>
+<div class='stat-record'>5W - 4L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.90 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -171,7 +171,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for Friday, February 27, 2026</div>
+<div class='section-subtitle'>Performance breakdown for Friday, March 6, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
@@ -179,58 +179,55 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='results-grid'>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>BET OF THE DAY: Minnesota Wild @ Colorado Avala...</div>
+<div class='result-tile-bet'>Detroit Red Wings ML vs Florida Panthers</div>
 <div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
-<div class='result-tile result-tile-win'>
+<div class='result-tile result-tile-win result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Carolina Hurricanes ML vs Tampa Bay Lightning</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.64u</div>
+<div class='result-tile-bet'>Carolina Hurricanes vs Edmonton Oilers Over 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.46u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Toronto Maple Leafs @ Florida Panthers ML vs To...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.63u</div>
-</div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>New Jersey Devils vs Pittsburgh Penguins Over 5.5</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile-bet'>Montréal Canadiens vs Anaheim Ducks Over 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.91u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Chicago Blackhawks @ Nashville Predators ML vs ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.55u</div>
+<div class='result-tile-bet'>St Louis Blues ML vs San Jose Sharks</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.12u</div>
 </div>
 </div>
 
 <h3 style='color: #ea580c; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏀 NBA Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>BET OF THE DAY: Philadelphia 76ers ML vs Miami ...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.68u</div>
+<div class='result-tile result-tile-loss result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Charlotte Hornets -8.0 vs Miami Heat</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.50u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Philadelphia 76ers -2.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.93u</div>
+<div class='result-tile-bet'>Los Angeles Clippers +6.5 vs San Antonio Spurs</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.95u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Portland Trail Blazers +6.0 vs Houston Rockets</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+</div>
+<div class='result-tile result-tile-loss'>
+<div class='result-tile-emoji'>❌</div>
+<div class='result-tile-bet'>Indiana Pacers +9.5 vs Los Angeles Lakers</div>
+<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
 <div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: San Antonio Spurs -12.5...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Charlotte Hornets -13.0...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.99u</div>
-</div>
-<div class='result-tile result-tile-win'>
-<div class='result-tile-emoji'>✅</div>
-<div class='result-tile-bet'>Other Recommended Play: Houston Rockets ML vs O...</div>
-<div class='result-tile-units' style='color: #10b981;'>+0.65u</div>
+<div class='result-tile-bet'>New Orleans Pelicans +5.5 vs Phoenix Suns</div>
+<div class='result-tile-units' style='color: #10b981;'>+0.96u</div>
 </div>
 </div>
 
