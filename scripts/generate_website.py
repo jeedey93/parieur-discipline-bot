@@ -1523,7 +1523,11 @@ def update_latest_predictions(results_only=False):
     content += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
     content += "<title>Parieur Discipliné - AI Betting Predictions</title>\n"
     content += "<meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
+
+    # Favicons for all devices
     content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
+    content += "<link rel='apple-touch-icon' href='parieur_discipline.png'>\n"
+    content += "<link rel='shortcut icon' href='parieur_discipline.png'>\n"
 
     # Open Graph meta tags for social media sharing (Facebook, Messenger, WhatsApp, LinkedIn)
     content += "<meta property='og:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
