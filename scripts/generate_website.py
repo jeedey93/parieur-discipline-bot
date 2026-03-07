@@ -1526,7 +1526,7 @@ def update_latest_predictions(results_only=False):
 
     # Favicons for all devices
     content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
-    content += "<link rel='apple-touch-icon' href='parieur_discipline.png'>\n"
+    content += "<link rel='apple-touch-icon' href='parieur_discipline_icon_1024.png'>\n"
     content += "<link rel='shortcut icon' href='parieur_discipline.png'>\n"
 
     # Open Graph meta tags for social media sharing (Facebook, Messenger, WhatsApp, LinkedIn)
