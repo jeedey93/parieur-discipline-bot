@@ -1528,7 +1528,9 @@ def update_latest_predictions(results_only=False):
     # Open Graph meta tags for social media sharing (Facebook, Messenger, WhatsApp, LinkedIn)
     content += "<meta property='og:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
     content += "<meta property='og:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
-    content += "<meta property='og:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+    content += "<meta property='og:image' content='https://parieurdiscipline.com/og-image.html'>\n"
+    content += "<meta property='og:image:width' content='1200'>\n"
+    content += "<meta property='og:image:height' content='630'>\n"
     content += "<meta property='og:url' content='https://parieurdiscipline.com/'>\n"
     content += "<meta property='og:type' content='website'>\n"
 
@@ -1536,7 +1538,7 @@ def update_latest_predictions(results_only=False):
     content += "<meta name='twitter:card' content='summary_large_image'>\n"
     content += "<meta name='twitter:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
     content += "<meta name='twitter:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
-    content += "<meta name='twitter:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+    content += "<meta name='twitter:image' content='https://parieurdiscipline.com/og-image.html'>\n"
 
     content += "</head>\n"
     content += "<body>\n\n"
