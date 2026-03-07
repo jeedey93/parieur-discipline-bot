@@ -90,7 +90,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>Friday, March 6, 2026</div>
-<div class='blog-update-time'>⏱️ Last Updated at 8:28 AM</div>
+<div class='blog-update-time'>⏱️ Last Updated at 8:31 AM</div>
 </div>
 </div>
 
@@ -183,13 +183,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-loss'>
+<div class='result-tile result-tile-loss result-tile-featured'>
+<div class='botd-badge'>🔥 BET OF THE DAY</div>
 <div class='result-tile-emoji'>❌</div>
 <div class='result-tile-bet'>Detroit Red Wings ML vs Florida Panthers</div>
 <div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
-<div class='result-tile result-tile-win result-tile-featured'>
-<div class='botd-badge'>🔥 BET OF THE DAY</div>
+<div class='result-tile result-tile-win'>
 <div class='result-tile-emoji'>✅</div>
 <div class='result-tile-bet'>Carolina Hurricanes vs Edmonton Oilers Over 6.5</div>
 <div class='result-tile-units' style='color: #10b981;'>+1.46u</div>

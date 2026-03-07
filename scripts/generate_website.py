@@ -994,6 +994,17 @@ def parse_yesterday_results(sport_key):
             date_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(latest_results_file))
             results_date = date_match.group(1) if date_match else "Unknown"
 
+        # Find the corresponding prediction file to identify Bet of the Day
+        bet_of_the_day_text = None
+        predictions_dir = os.path.join("data", "predictions", sport_key)
+        pred_file = os.path.join(predictions_dir, f"{sport_key}_daily_predictions_{results_date}.txt")
+        if os.path.exists(pred_file):
+            pred_content = read_file(pred_file)
+            # Extract the bet line after "BET OF THE DAY"
+            botd_match = re.search(r'BET OF THE DAY\*\*\s*\*\*(.+?)\*\*', pred_content, re.IGNORECASE)
+            if botd_match:
+                bet_of_the_day_text = botd_match.group(1).strip()
+
         # Parse wins and losses from the summary
         wins = 0
         losses = 0
@@ -1037,13 +1048,23 @@ def parse_yesterday_results(sport_key):
                 elif 'Medium' in bet_text:
                     confidence = "Medium"
 
+                # Check if this matches the Bet of the Day
+                is_botd = False
+                if bet_of_the_day_text:
+                    # Compare the bet text (removing odds and confidence info for matching)
+                    bet_clean = re.sub(r'\s*@\s*[\d.]+.*$', '', bet_text).strip()
+                    botd_clean = re.sub(r'\s*@\s*[\d.]+.*$', '', bet_of_the_day_text).strip()
+                    if bet_clean.lower() == botd_clean.lower():
+                        is_botd = True
+
                 current_pick = {
                     "bet": bet_text,
                     "result": None,
                     "outcome": None,
                     "units": units,
                     "confidence": confidence,
-                    "odds": odds
+                    "odds": odds,
+                    "is_botd": is_botd
                 }
                 continue
 
@@ -1162,8 +1183,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     units_display = f"-{pick.get('units', 1.0):.2f}u"
                     units_color = "#ef4444"
 
-                # Check if this is the FIRST Bet of the Day (1.5u = High confidence)
-                is_botd = not nhl_botd_shown and pick.get('units', 1.0) >= 1.5
+                # Check if this is the Bet of the Day (from prediction file)
+                is_botd = pick.get('is_botd', False)
                 if is_botd:
                     tile_class += " result-tile-featured"
                     nhl_botd_shown = True
@@ -1214,8 +1235,8 @@ def format_compact_stats_banner(nhl_results, nba_results, nba_record, nhl_record
                     units_display = f"-{pick.get('units', 1.0):.2f}u"
                     units_color = "#ef4444"
 
-                # Check if this is the FIRST Bet of the Day (1.5u = High confidence)
-                is_botd = not nba_botd_shown and pick.get('units', 1.0) >= 1.5
+                # Check if this is the Bet of the Day (from prediction file)
+                is_botd = pick.get('is_botd', False)
                 if is_botd:
                     tile_class += " result-tile-featured"
                     nba_botd_shown = True
