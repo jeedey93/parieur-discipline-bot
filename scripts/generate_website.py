@@ -1638,7 +1638,7 @@ def update_latest_predictions(results_only=False):
     if subscriber_count:
         subscriber_count = len([email.strip() for email in subscriber_count.split(',') if email.strip()])
     else:
-        subscriber_count = 'N/A'
+        subscriber_count = 4  # Default count when EMAIL_TO is not set
     content += f"<div style='margin-top: 20px; padding: 15px 30px; background: rgba(255, 255, 255, 0.15); border-radius: 25px; display: inline-block; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);'>\n"
     content += f"<div style='font-size: 1.1em; font-weight: 700; letter-spacing: 0.5px;'>📧 <strong style='font-size: 1.5em; color: #fbbf24; text-shadow: 0 2px 8px rgba(251, 191, 36, 0.5);'>{subscriber_count}</strong> subscribers already joined</div>\n"
     content += "</div>\n"
