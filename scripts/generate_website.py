@@ -1525,15 +1525,15 @@ def update_latest_predictions(results_only=False):
     content += "<meta name='description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
 
     # Favicons for all devices
-    content += "<link rel='icon' type='image/png' href='parieur_discipline.png'>\n"
+    content += "<link rel='icon' type='image/png' href='parieur_discipline_icon_1024.png'>\n"
     content += "<link rel='apple-touch-icon' href='parieur_discipline_icon_1024.png?v=2'>\n"
-    content += "<link rel='shortcut icon' href='parieur_discipline.png'>\n"
+    content += "<link rel='shortcut icon' href='parieur_discipline_icon_1024.png'>\n"
 
 
     # Open Graph meta tags for social media sharing (Facebook, Messenger, WhatsApp, LinkedIn)
     content += "<meta property='og:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
     content += "<meta property='og:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
-    content += "<meta property='og:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+    content += "<meta property='og:image' content='https://parieurdiscipline.com/parieur_discipline_icon_1024.png'>\n"
     content += "<meta property='og:url' content='https://parieurdiscipline.com/'>\n"
     content += "<meta property='og:type' content='website'>\n"
 
@@ -1541,7 +1541,7 @@ def update_latest_predictions(results_only=False):
     content += "<meta name='twitter:card' content='summary_large_image'>\n"
     content += "<meta name='twitter:title' content='Parieur Discipliné - AI Betting Predictions'>\n"
     content += "<meta name='twitter:description' content='AI-powered sports betting predictions for NHL and NBA. Daily picks with analysis and edge calculation.'>\n"
-    content += "<meta name='twitter:image' content='https://parieurdiscipline.com/parieur_discipline.png'>\n"
+    content += "<meta name='twitter:image' content='https://parieurdiscipline.com/parieur_discipline_icon_1024.png'>\n"
 
     content += "</head>\n"
     content += "<body>\n\n"
@@ -1633,7 +1633,7 @@ def update_latest_predictions(results_only=False):
 
     content += "<div class='hero-section'>\n"
     content += "<div class='hero-content'>\n"
-    content += "<img src='parieur_discipline.png' alt='Parieur Discipliné' class='hero-logo'>\n"
+    content += "<img src='parieur_discipline_icon_1024.png' alt='Parieur Discipliné' class='hero-logo'>\n"
     content += "<div class='blog-title'>🎯 Parieur Discipliné</div>\n"
     content += "<div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>\n"
     content += f"<div class='blog-date'>{nice_date}</div>\n"
