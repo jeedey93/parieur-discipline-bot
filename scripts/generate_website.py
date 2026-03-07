@@ -1705,9 +1705,9 @@ def update_latest_predictions(results_only=False):
     content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if week_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{week_units_display}</div>\n"
     content += "</div>\n"
 
-    # Season Win Rate Card with Units
+    # All Time Win Rate Card with Units
     content += "<div class='stat-card'>\n"
-    content += "<div class='stat-label'>Season</div>\n"
+    content += "<div class='stat-label'>All Time</div>\n"
     content += f"<div class='stat-value'>{overall_wr}</div>\n"
     content += f"<div class='stat-record'>{overall_total_w}W - {overall_total_l}L</div>\n"
     content += f"<div class='stat-record' style='margin-top: 5px; color: {'#10b981' if season_net_units >= 0 else '#ef4444'}; font-weight: 600;'>{season_units_display}</div>\n"
