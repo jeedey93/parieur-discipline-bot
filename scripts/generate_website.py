@@ -1645,12 +1645,15 @@ def update_latest_predictions(results_only=False):
     else:
         subscriber_count = 4  # Default count when EMAIL_TO is not set
 
-    # Combined subscriber count + subscribe banner
-    content += "<div style='margin-top: 25px; padding: 20px 30px; background: rgba(255, 255, 255, 0.25); border-radius: 20px; display: inline-block; backdrop-filter: blur(15px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); border: 2px solid rgba(255, 255, 255, 0.3); max-width: 450px;'>\n"
-    content += "<div style='font-size: 1.05em; font-weight: 700; margin-bottom: 10px; color: white;'>📬 Daily Picks at 12pm</div>\n"
-    content += f"<div style='font-size: 0.9em; margin-bottom: 14px; color: rgba(255, 255, 255, 0.9);'><strong style='color: #fbbf24;'>{subscriber_count}</strong> subscribers</div>\n"
-    content += "<a href='https://forms.gle/vhuvwMLDzeBbRkrT6' target='_blank' style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #78350f; padding: 10px 28px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: 0.9em; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4); transition: all 0.3s; letter-spacing: 0.5px; text-transform: uppercase;' onmouseover=\"this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(251, 191, 36, 0.6)'\" onmouseout=\"this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(251, 191, 36, 0.4)'\">Subscribe</a>\n"
+    # Combined subscriber count + subscribe banner (bold eye-catching style)
+    content += "<div style='margin-top: 30px; text-align: center;'>\n"
+    content += "<div style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 50px; padding: 12px 28px; box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5); animation: pulse 2s ease-in-out infinite; border: 2px solid #fbbf24;'>\n"
+    content += "<span style='color: #78350f; font-size: 1em; margin-right: 10px; font-weight: 700;'>📬 Daily Picks</span>\n"
+    content += f"<span style='color: #78350f; font-size: 0.95em; margin-right: 15px; opacity: 0.9;'><strong style='color: white;'>{subscriber_count}</strong> joined</span>\n"
+    content += "<a href='https://forms.gle/vhuvwMLDzeBbRkrT6' target='_blank' style='display: inline-block; background: white; color: #f59e0b; padding: 8px 24px; border-radius: 25px; text-decoration: none; font-weight: 800; font-size: 0.9em; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;' onmouseover=\"this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.3)'\" onmouseout=\"this.style.transform='scale(1)'; this.style.boxShadow='0 3px 12px rgba(0, 0, 0, 0.2)'\">Subscribe</a>\n"
     content += "</div>\n"
+    content += "</div>\n"
+    content += "<style>@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }</style>\n"
 
     content += "</div>\n"
     content += "</div>\n\n"
