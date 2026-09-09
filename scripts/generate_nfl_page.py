@@ -568,10 +568,51 @@ def format_predictions_html(raw_text):
                     return t
         return None
 
+    # Build real-matchup lookup from parsed games: team_lower -> (opponent, game_time)
+    team_to_real_matchup = {}
+    for g in games:
+        h, a = g.get("home", ""), g.get("away", "")
+        hl, al = h.lower(), a.lower()
+        gt = game_times.get((hl, al)) or game_times.get((al, hl))
+        team_to_real_matchup[hl] = (a, gt)
+        team_to_real_matchup[al] = (h, gt)
+        # also index by last word for fuzzy
+        team_to_real_matchup[hl.split()[-1]] = (a, gt)
+        team_to_real_matchup[al.split()[-1]] = (h, gt)
+
+    def resolve_pick_opponent_and_time(pick_line):
+        """Given a pick line, find the REAL opponent and game time from actual matchups."""
+        m = re.match(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under)', pick_line)
+        if not m:
+            return pick_line, None
+        rec_team = m.group(1).strip()
+        rec_lower = rec_team.lower()
+        # Try exact, then last word
+        entry = team_to_real_matchup.get(rec_lower) or team_to_real_matchup.get(rec_lower.split()[-1])
+        if not entry:
+            return pick_line, None
+        real_opponent, real_time = entry
+        # Rewrite "vs <whatever>" in pick line with real opponent
+        fixed_line = re.sub(r'\s+vs\s+.+?(@)', f' vs {real_opponent} @', pick_line, flags=re.IGNORECASE)
+        if 'vs' not in pick_line:
+            fixed_line = pick_line  # no vs to replace, leave as-is
+        return fixed_line, real_time
+
+    # ── Intro banner (above matchups) ──
+    intro_banner = ""
+    if ai_raw.strip():
+        intro = parse_intro(ai_raw)
+        if intro and len(intro) >= 20 and 'no qualified' not in intro.lower():
+            # Truncate to 3 sentences
+            sentences = re.split(r'(?<=[.!?])\s+', intro.strip())
+            short_intro = ' '.join(sentences[:3])
+            intro_banner = f"<div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:0.85em;color:#1e40af;line-height:1.6;'>📊 {short_intro}</div>\n"
+
     # ── Matchups section (outside the share snapshot) ──
     matchups_html = ""
     if games:
         matchups_html += "<div style='margin-bottom:28px;'>\n"
+        matchups_html += intro_banner
         matchups_html += "<h3 style='font-size:1em;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;'>📋 This Week's Matchups</h3>\n"
         matchups_html += "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:14px;'>\n"
         for g in games:
@@ -584,20 +625,17 @@ def format_predictions_html(raw_text):
 
     # ── Picks section (inside the share snapshot) ──
     picks_html = ""
-    intro = ""
     if ai_raw.strip():
         picks = parse_picks(ai_raw)
-        intro = parse_intro(ai_raw)
 
         picks_html += "<div style='margin-top:8px;'>\n"
         picks_html += "<h3 style='font-size:1em;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;'>🤖 AI Analysis & Picks</h3>\n"
 
         for p in picks:
             if p["type"] == "best":
-                # Extract teams from pick line to get logo and time
-                m = re.search(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under).+?vs\s+(.+?)\s+@', p.get("pick", ""))
-                gt = get_game_time_for_teams(m.group(1).strip(), m.group(2).strip()) if m else None
-                picks_html += render_pick_card(p, game_time=gt)
+                fixed_line, gt = resolve_pick_opponent_and_time(p.get("pick", ""))
+                p_fixed = {**p, "pick": fixed_line}
+                picks_html += render_pick_card(p_fixed, game_time=gt)
                 break
 
         others = [p for p in picks if p["type"] == "other"]
@@ -605,9 +643,9 @@ def format_predictions_html(raw_text):
             picks_html += "<h4 style='font-size:0.9em;font-weight:700;color:#374151;margin:20px 0 12px;'>Other Recommended Plays</h4>\n"
             picks_html += "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:14px;'>\n"
             for p in others:
-                m = re.search(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under).+?vs\s+(.+?)\s+@', p.get("pick", ""))
-                gt = get_game_time_for_teams(m.group(1).strip(), m.group(2).strip()) if m else None
-                picks_html += render_pick_card(p, game_time=gt)
+                fixed_line, gt = resolve_pick_opponent_and_time(p.get("pick", ""))
+                p_fixed = {**p, "pick": fixed_line}
+                picks_html += render_pick_card(p_fixed, game_time=gt)
             picks_html += "</div>\n"
 
         picks_html += "</div>\n"
