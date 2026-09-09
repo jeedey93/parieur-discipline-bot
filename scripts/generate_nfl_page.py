@@ -223,12 +223,19 @@ def render_game_card(g, ai_pick=None, game_time=None):
     </div>
   </div>"""
 
+    def fmt_spread(pts):
+        try:
+            v = float(pts)
+            return f"+{v}" if v > 0 else str(v)
+        except Exception:
+            return pts
+
     # Spread + O/U chips row
     chips = []
     if sh:
-        chips.append(pill(f"{home} {sh['points']}", sh['price'], is_pick=pick_highlight == 'home_spread'))
+        chips.append(pill(f"{home} {fmt_spread(sh['points'])}", sh['price'], is_pick=pick_highlight == 'home_spread'))
     if sa:
-        chips.append(pill(f"{away} {sa['points']}", sa['price'], is_pick=pick_highlight == 'away_spread'))
+        chips.append(pill(f"{away} {fmt_spread(sa['points'])}", sa['price'], is_pick=pick_highlight == 'away_spread'))
     if ou and over_price:
         chips.append(pill(f"Over {ou}", over_price, is_pick=pick_highlight == 'over'))
     if ou and under_price:
