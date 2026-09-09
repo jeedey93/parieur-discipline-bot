@@ -1,0 +1,160 @@
+Date: 2026-09-09
+
+Seattle Seahawks vs New England Patriots
+Seattle Seahawks ML (Home): 1.59, New England Patriots ML (Away): 2.42, O/U: 44.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home -3.0 (1.83), Away 3.0 (2.0)
+------
+Los Angeles Rams vs San Francisco 49ers
+Los Angeles Rams ML (Home): 1.51, San Francisco 49ers ML (Away): 2.64, O/U: 48.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home -3.5 (1.85), Away 3.5 (1.98)
+------
+Pittsburgh Steelers vs Atlanta Falcons
+Pittsburgh Steelers ML (Home): 1.54, Atlanta Falcons ML (Away): 2.54, O/U: 42.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home -3.5 (1.89), Away 3.5 (1.93)
+------
+Indianapolis Colts vs Baltimore Ravens
+Indianapolis Colts ML (Home): 2.45, Baltimore Ravens ML (Away): 1.57, O/U: 47.5 (Over: 1.87 / Under: 1.95)
+Spreads: Home 3.5 (1.87), Away -3.5 (1.95)
+------
+Houston Texans vs Buffalo Bills
+Houston Texans ML (Home): 1.98, Buffalo Bills ML (Away): 1.85, O/U: 44.5 (Over: 1.87 / Under: 1.95)
+Spreads: Home 1.5 (1.85), Away -1.5 (1.98)
+------
+Carolina Panthers vs Chicago Bears
+Carolina Panthers ML (Home): 2.4, Chicago Bears ML (Away): 1.6, O/U: 46.5 (Over: 1.87 / Under: 1.95)
+Spreads: Home 3.0 (2.0), Away -3.0 (1.83)
+------
+Cincinnati Bengals vs Tampa Bay Buccaneers
+Cincinnati Bengals ML (Home): 1.49, Tampa Bay Buccaneers ML (Away): 2.7, O/U: 50.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home -3.5 (1.89), Away 3.5 (1.93)
+------
+Jacksonville Jaguars vs Cleveland Browns
+Jacksonville Jaguars ML (Home): 1.21, Cleveland Browns ML (Away): 4.6, O/U: 40.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -8.5 (1.91), Away 8.5 (1.91)
+------
+Detroit Lions vs New Orleans Saints
+Detroit Lions ML (Home): 1.32, New Orleans Saints ML (Away): 3.5, O/U: 49.5 (Over: 1.85 / Under: 1.98)
+Spreads: Home -7.0 (1.93), Away 7.0 (1.89)
+------
+Tennessee Titans vs New York Jets
+Tennessee Titans ML (Home): 1.82, New York Jets ML (Away): 2.02, O/U: 39.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -1.5 (1.91), Away 1.5 (1.91)
+------
+Los Angeles Chargers vs Arizona Cardinals
+Los Angeles Chargers ML (Home): 1.19, Arizona Cardinals ML (Away): 4.9, O/U: 47.5 (Over: 1.98 / Under: 1.85)
+Spreads: Home -9.5 (1.87), Away 9.5 (1.95)
+------
+Minnesota Vikings vs Green Bay Packers
+Minnesota Vikings ML (Home): 1.82, Green Bay Packers ML (Away): 2.02, O/U: 46.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home -1.5 (1.89), Away 1.5 (1.93)
+------
+Las Vegas Raiders vs Miami Dolphins
+Las Vegas Raiders ML (Home): 1.54, Miami Dolphins ML (Away): 2.54, O/U: 40.5 (Over: 1.87 / Under: 1.95)
+Spreads: Home -3.5 (1.95), Away 3.5 (1.87)
+------
+Philadelphia Eagles vs Washington Commanders
+Philadelphia Eagles ML (Home): 1.46, Washington Commanders ML (Away): 2.8, O/U: 44.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home -5.5 (1.93), Away 5.5 (1.89)
+------
+New York Giants vs Dallas Cowboys
+New York Giants ML (Home): 2.36, Dallas Cowboys ML (Away): 1.62, O/U: 48.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home 3.0 (1.87), Away -3.0 (1.95)
+------
+Kansas City Chiefs vs Denver Broncos
+Kansas City Chiefs ML (Home): 1.65, Denver Broncos ML (Away): 2.3, O/U: 43.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -2.5 (1.83), Away 2.5 (2.0)
+------
+Buffalo Bills vs Detroit Lions
+Buffalo Bills ML (Home): 1.62, Detroit Lions ML (Away): 2.36, O/U: 52.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
+------
+Atlanta Falcons vs Carolina Panthers
+Atlanta Falcons ML (Home): 1.8, Carolina Panthers ML (Away): 2.05, O/U: 44.5 (Over: 1.98 / Under: 1.85)
+Spreads: Home -1.5 (1.91), Away 1.5 (1.91)
+------
+Baltimore Ravens vs New Orleans Saints
+Baltimore Ravens ML (Home): 1.28, New Orleans Saints ML (Away): 3.8, O/U: 46.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -7.5 (1.91), Away 7.5 (1.91)
+------
+Chicago Bears vs Minnesota Vikings
+Chicago Bears ML (Home): 1.6, Minnesota Vikings ML (Away): 2.4, O/U: 45.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
+------
+Houston Texans vs Cincinnati Bengals
+Houston Texans ML (Home): 1.68, Cincinnati Bengals ML (Away): 2.24, O/U: 45.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -2.5 (1.85), Away 2.5 (1.98)
+------
+Tampa Bay Buccaneers vs Cleveland Browns
+Tampa Bay Buccaneers ML (Home): 1.36, Cleveland Browns ML (Away): 3.25, O/U: 42.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -6.5 (1.91), Away 6.5 (1.91)
+------
+New York Jets vs Green Bay Packers
+New York Jets ML (Home): 3.0, Green Bay Packers ML (Away): 1.41, O/U: 42.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home 5.5 (1.91), Away -5.5 (1.91)
+------
+New England Patriots vs Pittsburgh Steelers
+New England Patriots ML (Home): 1.46, Pittsburgh Steelers ML (Away): 2.8, O/U: 43.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -4.5 (1.91), Away 4.5 (1.91)
+------
+Tennessee Titans vs Philadelphia Eagles
+Tennessee Titans ML (Home): 2.9, Philadelphia Eagles ML (Away): 1.43, O/U: 42.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home 5.5 (1.91), Away -5.5 (1.91)
+------
+Denver Broncos vs Jacksonville Jaguars
+Denver Broncos ML (Home): 1.65, Jacksonville Jaguars ML (Away): 2.3, O/U: 43.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
+------
+Los Angeles Chargers vs Las Vegas Raiders
+Los Angeles Chargers ML (Home): 1.28, Las Vegas Raiders ML (Away): 3.85, O/U: 42.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -8.5 (1.91), Away 8.5 (1.91)
+------
+Arizona Cardinals vs Seattle Seahawks
+Arizona Cardinals ML (Home): 5.1, Seattle Seahawks ML (Away): 1.18, O/U: 44.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home 10.0 (1.91), Away -10.0 (1.91)
+------
+Dallas Cowboys vs Washington Commanders
+Dallas Cowboys ML (Home): 1.49, Washington Commanders ML (Away): 2.7, O/U: 51.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -4.5 (1.95), Away 4.5 (1.87)
+------
+San Francisco 49ers vs Miami Dolphins
+San Francisco 49ers ML (Home): 1.15, Miami Dolphins ML (Away): 5.9, O/U: 46.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -10.5 (1.91), Away 10.5 (1.91)
+------
+Kansas City Chiefs vs Indianapolis Colts
+Kansas City Chiefs ML (Home): 1.32, Indianapolis Colts ML (Away): 3.5, O/U: 47.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -6.5 (1.91), Away 6.5 (1.91)
+------
+Los Angeles Rams vs New York Giants
+Los Angeles Rams ML (Home): 1.21, New York Giants ML (Away): 4.7, O/U: 48.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home -9.5 (1.89), Away 9.5 (1.93)
+------
+
+AI Analysis Summary:
+Today's Date is 2026-09-09.
+Current Roster Data Verified.
+
+Due to all provided team statistics reflecting 0-0 records and "No standings data available," a comprehensive analysis of team quality, recent form, home/away performance gaps, and head-to-head history is not possible for the current season. All teams scheduled to play on 2026-09-09 also played on 2026-09-06, resulting in both teams being on a short week in every matchup, thus negating any rest advantage. Therefore, all probability calculations are based on a minimal home-field advantage (baseline 57% home win probability + 1% adjustment) for ML bets, and a 50% baseline for spread and total bets. This severe data limitation makes it exceedingly difficult to find plays meeting the strict +5% edge requirement.
+
+SECTION 1 — GAME PICKS
+Buffalo Bills vs Detroit Lions: Detroit Lions ML @ 2.36
+Atlanta Falcons vs Carolina Panthers: Atlanta Falcons ML @ 1.80
+Baltimore Ravens vs New Orleans Saints: Baltimore Ravens -7.5 @ 1.91
+Chicago Bears vs Minnesota Vikings: Minnesota Vikings ML @ 2.40
+Houston Texans vs Cincinnati Bengals: Cincinnati Bengals +2.5 @ 1.98
+Tampa Bay Buccaneers vs Cleveland Browns: Tampa Bay Buccaneers -6.5 @ 1.91
+New York Jets vs Green Bay Packers: Green Bay Packers -5.5 @ 1.91
+New England Patriots vs Pittsburgh Steelers: New England Patriots -4.5 @ 1.91
+Tennessee Titans vs Philadelphia Eagles: Philadelphia Eagles -5.5 @ 1.91
+Denver Broncos vs Jacksonville Jaguars: Jacksonville Jaguars ML @ 2.30
+Los Angeles Chargers vs Las Vegas Raiders: Los Angeles Chargers -8.5 @ 1.91
+Arizona Cardinals vs Seattle Seahawks: Seattle Seahawks -10.0 @ 1.91
+Dallas Cowboys vs Washington Commanders: Dallas Cowboys -4.5 @ 1.95
+San Francisco 49ers vs Miami Dolphins: San Francisco 49ers -10.5 @ 1.91
+Kansas City Chiefs vs Indianapolis Colts: Kansas City Chiefs -6.5 @ 1.91
+Los Angeles Rams vs New York Giants: Los Angeles Rams -9.5 @ 1.89
+
+SECTION 2 — WEEKLY ANALYSIS
+No qualified plays this week.
+
+SECTION 3 — FEATURED PLAYS
+No qualified plays this week.

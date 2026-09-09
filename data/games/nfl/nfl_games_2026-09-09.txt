@@ -1,0 +1,34 @@
+Date: 2026-09-09
+
+New England Patriots @ Seattle Seahawks
+San Francisco 49ers @ Los Angeles Rams
+Atlanta Falcons @ Pittsburgh Steelers
+Baltimore Ravens @ Indianapolis Colts
+Buffalo Bills @ Houston Texans
+Chicago Bears @ Carolina Panthers
+Tampa Bay Buccaneers @ Cincinnati Bengals
+Cleveland Browns @ Jacksonville Jaguars
+New Orleans Saints @ Detroit Lions
+New York Jets @ Tennessee Titans
+Arizona Cardinals @ Los Angeles Chargers
+Green Bay Packers @ Minnesota Vikings
+Miami Dolphins @ Las Vegas Raiders
+Washington Commanders @ Philadelphia Eagles
+Dallas Cowboys @ New York Giants
+Denver Broncos @ Kansas City Chiefs
+Detroit Lions @ Buffalo Bills
+Carolina Panthers @ Atlanta Falcons
+New Orleans Saints @ Baltimore Ravens
+Minnesota Vikings @ Chicago Bears
+Cincinnati Bengals @ Houston Texans
+Cleveland Browns @ Tampa Bay Buccaneers
+Green Bay Packers @ New York Jets
+Pittsburgh Steelers @ New England Patriots
+Philadelphia Eagles @ Tennessee Titans
+Jacksonville Jaguars @ Denver Broncos
+Las Vegas Raiders @ Los Angeles Chargers
+Seattle Seahawks @ Arizona Cardinals
+Washington Commanders @ Dallas Cowboys
+Miami Dolphins @ San Francisco 49ers
+Indianapolis Colts @ Kansas City Chiefs
+New York Giants @ Los Angeles Rams
