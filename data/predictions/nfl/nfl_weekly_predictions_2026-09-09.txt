@@ -64,70 +64,6 @@ Kansas City Chiefs vs Denver Broncos
 Kansas City Chiefs ML (Home): 1.65, Denver Broncos ML (Away): 2.3, O/U: 43.5 (Over: 1.91 / Under: 1.91)
 Spreads: Home -2.5 (1.83), Away 2.5 (2.0)
 ------
-Buffalo Bills vs Detroit Lions
-Buffalo Bills ML (Home): 1.62, Detroit Lions ML (Away): 2.36, O/U: 52.5 (Over: 1.95 / Under: 1.87)
-Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
-------
-Atlanta Falcons vs Carolina Panthers
-Atlanta Falcons ML (Home): 1.8, Carolina Panthers ML (Away): 2.05, O/U: 44.5 (Over: 1.98 / Under: 1.85)
-Spreads: Home -1.5 (1.91), Away 1.5 (1.91)
-------
-Baltimore Ravens vs New Orleans Saints
-Baltimore Ravens ML (Home): 1.28, New Orleans Saints ML (Away): 3.8, O/U: 46.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -7.5 (1.91), Away 7.5 (1.91)
-------
-Chicago Bears vs Minnesota Vikings
-Chicago Bears ML (Home): 1.6, Minnesota Vikings ML (Away): 2.4, O/U: 45.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
-------
-Houston Texans vs Cincinnati Bengals
-Houston Texans ML (Home): 1.68, Cincinnati Bengals ML (Away): 2.24, O/U: 45.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -2.5 (1.85), Away 2.5 (1.98)
-------
-Tampa Bay Buccaneers vs Cleveland Browns
-Tampa Bay Buccaneers ML (Home): 1.36, Cleveland Browns ML (Away): 3.25, O/U: 42.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -6.5 (1.91), Away 6.5 (1.91)
-------
-New York Jets vs Green Bay Packers
-New York Jets ML (Home): 3.0, Green Bay Packers ML (Away): 1.41, O/U: 42.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home 5.5 (1.91), Away -5.5 (1.91)
-------
-New England Patriots vs Pittsburgh Steelers
-New England Patriots ML (Home): 1.46, Pittsburgh Steelers ML (Away): 2.8, O/U: 43.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -4.5 (1.91), Away 4.5 (1.91)
-------
-Tennessee Titans vs Philadelphia Eagles
-Tennessee Titans ML (Home): 2.9, Philadelphia Eagles ML (Away): 1.43, O/U: 42.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home 5.5 (1.91), Away -5.5 (1.91)
-------
-Denver Broncos vs Jacksonville Jaguars
-Denver Broncos ML (Home): 1.65, Jacksonville Jaguars ML (Away): 2.3, O/U: 43.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -3.0 (1.91), Away 3.0 (1.91)
-------
-Los Angeles Chargers vs Las Vegas Raiders
-Los Angeles Chargers ML (Home): 1.28, Las Vegas Raiders ML (Away): 3.85, O/U: 42.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -8.5 (1.91), Away 8.5 (1.91)
-------
-Arizona Cardinals vs Seattle Seahawks
-Arizona Cardinals ML (Home): 5.1, Seattle Seahawks ML (Away): 1.18, O/U: 44.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home 10.0 (1.91), Away -10.0 (1.91)
-------
-Dallas Cowboys vs Washington Commanders
-Dallas Cowboys ML (Home): 1.49, Washington Commanders ML (Away): 2.7, O/U: 51.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -4.5 (1.95), Away 4.5 (1.87)
-------
-San Francisco 49ers vs Miami Dolphins
-San Francisco 49ers ML (Home): 1.15, Miami Dolphins ML (Away): 5.9, O/U: 46.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -10.5 (1.91), Away 10.5 (1.91)
-------
-Kansas City Chiefs vs Indianapolis Colts
-Kansas City Chiefs ML (Home): 1.32, Indianapolis Colts ML (Away): 3.5, O/U: 47.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -6.5 (1.91), Away 6.5 (1.91)
-------
-Los Angeles Rams vs New York Giants
-Los Angeles Rams ML (Home): 1.21, New York Giants ML (Away): 4.7, O/U: 48.5 (Over: 1.91 / Under: 1.91)
-Spreads: Home -9.5 (1.89), Away 9.5 (1.93)
-------
 
 AI Analysis Summary:
 Current Roster Data Unavailable.
@@ -135,70 +71,41 @@ Current Roster Data Unavailable.
 ---
 
 SECTION 1 — GAME PICKS
-
-New England Patriots vs Seattle Seahawks: New England Patriots +3.0 @ 2.0
-Los Angeles Rams vs San Francisco 49ers: San Francisco 49ers +3.5 @ 1.98
-Pittsburgh Steelers vs Atlanta Falcons: Atlanta Falcons +3.5 @ 1.93
-Indianapolis Colts vs Baltimore Ravens: Indianapolis Colts +3.5 @ 1.87
-Houston Texans vs Buffalo Bills: Houston Texans ML @ 1.98
-Carolina Panthers vs Chicago Bears: Carolina Panthers +3.0 @ 2.0
-Cincinnati Bengals vs Tampa Bay Buccaneers: Tampa Bay Buccaneers +3.5 @ 1.93
-Jacksonville Jaguars vs Cleveland Browns: Cleveland Browns +8.5 @ 1.91
-Detroit Lions vs New Orleans Saints: New Orleans Saints +7.0 @ 1.89
-Tennessee Titans vs New York Jets: Tennessee Titans ML @ 1.82
-Los Angeles Chargers vs Arizona Cardinals: Arizona Cardinals +9.5 @ 1.95
-Minnesota Vikings vs Green Bay Packers: Minnesota Vikings ML @ 1.82
-Las Vegas Raiders vs Miami Dolphins: Miami Dolphins +3.5 @ 1.87
-Philadelphia Eagles vs Washington Commanders: Washington Commanders +5.5 @ 1.89
-New York Giants vs Dallas Cowboys: New York Giants +3.0 @ 1.87
-Kansas City Chiefs vs Denver Broncos: Denver Broncos +2.5 @ 2.0
-Buffalo Bills vs Detroit Lions: Detroit Lions +3.0 @ 1.91
-Atlanta Falcons vs Carolina Panthers: Atlanta Falcons ML @ 1.8
-Baltimore Ravens vs New Orleans Saints: New Orleans Saints +7.5 @ 1.91
-Chicago Bears vs Minnesota Vikings: Minnesota Vikings +3.0 @ 1.91
-Houston Texans vs Cincinnati Bengals: Cincinnati Bengals +2.5 @ 1.98
-Tampa Bay Buccaneers vs Cleveland Browns: Cleveland Browns +6.5 @ 1.91
-New York Jets vs Green Bay Packers: New York Jets +5.5 @ 1.91
-New England Patriots vs Pittsburgh Steelers: Pittsburgh Steelers +4.5 @ 1.91
-Tennessee Titans vs Philadelphia Eagles: Tennessee Titans +5.5 @ 1.91
-Denver Broncos vs Jacksonville Jaguars: Jacksonville Jaguars +3.0 @ 1.91
-Los Angeles Chargers vs Las Vegas Raiders: Las Vegas Raiders +8.5 @ 1.91
-Arizona Cardinals vs Seattle Seahawks: Arizona Cardinals +10.0 @ 1.91
-Dallas Cowboys vs Washington Commanders: Washington Commanders +4.5 @ 1.87
-San Francisco 49ers vs Miami Dolphins: Miami Dolphins +10.5 @ 1.91
-Kansas City Chiefs vs Indianapolis Colts: Indianapolis Colts +6.5 @ 1.91
-Los Angeles Rams vs New York Giants: New York Giants +9.5 @ 1.93
+Detroit Lions vs Buffalo Bills: Buffalo Bills +7.0 @ 1.89
+Carolina Panthers vs Atlanta Falcons: Carolina Panthers ML @ 2.4
+New Orleans Saints vs Baltimore Ravens: New Orleans Saints ML @ 1.62
+Minnesota Vikings vs Chicago Bears: Minnesota Vikings ML @ 1.82
+Cincinnati Bengals vs Houston Texans: Houston Texans ML @ 2.7
+Cleveland Browns vs Tampa Bay Buccaneers: Tampa Bay Buccaneers ML @ 4.6
+Green Bay Packers vs New York Jets: Green Bay Packers ML @ 1.82
+Pittsburgh Steelers vs New England Patriots: New England Patriots ML @ 2.54
+Philadelphia Eagles vs Tennessee Titans: Tennessee Titans ML @ 2.8
+Jacksonville Jaguars vs Denver Broncos: Denver Broncos ML @ 4.6
+Las Vegas Raiders vs Los Angeles Chargers: Los Angeles Chargers ML @ 2.54
+Seattle Seahawks vs Arizona Cardinals: Arizona Cardinals ML @ 2.42
+Washington Commanders vs Dallas Cowboys: Washington Commanders ML @ 2.8
+Miami Dolphins vs San Francisco 49ers: Miami Dolphins ML @ 2.54
+Indianapolis Colts vs Kansas City Chiefs: Indianapolis Colts ML @ 2.45
+New York Giants vs Los Angeles Rams: New York Giants ML @ 2.36
 
 ---
 
 SECTION 2 — WEEKLY ANALYSIS
-
-This week marks the beginning of the 2026 NFL season, and as such, all teams begin with 0-0 records both at home and away (Win%: 0.000). With "No standings data available" and no specific individual team statistics provided beyond these baseline records, our analysis relies heavily on fundamental NFL dynamics and market implied probabilities. The unusually condensed schedule for September 9th, where all teams also played on September 6th, means rest advantages are nullified across the board. Consequently, the primary edges identified this week stem from the inherent home-field advantage and a perceived undervaluation of underdog spreads by the market, given a generic expectation of their outright win probability.
+Welcome to Week 1 of the 2026 NFL season. With all teams starting 0-0 and no historical season statistics or recent form data available, handicapping presents a unique challenge. Our analysis relies heavily on the foundational NFL home-field advantage and market inefficiencies, as specific team quality metrics are yet to be established. The unusual schedule, with all teams playing their second game in four days (Sunday to Wednesday), largely neutralizes any rest advantage, forcing us to focus on baseline probabilities.
 
 ---
 
 SECTION 3 — FEATURED PLAYS
+Week 1 — limited data, edge based on market lines.
 
 BET OF THE WEEK
 
-Miami Dolphins +10.5 vs San Francisco 49ers @ 1.91
-Week 1 — limited data, edge based on market lines. This play targets a significant market inefficiency where the Miami Dolphins, as an away underdog, are given a large spread. While both teams start the season with 0-0 records, our model estimates a baseline 42% chance for an away team to win outright, even against a perceived favorite. Considering the Dolphins are getting +10.5 points, their probability of covering this spread, either by winning or losing by 10 points or less, is conservatively estimated to be around 72%. This stands in stark contrast to the implied probability of 52.36% from the 1.91 odds, creating a substantial +19.64% edge. The market appears to be significantly overvaluing the San Francisco 49ers in this opening matchup.
-Confidence Level: High, Units: 1.5u, Win Probability: 72%
+Minnesota Vikings ML vs Chicago Bears @ 1.82
+This Week 1 NFC North matchup sees the Minnesota Vikings hosting the Chicago Bears. With both teams starting with 0-0 records and coming off a short rest period, traditional form and quality metrics are unavailable. Our model accounts for a baseline 57% win probability for home teams, plus an additional 1% for minimal home-field advantage when no other factors differentiate teams, bringing the Vikings' estimated true win probability to 58%. The market implies a 54.95% chance for the Vikings at 1.82 odds. This differential creates a value edge where our estimated probability significantly exceeds the implied probability, making the Vikings a strong play in this early-season contest.
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
 
 **Other Recommended Plays**
 
-Arizona Cardinals +9.5 vs Los Angeles Chargers @ 1.95
-Week 1 — limited data, edge based on market lines. The Arizona Cardinals, despite being on the road and starting with a 0-0 record like all teams, present a strong value bet with a +9.5 point spread. Our model estimates their outright win probability at 42%, but the probability of them covering a large +9.5 spread is conservatively placed at 70%. The implied probability from the 1.95 odds is 51.28%, resulting in an impressive +18.72% edge. This suggests the market has set an overly ambitious line for the Los Angeles Chargers as favorites.
-Confidence Level: High, Units: 1.5u, Win Probability: 70%
-
-New York Giants +9.5 vs Los Angeles Rams @ 1.93
-Week 1 — limited data, edge based on market lines. Playing on the road, the New York Giants are an undervalued underdog with a +9.5 point spread. With all teams at 0-0, our baseline estimate for an away team's outright win probability is 42%. However, the likelihood of the Giants covering a +9.5 spread is projected to be around 70%. Against the implied probability of 51.81% from the 1.93 odds, this reveals an +18.19% edge. The market has underestimated the Giants' ability to keep this game competitive within the spread.
-Confidence Level: High, Units: 1.5u, Win Probability: 70%
-
-Cleveland Browns +8.5 vs Jacksonville Jaguars @ 1.91
-Week 1 — limited data, edge based on market lines. The Cleveland Browns, playing on the road, offer considerable value with a +8.5 point spread. Given all teams are 0-0, our analysis uses a 42% baseline for an away team's outright win probability. For a +8.5 spread, the estimated cover probability increases to a conservative 70%. Compared to the implied probability of 52.36% from the 1.91 odds, this creates a +17.64% edge. This line suggests the market has overly inflated the Jacksonville Jaguars' expected winning margin in this season opener.
-Confidence Level: High, Units: 1.5u, Win Probability: 70%
-
-Las Vegas Raiders +8.5 vs Los Angeles Chargers @ 1.91
-Week 1 — limited data, edge based on market lines. The Las Vegas Raiders, as an away underdog starting the season with a 0-0 record, present a strong statistical edge with their +8.5 point spread. Based on our baseline estimation of a 42% outright win probability for an away team, their probability of covering an +8.5 spread is conservatively set at 70%. This significantly exceeds the implied probability of 52.36% from the 1.91 odds, yielding a robust +17.64% edge. The market appears to be mispricing the Chargers as substantially stronger than a general NFL dynamic would suggest.
-Confidence Level: High, Units: 1.5u, Win Probability: 70%
+Green Bay Packers ML vs New York Jets @ 1.82
+Similar to our Bet of the Week, the Green Bay Packers, playing at home, benefit from the baseline 57% home win probability, adjusted to 58% due to the inherent home-field advantage, given the lack of specific team data in Week 1. The New York Jets are priced at odds that imply a lower win probability than our model suggests for a typical road team against a home side without other differentiating factors. The market has the Packers implied at 54.95% to win. This results in a favorable 3.05% edge, indicating the Packers are slightly undervalued at home.
+Confidence Level: Medium, Units: 1u, Win Probability: 58%

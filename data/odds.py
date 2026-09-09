@@ -125,13 +125,12 @@ def get_nfl_odds(force_refresh=False):
         eastern = pytz.timezone("America/Toronto")
         now = datetime.now(eastern)
 
-        # Span 14 days from the most recent Tuesday to capture the full upcoming week
-        # even when called mid-week or in the gap before Thursday kickoff
+        # Span 7 days from the most recent Tuesday (Tue–Mon = one NFL week)
         days_since_tuesday = (now.weekday() - 1) % 7
         week_start = eastern.localize(
             datetime(now.year, now.month, now.day)
         ) - timedelta(days=days_since_tuesday)
-        end_local = week_start + timedelta(days=14)
+        end_local = week_start + timedelta(days=7)
         start_local = week_start
 
         start_utc = start_local.astimezone(pytz.utc).isoformat().replace("+00:00", "Z")
