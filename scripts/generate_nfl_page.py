@@ -481,27 +481,41 @@ def format_predictions_html(raw_text):
     # Game times from odds cache
     game_times = load_game_times()
 
+    def pick_in_odds_range(pick_text):
+        """Return True only if the pick's odds are between 1.60 and 2.30."""
+        m = re.search(r'@\s*([\d.]+)', pick_text)
+        if not m:
+            return False
+        try:
+            odds = float(m.group(1))
+            return 1.60 <= odds <= 2.30
+        except ValueError:
+            return False
+
     def find_pick_for_game(game):
         home = game.get("home", "").lower()
         away = game.get("away", "").lower()
         # Exact frozenset match
         key = frozenset([home, away])
         if key in game_picks:
-            return game_picks[key]
+            val = game_picks[key]
+            return val if pick_in_odds_range(val) else None
         # Match by recommended team name (home or away)
         if home in game_picks:
-            return game_picks[home]
+            val = game_picks[home]
+            return val if pick_in_odds_range(val) else None
         if away in game_picks:
-            return game_picks[away]
+            val = game_picks[away]
+            return val if pick_in_odds_range(val) else None
         # Partial last-word match on recommended team
         home_last = home.split()[-1]
         away_last = away.split()[-1]
         for k, val in game_picks.items():
             if isinstance(k, str):
                 if home_last in k or k.split()[-1] in home:
-                    return val
+                    return val if pick_in_odds_range(val) else None
                 if away_last in k or k.split()[-1] in away:
-                    return val
+                    return val if pick_in_odds_range(val) else None
         return None
 
     def get_game_time_for_teams(team1, team2):
