@@ -656,12 +656,6 @@ def format_predictions_html(raw_text):
     html += matchups_html
     html += f"<div id='picks-snapshot' style='padding:20px;'>{picks_html}{brand_bar}</div>\n"
 
-    if intro:
-        html += f"<div style='margin-top:20px;background:#f8fafc;border-radius:12px;padding:20px;border:1px solid #e2e8f0;'>\n"
-        html += f"<div style='font-size:0.9em;font-weight:700;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;'>📝 Analysis Notes</div>\n"
-        html += f"<div style='font-size:0.88em;color:#475569;line-height:1.75;'>{intro}</div>\n"
-        html += "</div>\n"
-
     return html or "<p>No data available.</p>"
 
 

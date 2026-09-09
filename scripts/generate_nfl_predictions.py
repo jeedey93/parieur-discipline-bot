@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 import shutil
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -626,5 +627,25 @@ with open(filename, "w") as f:
         f.write(summary + "\n")
         print("\nAI Analysis Summary:")
         print(summary)
+
+        # Validate SECTION 1 picks reference real teams from this week's odds
+        known_teams = set()
+        for game in odds:
+            known_teams.add(game.get('home_team', '').lower())
+            known_teams.add(game.get('away_team', '').lower())
+        sec1_match = re.search(r'(?:SECTION\s*1[^\n]*GAME PICKS|GAME PICKS)\s*\n(.*?)(?=\n---|\nSECTION\s*2|\Z)', summary, re.DOTALL | re.IGNORECASE)
+        if sec1_match:
+            for line in sec1_match.group(1).strip().splitlines():
+                line = line.strip()
+                if not line or ':' not in line:
+                    continue
+                game_part = line.split(':', 1)[0]
+                sep = ' vs ' if ' vs ' in game_part else (' @ ' if ' @ ' in game_part else None)
+                if not sep:
+                    continue
+                teams_in_line = [t.strip().lower() for t in game_part.split(sep, 1)]
+                for t in teams_in_line:
+                    if t and not any(t in kt or kt in t for kt in known_teams):
+                        print(f"⚠️  SECTION 1 hallucination: '{t}' not in this week's games")
 
 print(f"✅ Saved NFL weekly predictions to {filename}")
