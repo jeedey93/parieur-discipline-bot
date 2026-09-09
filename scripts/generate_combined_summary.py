@@ -43,12 +43,16 @@ def per_date_results(results_dir):
 def main():
     nba_dir = os.path.join('data', 'bot_results', 'nba')
     nhl_dir = os.path.join('data', 'bot_results', 'nhl')
+    nfl_dir = os.path.join('data', 'bot_results', 'nfl')
     nba_results = per_date_results(nba_dir)
     nhl_results = per_date_results(nhl_dir)
+    nfl_results = per_date_results(nfl_dir) if os.path.isdir(nfl_dir) else []
     nba_wins = sum(x[1] for x in nba_results)
     nba_losses = sum(x[2] for x in nba_results)
     nhl_wins = sum(x[1] for x in nhl_results)
     nhl_losses = sum(x[2] for x in nhl_results)
+    nfl_wins = sum(x[1] for x in nfl_results)
+    nfl_losses = sum(x[2] for x in nfl_results)
     output = []
     output.append(f"Total Results Summary ({datetime.now().strftime('%Y-%m-%d')})\n")
     output.append('NBA:')
@@ -61,6 +65,12 @@ def main():
     output.append(f'TOTAL: {nhl_wins} wins, {nhl_losses} losses')
     output.append('Game Date (results for games played on this date):')
     for date, wins, losses in nhl_results:
+        output.append(f'{date}: {wins} win' + ('' if wins == 1 else 's') + f', {losses} loss' + ('' if losses == 1 else 'es'))
+    output.append('')
+    output.append('NFL:')
+    output.append(f'TOTAL: {nfl_wins} wins, {nfl_losses} losses')
+    output.append('Week (results for games played this week):')
+    for date, wins, losses in nfl_results:
         output.append(f'{date}: {wins} win' + ('' if wins == 1 else 's') + f', {losses} loss' + ('' if losses == 1 else 'es'))
     output.append('')
     summary_text = '\n'.join(output)

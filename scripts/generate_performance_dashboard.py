@@ -25,7 +25,7 @@ def parse_results_file(filepath):
     filename = os.path.basename(filepath)
 
     # Extract sport
-    sport = 'NHL' if 'nhl' in filename.lower() else 'NBA'
+    sport = 'NHL' if 'nhl' in filename.lower() else ('NFL' if 'nfl' in filename.lower() else 'NBA')
 
     # Extract date from content (e.g., "game results for 2026-03-08")
     # This is the actual game date, not the analysis date
@@ -86,6 +86,7 @@ def generate_dashboard_html(all_data):
     # Aggregate statistics by sport (for timeline)
     nhl_data = [d for d in all_data if d['sport'] == 'NHL']
     nba_data = [d for d in all_data if d['sport'] == 'NBA']
+    nfl_data = [d for d in all_data if d['sport'] == 'NFL']
 
     # Read totals from total_results_summary.txt for consistency with home page
     summary_path = BASE_DIR / "data" / "bot_results" / "total_results_summary.txt"
@@ -93,6 +94,8 @@ def generate_dashboard_html(all_data):
     nhl_losses = 0
     nba_wins = 0
     nba_losses = 0
+    nfl_wins = 0
+    nfl_losses = 0
 
     if summary_path.exists():
         with open(summary_path, 'r') as f:
@@ -104,12 +107,17 @@ def generate_dashboard_html(all_data):
                 current_sport = "nba"
             elif line.startswith("NHL:"):
                 current_sport = "nhl"
+            elif line.startswith("NFL:"):
+                current_sport = "nfl"
             elif line.startswith("TOTAL:") and current_sport:
                 m = re.match(r"TOTAL:\s*(\d+)\s*wins?,\s*(\d+)\s*loss(?:es)?", line)
                 if m:
                     if current_sport == "nba":
                         nba_wins = int(m.group(1))
                         nba_losses = int(m.group(2))
+                    elif current_sport == "nfl":
+                        nfl_wins = int(m.group(1))
+                        nfl_losses = int(m.group(2))
                     else:
                         nhl_wins = int(m.group(1))
                         nhl_losses = int(m.group(2))
@@ -120,6 +128,9 @@ def generate_dashboard_html(all_data):
         nhl_losses = sum(d['losses'] for d in nhl_data)
         nba_wins = sum(d['wins'] for d in nba_data)
         nba_losses = sum(d['losses'] for d in nba_data)
+    if nfl_wins == 0 and nfl_data:
+        nfl_wins = sum(d['wins'] for d in nfl_data)
+        nfl_losses = sum(d['losses'] for d in nfl_data)
 
     nhl_total = nhl_wins + nhl_losses
     nhl_win_rate = (nhl_wins / nhl_total * 100) if nhl_total > 0 else 0
@@ -129,8 +140,12 @@ def generate_dashboard_html(all_data):
     nba_win_rate = (nba_wins / nba_total * 100) if nba_total > 0 else 0
     nba_roi = calculate_roi(nba_wins, nba_losses)
 
-    total_wins = nhl_wins + nba_wins
-    total_losses = nhl_losses + nba_losses
+    nfl_total = nfl_wins + nfl_losses
+    nfl_win_rate = (nfl_wins / nfl_total * 100) if nfl_total > 0 else 0
+    nfl_roi = calculate_roi(nfl_wins, nfl_losses)
+
+    total_wins = nhl_wins + nba_wins + nfl_wins
+    total_losses = nhl_losses + nba_losses + nfl_losses
     total_picks = total_wins + total_losses
     overall_win_rate = (total_wins / total_picks * 100) if total_picks > 0 else 0
     overall_roi = calculate_roi(total_wins, total_losses)
@@ -1389,12 +1404,14 @@ def main():
     if season:
         nhl_dir = RESULTS_DIR / "nhl" / season
         nba_dir = RESULTS_DIR / "nba" / season
+        nfl_dir = RESULTS_DIR / "nfl" / season
         summary_override = RESULTS_DIR / f"total_results_summary_{season}.txt"
         output_file = BASE_DIR / "docs" / f"performance-{season}.html"
         print(f"🔍 Scanning archive for season {season}...")
     else:
         nhl_dir = RESULTS_DIR / "nhl"
         nba_dir = RESULTS_DIR / "nba"
+        nfl_dir = RESULTS_DIR / "nfl"
         summary_override = None
         output_file = OUTPUT_FILE
         print("🔍 Scanning for results files...")
@@ -1410,6 +1427,13 @@ def main():
 
     if nba_dir.exists():
         for file in nba_dir.glob("*.txt"):
+            data = parse_results_file(file)
+            if data:
+                all_data.append(data)
+                print(f"  ✓ Parsed {file.name}")
+
+    if nfl_dir.exists():
+        for file in nfl_dir.glob("*.txt"):
             data = parse_results_file(file)
             if data:
                 all_data.append(data)
