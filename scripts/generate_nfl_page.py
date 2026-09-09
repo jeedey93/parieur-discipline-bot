@@ -490,7 +490,17 @@ def format_predictions_html(raw_text):
 
     def get_game_time_for_teams(team1, team2):
         k1, k2 = team1.lower(), team2.lower()
-        return game_times.get((k1, k2)) or game_times.get((k2, k1))
+        result = game_times.get((k1, k2)) or game_times.get((k2, k1))
+        if result:
+            return result
+        # Fuzzy: try matching each team individually against cache keys
+        # (handles cases where AI wrote the wrong opponent in featured picks)
+        for team in (k1, k2):
+            w = team.split()[-1]
+            for (h, a), t in game_times.items():
+                if w in h or w in a:
+                    return t
+        return None
 
     # ── Matchups section (outside the share snapshot) ──
     matchups_html = ""
