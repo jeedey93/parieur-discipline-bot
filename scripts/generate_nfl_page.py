@@ -259,22 +259,56 @@ def parse_picks(ai_text):
     if sec3_match:
         block = sec3_match.group(1).strip()
         if block and 'no qualified' not in block.lower():
-            paragraphs = re.split(r'\n\n+', block)
-            first = True
-            for para in paragraphs:
-                para = para.strip()
-                if not para or 'no qualified' in para.lower():
-                    continue
-                conf_match = re.search(r'Confidence Level: (\w+).*?Units: ([\d.]+u).*?Win Probability: (\d+%)', para)
+            # Split on BET OF THE WEEK and **Other Recommended Plays** headers
+            botw_match = re.search(r'BET OF THE WEEK\s*\n+(.*?)(?=\*\*Other Recommended|\Z)', block, re.DOTALL | re.IGNORECASE)
+            if botw_match:
+                botw_block = botw_match.group(1).strip()
+                conf_match = re.search(r'Confidence Level: (\w+).*?Units: ([\d.]+u).*?Win Probability: (\d+%)', botw_block)
                 conf = conf_match.group(1) if conf_match else None
                 units = conf_match.group(2) if conf_match else None
                 prob = conf_match.group(3) if conf_match else None
-                body = re.sub(r'Confidence Level:.*', '', para).strip()
+                body = re.sub(r'Confidence Level:.*', '', botw_block).strip()
                 first_line = body.split('\n')[0].strip()
                 rest = '\n'.join(body.split('\n')[1:]).strip()
                 if first_line:
-                    picks.append({"type": "best" if first else "other", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
-                    first = False
+                    picks.append({"type": "best", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
+
+            other_match = re.search(r'\*\*Other Recommended Plays\*\*\s*\n+(.*?)$', block, re.DOTALL | re.IGNORECASE)
+            if other_match:
+                other_block = other_match.group(1).strip()
+                paragraphs = re.split(r'\n\n+', other_block)
+                for para in paragraphs:
+                    para = para.strip()
+                    if not para or 'no qualified' in para.lower():
+                        continue
+                    conf_match = re.search(r'Confidence Level: (\w+).*?Units: ([\d.]+u).*?Win Probability: (\d+%)', para)
+                    conf = conf_match.group(1) if conf_match else None
+                    units = conf_match.group(2) if conf_match else None
+                    prob = conf_match.group(3) if conf_match else None
+                    body = re.sub(r'Confidence Level:.*', '', para).strip()
+                    first_line = body.split('\n')[0].strip()
+                    rest = '\n'.join(body.split('\n')[1:]).strip()
+                    if first_line:
+                        picks.append({"type": "other", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
+
+            # Fallback: no BET OF THE WEEK header, treat first paragraph as best
+            if not picks:
+                paragraphs = re.split(r'\n\n+', block)
+                first = True
+                for para in paragraphs:
+                    para = para.strip()
+                    if not para or 'no qualified' in para.lower():
+                        continue
+                    conf_match = re.search(r'Confidence Level: (\w+).*?Units: ([\d.]+u).*?Win Probability: (\d+%)', para)
+                    conf = conf_match.group(1) if conf_match else None
+                    units = conf_match.group(2) if conf_match else None
+                    prob = conf_match.group(3) if conf_match else None
+                    body = re.sub(r'Confidence Level:.*', '', para).strip()
+                    first_line = body.split('\n')[0].strip()
+                    rest = '\n'.join(body.split('\n')[1:]).strip()
+                    if first_line:
+                        picks.append({"type": "best" if first else "other", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
+                        first = False
         return picks
 
     # Legacy: BET OF THE WEEK block
