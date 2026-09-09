@@ -347,9 +347,8 @@ def parse_picks(ai_text):
 
 
 def parse_game_picks(ai_text):
-    """Parse the GAME PICKS section into a dict keyed by team name (lowercase)."""
+    """Parse the GAME PICKS section into a dict keyed by frozenset of both team names (lowercase)."""
     picks = {}
-    # Match either "GAME PICKS" or "SECTION 1 — GAME PICKS" header
     match = re.search(r'(?:SECTION\s*1[^\n]*GAME PICKS|GAME PICKS)\s*\n(.*?)(?=\n---|\nSECTION\s*2|\nBET OF THE WEEK|\Z)', ai_text, re.DOTALL | re.IGNORECASE)
     if not match:
         return picks
@@ -360,9 +359,9 @@ def parse_game_picks(ai_text):
         game_part, pick_text = line.split(':', 1)
         if ' vs ' not in game_part:
             continue
-        team_a, team_b = [t.strip() for t in game_part.split(' vs ', 1)]
-        picks[team_a.lower()] = pick_text.strip()
-        picks[team_b.lower()] = pick_text.strip()
+        team_a, team_b = [t.strip().lower() for t in game_part.split(' vs ', 1)]
+        key = frozenset([team_a, team_b])
+        picks[key] = pick_text.strip()
     return picks
 
 
@@ -471,14 +470,14 @@ def format_predictions_html(raw_text):
     def find_pick_for_game(game):
         home = game.get("home", "").lower()
         away = game.get("away", "").lower()
-        if home in game_picks:
-            return game_picks[home]
-        if away in game_picks:
-            return game_picks[away]
-        for key, val in game_picks.items():
-            if home.split()[-1] in key or key.split()[-1] in home:
-                return val
-            if away.split()[-1] in key or key.split()[-1] in away:
+        key = frozenset([home, away])
+        if key in game_picks:
+            return game_picks[key]
+        # Fallback: partial last-word match on the frozenset keys
+        for fkey, val in game_picks.items():
+            names = list(fkey)
+            if any(home.split()[-1] in n or n.split()[-1] in home for n in names) and \
+               any(away.split()[-1] in n or n.split()[-1] in away for n in names):
                 return val
         return None
 
