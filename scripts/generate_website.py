@@ -2130,32 +2130,127 @@ def update_latest_predictions(preliminary=False):
     nfl_weekly_path = sport_files.get("nfl")
     if nfl_weekly_path and os.path.exists(nfl_weekly_path):
         nfl_content = read_file(nfl_weekly_path).strip()
-        nfl_pick = extract_bet_of_day_from_prediction(nfl_content, "NFL", "🏈")
-        if nfl_pick:
-            # Get week date from filename
-            import re as _re
-            nfl_date_match = _re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(nfl_weekly_path))
-            nfl_week_label = ""
-            if nfl_date_match:
-                from datetime import datetime as _dt
-                try:
-                    nfl_week_label = _dt.strptime(nfl_date_match.group(1), "%Y-%m-%d").strftime("Week of %B %-d")
-                except Exception:
-                    nfl_week_label = nfl_date_match.group(1)
-            nfl_section  = "<div style='margin: 28px 0 0; position:relative;'>\n"
-            nfl_section += "<div style='background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:8px 20px;border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;'>\n"
-            nfl_section += "<div style='color:white;font-weight:900;font-size:0.9em;letter-spacing:1.5px;text-transform:uppercase;'>🏈 NFL Bet of the Week</div>\n"
-            nfl_section += f"<div style='background:rgba(255,255,255,0.15);color:white;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:700;'>{nfl_week_label}</div>\n"
-            nfl_section += "</div>\n"
-            nfl_section += "<div style='background:linear-gradient(160deg,#ffffff 60%,#eff6ff 100%);border:2px solid #2563eb;border-top:none;border-radius:0 0 16px 16px;padding:24px;box-shadow:0 8px 30px rgba(37,99,235,0.12);'>\n"
-            nfl_section += "<div class='featured-grid' style='margin:0;'>\n"
-            nfl_section += nfl_pick
-            nfl_section += "</div>\n"
-            nfl_section += "<div style='text-align:center;margin-top:16px;'>\n"
-            nfl_section += "<a href='nfl/index.html' style='display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;text-decoration:none;border-radius:20px;font-weight:700;font-size:0.88em;box-shadow:0 3px 10px rgba(37,99,235,0.3);transition:all 0.2s;' onmouseover='this.style.transform=\"translateY(-2px)\"' onmouseout='this.style.transform=\"\"'>View All NFL Picks →</a>\n"
-            nfl_section += "</div>\n"
-            nfl_section += "</div>\n"
-            nfl_section += "</div>\n"
+
+        # Parse Bet of the Week from SECTION 3
+        import re as _re
+        import html as _html
+
+        # Extract week label from filename
+        nfl_date_match = _re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(nfl_weekly_path))
+        nfl_week_label = ""
+        if nfl_date_match:
+            from datetime import datetime as _dt
+            try:
+                nfl_week_label = _dt.strptime(nfl_date_match.group(1), "%Y-%m-%d").strftime("Week of %B %-d")
+            except Exception:
+                nfl_week_label = nfl_date_match.group(1)
+
+        # Extract Bet of the Week pick line + details from SECTION 3
+        botw_pick = botw_detail = botw_conf = botw_units = botw_prob = ""
+        sec3 = _re.search(r'SECTION\s*3[^\n]*\n(.*?)$', nfl_content, _re.DOTALL | _re.IGNORECASE)
+        if sec3:
+            block = sec3.group(1)
+            botw_block = _re.search(r'BET OF THE WEEK\s*\n+(.*?)(?=\*\*Other Recommended|\Z)', block, _re.DOTALL | _re.IGNORECASE)
+            if botw_block:
+                botw_text = botw_block.group(1).strip()
+                lines = botw_text.splitlines()
+                botw_pick = lines[0].strip() if lines else ""
+                conf_m = _re.search(r'Confidence Level:\s*(\w+).*?Units:\s*([\d.]+u).*?Win Probability:\s*(\d+%)', botw_text)
+                if conf_m:
+                    botw_conf, botw_units, botw_prob = conf_m.group(1), conf_m.group(2), conf_m.group(3)
+                body_lines = [l for l in lines[1:] if l.strip() and 'Confidence Level' not in l]
+                botw_detail = ' '.join(body_lines[:3]).strip()  # max 3 sentences
+
+        # Extract team names and odds from pick line
+        # Format: "Team ML/spread vs Opponent @ odds"  or "Team +X vs Opponent @ odds"
+        pick_team = pick_opponent = pick_market = pick_odds_str = ""
+        if botw_pick:
+            pm = _re.match(r'^(.+?)\s+(ML|[+-][\d.]+|Over|Under[\s\d.]*)\s+vs\s+(.+?)\s+@\s+([\d.]+)', botw_pick)
+            if pm:
+                pick_team, pick_market, pick_opponent, pick_odds_str = pm.group(1).strip(), pm.group(2).strip(), pm.group(3).strip(), pm.group(4).strip()
+
+        # NFL logo helper (inline)
+        _NFL_ABBR = {
+            "arizona cardinals":"ari","atlanta falcons":"atl","baltimore ravens":"bal",
+            "buffalo bills":"buf","carolina panthers":"car","chicago bears":"chi",
+            "cincinnati bengals":"cin","cleveland browns":"cle","dallas cowboys":"dal",
+            "denver broncos":"den","detroit lions":"det","green bay packers":"gb",
+            "houston texans":"hou","indianapolis colts":"ind","jacksonville jaguars":"jax",
+            "kansas city chiefs":"kc","las vegas raiders":"lv","los angeles chargers":"lac",
+            "los angeles rams":"lar","miami dolphins":"mia","minnesota vikings":"min",
+            "new england patriots":"ne","new orleans saints":"no","new york giants":"nyg",
+            "new york jets":"nyj","philadelphia eagles":"phi","pittsburgh steelers":"pit",
+            "san francisco 49ers":"sf","seattle seahawks":"sea","tampa bay buccaneers":"tb",
+            "tennessee titans":"ten","washington commanders":"was",
+        }
+        def _nfl_logo(name):
+            k = name.lower().strip()
+            abbr = _NFL_ABBR.get(k)
+            if not abbr:
+                for full, ab in _NFL_ABBR.items():
+                    if full.split()[-1] == k.split()[-1]:
+                        abbr = ab; break
+            return f"https://a.espncdn.com/i/teamlogos/nfl/500/{abbr}.png" if abbr else ""
+
+        if botw_pick:
+            team_logo = _nfl_logo(pick_team)
+            opp_logo = _nfl_logo(pick_opponent)
+
+            def _logo_img(url, alt, picked=False):
+                opacity = "1" if picked else "0.45"
+                ring = f"outline:3px solid #2563eb;outline-offset:3px;border-radius:50%;" if picked else ""
+                if url:
+                    return f"<img src='{url}' alt='{_html.escape(alt)}' style='width:52px;height:52px;object-fit:contain;opacity:{opacity};{ring}' onerror='this.style.display=\"none\"'>"
+                return f"<div style='width:52px;height:52px;'></div>"
+
+            conf_color = {"High":"#16a34a","Medium":"#d97706","Low":"#dc2626"}.get(botw_conf,"#6b7280")
+
+            nfl_section = f"""
+<div style='margin:28px 0 0;'>
+  <div style='background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:10px 20px;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;'>
+    <div style='display:flex;align-items:center;gap:10px;'>
+      <span style='font-size:1.3em;'>🏈</span>
+      <span style='color:white;font-weight:900;font-size:0.95em;letter-spacing:1.5px;text-transform:uppercase;'>NFL Bet of the Week</span>
+    </div>
+    <div style='display:flex;align-items:center;gap:8px;flex-wrap:wrap;'>
+      <span style='background:rgba(255,255,255,0.15);color:white;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:700;'>{nfl_week_label}</span>
+      {'<span style="background:#fbbf24;color:#1e3a8a;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:800;">⭐ TOP PICK</span>' if botw_conf == 'High' else ''}
+    </div>
+  </div>
+  <div style='background:white;border:2px solid #2563eb;border-top:none;border-radius:0 0 16px 16px;padding:20px 24px;box-shadow:0 8px 30px rgba(37,99,235,0.1);'>
+
+    <!-- Matchup row -->
+    <div style='display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;'>
+      <div style='text-align:center;flex:1;'>
+        {_logo_img(team_logo, pick_team, picked=True)}
+        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>{_html.escape(pick_team)}</div>
+      </div>
+      <div style='text-align:center;padding:0 12px;'>
+        <div style='font-size:0.7em;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;'>vs</div>
+        <div style='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:4px 14px;border-radius:20px;font-size:0.85em;font-weight:900;white-space:nowrap;'>{_html.escape(pick_market)} @ {_html.escape(pick_odds_str)}</div>
+      </div>
+      <div style='text-align:center;flex:1;'>
+        {_logo_img(opp_logo, pick_opponent, picked=False)}
+        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>{_html.escape(pick_opponent)}</div>
+      </div>
+    </div>
+
+    <!-- Confidence chips -->
+    <div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:{'14px' if botw_detail else '0'};'>
+      {'<span style="background:' + conf_color + ';color:white;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;">' + botw_conf + ' Confidence</span>' if botw_conf else ''}
+      {'<span style="background:#eff6ff;color:#2563eb;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;border:1px solid #bfdbfe;">📊 ' + botw_units + '</span>' if botw_units else ''}
+      {'<span style="background:#f0fdf4;color:#16a34a;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;border:1px solid #bbf7d0;">🎯 ' + botw_prob + ' win prob</span>' if botw_prob else ''}
+    </div>
+
+    {'<div style="font-size:0.84em;color:#475569;line-height:1.7;border-top:1px solid #f1f5f9;padding-top:12px;">' + _html.escape(botw_detail) + '</div>' if botw_detail else ''}
+
+    <!-- CTA -->
+    <div style='text-align:center;margin-top:16px;'>
+      <a href='nfl/index.html' style='display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;text-decoration:none;border-radius:20px;font-weight:700;font-size:0.88em;box-shadow:0 3px 10px rgba(37,99,235,0.3);transition:all 0.2s;' onmouseover='this.style.transform="translateY(-2px)"' onmouseout='this.style.transform=""'>View All {nfl_week_label} Picks →</a>
+    </div>
+  </div>
+</div>
+"""
 
     if featured_content:
         content += "<div id='featured-picks' style='position: relative; margin: 0 -15px;'>\n"
