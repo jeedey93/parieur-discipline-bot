@@ -364,16 +364,17 @@ def parse_game_picks(ai_text):
         if not line or ':' not in line:
             continue
         game_part, pick_text = line.split(':', 1)
-        if ' vs ' not in game_part:
+        # Support both "vs" and "@" as team separators
+        sep = ' vs ' if ' vs ' in game_part else (' @ ' if ' @ ' in game_part else None)
+        if not sep:
             continue
         pick_text = pick_text.strip()
-        # Extract the recommended team from pick text (first word(s) before ML/spread/Over/Under)
+        # Extract the recommended team from pick text
         rec_match = re.match(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under)', pick_text)
         if rec_match:
             rec_team = rec_match.group(1).strip().lower()
             picks[rec_team] = pick_text
-        # Also key by both teams in the game line as frozenset (exact match fallback)
-        team_a, team_b = [t.strip().lower() for t in game_part.split(' vs ', 1)]
+        team_a, team_b = [t.strip().lower() for t in game_part.split(sep, 1)]
         picks[frozenset([team_a, team_b])] = pick_text
     return picks
 

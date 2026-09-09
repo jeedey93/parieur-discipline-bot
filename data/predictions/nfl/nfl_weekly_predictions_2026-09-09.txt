@@ -69,43 +69,54 @@ AI Analysis Summary:
 Current Roster Data Verified.
 
 ---
+
 SECTION 1 — GAME PICKS
-Detroit Lions vs Buffalo Bills: Detroit Lions ML @ 1.32
-Atlanta Falcons vs Carolina Panthers: Atlanta Falcons ML @ 2.54
-Baltimore Ravens vs New Orleans Saints: Baltimore Ravens ML @ 1.57
-Chicago Bears vs Minnesota Vikings: Chicago Bears ML @ 1.60
-Houston Texans vs Cincinnati Bengals: Houston Texans ML @ 1.98
-Tampa Bay Buccaneers vs Cleveland Browns: Tampa Bay Buccaneers ML @ 2.70
-New York Jets vs Green Bay Packers: New York Jets ML @ 2.02
-New England Patriots vs Pittsburgh Steelers: New England Patriots ML @ 2.42
-Tennessee Titans vs Philadelphia Eagles: Tennessee Titans ML @ 2.02
-Denver Broncos vs Jacksonville Jaguars: Denver Broncos ML @ 2.30
-Los Angeles Chargers vs Las Vegas Raiders: Los Angeles Chargers ML @ 1.19
-Arizona Cardinals vs Seattle Seahawks: Arizona Cardinals ML @ 4.90
-Dallas Cowboys vs Washington Commanders: Dallas Cowboys ML @ 1.62
-San Francisco 49ers vs Miami Dolphins: San Francisco 49ers ML @ 1.51
-Kansas City Chiefs vs Indianapolis Colts: Kansas City Chiefs ML @ 1.65
-Los Angeles Rams vs New York Giants: Los Angeles Rams ML @ 1.51
+New England Patriots @ Seattle Seahawks: New England Patriots ML @ 2.42
+Los Angeles Rams vs San Francisco 49ers: San Francisco 49ers ML @ 2.64
+Pittsburgh Steelers vs Atlanta Falcons: Atlanta Falcons ML @ 2.54
+Indianapolis Colts vs Baltimore Ravens: Indianapolis Colts +3.5 @ 1.87
+Houston Texans vs Buffalo Bills: Houston Texans +1.5 @ 1.85
+Carolina Panthers vs Chicago Bears: Carolina Panthers +3.0 @ 2.0
+Cincinnati Bengals vs Tampa Bay Buccaneers: Tampa Bay Buccaneers ML @ 2.7
+Jacksonville Jaguars vs Cleveland Browns: Cleveland Browns ML @ 4.6
+Detroit Lions vs New Orleans Saints: New Orleans Saints ML @ 3.5
+Tennessee Titans vs New York Jets: Tennessee Titans -1.5 @ 1.91
+Los Angeles Chargers vs Arizona Cardinals: Arizona Cardinals ML @ 4.9
+Minnesota Vikings vs Green Bay Packers: Minnesota Vikings -1.5 @ 1.89
+Las Vegas Raiders vs Miami Dolphins: Miami Dolphins ML @ 2.54
+Philadelphia Eagles vs Washington Commanders: Washington Commanders ML @ 2.8
+New York Giants vs Dallas Cowboys: New York Giants +3.0 @ 1.87
+Kansas City Chiefs vs Denver Broncos: Denver Broncos ML @ 2.3
 
 ---
+
 SECTION 2 — WEEKLY ANALYSIS
-Welcome to Week 1 of the 2026 NFL season. As is typical for the opening week, our predictive model operates with significant data limitations; team statistics, standings, and recent form are all at baseline (0-0). The market lines are our primary indicators of perceived team quality at this early stage. Notably, all games scheduled for today, September 9th, involve two teams that previously played on September 6th, placing every team on a short week, which neutralizes any rest advantage. Our analysis focuses on identifying value where the market might slightly undervalue the inherent home-field advantage.
+This marks the opening of the 2026 NFL season, and with all teams beginning with 0-0 records, our analysis relies on fundamental principles for Week 1. Home field advantage provides a slight edge, while talent gaps, recent form, and head-to-head records are currently unavailable. The unique scheduling has every team playing on a short week (Sunday game on 09-06 followed by a Wednesday game on 09-09), neutralizing any comparative rest advantage. Given these data limitations, we're seeking value where the market's implied probabilities deviate from our generic Week 1 baselines.
 
 ---
+
 SECTION 3 — FEATURED PLAYS
 
 BET OF THE WEEK
 
-New York Jets ML vs Green Bay Packers @ 2.02
-The New York Jets are playing at home, which historically provides a significant advantage in the NFL. Despite the lack of season-specific data as it's Week 1, our model factors in a baseline home win probability. With all teams on a short week after playing just three days prior, there's no differential in rest, which often evens the playing field and can lead to more unpredictable outcomes. The market has priced the Jets at 2.02, implying a 49.50% chance of winning, but our model estimates their true probability at 58% given the home field. This difference creates a substantial +8.5% edge, suggesting the market is slightly underestimating the Jets' chances at home.
-Confidence Level: High, Units: 1.5u, Win Probability: 58%
+Carolina Panthers +3.0 vs Chicago Bears @ 2.0
+Week 1 — limited data, edge based on market lines. Our model, accounting for a minimal home-field advantage in the absence of season statistics, projects the Carolina Panthers to have a 58% chance of winning outright as the home team. Given they are offered at +3.0 points with odds of 2.0, this implies a market probability of 50% for them to cover. With a 58% chance to win, and the added cushion of 3 points, their actual probability of covering this spread is estimated to be around 63%, creating a significant +13% edge. This suggests the market is undervaluing the inherent home advantage for the Panthers in this opener.
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
 
 **Other Recommended Plays**
 
-Tennessee Titans ML vs Philadelphia Eagles @ 2.02
-The Tennessee Titans, playing on their home turf, also benefit from the baseline home-field advantage in this Week 1 matchup. Similar to other games this week, both the Titans and the Eagles are on a short week of rest, eliminating any scheduling advantage. The odds of 2.02 imply a 49.50% win probability for the Titans, but our model, accounting for the inherent boost of playing at home, places their win probability at 58%. This provides an edge of +8.5%, indicating a solid value bet on the Titans.
-Confidence Level: High, Units: 1.5u, Win Probability: 58%
+Indianapolis Colts +3.5 vs Baltimore Ravens @ 1.87
+Week 1 — limited data, edge based on market lines. The Colts, as the home team, are estimated to have a 58% chance to win outright, even against the favored Ravens. With a generous +3.5 point spread at 1.87 odds, the implied probability of covering is 53.48%. Our model estimates their true probability of covering at 63% (58% win probability plus allowance for losing by 1, 2, or 3 points), yielding a +9.52% edge over the market.
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
 
-Houston Texans ML vs Cincinnati Bengals @ 1.98
-The Houston Texans, hosting the Cincinnati Bengals, are another home team identified as offering value in this opening week. With both teams navigating a short week of rest, the primary differentiating factor, in the absence of season data, is the home-field advantage. The Texans' moneyline odds of 1.98 translate to an implied win probability of 50.51%. Our model, estimating a 58% true win probability for home teams in Week 1 under these conditions, finds a +7.49% edge. This makes the Texans a compelling play where the market may not fully account for the home team's strength.
-Confidence Level: High, Units: 1.5u, Win Probability: 58%
+New York Giants +3.0 vs Dallas Cowboys @ 1.87
+Week 1 — limited data, edge based on market lines. Despite being listed as underdogs, the New York Giants benefit from playing at home. Our model assigns them a 58% chance of winning this game outright. With a +3.0 spread and odds of 1.87, the market implies a 53.48% chance of covering. Factoring in their win probability and the points cushion, we estimate their true probability of covering to be 63%, presenting a +9.52% edge.
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
+
+Houston Texans +1.5 vs Buffalo Bills @ 1.85
+Week 1 — limited data, edge based on market lines. The Houston Texans, playing at home, are assigned a 58% outright win probability by our model. The market has them as slight underdogs on the spread at +1.5 with odds of 1.85, implying a 54.05% chance to cover. Considering their home-field advantage and outright win potential, we project their probability of covering the +1.5 spread to be 63%, creating an +8.95% edge.
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
+
+Tennessee Titans -1.5 vs New York Jets @ 1.91
+Week 1 — limited data, edge based on market lines. As the home team, the Tennessee Titans are given a 58% win probability by our model. The market offers them at -1.5 points with odds of 1.91, suggesting an implied probability of 52.36% to cover the spread. If the Titans win outright (58% probability), they will likely cover this small spread. This yields a +5.64% edge over the implied odds.
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
