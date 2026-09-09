@@ -492,30 +492,66 @@ def format_predictions_html(raw_text):
         except ValueError:
             return False
 
+    def fallback_pick_in_range(game, preferred_team):
+        """If the AI pick is out of range, find the best in-range market for the same team."""
+        home = game.get("home", "")
+        away = game.get("away", "")
+        sh = game.get("spread_home", {})
+        sa = game.get("spread_away", {})
+        home_odds = game.get("home_odds")
+        away_odds = game.get("away_odds")
+
+        # Determine which side was recommended (home or away)
+        is_home = preferred_team.lower() in home.lower() or home.lower() in preferred_team.lower()
+        team = home if is_home else away
+        spread = sh if is_home else sa
+        ml_odds = home_odds if is_home else away_odds
+
+        candidates = []
+        if spread and spread.get("points") and spread.get("price"):
+            pts = spread["points"]
+            price = float(spread["price"])
+            if 1.60 <= price <= 2.30:
+                candidates.append((price, f"{team} {'+' if float(pts) > 0 else ''}{pts} @ {price}"))
+        if ml_odds and 1.60 <= ml_odds <= 2.30:
+            candidates.append((ml_odds, f"{team} ML @ {ml_odds}"))
+
+        if candidates:
+            candidates.sort(key=lambda x: abs(x[0] - 1.91))  # prefer closest to even
+            return candidates[0][1]
+        return None
+
     def find_pick_for_game(game):
         home = game.get("home", "").lower()
         away = game.get("away", "").lower()
+
+        def resolve(val):
+            if pick_in_odds_range(val):
+                return val
+            # Extract recommended team and try to find an in-range market
+            rec = re.match(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under)', val)
+            if rec:
+                return fallback_pick_in_range(game, rec.group(1).strip())
+            return None
+
         # Exact frozenset match
         key = frozenset([home, away])
         if key in game_picks:
-            val = game_picks[key]
-            return val if pick_in_odds_range(val) else None
+            return resolve(game_picks[key])
         # Match by recommended team name (home or away)
         if home in game_picks:
-            val = game_picks[home]
-            return val if pick_in_odds_range(val) else None
+            return resolve(game_picks[home])
         if away in game_picks:
-            val = game_picks[away]
-            return val if pick_in_odds_range(val) else None
+            return resolve(game_picks[away])
         # Partial last-word match on recommended team
         home_last = home.split()[-1]
         away_last = away.split()[-1]
         for k, val in game_picks.items():
             if isinstance(k, str):
                 if home_last in k or k.split()[-1] in home:
-                    return val if pick_in_odds_range(val) else None
+                    return resolve(val)
                 if away_last in k or k.split()[-1] in away:
-                    return val if pick_in_odds_range(val) else None
+                    return resolve(val)
         return None
 
     def get_game_time_for_teams(team1, team2):
