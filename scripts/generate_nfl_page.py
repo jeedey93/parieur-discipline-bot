@@ -251,10 +251,33 @@ def render_game_card(g, ai_pick=None, game_time=None):
 
 
 def parse_picks(ai_text):
-    """Extract BET OF THE WEEK and other recommended plays from AI text."""
+    """Extract featured plays from AI text (SECTION 3 / BET OF THE WEEK / Other Recommended Plays)."""
     picks = []
 
-    # BET OF THE WEEK block
+    # SECTION 3 — FEATURED PLAYS (new format)
+    sec3_match = re.search(r'SECTION\s*3[^\n]*\n(.*?)$', ai_text, re.DOTALL | re.IGNORECASE)
+    if sec3_match:
+        block = sec3_match.group(1).strip()
+        if block and 'no qualified' not in block.lower():
+            paragraphs = re.split(r'\n\n+', block)
+            first = True
+            for para in paragraphs:
+                para = para.strip()
+                if not para or 'no qualified' in para.lower():
+                    continue
+                conf_match = re.search(r'Confidence Level: (\w+).*?Units: ([\d.]+u).*?Win Probability: (\d+%)', para)
+                conf = conf_match.group(1) if conf_match else None
+                units = conf_match.group(2) if conf_match else None
+                prob = conf_match.group(3) if conf_match else None
+                body = re.sub(r'Confidence Level:.*', '', para).strip()
+                first_line = body.split('\n')[0].strip()
+                rest = '\n'.join(body.split('\n')[1:]).strip()
+                if first_line:
+                    picks.append({"type": "best" if first else "other", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
+                    first = False
+        return picks
+
+    # Legacy: BET OF THE WEEK block
     botw_match = re.search(r'BET OF THE WEEK\s*\n+(.*?)(?=\*\*Other|Confidence Level.*?\n\n|\Z)', ai_text, re.DOTALL | re.IGNORECASE)
     if botw_match:
         block = botw_match.group(1).strip()
@@ -262,17 +285,15 @@ def parse_picks(ai_text):
         conf = conf_match.group(1) if conf_match else None
         units = conf_match.group(2) if conf_match else None
         prob = conf_match.group(3) if conf_match else None
-        # Remove confidence line from body
         body = re.sub(r'Confidence Level:.*', '', block).strip()
         first_line = body.split('\n')[0].strip()
         rest = '\n'.join(body.split('\n')[1:]).strip()
         picks.append({"type": "best", "pick": first_line, "detail": rest, "conf": conf, "units": units, "prob": prob})
 
-    # Other recommended plays
+    # Legacy: Other recommended plays
     other_match = re.search(r'\*\*Other Recommended Plays\*\*\s*\n+(.*?)$', ai_text, re.DOTALL | re.IGNORECASE)
     if other_match:
         block = other_match.group(1).strip()
-        # Split by blank lines — each play is a paragraph
         paragraphs = re.split(r'\n\n+', block)
         for para in paragraphs:
             para = para.strip()
@@ -372,8 +393,14 @@ def render_pick_card(pick, game_time=None, home_logo=None, away_logo=None):
 
 
 def parse_intro(ai_text):
-    """Get the weekly analysis narrative from the WEEKLY ANALYSIS section."""
-    # Try the explicit WEEKLY ANALYSIS section first
+    """Get the weekly analysis narrative from SECTION 2 / WEEKLY ANALYSIS section."""
+    # Try SECTION 2 first (new format)
+    match = re.search(r'SECTION\s*2[^\n]*\n(.*?)(?=\nSECTION\s*3|\nBET OF THE WEEK|\Z)', ai_text, re.DOTALL | re.IGNORECASE)
+    if match:
+        text = match.group(1).strip()
+        if text and 'no qualified' not in text.lower():
+            return text
+    # Try the explicit WEEKLY ANALYSIS section
     match = re.search(r'WEEKLY ANALYSIS\s*\n(.*?)(?=\n---|\nSECTION\s*3|\nBET OF THE WEEK|\Z)', ai_text, re.DOTALL | re.IGNORECASE)
     if match:
         return match.group(1).strip()
