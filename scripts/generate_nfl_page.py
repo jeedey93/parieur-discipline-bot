@@ -354,7 +354,7 @@ def parse_picks(ai_text):
 
 
 def parse_game_picks(ai_text):
-    """Parse the GAME PICKS section into a dict keyed by frozenset of both team names (lowercase)."""
+    """Parse SECTION 1 picks into a dict keyed by recommended team name (lowercase)."""
     picks = {}
     match = re.search(r'(?:SECTION\s*1[^\n]*GAME PICKS|GAME PICKS)\s*\n(.*?)(?=\n---|\nSECTION\s*2|\nBET OF THE WEEK|\Z)', ai_text, re.DOTALL | re.IGNORECASE)
     if not match:
@@ -366,9 +366,15 @@ def parse_game_picks(ai_text):
         game_part, pick_text = line.split(':', 1)
         if ' vs ' not in game_part:
             continue
+        pick_text = pick_text.strip()
+        # Extract the recommended team from pick text (first word(s) before ML/spread/Over/Under)
+        rec_match = re.match(r'^(.+?)\s+(?:ML|[+-][\d.]+|Over|Under)', pick_text)
+        if rec_match:
+            rec_team = rec_match.group(1).strip().lower()
+            picks[rec_team] = pick_text
+        # Also key by both teams in the game line as frozenset (exact match fallback)
         team_a, team_b = [t.strip().lower() for t in game_part.split(' vs ', 1)]
-        key = frozenset([team_a, team_b])
-        picks[key] = pick_text.strip()
+        picks[frozenset([team_a, team_b])] = pick_text
     return picks
 
 
@@ -477,15 +483,24 @@ def format_predictions_html(raw_text):
     def find_pick_for_game(game):
         home = game.get("home", "").lower()
         away = game.get("away", "").lower()
+        # Exact frozenset match
         key = frozenset([home, away])
         if key in game_picks:
             return game_picks[key]
-        # Fallback: partial last-word match on the frozenset keys
-        for fkey, val in game_picks.items():
-            names = list(fkey)
-            if any(home.split()[-1] in n or n.split()[-1] in home for n in names) and \
-               any(away.split()[-1] in n or n.split()[-1] in away for n in names):
-                return val
+        # Match by recommended team name (home or away)
+        if home in game_picks:
+            return game_picks[home]
+        if away in game_picks:
+            return game_picks[away]
+        # Partial last-word match on recommended team
+        home_last = home.split()[-1]
+        away_last = away.split()[-1]
+        for k, val in game_picks.items():
+            if isinstance(k, str):
+                if home_last in k or k.split()[-1] in home:
+                    return val
+                if away_last in k or k.split()[-1] in away:
+                    return val
         return None
 
     def get_game_time_for_teams(team1, team2):

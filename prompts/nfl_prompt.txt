@@ -217,6 +217,8 @@ SECTION 1 — GAME PICKS (one per game, every game)
 
 For EVERY game in {{RESULTS_TEXT}}, apply the full 4-factor analysis framework and select the single best bet (ML, spread, or O/U). You MUST pick a side — do not default to the favorite or the home team out of habit. Justify your choice through the framework: consider home/away splits, team quality gap, recent form, and rest. When data is unavailable, acknowledge it and apply the baseline, but still reason through which side has the edge. Consider spread value vs ML value — sometimes betting the underdog +points offers better expected value than the favorite ML.
 
+CRITICAL: Use ONLY the exact team names and matchups listed in {{RESULTS_TEXT}}. Do NOT invent, rearrange, or substitute team names. Copy the "<Home Team> vs <Away Team>" header exactly as it appears in the data.
+
 Format (one line per game, no extra text):
 GAME PICKS
 <Home Team> vs <Away Team>: <TEAM or Over/Under> <MARKET_TYPE> @ <ODDS>
@@ -229,6 +231,7 @@ Houston Texans vs Buffalo Bills: Over 44.5 @ 1.91
 
 Rules:
 - One line per game, every game — no skipping
+- Copy the home vs away team names EXACTLY from {{RESULTS_TEXT}} — never swap or rename
 - Pick exactly one bet (ML, spread points, or Over/Under total)
 - No analysis, no confidence, no units — just the pick line
 - Always use the format above exactly
