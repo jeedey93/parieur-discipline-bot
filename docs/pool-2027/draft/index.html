@@ -649,7 +649,7 @@
   const CAP_MAX = 104_000_000;
   const DRAFT_KEY = 'pool2027_draft';
   const PLAYERS_CACHE_KEY = 'hp_players_v17';
-  const VIRTUAL_PAGE = 60;
+  const ELC_THRESHOLD = 1_500_000;
 
   const TEAM_ABBR = {
     'anaheim-ducks':'ANA','boston-bruins':'BOS','buffalo-sabres':'BUF','calgary-flames':'CGY',
@@ -804,7 +804,6 @@
     return currentCapUsed() <= CAP_MAX;
   }
 
-  const ELC_THRESHOLD = 1_500_000;
   const ELC_MAX = 4;
 
   function countELC() {
@@ -1257,14 +1256,7 @@
     }
     const cap = currentCapUsed();
     const fragment = document.createDocumentFragment();
-    const pageSize = activeFilter === 'ELC' ? available.length : VIRTUAL_PAGE;
-    available.slice(0, pageSize).forEach(p => fragment.appendChild(makeTableRow(p, false, cap)));
-    if (available.length > pageSize) {
-      const tr = document.createElement('tr');
-      tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${available.length - pageSize} more — click to load</td>`;
-      fragment.appendChild(tr);
-    }
+    available.forEach(p => fragment.appendChild(makeTableRow(p, false, cap)));
     if (ownedRows.length) {
       const divTr = document.createElement('tr');
       divTr.className = 'claimed-divider';
@@ -1276,39 +1268,6 @@
     tbody.appendChild(fragment);
   }
 
-  function loadMoreRows() {
-    const tbody = document.getElementById('pool-tbody');
-    const { available, ownedRows } = _filteredCache;
-    const cc = colCount();
-    const sentinel = tbody.querySelector('.load-more-sentinel');
-    const divider = tbody.querySelector('.claimed-divider');
-    let startIdx = 0;
-    if (sentinel) {
-      const text = sentinel.querySelector('td')?.textContent || '';
-      const remaining = parseInt(text);
-      startIdx = available.length - (isNaN(remaining) ? 0 : remaining);
-      sentinel.remove();
-    }
-    if (divider) { let n = divider; while (n) { const nx = n.nextElementSibling; n.remove(); n = nx; } }
-    const cap = currentCapUsed();
-    const fragment = document.createDocumentFragment();
-    available.slice(startIdx, startIdx + VIRTUAL_PAGE).forEach(p => fragment.appendChild(makeTableRow(p, false, cap)));
-    const newRemaining = available.length - startIdx - VIRTUAL_PAGE;
-    if (newRemaining > 0) {
-      const tr = document.createElement('tr');
-      tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${newRemaining} more — click to load</td>`;
-      fragment.appendChild(tr);
-    }
-    if (ownedRows.length) {
-      const divTr = document.createElement('tr');
-      divTr.className = 'claimed-divider';
-      divTr.innerHTML = `<td colspan="${cc}">── On Your Team (${ownedRows.length})</td>`;
-      fragment.appendChild(divTr);
-      ownedRows.forEach(p => fragment.appendChild(makeTableRow(p, true, cap)));
-    }
-    tbody.appendChild(fragment);
-  }
 
   function makeTableRow(p, isOwned, currentCap) {
     const pos = normalizePos(p.position);
