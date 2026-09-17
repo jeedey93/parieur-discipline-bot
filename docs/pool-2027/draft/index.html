@@ -455,7 +455,7 @@
   <button class="htp-toggle" onclick="toggleHTP()">▾ How to play</button>
   <div class="htp-body" id="htp-body">
     <div class="htp-grid">
-      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Max 2 ELC players (under $1.5M). Use filters, ratings and newsletters to find value.</div></div>
+      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Max 4 ELC players (under $1.5M). Use filters, ratings and newsletters to find value.</div></div>
       <div class="htp-step"><span class="htp-num">2</span><div><strong>Submit before Oct. 1st</strong><br>Rosters lock at the start of the season. Add your name, team name and email — then hit Submit.</div></div>
       <div class="htp-step"><span class="htp-num">3</span><div><strong>Entry fee: $20</strong><br>Send via Interac to <strong>justin.do@hotmail.com</strong> — or play for free. Both pools are tracked separately.</div></div>
       <div class="htp-step"><span class="htp-num">4</span><div><strong>Accumulate points all season</strong><br>F: G=1 · P=1 &nbsp;|&nbsp; D: G=2 · P=1 &nbsp;|&nbsp; G: W=2 · GAA=1 · SO=3. Best total at season end wins.</div></div>
@@ -546,7 +546,7 @@
       </div>
       <div class="cap-track"><div class="cap-fill" id="cap-fill" style="width:0%"></div></div>
       <div id="elc-chip">
-        ELC <span id="elc-count" style="color:#2563eb;font-size:0.9rem;">0</span><span style="color:#9ca3af;">/2</span>
+        ELC <span id="elc-count" style="color:#2563eb;font-size:0.9rem;">0</span><span style="color:#9ca3af;">/4</span>
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;letter-spacing:0.3px;">joueurs sous $1.5M</span>
       </div>
       <div class="cap-bar-bottom-row">
@@ -805,7 +805,7 @@
   }
 
   const ELC_THRESHOLD = 1_500_000;
-  const ELC_MAX = 2;
+  const ELC_MAX = 4;
 
   function countELC() {
     const m = slugMapFn();
@@ -1333,7 +1333,7 @@
     const wouldExceedELC = !isOwned && isELC(p) && countELC() >= ELC_MAX;
     const noContract = !isOwned && !p.cap_hit;
     const cantAdd = wouldBust || wouldExceedELC || noContract;
-    const cantAddTitle = noContract ? 'No contract yet' : wouldExceedELC ? 'ELC limit reached (max 2 under $1.5M)' : 'Would exceed salary cap';
+    const cantAddTitle = noContract ? 'No contract yet' : wouldExceedELC ? 'ELC limit reached (max 4 under $1.5M)' : 'Would exceed salary cap';
     const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${cantAdd ? `disabled title="${cantAddTitle}"` : 'title="Add to team"'} style="${cantAdd ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
 
     const playerCell = `<td style="padding:0;"><div class="td-player">
