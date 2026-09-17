@@ -631,7 +631,7 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
   const CAP_MAX = 104_000_000;
   const DRAFT_KEY = 'pool2027_draft';
-  const PLAYERS_CACHE_KEY = 'hp_players_v8';
+  const PLAYERS_CACHE_KEY = 'hp_players_v9';
   const VIRTUAL_PAGE = 60;
 
   const TEAM_ABBR = {
@@ -1480,7 +1480,7 @@
       }
       if (!allPlayers.length) {
         const res = await fetch(
-          `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played,save_pct,gaa&order=cap_hit.desc&limit=1000`,
+          `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played,save_pct,gaa&order=cap_hit.desc&limit=2000`,
           { headers: { apikey: SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
         );
         if (!res.ok) throw new Error(res.status);
