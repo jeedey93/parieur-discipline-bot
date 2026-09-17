@@ -120,6 +120,7 @@
     }
     .btn-submit-roster:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
     .btn-submit-roster:disabled { opacity: 0.35; cursor: not-allowed; transform: none; background: #e8ecf1; color: #6b7280; box-shadow: none; }
+    .submit-hint { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; color: #e05a6e; letter-spacing: 0.5px; text-align: right; margin-top: 3px; min-height: 1em; }
 
     /* ── Roster sections ── */
     .roster-section { margin-bottom: 0.65rem; flex-shrink: 0; }
@@ -190,7 +191,11 @@
 
     /* ── NHL team strip ── */
     .nhl-team-strip-wrap { margin-bottom: 0.55rem; flex-shrink: 0; }
+    .nhl-team-strip-toggle { display: flex; align-items: center; gap: 6px; width: 100%; font-family: 'Bebas Neue', cursive; font-size: 0.82rem; letter-spacing: 2px; color: #374151; background: white; border: 1.5px solid #dce8f8; border-radius: 8px; padding: 6px 12px; cursor: pointer; text-align: left; margin-bottom: 4px; transition: background 0.15s; }
+    .nhl-team-strip-toggle:hover { background: #f5f8ff; }
+    .nhl-team-strip-toggle .active-team-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; color: #2563eb; margin-left: 4px; }
     .nhl-team-strip { display: flex; gap: 4px; flex-wrap: wrap; padding-bottom: 2px; }
+    .nhl-team-strip.collapsed { display: none; }
     .nhl-team-pill { display: flex; align-items: center; gap: 4px; padding: 4px 9px; border-radius: 7px; border: 1.5px solid #e8ecf1; background: white; cursor: pointer; transition: background 0.12s, border-color 0.12s; flex-shrink: 0; white-space: nowrap; }
     .nhl-team-pill:hover { background: #f5f8ff; border-color: #c7d7f0; }
     .nhl-team-pill.active { background: rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.35); }
@@ -274,6 +279,8 @@
     .tbl-add-btn:hover { background: rgba(37,99,235,0.18); border-color: rgba(37,99,235,0.5); }
     .td-act-wrap { display: flex; gap: 3px; justify-content: center; align-items: center; }
     .claimed-divider td { padding: 6px 12px; font-family: 'Bebas Neue', cursive; font-size: 0.72rem; letter-spacing: 2px; color: #9ca3af; background: #f9fafb; text-align: left; border-top: 1px solid #e8ecf1; }
+    .load-more-cell { padding: 8px 0; text-align: center; font-family: 'Bebas Neue', cursive; font-size: 0.82rem; letter-spacing: 2px; cursor: pointer; color: #2563eb; background: rgba(37,99,235,0.04); border-top: 1px dashed rgba(37,99,235,0.2); transition: background 0.12s, color 0.12s; }
+    .load-more-cell:hover { background: rgba(37,99,235,0.08); color: #1e3a8a; }
     .loading-msg, .empty-msg { text-align: center; color: #374151; font-size: 0.95rem; padding: 2.5rem 0; letter-spacing: 1px; }
     .retry-btn { font-family: 'Bebas Neue', cursive; font-size: 0.9rem; letter-spacing: 1.5px; background: white; border: 1px solid #dce8f8; color: #374151; border-radius: 6px; padding: 3px 14px; cursor: pointer; margin-left: 8px; transition: background 0.15s; }
     .retry-btn:hover { background: #f5f8ff; }
@@ -429,6 +436,7 @@
   <div class="stats-season-badge">
     <span class="dot"></span>
     <span id="stats-timestamp-label">2025–26 Stats</span>
+    <button id="stats-refresh-btn" onclick="refreshPlayers()" title="Rafraîchir les données" style="background:none;border:none;cursor:pointer;color:#374151;font-size:0.9rem;line-height:1;padding:0 0 0 2px;opacity:0.6;transition:opacity 0.15s;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" aria-label="Rafraîchir">⟳</button>
   </div>
 </header>
 
@@ -442,13 +450,13 @@
 
 <!-- How to play -->
 <div class="how-to-play" id="how-to-play" style="width:100%;max-width:1100px;margin:0 auto 0.6rem;">
-  <button class="htp-toggle" onclick="toggleHTP()">▾ How to play</button>
+  <button class="htp-toggle" onclick="toggleHTP()">▾ Comment jouer</button>
   <div class="htp-body" id="htp-body">
     <div class="htp-grid">
-      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Max 2 ELC players (under $1.5M). Use filters, grades, and tooltips to find value.</div></div>
-      <div class="htp-step"><span class="htp-num">2</span><div><strong>Submit before Oct 1</strong><br>Rosters lock when the season opens. Add your name, team name, and email — then hit Submit.</div></div>
-      <div class="htp-step"><span class="htp-num">3</span><div><strong>Paid entry: $20</strong><br>Send via Interac to <strong>justin.do@hotmail.com</strong> — or play for free. Both pools are tracked.</div></div>
-      <div class="htp-step"><span class="htp-num">4</span><div><strong>Score all season</strong><br>F: G=1 · A=1 &nbsp;|&nbsp; D: G=2 · A=1 &nbsp;|&nbsp; G: W=2 · OTL=1 · SO=3. Best total at season end wins.</div></div>
+      <div class="htp-step"><span class="htp-num">1</span><div><strong>Bâtir ton alignement</strong><br>Choisis 12 A · 6 D · 2 G sous le plafond salarial de 104M$. Max 2 joueurs ELC (sous 1,5M$). Utilise les filtres, les cotes et les infolettres pour trouver de la valeur.</div></div>
+      <div class="htp-step"><span class="htp-num">2</span><div><strong>Soumettre avant le 1er oct.</strong><br>Les alignements sont verrouillés à l'ouverture de la saison. Ajoute ton nom, le nom d'équipe et ton courriel — puis appuie sur Soumettre.</div></div>
+      <div class="htp-step"><span class="htp-num">3</span><div><strong>Mise : 20 $</strong><br>Envoie par Interac à <strong>justin.do@hotmail.com</strong> — ou joue gratuitement. Les deux pools sont suivis séparément.</div></div>
+      <div class="htp-step"><span class="htp-num">4</span><div><strong>Cumuler des points toute la saison</strong><br>A : B=1 · P=1 &nbsp;|&nbsp; D : B=2 · P=1 &nbsp;|&nbsp; G : V=2 · DPR=1 · JB=3. Meilleur total en fin de saison remporte.</div></div>
     </div>
   </div>
 </div>
@@ -541,23 +549,26 @@
       </div>
       <div class="cap-bar-bottom-row">
         <div>
-          <span style="font-family:'Bebas Neue',cursive;font-size:0.7rem;letter-spacing:2px;color:#374151;">Projected Pool Pts</span>
-          <span id="roster-total-pts" style="font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:1px;color:#357abd;margin-left:6px;">0</span>
+          <span style="font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;color:#374151;">Pts projetés</span>
+          <span id="roster-total-pts" style="font-family:'Bebas Neue',cursive;font-size:1.8rem;letter-spacing:1px;color:#357abd;margin-left:6px;line-height:1;">0</span>
         </div>
-        <button id="btn-submit" class="btn-submit-roster" onclick="openSubmitModal()" disabled>Submit My Team</button>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;">
+          <button id="btn-submit" class="btn-submit-roster" onclick="openSubmitModal()" disabled>Submit My Team</button>
+          <div id="submit-hint" class="submit-hint"></div>
+        </div>
       </div>
     </div>
 
     <div class="roster-section">
-      <div class="section-label">Forwards <span class="count" id="fwd-count">0 / 12</span></div>
+      <div class="section-label">Forwards <span style="display:flex;gap:5px;align-items:center;"><span id="fwd-cap" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;font-weight:600;"></span><span class="count" id="fwd-count">0 / 12</span></span></div>
       <div class="roster-slots" id="slots-F" data-group="F"></div>
     </div>
     <div class="roster-section">
-      <div class="section-label">Defencemen <span class="count" id="def-count">0 / 6</span></div>
+      <div class="section-label">Defencemen <span style="display:flex;gap:5px;align-items:center;"><span id="def-cap" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;font-weight:600;"></span><span class="count" id="def-count">0 / 6</span></span></div>
       <div class="roster-slots" id="slots-D" data-group="D"></div>
     </div>
     <div class="roster-section">
-      <div class="section-label">Goalies <span class="count" id="gol-count">0 / 2</span></div>
+      <div class="section-label">Goalies <span style="display:flex;gap:5px;align-items:center;"><span id="gol-cap" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;font-weight:600;"></span><span class="count" id="gol-count">0 / 2</span></span></div>
       <div class="roster-slots" id="slots-G" data-group="G"></div>
     </div>
   </div>
@@ -593,7 +604,8 @@
     </div>
 
     <div class="nhl-team-strip-wrap">
-      <div class="nhl-team-strip" id="nhl-team-strip"></div>
+      <button class="nhl-team-strip-toggle" id="nhl-team-strip-toggle" onclick="toggleTeamStrip()">▸ Filtrer par équipe <span class="active-team-label" id="active-team-label"></span></button>
+      <div class="nhl-team-strip collapsed" id="nhl-team-strip"></div>
     </div>
 
     <div class="pool-table-wrap" id="pool-table-wrap">
@@ -633,7 +645,7 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
   const CAP_MAX = 104_000_000;
   const DRAFT_KEY = 'pool2027_draft';
-  const PLAYERS_CACHE_KEY = 'hp_players_v13';
+  const PLAYERS_CACHE_KEY = 'hp_players_v14';
   const VIRTUAL_PAGE = 60;
 
   const TEAM_ABBR = {
@@ -857,7 +869,7 @@
     const body = document.getElementById('htp-body');
     const btn = document.querySelector('.htp-toggle');
     if (body) body.style.display = _htpOpen ? '' : 'none';
-    if (btn) btn.textContent = (_htpOpen ? '▾' : '▸') + ' How to play';
+    if (btn) btn.textContent = (_htpOpen ? '▾' : '▸') + ' Comment jouer';
   }
   // Initialize HTP as collapsed
   document.addEventListener('DOMContentLoaded', () => {
@@ -916,6 +928,20 @@
     renderPool();
   }
 
+  let _teamStripOpen = false;
+  function toggleTeamStrip() {
+    _teamStripOpen = !_teamStripOpen;
+    const strip = document.getElementById('nhl-team-strip');
+    const toggle = document.getElementById('nhl-team-strip-toggle');
+    if (strip) strip.classList.toggle('collapsed', !_teamStripOpen);
+    if (toggle) toggle.textContent = (_teamStripOpen ? '▾' : '▸') + ' Filtrer par équipe ';
+    // re-append active label span
+    const lbl = document.createElement('span');
+    lbl.id = 'active-team-label'; lbl.className = 'active-team-label';
+    lbl.textContent = activeNHLTeam !== 'ALL' ? activeNHLTeam.toUpperCase().replace(/-/g,' ') : '';
+    if (toggle) { const old = toggle.querySelector('.active-team-label'); if (old) old.remove(); toggle.appendChild(lbl); }
+  }
+
   // ── NHL team strip ─────────────────────────────────────────────────────────
   function buildNHLTeamStrip() {
     const teams = [...new Set(allPlayers.map(p => p.team).filter(Boolean))].sort();
@@ -938,6 +964,9 @@
     document.querySelectorAll('.nhl-team-pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    // update toggle label to show selected team
+    const lbl = document.getElementById('active-team-label');
+    if (lbl) lbl.textContent = slug !== 'ALL' ? ` — ${TEAM_ABBR[slug] || ''}` : '';
     renderPool();
   }
 
@@ -972,9 +1001,11 @@
   }
 
   function clearTeam() {
+    const filled = rosterSlugs.F.filter(Boolean).length + rosterSlugs.D.filter(Boolean).length + rosterSlugs.G.filter(Boolean).length;
+    if (filled > 0 && !confirm(`Effacer toute l'équipe (${filled} joueurs) ?`)) return;
     rosterSlugs = { F: Array(12).fill(null), D: Array(6).fill(null), G: Array(2).fill(null) };
     saveDraft(); refreshRoster(); renderPool(); updateCapBar(); updateSubmitBtn();
-    toast('Team cleared');
+    toast('Équipe effacée');
   }
 
   // ── Cap bar update ─────────────────────────────────────────────────────────
@@ -1026,12 +1057,34 @@
   }
 
   function updateSubmitBtn() {
-    const ready = isRosterComplete() && isRosterUnderCap();
+    const complete = isRosterComplete();
+    const underCap = isRosterUnderCap();
+    const ready = complete && underCap;
     // desktop button
     const btn = document.getElementById('btn-submit');
     if (btn) {
       if (_submittedId) { btn.disabled = true; btn.textContent = '✓ Submitted'; }
       else { btn.disabled = !ready; }
+    }
+    // hint text
+    const hint = document.getElementById('submit-hint');
+    if (hint) {
+      if (_submittedId) { hint.textContent = ''; }
+      else if (!complete) {
+        const fFilled = rosterSlugs.F.filter(Boolean).length;
+        const dFilled = rosterSlugs.D.filter(Boolean).length;
+        const gFilled = rosterSlugs.G.filter(Boolean).length;
+        const missing = [];
+        if (fFilled < 12) missing.push(`${12 - fFilled} F`);
+        if (dFilled < 6)  missing.push(`${6 - dFilled} D`);
+        if (gFilled < 2)  missing.push(`${2 - gFilled} G`);
+        hint.textContent = missing.length ? `Manque : ${missing.join(', ')}` : '';
+      } else if (!underCap) {
+        const over = (currentCapUsed() - CAP_MAX) / 1_000_000;
+        hint.textContent = `Dépassement : $${over.toFixed(1)}M`;
+      } else {
+        hint.textContent = '';
+      }
     }
     // mobile sticky button
     const mobBtn = document.getElementById('btn-submit-mobile');
@@ -1056,13 +1109,20 @@
   // ── Roster rendering ───────────────────────────────────────────────────────
   function refreshRoster() {
     const m = slugMapFn();
-    const groups = { F: { id: 'slots-F', countId: 'fwd-count', max: 12 }, D: { id: 'slots-D', countId: 'def-count', max: 6 }, G: { id: 'slots-G', countId: 'gol-count', max: 2 } };
+    const groups = {
+      F: { id: 'slots-F', countId: 'fwd-count', capId: 'fwd-cap', max: 12 },
+      D: { id: 'slots-D', countId: 'def-count', capId: 'def-cap', max: 6 },
+      G: { id: 'slots-G', countId: 'gol-count', capId: 'gol-cap', max: 2 }
+    };
     for (const [pos, cfg] of Object.entries(groups)) {
       const container = document.getElementById(cfg.id); container.innerHTML = '';
       const filled = rosterSlugs[pos].filter(Boolean).length;
       const countEl = document.getElementById(cfg.countId);
       countEl.textContent = `${filled} / ${cfg.max}`;
       countEl.className = 'count' + (filled === cfg.max ? ' full' : '');
+      const groupCap = rosterSlugs[pos].filter(Boolean).reduce((s, slug) => s + (m[slug]?.cap_hit || 0), 0);
+      const capEl = document.getElementById(cfg.capId);
+      if (capEl) capEl.textContent = groupCap > 0 ? `$${(groupCap / 1_000_000).toFixed(1)}M` : '';
 
       rosterSlugs[pos].forEach((slug, i) => {
         const slot = document.createElement('div');
@@ -1194,7 +1254,7 @@
     if (available.length > VIRTUAL_PAGE) {
       const tr = document.createElement('tr');
       tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td colspan="${cc}" style="padding:4px 0;text-align:center;color:rgba(255,184,28,0.4);font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;cursor:pointer;" onclick="loadMoreRows()">↓ ${available.length - VIRTUAL_PAGE} more — click to load</td>`;
+      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${available.length - VIRTUAL_PAGE} de plus — cliquer pour charger</td>`;
       fragment.appendChild(tr);
     }
     if (ownedRows.length) {
@@ -1229,7 +1289,7 @@
     if (newRemaining > 0) {
       const tr = document.createElement('tr');
       tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td colspan="${cc}" style="padding:4px 0;text-align:center;color:rgba(255,184,28,0.4);font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;cursor:pointer;" onclick="loadMoreRows()">↓ ${newRemaining} more — click to load</td>`;
+      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${newRemaining} de plus — cliquer pour charger</td>`;
       fragment.appendChild(tr);
     }
     if (ownedRows.length) {
@@ -1314,6 +1374,15 @@
         tr.addEventListener('mouseenter', e => showCapTooltip(e, p, currentCap, capLeft, wouldOverCap, pts, grade.label));
         tr.addEventListener('mousemove', moveCapTooltip);
         tr.addEventListener('mouseleave', hideCapTooltip);
+        tr.addEventListener('click', e => {
+          if (e.target.closest('button')) return;
+          if (window.matchMedia('(pointer: coarse)').matches) {
+            const capAfter = currentCap + (p.cap_hit || 0);
+            const left = CAP_MAX - capAfter;
+            const leftStr = left >= 0 ? `$${(left/1_000_000).toFixed(1)}M restants` : `$${(Math.abs(left)/1_000_000).toFixed(1)}M de trop`;
+            toast(`${formatName(p.player_name)}: $${(p.cap_hit/1_000_000).toFixed(2)}M → ${leftStr}`, 3000);
+          }
+        });
       }
     }
     return tr;
@@ -1515,6 +1584,18 @@
     } catch(e) {
       document.getElementById('pool-tbody').innerHTML = `<tr><td colspan="9" class="empty-msg">Failed to load players. <button class="retry-btn" onclick="loadPlayers()">Retry</button></td></tr>`;
     }
+  }
+
+  function refreshPlayers() {
+    sessionStorage.removeItem(PLAYERS_CACHE_KEY);
+    allPlayers = [];
+    slugMapFn._cache = null;
+    _gradeMap = null;
+    const btn = document.getElementById('stats-refresh-btn');
+    if (btn) { btn.textContent = '…'; btn.disabled = true; }
+    loadPlayers().then(() => {
+      if (btn) { btn.textContent = '⟳'; btn.disabled = false; }
+    });
   }
 
   loadPlayers();
