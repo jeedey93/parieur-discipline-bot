@@ -244,6 +244,7 @@
     .td-pos.G { background: rgba(212,149,15,0.12); color: var(--gold); }
     .td-name { font-weight: 700; font-size: 0.92rem; color: #1a1a1a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
     .td-flag { font-family: 'Bebas Neue', cursive; font-size: 0.72rem; letter-spacing: 1px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); color: #d97706; border-radius: 3px; padding: 1px 4px; flex-shrink: 0; }
+    #elc-chip.full { background: rgba(224,90,110,0.08); border-color: rgba(224,90,110,0.35); }
     .td-gp   { color: #9ca3af; }
     .td-g    { color: #e05a6e; }
     .td-a    { color: #2563eb; }
@@ -534,9 +535,9 @@
         <span id="cap-over" class="over-label" style="display:none;">— OVER CAP</span>
       </div>
       <div class="cap-track"><div class="cap-fill" id="cap-fill" style="width:0%"></div></div>
-      <div style="margin-top:5px;font-family:'Bebas Neue',cursive;font-size:0.72rem;letter-spacing:1.5px;color:#374151;">
-        ELC <span id="elc-count" style="color:#2563eb;">0</span><span style="color:#9ca3af;">/2</span>
-        <span id="elc-label" style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;color:#9ca3af;letter-spacing:0.5px;"> &nbsp;players under $1.5M</span>
+      <div id="elc-chip" style="margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:1.5px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.2);border-radius:20px;padding:3px 10px;color:#374151;transition:background 0.2s,border-color 0.2s;">
+        ELC <span id="elc-count" style="color:#2563eb;font-size:0.9rem;">0</span><span style="color:#9ca3af;">/2</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;letter-spacing:0.3px;">joueurs sous $1.5M</span>
       </div>
       <div class="cap-bar-bottom-row">
         <div>
@@ -570,6 +571,7 @@
 
     <div class="pool-controls">
       <div class="pos-filter">
+        <button data-pos="ALL" onclick="setFilter('ALL',this)">Tous</button>
         <button class="active" data-pos="F" onclick="setFilter('F',this)">Fwd</button>
         <button data-pos="D" onclick="setFilter('D',this)">Def</button>
         <button data-pos="G" onclick="setFilter('G',this)">G</button>
@@ -631,7 +633,7 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
   const CAP_MAX = 104_000_000;
   const DRAFT_KEY = 'pool2027_draft';
-  const PLAYERS_CACHE_KEY = 'hp_players_v12';
+  const PLAYERS_CACHE_KEY = 'hp_players_v13';
   const VIRTUAL_PAGE = 60;
 
   const TEAM_ABBR = {
@@ -755,6 +757,7 @@
   }
 
   function isLikelyInactive(p) {
+    if (isELC(p)) return false; // ELC = rookie, not inactive
     return (p.games_played === 0 || p.games_played === null) && (p.cap_hit || 0) > 1_000_000;
   }
 
@@ -1010,6 +1013,8 @@
       elcEl.textContent = elcCount;
       elcEl.style.color = elcCount >= ELC_MAX ? '#e05a6e' : '#2563eb';
     }
+    const elcChip = document.getElementById('elc-chip');
+    if (elcChip) elcChip.classList.toggle('full', elcCount >= ELC_MAX);
 
     // mobile badge
     const fFilled = rosterSlugs.F.filter(Boolean).length;
@@ -1268,7 +1273,8 @@
       ${logoSrc ? `<img class="td-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="td-player-logo-placeholder"></div>`}
       <span class="td-pos ${pos}">${pos}</span>
       <span class="td-name">${formatName(p.player_name)}</span>
-      ${inactive ? `<span class="td-flag" title="0 GP — may be inactive">0GP</span>` : ''}
+      ${isELC(p) ? `<span class="td-elc" title="Entry-Level Contract — compte dans la limite ELC">ELC</span>` : ''}
+      ${inactive ? `<span class="td-flag" title="0 GP — possiblement inactif">0GP</span>` : ''}
     </div></td>`;
     const gpVal = p.games_played != null ? p.games_played : '—';
     const capCell = `<td class="td-cap">${p.cap_hit ? `$${capM}M` : '—'}</td>`;
