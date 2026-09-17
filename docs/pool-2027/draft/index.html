@@ -944,6 +944,10 @@
     const slots = rosterSlugs[pos];
     const emptyIdx = slots.findIndex(s => !s);
     if (emptyIdx === -1) { toast(`${pos === 'F' ? 'Forward' : pos === 'D' ? 'Defence' : 'Goalie'} slots full`); return; }
+    if (!p.cap_hit) {
+      toast(`${formatName(p.player_name)} has no contract yet — salary unknown`);
+      return;
+    }
     if (currentCapUsed() + (p.cap_hit || 0) > CAP_MAX) {
       toast(`Over cap — $${((currentCapUsed() + (p.cap_hit || 0) - CAP_MAX) / 1_000_000).toFixed(2)}M too expensive`);
       return;
@@ -1255,8 +1259,10 @@
 
     const wouldBust = !isOwned && capAfter > CAP_MAX;
     const wouldExceedELC = !isOwned && isELC(p) && countELC() >= ELC_MAX;
-    const cantAdd = wouldBust || wouldExceedELC;
-    const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${cantAdd ? `disabled title="${wouldExceedELC ? 'ELC limit reached (max 2 under $1.5M)' : 'Would exceed salary cap'}"` : 'title="Add to team"'} style="${cantAdd ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
+    const noContract = !isOwned && !p.cap_hit;
+    const cantAdd = wouldBust || wouldExceedELC || noContract;
+    const cantAddTitle = noContract ? 'No contract yet' : wouldExceedELC ? 'ELC limit reached (max 2 under $1.5M)' : 'Would exceed salary cap';
+    const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${cantAdd ? `disabled title="${cantAddTitle}"` : 'title="Add to team"'} style="${cantAdd ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
 
     const playerCell = `<td style="padding:0;"><div class="td-player">
       ${logoSrc ? `<img class="td-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="td-player-logo-placeholder"></div>`}
