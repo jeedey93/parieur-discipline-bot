@@ -444,7 +444,7 @@
   <button class="htp-toggle" onclick="toggleHTP()">▾ How to play</button>
   <div class="htp-body" id="htp-body">
     <div class="htp-grid">
-      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Use filters, grades, and tooltips to find value.</div></div>
+      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Max 2 ELC players (under $1.5M). Use filters, grades, and tooltips to find value.</div></div>
       <div class="htp-step"><span class="htp-num">2</span><div><strong>Submit before Oct 1</strong><br>Rosters lock when the season opens. Add your name, team name, and email — then hit Submit.</div></div>
       <div class="htp-step"><span class="htp-num">3</span><div><strong>Paid entry: $20</strong><br>Send via Interac to <strong>justin.do@hotmail.com</strong> — or play for free. Both pools are tracked.</div></div>
       <div class="htp-step"><span class="htp-num">4</span><div><strong>Score all season</strong><br>F: G=1 · A=1 &nbsp;|&nbsp; D: G=2 · A=1 &nbsp;|&nbsp; G: W=2 · OTL=1 · SO=3. Best total at season end wins.</div></div>
@@ -534,6 +534,10 @@
         <span id="cap-over" class="over-label" style="display:none;">— OVER CAP</span>
       </div>
       <div class="cap-track"><div class="cap-fill" id="cap-fill" style="width:0%"></div></div>
+      <div style="margin-top:5px;font-family:'Bebas Neue',cursive;font-size:0.72rem;letter-spacing:1.5px;color:#374151;">
+        ELC <span id="elc-count" style="color:#2563eb;">0</span><span style="color:#9ca3af;">/2</span>
+        <span id="elc-label" style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;color:#9ca3af;letter-spacing:0.5px;"> &nbsp;players under $1.5M</span>
+      </div>
       <div class="cap-bar-bottom-row">
         <div>
           <span style="font-family:'Bebas Neue',cursive;font-size:0.7rem;letter-spacing:2px;color:#374151;">Projected Pool Pts</span>
@@ -1248,6 +1252,21 @@
     return currentCapUsed() <= CAP_MAX;
   }
 
+  const ELC_THRESHOLD = 1_500_000;
+  const ELC_MAX = 2;
+
+  function countELC() {
+    const m = slugMapFn();
+    return [...rosterSlugs.F, ...rosterSlugs.D, ...rosterSlugs.G]
+      .filter(Boolean)
+      .filter(slug => { const p = m[slug]; return p && p.cap_hit > 0 && p.cap_hit < ELC_THRESHOLD; })
+      .length;
+  }
+
+  function isELC(p) {
+    return p.cap_hit > 0 && p.cap_hit < ELC_THRESHOLD;
+  }
+
   // ── Persistence (localStorage draft) ──────────────────────────────────────
   function saveDraft() {
     try { localStorage.setItem(DRAFT_KEY, JSON.stringify(rosterSlugs)); } catch(e) {}
@@ -1395,6 +1414,10 @@
       toast(`Over cap — $${((currentCapUsed() + (p.cap_hit || 0) - CAP_MAX) / 1_000_000).toFixed(2)}M too expensive`);
       return;
     }
+    if (isELC(p) && countELC() >= ELC_MAX) {
+      toast(`ELC limit reached — max ${ELC_MAX} players under $1.5M`);
+      return;
+    }
     slots[emptyIdx] = p.puckpedia_slug;
     saveDraft(); refreshRoster(); renderPool(); updateCapBar(); updateSubmitBtn();
   }
@@ -1441,6 +1464,14 @@
     iconEl.textContent = isOver ? '✗' : isWarning ? '!' : '✓';
 
     totalEl.textContent = rosterTotalPts();
+
+    // ELC counter
+    const elcCount = countELC();
+    const elcEl = document.getElementById('elc-count');
+    if (elcEl) {
+      elcEl.textContent = elcCount;
+      elcEl.style.color = elcCount >= ELC_MAX ? '#e05a6e' : '#2563eb';
+    }
 
     // mobile badge
     const fFilled = rosterSlugs.F.filter(Boolean).length;
@@ -1689,7 +1720,9 @@
     if (isTopEff) tr.classList.add('row-top-eff');
 
     const wouldBust = !isOwned && capAfter > CAP_MAX;
-    const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${wouldBust ? 'disabled title="Would exceed salary cap"' : 'title="Add to team"'} style="${wouldBust ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
+    const wouldExceedELC = !isOwned && isELC(p) && countELC() >= ELC_MAX;
+    const cantAdd = wouldBust || wouldExceedELC;
+    const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${cantAdd ? `disabled title="${wouldExceedELC ? 'ELC limit reached (max 2 under $1.5M)' : 'Would exceed salary cap'}"` : 'title="Add to team"'} style="${cantAdd ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
 
     const playerCell = `<td style="padding:0;"><div class="td-player">
       ${logoSrc ? `<img class="td-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="td-player-logo-placeholder"></div>`}
@@ -1779,6 +1812,7 @@
   function openSubmitModal() {
     if (!isRosterComplete()) { toast('Fill all roster slots first (12F/6D/2G)'); return; }
     if (!isRosterUnderCap()) { toast('You are over the salary cap!'); return; }
+    if (countELC() > ELC_MAX) { toast(`ELC limit exceeded — max ${ELC_MAX} players under $1.5M`); return; }
     const m = slugMapFn();
     const cap = currentCapUsed();
     const pts = rosterTotalPts();
