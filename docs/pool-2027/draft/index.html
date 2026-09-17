@@ -813,7 +813,9 @@
   }
 
   function isELC(p) {
-    return p.cap_hit > 0 && p.cap_hit < ELC_THRESHOLD;
+    if (!p.cap_hit || p.cap_hit <= 0 || p.cap_hit >= ELC_THRESHOLD) return false;
+    if (p.age != null && p.age >= 25) return false;
+    return true;
   }
 
   // ── Persistence (localStorage draft) ──────────────────────────────────────
