@@ -438,7 +438,7 @@
   <div class="stats-season-badge">
     <span class="dot"></span>
     <span id="stats-timestamp-label">2025–26 Stats</span>
-    <button id="stats-refresh-btn" onclick="refreshPlayers()" title="Rafraîchir les données" style="background:none;border:none;cursor:pointer;color:#374151;font-size:0.9rem;line-height:1;padding:0 0 0 2px;opacity:0.6;transition:opacity 0.15s;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" aria-label="Rafraîchir">⟳</button>
+    <button id="stats-refresh-btn" onclick="refreshPlayers()" title="Refresh player data" style="background:none;border:none;cursor:pointer;color:#374151;font-size:0.9rem;line-height:1;padding:0 0 0 2px;opacity:0.6;transition:opacity 0.15s;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" aria-label="Refresh">⟳</button>
   </div>
 </header>
 
@@ -452,13 +452,13 @@
 
 <!-- How to play -->
 <div class="how-to-play" id="how-to-play" style="width:100%;max-width:1100px;margin:0 auto 0.6rem;">
-  <button class="htp-toggle" onclick="toggleHTP()">▾ Comment jouer</button>
+  <button class="htp-toggle" onclick="toggleHTP()">▾ How to play</button>
   <div class="htp-body" id="htp-body">
     <div class="htp-grid">
-      <div class="htp-step"><span class="htp-num">1</span><div><strong>Bâtir ton alignement</strong><br>Choisis 12 A · 6 D · 2 G sous le plafond salarial de 104M$. Max 2 joueurs ELC (sous 1,5M$). Utilise les filtres, les cotes et les infolettres pour trouver de la valeur.</div></div>
-      <div class="htp-step"><span class="htp-num">2</span><div><strong>Soumettre avant le 1er oct.</strong><br>Les alignements sont verrouillés à l'ouverture de la saison. Ajoute ton nom, le nom d'équipe et ton courriel — puis appuie sur Soumettre.</div></div>
-      <div class="htp-step"><span class="htp-num">3</span><div><strong>Mise : 20 $</strong><br>Envoie par Interac à <strong>justin.do@hotmail.com</strong> — ou joue gratuitement. Les deux pools sont suivis séparément.</div></div>
-      <div class="htp-step"><span class="htp-num">4</span><div><strong>Cumuler des points toute la saison</strong><br>A : B=1 · P=1 &nbsp;|&nbsp; D : B=2 · P=1 &nbsp;|&nbsp; G : V=2 · DPR=1 · JB=3. Meilleur total en fin de saison remporte.</div></div>
+      <div class="htp-step"><span class="htp-num">1</span><div><strong>Build your roster</strong><br>Pick 12 F · 6 D · 2 G under the $104M salary cap. Max 2 ELC players (under $1.5M). Use filters, ratings and newsletters to find value.</div></div>
+      <div class="htp-step"><span class="htp-num">2</span><div><strong>Submit before Oct. 1st</strong><br>Rosters lock at the start of the season. Add your name, team name and email — then hit Submit.</div></div>
+      <div class="htp-step"><span class="htp-num">3</span><div><strong>Entry fee: $20</strong><br>Send via Interac to <strong>justin.do@hotmail.com</strong> — or play for free. Both pools are tracked separately.</div></div>
+      <div class="htp-step"><span class="htp-num">4</span><div><strong>Accumulate points all season</strong><br>F: G=1 · P=1 &nbsp;|&nbsp; D: G=2 · P=1 &nbsp;|&nbsp; G: W=2 · GAA=1 · SO=3. Best total at season end wins.</div></div>
     </div>
   </div>
 </div>
@@ -585,8 +585,8 @@
     <div class="pool-controls">
       <div class="pos-filter">
         <button data-pos="ALL" onclick="setFilter('ALL',this)">All</button>
-        <button class="active" data-pos="F" onclick="setFilter('F',this)">Fwd</button>
-        <button data-pos="D" onclick="setFilter('D',this)">Def</button>
+        <button class="active" data-pos="F" onclick="setFilter('F',this)">F</button>
+        <button data-pos="D" onclick="setFilter('D',this)">D</button>
         <button data-pos="G" onclick="setFilter('G',this)">G</button>
         <button data-pos="ELC" onclick="setFilter('ELC',this)" style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-color:#2563eb;">ELC</button>
       </div>
@@ -602,12 +602,12 @@
     </div>
 
     <div class="eff-legend">
-      <span class="eff-legend-badge">COTE</span>
-      <span class="eff-legend-text"><strong>A+ → F</strong> — rapport qualité/prix : pts de pool ÷ salaire($M), classé par percentile</span>
+      <span class="eff-legend-badge">RATING</span>
+      <span class="eff-legend-text"><strong>A+ → F</strong> — value rating: pool pts ÷ salary($M), ranked by percentile</span>
     </div>
 
     <div class="nhl-team-strip-wrap">
-      <button class="nhl-team-strip-toggle" id="nhl-team-strip-toggle" onclick="toggleTeamStrip()">▸ Filtrer par équipe <span class="active-team-label" id="active-team-label"></span></button>
+      <button class="nhl-team-strip-toggle" id="nhl-team-strip-toggle" onclick="toggleTeamStrip()">▸ Filter by team <span class="active-team-label" id="active-team-label"></span></button>
       <div class="nhl-team-strip collapsed" id="nhl-team-strip"></div>
     </div>
 
@@ -621,7 +621,7 @@
           <th class="col-a"   onclick="setSort('assists',this)" data-sort="assists" title="Assists">A   <span class="sort-arrow" id="sa-assists"></span></th>
           <th class="col-pts" onclick="setSort('points',this)"  data-sort="points"  title="Pool Points">PTS <span class="sort-arrow" id="sa-points"></span></th>
           <th class="col-cap" onclick="setSort('salary',this)"  data-sort="salary"  title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
-          <th class="col-eff" onclick="setSort('value',this)"   data-sort="value"   title="Cote de valeur A+→F : pts de pool ÷ salaire($M), classé par percentile">COTE <span class="sort-arrow" id="sa-value"></span></th>
+          <th class="col-eff" onclick="setSort('value',this)"   data-sort="value"   title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
           <th class="col-act"></th>
         </tr>
         </thead>
@@ -874,7 +874,7 @@
     const body = document.getElementById('htp-body');
     const btn = document.querySelector('.htp-toggle');
     if (body) body.style.display = _htpOpen ? '' : 'none';
-    if (btn) btn.textContent = (_htpOpen ? '▾' : '▸') + ' Comment jouer';
+    if (btn) btn.textContent = (_htpOpen ? '▾' : '▸') + ' How to play';
   }
   // Initialize HTP as collapsed
   document.addEventListener('DOMContentLoaded', () => {
@@ -939,7 +939,7 @@
     const strip = document.getElementById('nhl-team-strip');
     const toggle = document.getElementById('nhl-team-strip-toggle');
     if (strip) strip.classList.toggle('collapsed', !_teamStripOpen);
-    if (toggle) toggle.textContent = (_teamStripOpen ? '▾' : '▸') + ' Filtrer par équipe ';
+    if (toggle) toggle.textContent = (_teamStripOpen ? '▾' : '▸') + ' Filter by team ';
     // re-append active label span
     const lbl = document.createElement('span');
     lbl.id = 'active-team-label'; lbl.className = 'active-team-label';
@@ -1007,7 +1007,7 @@
 
   function clearTeam() {
     const filled = rosterSlugs.F.filter(Boolean).length + rosterSlugs.D.filter(Boolean).length + rosterSlugs.G.filter(Boolean).length;
-    if (filled > 0 && !confirm(`Effacer toute l'équipe (${filled} joueurs) ?`)) return;
+    if (filled > 0 && !confirm(`Clear entire team (${filled} players)?`)) return;
     rosterSlugs = { F: Array(12).fill(null), D: Array(6).fill(null), G: Array(2).fill(null) };
     saveDraft(); refreshRoster(); renderPool(); updateCapBar(); updateSubmitBtn();
     toast('Équipe effacée');
@@ -1083,10 +1083,10 @@
         if (fFilled < 12) missing.push(`${12 - fFilled} F`);
         if (dFilled < 6)  missing.push(`${6 - dFilled} D`);
         if (gFilled < 2)  missing.push(`${2 - gFilled} G`);
-        hint.textContent = missing.length ? `Manque : ${missing.join(', ')}` : '';
+        hint.textContent = missing.length ? `Missing: ${missing.join(', ')}` : '';
       } else if (!underCap) {
         const over = (currentCapUsed() - CAP_MAX) / 1_000_000;
-        hint.textContent = `Dépassement : $${over.toFixed(1)}M`;
+        hint.textContent = `Over cap by $${over.toFixed(1)}M`;
       } else {
         hint.textContent = '';
       }
@@ -1175,7 +1175,7 @@
       <th class="col-svpct"  onclick="setSort('save_pct',this)" data-sort="save_pct" title="Save Percentage">SV% <span class="sort-arrow" id="sa-save_pct"></span></th>
       <th class="col-fpts"   onclick="setSort('points',this)"  data-sort="points"   title="Fantasy Points">FPTS <span class="sort-arrow" id="sa-points"></span></th>
       <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
-      <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Cote de valeur A+→F : pts de pool ÷ salaire($M), classé par percentile">COTE <span class="sort-arrow" id="sa-value"></span></th>
+      <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
       <th class="col-act"></th>
     </tr>` : `<tr>
       <th class="col-player" onclick="setSort('salary',this)" data-sort="salary">Player <span class="sort-arrow" id="sa-player"></span></th>
@@ -1184,7 +1184,7 @@
       <th class="col-a"      onclick="setSort('assists',this)" data-sort="assists" title="Assists">A   <span class="sort-arrow" id="sa-assists"></span></th>
       <th class="col-fpts"   onclick="setSort('points',this)" data-sort="points" title="Fantasy Points">FPTS <span class="sort-arrow" id="sa-points"></span></th>
       <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
-      <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Cote de valeur A+→F : pts de pool ÷ salaire($M), classé par percentile">COTE <span class="sort-arrow" id="sa-value"></span></th>
+      <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
       <th class="col-act"></th>
     </tr>`;
   }
@@ -1261,7 +1261,7 @@
     if (available.length > VIRTUAL_PAGE) {
       const tr = document.createElement('tr');
       tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${available.length - VIRTUAL_PAGE} de plus — cliquer pour charger</td>`;
+      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${available.length - VIRTUAL_PAGE} more — click to load</td>`;
       fragment.appendChild(tr);
     }
     if (ownedRows.length) {
@@ -1296,7 +1296,7 @@
     if (newRemaining > 0) {
       const tr = document.createElement('tr');
       tr.className = 'load-more-sentinel';
-      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${newRemaining} de plus — cliquer pour charger</td>`;
+      tr.innerHTML = `<td class="load-more-cell" colspan="${cc}" onclick="loadMoreRows()">↓ ${newRemaining} more — click to load</td>`;
       fragment.appendChild(tr);
     }
     if (ownedRows.length) {
@@ -1340,8 +1340,8 @@
       ${logoSrc ? `<img class="td-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="td-player-logo-placeholder"></div>`}
       <span class="td-pos ${pos}">${pos}</span>
       <span class="td-name">${formatName(p.player_name)}</span>
-      ${isELC(p) ? `<span class="td-elc" title="Entry-Level Contract — compte dans la limite ELC">ELC</span>` : ''}
-      ${inactive ? `<span class="td-flag" title="0 GP — possiblement inactif">0GP</span>` : ''}
+      ${isELC(p) ? `<span class="td-elc" title="Entry-Level Contract — counts toward ELC limit">ELC</span>` : ''}
+      ${inactive ? `<span class="td-flag" title="0 GP — possibly inactive">0GP</span>` : ''}
     </div></td>`;
     const gpVal = p.games_played != null ? p.games_played : '—';
     const capCell = `<td class="td-cap">${p.cap_hit ? `$${capM}M` : '—'}</td>`;
@@ -1386,7 +1386,7 @@
           if (window.matchMedia('(pointer: coarse)').matches) {
             const capAfter = currentCap + (p.cap_hit || 0);
             const left = CAP_MAX - capAfter;
-            const leftStr = left >= 0 ? `$${(left/1_000_000).toFixed(1)}M restants` : `$${(Math.abs(left)/1_000_000).toFixed(1)}M de trop`;
+            const leftStr = left >= 0 ? `$${(left/1_000_000).toFixed(1)}M remaining` : `$${(Math.abs(left)/1_000_000).toFixed(1)}M over`;
             toast(`${formatName(p.player_name)}: $${(p.cap_hit/1_000_000).toFixed(2)}M → ${leftStr}`, 3000);
           }
         });
