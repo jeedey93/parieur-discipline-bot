@@ -1341,7 +1341,7 @@
     const effCell = `<td class="td-eff ${grade.cls}">${grade.label}</td>`;
     const actCell = `<td class="td-act"><div class="td-act-wrap">${actBtn}</div></td>`;
 
-    if (pos === 'G') {
+    if (pos === 'G' && activeFilter === 'G') {
       const wVal = p.wins != null ? p.wins : '—';
       const otlVal = p.ot_losses != null ? p.ot_losses : '—';
       const soVal = p.shutouts != null ? p.shutouts : '—';
