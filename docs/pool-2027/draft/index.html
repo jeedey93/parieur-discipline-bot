@@ -584,10 +584,11 @@
 
     <div class="pool-controls">
       <div class="pos-filter">
-        <button data-pos="ALL" onclick="setFilter('ALL',this)">Tous</button>
+        <button data-pos="ALL" onclick="setFilter('ALL',this)">All</button>
         <button class="active" data-pos="F" onclick="setFilter('F',this)">Fwd</button>
         <button data-pos="D" onclick="setFilter('D',this)">Def</button>
         <button data-pos="G" onclick="setFilter('G',this)">G</button>
+        <button data-pos="ELC" onclick="setFilter('ELC',this)" style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-color:#2563eb;">ELC</button>
       </div>
       <input class="search-input" id="search-input" type="text" placeholder="🔍 Search player…" oninput="debouncedRenderPool()" autocomplete="off">
     </div>
@@ -1212,7 +1213,9 @@
     let available = [], ownedRows = [];
     for (const p of allPlayers) {
       if (!p.player_name) continue;
-      if (activeFilter !== 'ALL' && normalizePos(p.position) !== activeFilter) continue;
+      if (activeFilter === 'ELC') {
+        if (!isELC(p)) continue;
+      } else if (activeFilter !== 'ALL' && normalizePos(p.position) !== activeFilter) continue;
       if (activeNHLTeam !== 'ALL' && p.team !== activeNHLTeam) continue;
       if (query && !p.player_name.toLowerCase().includes(query) && !formatName(p.player_name).toLowerCase().includes(query)) continue;
       const isOwned = ownedSlugs.has(p.puckpedia_slug);
