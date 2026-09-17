@@ -620,7 +620,7 @@
           <th class="col-g"   onclick="setSort('goals',this)"   data-sort="goals"   title="Goals">G   <span class="sort-arrow" id="sa-goals"></span></th>
           <th class="col-a"   onclick="setSort('assists',this)" data-sort="assists" title="Assists">A   <span class="sort-arrow" id="sa-assists"></span></th>
           <th class="col-pts" onclick="setSort('points',this)"  data-sort="points"  title="Pool Points">PTS <span class="sort-arrow" id="sa-points"></span></th>
-          <th class="col-cap" onclick="setSort('salary',this)"  data-sort="salary"  title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
+          <th class="col-cap" onclick="setSort('salary',this)"  data-sort="salary"  title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary"></span></th>
           <th class="col-eff" onclick="setSort('value',this)"   data-sort="value"   title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
           <th class="col-act"></th>
         </tr>
@@ -666,7 +666,7 @@
 
   let allPlayers = [];
   let rosterSlugs = { F: Array(12).fill(null), D: Array(6).fill(null), G: Array(2).fill(null) };
-  let activeFilter = 'F', activeNHLTeam = 'ALL', activeSort = 'salary', activeSortDir = 'desc';
+  let activeFilter = 'F', activeNHLTeam = 'ALL', activeSort = 'points', activeSortDir = 'desc';
   let _salaryMaxFilter = 2000;
   let _topEffSlugs = new Set();
   let _filteredCache = { available: [], ownedRows: [] };
@@ -1174,7 +1174,7 @@
       <th class="col-gaa"    onclick="setSort('gaa',this)"    data-sort="gaa"    title="Goals Against Average">GAA <span class="sort-arrow" id="sa-gaa"></span></th>
       <th class="col-svpct"  onclick="setSort('save_pct',this)" data-sort="save_pct" title="Save Percentage">SV% <span class="sort-arrow" id="sa-save_pct"></span></th>
       <th class="col-fpts"   onclick="setSort('points',this)"  data-sort="points"   title="Fantasy Points">FPTS <span class="sort-arrow" id="sa-points"></span></th>
-      <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
+      <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary"></span></th>
       <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
       <th class="col-act"></th>
     </tr>` : `<tr>
@@ -1183,7 +1183,7 @@
       <th class="col-g"      onclick="setSort('goals',this)"  data-sort="goals"  title="Goals">G   <span class="sort-arrow" id="sa-goals"></span></th>
       <th class="col-a"      onclick="setSort('assists',this)" data-sort="assists" title="Assists">A   <span class="sort-arrow" id="sa-assists"></span></th>
       <th class="col-fpts"   onclick="setSort('points',this)" data-sort="points" title="Fantasy Points">FPTS <span class="sort-arrow" id="sa-points"></span></th>
-      <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary">↓</span></th>
+      <th class="col-cap"    onclick="setSort('salary',this)" data-sort="salary" title="Cap Hit">CAP <span class="sort-arrow" id="sa-salary"></span></th>
       <th class="col-eff"    onclick="setSort('value',this)"  data-sort="value"  title="Value rating A+→F: pool pts ÷ salary($M), ranked by percentile">RATING <span class="sort-arrow" id="sa-value"></span></th>
       <th class="col-act"></th>
     </tr>`;
@@ -1193,8 +1193,8 @@
     activeFilter = pos;
     document.querySelectorAll('[data-pos]').forEach(b => b.classList.toggle('active', b.dataset.pos === pos));
     if (activeSort === 'points' && pos === 'G') { /* keep — poolScore works for goalies too */ }
-    if (activeSort === 'goals' || activeSort === 'assists') { activeSort = 'salary'; activeSortDir = 'desc'; }
-    if ((activeSort === 'wins' || activeSort === 'ot_losses' || activeSort === 'shutouts' || activeSort === 'gaa' || activeSort === 'save_pct') && pos !== 'G') { activeSort = 'salary'; activeSortDir = 'desc'; }
+    if (activeSort === 'goals' || activeSort === 'assists') { activeSort = 'points'; activeSortDir = 'desc'; }
+    if ((activeSort === 'wins' || activeSort === 'ot_losses' || activeSort === 'shutouts' || activeSort === 'gaa' || activeSort === 'save_pct') && pos !== 'G') { activeSort = 'points'; activeSortDir = 'desc'; }
     renderThead();
     renderPool();
   }
