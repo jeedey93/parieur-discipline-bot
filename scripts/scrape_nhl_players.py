@@ -191,11 +191,15 @@ def scrape_team(pw_page, team_slug: str) -> list[dict]:
 
 
 def upsert_batch(rows: list[dict]) -> None:
-    result = supabase.table("nhl_players").upsert(rows, on_conflict="puckpedia_slug").execute()
+    # Exclude cap_hit and aav — those are managed by the poolers_players sync,
+    # not Puckpedia (which still shows old/ELC values for recently-signed players).
+    SALARY_COLS = {"cap_hit", "aav"}
+    rows_no_salary = [{k: v for k, v in row.items() if k not in SALARY_COLS} for row in rows]
+    result = supabase.table("nhl_players").upsert(rows_no_salary, on_conflict="puckpedia_slug").execute()
     if hasattr(result, "error") and result.error:
         print(f"  ❌  Supabase upsert error: {result.error}")
     else:
-        print(f"  ✅  Upserted {len(rows)} rows")
+        print(f"  ✅  Upserted {len(rows_no_salary)} rows")
 
 
 def main():
