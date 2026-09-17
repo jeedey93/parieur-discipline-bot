@@ -925,7 +925,7 @@
     for (const slug of teams) {
       const abbr = TEAM_ABBR[slug]; if (!abbr) continue;
       const pill = document.createElement('div'); pill.className = 'nhl-team-pill'; pill.dataset.team = slug;
-      pill.innerHTML = `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}"><span>${abbr}</span>`;
+      pill.innerHTML = `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}"><span>${abbr}</span>`;
       pill.addEventListener('click', () => setNHLTeam(slug, pill));
       strip.appendChild(pill);
     }
@@ -1067,7 +1067,7 @@
           const abbr = TEAM_ABBR[p.team];
           const pts = poolScore(p);
           slot.innerHTML = `<div class="player-card in-roster" style="width:100%">
-            ${abbr ? `<img class="card-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : ''}
+            ${abbr ? `<img class="card-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}">` : ''}
             <span class="pos-badge ${pos}">${pos}</span>
             <div class="player-info">
               <div class="player-name">${formatName(p.player_name)}</div>
@@ -1237,7 +1237,7 @@
     const pos = normalizePos(p.position);
     const slug = p.puckpedia_slug;
     const abbr = TEAM_ABBR[p.team];
-    const logoSrc = abbr ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg` : null;
+    const logoSrc = abbr ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg` : null;
     const capM = p.cap_hit ? (p.cap_hit / 1_000_000).toFixed(2) : '—';
     const grade = playerGrade(p);
     const pts = poolScore(p);
