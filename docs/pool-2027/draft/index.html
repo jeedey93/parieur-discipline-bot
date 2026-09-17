@@ -249,6 +249,8 @@
     .td-pos.G { background: rgba(212,149,15,0.12); color: var(--gold); }
     .td-name { font-weight: 700; font-size: 0.92rem; color: #1a1a1a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
     .td-flag { font-family: 'Bebas Neue', cursive; font-size: 0.72rem; letter-spacing: 1px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); color: #d97706; border-radius: 3px; padding: 1px 4px; flex-shrink: 0; }
+    .td-elc { font-family: 'Bebas Neue', cursive; font-size: 0.68rem; letter-spacing: 1.5px; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; border-radius: 4px; padding: 1px 5px; flex-shrink: 0; box-shadow: 0 1px 3px rgba(37,99,235,0.35); }
+    #elc-chip { margin-top:6px; display:inline-flex; align-items:center; gap:5px; font-family:'Bebas Neue',cursive; font-size:0.78rem; letter-spacing:1.5px; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.25); border-radius:20px; padding:3px 10px; color:#374151; transition:background 0.2s, border-color 0.2s; }
     #elc-chip.full { background: rgba(224,90,110,0.08); border-color: rgba(224,90,110,0.35); }
     .td-gp   { color: #9ca3af; }
     .td-g    { color: #e05a6e; }
@@ -543,7 +545,7 @@
         <span id="cap-over" class="over-label" style="display:none;">— OVER CAP</span>
       </div>
       <div class="cap-track"><div class="cap-fill" id="cap-fill" style="width:0%"></div></div>
-      <div id="elc-chip" style="margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:1.5px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.2);border-radius:20px;padding:3px 10px;color:#374151;transition:background 0.2s,border-color 0.2s;">
+      <div id="elc-chip">
         ELC <span id="elc-count" style="color:#2563eb;font-size:0.9rem;">0</span><span style="color:#9ca3af;">/2</span>
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;letter-spacing:0.3px;">joueurs sous $1.5M</span>
       </div>
