@@ -499,7 +499,7 @@
       for (const { slug, p, pts } of sorted) {
         if (!p) continue;
         const abbr = TEAM_ABBR[p.team];
-        const logo = abbr ? `<img class="td-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+        const logo = abbr ? `<img class="td-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}">` : '';
         let statCols = '';
         if (pos === 'G') {
           statCols = `<td class="td-stat">${p.games_played ?? '—'}</td><td class="td-stat">${p.wins ?? '—'}</td><td class="td-stat">${p.ot_losses ?? '—'}</td><td class="td-stat">${p.shutouts ?? '—'}</td>`;
