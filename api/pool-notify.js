@@ -1,11 +1,13 @@
 /**
  * Pool 2027 notifications — Vercel Serverless Function
- * Handles two cases based on `type` in the request body or header:
+ * Handles three cases:
  *
- *   type = "submission"  — called by Supabase webhook on INSERT/UPDATE
- *   type = "feedback"    — called by the Report an Issue modal
+ *   action = "overwrite"  — frontend PATCH proxy using service role key
+ *   x-webhook-secret      — Supabase webhook on INSERT/UPDATE (email notification)
+ *   (default)             — feedback / bug report
  *
- * Required env vars: RESEND_API_KEY, POOL_WEBHOOK_SECRET
+ * Required env vars: RESEND_API_KEY, POOL_WEBHOOK_SECRET,
+ *                    SUPABASE_URL, SUPABASE_SERVICE_KEY
  *
  * POST /api/pool-notify
  */
@@ -25,6 +27,32 @@ module.exports = async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'RESEND_API_KEY not configured' });
 
   const body = req.body || {};
+
+  // ── Overwrite proxy (frontend can't PATCH with service key) ─────────────────
+  if (body.action === 'overwrite') {
+    const sbUrl = process.env.SUPABASE_URL;
+    const sbKey = process.env.SUPABASE_SERVICE_KEY;
+    if (!sbUrl || !sbKey) return res.status(500).json({ error: 'Supabase service key not configured' });
+    const { email, payload } = body;
+    if (!email || !payload) return res.status(400).json({ error: 'Missing email or payload' });
+    const patchRes = await fetch(
+      `${sbUrl}/rest/v1/pool_2027_submissions?email=eq.${encodeURIComponent(email)}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'apikey': sbKey,
+          'Authorization': `Bearer ${sbKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation',
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+    const data = await patchRes.json().catch(() => []);
+    if (!patchRes.ok) return res.status(patchRes.status).json({ error: 'Supabase PATCH failed', detail: data });
+    if (!Array.isArray(data) || data.length === 0) return res.status(404).json({ error: 'No row matched that email' });
+    return res.status(200).json({ ok: true, record: data[0] });
+  }
 
   // ── Submission notification (from Supabase webhook) ──────────────────────
   // Supabase webhooks send { type: 'INSERT'|'UPDATE', record: {...} }
