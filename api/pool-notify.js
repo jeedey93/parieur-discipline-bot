@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
 
   // ── Overwrite proxy (frontend can't PATCH with service key) ─────────────────
   if (body.action === 'overwrite') {
-    const sbUrl = process.env.SUPABASE_URL;
+    const sbUrl = process.env.SUPABASE_URL || 'https://fifurqlitkywtmhgtzeu.supabase.co';
     const sbKey = process.env.SUPABASE_SERVICE_KEY;
     if (!sbUrl || !sbKey) return res.status(500).json({ error: 'Supabase service key not configured' });
     const { email, payload } = body;
