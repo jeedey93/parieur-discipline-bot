@@ -1054,11 +1054,6 @@
       toast(`${formatName(p.player_name)} has no contract yet — salary unknown`);
       return;
     }
-    if (currentCapUsed() + (p.cap_hit || 0) > CAP_MAX) {
-      toast(`Over cap — $${((currentCapUsed() + (p.cap_hit || 0) - CAP_MAX) / 1_000_000).toFixed(2)}M too expensive`);
-      return;
-    }
-    // ELC limit removed
     slots[emptyIdx] = p.puckpedia_slug;
     saveDraft(); refreshRoster(); renderPool(); updateCapBar(); updateSubmitBtn();
   }
@@ -1370,9 +1365,9 @@
     const capM = p.cap_hit ? `$${(p.cap_hit / 1_000_000).toFixed(2)}M` : '—';
     const pts = poolScore(p);
     const capAfter = currentCap + (p.cap_hit || 0);
-    const wouldBust = !isOwned && capAfter > CAP_MAX;
+    const wouldBust = false; // cap no longer blocks adding
     const noContract = !isOwned && !p.cap_hit;
-    const cantAdd = wouldBust || noContract;
+    const cantAdd = noContract;
     const grade = playerGrade(p);
 
     const row = document.createElement('div');
@@ -1433,10 +1428,10 @@
     else tr.classList.add('row-can-add');
     if (isTopEff) tr.classList.add('row-top-eff');
 
-    const wouldBust = !isOwned && capAfter > CAP_MAX;
+    const wouldBust = false; // cap no longer blocks adding — build freely, fix at the end
     const noContract = !isOwned && !p.cap_hit;
-    const cantAdd = wouldBust || noContract;
-    const cantAddTitle = noContract ? 'No contract yet' : 'Would exceed salary cap';
+    const cantAdd = noContract;
+    const cantAddTitle = 'No contract yet';
     const actBtn = isOwned ? '' : `<button class="tbl-add-btn" ${cantAdd ? `disabled title="${cantAddTitle}"` : 'title="Add to team"'} style="${cantAdd ? 'opacity:0.3;cursor:not-allowed;' : ''}">+</button>`;
 
     const playerCell = `<td style="padding:0;"><div class="td-player">
