@@ -1,11 +1,16 @@
 /**
- * Serverless voting API for GitHub Pages
- * Uses GitHub Issues API to store votes
- * Tracks by IP address to prevent duplicate votes
+ * Serverless voting + page-view API for GitHub Pages
+ * Uses GitHub Issues API to store votes and page view counts
+ * GET  /api/vote?page=standings              — page view (increment)
+ * GET  /api/vote?page=standings&count_only=1 — page view (read only)
+ * GET  /api/vote?date=YYYY-MM-DD             — fetch vote counts
+ * POST /api/vote                             — cast vote / record share
+ * DELETE /api/vote                           — remove vote
  *
- * Deployment: Vercel Serverless Function
- * Updated: 2026-03-15
+ * Deployment: Vercel Serverless Function (merged vote + page-views)
  */
+
+const PAGE_VIEWS_ISSUE_TITLE = 'Page Views Counter';
 
 const GITHUB_OWNER = 'jeedey93';
 const GITHUB_REPO = 'parieur-discipline-bot';
@@ -254,6 +259,61 @@ async function removeVote(date, pickId, ipHash) {
 /**
  * Vercel Serverless Function handler
  */
+// ── Page-views helpers (merged from page-views.js) ────────────────────────────
+
+async function getPVIssue() {
+  const token = getGitHubToken();
+  const headers = {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json',
+    'User-Agent': 'Parieur-Discipline-Bot',
+  };
+  const list = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues?labels=analytics&state=open&per_page=50`,
+    { headers }
+  );
+  const issues = await list.json();
+  const existing = Array.isArray(issues) && issues.find(i => i.title === PAGE_VIEWS_ISSUE_TITLE);
+  if (existing) return existing;
+  const create = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
+    { method: 'POST', headers, body: JSON.stringify({ title: PAGE_VIEWS_ISSUE_TITLE, body: '{}', labels: ['analytics', 'automated'] }) }
+  );
+  return await create.json();
+}
+
+async function handlePageViews(req, res) {
+  const page = ((req.query && req.query.page) || 'standings').toLowerCase();
+  const countOnly = req.query && req.query.count_only === 'true';
+  const token = getGitHubToken();
+  const issue = await getPVIssue();
+  let views = {};
+  try { views = JSON.parse(issue.body) || {}; } catch { views = {}; }
+
+  if (countOnly) {
+    return res.status(200).json({ success: true, page, count: views[page] || 0 });
+  }
+
+  views[page] = (views[page] || 0) + 1;
+  await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues/${issue.number}`,
+    {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'Parieur-Discipline-Bot',
+      },
+      body: JSON.stringify({ body: JSON.stringify(views) }),
+    }
+  );
+  return res.status(200).json({ success: true, page, count: views[page] });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 module.exports = async (req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -262,6 +322,13 @@ module.exports = async (req, res) => {
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  // Route page-view requests (legacy /api/page-views URL or ?page= param without date)
+  const url = req.url || '';
+  if (url.includes('/page-views') || (req.query && req.query.page && !req.query.date && req.method === 'GET')) {
+    try { return await handlePageViews(req, res); }
+    catch (err) { return res.status(500).json({ success: false, error: err.message }); }
   }
 
   try {
