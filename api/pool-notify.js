@@ -35,23 +35,31 @@ module.exports = async (req, res) => {
     if (!sbUrl || !sbKey) return res.status(500).json({ error: 'Supabase service key not configured' });
     const { email, payload } = body;
     if (!email || !payload) return res.status(400).json({ error: 'Missing email or payload' });
-    const patchRes = await fetch(
-      `${sbUrl}/rest/v1/pool_2027_submissions?email=eq.${encodeURIComponent(email)}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'apikey': sbKey,
-          'Authorization': `Bearer ${sbKey}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=representation',
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-    const data = await patchRes.json().catch(() => []);
-    if (!patchRes.ok) return res.status(patchRes.status).json({ error: 'Supabase PATCH failed', detail: data });
-    if (!Array.isArray(data) || data.length === 0) return res.status(404).json({ error: 'No row matched that email' });
-    return res.status(200).json({ ok: true, record: data[0] });
+    try {
+      const patchRes = await fetch(
+        `${sbUrl}/rest/v1/pool_2027_submissions?email=eq.${encodeURIComponent(email)}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'apikey': sbKey,
+            'Authorization': `Bearer ${sbKey}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation',
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      const text = await patchRes.text();
+      let data;
+      try { data = JSON.parse(text); } catch { data = text; }
+      if (!patchRes.ok) return res.status(patchRes.status).json({ error: 'Supabase PATCH failed', detail: data });
+      const rows = Array.isArray(data) ? data : [];
+      if (rows.length === 0) return res.status(404).json({ error: 'No row matched that email' });
+      return res.status(200).json({ ok: true, record: rows[0] });
+    } catch (err) {
+      console.error('overwrite error:', err);
+      return res.status(500).json({ error: err.message });
+    }
   }
 
   // ── Submission notification (from Supabase webhook) ──────────────────────
