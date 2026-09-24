@@ -1600,15 +1600,151 @@
   }
 
   function sharePool() {
-    const url = 'https://parieurdiscipline.com/pool-2027/draft/';
-    const text = '🏒 Join the Parieur Discipliné Hockey Pool 2026–27! Draft your NHL team under the $104M salary cap — deadline October 1.';
-    if (navigator.share) {
-      navigator.share({ title: 'Hockey Pool 2026–27', text, url }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(`${text}\n${url}`).then(() => toast('Link copied!')).catch(() => {
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
-      });
+    const m = slugMapFn();
+    const name     = document.getElementById('sub-name')?.value.trim() || '';
+    const teamName = document.getElementById('sub-team-name')?.value.trim() || 'My Team';
+    const capUsed  = currentCapUsed();
+
+    const sections = [
+      { label: 'FORWARDS',  emoji: '⚡', slugs: rosterSlugs.F.filter(Boolean) },
+      { label: 'DEFENCE',   emoji: '🛡',  slugs: rosterSlugs.D.filter(Boolean) },
+      { label: 'GOALIES',   emoji: '🥅',  slugs: rosterSlugs.G.filter(Boolean) },
+    ].filter(s => s.slugs.length);
+
+    // ── layout constants ──────────────────────────────────────────────────────
+    const W       = 520;
+    const PAD     = 24;
+    const ROW_H   = 52;
+    const SEC_H   = 36;
+    const HDR_H   = 100;
+    const FTR_H   = 36;
+    const totalRows = sections.reduce((n, s) => n + s.slugs.length, 0);
+    const H = HDR_H + sections.length * SEC_H + totalRows * ROW_H + PAD + FTR_H;
+
+    const canvas = document.createElement('canvas');
+    const DPR = 2;
+    canvas.width  = W * DPR;
+    canvas.height = H * DPR;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(DPR, DPR);
+
+    // background
+    ctx.fillStyle = '#f5f7fa';
+    ctx.fillRect(0, 0, W, H);
+
+    // ── header ────────────────────────────────────────────────────────────────
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, W, HDR_H);
+
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 22px "Arial", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(teamName, W / 2, 38);
+
+    if (name) {
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.font = '14px Arial';
+      ctx.fillText(name, W / 2, 58);
     }
+
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.font = 'bold 15px Arial';
+    ctx.fillText(`Cap: $${(capUsed / 1_000_000).toFixed(2)}M / $104M`, W / 2, 82);
+
+    // ── rows ──────────────────────────────────────────────────────────────────
+    let y = HDR_H;
+
+    // avatar color palette (initials circles)
+    const AVATAR_COLORS = ['#1e3a8a','#c8102e','#006847','#003087','#ce1126','#041e42','#002654','#8b0000','#00205b','#b5985a'];
+    let colorIdx = 0;
+
+    function drawAvatar(cx, cy, initials, color) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, 18, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 11px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(initials, cx, cy);
+      ctx.textBaseline = 'alphabetic';
+    }
+
+    function initials(name) {
+      const parts = name.split(' ').filter(Boolean);
+      if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+      return name.slice(0, 2).toUpperCase();
+    }
+
+    sections.forEach(sec => {
+      // section header
+      ctx.fillStyle = '#eef3fb';
+      ctx.fillRect(0, y, W, SEC_H);
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = 'bold 13px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(`${sec.emoji}  ${sec.label} (${sec.slugs.length})`, PAD, y + 23);
+      y += SEC_H;
+
+      sec.slugs.forEach((slug, i) => {
+        const p = m[slug];
+        if (!p) return;
+
+        // alternating row bg
+        ctx.fillStyle = i % 2 === 0 ? 'white' : '#f8fafd';
+        ctx.fillRect(0, y, W, ROW_H);
+
+        // subtle divider
+        ctx.strokeStyle = '#e8ecf1';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(PAD, y + ROW_H - 0.5);
+        ctx.lineTo(W - PAD, y + ROW_H - 0.5);
+        ctx.stroke();
+
+        // avatar
+        const color = AVATAR_COLORS[colorIdx % AVATAR_COLORS.length];
+        colorIdx++;
+        drawAvatar(PAD + 18, y + ROW_H / 2, initials(p.player_name), color);
+
+        // name
+        ctx.fillStyle = '#111827';
+        ctx.font = 'bold 14px Arial';
+        ctx.textAlign = 'left';
+        const displayName = formatName(p.player_name);
+        ctx.fillText(displayName, PAD + 44, y + 22);
+
+        // team · salary
+        const abbr = TEAM_ABBR[p.team] || p.team?.toUpperCase().slice(0,3) || '—';
+        const sal  = p.cap_hit ? `$${(p.cap_hit / 1_000_000).toFixed(2)}M` : '—';
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '12px Arial';
+        ctx.fillText(`${abbr}  ·  ${sal}`, PAD + 44, y + 38);
+
+        y += ROW_H;
+      });
+    });
+
+    // ── footer ────────────────────────────────────────────────────────────────
+    y += 10;
+    ctx.fillStyle = '#9ca3af';
+    ctx.font = '11px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('parieurdiscipline.com/pool-2027', W / 2, y + 16);
+
+    // ── download / share ─────────────────────────────────────────────────────
+    canvas.toBlob(blob => {
+      const file = new File([blob], `${teamName.replace(/\s+/g,'-')}-pool-2027.png`, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: teamName }).catch(() => {});
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = file.name; a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+      }
+    }, 'image/png');
   }
 
   function setPoolType(paid) {
