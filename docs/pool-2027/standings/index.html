@@ -514,7 +514,10 @@
           <span class="detail-badge cap">${cap}</span>
           ${sub.paid ? '<span class="detail-badge" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.3);">PAID</span>' : ''}
         </div>
-        <button class="detail-close" onclick="toggleDetail('${sub.id}')">✕</button>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <button onclick="shareRoster('${sub.id}')" style="background:linear-gradient(135deg,#374151,#4b5563);color:white;border:none;border-radius:8px;padding:5px 12px;font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:1.5px;cursor:pointer;">📸 SHARE</button>
+          <button class="detail-close" onclick="toggleDetail('${sub.id}')">✕</button>
+        </div>
       </div>
       <div class="pos-scores-bar">
         <div class="pos-score-block F"><div class="pos-score-val">${sub.score.fPts}</div><div class="pos-score-label">Forwards</div></div>
@@ -664,6 +667,106 @@
       btn.disabled = false; btn.textContent = 'Send';
     }
   }
-</script>
+
+  function shareRoster(id) {
+    const sub = allSubmissions.find(s => s.id === id);
+    if (!sub) return;
+
+    const sections = [
+      { label: 'FORWARDS', emoji: '⚡', slugs: (sub.roster.F || []).filter(Boolean) },
+      { label: 'DEFENCE',  emoji: '🛡',  slugs: (sub.roster.D || []).filter(Boolean) },
+      { label: 'GOALIES',  emoji: '🥅',  slugs: (sub.roster.G || []).filter(Boolean) },
+    ].filter(s => s.slugs.length);
+
+    const W     = 520, PAD = 24, ROW_H = 52, SEC_H = 36, HDR_H = 100, FTR_H = 36;
+    const totalRows = sections.reduce((n, s) => n + s.slugs.length, 0);
+    const H = HDR_H + sections.length * SEC_H + totalRows * ROW_H + PAD + FTR_H;
+
+    const canvas = document.createElement('canvas');
+    const DPR = 2;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(DPR, DPR);
+
+    ctx.fillStyle = '#f5f7fa';
+    ctx.fillRect(0, 0, W, H);
+
+    // header
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, W, HDR_H);
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 22px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(sub.team_name || sub.name, W / 2, 38);
+    if (sub.team_name) {
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.font = '14px Arial';
+      ctx.fillText(sub.name, W / 2, 58);
+    }
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.font = 'bold 15px Arial';
+    ctx.fillText(`Cap: $${((sub.cap_used || 0) / 1_000_000).toFixed(2)}M / $104M`, W / 2, 82);
+
+    const AVATAR_COLORS = ['#1e3a8a','#c8102e','#006847','#003087','#ce1126','#041e42','#002654','#8b0000','#00205b','#b5985a'];
+    let colorIdx = 0;
+
+    function drawAvatar(cx, cy, ini, color) {
+      ctx.beginPath(); ctx.arc(cx, cy, 18, 0, Math.PI * 2);
+      ctx.fillStyle = color; ctx.fill();
+      ctx.fillStyle = 'white'; ctx.font = 'bold 11px Arial';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(ini, cx, cy); ctx.textBaseline = 'alphabetic';
+    }
+    function ini(name) {
+      const p = name.split(' ').filter(Boolean);
+      return p.length >= 2 ? (p[0][0] + p[p.length-1][0]).toUpperCase() : name.slice(0,2).toUpperCase();
+    }
+
+    let y = HDR_H;
+    sections.forEach(sec => {
+      ctx.fillStyle = '#eef3fb'; ctx.fillRect(0, y, W, SEC_H);
+      ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 13px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(`${sec.emoji}  ${sec.label} (${sec.slugs.length})`, PAD, y + 23);
+      y += SEC_H;
+
+      sec.slugs.forEach((slug, i) => {
+        const p = playerMap[slug]; if (!p) return;
+        ctx.fillStyle = i % 2 === 0 ? 'white' : '#f8fafd';
+        ctx.fillRect(0, y, W, ROW_H);
+        ctx.strokeStyle = '#e8ecf1'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(PAD, y + ROW_H - 0.5); ctx.lineTo(W - PAD, y + ROW_H - 0.5); ctx.stroke();
+
+        drawAvatar(PAD + 18, y + ROW_H / 2, ini(p.player_name), AVATAR_COLORS[colorIdx++ % AVATAR_COLORS.length]);
+
+        ctx.fillStyle = '#111827'; ctx.font = 'bold 14px Arial'; ctx.textAlign = 'left';
+        ctx.fillText(formatName(p.player_name), PAD + 44, y + 22);
+
+        const abbr = TEAM_ABBR[p.team] || (p.team || '').toUpperCase().slice(0,3) || '—';
+        const sal  = p.cap_hit ? `$${(p.cap_hit / 1_000_000).toFixed(2)}M` : '—';
+        ctx.fillStyle = '#6b7280'; ctx.font = '12px Arial';
+        ctx.fillText(`${abbr}  ·  ${sal}`, PAD + 44, y + 38);
+        y += ROW_H;
+      });
+    });
+
+    y += 10;
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px Arial'; ctx.textAlign = 'center';
+    ctx.fillText('parieurdiscipline.com/pool-2027', W / 2, y + 16);
+
+    canvas.toBlob(blob => {
+      const teamSlug = (sub.team_name || sub.name).replace(/\s+/g, '-');
+      const file = new File([blob], `${teamSlug}-pool-2027.png`, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: sub.team_name || sub.name }).catch(() => {});
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = file.name; a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+      }
+    }, 'image/png');
+  }
+
 </body>
 </html>
