@@ -382,11 +382,12 @@
       orderedForDisplay.forEach((sub, i) => {
         const cls = classes[i];
         const medal = cls === 'p1' ? '🥇' : cls === 'p2' ? '🥈' : '🥉';
+        const isMe = DRAFT_LOCKED || (myEmail && sub.email.toLowerCase() === myEmail.toLowerCase());
         html += `<div class="podium-spot ${cls}">
           <div class="podium-medal">${medal}</div>
-          <div class="podium-pts">${sub.score.total}</div>
+          <div class="podium-pts">${isMe ? sub.score.total : '—'}</div>
           <div class="podium-name">${escapeHtml(sub.name)}</div>
-          <div class="podium-cap">${fmtCap(sub.cap_used)}</div>
+          <div class="podium-cap">${isMe ? fmtCap(sub.cap_used) : '🔒'}</div>
           <div class="podium-block"></div>
         </div>`;
       });
@@ -414,14 +415,16 @@
         : `<span class="lb-rank-num">${rank}</span>`;
       const isActive = sub.id === activeDetailId;
       const rowId = `lb-row-${sub.id}`;
-      html += `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" id="${rowId}" onclick="toggleDetail('${sub.id}')" style="cursor:pointer;">
+      const isMe = DRAFT_LOCKED || (myEmail && sub.email.toLowerCase() === myEmail.toLowerCase());
+      const lockIcon = !isMe ? ' 🔒' : '';
+      html += `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" id="${rowId}" onclick="toggleDetail('${sub.id}')" style="cursor:${isMe ? 'pointer' : 'default'};">
         <div class="lb-rank ${rankCls}">${rankInner}</div>
-        <div class="lb-name">${escapeHtml(sub.name)}${sub.paid ? '<span class="paid-badge">PAID</span>' : ''}</div>
-        <div class="lb-stat lb-col-hide" style="white-space:nowrap;">${fmtCap(sub.cap_used)}</div>
-        <div class="lb-stat lb-col-hide">${sub.score.fPts}</div>
-        <div class="lb-stat lb-col-hide">${sub.score.dPts}</div>
-        <div class="lb-stat lb-col-hide">${sub.score.gPts}</div>
-        <div class="lb-stat pts">${sub.score.total}</div>
+        <div class="lb-name">${escapeHtml(sub.name)}${sub.paid ? '<span class="paid-badge">PAID</span>' : ''}${lockIcon}</div>
+        <div class="lb-stat lb-col-hide" style="white-space:nowrap;">${isMe ? fmtCap(sub.cap_used) : '—'}</div>
+        <div class="lb-stat lb-col-hide">${isMe ? sub.score.fPts : '—'}</div>
+        <div class="lb-stat lb-col-hide">${isMe ? sub.score.dPts : '—'}</div>
+        <div class="lb-stat lb-col-hide">${isMe ? sub.score.gPts : '—'}</div>
+        <div class="lb-stat pts">${isMe ? sub.score.total : '—'}</div>
       </div>`;
       if (rank === 3 && list.length > 3) html += `<div class="lb-tier-divider"></div>`;
     });
@@ -444,6 +447,8 @@
 
   // ── Detail drawer ──────────────────────────────────────────────────────────
   function toggleDetail(id) {
+    const sub = allSubmissions.find(s => s.id === id);
+    if (!DRAFT_LOCKED && sub && sub.email.toLowerCase() !== (myEmail || '').toLowerCase()) return;
     activeDetailId = activeDetailId === id ? null : id;
     renderAll();
     if (activeDetailId) {
@@ -530,11 +535,8 @@
       return;
     }
     try {
-      const subsUrl = DRAFT_LOCKED
-        ? `${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`
-        : `${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,email,paid,roster,cap_used,submitted_at&email=eq.${encodeURIComponent(myEmail)}`;
       const [subsRes, playersRes] = await Promise.all([
-        fetch(subsUrl, { headers: sbHeaders() }),
+        fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`, { headers: sbHeaders() }),
         fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played&limit=1000`, { headers: sbHeaders() }),
       ]);
 
@@ -544,12 +546,6 @@
       allSubmissions = await subsRes.json();
       allPlayers = await playersRes.json();
       playerMap = Object.fromEntries(allPlayers.map(p => [p.puckpedia_slug, p]));
-
-      if (!DRAFT_LOCKED && !allSubmissions.length) {
-        document.getElementById('content').innerHTML =
-          `<div class="msg">No submission found for <strong>${escapeHtml(myEmail)}</strong>. <a href="/pool-2027/draft/">Draft your team first →</a></div>`;
-        return;
-      }
 
       renderAll();
     } catch(e) {
