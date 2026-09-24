@@ -653,10 +653,10 @@
     const btn = document.getElementById('btn-send-feedback');
     btn.disabled = true; btn.textContent = '…';
     try {
-      const res = await fetch('https://parieurdiscipline.com/api/pool-notify', {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_reports`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, player, message }),
+        headers: { ...sbHeaders(), 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ type, player: player || null, message }),
       });
       if (!res.ok) throw new Error(res.status);
       closeFeedback();
