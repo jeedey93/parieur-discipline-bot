@@ -362,6 +362,8 @@
 
     /* ── Mobile ── */
     .mobile-submit-bar { display: none; }
+    /* ── Mobile card rows (replaces the cramped table on small screens) ── */
+    .mob-player-row { display: none; }
     @media (max-width: 860px) {
       body { display: block; overflow-x: hidden; }
 
@@ -377,26 +379,60 @@
       .your-team-panel { overflow-y: visible; }
       .your-team-panel, .pool-panel { padding: 1rem 1rem 1.25rem; }
       .your-team-panel.mobile-hidden, .pool-panel.mobile-hidden { display: none; }
-      .pool-table-wrap { max-height: none; overflow-x: auto; }
+      .pool-table-wrap { max-height: none; overflow-x: hidden; }
 
-      /* Position filter: smaller text, tighter padding */
+      /* Hide the table entirely on mobile — show card rows instead */
+      .pool-table { display: none; }
+      .mob-player-row {
+        display: flex; align-items: center; gap: 10px;
+        padding: 9px 12px; border-bottom: 1px solid #f1f5f9;
+        background: white; cursor: default;
+      }
+      .mob-player-row:nth-child(even) { background: #fafbff; }
+      .mob-player-row:hover { background: #eff6ff; }
+      .mob-player-row.row-owned-active { opacity: 0.32; pointer-events: none; }
+      .mob-player-row.row-top-eff { background: rgba(22,163,74,0.03); }
+      .mob-player-logo { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; opacity: 0.85; }
+      .mob-player-logo-ph { width: 28px; height: 28px; flex-shrink: 0; }
+      .mob-player-info { flex: 1; min-width: 0; }
+      .mob-player-name { font-weight: 700; font-size: 0.97rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #1a1a1a; }
+      .mob-player-meta { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+      .mob-pos-badge { font-family: 'Bebas Neue', cursive; font-size: 0.68rem; letter-spacing: 1px; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+      .mob-pos-badge.F { background: rgba(224,90,110,0.12); color: #e05a6e; }
+      .mob-pos-badge.D { background: rgba(37,99,235,0.12); color: #2563eb; }
+      .mob-pos-badge.G { background: rgba(212,149,15,0.12); color: var(--gold); }
+      .mob-cap { font-size: 0.78rem; color: #6b7280; font-weight: 600; }
+      .mob-stats { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+      .mob-stat { display: flex; flex-direction: column; align-items: center; min-width: 32px; }
+      .mob-stat-val { font-family: 'Bebas Neue', cursive; font-size: 1.05rem; line-height: 1; }
+      .mob-stat-val.fpts { color: var(--gold); }
+      .mob-stat-val.g    { color: #e05a6e; }
+      .mob-stat-val.w    { color: #e05a6e; }
+      .mob-stat-label { font-family: 'Bebas Neue', cursive; font-size: 0.6rem; letter-spacing: 1.5px; color: #9ca3af; }
+      .mob-add-btn {
+        display: flex; align-items: center; justify-content: center;
+        width: 32px; height: 32px; flex-shrink: 0;
+        background: rgba(37,99,235,0.08); border: 1.5px solid rgba(37,99,235,0.3);
+        border-radius: 6px; color: #2563eb; font-size: 1.3rem; font-weight: 700;
+        line-height: 1; cursor: pointer; transition: background 0.12s;
+      }
+      .mob-add-btn:hover { background: rgba(37,99,235,0.18); }
+      .mob-add-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+      .mob-claimed-divider {
+        display: flex; padding: 5px 12px;
+        font-family: 'Bebas Neue', cursive; font-size: 0.7rem;
+        letter-spacing: 2px; color: #9ca3af; background: #f9fafb;
+        border-top: 1px solid #e8ecf1; border-bottom: 1px solid #e8ecf1;
+      }
+      .mob-empty-msg { padding: 2rem 0; text-align: center; color: #374151; font-size: 0.95rem; }
+
+      /* Position filter: scrollable strip */
       .pool-controls { flex-direction: column; gap: 8px; }
       .pos-filter { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .pos-filter button { padding: 0.4rem 0.7rem; font-size: 0.88rem; letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
+      .pos-filter button { padding: 0.4rem 0.8rem; font-size: 0.9rem; letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
       .search-input { width: 100%; min-width: 0; }
 
-      /* Hide lower-priority table columns on mobile */
-      .col-gp, .col-g, .col-a, .col-eff { display: none; }
-
-      /* Make FPTS + CAP columns tighter */
-      .col-fpts { width: 40px; }
-      .col-cap  { width: 60px; }
-
-      /* Keep player name from being crushed */
-      .td-name { font-size: 0.88rem; }
-      .td-elc, .td-flag { display: none; }
-
-      /* Salary filter row: stack on very small screens */
+      /* Salary filter row */
       .salary-filter-row { flex-wrap: wrap; gap: 6px; }
       .salary-slider { min-width: 80px; }
 
@@ -412,7 +448,7 @@
       .stat-box { padding: 3px 6px; min-width: 38px; }
       .stat-box-main { font-size: 1.1rem; }
 
-      /* Cap bar bottom row: no wrap */
+      /* Cap bar bottom row */
       .cap-bar-bottom-row { flex-wrap: wrap; gap: 6px; }
 
       .scoring-legend-toggle { display: block; }
@@ -439,13 +475,7 @@
       }
     }
     @media (min-width: 861px) { .mobile-tabs { display: none; } }
-    @media (max-width: 500px) {
-      .site-nav-brand { font-size: 1.2rem; letter-spacing: 3px; }
-      /* On very small screens show even fewer columns */
-      .col-cap { width: 52px; }
-      .td-cap { font-size: 0.8rem; }
-      .pool-controls .pos-filter button { padding: 0.35rem 0.55rem; font-size: 0.82rem; }
-    }
+    @media (max-width: 500px) { .site-nav-brand { font-size: 1.2rem; letter-spacing: 3px; } }
   </style>
 </head>
 <body>
@@ -1283,10 +1313,16 @@
 
   function colCount() { return activeFilter === 'G' ? 11 : 8; }
 
+  const _isMobile = () => window.matchMedia('(max-width: 860px)').matches;
+
   function renderTableRows() {
-    const tbody = document.getElementById('pool-tbody');
     const { available, ownedRows } = _filteredCache;
     const cc = colCount();
+    if (_isMobile()) {
+      renderMobileRows(available, ownedRows);
+      return;
+    }
+    const tbody = document.getElementById('pool-tbody');
     if (!available.length && !ownedRows.length) {
       tbody.innerHTML = `<tr><td colspan="${cc}" class="empty-msg">No players found.</td></tr>`;
       return;
@@ -1303,6 +1339,78 @@
     }
     tbody.innerHTML = '';
     tbody.appendChild(fragment);
+  }
+
+  function renderMobileRows(available, ownedRows) {
+    const wrap = document.getElementById('pool-table-wrap');
+    // Clear any previously injected mobile rows (keep the table element)
+    wrap.querySelectorAll('.mob-player-row, .mob-claimed-divider, .mob-empty-msg').forEach(el => el.remove());
+    if (!available.length && !ownedRows.length) {
+      const msg = document.createElement('div');
+      msg.className = 'mob-empty-msg'; msg.textContent = 'No players found.';
+      wrap.appendChild(msg); return;
+    }
+    const cap = currentCapUsed();
+    const frag = document.createDocumentFragment();
+    available.forEach(p => frag.appendChild(makeMobileRow(p, false, cap)));
+    if (ownedRows.length) {
+      const div = document.createElement('div');
+      div.className = 'mob-claimed-divider';
+      div.textContent = `── On Your Team (${ownedRows.length})`;
+      frag.appendChild(div);
+      ownedRows.forEach(p => frag.appendChild(makeMobileRow(p, true, cap)));
+    }
+    wrap.appendChild(frag);
+  }
+
+  function makeMobileRow(p, isOwned, currentCap) {
+    const pos = normalizePos(p.position);
+    const abbr = TEAM_ABBR[p.team];
+    const logoSrc = abbr ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg` : null;
+    const capM = p.cap_hit ? `$${(p.cap_hit / 1_000_000).toFixed(2)}M` : '—';
+    const pts = poolScore(p);
+    const capAfter = currentCap + (p.cap_hit || 0);
+    const wouldBust = !isOwned && capAfter > CAP_MAX;
+    const noContract = !isOwned && !p.cap_hit;
+    const cantAdd = wouldBust || noContract;
+    const grade = playerGrade(p);
+
+    const row = document.createElement('div');
+    row.className = 'mob-player-row' + (isOwned ? ' row-owned-active' : '') + (_topEffSlugs.has(p.puckpedia_slug) && !isOwned ? ' row-top-eff' : '');
+
+    // Stats: skaters show FPTS + G; goalies show FPTS + W
+    let statsHtml;
+    if (pos === 'G') {
+      statsHtml = `
+        <div class="mob-stat"><span class="mob-stat-val fpts">${pts}</span><span class="mob-stat-label">FPTS</span></div>
+        <div class="mob-stat"><span class="mob-stat-val w">${p.wins ?? '—'}</span><span class="mob-stat-label">W</span></div>`;
+    } else {
+      statsHtml = `
+        <div class="mob-stat"><span class="mob-stat-val fpts">${pts}</span><span class="mob-stat-label">FPTS</span></div>
+        <div class="mob-stat"><span class="mob-stat-val g">${p.goals ?? '—'}</span><span class="mob-stat-label">G</span></div>`;
+    }
+
+    const addDisabled = cantAdd ? 'disabled' : '';
+    const addTitle = cantAdd ? (noContract ? 'No contract yet' : 'Would exceed cap') : 'Add to team';
+
+    row.innerHTML = `
+      ${logoSrc ? `<img class="mob-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="mob-player-logo-ph"></div>`}
+      <div class="mob-player-info">
+        <div class="mob-player-name">${formatName(p.player_name)}</div>
+        <div class="mob-player-meta">
+          <span class="mob-pos-badge ${pos}">${pos}</span>
+          <span class="mob-cap">${capM}</span>
+          <span style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:1px;color:#9ca3af;">${grade.label}</span>
+        </div>
+      </div>
+      <div class="mob-stats">${statsHtml}</div>
+      ${isOwned ? '' : `<button class="mob-add-btn" ${addDisabled} title="${addTitle}">+</button>`}`;
+
+    if (!isOwned) {
+      const btn = row.querySelector('.mob-add-btn');
+      if (btn && !btn.disabled) btn.addEventListener('click', e => { e.stopPropagation(); addPlayer(p); });
+    }
+    return row;
   }
 
 
@@ -1550,8 +1658,17 @@
     document.getElementById('pool-panel').classList.toggle('mobile-hidden', tab !== 'pool');
   }
   function initMobileTabs() {
-    if (window.innerWidth <= 860) { document.getElementById('mobile-tabs').style.display = 'flex'; switchMobileTab('pool'); }
+    if (window.innerWidth <= 860) {
+      document.getElementById('mobile-tabs').style.display = 'flex';
+      switchMobileTab('pool');
+    }
   }
+  // Re-render on resize so desktop↔mobile switching works correctly
+  let _resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(renderTableRows, 150);
+  });
 
   // ── Load ───────────────────────────────────────────────────────────────────
   async function loadPlayers() {
