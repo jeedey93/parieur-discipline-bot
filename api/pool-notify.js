@@ -24,7 +24,6 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'RESEND_API_KEY not configured' });
 
   const body = req.body || {};
 
@@ -63,8 +62,7 @@ module.exports = async (req, res) => {
   }
 
   // ── Submission notification (from Supabase webhook) ──────────────────────
-  // Supabase webhooks send { type: 'INSERT'|'UPDATE', record: {...} }
-  // We also detect it by presence of x-webhook-secret header
+  if (!apiKey) return res.status(500).json({ error: 'RESEND_API_KEY not configured' });
   const isWebhook = !!req.headers['x-webhook-secret'];
   if (isWebhook) {
     const secret = process.env.POOL_WEBHOOK_SECRET;
