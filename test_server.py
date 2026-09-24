@@ -195,7 +195,6 @@ def run_server(port=8000):
     print("=" * 60)
     print("🏒 Habs Voting Test Server Running!")
     print("=" * 60)
-    print(f"\n📍 Local URL: http://localhost:{port}/habs-vote.html")
     print(f"\n🔧 Mock API: http://localhost:{port}/api/vote")
     print("\n💡 Tips:")
     print("   - The page will automatically check if Habs are playing today")
