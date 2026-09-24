@@ -369,6 +369,21 @@
 
     let html = '';
 
+    // Email identification banner (only when draft not locked and no email entered)
+    if (!DRAFT_LOCKED && !myEmail) {
+      html += `<div style="background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span style="font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:2px;color:#1e3a8a;flex-shrink:0;">🔒 Rosters hidden until Oct 1</span>
+        <span style="font-size:0.82rem;color:#6b7280;flex-shrink:0;">Enter your email to view your own team:</span>
+        <input id="email-gate-input" type="email" placeholder="your@email.com"
+          style="flex:1;min-width:180px;padding:0.4rem 0.75rem;border:1.5px solid #c7d7f0;border-radius:7px;font-size:0.9rem;font-family:'Barlow Condensed',sans-serif;outline:none;"
+          onkeydown="if(event.key==='Enter')submitEmailGate()">
+        <button onclick="submitEmailGate()"
+          style="padding:0.4rem 1rem;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border:none;border-radius:7px;font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:2px;cursor:pointer;flex-shrink:0;">
+          View My Team
+        </button>
+      </div>`;
+    }
+
     // Podium (top 3)
     if (list.length >= 1) {
       const medals = ['🥇','🥈','🥉'];
@@ -530,10 +545,6 @@
 
   // ── Load ───────────────────────────────────────────────────────────────────
   async function load() {
-    if (!DRAFT_LOCKED && !myEmail) {
-      showEmailGate();
-      return;
-    }
     try {
       const [subsRes, playersRes] = await Promise.all([
         fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`, { headers: sbHeaders() }),
@@ -552,22 +563,6 @@
       document.getElementById('content').innerHTML =
         `<div class="msg">Failed to load standings. <button class="btn-refresh" onclick="load()">Retry</button></div>`;
     }
-  }
-
-  function showEmailGate() {
-    document.getElementById('content').innerHTML = `
-      <div style="max-width:420px;margin:3rem auto;background:white;border:1px solid #dce8f8;border-radius:14px;padding:2rem;box-shadow:0 4px 20px rgba(30,58,138,0.08);text-align:center;">
-        <div style="font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:3px;color:#1e3a8a;margin-bottom:0.5rem;">Rosters Hidden</div>
-        <p style="font-size:0.9rem;color:#6b7280;margin-bottom:1.5rem;">Rosters are hidden until the submission deadline. Enter your email to view your own team.</p>
-        <input id="email-gate-input" type="email" placeholder="your@email.com"
-          style="width:100%;padding:0.6rem 1rem;border:1.5px solid #c7d7f0;border-radius:8px;font-size:1rem;font-family:'Barlow Condensed',sans-serif;outline:none;margin-bottom:1rem;"
-          onkeydown="if(event.key==='Enter')submitEmailGate()">
-        <button onclick="submitEmailGate()"
-          style="width:100%;padding:0.65rem;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border:none;border-radius:8px;font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;cursor:pointer;">
-          View My Team
-        </button>
-      </div>`;
-    setTimeout(() => document.getElementById('email-gate-input')?.focus(), 50);
   }
 
   function submitEmailGate() {
