@@ -125,8 +125,10 @@
     .lb-rank-crown { display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .lb-rank-crown-icon { font-size: 0.65rem; line-height: 1; }
     .lb-rank-num { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; }
-    .lb-name { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px; color: #1a2a4a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    @media (min-width: 861px) { .lb-rank-num { font-size: 1.3rem; } .lb-name { font-size: 1.15rem; } }
+    .lb-name { display: flex; flex-direction: column; justify-content: center; gap: 1px; overflow: hidden; min-width: 0; }
+    .lb-name-team { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px; color: #1a2a4a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-name-person { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; color: #9ca3af; letter-spacing: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (min-width: 861px) { .lb-name-team { font-size: 1.15rem; } }
     .lb-stat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; color: #374151; text-align: right; }
     .lb-stat.pts { color: #1e3a8a; font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1px; }
     @media (min-width: 861px) { .lb-stat { font-size: 1rem; } .lb-stat.pts { font-size: 1.25rem; } }
@@ -346,7 +348,7 @@
       .filter(s => {
         if (poolFilter === 'paid' && !s.paid) return false;
         if (poolFilter === 'free' && s.paid) return false;
-        if (query && !s.name.toLowerCase().includes(query)) return false;
+        if (query && !s.name.toLowerCase().includes(query) && !(s.team_name || '').toLowerCase().includes(query)) return false;
         return true;
       })
       .map(s => ({ ...s, score: scoreTeam(s.roster) }))
@@ -401,7 +403,8 @@
         html += `<div class="podium-spot ${cls}">
           <div class="podium-medal">${medal}</div>
           <div class="podium-pts">${isMe ? sub.score.total : '—'}</div>
-          <div class="podium-name">${escapeHtml(sub.name)}</div>
+          <div class="podium-name">${escapeHtml(sub.team_name || sub.name)}</div>
+          <div class="podium-cap" style="font-size:0.65rem;color:#9ca3af;">${escapeHtml(sub.name)}</div>
           <div class="podium-cap">${isMe ? fmtCap(sub.cap_used) : '🔒'}</div>
           <div class="podium-block"></div>
         </div>`;
@@ -434,7 +437,10 @@
       const lockIcon = !isMe ? ' 🔒' : '';
       html += `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" id="${rowId}" onclick="toggleDetail('${sub.id}')" style="cursor:${isMe ? 'pointer' : 'default'};">
         <div class="lb-rank ${rankCls}">${rankInner}</div>
-        <div class="lb-name">${escapeHtml(sub.name)}${sub.paid ? '<span class="paid-badge">PAID</span>' : ''}${lockIcon}</div>
+        <div class="lb-name">
+          <span class="lb-name-team">${escapeHtml(sub.team_name || sub.name)}${sub.paid ? '<span class="paid-badge">PAID</span>' : ''}${lockIcon}</span>
+          ${sub.team_name ? `<span class="lb-name-person">${escapeHtml(sub.name)}</span>` : ''}
+        </div>
         <div class="lb-stat lb-col-hide" style="white-space:nowrap;">${isMe ? fmtCap(sub.cap_used) : '—'}</div>
         <div class="lb-stat lb-col-hide">${isMe ? sub.score.fPts : '—'}</div>
         <div class="lb-stat lb-col-hide">${isMe ? sub.score.dPts : '—'}</div>
@@ -476,7 +482,10 @@
     const cap = fmtCap(sub.cap_used);
     let html = `<div class="detail-drawer">
       <div class="detail-drawer-header">
-        <div class="detail-drawer-name">${escapeHtml(sub.name)}</div>
+        <div>
+          <div class="detail-drawer-name">${escapeHtml(sub.team_name || sub.name)}</div>
+          ${sub.team_name ? `<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:600;color:#9ca3af;letter-spacing:1px;margin-top:1px;">${escapeHtml(sub.name)}</div>` : ''}
+        </div>
         <div class="detail-badges">
           <span class="detail-badge pts">${sub.score.total} PTS</span>
           <span class="detail-badge cap">${cap}</span>
@@ -547,7 +556,7 @@
   async function load() {
     try {
       const [subsRes, playersRes] = await Promise.all([
-        fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`, { headers: sbHeaders() }),
+        fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,team_name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`, { headers: sbHeaders() }),
         fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played&limit=1000`, { headers: sbHeaders() }),
       ]);
 
