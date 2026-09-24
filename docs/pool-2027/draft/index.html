@@ -1652,8 +1652,9 @@
 
     const existingId = await checkExistingSubmission(email);
     if (existingId) {
+      closeSubmitModal();
       const ok = await showOverwriteConfirm(email);
-      if (!ok) { btn.disabled = false; btn.textContent = 'Submit'; return; }
+      if (!ok) { openSubmitModal(); btn.disabled = false; btn.textContent = 'Submit'; return; }
     }
 
     const payload = {
