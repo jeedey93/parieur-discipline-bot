@@ -1608,7 +1608,7 @@
     try {
       let res;
       if (existingId) {
-        res = await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?id=eq.${existingId}`, {
+        res = await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?email=eq.${encodeURIComponent(email)}`, {
           method: 'PATCH',
           headers: { ...sbHeaders(), 'Prefer': 'return=minimal' },
           body: JSON.stringify(payload),
