@@ -356,6 +356,11 @@
     .btn-success-secondary { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px; background: none; color: #374151; border: 1px solid #e8ecf1; border-radius: 7px; padding: 8px 22px; cursor: pointer; display: inline-block; text-decoration: none; transition: background 0.15s, color 0.15s; }
     .btn-success-secondary:hover { background: #f9fafb; color: #1a1a1a; }
 
+    /* ── Feedback button ── */
+    .feedback-btn { position: fixed; bottom: 1.5rem; left: 1rem; z-index: 90; display: flex; align-items: center; gap: 6px; background: white; border: 1.5px solid #dce8f8; border-radius: 20px; padding: 6px 13px 6px 10px; font-family: 'Bebas Neue', cursive; font-size: 0.78rem; letter-spacing: 1.5px; color: #6b7280; cursor: pointer; box-shadow: 0 2px 10px rgba(30,58,138,0.1); transition: border-color 0.15s, color 0.15s, box-shadow 0.15s; }
+    .feedback-btn:hover { border-color: #93c5fd; color: #1e3a8a; box-shadow: 0 4px 16px rgba(30,58,138,0.15); }
+    @media (max-width: 860px) { .feedback-btn { bottom: 5.5rem; } }
+
     /* ── Toast ── */
     .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px); background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 2px; padding: 0.5rem 1.8rem; border-radius: 4px; box-shadow: 0 4px 20px rgba(30,58,138,0.3); transition: transform 0.3s ease; pointer-events: none; z-index: 9999; }
     .toast.show { transform: translateX(-50%) translateY(0); }
@@ -717,6 +722,31 @@
     <div><span id="mob-bar-remaining" class="mob-remaining">$104M left</span></div>
   </div>
   <button class="btn-submit-roster" id="btn-submit-mobile" onclick="openSubmitModal()" disabled>Submit My Team</button>
+</div>
+
+<!-- Feedback button -->
+<button class="feedback-btn" onclick="openFeedback()">🚩 Report an issue</button>
+
+<!-- Feedback modal -->
+<div class="modal-overlay hidden" id="feedback-modal">
+  <div class="modal-box">
+    <div class="modal-title">Report an <span>Issue</span></div>
+    <div class="modal-type-label">Type</div>
+    <select id="feedback-type" class="modal-input" style="cursor:pointer;">
+      <option value="Wrong salary">Wrong salary</option>
+      <option value="Wrong stats">Wrong stats</option>
+      <option value="Wrong team">Wrong team</option>
+      <option value="Missing player">Missing player</option>
+      <option value="Bug">Bug</option>
+      <option value="Other">Other</option>
+    </select>
+    <input id="feedback-player" class="modal-input" placeholder="Player name (if applicable)" autocomplete="off">
+    <textarea id="feedback-message" class="modal-input" placeholder="Describe the issue…" rows="3" style="resize:vertical;"></textarea>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-cancel" onclick="closeFeedback()">Cancel</button>
+      <button class="modal-btn modal-btn-confirm" id="btn-send-feedback" onclick="sendFeedback()">Send</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1727,6 +1757,41 @@
     loadPlayers().then(() => {
       if (btn) { btn.textContent = '⟳'; btn.disabled = false; }
     });
+  }
+
+  // ── Feedback ───────────────────────────────────────────────────────────────
+  function openFeedback() {
+    document.getElementById('feedback-type').value = 'Wrong salary';
+    document.getElementById('feedback-player').value = '';
+    document.getElementById('feedback-message').value = '';
+    document.getElementById('btn-send-feedback').disabled = false;
+    document.getElementById('btn-send-feedback').textContent = 'Send';
+    document.getElementById('feedback-modal').classList.remove('hidden');
+    setTimeout(() => document.getElementById('feedback-player').focus(), 60);
+  }
+  function closeFeedback() {
+    document.getElementById('feedback-modal').classList.add('hidden');
+  }
+  async function sendFeedback() {
+    const type    = document.getElementById('feedback-type').value;
+    const player  = document.getElementById('feedback-player').value.trim();
+    const message = document.getElementById('feedback-message').value.trim();
+    if (!message) { toast('Please describe the issue'); document.getElementById('feedback-message').focus(); return; }
+    const btn = document.getElementById('btn-send-feedback');
+    btn.disabled = true; btn.textContent = '…';
+    try {
+      const res = await fetch('https://parieurdiscipline.com/api/pool-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, player, message }),
+      });
+      if (!res.ok) throw new Error(res.status);
+      closeFeedback();
+      toast('Thanks — report sent!', 3000);
+    } catch(e) {
+      btn.disabled = false; btn.textContent = 'Send';
+      toast('Failed to send — try again');
+    }
   }
 
   loadPlayers();
