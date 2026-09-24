@@ -361,11 +361,14 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     /* ── Mobile ── */
-    /* ── Mobile sticky submit bar ── */
     .mobile-submit-bar { display: none; }
     @media (max-width: 860px) {
       body { display: block; overflow-x: hidden; }
-      .pool-layout { grid-template-columns: 1fr; height: auto; padding: 0; }
+
+      /* Banners + HTP outside pool-layout need horizontal padding */
+      .deadline-banner, .stats-notice, .how-to-play { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+      .pool-layout { grid-template-columns: 1fr; height: auto; padding: 0; padding-bottom: 70px; }
       .mobile-tabs { display: flex; border-bottom: 1.5px solid #dce8f8; background: white; position: sticky; top: var(--nav-h); z-index: 50; flex-shrink: 0; box-shadow: 0 2px 8px rgba(30,58,138,0.06); }
       .mobile-tab { flex: 1; padding: 0.85rem 0.5rem; font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 2px; text-align: center; color: #374151; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; }
       .mobile-tab.active { color: #2563eb; border-bottom-color: #2563eb; }
@@ -374,16 +377,49 @@
       .your-team-panel { overflow-y: visible; }
       .your-team-panel, .pool-panel { padding: 1rem 1rem 1.25rem; }
       .your-team-panel.mobile-hidden, .pool-panel.mobile-hidden { display: none; }
-      .pool-table-wrap { max-height: none; }
+      .pool-table-wrap { max-height: none; overflow-x: auto; }
+
+      /* Position filter: smaller text, tighter padding */
       .pool-controls { flex-direction: column; gap: 8px; }
-      .pool-controls .pos-filter button { padding: 0.4rem 0.6rem; font-size: 0.85rem; letter-spacing: 1px; }
+      .pos-filter { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .pos-filter button { padding: 0.4rem 0.7rem; font-size: 0.88rem; letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
       .search-input { width: 100%; min-width: 0; }
-      .col-gp { display: none; }
-      .col-g, .col-a { display: none; }
+
+      /* Hide lower-priority table columns on mobile */
+      .col-gp, .col-g, .col-a, .col-eff { display: none; }
+
+      /* Make FPTS + CAP columns tighter */
+      .col-fpts { width: 40px; }
+      .col-cap  { width: 60px; }
+
+      /* Keep player name from being crushed */
+      .td-name { font-size: 0.88rem; }
+      .td-elc, .td-flag { display: none; }
+
+      /* Salary filter row: stack on very small screens */
+      .salary-filter-row { flex-wrap: wrap; gap: 6px; }
+      .salary-slider { min-width: 80px; }
+
+      /* Efficiency legend: smaller */
+      .eff-legend { padding: 5px 10px; }
+      .eff-legend-text { font-size: 0.72rem; }
+
+      /* Roster player cards: tighter on mobile */
+      .player-card { padding: 6px 8px 6px 10px; gap: 7px; }
+      .card-team-logo { width: 26px; height: 26px; }
+      .player-name { font-size: 0.9rem; }
+      .player-salary { font-size: 0.74rem; }
+      .stat-box { padding: 3px 6px; min-width: 38px; }
+      .stat-box-main { font-size: 1.1rem; }
+
+      /* Cap bar bottom row: no wrap */
+      .cap-bar-bottom-row { flex-wrap: wrap; gap: 6px; }
+
       .scoring-legend-toggle { display: block; }
       .scoring-legend.collapsed { display: none; }
       .cap-bar-toggle { display: block; }
       .cap-bar-wrap.collapsed { display: none; }
+
       /* Hide inline submit on mobile; use sticky bar instead */
       #btn-submit { display: none; }
       .mobile-submit-bar {
@@ -401,11 +437,15 @@
       .mobile-submit-bar .btn-submit-roster {
         font-size: 1rem; padding: 9px 22px; border-radius: 8px; flex-shrink: 0;
       }
-      /* Keep space for the sticky bar */
-      .pool-layout { padding-bottom: 70px; }
     }
     @media (min-width: 861px) { .mobile-tabs { display: none; } }
-    @media (max-width: 500px) { .site-nav-brand { font-size: 1.2rem; letter-spacing: 3px; } }
+    @media (max-width: 500px) {
+      .site-nav-brand { font-size: 1.2rem; letter-spacing: 3px; }
+      /* On very small screens show even fewer columns */
+      .col-cap { width: 52px; }
+      .td-cap { font-size: 0.8rem; }
+      .pool-controls .pos-filter button { padding: 0.35rem 0.55rem; font-size: 0.82rem; }
+    }
   </style>
 </head>
 <body>
@@ -551,7 +591,7 @@
       </div>
       <div class="cap-bar-bottom-row">
         <div>
-          <span style="font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;color:#374151;">Pts projetés</span>
+          <span style="font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;color:#374151;">Proj. Pts</span>
           <span id="roster-total-pts" style="font-family:'Bebas Neue',cursive;font-size:1.8rem;letter-spacing:1px;color:#357abd;margin-left:6px;line-height:1;">0</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;">
@@ -1006,7 +1046,7 @@
     if (filled > 0 && !confirm(`Clear entire team (${filled} players)?`)) return;
     rosterSlugs = { F: Array(12).fill(null), D: Array(6).fill(null), G: Array(2).fill(null) };
     saveDraft(); refreshRoster(); renderPool(); updateCapBar(); updateSubmitBtn();
-    toast('Équipe effacée');
+    toast('Team cleared');
   }
 
   // ── Cap bar update ─────────────────────────────────────────────────────────
@@ -1366,7 +1406,7 @@
          <div class="cap-tooltip-row"><span class="cap-tooltip-label">SHUTOUTS</span><span class="cap-tooltip-val gold">${p.shutouts ?? '—'}</span></div>
          <div class="cap-tooltip-row"><span class="cap-tooltip-label">POOL PTS</span><span class="cap-tooltip-val gold">${pts}</span></div>`
       : `<div class="cap-tooltip-row"><span class="cap-tooltip-label">POOL PTS</span><span class="cap-tooltip-val gold">${pts}</span></div>
-         <div class="cap-tooltip-row"><span class="cap-tooltip-label">COTE</span><span class="cap-tooltip-val green">${eff}</span></div>`;
+         <div class="cap-tooltip-row"><span class="cap-tooltip-label">RATING</span><span class="cap-tooltip-val green">${eff}</span></div>`;
     _tooltip.innerHTML = `
       <div class="cap-tooltip-row"><span class="cap-tooltip-label">CAP HIT</span><span class="cap-tooltip-val gold">$${(p.cap_hit/1_000_000).toFixed(2)}M</span></div>
       <div class="cap-tooltip-sep"></div>
