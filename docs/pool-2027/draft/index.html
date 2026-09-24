@@ -615,10 +615,6 @@
         <span id="cap-over" class="over-label" style="display:none;">— OVER CAP</span>
       </div>
       <div class="cap-track"><div class="cap-fill" id="cap-fill" style="width:0%"></div></div>
-      <div id="elc-chip">
-        ELC <span id="elc-count" style="color:#2563eb;font-size:0.9rem;">0</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:#9ca3af;letter-spacing:0.3px;">players under $1.5M</span>
-      </div>
       <div class="cap-bar-bottom-row">
         <div>
           <span style="font-family:'Bebas Neue',cursive;font-size:0.78rem;letter-spacing:2px;color:#374151;">Proj. Pts</span>
@@ -658,7 +654,6 @@
         <button class="active" data-pos="F" onclick="setFilter('F',this)">F</button>
         <button data-pos="D" onclick="setFilter('D',this)">D</button>
         <button data-pos="G" onclick="setFilter('G',this)">G</button>
-        <button data-pos="ELC" onclick="setFilter('ELC',this)" style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-color:#2563eb;">ELC</button>
       </div>
       <input class="search-input" id="search-input" type="text" placeholder="🔍 Search player…" oninput="debouncedRenderPool()" autocomplete="off">
     </div>
@@ -1438,7 +1433,6 @@
       ${logoSrc ? `<img class="td-player-logo" src="${logoSrc}" alt="${abbr}">` : `<div class="td-player-logo-placeholder"></div>`}
       <span class="td-pos ${pos}">${pos}</span>
       <span class="td-name">${formatName(p.player_name)}</span>
-      ${isELC(p) ? `<span class="td-elc" title="Entry-Level Contract — counts toward ELC limit">ELC</span>` : ''}
       ${inactive ? `<span class="td-flag" title="0 GP — possibly inactive">0GP</span>` : ''}
     </div></td>`;
     const gpVal = p.games_played != null ? p.games_played : '—';
