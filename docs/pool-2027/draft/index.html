@@ -737,7 +737,7 @@
   let _topEffSlugs = new Set();
   let _filteredCache = { available: [], ownedRows: [] };
   let _submittedId = null; // set after successful submit to prevent double-submit
-  let _isPaid = true;
+  let _isPaid = false;
   let _scoringLegendOpen = true, _capBarOpen = true;
 
   function sbHeaders() {
@@ -1540,7 +1540,7 @@
     document.getElementById('sub-name').value = '';
     document.getElementById('sub-team-name').value = '';
     document.getElementById('sub-email').value = '';
-    setPoolType(true);
+    setPoolType(false);
     document.getElementById('btn-confirm-submit').disabled = false;
     document.getElementById('submit-modal').classList.remove('hidden');
     setTimeout(() => document.getElementById('sub-name').focus(), 60);
