@@ -551,6 +551,18 @@
   </div>
 </div>
 
+<!-- Overwrite confirm modal -->
+<div class="modal-overlay hidden" id="overwrite-modal">
+  <div class="modal-box">
+    <div class="modal-title">Already <span>Submitted</span></div>
+    <p style="font-size:0.88rem;color:#374151;margin-bottom:1.25rem;line-height:1.5;">A submission already exists for <strong id="overwrite-email"></strong>. Do you want to overwrite it with your current roster?</p>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-cancel" onclick="resolveOverwrite(false)">Cancel</button>
+      <button class="modal-btn modal-btn-confirm" onclick="resolveOverwrite(true)">Overwrite</button>
+    </div>
+  </div>
+</div>
+
 <!-- Submit modal -->
 <div class="modal-overlay hidden" id="submit-modal">
   <div class="modal-box">
@@ -1570,6 +1582,17 @@
     if (note) note.style.display = paid ? '' : 'none';
   }
 
+  let _resolveOverwrite = null;
+  function showOverwriteConfirm(email) {
+    document.getElementById('overwrite-email').textContent = email;
+    document.getElementById('overwrite-modal').classList.remove('hidden');
+    return new Promise(resolve => { _resolveOverwrite = resolve; });
+  }
+  function resolveOverwrite(ok) {
+    document.getElementById('overwrite-modal').classList.add('hidden');
+    if (_resolveOverwrite) { _resolveOverwrite(ok); _resolveOverwrite = null; }
+  }
+
   async function checkExistingSubmission(email) {
     try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?email=eq.${encodeURIComponent(email)}&select=id`, { headers: sbHeaders() });
@@ -1592,7 +1615,7 @@
 
     const existingId = await checkExistingSubmission(email);
     if (existingId) {
-      const ok = confirm(`A submission already exists for ${email}. Overwrite it?`);
+      const ok = await showOverwriteConfirm(email);
       if (!ok) { btn.disabled = false; btn.textContent = 'Submit'; return; }
     }
 
