@@ -2,6 +2,9 @@ name: Daily NHL/NBA Dual Predictions
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '15 10 * * *'  # 7am run (6:15am Montreal / 10:15 UTC)
+    - cron: '15 18 * * *'  # 3pm run (2:15pm Montreal / 18:15 UTC)
 
 jobs:
   run-dual-predictions:
