@@ -594,11 +594,9 @@ def summarize_reasonings_batch(reasonings_dict):
             for attempt in range(max_retries):
                 try:
                     print(f"🤖 Trying {model}...")
-                    response = client.models.generate_content(
-                        model=model,
-                        contents=full_prompt,
-                    )
-                    response_text = response.text
+                    chat = client.chats.create(model=model)
+                    response = chat.send_message(full_prompt)
+                    response_text = response.candidates[0].content.parts[0].text
                     break
                 except genai.errors.ServerError as e:
                     if "503" in str(e) or "UNAVAILABLE" in str(e):

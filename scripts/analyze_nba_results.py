@@ -88,10 +88,8 @@ Actual Results:
         for attempt in range(max_retries):
             try:
                 print(f"🤖 Trying {model}...")
-                response = client.models.generate_content(
-                    model=model,
-                    contents=types.Part.from_text(text=prompt),
-                )
+                chat = client.chats.create(model=model)
+                response = chat.send_message(prompt)
                 return response.candidates[0].content.parts[0].text
             except genai.errors.ServerError as e:
                 if "503" in str(e) or "UNAVAILABLE" in str(e):

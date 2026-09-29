@@ -1004,10 +1004,8 @@ def analyze_results(results_text, absences_text, recent_games, team_stats_text, 
         for attempt in range(max_retries):
             try:
                 print(f"🤖 Trying {model}...")
-                response = client.models.generate_content(
-                    model=model,
-                    contents=types.Part.from_text(text=prompt_text),
-                )
+                chat = client.chats.create(model=model)
+                response = chat.send_message(prompt_text)
                 return response.candidates[0].content.parts[0].text
             except genai.errors.ServerError as e:
                 if "503" in str(e) or "UNAVAILABLE" in str(e):

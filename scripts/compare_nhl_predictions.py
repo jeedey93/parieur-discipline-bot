@@ -80,11 +80,9 @@ def compare_predictions(morning_file, noon_file, output_file, prompt_path):
         for attempt in range(max_retries):
             try:
                 print(f"🤖 Trying {model}...")
-                response = client.models.generate_content(
-                    model=model,
-                    contents=comparison_prompt,
-                )
-                combined_analysis = response.text.strip()
+                chat = client.chats.create(model=model)
+                response = chat.send_message(comparison_prompt)
+                combined_analysis = response.candidates[0].content.parts[0].text.strip()
                 # Ensure confidence line is present after each play
                 combined_analysis = ensure_confidence_line(combined_analysis)
 
