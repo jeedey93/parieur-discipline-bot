@@ -1,0 +1,17 @@
+Here is the unified analysis and final recommendations based on the morning and noon reports:
+
+🏆 **BET OF THE DAY**
+**Boston Bruins ML vs New York Rangers @ 1.91**
+Confidence Level: Medium, Units: 1u, Win Probability: 59%
+
+No goalie confirmed for either the Boston Bruins or the New York Rangers, which introduces higher variance and shifts focus to overall team performance. The Bruins hold a significant home-ice advantage, boasting a perfect 1.000 home win percentage (2-0-0) against the Rangers' 0.500 road win percentage (1-1-0), which provides an 8% boost. However, the Rangers are in slightly better recent form with a +1.0 goal differential compared to Boston's +0.5, and the Bruins are on a two-game losing streak (-2% adjustment). Despite the recent struggles, Boston's dominant home record makes them a value play against the implied probability.
+
+The line remained at 1.91. Confidence Level remained Medium, but Win Probability decreased from 61% (morning) to 59% (noon). The play's position was upgraded from "Other Recommended Play" in the morning to "Bet of the Day" in the noon report.
+
+**Other Recommended Plays**
+**Toronto Maple Leafs ML vs Montréal Canadiens @ 1.91**
+Confidence Level: Medium, Units: 1u, Win Probability: 48%
+
+No goalie confirmed for either the Toronto Maple Leafs or the Montréal Canadiens, which introduces higher variance and shifts focus to overall team performance. The home-ice advantage is minimal for Toronto, with both teams holding a 0.500 record in their respective home/away splits. Montreal has shown stronger recent form with a +1.2 goal differential compared to Toronto's +0.7, and they also hold a significant 2-0 head-to-head record this season against the Maple Leafs. While the market has priced this game as a toss-up, the Canadiens' strong head-to-head record and better goal differential make them a slightly better bet, though it does not meet the standard minimum positive edge. This play is included to fulfill the mandatory requirement for a Montreal game, despite a marginally negative calculated edge, as no qualified Montreal play with a +1% edge was found.
+
+The line remained at 1.91. Confidence Level remained Medium, but Win Probability decreased from 53.5% (morning) to 48% (noon).
