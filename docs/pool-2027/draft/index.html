@@ -1780,7 +1780,7 @@
   async function confirmSubmit() {
     const name      = document.getElementById('sub-name').value.trim();
     const teamName  = document.getElementById('sub-team-name').value.trim();
-    const email     = document.getElementById('sub-email').value.trim();
+    const email     = document.getElementById('sub-email').value.trim().toLowerCase();
     if (!name)  { toast('Enter your name'); document.getElementById('sub-name').focus(); return; }
     if (!teamName) { toast('Enter a team name'); document.getElementById('sub-team-name').focus(); return; }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('Enter a valid email'); document.getElementById('sub-email').focus(); return; }
