@@ -125,7 +125,7 @@ summary_date = yesterday
 summary = analyze_results_with_actuals(predictions_text, actuals_text, summary_date)
 
 today_str = date.today().isoformat()
-results_folder = os.path.join("data", "bot_results", "nhl")
+results_folder = os.path.join("data", "bot_results", "nhl", "2026-27")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nhl_daily_results_{today_str}.txt")
 

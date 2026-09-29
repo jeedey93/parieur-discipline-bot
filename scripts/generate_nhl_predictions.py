@@ -937,7 +937,7 @@ def analyze_results(results_text, absences_text, recent_games, team_stats_text, 
     client = genai.Client(api_key=api_key)
 
     # Read and concatenate all historical NHL results files
-    hist_dir = os.path.join("data", "bot_results", "nhl")
+    hist_dir = os.path.join("data", "bot_results", "nhl", "2026-27")
     hist_files = sorted(glob.glob(os.path.join(hist_dir, "nhl_daily_results_*.txt")))
     historical_results = ""
     for hf in hist_files:
