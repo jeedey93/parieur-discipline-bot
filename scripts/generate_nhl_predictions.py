@@ -84,6 +84,7 @@ def get_nhl_team_home_away_splits(team_name):
         completed_games = [
             g for g in data.get('games', [])
             if g.get('gameState') in ['FINAL', 'OFF']
+            and g.get('gameType') == 2
         ]
 
         # Track home and away separately
@@ -162,6 +163,7 @@ def get_nhl_team_last_games(team_name, last_n_games=10):
         completed_games = [
             g for g in data.get('games', [])
             if g.get('gameState') in ['FINAL', 'OFF']
+            and g.get('gameType') == 2  # regular season only, exclude preseason (1)
         ]
 
         # Get last N games
@@ -547,6 +549,7 @@ def get_rest_days_for_team(team_name):
         completed_games = [
             g for g in data.get('games', [])
             if g.get('gameState') in ['FINAL', 'OFF']
+            and g.get('gameType') == 2
         ]
         if not completed_games:
             return None
