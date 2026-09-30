@@ -583,9 +583,9 @@ def summarize_reasonings_batch(reasonings_dict):
         print(f"📝 Summarizing {len(reasonings_dict)} reasonings with Gemini...")
         models_to_try = [
             "models/gemini-2.5-flash",
-            "models/gemini-2.0-flash",
-            "models/gemini-2.0-flash-lite",
+            "models/gemini-3.8-flash",
             "models/gemini-2.5-flash-lite",
+            "models/gemini-2.5-pro",
         ]
         response_text = None
         retry_waits = [30, 60]

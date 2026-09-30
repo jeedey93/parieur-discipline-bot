@@ -68,9 +68,9 @@ def compare_predictions(morning_file, noon_file, output_file, prompt_path):
 
     models_to_try = [
         "models/gemini-2.5-flash",
-        "models/gemini-2.0-flash",
-        "models/gemini-2.0-flash-lite",
+        "models/gemini-3.8-flash",
         "models/gemini-2.5-flash-lite",
+        "models/gemini-2.5-pro",
     ]
 
     retry_waits = [30, 60]
