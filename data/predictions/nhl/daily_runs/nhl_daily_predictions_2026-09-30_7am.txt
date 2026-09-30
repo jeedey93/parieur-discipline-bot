@@ -1,0 +1,20 @@
+Date: 2026-09-30
+
+Pittsburgh Penguins @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 1.68, Pittsburgh Penguins ML (Away): 2.22, O/U: 6.5 (Over: 2.12 / Under: 1.72)
+------
+New York Islanders @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.79, New York Islanders ML (Away): 2.03, O/U: 6.0 (Over: 1.9 / Under: 1.91)
+------
+Los Angeles Kings @ Colorado Avalanche
+Colorado Avalanche ML (Home): 1.5, Los Angeles Kings ML (Away): 2.64, O/U: 6.5 (Over: 2.06 / Under: 1.77)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Los Angeles Kings vs Colorado Avalanche Over 6.5 @ 2.06
+Both the Kings and Avalanche have shown mixed offensive and defensive performances in their recent 10 games, with Kings averaging 3.2 goals scored and Avalanche 2.5 goals scored. While no significant absences are reported for either side, starting goalie matchups remain unconfirmed at this early hour, adding an element of uncertainty. Historically, neither team displays a strong trend to significantly push the total over or under the 6.5 line based on head-to-head or combined team scoring averages alone. However, the market has priced the Over at 2.06, implying a 48.5% chance, while our internal model estimates a 50% probability based on a neutral baseline for totals, finding a slight positive edge despite no strong trend adjustments.
+Confidence Level: Medium, Units: 1u, Win Probability: 50%
