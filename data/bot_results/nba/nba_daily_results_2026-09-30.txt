@@ -2,7 +2,7 @@ As a disciplined NBA betting analyst, I have reviewed the AI's predictions again
 
 Here's the breakdown:
 
-No qualified plays today.
+No qualified plays were recommended for this date.
 
 ---
 
@@ -11,3 +11,5 @@ No qualified plays today.
 *   **Total Wins: 0**
 *   **Total Losses: 0**
 *   **Total Pushes: 0**
+
+---
