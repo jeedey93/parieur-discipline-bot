@@ -19,6 +19,7 @@ ANALYSIS TASK:
    - Prioritizes plays that appeared in both reports (stronger conviction)
    - Includes only high/medium confidence plays
    - **ONLY include plays where decimal odds are between 1.60 and 2.20 (inclusive). Do NOT include any play outside this range, even if it appeared in both reports.**
+   - **NEVER include both sides of the same game (e.g., Team A ML AND Team B ML for the same matchup). Pick only one side per game — the one with stronger conviction.**
    - Maximum 5 total plays
    - Ranked by confidence %
    - Show the "Bet of the Day" first

@@ -231,6 +231,7 @@ OUTPUT RULES (STRICT FORMAT - UNCHANGED)
 IMPORTANT: Use normal capitalization for team names (e.g., "San Antonio Spurs" not "SAN ANTONIO SPURS").
 
 Maximum 5 plays total including Bet of the Day. Target 2-4 plays for better selectivity.
+NEVER recommend both sides of the same game (e.g., Team A ML AND Team B ML for the same matchup). Pick only one side per game.
 
 For each recommended play:
 - Only propose High or Medium confidence plays

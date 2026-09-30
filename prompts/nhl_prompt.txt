@@ -268,6 +268,7 @@ Do not output a separate historical review paragraph.
 OUTPUT RULES (STRICT FORMAT - UNCHANGED)
 
 Maximum 5 plays total including Bet of the Day. Target 2-4 plays for better selectivity.
+NEVER recommend both sides of the same game (e.g., Team A ML AND Team B ML for the same matchup). Pick only one side per game.
 
 For each recommended play:
 - Only propose High or Medium confidence plays
