@@ -3,7 +3,7 @@ name: Daily NHL/NBA Bot Results
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 10 * * *'  # 6am Montreal / 10:00 UTC
+    - cron: '0 6 * * *'  # 6am Montreal (~6:00am Montreal / 6:00 UTC, runs ~4h late)
 
 jobs:
   run-results:

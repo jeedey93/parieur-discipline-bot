@@ -3,8 +3,8 @@ name: Daily NHL/NBA Dual Predictions
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 10 * * *'  # 7am run (6:15am Montreal / 10:15 UTC)
-    - cron: '15 18 * * *'  # 3pm run (2:15pm Montreal / 18:15 UTC)
+    - cron: '15 6 * * *'   # 7am run (~6:15am Montreal / 6:15 UTC, runs ~4h late)
+    - cron: '15 14 * * *'  # 3pm run (~2:15pm Montreal / 14:15 UTC, runs ~4h late)
 
 jobs:
   run-dual-predictions:
@@ -38,10 +38,10 @@ jobs:
       - name: Determine run time
         id: run_time
         run: |
-          # Crons: 11:00 UTC = 7am Montreal run, 19:00 UTC = 3pm Montreal run
-          # Window: anything before UTC 17 = 7am run
+          # Crons: 6:15 UTC = 7am Montreal run, 14:15 UTC = 3pm Montreal run
+          # Window: anything before UTC 10 = 7am run
           HOUR=$(date -u +%H)
-          if [ "$HOUR" -lt 17 ]; then
+          if [ "$HOUR" -lt 10 ]; then
             echo "time=7am" >> $GITHUB_OUTPUT
           else
             echo "time=3pm" >> $GITHUB_OUTPUT
