@@ -288,7 +288,7 @@ def scrape_nhl_starting_goalies():
         print(f"⚠️ Skipping goalie scraping - before 2pm Montreal time (current: {current_time.strftime('%I:%M %p')})")
         return {}
 
-    url = "https://www.nhl.com/news/nhl-lineup-projections-2025-26-season"
+    url = "https://www.nhl.com/news/nhl-lineup-projections-2026-27-season"
 
     try:
         response = requests.get(url, timeout=10)
