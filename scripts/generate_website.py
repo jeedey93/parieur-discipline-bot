@@ -825,7 +825,7 @@ def format_pick_card(pick, is_featured=False):
 
 def parse_last_n_days_results(sport_key, days=5):
     """Parse last N days of results for a sport and return combined record with units."""
-    results_dir = os.path.join("data", "bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key, "2026-27")
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
@@ -927,7 +927,7 @@ def parse_last_n_days_results(sport_key, days=5):
 
 def parse_this_week_results(sport_key):
     """Parse this week's results (Monday to Sunday) for a sport and return combined record with units."""
-    results_dir = os.path.join("data", "bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key, "2026-27")
     results_files = glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt"))
 
     if not results_files:
@@ -1086,7 +1086,7 @@ def parse_all_results(sport_key):
             pass  # Fall back to parsing individual files
 
     # Parse individual results files for units calculation
-    results_dir = os.path.join("data", "bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key, "2026-27")
     results_files = sorted(glob(os.path.join(results_dir, f"{sport_key}_daily_results_*.txt")))
 
     if not results_files:
@@ -1176,7 +1176,7 @@ def parse_yesterday_results(sport_key):
     """Parse yesterday's results file for a sport and extract summary."""
     from datetime import datetime
 
-    results_dir = os.path.join("data", "bot_results", sport_key)
+    results_dir = os.path.join("data", "bot_results", sport_key, "2026-27")
 
     # The 6am results workflow creates files with TODAY's date but contains YESTERDAY's games
     # So we need to look for today's file
@@ -2747,8 +2747,8 @@ def get_time_since_update(file_path):
 
 def build_chart_data_for_last_30_days():
     """Build chart data for win rate trends over last 30 days."""
-    nhl_dir = "data/bot_results/nhl"
-    nba_dir = "data/bot_results/nba"
+    nhl_dir = "data/bot_results/nhl/2026-27"
+    nba_dir = "data/bot_results/nba/2026-27"
 
     # Get all result files from both sports
     nhl_files = sorted(glob(os.path.join(nhl_dir, "nhl_daily_results_*.txt")))

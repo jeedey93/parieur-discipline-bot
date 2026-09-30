@@ -41,8 +41,8 @@ def per_date_results(results_dir):
     return date_results
 
 def main():
-    nba_dir = os.path.join('data', 'bot_results', 'nba')
-    nhl_dir = os.path.join('data', 'bot_results', 'nhl')
+    nba_dir = os.path.join('data', 'bot_results', 'nba', '2026-27')
+    nhl_dir = os.path.join('data', 'bot_results', 'nhl', '2026-27')
     nfl_dir = os.path.join('data', 'bot_results', 'nfl')
     nba_results = per_date_results(nba_dir)
     nhl_results = per_date_results(nhl_dir)
