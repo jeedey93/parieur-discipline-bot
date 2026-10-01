@@ -360,6 +360,7 @@
     </div>
   </header>
   <div class="last-updated" id="last-updated"></div>
+  <div class="last-updated" id="page-views" style="margin-top:-0.25rem;"></div>
 
   <div class="scoring-info">
     <div class="scoring-chip F"><span class="scoring-chip-pos">F</span><span class="scoring-chip-rule">Pts × 1</span></div>
@@ -1104,6 +1105,26 @@
     }
   }
 
+  // ── Page views ─────────────────────────────────────────────────────────────
+  async function trackPageView() {
+    try {
+      // Increment via RPC-less approach: read then update
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/pool_2027_page_views?id=eq.standings&select=count`,
+        { headers: sbHeaders() }
+      );
+      const [row] = await res.json();
+      const newCount = (row?.count ?? 0) + 1;
+      await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_page_views?id=eq.standings`, {
+        method: 'PATCH',
+        headers: { ...sbHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: newCount }),
+      });
+      const el = document.getElementById('page-views');
+      if (el) el.innerHTML = `<span>${newCount.toLocaleString()}</span> views`;
+    } catch { /* silent fail */ }
+  }
+
   // ── Load ───────────────────────────────────────────────────────────────────
   async function load() {
     try {
@@ -1124,6 +1145,9 @@
         const fmt = new Date().toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'America/Toronto' });
         el.innerHTML = `Stats updated <span>${fmt}</span>`;
       }
+
+      // Increment page view count and display it
+      trackPageView();
 
       renderAll();
     } catch(e) {
