@@ -608,7 +608,10 @@
           <div class="podium-block"></div>
         </div>`;
       });
-      html += `</div>`;
+      html += `</div>
+      <div style="text-align:center;margin-top:-1rem;margin-bottom:1.5rem;">
+        <button onclick="sharePodium()" style="background:linear-gradient(135deg,#374151,#4b5563);color:white;border:none;border-radius:8px;padding:6px 16px;font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:1.5px;cursor:pointer;opacity:0.8;">📸 SHARE PODIUM</button>
+      </div>`;
     }
 
     // Leaderboard
@@ -1065,6 +1068,50 @@
     } catch(e) {
       btn.disabled = false; btn.textContent = 'Send';
     }
+  }
+
+  function sharePodium() {
+    const podiumEl = document.querySelector('.podium');
+    if (!podiumEl) return;
+
+    // Build a wrapper with header + footer for the screenshot
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'background:white;padding:24px 32px 20px;border-radius:16px;display:inline-block;font-family:sans-serif;min-width:380px;';
+
+    const header = document.createElement('div');
+    header.style.cssText = 'text-align:center;margin-bottom:16px;';
+    header.innerHTML = `
+      <div style="font-family:\'Bebas Neue\',cursive;font-size:1.5rem;letter-spacing:4px;color:#1e3a8a;">🏒 POOL 2026-27</div>
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:2px;color:#9ca3af;margin-top:2px;">CURRENT STANDINGS</div>`;
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'text-align:center;margin-top:16px;font-size:0.65rem;color:#9ca3af;letter-spacing:1px;font-weight:600;';
+    footer.textContent = 'parieurdiscipline.com/pool-2027';
+
+    const clone = podiumEl.cloneNode(true);
+    // Remove the share button from the clone if it ended up inside .podium
+    clone.querySelectorAll('button').forEach(b => b.remove());
+
+    wrap.appendChild(header);
+    wrap.appendChild(clone);
+    wrap.appendChild(footer);
+    document.body.appendChild(wrap);
+
+    html2canvas(wrap, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false })
+      .then(canvas => {
+        document.body.removeChild(wrap);
+        canvas.toBlob(blob => {
+          const file = new File([blob], 'pool-2027-podium.png', { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({ files: [file], title: 'Pool 2026-27 Standings' }).catch(() => {});
+          } else {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = file.name; a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+          }
+        }, 'image/png');
+      })
+      .catch(() => document.body.removeChild(wrap));
   }
 
   function shareRoster(id) {
