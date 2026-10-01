@@ -127,7 +127,7 @@ actuals_text = "\n".join(
 today_str = date.today().isoformat()
 summary = analyze_results_with_actuals(results_text, actuals_text, yesterday)
 
-results_folder = os.path.join("data", "bot_results", "nba")
+results_folder = os.path.join("data", "bot_results", "nba", "2026-27")
 os.makedirs(results_folder, exist_ok=True)
 filename = os.path.join(results_folder, f"nba_daily_results_{today_str}.txt")
 
