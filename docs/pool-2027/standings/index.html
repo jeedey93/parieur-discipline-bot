@@ -748,7 +748,7 @@
     }
     const totalTeams = allSubmissions.length || 1;
     // A pick is "unique" if taken by ≤ 20% of teams (at most 2 teams in a 10-team pool)
-    const uniqueThreshold = Math.max(2, Math.round(totalTeams * 0.2));
+    const uniqueThreshold = 2; // only show 💎 if 2 or fewer teams total drafted this player
 
     // Find best player (highest pool pts)
     let bestSlug = null, bestPts = -1;
