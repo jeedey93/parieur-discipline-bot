@@ -503,13 +503,12 @@
         const prize = poolFilter === 'paid' && sub.paid && rankIdx < 3
           ? `$${Math.round(totalPot * PRIZE_SPLIT[rankIdx])}`
           : null;
-        const subLabel = prize ?? (isMe ? fmtCap(sub.cap_used) : '🔒');
         html += `<div class="podium-spot ${cls}">
           <div class="podium-medal">${medal}</div>
           <div class="podium-pts">${isMe ? sub.score.total : '—'}</div>
           <div class="podium-name">${escapeHtml(sub.team_name || sub.name)}</div>
           <div class="podium-cap" style="font-size:0.65rem;color:#9ca3af;">${escapeHtml(sub.name)}</div>
-          <div class="podium-cap"${prize ? ' style="color:#16a34a;font-weight:700;"' : ''}>${subLabel}</div>
+          ${prize ? `<div class="podium-cap" style="color:#16a34a;font-weight:700;">${prize}</div>` : ''}
           <div class="podium-block"></div>
         </div>`;
       });
