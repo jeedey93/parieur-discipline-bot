@@ -315,6 +315,7 @@
     .scoring-chip-rule { opacity: 0.75; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -357,6 +358,7 @@
     <button class="pool-type-btn active" id="btn-all"  onclick="setPoolFilter('all')">All</button>
     <button class="pool-type-btn" id="btn-paid" onclick="setPoolFilter('paid')">💰 Paid</button>
     <button class="pool-type-btn" id="btn-free" onclick="setPoolFilter('free')">🎮 Free</button>
+    <button class="pool-type-btn" id="btn-race" onclick="setPoolFilter('race')">📈 Race</button>
   </div>
 
   <div class="search-row">
@@ -392,6 +394,19 @@
   <div class="bottom-sheet" id="bottom-sheet">
     <div class="bs-handle"></div>
     <div id="bs-content"></div>
+  </div>
+</div>
+
+<div id="race-view" style="display:none; padding: 0 1rem 2rem;">
+  <div style="margin-bottom:1rem;">
+    <div style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:2px;color:#1e3a8a;margin-bottom:4px;">Points Race</div>
+    <div style="font-size:0.75rem;color:#9ca3af;">Total pool points per team over time. Updates daily.</div>
+  </div>
+  <div style="position:relative;background:white;border-radius:16px;border:1px solid #e8ecf5;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+    <canvas id="race-chart"></canvas>
+    <div id="race-empty" style="display:none;text-align:center;padding:3rem 1rem;color:#9ca3af;font-family:'Barlow Condensed',sans-serif;font-size:1rem;">
+      Not enough data yet — check back tomorrow once the daily snapshot runs.
+    </div>
   </div>
 </div>
 
@@ -488,8 +503,16 @@
   // ── Pool filter ────────────────────────────────────────────────────────────
   function setPoolFilter(f) {
     poolFilter = f;
-    ['all','paid','free'].forEach(k => document.getElementById(`btn-${k}`).classList.toggle('active', k === f));
-    renderAll();
+    ['all','paid','free','race'].forEach(k => {
+      const btn = document.getElementById(`btn-${k}`);
+      if (btn) btn.classList.toggle('active', k === f);
+    });
+    const isRace = f === 'race';
+    document.getElementById('race-view').style.display = isRace ? 'block' : 'none';
+    document.querySelector('.standings-layout').style.display = isRace ? 'none' : '';
+    document.getElementById('search-row') && (document.querySelector('.search-row').style.display = isRace ? 'none' : '');
+    if (isRace) renderRaceChart();
+    else renderAll();
   }
 
   function setSort(col) {
@@ -853,6 +876,119 @@
 
     html += `</table></div>`;
     return html;
+  }
+
+  // ── Race chart ─────────────────────────────────────────────────────────────
+  const TEAM_COLORS = [
+    '#1e3a8a','#c8102e','#006847','#f59e0b','#7c3aed','#0ea5e9','#db2777',
+    '#16a34a','#ea580c','#64748b','#0891b2','#9333ea','#b91c1c','#15803d',
+    '#d97706','#2563eb','#be185d','#059669','#dc2626','#7c3aed','#0369a1',
+    '#a16207','#4f46e5','#047857',
+  ];
+  let raceChart = null;
+
+  async function renderRaceChart() {
+    const emptyEl = document.getElementById('race-empty');
+    const canvasEl = document.getElementById('race-chart');
+
+    let history;
+    try {
+      const res = await fetch('../../../data/pool_history.json');
+      if (!res.ok) throw new Error();
+      history = await res.json();
+    } catch {
+      emptyEl.style.display = 'block';
+      canvasEl.style.display = 'none';
+      return;
+    }
+
+    if (!history || history.length < 1) {
+      emptyEl.style.display = 'block';
+      canvasEl.style.display = 'none';
+      return;
+    }
+
+    emptyEl.style.display = 'none';
+    canvasEl.style.display = 'block';
+
+    // Collect all unique teams across history
+    const teamMap = {}; // id → {name, team_name}
+    for (const day of history) {
+      for (const t of day.teams) {
+        if (!teamMap[t.id]) teamMap[t.id] = { name: t.name, team_name: t.team_name };
+      }
+    }
+
+    const labels = history.map(d => {
+      const dt = new Date(d.date + 'T12:00:00');
+      return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+    });
+
+    const teamIds = Object.keys(teamMap);
+    const datasets = teamIds.map((id, i) => {
+      const data = history.map(day => {
+        const entry = day.teams.find(t => t.id === id);
+        return entry ? entry.total : null;
+      });
+      return {
+        label: teamMap[id].team_name,
+        data,
+        borderColor: TEAM_COLORS[i % TEAM_COLORS.length],
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: history.length <= 7 ? 4 : 2,
+        pointHoverRadius: 6,
+        tension: 0.3,
+        spanGaps: true,
+      };
+    });
+
+    // Sort datasets by last known total descending so legend matches leaderboard order
+    datasets.sort((a, b) => {
+      const lastA = [...a.data].reverse().find(v => v !== null) ?? 0;
+      const lastB = [...b.data].reverse().find(v => v !== null) ?? 0;
+      return lastB - lastA;
+    });
+
+    if (raceChart) raceChart.destroy();
+    raceChart = new Chart(canvasEl, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: { family: "'Barlow Condensed', sans-serif", size: 12, weight: '600' },
+              boxWidth: 12,
+              padding: 10,
+              color: '#374151',
+            },
+          },
+          tooltip: {
+            callbacks: {
+              title: ctx => `📅 ${ctx[0].label}`,
+              label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} pts`,
+            },
+            bodyFont: { family: "'Barlow Condensed', sans-serif", size: 13 },
+            titleFont: { family: "'Bebas Neue', cursive", size: 14 },
+          },
+        },
+        scales: {
+          x: {
+            grid: { color: '#f1f5f9' },
+            ticks: { font: { family: "'Barlow Condensed', sans-serif", size: 11 }, color: '#6b7280' },
+          },
+          y: {
+            grid: { color: '#f1f5f9' },
+            ticks: { font: { family: "'Barlow Condensed', sans-serif", size: 11 }, color: '#6b7280' },
+            title: { display: true, text: 'Pool Points', font: { family: "'Bebas Neue', cursive", size: 13 }, color: '#9ca3af' },
+          },
+        },
+      },
+    });
   }
 
   // ── Load ───────────────────────────────────────────────────────────────────

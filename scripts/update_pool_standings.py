@@ -36,6 +36,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 tz = ZoneInfo("America/Toronto")
 
 WEEKLY_SNAPSHOT_FILE = "data/pool_weekly_snapshot.json"
+HISTORY_FILE = "data/pool_history.json"
 
 
 # ── Scoring ────────────────────────────────────────────────────────────────────
@@ -293,7 +294,34 @@ def main():
     with open(rank_snapshot_file, "w") as f:
         json.dump(new_rank_snapshot, f, indent=2)
 
-    print(f"✅ Pool standings updated. Rank snapshot saved for {today}.")
+    # ── Append to history file ───────────────────────────────────────────────
+    history = []
+    if os.path.exists(HISTORY_FILE):
+        with open(HISTORY_FILE) as f:
+            history = json.load(f)
+
+    today_str = today.isoformat()
+    # Replace today's entry if already present (idempotent re-runs)
+    history = [h for h in history if h["date"] != today_str]
+    history.append({
+        "date": today_str,
+        "teams": [
+            {
+                "id": s["id"],
+                "name": s["name"],
+                "team_name": s.get("team_name") or s["name"],
+                "total": s["total"],
+                "rank": current_ranks[s["id"]],
+            }
+            for s in scored
+        ],
+    })
+    history.sort(key=lambda h: h["date"])
+    os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
+    with open(HISTORY_FILE, "w") as f:
+        json.dump(history, f, indent=2)
+
+    print(f"✅ Pool standings updated. History now has {len(history)} day(s).")
 
 
 if __name__ == "__main__":
