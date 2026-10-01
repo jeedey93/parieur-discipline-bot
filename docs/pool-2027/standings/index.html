@@ -205,6 +205,12 @@
     .modal-btn-cancel { background: none; border-color: #e8ecf1; color: #374151; }
     .modal-btn-cancel:hover { background: #f9fafb; }
 
+    /* ── INLINE DRAWER ── */
+    .lb-inline-drawer { padding: 0 0.5rem 0.5rem; animation: drawer-in 0.2s ease; }
+    @keyframes drawer-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .lb-inline-drawer .detail-drawer { margin-bottom: 0; border-radius: 0 0 12px 12px; border-top: 2px solid #2563eb; box-shadow: 0 4px 20px rgba(30,58,138,0.12); }
+    .lb-row.active { border-left-color: #2563eb; background: #eff6ff !important; }
+
     /* ── SCORING RULES CHIP ── */
     .scoring-info { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
     .scoring-chip { display: flex; align-items: center; gap: 5px; border-radius: 7px; padding: 4px 10px; font-size: 0.72rem; }
@@ -471,17 +477,12 @@
         <div class="lb-stat lb-col-hide">${isMe ? sub.score.gPts : '—'}</div>
         <div class="lb-stat pts">${isMe ? sub.score.total : '—'}</div>
       </div>`;
+      if (isActive) html += `<div class="lb-inline-drawer">${buildDetailDrawerInner(sub)}</div>`;
       if (rank === 3 && list.length > 3) html += `<div class="lb-tier-divider"></div>`;
     });
 
     html += `</div>
     <div class="lb-tiebreak-note">🏒 Tiebreaker: lowest total cap hit wins. If still tied, the prize is split equally.</div>`;
-
-    // Detail drawer (if one is open)
-    if (activeDetailId) {
-      const sub = list.find(s => s.id === activeDetailId);
-      if (sub) html += buildDetailDrawer(sub);
-    }
 
     content.innerHTML = html;
   }
@@ -497,12 +498,12 @@
     activeDetailId = activeDetailId === id ? null : id;
     renderAll();
     if (activeDetailId) {
-      const el = document.getElementById(`lb-row-${id}`);
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      const row = document.getElementById(`lb-row-${id}`);
+      if (row) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
   }
 
-  function buildDetailDrawer(sub) {
+  function buildDetailDrawerInner(sub) {
     const cap = fmtCap(sub.cap_used);
     let html = `<div class="detail-drawer">
       <div class="detail-drawer-header">
