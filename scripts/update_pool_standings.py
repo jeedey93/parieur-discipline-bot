@@ -75,27 +75,46 @@ def save_weekly_snapshot(snapshot: dict):
 
 # ── Gemini scouting report ─────────────────────────────────────────────────────
 
-def gemini_scouting_report(team_name: str, owner: str, roster_summary: str, total_pts: int, rank: int) -> str:
+def gemini_scouting_report(team_name: str, owner: str, roster_summary: str,
+                           total_pts: int, rank: int, prev_rank: int | None,
+                           best_player: str, weak_pos: str) -> str:
     client = genai.Client(api_key=GOOGLE_API_KEY)
-    prompt = f"""You are a witty, sharp hockey pool analyst — think TSN panel energy mixed with a bit of friendly trash talk.
 
-Write exactly ONE sentence (max 20 words) as a scouting report for this fantasy hockey pool team.
-Be specific to their actual roster strengths/weaknesses. Mix real analysis with light humour.
-No emojis. No hashtags. No quotes around the sentence.
+    rank_note = ""
+    if prev_rank and prev_rank != rank:
+        diff = prev_rank - rank
+        rank_note = f"(moved up {diff} spot{'s' if diff != 1 else ''} from #{prev_rank})" if diff > 0 \
+                    else f"(slipped {abs(diff)} spot{'s' if abs(diff) != 1 else ''} from #{prev_rank})"
+
+    prompt = f"""You are a sharp, witty hockey pool analyst — TSN panel energy meets locker-room trash talk.
+
+Write a scouting report of exactly 2-3 sentences for this fantasy pool team.
+Structure:
+  1. Open with a riff on the team name "{team_name}" or a jab at the manager {owner} — make it personal and fun.
+  2. Break down their roster reality: name their best player and call out what position group is dragging them.
+  3. Close with a sharp prediction or a dig about where they're headed.
+
+Rules:
+- Friendly banter only, no mean-spirited attacks.
+- Be specific — use the actual player names and stats provided.
+- No emojis. No hashtags. No bullet points. Plain prose only.
+- Do not add quotes around your response.
 
 Team: {team_name} (managed by {owner})
-Current rank: #{rank}
+Current rank: #{rank} {rank_note}
 Total pool points: {total_pts}
+Best player: {best_player}
+Weakest position group: {weak_pos}
 Roster breakdown:
 {roster_summary}
 
-One sentence scouting report:"""
+Scouting report:"""
 
     models = [
         "models/gemini-2.5-flash",
-        "models/gemini-3.8-flash",
         "models/gemini-2.5-flash-lite",
-        "models/gemini-2.5-pro",
+        "models/gemini-3.8-flash",
+        "models/gemini-3.1-flash-lite",
     ]
     for model in models:
         for attempt in range(3):
@@ -142,6 +161,29 @@ def build_roster_summary(roster: dict, player_map: dict) -> str:
         if players:
             lines.append(f"{label}: {', '.join(players)}")
     return "\n".join(lines)
+
+
+def best_player_and_weak_pos(roster: dict, player_map: dict) -> tuple[str, str]:
+    pos_totals = {"F": 0, "D": 0, "G": 0}
+    best_name, best_pts = "Unknown", -1
+    for pos in ("F", "D", "G"):
+        for s in roster.get(pos, []):
+            p = player_map.get(s)
+            if not p:
+                continue
+            if pos == "G":
+                pts = (p.get("wins", 0) or 0) * 2 + (p.get("ot_losses", 0) or 0) + (p.get("shutouts", 0) or 0) * 3
+            elif pos == "D":
+                pts = (p.get("goals", 0) or 0) * 2 + (p.get("assists", 0) or 0)
+            else:
+                pts = p.get("points", 0) or 0
+            pos_totals[pos] += pts
+            if pts > best_pts:
+                best_pts = pts
+                best_name = p.get("player_name", s)
+    labels = {"F": "Forwards", "D": "Defence", "G": "Goalies"}
+    weak_pos = labels[min(pos_totals, key=pos_totals.get)]
+    return best_name, weak_pos
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -207,31 +249,37 @@ def main():
         prev_rank = prev_ranks.get(sid)
         weekly_pts = sub["total"] - baseline.get(sid, sub["total"])
 
-        # Generate scouting report (only if missing or it's Monday — weekly refresh)
         existing_report = sub.get("scouting_report") or ""
         should_generate = (not existing_report) or (today.weekday() == 0)
 
+        report = existing_report
         if should_generate:
             print(f"  ✍️  Generating scouting report for {sub.get('team_name') or sub['name']} (#{rank})...")
-            roster_summary = build_roster_summary(sub.get("roster") or {}, player_map)
-            report = gemini_scouting_report(
-                team_name=sub.get("team_name") or sub["name"],
-                owner=sub["name"],
-                roster_summary=roster_summary,
-                total_pts=sub["total"],
-                rank=rank,
-            )
-            # Small delay to avoid rate limiting
+            roster = sub.get("roster") or {}
+            roster_summary = build_roster_summary(roster, player_map)
+            best_player, weak_pos = best_player_and_weak_pos(roster, player_map)
+            try:
+                report = gemini_scouting_report(
+                    team_name=sub.get("team_name") or sub["name"],
+                    owner=sub["name"],
+                    roster_summary=roster_summary,
+                    total_pts=sub["total"],
+                    rank=rank,
+                    prev_rank=prev_rank,
+                    best_player=best_player,
+                    weak_pos=weak_pos,
+                )
+            except Exception as e:
+                print(f"    ⚠️  Gemini failed for {sub.get('team_name') or sub['name']}: {e}")
+                report = existing_report
             time.sleep(2)
-        else:
-            report = existing_report
 
         update_data = {
             "rank_previous": prev_rank,
             "weekly_pts": max(0, weekly_pts),
             "rank_snapshot_date": today.isoformat(),
         }
-        if should_generate and report:
+        if report:
             update_data["scouting_report"] = report
 
         supabase.table("pool_2027_submissions").update(update_data).eq("id", sid).execute()

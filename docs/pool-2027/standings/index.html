@@ -304,8 +304,8 @@
     /* ── SCOUTING REPORT ── */
     .scouting-report { margin: 0 1.25rem 0.85rem; padding: 0.65rem 0.9rem; background: linear-gradient(135deg, #eff6ff, #f8faff); border: 1px solid #bfdbfe; border-radius: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 600; color: #1e3a8a; line-height: 1.4; font-style: italic; }
     .scouting-report-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; color: #93c5fd; text-transform: uppercase; margin-bottom: 3px; font-style: normal; }
-    .best-badge { font-size: 0.85em; }
-    .rivalry-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5px; background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); border-radius: 4px; padding: 1px 5px; margin-left: 5px; vertical-align: middle; cursor: default; }
+    .best-badge { font-size: 0.85em; margin-right: 2px; }
+    .unique-badge { font-size: 0.85em; margin-left: 4px; cursor: default; }
     .scoring-info { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
     .scoring-chip { display: flex; align-items: center; gap: 5px; border-radius: 7px; padding: 4px 10px; font-size: 0.72rem; }
     .scoring-chip.F { background: #fff1f2; border: 1px solid #fda4af; color: #e05a6e; }
@@ -724,15 +724,16 @@
   function buildDetailDrawerInner(sub) {
     const cap = fmtCap(sub.cap_used);
 
-    // Build rivalry map: slug → how many OTHER teams have this player
-    const rivalryMap = {};
+    // Build uniqueness map: slug → total # of teams (including this one) that have this player
+    // We'll flag players taken by only 1-2 teams as unique picks
+    const uniquenessMap = {};
     const myAllSlugs = [
       ...(sub.roster.F || []),
       ...(sub.roster.D || []),
       ...(sub.roster.G || []),
     ];
     for (const slug of myAllSlugs) {
-      let count = 0;
+      let count = 1; // this team
       for (const other of allSubmissions) {
         if (other.id === sub.id) continue;
         const otherSlugs = [
@@ -742,8 +743,11 @@
         ];
         if (otherSlugs.includes(slug)) count++;
       }
-      rivalryMap[slug] = count;
+      uniquenessMap[slug] = count;
     }
+    const totalTeams = allSubmissions.length || 1;
+    // A pick is "unique" if taken by ≤ 20% of teams (at most 2 teams in a 10-team pool)
+    const uniqueThreshold = Math.max(2, Math.round(totalTeams * 0.2));
 
     // Find best player (highest pool pts)
     let bestSlug = null, bestPts = -1;
@@ -831,11 +835,12 @@
           statCols = `<td class="td-stat">${p.games_played ?? '—'}</td><td class="td-stat">${p.goals ?? '—'}</td><td class="td-stat">${p.assists ?? '—'}</td><td class="td-stat">${p.points ?? '—'}</td>`;
         }
         const isBest = slug === bestSlug;
-        const rivalCount = rivalryMap[slug] || 0;
-        const rivalBadge = rivalCount > 0
-          ? `<span class="rivalry-badge" title="${rivalCount} other team${rivalCount > 1 ? 's have' : ' has'} this player">${rivalCount}✕</span>`
+        const teamCount = uniquenessMap[slug] || 1;
+        const isUnique = teamCount <= uniqueThreshold;
+        const uniqueBadge = isUnique
+          ? `<span class="unique-badge" title="Only ${teamCount === 1 ? 'you have' : teamCount + ' teams have'} this player — rare pick!">💎</span>`
           : '';
-        const namePart = `${isBest ? '<span class="best-badge">🔥</span> ' : ''}${formatName(p.player_name)}${rivalBadge}`;
+        const namePart = `${isBest ? '<span class="best-badge">🔥</span>' : ''}${formatName(p.player_name)}${uniqueBadge}`;
         html += `<tr class="player-row">
           <td style="width:28px;padding:0.35rem 0.5rem 0.35rem 1rem;">${logo}</td>
           <td class="td-name">${namePart}</td>
