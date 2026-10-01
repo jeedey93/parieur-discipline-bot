@@ -1418,22 +1418,25 @@ def main():
 
     all_data = []
 
+    # Use rglob when no season given so season subfolders (e.g. 2026-27/) are included
+    glob_pattern = "*.txt" if season else "**/*.txt"
+
     if nhl_dir.exists():
-        for file in nhl_dir.glob("*.txt"):
+        for file in nhl_dir.glob(glob_pattern):
             data = parse_results_file(file)
             if data:
                 all_data.append(data)
                 print(f"  ✓ Parsed {file.name}")
 
     if nba_dir.exists():
-        for file in nba_dir.glob("*.txt"):
+        for file in nba_dir.glob(glob_pattern):
             data = parse_results_file(file)
             if data:
                 all_data.append(data)
                 print(f"  ✓ Parsed {file.name}")
 
     if nfl_dir.exists():
-        for file in nfl_dir.glob("*.txt"):
+        for file in nfl_dir.glob(glob_pattern):
             data = parse_results_file(file)
             if data:
                 all_data.append(data)
