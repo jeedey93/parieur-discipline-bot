@@ -482,24 +482,34 @@
 
     // Podium (top 3)
     if (list.length >= 1) {
-      const medals = ['🥇','🥈','🥉'];
-      const order = list.length >= 3 ? [1, 0, 2] : list.length === 2 ? [0, 1] : [0]; // silver, gold, bronze for visual layout
+      const ENTRY_FEE = 20;
+      const PRIZE_SPLIT = [0.60, 0.25, 0.15];
+      const paidEntries = allSubmissions.filter(s => s.paid).length;
+      const totalPot = paidEntries * ENTRY_FEE;
+
       const orderedForDisplay = list.length >= 3
         ? [list[1], list[0], list[2]]
         : list.slice(0, list.length);
       const classes = list.length >= 3 ? ['p2','p1','p3'] : ['p1','p2'];
+      // rank indices corresponding to orderedForDisplay positions
+      const rankIndices = list.length >= 3 ? [1, 0, 2] : [0, 1];
 
       html += `<div class="podium">`;
       orderedForDisplay.forEach((sub, i) => {
         const cls = classes[i];
+        const rankIdx = rankIndices[i]; // 0-based rank in the full sorted list
         const medal = cls === 'p1' ? '🥇' : cls === 'p2' ? '🥈' : '🥉';
         const isMe = DRAFT_LOCKED || (myEmail && sub.email.toLowerCase() === myEmail.toLowerCase());
+        const prize = poolFilter === 'paid' && sub.paid && rankIdx < 3
+          ? `$${Math.round(totalPot * PRIZE_SPLIT[rankIdx])}`
+          : null;
+        const subLabel = prize ?? (isMe ? fmtCap(sub.cap_used) : '🔒');
         html += `<div class="podium-spot ${cls}">
           <div class="podium-medal">${medal}</div>
           <div class="podium-pts">${isMe ? sub.score.total : '—'}</div>
           <div class="podium-name">${escapeHtml(sub.team_name || sub.name)}</div>
           <div class="podium-cap" style="font-size:0.65rem;color:#9ca3af;">${escapeHtml(sub.name)}</div>
-          <div class="podium-cap">${isMe ? fmtCap(sub.cap_used) : '🔒'}</div>
+          <div class="podium-cap"${prize ? ' style="color:#16a34a;font-weight:700;"' : ''}>${subLabel}</div>
           <div class="podium-block"></div>
         </div>`;
       });
