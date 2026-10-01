@@ -1603,8 +1603,23 @@ def format_dual_bet(raw_text):
         if odds_value and '@' not in bet_line:
             bet_line = f"{bet_line} @ {odds_value}"
 
+        # Split bet_line into game and pick for data attributes
+        import html as html_module
+        # Extract odds from bet_line first (e.g. "... Under 6.5 @ 1.72")
+        odds_from_line = re.search(r'@\s*([\d.]+)\s*$', bet_line)
+        if odds_from_line and not odds_value:
+            odds_value = odds_from_line.group(1)
+        vs_match = re.match(r'^(.+?\s+vs\s+.+?)\s+((?:Under|Over|ML|[+-]?\d+\.?\d*).+?)(?:\s*@\s*[\d.]+)?$', bet_line, re.IGNORECASE)
+        if vs_match:
+            data_game = html_module.escape(vs_match.group(1).strip(), quote=True)
+            data_pick = html_module.escape(vs_match.group(2).strip(), quote=True)
+        else:
+            data_game = html_module.escape(bet_line, quote=True)
+            data_pick = ""
+        data_odds = html_module.escape(odds_value or "", quote=True)
+
         # Create card
-        md += "<div class='pick-card' style='position: relative;'>\n"
+        md += f"<div class='pick-card' style='position: relative;' data-game='{data_game}' data-pick='{data_pick}' data-odds='{data_odds}'>\n"
         md += f"<div class='pick-badge {sport_badge_class}'>PICK #{pick_num} — {sport_label}</div>\n"
         md += f"<div class='pick-title'>{bet_line}</div>\n"
 
@@ -2329,37 +2344,6 @@ def update_latest_predictions(preliminary=False):
             content += "🎯 View All Today's Picks →\n"
             content += "</a>\n"
             content += "<p style='margin-top: 12px; color: #6b7280; font-size: 0.95em;'>See all NHL and NBA predictions with detailed analysis</p>\n"
-            # Pick card share/download button (only shown if image exists)
-            content += "<div id='pick-card-share' style='margin-top: 20px; display: none;'>\n"
-            content += "<a id='pick-card-dl-btn' href='picks/pick_card_latest.png' download style='display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #1a1a1a; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 1em; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); transition: all 0.3s ease;' onmouseover='this.style.transform=\"translateY(-2px)\"; this.style.boxShadow=\"0 6px 20px rgba(245, 158, 11, 0.5)\";' onmouseout='this.style.transform=\"translateY(0)\"; this.style.boxShadow=\"0 4px 15px rgba(245, 158, 11, 0.4)\";'>\n"
-            content += "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8'/><polyline points='16 6 12 2 8 6'/><line x1='12' y1='2' x2='12' y2='15'/></svg>\n"
-            content += "Share Pick Card\n"
-            content += "</a>\n"
-            content += "<p style='margin-top: 10px; color: #9ca3af; font-size: 0.85em;'>Download the image to share on Facebook, Instagram, or X</p>\n"
-            content += "</div>\n"
-            content += "<script>\n"
-            content += "(function(){\n"
-            content += "  var img = new Image();\n"
-            content += "  img.onload = function() { document.getElementById('pick-card-share').style.display = 'block'; };\n"
-            content += "  img.src = 'picks/pick_card_latest.png?' + Date.now();\n"
-            content += "  var btn = document.getElementById('pick-card-dl-btn');\n"
-            content += "  if (btn && navigator.share) {\n"
-            content += "    btn.addEventListener('click', function(e) {\n"
-            content += "      e.preventDefault();\n"
-            content += "      fetch('picks/pick_card_latest.png')\n"
-            content += "        .then(r => r.blob())\n"
-            content += "        .then(blob => {\n"
-            content += "          var file = new File([blob], 'parieur-discipline-pick.png', {type: 'image/png'});\n"
-            content += "          if (navigator.canShare && navigator.canShare({files: [file]})) {\n"
-            content += "            navigator.share({files: [file], title: \"Today's Pick - Parieur Discipliné\", url: 'https://www.parieurdiscipline.com'});\n"
-            content += "          } else {\n"
-            content += "            window.open('picks/pick_card_latest.png', '_blank');\n"
-            content += "          }\n"
-            content += "        }).catch(function() { window.open('picks/pick_card_latest.png', '_blank'); });\n"
-            content += "    });\n"
-            content += "  }\n"
-            content += "})();\n"
-            content += "</script>\n"
 
         content += "</div>\n\n"
 
@@ -2600,21 +2584,16 @@ def update_latest_predictions(preliminary=False):
     content += "  button.innerHTML = '⏳ Building...';\n"
     content += "  try {\n"
     content += "    var card = button.closest('.pick-card');\n"
-    content += "    var titleEl = card.querySelector('.pick-title');\n"
     content += "    var metaEl = card.querySelector('.pick-meta');\n"
     content += "    var descEl = card.querySelector('.pick-description');\n"
-    content += "    var titleText = titleEl ? titleEl.textContent.trim() : '';\n"
     content += "    var metaText = metaEl ? metaEl.textContent.trim() : '';\n"
     content += "    var sportIcon = sport === 'NHL' ? '🏒' : '🏀';\n"
     content += "    var sportColor = sport === 'NHL' ? '#3b82f6' : '#f59e0b';\n"
     content += "    var date = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });\n"
-    content += "    var oddsMatch = titleText.match(/@\\s*([\\d.]+)$/);\n"
-    content += "    var odds = oddsMatch ? oddsMatch[1] : '';\n"
-    content += "    var game = titleText.replace(/@\\s*[\\d.]+$/, '').trim();\n"
-    content += "    var pickLine = game.split(' vs ')[0].trim();\n"
-    content += "    var confMatch = metaText.match(/Confidence Level:\\s*(\\w+)/i);\n"
+    content += "    var game = card.dataset.game || '';\n"
+    content += "    var pickLine = card.dataset.pick || '';\n"
+    content += "    var odds = card.dataset.odds || '';\n"
     content += "    var probMatch = metaText.match(/Win Probability:\\s*(\\d+)%/i);\n"
-    content += "    var confidence = confMatch ? confMatch[1] : '';\n"
     content += "    var winProb = probMatch ? parseInt(probMatch[1]) : null;\n"
     content += "    var desc = descEl ? descEl.getAttribute('data-raw') || descEl.textContent.trim() : '';\n"
     content += "    // Parse bullet points from raw text\n"
