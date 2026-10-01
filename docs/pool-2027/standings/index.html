@@ -748,6 +748,12 @@
   function buildDetailDrawerInner(sub) {
     const cap = fmtCap(sub.cap_used);
 
+    // Compute current rank from scored+sorted list
+    const sortedAll = allSubmissions
+      .map(s => ({ ...s, score: s.score || scoreTeam(s.roster) }))
+      .sort((a, b) => b.score.total - a.score.total);
+    const rank = sortedAll.findIndex(s => s.id === sub.id) + 1;
+
     // Build uniqueness map: slug → total # of teams (including this one) that have this player
     // We'll flag players taken by only 1-2 teams as unique picks
     const uniquenessMap = {};
@@ -789,9 +795,12 @@
 
     let html = `<div class="detail-drawer">
       <div class="detail-drawer-header">
-        <div>
-          <div class="detail-drawer-name">${escapeHtml(sub.team_name || sub.name)}</div>
-          ${sub.team_name ? `<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:600;color:#9ca3af;letter-spacing:1px;margin-top:1px;">${escapeHtml(sub.name)}</div>` : ''}
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#cbd5e1;letter-spacing:1px;line-height:1;">#${rank}</div>
+          <div>
+            <div class="detail-drawer-name">${escapeHtml(sub.team_name || sub.name)}</div>
+            ${sub.team_name ? `<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:600;color:#9ca3af;letter-spacing:1px;margin-top:1px;">${escapeHtml(sub.name)}</div>` : ''}
+          </div>
         </div>
         <div class="detail-badges">
           <span class="detail-badge pts">${sub.score.total} PTS</span>
