@@ -1,35 +1,31 @@
 ============================================================
 WILD - LINEUP
-Last Updated: 2026-05-13 04:10 PM ET
+Last Updated: 2026-10-01 03:35 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Kirill Kaprizov — Ryan Hartman — Mats Zuccarello
-Line 2: Marcus Johansson — Danila Yurov — Matt Boldy
-Line 3: Vladimir Tarasenko — Michael McCarron — Yakov Trenin
-Line 4: Marcus Foligno — Nico Sturm — Nick Foligno
+Line 1: Kirill Kaprizov — Danila Yurov — Maxim Shabanov
+Line 2: Blake Coleman — Joel Eriksson Ek — Matt Boldy
+Line 3: Yakov Trenin — Ryan Hartman — Bobby Brink
+Line 4: Nick Foligno — Michael McCarron — Marcus Foligno
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Quinn Hughes — Brock Faber
-Pair 2: Daemon Hunt — Jared Spurgeon
-Pair 3: Jake Middleton — Zach Bogosian
+Pair 1: Quinn Hughes — Jared Spurgeon
+Pair 2: Olli Maatta — Jonas Brodin
+Pair 3: Daemon Hunt — Zach Bogosian
 
 GOALIES:
 ----------------------------------------
   Jesper Wallstedt
-  Filip Gustavsson
+  Calvin Pickard
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Robby Fabbri (scratched)
-  Hunter Haight (scratched)
-  Matt Kiersted (scratched)
-  Bobby Brink (scratched)
-  Calvin Petersen (scratched)
-  Jeff Petry (scratched)
-  Jonas Brodin (lower body) (injured)
-  Joel Eriksson Ek (lower body) (injured)
+  Nico Sturm (scratched)
+  David Spacek (scratched)
+  Brock Faber (skull fracture) (injured)
+  Filip Gustavsson (lower body) (injured)
 
 ============================================================
