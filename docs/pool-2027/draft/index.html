@@ -526,8 +526,8 @@
 </header>
 
 <div class="deadline-banner" style="width:100%;max-width:1100px;margin:0 auto 0.4rem;padding:6px 1.25rem;">
-  <span class="dl-icon">⏳</span>
-  <span>Deadline: <strong>October 1, 2026</strong> — submissions lock when the season opens. Entry fee: <strong>$20</strong> (paid pool) via Interac to <strong>justin.do@hotmail.com</strong></span>
+  <span class="dl-icon">🔒</span>
+  <span><strong>Draft Closed</strong> — The submission deadline has passed. The 2026–27 season is underway!</span>
 </div>
 <div class="stats-notice" style="width:100%;max-width:1100px;margin:0 auto 0.4rem;padding:5px 1.25rem;">
   ℹ Stats shown are from the <strong>2025–26</strong> regular season — used as a proxy for 2026–27 projections
@@ -1169,7 +1169,17 @@
     if (badge) { badge.textContent = `${total}/20${isOver ? ' ⚠' : ''}`; badge.className = 'mobile-tab-badge' + (isOver ? ' over-cap' : ''); }
   }
 
+  const DRAFT_LOCKED = true;
+
   function updateSubmitBtn() {
+    const btn = document.getElementById('btn-submit');
+    const btnMobile = document.getElementById('btn-submit-mobile');
+    if (DRAFT_LOCKED) {
+      [btn, btnMobile].forEach(b => { if (b) { b.disabled = true; b.textContent = '🔒 Draft Closed'; } });
+      const hint = document.getElementById('submit-hint');
+      if (hint) hint.textContent = 'Submissions are closed for the 2026–27 season.';
+      return;
+    }
     const complete = isRosterComplete();
     const underCap = isRosterUnderCap();
     const ready = complete && underCap;
