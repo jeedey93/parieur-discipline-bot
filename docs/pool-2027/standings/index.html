@@ -313,6 +313,19 @@
     .scoring-chip.G { background: #fffbeb; border: 1px solid #fcd34d; color: #d97706; }
     .scoring-chip-pos { font-family: 'Bebas Neue', cursive; font-size: 0.72rem; letter-spacing: 1.5px; }
     .scoring-chip-rule { opacity: 0.75; }
+    /* ── Comments ── */
+    .comment-form { background: white; border: 1px solid #e8ecf5; border-radius: 16px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .comment-input { width: 100%; box-sizing: border-box; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.6rem 0.85rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600; color: #1a2a4a; background: #f8faff; margin-bottom: 0.6rem; outline: none; transition: border-color 0.15s; }
+    .comment-input:focus { border-color: #93c5fd; background: white; }
+    .comment-textarea { resize: vertical; min-height: 72px; }
+    .comment-submit { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; border: none; border-radius: 8px; padding: 7px 20px; font-family: 'Bebas Neue', cursive; font-size: 0.9rem; letter-spacing: 1.5px; cursor: pointer; transition: opacity 0.15s; }
+    .comment-submit:hover { opacity: 0.88; }
+    .comment-submit:disabled { opacity: 0.45; cursor: default; }
+    .comment-card { background: white; border: 1px solid #e8ecf5; border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 0.6rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .comment-card-author { font-family: 'Bebas Neue', cursive; font-size: 0.95rem; letter-spacing: 1.5px; color: #1e3a8a; }
+    .comment-card-time { font-size: 0.68rem; font-weight: 600; color: #9ca3af; letter-spacing: 0.5px; margin-left: 8px; }
+    .comment-card-msg { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 500; color: #374151; margin-top: 4px; line-height: 1.4; white-space: pre-wrap; word-break: break-word; }
+    .comments-empty { text-align: center; padding: 2.5rem 1rem; color: #9ca3af; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" crossorigin="anonymous"></script>
@@ -359,6 +372,7 @@
     <button class="pool-type-btn" id="btn-paid" onclick="setPoolFilter('paid')">💰 Paid</button>
     <button class="pool-type-btn" id="btn-free" onclick="setPoolFilter('free')">🎮 Free</button>
     <button class="pool-type-btn" id="btn-race" onclick="setPoolFilter('race')">📈 Race</button>
+    <button class="pool-type-btn" id="btn-comments" onclick="setPoolFilter('comments')">💬 Chat</button>
   </div>
 
   <div class="search-row">
@@ -397,7 +411,7 @@
   </div>
 </div>
 
-<div id="race-view" style="display:none; padding: 0 1rem 2rem;">
+<div id="race-view" style="display:none; padding: 0 1rem 2rem; max-width: 900px; margin: 0 auto;">
   <div style="margin-bottom:1rem;">
     <div style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:2px;color:#1e3a8a;margin-bottom:4px;">Points Race</div>
     <div style="font-size:0.75rem;color:#9ca3af;">Total pool points per team over time. Updates daily.</div>
@@ -407,6 +421,20 @@
     <div id="race-empty" style="display:none;text-align:center;padding:3rem 1rem;color:#9ca3af;font-family:'Barlow Condensed',sans-serif;font-size:1rem;">
       Not enough data yet — check back tomorrow once the daily snapshot runs.
     </div>
+  </div>
+</div>
+
+<div id="comments-view" style="display:none; padding: 0 1rem 2rem; max-width: 680px; margin: 0 auto;">
+  <div id="comments-list" style="margin-bottom: 1.25rem;"></div>
+  <div class="comment-form" id="comment-form">
+    <div style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:#1e3a8a;margin-bottom:0.75rem;">Leave a message</div>
+    <input id="comment-author" type="text" placeholder="Your name" maxlength="50" class="comment-input" />
+    <textarea id="comment-message" placeholder="Talk your trash… 🏒" maxlength="500" rows="3" class="comment-input comment-textarea"></textarea>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;">
+      <span id="comment-char" style="font-size:0.7rem;color:#9ca3af;">0 / 500</span>
+      <button onclick="submitComment()" class="comment-submit">Post</button>
+    </div>
+    <div id="comment-error" style="display:none;font-size:0.75rem;color:#dc2626;margin-top:0.4rem;"></div>
   </div>
 </div>
 
@@ -503,15 +531,19 @@
   // ── Pool filter ────────────────────────────────────────────────────────────
   function setPoolFilter(f) {
     poolFilter = f;
-    ['all','paid','free','race'].forEach(k => {
+    ['all','paid','free','race','comments'].forEach(k => {
       const btn = document.getElementById(`btn-${k}`);
       if (btn) btn.classList.toggle('active', k === f);
     });
     const isRace = f === 'race';
+    const isComments = f === 'comments';
+    const isStandings = !isRace && !isComments;
     document.getElementById('race-view').style.display = isRace ? 'block' : 'none';
-    document.querySelector('.standings-layout').style.display = isRace ? 'none' : '';
-    document.getElementById('search-row') && (document.querySelector('.search-row').style.display = isRace ? 'none' : '');
+    document.getElementById('comments-view').style.display = isComments ? 'block' : 'none';
+    document.querySelector('.standings-layout').style.display = isStandings ? '' : 'none';
+    document.querySelector('.search-row').style.display = isStandings ? '' : 'none';
     if (isRace) renderRaceChart();
+    else if (isComments) loadComments();
     else renderAll();
   }
 
@@ -1001,6 +1033,75 @@
         },
       },
     });
+  }
+
+  // ── Comments ───────────────────────────────────────────────────────────────
+  const msgEl = document.getElementById('comment-message');
+  if (msgEl) {
+    msgEl.addEventListener('input', () => {
+      document.getElementById('comment-char').textContent = `${msgEl.value.length} / 500`;
+    });
+  }
+
+  async function loadComments() {
+    const listEl = document.getElementById('comments-list');
+    listEl.innerHTML = '<div class="comments-empty">Loading…</div>';
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/pool_2027_comments?select=id,created_at,author_name,message&order=created_at.desc&limit=100`,
+        { headers: sbHeaders() }
+      );
+      if (!res.ok) throw new Error();
+      const comments = await res.json();
+      if (!comments.length) {
+        listEl.innerHTML = '<div class="comments-empty">No messages yet — be the first to chirp! 🏒</div>';
+        return;
+      }
+      listEl.innerHTML = comments.map(c => {
+        const d = new Date(c.created_at);
+        const time = d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'America/Toronto' });
+        return `<div class="comment-card">
+          <div><span class="comment-card-author">${escapeHtml(c.author_name)}</span><span class="comment-card-time">${time}</span></div>
+          <div class="comment-card-msg">${escapeHtml(c.message)}</div>
+        </div>`;
+      }).join('');
+    } catch {
+      listEl.innerHTML = '<div class="comments-empty">Failed to load comments. Try refreshing.</div>';
+    }
+  }
+
+  async function submitComment() {
+    const authorEl = document.getElementById('comment-author');
+    const msgEl = document.getElementById('comment-message');
+    const errorEl = document.getElementById('comment-error');
+    const submitBtn = document.querySelector('.comment-submit');
+
+    const author = authorEl.value.trim();
+    const message = msgEl.value.trim();
+    errorEl.style.display = 'none';
+
+    if (!author) { errorEl.textContent = 'Please enter your name.'; errorEl.style.display = 'block'; return; }
+    if (!message) { errorEl.textContent = 'Message cannot be empty.'; errorEl.style.display = 'block'; return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Posting…';
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/pool_2027_comments`, {
+        method: 'POST',
+        headers: { ...sbHeaders(), 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ author_name: author, message }),
+      });
+      if (!res.ok) throw new Error();
+      msgEl.value = '';
+      document.getElementById('comment-char').textContent = '0 / 500';
+      await loadComments();
+    } catch {
+      errorEl.textContent = 'Failed to post. Try again.';
+      errorEl.style.display = 'block';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Post';
+    }
   }
 
   // ── Load ───────────────────────────────────────────────────────────────────
