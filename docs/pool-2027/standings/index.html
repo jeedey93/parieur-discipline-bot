@@ -528,18 +528,27 @@
     }
 
     // Podium (top 3)
-    if (list.length >= 1) {
+    // Podium always ranked by total pts regardless of sort column
+    const podiumList = [...allSubmissions]
+      .filter(s => {
+        if (poolFilter === 'paid' && !s.paid) return false;
+        if (poolFilter === 'free' && s.paid) return false;
+        return true;
+      })
+      .map(s => ({ ...s, score: scoreTeam(s.roster) }))
+      .sort((a, b) => b.score.total - a.score.total);
+
+    if (podiumList.length >= 1) {
       const ENTRY_FEE = 20;
       const PRIZE_SPLIT = [0.60, 0.25, 0.15];
       const paidEntries = allSubmissions.filter(s => s.paid).length;
       const totalPot = paidEntries * ENTRY_FEE;
 
-      const orderedForDisplay = list.length >= 3
-        ? [list[1], list[0], list[2]]
-        : list.slice(0, list.length);
-      const classes = list.length >= 3 ? ['p2','p1','p3'] : ['p1','p2'];
-      // rank indices corresponding to orderedForDisplay positions
-      const rankIndices = list.length >= 3 ? [1, 0, 2] : [0, 1];
+      const orderedForDisplay = podiumList.length >= 3
+        ? [podiumList[1], podiumList[0], podiumList[2]]
+        : podiumList.slice(0, podiumList.length);
+      const classes = podiumList.length >= 3 ? ['p2','p1','p3'] : ['p1','p2'];
+      const rankIndices = podiumList.length >= 3 ? [1, 0, 2] : [0, 1];
 
       html += `<div class="podium">`;
       orderedForDisplay.forEach((sub, i) => {
