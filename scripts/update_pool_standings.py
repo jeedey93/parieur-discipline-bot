@@ -37,6 +37,7 @@ tz = ZoneInfo("America/Toronto")
 
 WEEKLY_SNAPSHOT_FILE = "data/pool_weekly_snapshot.json"
 HISTORY_FILE = "docs/data/pool_history.json"
+POOL_SUMMARY_FILE = "docs/data/pool_weekly_summary.json"
 
 
 # ── Scoring ────────────────────────────────────────────────────────────────────
@@ -92,19 +93,19 @@ def gemini_scouting_report(team_name: str, owner: str, roster_summary: str,
 Write a scouting report of exactly 2-3 sentences for this fantasy pool team.
 Structure:
   1. Open with a riff on the team name "{team_name}" or a jab at the manager {owner} — make it personal and fun.
-  2. Break down their roster reality: name their best player and call out what position group is dragging them.
+  2. Break down their roster reality using ONLY the actual stats provided — name their best player and call out what position group is dragging them. If stats are low because the season just started, say so and speculate on potential instead of fabricating.
   3. Close with a sharp prediction or a dig about where they're headed.
 
 Rules:
 - Friendly banter only, no mean-spirited attacks.
-- Be specific — use the actual player names and stats provided.
+- Only reference stats that are actually in the data — never invent numbers or claim a player is struggling/excelling without evidence in the stats.
 - No emojis. No hashtags. No bullet points. Plain prose only.
 - Do not add quotes around your response.
 
 Team: {team_name} (managed by {owner})
 Current rank: #{rank} {rank_note}
 Total pool points: {total_pts}
-Best player: {best_player}
+Best player so far: {best_player}
 Weakest position group: {weak_pos}
 Roster breakdown:
 {roster_summary}
@@ -185,6 +186,58 @@ def best_player_and_weak_pos(roster: dict, player_map: dict) -> tuple[str, str]:
     labels = {"F": "Forwards", "D": "Defence", "G": "Goalies"}
     weak_pos = labels[min(pos_totals, key=pos_totals.get)]
     return best_name, weak_pos
+
+
+def gemini_pool_summary(standings_snapshot: str, week_date: str) -> str:
+    client = genai.Client(api_key=GOOGLE_API_KEY)
+    prompt = f"""You are a witty, sharp hockey pool analyst — TSN panel energy meets locker-room banter.
+
+Write a weekly pool summary of 3-4 sentences for a fantasy hockey pool.
+Structure:
+  1. Open with the overall state of the pool — who's on top, how tight is it?
+  2. Call out the biggest mover or shaker this week — who climbed, who fell, and why (based on their pts).
+  3. Any drama at the top or bottom worth noting?
+  4. Close with a spicy prediction or observation for the week ahead.
+
+Rules:
+- Reference team names and manager names directly — make it personal.
+- Light banter and friendly trash talk welcome. Keep it fun, not mean.
+- No emojis. No bullet points. Plain prose only. No quotes around the response.
+- Write as if you're reading it live on a broadcast.
+
+Week of: {week_date}
+Current standings (rank, team, manager, pts, change from last week):
+{standings_snapshot}
+
+Weekly pool summary:"""
+
+    models = [
+        "models/gemini-2.5-flash",
+        "models/gemini-2.5-flash-lite",
+        "models/gemini-3.8-flash",
+        "models/gemini-3.1-flash-lite",
+    ]
+    for model in models:
+        for attempt in range(3):
+            try:
+                chat = client.chats.create(model=model)
+                response = chat.send_message(prompt)
+                text = response.candidates[0].content.parts[0].text.strip().strip('"').strip("'")
+                return text
+            except genai.errors.ServerError as e:
+                if "503" in str(e) or "UNAVAILABLE" in str(e):
+                    if attempt < 2:
+                        time.sleep(15)
+                    else:
+                        break
+                else:
+                    raise
+            except genai.errors.ClientError as e:
+                if "RESOURCE_EXHAUSTED" in str(e) or "quota" in str(e):
+                    break
+                else:
+                    raise
+    return ""
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -320,6 +373,44 @@ def main():
     os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
     with open(HISTORY_FILE, "w") as f:
         json.dump(history, f, indent=2)
+
+    # ── Weekly pool summary (generate on Mondays or if missing) ─────────────
+    existing_summary = {}
+    if os.path.exists(POOL_SUMMARY_FILE):
+        with open(POOL_SUMMARY_FILE) as f:
+            existing_summary = json.load(f)
+
+    should_generate_summary = (not existing_summary.get("text")) or (today.weekday() == 0)
+    if should_generate_summary:
+        print("✍️  Generating weekly pool summary...")
+        # Build standings snapshot string for the prompt
+        lines = []
+        for s in scored:
+            rank = current_ranks[s["id"]]
+            prev = prev_ranks.get(s["id"])
+            change = ""
+            if prev and prev != rank:
+                diff = prev - rank
+                change = f"↑{diff}" if diff > 0 else f"↓{abs(diff)}"
+            weekly = s["total"] - baseline.get(s["id"], s["total"])
+            lines.append(f"#{rank} {s.get('team_name') or s['name']} ({s['name']}) — {s['total']}pts, +{max(0,weekly)} this week {change}".strip())
+        standings_snapshot = "\n".join(lines)
+        week_label = monday.strftime("%B %d, %Y")
+        try:
+            summary_text = gemini_pool_summary(standings_snapshot, week_label)
+        except Exception as e:
+            print(f"  ⚠️  Pool summary failed: {e}")
+            summary_text = existing_summary.get("text", "")
+
+        if summary_text:
+            summary_data = {
+                "text": summary_text,
+                "week": monday.isoformat(),
+                "generated_at": today.isoformat(),
+            }
+            with open(POOL_SUMMARY_FILE, "w") as f:
+                json.dump(summary_data, f, indent=2)
+            print("✅ Pool summary saved.")
 
     print(f"✅ Pool standings updated. History now has {len(history)} day(s).")
 

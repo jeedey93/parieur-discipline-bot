@@ -362,6 +362,12 @@
   <div class="last-updated" id="last-updated"></div>
   <div class="last-updated" id="page-views" style="margin-top:-0.25rem;"></div>
 
+  <div id="pool-summary-banner" style="display:none; margin: 0.75rem 0 1rem; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 14px; padding: 1rem 1.25rem; color: white; position: relative;">
+    <div style="font-family:'Bebas Neue',cursive;font-size:0.7rem;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:6px;">🎙 WEEKLY POOL REPORT</div>
+    <div id="pool-summary-text" style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:500;line-height:1.5;color:rgba(255,255,255,0.92);font-style:italic;"></div>
+    <div id="pool-summary-week" style="font-size:0.65rem;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-top:6px;"></div>
+  </div>
+
   <div class="scoring-info">
     <div class="scoring-chip F"><span class="scoring-chip-pos">F</span><span class="scoring-chip-rule">Pts × 1</span></div>
     <div class="scoring-chip D"><span class="scoring-chip-pos">D</span><span class="scoring-chip-rule">Goals × 2 + Assists × 1</span></div>
@@ -1105,6 +1111,23 @@
     }
   }
 
+  // ── Pool summary banner ────────────────────────────────────────────────────
+  async function loadPoolSummary() {
+    try {
+      const res = await fetch('/data/pool_weekly_summary.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.text) return;
+      document.getElementById('pool-summary-text').textContent = data.text;
+      if (data.week) {
+        const d = new Date(data.week + 'T12:00:00');
+        const label = d.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' });
+        document.getElementById('pool-summary-week').textContent = `Week of ${label}`;
+      }
+      document.getElementById('pool-summary-banner').style.display = 'block';
+    } catch { /* silent */ }
+  }
+
   // ── Page views ─────────────────────────────────────────────────────────────
   async function trackPageView() {
     try {
@@ -1148,6 +1171,7 @@
 
       // Increment page view count and display it
       trackPageView();
+      loadPoolSummary();
 
       renderAll();
     } catch(e) {
