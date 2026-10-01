@@ -1409,17 +1409,17 @@ def main():
         output_file = BASE_DIR / "docs" / f"performance-{season}.html"
         print(f"🔍 Scanning archive for season {season}...")
     else:
-        nhl_dir = RESULTS_DIR / "nhl"
-        nba_dir = RESULTS_DIR / "nba"
-        nfl_dir = RESULTS_DIR / "nfl"
+        season = "2026-27"
+        nhl_dir = RESULTS_DIR / "nhl" / season
+        nba_dir = RESULTS_DIR / "nba" / season
+        nfl_dir = RESULTS_DIR / "nfl" / season
         summary_override = None
         output_file = OUTPUT_FILE
-        print("🔍 Scanning for results files...")
+        print(f"🔍 Scanning current season ({season})...")
 
     all_data = []
 
-    # Use rglob when no season given so season subfolders (e.g. 2026-27/) are included
-    glob_pattern = "*.txt" if season else "**/*.txt"
+    glob_pattern = "*.txt"
 
     if nhl_dir.exists():
         for file in nhl_dir.glob(glob_pattern):
