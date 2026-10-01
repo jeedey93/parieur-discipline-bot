@@ -748,7 +748,7 @@
     }
     const totalTeams = allSubmissions.length || 1;
     // A pick is "unique" if taken by ≤ 20% of teams (at most 2 teams in a 10-team pool)
-    const uniqueThreshold = 2; // only show 💎 if 2 or fewer teams total drafted this player
+    const uniqueThreshold = Math.floor(totalTeams * 0.2); // <20% of teams drafted this player
 
     // Find best player (highest pool pts)
     let bestSlug = null, bestPts = -1;
@@ -837,9 +837,9 @@
         }
         const isBest = slug === bestSlug;
         const teamCount = uniquenessMap[slug] || 1;
-        const isUnique = teamCount <= uniqueThreshold;
+        const isUnique = teamCount < uniqueThreshold;
         const uniqueBadge = isUnique
-          ? `<span class="unique-badge" title="Only ${teamCount === 1 ? 'you have' : teamCount + ' teams have'} this player — rare pick!">💎</span>`
+          ? `<span class="unique-badge" title="Rare pick">💎</span>`
           : '';
         const namePart = `${isBest ? '<span class="best-badge">🔥</span>' : ''}${formatName(p.player_name)}${uniqueBadge}`;
         html += `<tr class="player-row">
