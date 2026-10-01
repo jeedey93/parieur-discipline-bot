@@ -49,13 +49,13 @@ jobs:
         id: run_time
         run: |
           # Crons: 6:15 UTC = 7am Montreal run, 14:15 UTC = 3pm Montreal run
-          # Window: anything before UTC 10 = 7am run
+          # Window: anything before UTC 13 = 7am run (guards against up to 6h queue delay)
           FORCE="${{ github.event.inputs.force_run_time }}"
           if [ -n "$FORCE" ]; then
             echo "time=$FORCE" >> $GITHUB_OUTPUT
           else
             HOUR=$(date -u +%H)
-            if [ "$HOUR" -lt 10 ]; then
+            if [ "$HOUR" -lt 13 ]; then
               echo "time=7am" >> $GITHUB_OUTPUT
             else
               echo "time=3pm" >> $GITHUB_OUTPUT
