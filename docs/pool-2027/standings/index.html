@@ -362,12 +362,6 @@
   <div class="last-updated" id="last-updated"></div>
   <div class="last-updated" id="page-views" style="margin-top:-0.25rem;"></div>
 
-  <div id="pool-summary-banner" style="display:none; margin: 0.75rem 0 1rem; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 14px; padding: 1rem 1.25rem; color: white; position: relative;">
-    <div style="font-family:'Bebas Neue',cursive;font-size:0.7rem;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:6px;">🎙 WEEKLY POOL REPORT</div>
-    <div id="pool-summary-text" style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:500;line-height:1.5;color:rgba(255,255,255,0.92);font-style:italic;"></div>
-    <div id="pool-summary-week" style="font-size:0.65rem;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-top:6px;"></div>
-  </div>
-
   <div class="scoring-info">
     <div class="scoring-chip F"><span class="scoring-chip-pos">F</span><span class="scoring-chip-rule">Pts × 1</span></div>
     <div class="scoring-chip D"><span class="scoring-chip-pos">D</span><span class="scoring-chip-rule">Goals × 2 + Assists × 1</span></div>
@@ -467,6 +461,7 @@
 
   // ── State ──────────────────────────────────────────────────────────────────
   let allSubmissions = [];
+  let poolSummaryData = null; // { text, weekLabel }
   let myEmail = null;
   let allPlayers = [];
   let playerMap = {};
@@ -648,9 +643,14 @@
         </div>`;
       });
       html += `</div>
-      <div style="text-align:center;margin-top:-1rem;margin-bottom:1.5rem;">
+      <div style="text-align:center;margin-top:-1rem;margin-bottom:0.75rem;">
         <button onclick="sharePodium()" style="background:linear-gradient(135deg,#374151,#4b5563);color:white;border:none;border-radius:8px;padding:6px 16px;font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:1.5px;cursor:pointer;opacity:0.8;">📸 SHARE PODIUM</button>
-      </div>`;
+      </div>
+      ${poolSummaryData ? `<div id="pool-summary-banner" style="margin: 0 0 1.25rem; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 14px; padding: 1rem 1.25rem; color: white;">
+        <div style="font-family:'Bebas Neue',cursive;font-size:0.7rem;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:6px;">🎙 WEEKLY POOL REPORT</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:500;line-height:1.5;color:rgba(255,255,255,0.92);font-style:italic;">${escapeHtml(poolSummaryData.text)}</div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-top:6px;">${escapeHtml(poolSummaryData.weekLabel)}</div>
+      </div>` : ''}`;
     }
 
     // Leaderboard
@@ -1118,13 +1118,13 @@
       if (!res.ok) return;
       const data = await res.json();
       if (!data.text) return;
-      document.getElementById('pool-summary-text').textContent = data.text;
+      let weekLabel = '';
       if (data.week) {
         const d = new Date(data.week + 'T12:00:00');
-        const label = d.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' });
-        document.getElementById('pool-summary-week').textContent = `Week of ${label}`;
+        weekLabel = `Week of ${d.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' })}`;
       }
-      document.getElementById('pool-summary-banner').style.display = 'block';
+      poolSummaryData = { text: data.text, weekLabel };
+      renderAll();
     } catch { /* silent */ }
   }
 
@@ -1221,28 +1221,35 @@
 
   function sharePodium() {
     const podiumEl = document.querySelector('.podium');
+    const summaryEl = document.getElementById('pool-summary-banner');
     if (!podiumEl) return;
 
-    // Build a wrapper with header + footer for the screenshot
     const wrap = document.createElement('div');
-    wrap.style.cssText = 'background:white;padding:24px 32px 20px;border-radius:16px;display:inline-block;font-family:sans-serif;min-width:380px;';
+    wrap.style.cssText = 'background:white;padding:24px 32px 20px;border-radius:16px;display:inline-block;font-family:sans-serif;min-width:380px;max-width:560px;';
 
     const header = document.createElement('div');
     header.style.cssText = 'text-align:center;margin-bottom:16px;';
     header.innerHTML = `
-      <div style="font-family:\'Bebas Neue\',cursive;font-size:1.5rem;letter-spacing:4px;color:#1e3a8a;">🏒 POOL 2026-27</div>
+      <div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:4px;color:#1e3a8a;">🏒 POOL 2026-27</div>
       <div style="font-size:0.7rem;font-weight:700;letter-spacing:2px;color:#9ca3af;margin-top:2px;">CURRENT STANDINGS</div>`;
 
     const footer = document.createElement('div');
     footer.style.cssText = 'text-align:center;margin-top:16px;font-size:0.65rem;color:#9ca3af;letter-spacing:1px;font-weight:600;';
     footer.textContent = 'parieurdiscipline.com/pool-2027';
 
-    const clone = podiumEl.cloneNode(true);
-    // Remove the share button from the clone if it ended up inside .podium
-    clone.querySelectorAll('button').forEach(b => b.remove());
+    const podiumClone = podiumEl.cloneNode(true);
+    podiumClone.querySelectorAll('button').forEach(b => b.remove());
 
     wrap.appendChild(header);
-    wrap.appendChild(clone);
+    wrap.appendChild(podiumClone);
+
+    if (summaryEl) {
+      const summaryClone = summaryEl.cloneNode(true);
+      summaryClone.style.margin = '12px 0 0';
+      summaryClone.querySelectorAll('button').forEach(b => b.remove());
+      wrap.appendChild(summaryClone);
+    }
+
     wrap.appendChild(footer);
     document.body.appendChild(wrap);
 
