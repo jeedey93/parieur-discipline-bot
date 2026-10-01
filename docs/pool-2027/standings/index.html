@@ -902,7 +902,7 @@
 
     let history;
     try {
-      const res = await fetch('../../../data/pool_history.json');
+      const res = await fetch('/data/pool_history.json');
       if (!res.ok) throw new Error();
       history = await res.json();
     } catch {

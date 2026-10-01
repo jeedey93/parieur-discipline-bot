@@ -36,7 +36,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 tz = ZoneInfo("America/Toronto")
 
 WEEKLY_SNAPSHOT_FILE = "data/pool_weekly_snapshot.json"
-HISTORY_FILE = "data/pool_history.json"
+HISTORY_FILE = "docs/data/pool_history.json"
 
 
 # ── Scoring ────────────────────────────────────────────────────────────────────
