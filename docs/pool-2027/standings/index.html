@@ -92,10 +92,11 @@
     .search-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
 
     /* ── LEADERBOARD ── */
-    .leaderboard { background: white; border: 1px solid #dce8f8; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(30,58,138,0.1); }    .lb-tiebreak-note { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; color: #6b7280; letter-spacing: 0.5px; text-align: center; padding: 0.5rem 1rem 1.5rem; }
+    .leaderboard { background: white; border: 1px solid #dce8f8; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(30,58,138,0.1); max-width: 640px; }
+    .lb-tiebreak-note { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; color: #6b7280; letter-spacing: 0.5px; text-align: center; padding: 0.5rem 1rem 1.5rem; }
     .lb-row {
       display: grid;
-      grid-template-columns: 36px 180px 52px 52px 52px 52px 60px 18px;
+      grid-template-columns: 36px 1fr 52px 52px 52px 52px 60px 18px;
       align-items: center; padding: 0.7rem 0.75rem; gap: 0.5rem;
       border-bottom: 1px solid #f1f7fe;
       cursor: default; transition: background 0.15s;
