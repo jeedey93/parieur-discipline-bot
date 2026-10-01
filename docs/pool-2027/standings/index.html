@@ -96,7 +96,7 @@
     .lb-tiebreak-note { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; color: #6b7280; letter-spacing: 0.5px; text-align: center; padding: 0.5rem 1rem 1.5rem; }
     .lb-row {
       display: grid;
-      grid-template-columns: 36px 1fr 44px 44px 44px 44px 52px;
+      grid-template-columns: 36px 1fr 44px 44px 44px 44px 52px 18px;
       align-items: center; padding: 0.7rem 0.75rem; gap: 0.35rem;
       border-bottom: 1px solid #f1f7fe;
       cursor: default; transition: background 0.15s;
@@ -117,7 +117,7 @@
     @media (min-width: 861px) { .lb-row { padding: 0.9rem 1rem; } }
     .lb-stat.eff { color: #16a34a; font-family: 'Bebas Neue', cursive; font-size: 0.95rem; }
     @media (max-width: 560px) {
-      .lb-row { grid-template-columns: 28px 1fr 36px 36px 36px 36px 44px; padding: 0.55rem 0.5rem; gap: 0.2rem; }
+      .lb-row { grid-template-columns: 28px 1fr 36px 36px 36px 36px 44px 14px; padding: 0.55rem 0.5rem; gap: 0.2rem; }
       .lb-name-team { font-size: 0.85rem; }
       .lb-stat { font-size: 0.78rem; }
       .lb-stat.pts { font-size: 0.95rem; }
@@ -144,6 +144,31 @@
     .lb-stat.pts { color: #1e3a8a; font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1px; }
     @media (min-width: 861px) { .lb-stat { font-size: 1rem; } .lb-stat.pts { font-size: 1.25rem; } }
     .paid-badge { font-family: 'Bebas Neue', cursive; font-size: 0.65rem; letter-spacing: 1px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.25); color: #16a34a; border-radius: 4px; padding: 1px 5px; margin-left: 5px; vertical-align: middle; }
+
+    /* ── ROW HOVER ARROW ── */
+    .lb-row-arrow { color: #c7d7f0; font-size: 0.8rem; text-align: right; transition: color 0.15s, transform 0.15s; }
+    .lb-row:hover:not(.header) .lb-row-arrow { color: #2563eb; transform: translateX(2px); }
+    .lb-row.active .lb-row-arrow { color: #2563eb; }
+
+    /* ── SORT COLUMN TINT ── */
+    .lb-stat.sort-col { background: rgba(37,99,235,0.04); }
+    .lb-row.header .lb-col-label.sort-active { background: rgba(255,255,255,0.12); border-radius: 4px; padding: 1px 4px; }
+
+    /* ── PODIUM AVATAR ── */
+    .podium-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; color: white; margin-bottom: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .podium-spot.p1 .podium-avatar { background: linear-gradient(135deg, #d97706, #f59e0b); width: 52px; height: 52px; font-size: 1.3rem; }
+    .podium-spot.p2 .podium-avatar { background: linear-gradient(135deg, #64748b, #94a3b8); }
+    .podium-spot.p3 .podium-avatar { background: linear-gradient(135deg, #92400e, #cd7f32); }
+
+    /* ── LAST UPDATED ── */
+    .last-updated { font-size: 0.7rem; font-weight: 600; color: #9ca3af; letter-spacing: 1px; text-align: center; margin-bottom: 1rem; margin-top: -0.5rem; }
+    .last-updated span { color: #6b7280; }
+
+    /* ── PANEL EMPTY STATE ── */
+    .panel-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 3rem 1.5rem; color: #9ca3af; text-align: center; }
+    .panel-empty-icon { font-size: 2.8rem; opacity: 0.35; }
+    .panel-empty-title { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 3px; color: #cbd5e1; }
+    .panel-empty-sub { font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; line-height: 1.5; }
 
     /* ── DETAIL DRAWER ── */
     .detail-drawer { background: white; border: 1px solid #dce8f8; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 8px 32px rgba(30,58,138,0.12); }
@@ -221,26 +246,24 @@
     /* Desktop side panel */
     @media (min-width: 861px) {
       .standings-layout { display: flex; gap: 1.25rem; align-items: flex-start; }
-      .standings-list { flex: 1; min-width: 0; }
+      .standings-list { flex: 1; min-width: 0; transition: flex 0.25s ease; }
       .side-panel {
-        width: 360px; flex-shrink: 0;
+        width: 0; flex-shrink: 0; overflow: hidden;
         position: sticky; top: calc(var(--nav-h) + 1rem);
         max-height: calc(100vh - var(--nav-h) - 2rem);
         overflow-y: auto;
         background: white; border: 1px solid #dce8f8; border-radius: 16px;
         box-shadow: 0 8px 32px rgba(30,58,138,0.12);
-        animation: panel-in 0.2s ease;
+        transition: width 0.25s ease, opacity 0.2s ease;
+        opacity: 0;
       }
-      @keyframes panel-in { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
-      .side-panel.hidden { display: none; }
+      .standings-layout.panel-open .side-panel {
+        width: 50%; opacity: 1;
+        animation: panel-in 0.22s ease;
+      }
+      .standings-layout.panel-open .standings-list { flex: 1; }
+      @keyframes panel-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
       .side-panel .detail-drawer { border: none; border-radius: 16px; box-shadow: none; margin-bottom: 0; }
-      /* empty state placeholder */
-      .side-panel-placeholder {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        min-height: 260px; gap: 0.6rem; color: #94a3b8; padding: 2rem;
-        font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; letter-spacing: 1px; text-align: center;
-      }
-      .side-panel-placeholder .sp-icon { font-size: 2.5rem; opacity: 0.4; }
       /* hide bottom sheet on desktop */
       .bottom-sheet-overlay { display: none !important; }
     }
@@ -306,6 +329,7 @@
       <span id="participant-count-label">Loading…</span>
     </div>
   </header>
+  <div class="last-updated" id="last-updated"></div>
 
   <div class="scoring-info">
     <div class="scoring-chip F"><span class="scoring-chip-pos">F</span><span class="scoring-chip-rule">Pts × 1</span></div>
@@ -335,8 +359,14 @@
     </div>
 
     <!-- Desktop side panel -->
-    <div class="side-panel hidden" id="side-panel">
-      <div id="side-panel-content"></div>
+    <div class="side-panel" id="side-panel">
+      <div id="side-panel-content">
+        <div class="panel-empty">
+          <div class="panel-empty-icon">🏒</div>
+          <div class="panel-empty-title">Select a team</div>
+          <div class="panel-empty-sub">Click any row to view<br>that participant's roster</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -513,13 +543,15 @@
       html += `<div class="podium">`;
       orderedForDisplay.forEach((sub, i) => {
         const cls = classes[i];
-        const rankIdx = rankIndices[i]; // 0-based rank in the full sorted list
+        const rankIdx = rankIndices[i];
         const medal = cls === 'p1' ? '🥇' : cls === 'p2' ? '🥈' : '🥉';
         const isMe = DRAFT_LOCKED || (myEmail && sub.email.toLowerCase() === myEmail.toLowerCase());
         const prize = poolFilter === 'paid' && sub.paid && rankIdx < 3
           ? `$${Math.round(totalPot * PRIZE_SPLIT[rankIdx])}`
           : null;
+        const initials = (sub.team_name || sub.name).split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
         html += `<div class="podium-spot ${cls}">
+          <div class="podium-avatar">${initials}</div>
           <div class="podium-medal">${medal}</div>
           <div class="podium-pts">${isMe ? sub.score.total : '—'}</div>
           <div class="podium-name">${escapeHtml(sub.team_name || sub.name)}</div>
@@ -543,6 +575,7 @@
         <div></div>
         <div class="lb-col-label left">Name</div>
         ${colDefs.map(c => `<div class="lb-col-label sortable${sortBy === c.key ? ' sort-active' : ''}" onclick="setSort('${c.key}')">${c.label}<span class="sort-arrow">${sortBy === c.key ? '▼' : '↕'}</span></div>`).join('')}
+        <div></div>
       </div>`;
 
     list.forEach((sub, i) => {
@@ -566,6 +599,7 @@
         <div class="lb-stat${sortBy === 'dPts' ? ' sort-active-cell' : ''}">${isMe ? sub.score.dPts : '—'}</div>
         <div class="lb-stat${sortBy === 'gPts' ? ' sort-active-cell' : ''}">${isMe ? sub.score.gPts : '—'}</div>
         <div class="lb-stat pts${sortBy === 'total' ? ' sort-active-cell' : ''}">${isMe ? sub.score.total : '—'}</div>
+        <div class="lb-row-arrow">${isMe ? '›' : ''}</div>
       </div>`;
       if (rank === 3 && list.length > 3) html += `<div class="lb-tier-divider"></div>`;
     });
@@ -593,7 +627,7 @@
     const html = buildDetailDrawerInner(sub);
     if (isDesktop()) {
       document.getElementById('side-panel-content').innerHTML = html;
-      document.getElementById('side-panel').classList.remove('hidden');
+      document.querySelector('.standings-layout').classList.add('panel-open');
     } else {
       document.getElementById('bs-content').innerHTML = html;
       document.getElementById('bs-overlay').classList.remove('hidden');
@@ -603,10 +637,17 @@
 
   function closePanel() {
     activeDetailId = null;
-    document.getElementById('side-panel').classList.add('hidden');
+    if (isDesktop()) {
+      document.querySelector('.standings-layout').classList.remove('panel-open');
+      document.getElementById('side-panel-content').innerHTML = `
+        <div class="panel-empty">
+          <div class="panel-empty-icon">🏒</div>
+          <div class="panel-empty-title">Select a team</div>
+          <div class="panel-empty-sub">Click any row to view<br>that participant's roster</div>
+        </div>`;
+    }
     document.getElementById('bs-overlay').classList.add('hidden');
     document.body.style.overflow = '';
-    // Remove active highlight
     document.querySelectorAll('.lb-row.active').forEach(r => r.classList.remove('active'));
   }
 
@@ -715,7 +756,7 @@
     try {
       const [subsRes, playersRes] = await Promise.all([
         fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,team_name,email,paid,roster,cap_used,submitted_at&order=submitted_at.desc`, { headers: sbHeaders() }),
-        fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played&limit=1000`, { headers: sbHeaders() }),
+        fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played,stats_updated_at&limit=1000`, { headers: sbHeaders() }),
       ]);
 
       if (!subsRes.ok) throw new Error(`submissions: ${subsRes.status}`);
@@ -724,6 +765,17 @@
       allSubmissions = await subsRes.json();
       allPlayers = await playersRes.json();
       playerMap = Object.fromEntries(allPlayers.map(p => [p.puckpedia_slug, p]));
+
+      // Last updated: use most recent stats_updated_at if available, else now
+      const latestPlayer = allPlayers.find(p => p.stats_updated_at);
+      const updatedAt = latestPlayer?.stats_updated_at
+        ? new Date(latestPlayer.stats_updated_at)
+        : new Date();
+      const el = document.getElementById('last-updated');
+      if (el) {
+        const fmt = updatedAt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'America/Toronto' });
+        el.innerHTML = `Stats updated <span>${fmt}</span>`;
+      }
 
       renderAll();
     } catch(e) {
