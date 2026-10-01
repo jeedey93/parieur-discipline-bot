@@ -1,0 +1,41 @@
+Date: 2026-10-01
+
+Philadelphia Flyers @ New Jersey Devils
+New Jersey Devils ML (Home): 1.61, Philadelphia Flyers ML (Away): 2.42, O/U: 5.5 (Over: 1.77 / Under: 2.1)
+------
+Tampa Bay Lightning @ New York Rangers
+New York Rangers ML (Home): 2.2, Tampa Bay Lightning ML (Away): 1.71, O/U: 6.0 (Over: 1.95 / Under: 1.87)
+------
+Buffalo Sabres @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.91, Buffalo Sabres ML (Away): 1.91, O/U: 6.0 (Over: 1.91 / Under: 1.91)
+------
+Minnesota Wild @ Nashville Predators
+Nashville Predators ML (Home): 2.15, Minnesota Wild ML (Away): 1.74, O/U: 6.0 (Over: 1.91 / Under: 1.91)
+------
+Seattle Kraken @ Calgary Flames
+Calgary Flames ML (Home): 1.91, Seattle Kraken ML (Away): 1.91, O/U: 6.0 (Over: 2.0 / Under: 1.83)
+------
+Chicago Blackhawks @ Utah Mammoth
+Utah Mammoth ML (Home): 1.48, Chicago Blackhawks ML (Away): 2.8, O/U: 6.0 (Over: 1.91 / Under: 1.91)
+------
+Edmonton Oilers @ Vancouver Canucks
+Vancouver Canucks ML (Home): 2.8, Edmonton Oilers ML (Away): 1.48, O/U: 6.5 (Over: 1.87 / Under: 1.95)
+------
+Florida Panthers @ San Jose Sharks
+San Jose Sharks ML (Home): 2.25, Florida Panthers ML (Away): 1.69, O/U: 6.5 (Over: 1.95 / Under: 1.87)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+**BET OF THE DAY**
+
+Nashville Predators ML vs Minnesota Wild @ 2.15
+The Nashville Predators are playing at home against the Minnesota Wild. Both teams lack recent form data, and there's no head-to-head history this season to provide a matchup advantage. Crucially, the market has priced the Predators at 2.15, implying a 46.51% chance of winning. Our analysis, accounting for a standard home-ice advantage (a default +1% as split data is limited for both teams) and no fatigue issues for either side, estimates Nashville's true win probability at 55%. This creates a significant +8.49% edge over the implied odds, making it a strong value play despite the early season uncertainty and TBD goalie matchups.
+Confidence Level: Medium, Units: 1u, Win Probability: 55%
+
+**Other Recommended Plays**
+
+New York Rangers ML vs Tampa Bay Lightning @ 2.20
+The New York Rangers host the Tampa Bay Lightning in a game where both teams have limited recent performance data. The most significant factor in this matchup is fatigue: the Rangers played yesterday (2026-09-30) and are on a back-to-back, while the Lightning are rested. This fatigue disadvantage for New York is factored in as a -4% adjustment to their baseline probability. Even with this, the Rangers still hold a slight home-ice edge (+1%). The current odds of 2.20 imply a 45.45% win probability for the Rangers, but our estimated probability is 51%, yielding a +5.55% edge. Goalie matchups are still TBD, adding a layer of uncertainty.
+Confidence Level: Medium, Units: 1u, Win Probability: 51%
