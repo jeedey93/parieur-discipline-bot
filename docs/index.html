@@ -263,7 +263,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>Thursday, October 1, 2026</div>
-<div class='blog-update-time'>⏱️ Last Updated at 3:36 PM</div>
+<div class='blog-update-time'>⏱️ Last Updated at 9:21 PM</div>
 <div style='margin-top: 30px; text-align: center;'>
 <div style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 50px; padding: 12px 28px; box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5); animation: pulse 2s ease-in-out infinite; border: 2px solid #fbbf24;'>
 <span style='color: #78350f; font-size: 1em; margin-right: 10px; font-weight: 700;'>📬 Daily Picks</span>
@@ -362,7 +362,7 @@ document.addEventListener('keydown', function(e) {
 </div>
 <div class='featured-grid'>
 
-<div class='pick-card' style='position: relative;'>
+<div class='pick-card' style='position: relative;' data-game='Tampa Bay Lightning vs New York Rangers' data-pick='Under 5.5' data-odds='2.05'>
 <div class='pick-badge badge-nhl'>PICK #2 — NHL</div>
 <div class='pick-title'>Tampa Bay Lightning vs New York Rangers Under 5.5 @ 2.05</div>
 <div class='pick-description reasoning' data-raw='🥅 **Elite Goalie Matchup**
@@ -389,36 +389,6 @@ Under 5.5 confirmed as top play due to updated odds and confirmed starters.'></d
 🎯 View All Today's Picks →
 </a>
 <p style='margin-top: 12px; color: #6b7280; font-size: 0.95em;'>See all NHL and NBA predictions with detailed analysis</p>
-<div id='pick-card-share' style='margin-top: 20px; display: none;'>
-<a id='pick-card-dl-btn' href='picks/pick_card_latest.png' download style='display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #1a1a1a; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 1em; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); transition: all 0.3s ease;' onmouseover='this.style.transform="translateY(-2px)"; this.style.boxShadow="0 6px 20px rgba(245, 158, 11, 0.5)";' onmouseout='this.style.transform="translateY(0)"; this.style.boxShadow="0 4px 15px rgba(245, 158, 11, 0.4)";'>
-<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8'/><polyline points='16 6 12 2 8 6'/><line x1='12' y1='2' x2='12' y2='15'/></svg>
-Share Pick Card
-</a>
-<p style='margin-top: 10px; color: #9ca3af; font-size: 0.85em;'>Download the image to share on Facebook, Instagram, or X</p>
-</div>
-<script>
-(function(){
-  var img = new Image();
-  img.onload = function() { document.getElementById('pick-card-share').style.display = 'block'; };
-  img.src = 'picks/pick_card_latest.png?' + Date.now();
-  var btn = document.getElementById('pick-card-dl-btn');
-  if (btn && navigator.share) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      fetch('picks/pick_card_latest.png')
-        .then(r => r.blob())
-        .then(blob => {
-          var file = new File([blob], 'parieur-discipline-pick.png', {type: 'image/png'});
-          if (navigator.canShare && navigator.canShare({files: [file]})) {
-            navigator.share({files: [file], title: "Today's Pick - Parieur Discipliné", url: 'https://www.parieurdiscipline.com'});
-          } else {
-            window.open('picks/pick_card_latest.png', '_blank');
-          }
-        }).catch(function() { window.open('picks/pick_card_latest.png', '_blank'); });
-    });
-  }
-})();
-</script>
 </div>
 
 </div>
@@ -433,8 +403,8 @@ Share Pick Card
       <span style='color:white;font-weight:900;font-size:0.95em;letter-spacing:1.5px;text-transform:uppercase;'>NFL Bet of the Week</span>
     </div>
     <div style='display:flex;align-items:center;gap:8px;flex-wrap:wrap;'>
-      <span style='background:rgba(255,255,255,0.15);color:white;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:700;'>Week of September 22</span>
-      
+      <span style='background:rgba(255,255,255,0.15);color:white;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:700;'>Week of September 29</span>
+      <span style="background:#fbbf24;color:#1e3a8a;padding:3px 12px;border-radius:20px;font-size:0.78em;font-weight:800;">⭐ TOP PICK</span>
     </div>
   </div>
   <div style='background:white;border:2px solid #2563eb;border-top:none;border-radius:0 0 16px 16px;padding:20px 24px;box-shadow:0 8px 30px rgba(37,99,235,0.1);'>
@@ -442,31 +412,31 @@ Share Pick Card
     <!-- Matchup row -->
     <div style='display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;'>
       <div style='text-align:center;flex:1;'>
-        <img src='https://a.espncdn.com/i/teamlogos/nfl/500/lv.png' alt='Las Vegas Raiders' style='width:52px;height:52px;object-fit:contain;opacity:1;outline:3px solid #2563eb;outline-offset:3px;border-radius:50%;' onerror='this.style.display="none"'>
-        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>Las Vegas Raiders</div>
+        <img src='https://a.espncdn.com/i/teamlogos/nfl/500/cle.png' alt='Cleveland Browns' style='width:52px;height:52px;object-fit:contain;opacity:1;outline:3px solid #2563eb;outline-offset:3px;border-radius:50%;' onerror='this.style.display="none"'>
+        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>Cleveland Browns</div>
       </div>
       <div style='text-align:center;padding:0 12px;'>
         <div style='font-size:0.7em;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;'>vs</div>
-        <div style='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:4px 14px;border-radius:20px;font-size:0.85em;font-weight:900;white-space:nowrap;'>+3.0 @ 2.02</div>
+        <div style='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:4px 14px;border-radius:20px;font-size:0.85em;font-weight:900;white-space:nowrap;'>+2.5 @ 2.0</div>
       </div>
       <div style='text-align:center;flex:1;'>
-        <img src='https://a.espncdn.com/i/teamlogos/nfl/500/no.png' alt='New Orleans Saints' style='width:52px;height:52px;object-fit:contain;opacity:0.45;' onerror='this.style.display="none"'>
-        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>New Orleans Saints</div>
+        <img src='https://a.espncdn.com/i/teamlogos/nfl/500/pit.png' alt='Pittsburgh Steelers' style='width:52px;height:52px;object-fit:contain;opacity:0.45;' onerror='this.style.display="none"'>
+        <div style='font-size:0.78em;font-weight:800;color:#1e293b;margin-top:6px;line-height:1.2;max-width:90px;margin-left:auto;margin-right:auto;'>Pittsburgh Steelers</div>
       </div>
     </div>
 
     <!-- Confidence chips -->
     <div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;'>
-      
-      
-      
+      <span style="background:#16a34a;color:white;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;">High Confidence</span>
+      <span style="background:#eff6ff;color:#2563eb;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;border:1px solid #bfdbfe;">📊 1.5u</span>
+      <span style="background:#f0fdf4;color:#16a34a;padding:3px 12px;border-radius:20px;font-size:0.75em;font-weight:700;border:1px solid #bbf7d0;">🎯 76% win prob</span>
     </div>
 
-    <div style="font-size:0.84em;color:#475569;line-height:1.7;border-top:1px solid #f1f5f9;padding-top:12px;">The Las Vegas Raiders are coming into this game hot, with a perfect 2-0 record in their last 5 games, scoring 26.5 points per game and allowing a stingy 13.5 points, giving them a strong +13.0 point differential. The New Orleans Saints, while also 1-1 in their last 5, have a more modest +3.0 point differential (27.0 scored, 24.0 allowed). Our model predicts the Raiders to win this game outright by a margin of 5.0 points. Given their strong away record (1-0, 1.000 Win%) against the Saints&#x27; unproven home record (0-0), and the Raiders&#x27; superior recent form, the market seems to be significantly undervaluing Las Vegas at +3.0. This line offers substantial value with a true win probability of 80% to cover.</div>
+    <div style="font-size:0.84em;color:#475569;line-height:1.7;border-top:1px solid #f1f5f9;padding-top:12px;">The Cleveland Browns are significantly undervalued at home against the Pittsburgh Steelers this week. Our model indicates a true win probability of 66% for the Browns, primarily driven by their dominant 1.000 home win percentage compared to the Steelers&#x27; 0.000 away win percentage, creating a substantial +9% adjustment for home-field advantage. While both teams have a 2-1 record in their last three games, the market has priced the Steelers as favorites. Getting the Browns at +2.5 points, with an estimated 76% chance to cover this spread, presents an outstanding value opportunity as the market is clearly underestimating Cleveland&#x27;s ability to win outright or keep it extremely close at home.</div>
 
     <!-- CTA -->
     <div style='text-align:center;margin-top:16px;'>
-      <a href='nfl/index.html' style='display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;text-decoration:none;border-radius:20px;font-weight:700;font-size:0.88em;box-shadow:0 3px 10px rgba(37,99,235,0.3);transition:all 0.2s;' onmouseover='this.style.transform="translateY(-2px)"' onmouseout='this.style.transform=""'>View All Week of September 22 Picks →</a>
+      <a href='nfl/index.html' style='display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;text-decoration:none;border-radius:20px;font-weight:700;font-size:0.88em;box-shadow:0 3px 10px rgba(37,99,235,0.3);transition:all 0.2s;' onmouseover='this.style.transform="translateY(-2px)"' onmouseout='this.style.transform=""'>View All Week of September 29 Picks →</a>
     </div>
   </div>
 </div>
@@ -831,21 +801,16 @@ async function handleShare(pickId, sport) {
   button.innerHTML = '⏳ Building...';
   try {
     var card = button.closest('.pick-card');
-    var titleEl = card.querySelector('.pick-title');
     var metaEl = card.querySelector('.pick-meta');
     var descEl = card.querySelector('.pick-description');
-    var titleText = titleEl ? titleEl.textContent.trim() : '';
     var metaText = metaEl ? metaEl.textContent.trim() : '';
     var sportIcon = sport === 'NHL' ? '🏒' : '🏀';
     var sportColor = sport === 'NHL' ? '#3b82f6' : '#f59e0b';
     var date = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-    var oddsMatch = titleText.match(/@\s*([\d.]+)$/);
-    var odds = oddsMatch ? oddsMatch[1] : '';
-    var game = titleText.replace(/@\s*[\d.]+$/, '').trim();
-    var pickLine = game.split(' vs ')[0].trim();
-    var confMatch = metaText.match(/Confidence Level:\s*(\w+)/i);
+    var game = card.dataset.game || '';
+    var pickLine = card.dataset.pick || '';
+    var odds = card.dataset.odds || '';
     var probMatch = metaText.match(/Win Probability:\s*(\d+)%/i);
-    var confidence = confMatch ? confMatch[1] : '';
     var winProb = probMatch ? parseInt(probMatch[1]) : null;
     var desc = descEl ? descEl.getAttribute('data-raw') || descEl.textContent.trim() : '';
     // Parse bullet points from raw text

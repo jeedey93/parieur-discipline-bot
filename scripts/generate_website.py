@@ -15,8 +15,15 @@ def get_latest_file(folder, prefix, ext="txt"):
     files = glob(os.path.join(folder, f"{prefix}_*.{ext}"))
     if not files:
         return None
-    latest = max(files, key=os.path.getctime)
-    return latest
+    # Sort by date in filename (YYYY-MM-DD) for reliability over ctime
+    import re as _re_gf
+    def _date_key(f):
+        m = _re_gf.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(f))
+        return m.group(1) if m else ""
+    dated = [f for f in files if _date_key(f)]
+    if dated:
+        return max(dated, key=_date_key)
+    return max(files, key=os.path.getctime)
 
 
 def read_file(path):
