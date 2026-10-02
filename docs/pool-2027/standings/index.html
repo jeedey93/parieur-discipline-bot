@@ -601,12 +601,12 @@
     const played = vals.filter(v => v !== null);
     if (played.length < 2) return ''; // too few games to judge
 
-    // Judge on last 3 played games (or all if fewer)
-    const recent = played.slice(-3);
+    // Judge on last 5 played games (or all if fewer)
+    const recent = played.slice(-5);
     const scoringGames = recent.filter(v => v > 0).length;
     const total = played.reduce((a, b) => a + b, 0);
 
-    if (scoringGames >= 2) {
+    if (scoringGames >= 3) {
       const tip = `🔥 Hot — scored in ${scoringGames} of last ${recent.length} games (${total} pts total)`;
       return `<span title="${tip}" style="margin-left:4px;font-size:0.85em;cursor:default;">🔥</span>`;
     }
