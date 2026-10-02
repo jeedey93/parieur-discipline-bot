@@ -1,346 +1,173 @@
 [
   {
-    "date": "2026-09-28",
+    "date": "2026-10-02",
     "teams": [
       {
-        "id": "04d8b1b9-e507-497a-b168-c0b55403d018",
-        "name": "Olivier",
-        "team_name": "The Camaraderie",
-        "total": 19,
+        "id": "74d55555-207c-442f-96a5-fd53997e90c0",
+        "name": "Eliott T",
+        "team_name": "Super Mario",
+        "total": 40,
         "rank": 1
       },
       {
-        "id": "f7d2acdf-7c19-4e12-9d55-88bf152517cf",
-        "name": "Tristan Scandar",
-        "team_name": "Mattress Dobes",
-        "total": 18,
+        "id": "3feb7b36-fa0d-4491-b567-22c3aa0495b4",
+        "name": "La saucisse",
+        "team_name": "Hot Dog",
+        "total": 40,
         "rank": 2
       },
       {
-        "id": "bf1568eb-ed1e-4a78-8ba0-9325437e6e30",
-        "name": "Vincent Daigle",
-        "team_name": "Deagle's Team",
-        "total": 17,
+        "id": "28172420-5c01-47c5-b824-63b5f1fd42e1",
+        "name": "Francis Barri\u00e8re",
+        "team_name": "Green Jackets",
+        "total": 39,
         "rank": 3
       },
       {
         "id": "51f2b6d2-04ec-4440-a2c2-6650c467f39b",
         "name": "Corbeau",
         "team_name": "Flying Corbeau",
-        "total": 17,
+        "total": 38,
         "rank": 4
       },
       {
         "id": "069793d4-fbab-4518-a89a-ee4e83058bc5",
         "name": "Louis Do",
         "team_name": "LMD",
-        "total": 17,
+        "total": 38,
         "rank": 5
-      },
-      {
-        "id": "a7023c43-b4ff-4da5-b854-a8eab02508dc",
-        "name": "Philippe Guite",
-        "team_name": "Lepetitpeep's squad",
-        "total": 17,
-        "rank": 6
-      },
-      {
-        "id": "fe7194b5-eb56-497a-a69d-51046a616fdd",
-        "name": "Renaud",
-        "team_name": "The rookie",
-        "total": 17,
-        "rank": 7
-      },
-      {
-        "id": "c4000d9d-19ee-47af-90be-710554be4448",
-        "name": "Justin Do",
-        "team_name": "JeE-DeY",
-        "total": 17,
-        "rank": 8
-      },
-      {
-        "id": "2a3d5523-2ea7-4226-a48d-14acaef6de66",
-        "name": "Francis Desrosiers",
-        "team_name": "Frank\u2019s team",
-        "total": 17,
-        "rank": 9
-      },
-      {
-        "id": "c413b7cd-01a5-40e7-a7a1-7ffa0243c05f",
-        "name": "Yanic Larouche",
-        "team_name": "Connor McCelery",
-        "total": 16,
-        "rank": 10
-      },
-      {
-        "id": "571062d1-2525-4845-b3ae-17df08576347",
-        "name": "Petpou",
-        "team_name": "Jd's nightmares",
-        "total": 16,
-        "rank": 11
-      },
-      {
-        "id": "535683d9-4818-4a92-a82e-137ce424e90b",
-        "name": "Torida T\u00e9",
-        "team_name": "Mon-Q",
-        "total": 15,
-        "rank": 12
-      },
-      {
-        "id": "74d55555-207c-442f-96a5-fd53997e90c0",
-        "name": "Eliott T",
-        "team_name": "Super Mario",
-        "total": 15,
-        "rank": 13
-      },
-      {
-        "id": "4bbd833d-d6e0-4c47-b6d5-f2741ecb36cf",
-        "name": "Mohamad Lasania",
-        "team_name": "Pastaboy",
-        "total": 15,
-        "rank": 14
-      },
-      {
-        "id": "28172420-5c01-47c5-b824-63b5f1fd42e1",
-        "name": "Francis Barri\u00e8re",
-        "team_name": "Green Jackets",
-        "total": 15,
-        "rank": 15
-      },
-      {
-        "id": "3feb7b36-fa0d-4491-b567-22c3aa0495b4",
-        "name": "La saucisse",
-        "team_name": "Hot Dog",
-        "total": 15,
-        "rank": 16
-      },
-      {
-        "id": "627babc2-9a49-4841-827a-35fefcdf8078",
-        "name": "Elouan T",
-        "team_name": "Les grosses de Brossard",
-        "total": 11,
-        "rank": 17
-      },
-      {
-        "id": "9f9b0751-5db8-4627-bca5-627ae7719902",
-        "name": "Elizabeth T",
-        "team_name": "Lili",
-        "total": 11,
-        "rank": 18
-      },
-      {
-        "id": "90c15819-acd5-41ce-b386-dda02b54732e",
-        "name": "Laff",
-        "team_name": "Jesus take the wheel",
-        "total": 10,
-        "rank": 19
-      },
-      {
-        "id": "f645e641-53c7-46ca-b30e-dd7ab9957f19",
-        "name": "Alexandre Hoang",
-        "team_name": "Interdek",
-        "total": 10,
-        "rank": 20
-      },
-      {
-        "id": "cdca24a6-e785-47f8-a9f5-53bf510d7c41",
-        "name": "Rachel & Steve",
-        "team_name": "Eddy's",
-        "total": 9,
-        "rank": 21
-      },
-      {
-        "id": "95054776-ad86-4f66-aa80-e0c0aa7e6967",
-        "name": "Mathieu st",
-        "team_name": "The best team",
-        "total": 8,
-        "rank": 22
-      },
-      {
-        "id": "e71a54eb-434f-45e0-9933-33397fd5227b",
-        "name": "Dac-Toan Do",
-        "team_name": "DTDo\u2019s squad",
-        "total": 7,
-        "rank": 23
-      },
-      {
-        "id": "101f939d-92be-450f-89c0-a93ff709eb86",
-        "name": "Guigui",
-        "team_name": "Layne Hudson",
-        "total": 2,
-        "rank": 24
-      }
-    ]
-  },
-  {
-    "date": "2026-10-01",
-    "teams": [
-      {
-        "id": "04d8b1b9-e507-497a-b168-c0b55403d018",
-        "name": "Olivier",
-        "team_name": "The Camaraderie",
-        "total": 19,
-        "rank": 1
       },
       {
         "id": "f7d2acdf-7c19-4e12-9d55-88bf152517cf",
         "name": "Tristan Scandar",
         "team_name": "Mattress Dobes",
-        "total": 18,
-        "rank": 2
+        "total": 37,
+        "rank": 6
       },
       {
         "id": "bf1568eb-ed1e-4a78-8ba0-9325437e6e30",
         "name": "Vincent Daigle",
         "team_name": "Deagle's Team",
-        "total": 17,
-        "rank": 3
-      },
-      {
-        "id": "51f2b6d2-04ec-4440-a2c2-6650c467f39b",
-        "name": "Corbeau",
-        "team_name": "Flying Corbeau",
-        "total": 17,
-        "rank": 4
-      },
-      {
-        "id": "fe7194b5-eb56-497a-a69d-51046a616fdd",
-        "name": "Renaud",
-        "team_name": "The rookie",
-        "total": 17,
-        "rank": 5
-      },
-      {
-        "id": "069793d4-fbab-4518-a89a-ee4e83058bc5",
-        "name": "Louis Do",
-        "team_name": "LMD",
-        "total": 17,
-        "rank": 6
-      },
-      {
-        "id": "a7023c43-b4ff-4da5-b854-a8eab02508dc",
-        "name": "Philippe Guite",
-        "team_name": "Lepetitpeep's squad",
-        "total": 17,
+        "total": 36,
         "rank": 7
       },
       {
-        "id": "c4000d9d-19ee-47af-90be-710554be4448",
-        "name": "Justin Do",
-        "team_name": "JeE-DeY",
-        "total": 17,
+        "id": "04d8b1b9-e507-497a-b168-c0b55403d018",
+        "name": "Olivier",
+        "team_name": "The Camaraderie",
+        "total": 36,
         "rank": 8
       },
       {
         "id": "2a3d5523-2ea7-4226-a48d-14acaef6de66",
         "name": "Francis Desrosiers",
         "team_name": "Frank\u2019s team",
-        "total": 17,
+        "total": 36,
         "rank": 9
       },
       {
-        "id": "c413b7cd-01a5-40e7-a7a1-7ffa0243c05f",
-        "name": "Yanic Larouche",
-        "team_name": "Connor McCelery",
-        "total": 16,
+        "id": "fe7194b5-eb56-497a-a69d-51046a616fdd",
+        "name": "Renaud",
+        "team_name": "The rookie",
+        "total": 35,
         "rank": 10
       },
       {
-        "id": "571062d1-2525-4845-b3ae-17df08576347",
-        "name": "Petpou",
-        "team_name": "Jd's nightmares",
-        "total": 16,
+        "id": "c4000d9d-19ee-47af-90be-710554be4448",
+        "name": "Justin Do",
+        "team_name": "JeE-DeY",
+        "total": 35,
         "rank": 11
       },
       {
         "id": "535683d9-4818-4a92-a82e-137ce424e90b",
         "name": "Torida T\u00e9",
         "team_name": "Mon-Q",
-        "total": 15,
+        "total": 34,
         "rank": 12
-      },
-      {
-        "id": "74d55555-207c-442f-96a5-fd53997e90c0",
-        "name": "Eliott T",
-        "team_name": "Super Mario",
-        "total": 15,
-        "rank": 13
       },
       {
         "id": "4bbd833d-d6e0-4c47-b6d5-f2741ecb36cf",
         "name": "Mohamad Lasania",
         "team_name": "Pastaboy",
-        "total": 15,
+        "total": 34,
+        "rank": 13
+      },
+      {
+        "id": "a7023c43-b4ff-4da5-b854-a8eab02508dc",
+        "name": "Philippe Guite",
+        "team_name": "Lepetitpeep's squad",
+        "total": 34,
         "rank": 14
       },
       {
-        "id": "28172420-5c01-47c5-b824-63b5f1fd42e1",
-        "name": "Francis Barri\u00e8re",
-        "team_name": "Green Jackets",
-        "total": 15,
+        "id": "c413b7cd-01a5-40e7-a7a1-7ffa0243c05f",
+        "name": "Yanic Larouche",
+        "team_name": "Connor McCelery",
+        "total": 34,
         "rank": 15
-      },
-      {
-        "id": "3feb7b36-fa0d-4491-b567-22c3aa0495b4",
-        "name": "La saucisse",
-        "team_name": "Hot Dog",
-        "total": 15,
-        "rank": 16
       },
       {
         "id": "627babc2-9a49-4841-827a-35fefcdf8078",
         "name": "Elouan T",
         "team_name": "Les grosses de Brossard",
-        "total": 11,
+        "total": 30,
+        "rank": 16
+      },
+      {
+        "id": "571062d1-2525-4845-b3ae-17df08576347",
+        "name": "Petpou",
+        "team_name": "Jd's nightmares",
+        "total": 30,
         "rank": 17
       },
       {
         "id": "9f9b0751-5db8-4627-bca5-627ae7719902",
         "name": "Elizabeth T",
         "team_name": "Lili",
-        "total": 11,
+        "total": 30,
         "rank": 18
-      },
-      {
-        "id": "90c15819-acd5-41ce-b386-dda02b54732e",
-        "name": "Laff",
-        "team_name": "Jesus take the wheel",
-        "total": 10,
-        "rank": 19
-      },
-      {
-        "id": "f645e641-53c7-46ca-b30e-dd7ab9957f19",
-        "name": "Alexandre Hoang",
-        "team_name": "Interdek",
-        "total": 10,
-        "rank": 20
-      },
-      {
-        "id": "cdca24a6-e785-47f8-a9f5-53bf510d7c41",
-        "name": "Rachel & Steve",
-        "team_name": "Eddy's",
-        "total": 9,
-        "rank": 21
-      },
-      {
-        "id": "95054776-ad86-4f66-aa80-e0c0aa7e6967",
-        "name": "Mathieu st",
-        "team_name": "The best team",
-        "total": 8,
-        "rank": 22
       },
       {
         "id": "e71a54eb-434f-45e0-9933-33397fd5227b",
         "name": "Dac-Toan Do",
         "team_name": "DTDo\u2019s squad",
-        "total": 7,
-        "rank": 23
+        "total": 29,
+        "rank": 19
+      },
+      {
+        "id": "95054776-ad86-4f66-aa80-e0c0aa7e6967",
+        "name": "Mathieu st",
+        "team_name": "The best team",
+        "total": 28,
+        "rank": 20
+      },
+      {
+        "id": "f645e641-53c7-46ca-b30e-dd7ab9957f19",
+        "name": "Alexandre Hoang",
+        "team_name": "Interdek",
+        "total": 24,
+        "rank": 21
+      },
+      {
+        "id": "90c15819-acd5-41ce-b386-dda02b54732e",
+        "name": "Laff",
+        "team_name": "Jesus take the wheel",
+        "total": 23,
+        "rank": 22
       },
       {
         "id": "101f939d-92be-450f-89c0-a93ff709eb86",
         "name": "Guigui",
         "team_name": "Layne Hudson",
-        "total": 2,
+        "total": 21,
+        "rank": 23
+      },
+      {
+        "id": "cdca24a6-e785-47f8-a9f5-53bf510d7c41",
+        "name": "Rachel & Steve",
+        "team_name": "Eddy's",
+        "total": 18,
         "rank": 24
       }
     ]
