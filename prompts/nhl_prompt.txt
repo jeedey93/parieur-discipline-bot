@@ -26,7 +26,7 @@ SELECTION PHILOSOPHY (Highly Selective + Edge-Focused)
 - Minimum required edge: +5% over implied probability (raised from 3% to increase selectivity)
 - Target 2-4 plays per day maximum, not 5 (quality over quantity)
 - Skip all marginal spots - only bet when you have a clear edge
-- **MANDATORY: If there are games today, you MUST recommend at least 1 play** - find the best value even if edge is slightly below +5%, but ONLY from games with odds between 1.60 and 2.20. If ALL available games have odds outside this range, output "No qualified plays today."
+- If no play meets the +5% edge threshold, output exactly: "No qualified plays today." — this is a valid and disciplined outcome, not a failure
 - If truly no games qualify after thorough analysis, output "No qualified plays today"
 
 Market Awareness:
@@ -35,28 +35,15 @@ Market Awareness:
 - Avoid betting obvious narratives (team on win streak, star goalie, etc.) unless you have contrarian edge - the market already knows these things
 
 **🚨 MONTREAL CANADIENS PRIORITY (MANDATORY - NON-NEGOTIABLE) 🚨:**
-When the Montreal Canadiens (or "Montréal Canadiens") appear in TODAY'S GAMES listed in {{RESULTS_TEXT}}, you MUST include at least ONE play from their game. This is an absolute requirement that overrides all other selection criteria.
+When the Montreal Canadiens (or "Montréal Canadiens") appear in TODAY'S GAMES listed in {{RESULTS_TEXT}}, you MUST include at least ONE play from their game — BUT ONLY if it meets the standard +5% edge threshold and odds between 1.60-2.20. Do not force a Montreal play that has no genuine edge.
 
 **CRITICAL: Only apply this rule if Montreal appears in {{RESULTS_TEXT}}. Historical results, past games, or training data mentioning Montreal do NOT trigger this rule. If Montreal is not in {{RESULTS_TEXT}}, ignore this section entirely.**
 
 Montreal Play Requirements:
 - MUST be one of: Canadiens ML, opponent ML, Over, or Under
 - Odds must be between 1.60-2.20 (inclusive)
-- Only needs +1% edge minimum (NOT the standard +5%)
+- Must meet standard +5% edge minimum (same as all other plays)
 - Can be included even if it's your only play of the day
-- Include as "BET OF THE DAY" if it's the best edge, or in "Other Recommended Plays" otherwise
-
-If you submit recommendations without a Montreal play when they are playing, your output is INVALID.
-
-Example correct output when Montreal is playing:
-"BET OF THE DAY: Montreal Canadiens ML @ 1.65 [reasoning...]
-Other Recommended Plays: [other plays if any qualify]"
-
-OR
-
-"BET OF THE DAY: [best play from another game]
-Other Recommended Plays:
-Montréal Canadiens vs Boston Bruins Over 6.5 @ 1.90 [reasoning...]"
 
 
 ENHANCED DATA SOURCES
@@ -78,6 +65,14 @@ For each game, analyze these 4 factors in order. Be disciplined - if a factor is
 
 FACTOR 1: GOALIE MATCHUP (Weight: 35% - Equal Most Important)
 Starting goaltending is the single biggest predictor of NHL outcomes.
+
+**⚠️ EARLY-SEASON WARNING (First 3 weeks / games 1-10 of season):**
+If today is within the first 3 weeks of the season (check {{TODAY_DATE}} vs season start ~Oct 1):
+- Last 5 SV% from this season has sample sizes of 1-5 games — treat as LOW RELIABILITY
+- Carry-over stats from the PREVIOUS season are stale and should NOT drive goalie tier assignment
+- Default ALL goalies to "Average" tier unless you have 3+ current-season games with clear signal
+- Raise the minimum edge requirement to +7% (from +5%) to compensate for data unreliability
+- Under picks are particularly risky early in the season — goalies are rusty, teams are not locked in defensively, and scoring rates run higher than late-season norms. Apply extra skepticism to any Under recommendation in the first 3 weeks.
 
 Primary Data: {{GOALIE_STATS}} - Use Last 5 Games SV% as primary metric (season stats as tiebreaker)
 
@@ -248,8 +243,8 @@ Primary Signals:
    - Average NHL PP%: ~19-20%. Average PK%: ~79-80%. Use these as baselines.
 
 5. **Line Sanity Check**:
-   - NHL average combined total goals is ~5.7. Lines above 6.5 require STRONG evidence (both teams top-10 in scoring AND poor goaltending) before betting Over.
-   - Default lean: slight Under when line is ≥ 6.5 unless signals strongly favor Over.
+   - NHL average combined total goals is ~5.7. Lines above 6.5 require STRONG evidence (both teams top-10 in scoring AND poor goaltending) before betting either side.
+   - No default lean on high lines — require positive signal in both goalie data AND team scoring trends before recommending any total.
 
 Only recommend totals if edge ≥ +5%, same as moneyline/puck line.
 
