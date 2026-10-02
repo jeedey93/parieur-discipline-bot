@@ -403,11 +403,6 @@
     .comment-card-time { font-size: 0.68rem; font-weight: 600; color: #9ca3af; letter-spacing: 0.5px; margin-left: 8px; }
     .comment-card-msg { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 500; color: #374151; margin-top: 4px; line-height: 1.4; white-space: pre-wrap; word-break: break-word; }
     .comments-empty { text-align: center; padding: 2.5rem 1rem; color: #9ca3af; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; }
-    /* ── SPARKLINE ── */
-    .sparkline { display: inline-block; vertical-align: middle; margin-left: 6px; }
-    .spark-bar-0 { fill: #e2e8f0; }
-    .spark-bar-hot { fill: #22c55e; }
-    .spark-bar-warm { fill: #86efac; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" crossorigin="anonymous"></script>
@@ -596,34 +591,30 @@
     return (p.points ?? 0) * 1;
   }
 
-  // ── Sparkline ──────────────────────────────────────────────────────────────
-  function sparkline(last5Raw) {
+  // ── Hot/Cold badge ─────────────────────────────────────────────────────────
+  function hotColdBadge(last5Raw) {
     if (!last5Raw) return '';
     let vals;
     try { vals = typeof last5Raw === 'string' ? JSON.parse(last5Raw) : last5Raw; } catch { return ''; }
     if (!Array.isArray(vals) || vals.length === 0) return '';
 
-    // Pad to 5 entries on the left (early-season players have fewer games)
-    while (vals.length < 5) vals = [null, ...vals];
+    const played = vals.filter(v => v !== null);
+    if (played.length < 2) return ''; // too few games to judge
 
-    const W = 28, H = 14, gap = 1;
-    const barW = (W - gap * (vals.length - 1)) / vals.length;
-    const max = Math.max(...vals.filter(v => v !== null), 1);
+    // Judge on last 3 played games (or all if fewer)
+    const recent = played.slice(-3);
+    const scoringGames = recent.filter(v => v > 0).length;
+    const total = played.reduce((a, b) => a + b, 0);
 
-    const bars = vals.map((v, i) => {
-      const x = i * (barW + gap);
-      if (v === null) {
-        return `<rect x="${x.toFixed(1)}" y="${H - 2}" width="${barW.toFixed(1)}" height="2" rx="1" class="spark-bar-0"/>`;
-      }
-      const h = Math.max(2, Math.round((v / max) * H));
-      const y = H - h;
-      const cls = v === 0 ? 'spark-bar-0' : v >= max ? 'spark-bar-hot' : 'spark-bar-warm';
-      return `<rect x="${x.toFixed(1)}" y="${y}" width="${barW.toFixed(1)}" height="${h}" rx="1" class="${cls}"/>`;
-    }).join('');
-
-    const total = vals.filter(v => v !== null).reduce((a, b) => a + b, 0);
-    const games = vals.filter(v => v !== null).length;
-    return `<svg class="sparkline" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" title="Last ${games} games: ${total} pts">${bars}</svg>`;
+    if (scoringGames >= 2) {
+      const tip = `🔥 Hot — scored in ${scoringGames} of last ${recent.length} games (${total} pts total)`;
+      return `<span title="${tip}" style="margin-left:4px;font-size:0.85em;cursor:default;">🔥</span>`;
+    }
+    if (scoringGames === 0 && played.length >= 2) {
+      const tip = `❄️ Cold — 0 pts in last ${played.length} games`;
+      return `<span title="${tip}" style="margin-left:4px;font-size:0.85em;cursor:default;">❄️</span>`;
+    }
+    return '';
   }
 
 
@@ -1028,7 +1019,7 @@
         const uniqueBadge = isUnique
           ? `<span class="unique-badge" title="Rare pick">💎</span>`
           : '';
-        const namePart = `${isBest ? '<span class="best-badge">🔥</span>' : ''}${formatName(p.player_name)}${uniqueBadge}${sparkline(p.last5_game_pts)}`;
+        const namePart = `${isBest ? '<span class="best-badge">⭐</span>' : ''}${formatName(p.player_name)}${uniqueBadge}${hotColdBadge(p.last5_game_pts)}`;
         html += `<tr class="player-row">
           <td style="width:28px;padding:0.35rem 0.5rem 0.35rem 1rem;">${logo}</td>
           <td class="td-name">${namePart}</td>
