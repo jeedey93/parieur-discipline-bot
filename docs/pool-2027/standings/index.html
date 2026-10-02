@@ -607,12 +607,10 @@
     const total = played.reduce((a, b) => a + b, 0);
 
     if (scoringGames >= 3) {
-      const tip = `🔥 Hot — scored in ${scoringGames} of last ${recent.length} games (${total} pts total)`;
-      return `<span title="${tip}" style="margin-left:4px;font-size:0.85em;cursor:default;">🔥</span>`;
+      return `<span style="margin-left:4px;font-size:0.8em;cursor:default;color:#16a34a;font-family:'Barlow Condensed',sans-serif;font-weight:700;">🔥 ${total}pts in last ${recent.length}</span>`;
     }
     if (scoringGames === 0 && played.length >= 2) {
-      const tip = `❄️ Cold — 0 pts in last ${played.length} games`;
-      return `<span title="${tip}" style="margin-left:4px;font-size:0.85em;cursor:default;">❄️</span>`;
+      return `<span style="margin-left:4px;font-size:0.8em;cursor:default;color:#64748b;font-family:'Barlow Condensed',sans-serif;font-weight:700;">❄️ 0pts in last ${played.length}</span>`;
     }
     return '';
   }
