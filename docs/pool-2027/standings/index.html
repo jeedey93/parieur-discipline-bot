@@ -92,74 +92,138 @@
     .search-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
 
     /* ── LEADERBOARD ── */
-    .leaderboard { background: white; border: 1px solid #dce8f8; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(30,58,138,0.1); }
+    .leaderboard { background: white; border: 1px solid #dce8f8; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 24px rgba(30,58,138,0.12); }
     .lb-tiebreak-note { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; color: #6b7280; letter-spacing: 0.5px; text-align: center; padding: 0.5rem 1rem 1.5rem; }
+
+    /* Grid: rank | name | F | D | G | Pts | Yday | arrow */
     .lb-row {
       display: grid;
-      grid-template-columns: 44px 1fr 52px 52px 52px 52px 60px 52px 18px;
-      align-items: center; padding: 0.7rem 0.75rem; gap: 0.5rem;
-      border-bottom: 1px solid #f1f7fe;
-      cursor: default; transition: background 0.15s;
+      grid-template-columns: 48px 1fr 56px 56px 56px 72px 62px 20px;
+      align-items: center;
+      padding: 0.65rem 0.85rem;
+      gap: 0.35rem;
+      border-bottom: 1px solid #f1f5fb;
+      cursor: default;
+      transition: background 0.15s, box-shadow 0.15s;
       border-left: 3px solid transparent;
     }
     .lb-row:last-child { border-bottom: none; }
-    .lb-row:nth-child(even):not(.header) { background: #fafcff; }
-    .lb-row:hover:not(.header) { background: #eff6ff; cursor: pointer; }
-    .lb-row.header { background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%); border-bottom: none; padding: 0.55rem 1rem; cursor: default; }
-    .lb-col-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; color: rgba(255,255,255,0.7); text-align: right; letter-spacing: 2px; text-transform: uppercase; }
-    .lb-col-label.left { text-align: left; color: rgba(255,255,255,0.7); }
+    .lb-row:nth-child(even):not(.header) { background: #f8fbff; }
+    .lb-row:hover:not(.header) { background: #ebf2ff; box-shadow: inset 0 0 0 1px rgba(37,99,235,0.08); cursor: pointer; }
+    .lb-row.header {
+      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+      border-bottom: none;
+      padding: 0.6rem 0.85rem;
+      cursor: default;
+    }
+    .lb-col-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      text-align: right; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .lb-col-label.left { text-align: left; color: rgba(255,255,255,0.55); }
     .lb-col-hide { display: none; }
-    .lb-row.rank-1 { background: linear-gradient(90deg, rgba(217,119,6,0.08) 0%, rgba(217,119,6,0.02) 60%, transparent 100%); border-left-color: #d97706; }
-    .lb-row.rank-2 { background: linear-gradient(90deg, rgba(100,116,139,0.06) 0%, transparent 60%); border-left-color: #94a3b8; }
-    .lb-row.rank-3 { background: linear-gradient(90deg, rgba(205,127,50,0.06) 0%, transparent 60%); border-left-color: #cd7f32; }
-    .lb-tier-divider { height: 1px; background: linear-gradient(90deg, #bfdbfe 0%, #dce8f8 50%, transparent 100%); position: relative; }
-    .lb-tier-divider::after { content: 'REST OF FIELD'; position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; font-weight: 700; letter-spacing: 2px; color: #9ca3af; background: #eef3fb; padding: 0 6px; }
-    @media (min-width: 861px) { .lb-row { padding: 0.9rem 1rem; } }
-    .lb-stat.eff { color: #16a34a; font-family: 'Bebas Neue', cursive; font-size: 0.95rem; }
+
+    /* Top-3 row accents */
+    .lb-row.rank-1 { background: linear-gradient(90deg, rgba(217,119,6,0.10) 0%, rgba(217,119,6,0.03) 55%, transparent 100%); border-left-color: #d97706; }
+    .lb-row.rank-2 { background: linear-gradient(90deg, rgba(100,116,139,0.08) 0%, rgba(100,116,139,0.02) 55%, transparent 100%); border-left-color: #94a3b8; }
+    .lb-row.rank-3 { background: linear-gradient(90deg, rgba(205,127,50,0.08) 0%, rgba(205,127,50,0.02) 55%, transparent 100%); border-left-color: #cd7f32; }
+
+    /* Divider between top-3 and rest */
+    .lb-tier-divider { height: 2px; background: linear-gradient(90deg, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0.06) 60%, transparent 100%); position: relative; }
+    .lb-tier-divider::after {
+      content: 'REST OF FIELD';
+      position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 2.5px; color: #94a3b8;
+      background: white; padding: 0 8px;
+    }
+
+    /* Responsive */
+    @media (min-width: 861px) { .lb-row { padding: 0.85rem 1.1rem; gap: 0.5rem; } }
     @media (max-width: 560px) {
-      .lb-row { grid-template-columns: 36px 1fr 42px 42px 42px 42px 50px 14px; padding: 0.55rem 0.5rem; gap: 0.25rem; }
+      .lb-row { grid-template-columns: 38px 1fr 40px 40px 40px 58px 14px; padding: 0.5rem 0.5rem; gap: 0.2rem; }
       .lb-weekly { display: none; }
-      .lb-name-team { font-size: 0.85rem; }
-      .lb-stat { font-size: 0.78rem; }
+      .lb-name-team { font-size: 0.82rem; }
+      .lb-stat { font-size: 0.75rem; }
       .lb-stat.pts { font-size: 0.95rem; }
     }
+
+    /* Sort */
     .lb-col-label.sortable { cursor: pointer; user-select: none; transition: color 0.12s; }
-    .lb-col-label.sortable:hover { color: white; }
+    .lb-col-label.sortable:hover { color: rgba(255,255,255,0.9); }
     .lb-col-label.sort-active { color: white; }
-    .sort-arrow { display: inline-block; margin-left: 2px; font-size: 0.55rem; vertical-align: middle; opacity: 0.6; }
+    .sort-arrow { display: inline-block; margin-left: 2px; font-size: 0.55rem; vertical-align: middle; opacity: 0.55; }
     .lb-col-label.sort-active .sort-arrow { opacity: 1; }
-    .lb-stat.sort-active-cell { color: #1e3a8a; }
-    .lb-stat.pts.sort-active-cell { color: #1e3a8a; }
-    .lb-rank { display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; color: #6b7280; text-align: center; }
+    .lb-stat.sort-active-cell { color: #1d4ed8; }
+    .lb-stat.pts.sort-active-cell { color: #1d4ed8; }
+    .lb-row.header .lb-col-label.sort-active { background: rgba(255,255,255,0.14); border-radius: 4px; padding: 1px 5px; }
+
+    /* Rank cell */
+    .lb-rank {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', cursive; font-size: 1.15rem; letter-spacing: 1px;
+      color: #9ca3af; text-align: center; line-height: 1;
+    }
     .lb-rank.gold   { color: #d97706; }
     .lb-rank.silver { color: #64748b; }
     .lb-rank.bronze { color: #cd7f32; }
     .lb-rank-crown { display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .lb-rank-crown-icon { font-size: 0.65rem; line-height: 1; }
-    .lb-rank-num { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; }
-    .lb-name { display: flex; flex-direction: column; justify-content: center; gap: 1px; overflow: hidden; min-width: 0; }
-    .lb-name-team { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px; color: #1a2a4a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .lb-name-person { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; color: #9ca3af; letter-spacing: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    @media (min-width: 861px) { .lb-name-team { font-size: 1.15rem; } }
-    .lb-stat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; color: #374151; text-align: right; }
-    .lb-stat.pts { color: #1e3a8a; font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1px; }
-    @media (min-width: 861px) { .lb-stat { font-size: 1rem; } .lb-stat.pts { font-size: 1.25rem; } }
-    .paid-badge { font-family: 'Bebas Neue', cursive; font-size: 0.65rem; letter-spacing: 1px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.25); color: #16a34a; border-radius: 4px; padding: 1px 5px; margin-left: 5px; vertical-align: middle; }
+    .lb-rank-num { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; letter-spacing: 1px; line-height: 1; }
+
+    /* Name cell */
+    .lb-name { display: flex; flex-direction: column; justify-content: center; gap: 2px; overflow: hidden; min-width: 0; }
+    .lb-name-team {
+      font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 2px;
+      color: #1a2a4a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .lb-name-person {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600;
+      color: #9ca3af; letter-spacing: 0.5px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    @media (min-width: 861px) { .lb-name-team { font-size: 1.2rem; } }
+
+    /* Stat cells — secondary (F/D/G) */
+    .lb-stat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      color: #6b7280; text-align: right;
+    }
+    /* Pts cell — primary */
+    .lb-stat.pts {
+      color: #1e3a8a;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.15rem; letter-spacing: 1px;
+      background: rgba(30,58,138,0.05);
+      border-radius: 6px;
+      padding: 2px 6px;
+      text-align: center;
+    }
+    @media (min-width: 861px) { .lb-stat { font-size: 1rem; } .lb-stat.pts { font-size: 1.3rem; } }
+
+    /* Paid badge */
+    .paid-badge { font-family: 'Bebas Neue', cursive; font-size: 0.6rem; letter-spacing: 1px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.25); color: #16a34a; border-radius: 4px; padding: 1px 5px; margin-left: 5px; vertical-align: middle; }
 
     /* ── ROW HOVER ARROW ── */
-    .lb-row-arrow { color: #c7d7f0; font-size: 0.8rem; text-align: right; transition: color 0.15s, transform 0.15s; }
-    .lb-row:hover:not(.header) .lb-row-arrow { color: #2563eb; transform: translateX(2px); }
+    .lb-row-arrow { color: #d1ddf5; font-size: 0.85rem; text-align: right; transition: color 0.15s, transform 0.15s; }
+    .lb-row:hover:not(.header) .lb-row-arrow { color: #2563eb; transform: translateX(3px); }
     .lb-row.active .lb-row-arrow { color: #2563eb; }
 
     /* ── SORT COLUMN TINT ── */
     .lb-stat.sort-col { background: rgba(37,99,235,0.04); }
-    .lb-row.header .lb-col-label.sort-active { background: rgba(255,255,255,0.12); border-radius: 4px; padding: 1px 4px; }
+    /* Pts header accent */
+    .lb-col-pts { color: rgba(255,255,255,0.9) !important; }
+    /* Yday header accent */
+    .lb-col-yday { color: rgba(134,239,172,0.8) !important; }
 
     /* ── PODIUM AVATAR ── */
-    .podium-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; color: white; margin-bottom: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .podium-spot.p1 .podium-avatar { background: linear-gradient(135deg, #d97706, #f59e0b); width: 52px; height: 52px; font-size: 1.3rem; }
-    .podium-spot.p2 .podium-avatar { background: linear-gradient(135deg, #64748b, #94a3b8); }
-    .podium-spot.p3 .podium-avatar { background: linear-gradient(135deg, #92400e, #cd7f32); }
+    .podium-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px; color: white; margin-bottom: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+    .podium-spot.p1 .podium-avatar { background: linear-gradient(135deg, #c47a0c, #f59e0b); width: 54px; height: 54px; font-size: 1.35rem; box-shadow: 0 4px 16px rgba(217,119,6,0.35); }
+    .podium-spot.p2 .podium-avatar { background: linear-gradient(135deg, #475569, #94a3b8); }
+    .podium-spot.p3 .podium-avatar { background: linear-gradient(135deg, #78350f, #cd7f32); }
 
     /* ── LAST UPDATED ── */
     .last-updated { font-size: 0.7rem; font-weight: 600; color: #9ca3af; letter-spacing: 1px; text-align: center; margin-bottom: 1rem; margin-top: -0.5rem; }
@@ -292,14 +356,27 @@
     }
 
     /* ── RANK CHANGE ── */
-    .rank-change { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1; margin-top: 2px; }
+    .rank-change { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1; margin-top: 3px; }
     .rank-change.up   { color: #16a34a; }
     .rank-change.down { color: #dc2626; }
-    .rank-change.same { color: #9ca3af; }
+    .rank-change.same { color: #cbd5e1; }
 
-    /* ── WEEKLY DELTA ── */
-    .lb-weekly { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; color: #16a34a; text-align: right; white-space: nowrap; }
-    .lb-weekly.zero { color: #9ca3af; }
+    /* ── YESTERDAY DELTA ── */
+    .lb-weekly {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.88rem; letter-spacing: 1px;
+      text-align: center;
+      padding: 2px 6px; border-radius: 5px;
+      background: rgba(22,163,74,0.10);
+      border: 1px solid rgba(22,163,74,0.22);
+      color: #16a34a;
+      white-space: nowrap;
+    }
+    .lb-weekly.zero {
+      color: #94a3b8;
+      background: rgba(148,163,184,0.08);
+      border-color: rgba(148,163,184,0.2);
+    }
 
     /* ── SCOUTING REPORT ── */
     .scouting-report { margin: 0 1.25rem 0.85rem; padding: 0.65rem 0.9rem; background: linear-gradient(135deg, #eff6ff, #f8faff); border: 1px solid #bfdbfe; border-radius: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 600; color: #1e3a8a; line-height: 1.4; font-style: italic; }
@@ -468,6 +545,7 @@
   let poolFilter = 'all'; // 'all' | 'paid' | 'free'
   let activeDetailId = null;
   let sortBy = 'total'; // 'total' | 'fPts' | 'dPts' | 'gPts'
+  let yesterdayDeltaMap = {}; // id → pts gained yesterday
 
   function sbHeaders() {
     return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
@@ -655,17 +733,17 @@
 
     // Leaderboard
     const colDefs = [
-      { key: 'fPts', label: 'F' },
-      { key: 'dPts', label: 'D' },
-      { key: 'gPts', label: 'G' },
-      { key: 'total', label: 'Pts' },
+      { key: 'fPts',  label: 'F',   cls: '' },
+      { key: 'dPts',  label: 'D',   cls: '' },
+      { key: 'gPts',  label: 'G',   cls: '' },
+      { key: 'total', label: 'PTS', cls: ' lb-col-pts' },
     ];
     html += `<div class="leaderboard">
       <div class="lb-row header">
         <div class="lb-col-label">#</div>
         <div class="lb-col-label left">Name</div>
-        ${colDefs.map(c => `<div class="lb-col-label sortable${sortBy === c.key ? ' sort-active' : ''}" onclick="setSort('${c.key}')">${c.label}<span class="sort-arrow">${sortBy === c.key ? '▼' : '↕'}</span></div>`).join('')}
-        <div class="lb-col-label">Week</div>
+        ${colDefs.map(c => `<div class="lb-col-label sortable${c.cls}${sortBy === c.key ? ' sort-active' : ''}" onclick="setSort('${c.key}')">${c.label}<span class="sort-arrow">${sortBy === c.key ? '▼' : '↕'}</span></div>`).join('')}
+        <div class="lb-col-label lb-col-yday">Yday</div>
         <div></div>
       </div>`;
 
@@ -692,10 +770,10 @@
         rankChangeBadge = `<div class="rank-change same">—</div>`;
       }
 
-      // Weekly delta
-      const weekPts = sub.weekly_pts || 0;
-      const weeklyHtml = isMe
-        ? `<div class="lb-weekly${weekPts === 0 ? ' zero' : ''}">+${weekPts}</div>`
+      // Yesterday delta
+      const ydayPts = yesterdayDeltaMap[sub.id] ?? null;
+      const weeklyHtml = ydayPts !== null
+        ? `<div class="lb-weekly${ydayPts === 0 ? ' zero' : ''}">+${ydayPts}</div>`
         : `<div class="lb-weekly zero">—</div>`;
 
       html += `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" id="${rowId}" onclick="toggleDetail('${sub.id}')" style="cursor:${isMe ? 'pointer' : 'default'};">
@@ -1151,9 +1229,10 @@
   // ── Load ───────────────────────────────────────────────────────────────────
   async function load() {
     try {
-      const [subsRes, playersRes] = await Promise.all([
+      const [subsRes, playersRes, historyRes] = await Promise.all([
         fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,team_name,email,paid,roster,cap_used,submitted_at,rank_previous,weekly_pts,scouting_report&order=submitted_at.desc`, { headers: sbHeaders() }),
         fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played&limit=1000`, { headers: sbHeaders() }),
+        fetch('/data/pool_history.json').catch(() => null),
       ]);
 
       if (!subsRes.ok) throw new Error(`submissions: ${subsRes.status}`);
@@ -1162,6 +1241,23 @@
       allSubmissions = await subsRes.json();
       allPlayers = await playersRes.json();
       playerMap = Object.fromEntries(allPlayers.map(p => [p.puckpedia_slug, p]));
+
+      // Build yesterday delta map from the last two history snapshots
+      yesterdayDeltaMap = {};
+      if (historyRes && historyRes.ok) {
+        try {
+          const history = await historyRes.json();
+          if (history && history.length >= 2) {
+            const latest = history[history.length - 1];
+            const prev   = history[history.length - 2];
+            const prevMap = Object.fromEntries(prev.teams.map(t => [t.id, t.total]));
+            for (const t of latest.teams) {
+              const prevTotal = prevMap[t.id] ?? t.total;
+              yesterdayDeltaMap[t.id] = t.total - prevTotal;
+            }
+          }
+        } catch { /* silent */ }
+      }
 
       const el = document.getElementById('last-updated');
       if (el) {
