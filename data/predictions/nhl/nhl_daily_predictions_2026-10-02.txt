@@ -1,0 +1,24 @@
+Here's a comparison of the prediction reports and the unified final recommendations:
+
+---
+
+🏆 **BET OF THE DAY**
+**Detroit Red Wings ML vs New York Rangers @ 1.8**
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
+The Detroit Red Wings host the New York Rangers in what is the Rangers' second game in as many nights. While starting goalies are TBD at this early stage, the fatigue factor heavily favors a rested Red Wings team over the Rangers, who played yesterday. The Rangers' last 10 games show a marginal goal differential of +0.5, but their road record is currently 0-1-0. Given Detroit's home ice advantage against a back-to-back opponent, the market appears to slightly undervalue Detroit's probability of victory. Our model indicates a +2.4% edge for the Red Wings, making this the most value-rich play on today's slate, even with limited early-season data for both teams.
+
+This play was the "Bet of the Day" in the morning report with the same odds, confidence, and win probability. It was not explicitly recommended in the noon report, but the odds remained consistent.
+
+**Other Recommended Plays**
+
+**Boston Bruins ML vs Winnipeg Jets @ 2.0**
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
+The Boston Bruins ML offers significant value today, primarily due to a superior goaltending matchup and stronger recent form. Boston's Jeremy Swayman is confirmed in elite form with a 1.0 SV% in his last 5 starts, while Winnipeg's Stuart Skinner shows a poor 0.888 Season SV% (no recent data available, so season stats are a proxy), giving the Bruins a substantial edge in net. Furthermore, Boston has a positive recent goal differential of +3.0 in their limited recent play, indicating strong performance. The market appears to undervalue Boston in this matchup, despite the strong goalie and form advantage, creating a solid betting opportunity.
+
+This play was newly added as the "Bet of the Day" in the noon report.
+
+**Anaheim Ducks vs Vegas Golden Knights Under 6.5 @ 2.0**
+Confidence Level: Medium, Units: 1u, Win Probability: 55%
+This Under play presents a mathematical edge, largely driven by the strong goaltending of Vegas. Carter Hart, starting for the Golden Knights, has been in elite form with a 0.923 SV% in his last 5 starts, facing Anaheim's Lukas Dostal, who shows a poor 0.888 Season SV%. While Vegas has a high-scoring game in its limited recent record, Hart's elite play is expected to suppress goals against, and the line of 6.5 is on the higher side for an NHL game. This goalie mismatch, particularly Hart's ability to lock down the net, suggests the total goals will likely stay below 6.5.
+
+This play was newly added as an "Other Recommended Play" in the noon report, with the Under odds increasing from 1.99 (morning) to 2.0 (noon).
