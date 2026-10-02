@@ -529,11 +529,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class='stat-card positive'>
       <div class='stat-label'>Overall Win Rate</div>
       <div class='stat-value'>0.0%</div>
-      <div class='stat-subtext'>0W - 3L</div>
+      <div class='stat-subtext'>0W - 4L</div>
     </div>
     <div class='stat-card'>
       <div class='stat-label'>Total Picks</div>
-      <div class='stat-value'>3</div>
+      <div class='stat-value'>4</div>
       <div class='stat-subtext'>NHL + NBA Combined</div>
     </div>
     <div class='stat-card'>
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class='stat-card'>
       <div class='stat-label'>Current Streak</div>
-      <div class='stat-value'>1 ❄️</div>
+      <div class='stat-value'>2 ❄️</div>
       <div class='stat-subtext'>Losing days</div>
     </div>
   </div>
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class='mini-stat'>
         <div class='mini-stat-label'>Record</div>
-        <div class='mini-stat-value'>0-3</div>
+        <div class='mini-stat-value'>0-4</div>
       </div>
     </div>
   </div>
@@ -639,8 +639,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 <script>
 (function() {
-  var calData = {"2026-09-29": {"wins": 0, "losses": 0}, "2026-09-30": {"wins": 0, "losses": 3}};
-  var months = [[2026, 9]];
+  var calData = {"2026-09-29": {"wins": 0, "losses": 0}, "2026-09-30": {"wins": 0, "losses": 3}, "2026-10-01": {"wins": 0, "losses": 1}};
+  var months = [[2026, 9], [2026, 10]];
   var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var dayLabels = ['Su','Mo','Tu','We','Th','Fr','Sa'];
   var grid = document.getElementById('calendar-grid');
@@ -735,6 +735,15 @@ document.addEventListener('DOMContentLoaded', function() {
     <summary class='timeline-summary'>📅 Daily Results Timeline <span class='timeline-toggle-hint'>click to expand</span></summary>
     <div class='timeline' style='margin-top: 15px;'>
       <div class='timeline-item loss-day'>
+        <div class='timeline-date'>2026-10-01</div>
+        <div class='timeline-record'>
+          <span class='timeline-wins'>0W</span>
+          <span class='timeline-losses'>1L</span>
+          <span class='timeline-net net-negative'>-1</span>
+          <span class='timeline-sports'>NBA + NHL</span>
+        </div>
+      </div>
+      <div class='timeline-item loss-day'>
         <div class='timeline-date'>2026-09-30</div>
         <div class='timeline-record'>
           <span class='timeline-wins'>0W</span>
@@ -778,22 +787,22 @@ details[open] .timeline-toggle-hint {{ display: none; }}
 </style>
 <script>
 // Prepare chart data
-const dates = ['2026-09-29', '2026-09-30'];
-const dailyWins = [0, 0];
-const dailyLosses = [0, 3];
-const dailyNet = [0, -3];
-const dailyColors = ['#94a3b8', '#ef4444'];
-const cumulativeProfit = [0, -300];
+const dates = ['2026-09-29', '2026-09-30', '2026-10-01'];
+const dailyWins = [0, 0, 0];
+const dailyLosses = [0, 3, 1];
+const dailyNet = [0, -3, -1];
+const dailyColors = ['#94a3b8', '#ef4444', '#ef4444'];
+const cumulativeProfit = [0, -300, -400];
 const rollingWinRate = [];
 
 // Monthly chart data
-const monthLabels = ['Sep 2026'];
-const monthWins = [0];
-const monthLosses = [3];
-const monthNet = [-3];
-const monthColors = ['rgba(239, 68, 68, 0.8)'];
-const monthBorderColors = ['#ef4444'];
-const monthWinRates = [0.0];
+const monthLabels = ['Sep 2026', 'Oct 2026'];
+const monthWins = [0, 0];
+const monthLosses = [3, 1];
+const monthNet = [-3, -1];
+const monthColors = ['rgba(239, 68, 68, 0.8)', 'rgba(239, 68, 68, 0.8)'];
+const monthBorderColors = ['#ef4444', '#ef4444'];
+const monthWinRates = [0.0, 0.0];
 
 // Chart.js default settings
 Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
