@@ -1,6 +1,6 @@
 ============================================================
 WILD - LINEUP
-Last Updated: 2026-10-01 03:35 PM ET
+Last Updated: 2026-10-03 02:01 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,7 +8,7 @@ FORWARD LINES:
 Line 1: Kirill Kaprizov — Danila Yurov — Maxim Shabanov
 Line 2: Blake Coleman — Joel Eriksson Ek — Matt Boldy
 Line 3: Yakov Trenin — Ryan Hartman — Bobby Brink
-Line 4: Nick Foligno — Michael McCarron — Marcus Foligno
+Line 4: Marcus Foligno — Michael McCarron — Nick Foligno
 
 DEFENSE PAIRS:
 ----------------------------------------
