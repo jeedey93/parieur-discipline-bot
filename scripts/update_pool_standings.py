@@ -241,6 +241,16 @@ Weekly pool summary:"""
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
+def playerPoolScore_py(p: dict, pos: str) -> int:
+    """Compute pool points for a single player row given their position."""
+    pos = pos.upper()
+    if pos == "G":
+        return (p.get("wins") or 0) * 2 + (p.get("ot_losses") or 0) + (p.get("shutouts") or 0) * 3
+    if pos == "D":
+        return (p.get("goals") or 0) * 2 + (p.get("assists") or 0)
+    return (p.get("points") or 0)
+
+
 def main():
     print("🏒 Updating pool standings metadata...")
 
@@ -353,6 +363,18 @@ def main():
             history = json.load(f)
 
     today_str = today.isoformat()
+
+    # Build per-player pool pts snapshot: slug → pts today
+    player_pts_snapshot = {}
+    for s in scored:
+        roster = s.get("roster") or {}
+        for pos in ("F", "D", "G"):
+            for slug in (roster.get(pos) or []):
+                if slug and slug not in player_pts_snapshot:
+                    p = player_map.get(slug)
+                    if p:
+                        player_pts_snapshot[slug] = playerPoolScore_py(p, pos)
+
     # Replace today's entry if already present (idempotent re-runs)
     history = [h for h in history if h["date"] != today_str]
     history.append({
@@ -367,6 +389,7 @@ def main():
             }
             for s in scored
         ],
+        "player_pts": player_pts_snapshot,
     })
     history.sort(key=lambda h: h["date"])
     os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
