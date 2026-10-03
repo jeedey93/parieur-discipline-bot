@@ -29,8 +29,7 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     print("❌ Missing SUPABASE_URL or SUPABASE_SERVICE_KEY")
     sys.exit(1)
 if not GOOGLE_API_KEY:
-    print("❌ Missing GOOGLE_API_KEY")
-    sys.exit(1)
+    print("⚠️  Missing GOOGLE_API_KEY — scouting reports will be skipped, history snapshot will still run")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 tz = ZoneInfo("America/Toronto")
@@ -307,7 +306,7 @@ def main():
         should_generate = (not existing_report) or (today.weekday() == 0)
 
         report = existing_report
-        if should_generate:
+        if should_generate and GOOGLE_API_KEY:
             print(f"  ✍️  Generating scouting report for {sub.get('team_name') or sub['name']} (#{rank})...")
             roster = sub.get("roster") or {}
             roster_summary = build_roster_summary(roster, player_map)
@@ -380,7 +379,7 @@ def main():
         with open(POOL_SUMMARY_FILE) as f:
             existing_summary = json.load(f)
 
-    should_generate_summary = (not existing_summary.get("text")) or (today.weekday() == 0)
+    should_generate_summary = ((not existing_summary.get("text")) or (today.weekday() == 0)) and bool(GOOGLE_API_KEY)
     if should_generate_summary:
         print("✍️  Generating weekly pool summary...")
         # Build standings snapshot string for the prompt
