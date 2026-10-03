@@ -442,19 +442,22 @@ def main():
         NHL_TODAY_FILE = "docs/data/nhl_today.json"
         with urllib.request.urlopen("https://api-web.nhle.com/v1/schedule/now", timeout=10) as r:
             sched = json.loads(r.read())
-        abbrevs = []
+        matchups = {}  # abbrev → opponent abbrev
+        games = []
         for week_day in sched.get("gameWeek", []):
             if week_day.get("date") == today_str:
                 for g in week_day.get("games", []):
-                    if g.get("awayTeam", {}).get("abbrev"):
-                        abbrevs.append(g["awayTeam"]["abbrev"])
-                    if g.get("homeTeam", {}).get("abbrev"):
-                        abbrevs.append(g["homeTeam"]["abbrev"])
+                    away = g.get("awayTeam", {}).get("abbrev")
+                    home = g.get("homeTeam", {}).get("abbrev")
+                    if away and home:
+                        matchups[away] = home
+                        matchups[home] = away
+                        games.append({"away": away, "home": home})
                 break
         os.makedirs(os.path.dirname(NHL_TODAY_FILE), exist_ok=True)
         with open(NHL_TODAY_FILE, "w") as f:
-            json.dump({"date": today_str, "teams": abbrevs}, f)
-        print(f"🏒  NHL today: {len(abbrevs)//2} games, {len(abbrevs)} teams playing")
+            json.dump({"date": today_str, "matchups": matchups, "games": games}, f)
+        print(f"🏒  NHL today: {len(games)} games, {len(matchups)} teams playing")
     except Exception as e:
         print(f"  ⚠️  NHL today schedule fetch failed: {e}")
 

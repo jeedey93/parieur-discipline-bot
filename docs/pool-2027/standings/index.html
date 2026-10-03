@@ -563,6 +563,7 @@
   let yesterdayDeltaMap = {}; // id → pts gained yesterday
   let playerYdayMap = {};    // slug → pts gained yesterday
   let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
+  let tonightMatchups = {};          // abbrev → opponent abbrev
 
   function sbHeaders() {
     return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
@@ -1026,7 +1027,10 @@
         const abbr = TEAM_ABBR[p.team];
         const logo = abbr ? `<img class="td-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}">` : '';
         const playsTonight = abbr && teamsPlayingToday.has(abbr);
-        const tonightBadge = playsTonight ? `<span style="margin-left:4px;font-size:0.75em;cursor:default;" title="Playing tonight">🏒</span>` : '';
+        const opponentAbbr = playsTonight ? tonightMatchups[abbr] : null;
+        const tonightBadge = opponentAbbr
+          ? `<span style="margin-left:5px;font-size:0.72rem;font-weight:700;color:#9ca3af;font-family:'Barlow Condensed',sans-serif;vertical-align:middle;">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_light.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:18px;height:18px;object-fit:contain;vertical-align:middle;margin-left:3px;opacity:0.85;">`
+          : '';
         let statCols = '';
         if (pos === 'G') {
           statCols = `<td class="td-stat">${p.games_played ?? '—'}</td><td class="td-stat td-desktop">${p.wins ?? '—'}</td><td class="td-stat td-desktop">${p.ot_losses ?? '—'}</td><td class="td-stat td-desktop">${p.shutouts ?? '—'}</td>`;
@@ -1324,14 +1328,16 @@
         } catch { /* silent */ }
       }
 
-      // Build set of NHL team abbrevs playing today
+      // Build tonight's matchup map from static nhl_today.json
       teamsPlayingToday = new Set();
+      tonightMatchups = {};
       if (scheduleRes && scheduleRes.ok) {
         try {
           const sched = await scheduleRes.json();
           const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
           if (sched.date === todayStr) {
-            for (const abbr of (sched.teams || [])) teamsPlayingToday.add(abbr);
+            tonightMatchups = sched.matchups || {};
+            for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
           }
         } catch { /* silent */ }
       }

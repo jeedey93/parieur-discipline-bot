@@ -1,1 +1,85 @@
-{"date": "2026-10-03", "teams": ["CHI", "BUF", "OTT", "TOR", "WSH", "TBL", "CAR", "PHI", "MTL", "PIT", "UTA", "CBJ", "SEA", "EDM", "NJD", "NYI", "DAL", "NSH", "BOS", "MIN", "STL", "COL", "CGY", "VAN", "LAK", "SJS"]}
+{
+  "date": "2026-10-03",
+  "matchups": {
+    "CHI": "BUF",
+    "BUF": "CHI",
+    "OTT": "TOR",
+    "TOR": "OTT",
+    "WSH": "TBL",
+    "TBL": "WSH",
+    "CAR": "PHI",
+    "PHI": "CAR",
+    "MTL": "PIT",
+    "PIT": "MTL",
+    "UTA": "CBJ",
+    "CBJ": "UTA",
+    "SEA": "EDM",
+    "EDM": "SEA",
+    "NJD": "NYI",
+    "NYI": "NJD",
+    "DAL": "NSH",
+    "NSH": "DAL",
+    "BOS": "MIN",
+    "MIN": "BOS",
+    "STL": "COL",
+    "COL": "STL",
+    "CGY": "VAN",
+    "VAN": "CGY",
+    "LAK": "SJS",
+    "SJS": "LAK"
+  },
+  "games": [
+    {
+      "away": "CHI",
+      "home": "BUF"
+    },
+    {
+      "away": "OTT",
+      "home": "TOR"
+    },
+    {
+      "away": "WSH",
+      "home": "TBL"
+    },
+    {
+      "away": "CAR",
+      "home": "PHI"
+    },
+    {
+      "away": "MTL",
+      "home": "PIT"
+    },
+    {
+      "away": "UTA",
+      "home": "CBJ"
+    },
+    {
+      "away": "SEA",
+      "home": "EDM"
+    },
+    {
+      "away": "NJD",
+      "home": "NYI"
+    },
+    {
+      "away": "DAL",
+      "home": "NSH"
+    },
+    {
+      "away": "BOS",
+      "home": "MIN"
+    },
+    {
+      "away": "STL",
+      "home": "COL"
+    },
+    {
+      "away": "CGY",
+      "home": "VAN"
+    },
+    {
+      "away": "LAK",
+      "home": "SJS"
+    }
+  ]
+}
