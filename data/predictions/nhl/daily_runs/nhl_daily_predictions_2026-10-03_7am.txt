@@ -1,0 +1,64 @@
+Date: 2026-10-03
+
+Chicago Blackhawks @ Buffalo Sabres
+Buffalo Sabres ML (Home): 1.44, Chicago Blackhawks ML (Away): 2.81, O/U: 6.0 (Over: 1.8 / Under: 2.03)
+------
+Ottawa Senators @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.83, Ottawa Senators ML (Away): 1.98, O/U: 6.0 (Over: 1.83 / Under: 1.99)
+------
+Washington Capitals @ Tampa Bay Lightning
+Tampa Bay Lightning ML (Home): 1.62, Washington Capitals ML (Away): 2.41, O/U: 6.0 (Over: 1.85 / Under: 2.02)
+------
+Carolina Hurricanes @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 2.1, Carolina Hurricanes ML (Away): 1.77, O/U: 5.5 (Over: 1.74 / Under: 2.15)
+------
+Montréal Canadiens @ Pittsburgh Penguins
+Pittsburgh Penguins ML (Home): 2.07, Montréal Canadiens ML (Away): 1.76, O/U: 6.5 (Over: 1.98 / Under: 1.83)
+------
+Utah Mammoth @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.92, Utah Mammoth ML (Away): 1.88, O/U: 6.0 (Over: 1.9 / Under: 1.91)
+------
+Seattle Kraken @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.48, Seattle Kraken ML (Away): 2.67, O/U: 6.5 (Over: 1.91 / Under: 1.9)
+------
+New Jersey Devils @ New York Islanders
+New York Islanders ML (Home): 2.08, New Jersey Devils ML (Away): 1.76, O/U: 6.0 (Over: 1.93 / Under: 1.87)
+------
+Dallas Stars @ Nashville Predators
+Nashville Predators ML (Home): 2.1, Dallas Stars ML (Away): 1.77, O/U: 6.0 (Over: 1.91 / Under: 1.91)
+------
+Boston Bruins @ Minnesota Wild
+Minnesota Wild ML (Home): 1.5, Boston Bruins ML (Away): 2.7, O/U: 6.0 (Over: 1.83 / Under: 2.0)
+------
+St Louis Blues @ Colorado Avalanche
+Colorado Avalanche ML (Home): 1.36, St Louis Blues ML (Away): 3.3, O/U: 6.0 (Over: 1.8 / Under: 2.05)
+------
+Calgary Flames @ Vancouver Canucks
+Vancouver Canucks ML (Home): 1.89, Calgary Flames ML (Away): 1.92, O/U: 6.0 (Over: 1.81 / Under: 2.0)
+------
+Los Angeles Kings @ San Jose Sharks
+San Jose Sharks ML (Home): 1.85, Los Angeles Kings ML (Away): 1.96, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable.
+
+**BET OF THE DAY**
+
+San Jose Sharks ML vs Los Angeles Kings @ 1.85
+The San Jose Sharks are showing strong early form with a +1.0 goal differential in their recent play, while the Kings have a negative differential of -4.0. The Sharks also boast a significant home-ice advantage, with a 1.000 home win percentage against the Kings' 0.000 away win percentage, contributing a substantial +8% to their probability. Both teams are adequately rested, leading to no fatigue adjustments. This combination of superior recent form and a pronounced home-ice edge indicates the market has undervalued the Sharks in this matchup, especially considering starting goalies are TBD.
+Confidence Level: High, Units: 1.5u, Win Probability: 65%
+
+**Other Recommended Plays**
+
+Toronto Maple Leafs ML vs Ottawa Senators @ 1.83
+The Maple Leafs enter this game with a balanced recent form, while the Senators' recent data is unavailable. Toronto holds a significant head-to-head advantage, having won both games against Ottawa this season. Crucially, Toronto benefits from a strong home-ice advantage, with a 0.500 home win percentage compared to Ottawa's 0.000 away win percentage, adding a robust +8% to their chances. Both teams are well-rested, factoring out fatigue. Considering these strong H2H and home-ice dynamics, the market presents a clear value on Toronto ML despite goalie matchups being unconfirmed.
+Confidence Level: High, Units: 1.5u, Win Probability: 64%
+
+Columbus Blue Jackets ML vs Utah Mammoth @ 1.92
+The Columbus Blue Jackets, despite an even goal differential with Utah in recent games, exhibit a massive home-ice advantage with a perfect 1.000 home win percentage, while Utah has yet to play an away game this season. This substantial gap in home/away performance adds a significant +8% to Columbus's win probability. Both teams are coming off a rest day, nullifying fatigue as a factor. With starting goalies TBD, the market appears to be underestimating Columbus's home dominance and early season form.
+Confidence Level: High, Units: 1.5u, Win Probability: 62%
+
+Pittsburgh Penguins ML vs Montréal Canadiens @ 2.07
+The Pittsburgh Penguins are coming off an excellent start to the season with a +7.0 goal differential, significantly outperforming Montreal's +1.0 differential. While the Canadiens have had an extra day of rest (3 days vs Pittsburgh's 2), both teams are generally well-rested, and there's no head-to-head data for this season. Pittsburgh's strong early performance, combined with this being their home opener (albeit 0-0-0 at home so far), suggests an undervaluation by the market, providing a solid edge despite TBD goalie matchups.
+Confidence Level: Medium, Units: 1u, Win Probability: 56%
