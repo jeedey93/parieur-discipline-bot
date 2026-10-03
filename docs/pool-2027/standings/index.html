@@ -988,12 +988,13 @@
       } else {
         headerCols = `<th class="td-stat">GP</th><th class="td-stat">G</th><th class="td-stat">A</th><th class="td-stat">PTS</th>`;
       }
-      html += `<tr><td colspan="${colspan}" class="section-header ${pos}">${label}</td></tr>`;
+      html += `<tr><td colspan="${colspan + 1}" class="section-header ${pos}">${label}</td></tr>`;
       html += `<tr style="background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.06);">
         <td style="width:28px;"></td>
         <th style="text-align:left;font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(255,255,255,0.25);padding:0.25rem 1rem;font-weight:400;">Player</th>
         ${headerCols}
         <th class="td-stat" style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(255,255,255,0.25);font-weight:400;">FPTS</th>
+        <th class="td-stat" style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(134,239,172,0.7);font-weight:400;">YDAY</th>
       </tr>`;
       const sorted = [...slugs].map(slug => {
         const p = playerMap[slug];
@@ -1018,11 +1019,27 @@
           ? `<span class="unique-badge" title="Rare pick">💎</span>`
           : '';
         const namePart = `${isBest ? '<span class="best-badge">⭐</span>' : ''}${formatName(p.player_name)}${uniqueBadge}${hotColdBadge(p.last5_game_pts)}`;
+
+        // Yesterday pts: last entry in last5_game_pts
+        let ydayPts = null;
+        if (p.last5_game_pts) {
+          try {
+            const arr = typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts;
+            if (Array.isArray(arr) && arr.length > 0) ydayPts = arr[arr.length - 1];
+          } catch { /* silent */ }
+        }
+        const ydayCell = ydayPts === null
+          ? `<td class="td-stat" style="color:#d1d5db;">—</td>`
+          : ydayPts > 0
+            ? `<td class="td-stat" style="color:#16a34a;font-family:'Bebas Neue',cursive;font-size:1rem;">+${ydayPts}</td>`
+            : `<td class="td-stat" style="color:#d1d5db;">0</td>`;
+
         html += `<tr class="player-row">
           <td style="width:28px;padding:0.35rem 0.5rem 0.35rem 1rem;">${logo}</td>
           <td class="td-name">${namePart}</td>
           ${statCols}
           <td class="td-pts">${pts}</td>
+          ${ydayCell}
         </tr>`;
       }
     }
