@@ -1001,9 +1001,9 @@
       const colspan = isG ? 6 : 6;
       let headerCols = '';
       if (isG) {
-        headerCols = `<th class="td-stat td-desktop">GP</th><th class="td-stat td-desktop">W</th><th class="td-stat td-desktop">OTL</th><th class="td-stat td-desktop">SO</th>`;
+        headerCols = `<th class="td-stat">GP</th><th class="td-stat td-desktop">W</th><th class="td-stat td-desktop">OTL</th><th class="td-stat td-desktop">SO</th>`;
       } else {
-        headerCols = `<th class="td-stat td-desktop">GP</th><th class="td-stat td-desktop">G</th><th class="td-stat td-desktop">A</th><th class="td-stat td-desktop">PTS</th>`;
+        headerCols = `<th class="td-stat">GP</th><th class="td-stat td-desktop">G</th><th class="td-stat td-desktop">A</th><th class="td-stat td-desktop">PTS</th>`;
       }
       html += `<tr><td colspan="${colspan + 1}" class="section-header ${pos}">${label}</td></tr>`;
       html += `<tr style="background:#f8faff;border-bottom:1px solid #eef3fb;">
@@ -1029,9 +1029,9 @@
         const tonightBadge = playsTonight ? `<span style="margin-left:4px;font-size:0.75em;cursor:default;" title="Playing tonight">🏒</span>` : '';
         let statCols = '';
         if (pos === 'G') {
-          statCols = `<td class="td-stat td-desktop">${p.games_played ?? '—'}</td><td class="td-stat td-desktop">${p.wins ?? '—'}</td><td class="td-stat td-desktop">${p.ot_losses ?? '—'}</td><td class="td-stat td-desktop">${p.shutouts ?? '—'}</td>`;
+          statCols = `<td class="td-stat">${p.games_played ?? '—'}</td><td class="td-stat td-desktop">${p.wins ?? '—'}</td><td class="td-stat td-desktop">${p.ot_losses ?? '—'}</td><td class="td-stat td-desktop">${p.shutouts ?? '—'}</td>`;
         } else {
-          statCols = `<td class="td-stat td-desktop">${p.games_played ?? '—'}</td><td class="td-stat td-desktop">${p.goals ?? '—'}</td><td class="td-stat td-desktop">${p.assists ?? '—'}</td><td class="td-stat td-desktop">${p.points ?? '—'}</td>`;
+          statCols = `<td class="td-stat">${p.games_played ?? '—'}</td><td class="td-stat td-desktop">${p.goals ?? '—'}</td><td class="td-stat td-desktop">${p.assists ?? '—'}</td><td class="td-stat td-desktop">${p.points ?? '—'}</td>`;
         }
         const isBest = slug === bestSlug;
         const teamCount = uniquenessMap[slug] || 1;
