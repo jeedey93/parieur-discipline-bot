@@ -378,6 +378,19 @@
       border-color: rgba(148,163,184,0.2);
     }
 
+    /* ── CSS TOOLTIP ── */
+    .css-tooltip { position: relative; display: inline-block; }
+    .css-tooltip .css-tooltip-text {
+      visibility: hidden; opacity: 0;
+      background: #1e3a8a; color: white;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.5px; white-space: nowrap;
+      border-radius: 6px; padding: 4px 8px;
+      position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+      transition: opacity 0.15s; pointer-events: none; z-index: 10;
+    }
+    .css-tooltip:hover .css-tooltip-text { visibility: visible; opacity: 1; }
+
     /* ── SCOUTING REPORT ── */
     .scouting-report { margin: 0 1.25rem 0.85rem; padding: 0.65rem 0.9rem; background: linear-gradient(135deg, #eff6ff, #f8faff); border: 1px solid #bfdbfe; border-radius: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 600; color: #1e3a8a; line-height: 1.4; font-style: italic; }
     .scouting-report-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; color: #93c5fd; text-transform: uppercase; margin-bottom: 3px; font-style: normal; }
@@ -996,7 +1009,9 @@
         <th style="text-align:left;font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(255,255,255,0.25);padding:0.25rem 1rem;font-weight:400;">Player</th>
         ${headerCols}
         <th class="td-stat" style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(255,255,255,0.25);font-weight:400;">FPTS</th>
-        <th class="td-stat" style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(134,239,172,0.7);font-weight:400;cursor:default;" title="Pool points gained since yesterday's snapshot">YDAY ⓘ</th>
+        <th class="td-stat" style="font-family:'Bebas Neue',cursive;font-size:0.68rem;letter-spacing:2px;color:rgba(134,239,172,0.7);font-weight:400;">
+          <span class="css-tooltip" style="cursor:default;">YDAY <span style="font-size:0.6rem;opacity:0.7;">ⓘ</span><span class="css-tooltip-text">Points gained since yesterday's snapshot</span></span>
+        </th>
       </tr>`;
       const sorted = [...slugs].map(slug => {
         const p = playerMap[slug];
@@ -1272,7 +1287,7 @@
         fetch(`${SUPABASE_URL}/rest/v1/pool_2027_submissions?select=id,name,team_name,email,paid,roster,cap_used,submitted_at,rank_previous,weekly_pts,scouting_report&order=submitted_at.desc`, { headers: sbHeaders() }),
         fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,ot_losses,shutouts,games_played,last5_game_pts&limit=1000`, { headers: sbHeaders() }),
         fetch('/data/pool_history.json').catch(() => null),
-        fetch(`https://api-web.nhle.com/v1/schedule/now`).catch(() => null),
+        fetch('/data/nhl_today.json').catch(() => null),
       ]);
 
       if (!subsRes.ok) throw new Error(`submissions: ${subsRes.status}`);
@@ -1313,10 +1328,8 @@
         try {
           const sched = await scheduleRes.json();
           const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-          const todayGames = (sched.gameWeek || []).find(w => w.date === todayStr);
-          for (const g of (todayGames?.games || [])) {
-            if (g.awayTeam?.abbrev) teamsPlayingToday.add(g.awayTeam.abbrev);
-            if (g.homeTeam?.abbrev) teamsPlayingToday.add(g.homeTeam.abbrev);
+          if (sched.date === todayStr) {
+            for (const abbr of (sched.teams || [])) teamsPlayingToday.add(abbr);
           }
         } catch { /* silent */ }
       }

@@ -436,6 +436,28 @@ def main():
 
     print(f"✅ Pool standings updated. History now has {len(history)} day(s).")
 
+    # ── NHL today's games (for pool standings page badge) ────────────────────
+    try:
+        import urllib.request
+        NHL_TODAY_FILE = "docs/data/nhl_today.json"
+        with urllib.request.urlopen("https://api-web.nhle.com/v1/schedule/now", timeout=10) as r:
+            sched = json.loads(r.read())
+        abbrevs = []
+        for week_day in sched.get("gameWeek", []):
+            if week_day.get("date") == today_str:
+                for g in week_day.get("games", []):
+                    if g.get("awayTeam", {}).get("abbrev"):
+                        abbrevs.append(g["awayTeam"]["abbrev"])
+                    if g.get("homeTeam", {}).get("abbrev"):
+                        abbrevs.append(g["homeTeam"]["abbrev"])
+                break
+        os.makedirs(os.path.dirname(NHL_TODAY_FILE), exist_ok=True)
+        with open(NHL_TODAY_FILE, "w") as f:
+            json.dump({"date": today_str, "teams": abbrevs}, f)
+        print(f"🏒  NHL today: {len(abbrevs)//2} games, {len(abbrevs)} teams playing")
+    except Exception as e:
+        print(f"  ⚠️  NHL today schedule fetch failed: {e}")
+
 
 if __name__ == "__main__":
     main()
