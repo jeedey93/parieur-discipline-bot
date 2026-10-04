@@ -1,0 +1,25 @@
+Here is the updated betting analysis comparing the morning and noon prediction reports:
+
+---
+
+**Analyst's Summary of Changes:**
+
+The noon report reflects significant updates, including verified roster data and a more stringent selection criterion requiring a minimum edge of +7% for all plays, along with a default "Average" tier for unconfirmed goalies. This led to a complete refresh of recommended plays. All four plays recommended in the morning report were removed from the noon's final list, indicating they no longer met the updated criteria or that better value was found elsewhere. The noon report introduced two new high-confidence plays, specifically focusing on fatigue advantages for the home teams.
+
+---
+
+🏆 **BET OF THE DAY**
+
+**Nashville Predators ML vs Dallas Stars @ 2.16**
+Confidence Level: High, Units: 1.5u, Win Probability: 59%
+Nashville is poised to capitalize on a fatigued Dallas team playing on a back-to-back. With no confirmed starting goalies for either team, the goalie matchup is considered neutral (average vs. average). However, the Predators benefit from 1 day of rest compared to the Stars' back-to-back situation, granting Nashville a significant +4% fatigue advantage. Furthermore, Nashville enjoys a slight +1% home-ice edge. These factors combine to give Nashville a strong value proposition against the odds, which don't fully account for Dallas's fatigue.
+
+This is a new play added in the noon report. The line for Nashville Predators ML moved from 2.10 (morning) to 2.16 (noon).
+
+**Other Recommended Plays**
+
+**Philadelphia Flyers ML vs Carolina Hurricanes @ 2.1**
+Confidence Level: High, Units: 1.5u, Win Probability: 59%
+The Philadelphia Flyers present a strong value play at home against a Carolina Hurricanes team on a back-to-back. With no confirmed starting goalies for either squad, the goaltending matchup is assessed as average for both sides. However, the Flyers benefit from 1 day of rest, while the Hurricanes are playing their second game in as many nights, giving Philadelphia a substantial +4% fatigue advantage. Additionally, the Flyers receive a standard +1% for home-ice advantage. The market appears to undervalue Philadelphia's rested status against a tired opponent.
+
+This is a new play added in the noon report. The line for Philadelphia Flyers ML remained stable at 2.10 from morning to noon.

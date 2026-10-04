@@ -1,20 +1,20 @@
 ============================================================
 LIGHTNING - LINEUP
-Last Updated: 2026-10-01 03:35 PM ET
+Last Updated: 2026-10-03 02:01 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Ilya Mikheyev — Brayden Point — Nikita Kucherov
+Line 1: Gage Goncalves — Brayden Point — Nikita Kucherov
 Line 2: Jake Guentzel — Anthony Cirelli — Brandon Hagel
-Line 3: Jeffrey Viel — Zemgus Girgensons — Pontus Holmberg
-Line 4: Gage Goncalves — Jansen Harkins — Conor Geekie
+Line 3: Ilya Mikheyev — Zemgus Girgensons — Pontus Holmberg
+Line 4: Jeffrey Viel — Jansen Harkins — Conor Geekie
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: J.J. Moser — John Carlson
 Pair 2: Ryan McDonagh — Erik Cernak
-Pair 3: Victor Hedman — Charle-Edouard DAstous
+Pair 3: Victor Hedman — Emil Lilleberg
 
 GOALIES:
 ----------------------------------------
@@ -24,7 +24,7 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Scott Sabourin (scratched)
-  Emil Lilleberg (scratched)
+  Charle-Edouard D'Astous (scratched)
   Max Crozier (scratched)
   Dominic James (hand) (injured)
   Yanni Gourde (hip) (injured)

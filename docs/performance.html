@@ -528,12 +528,12 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class='stats-grid'>
     <div class='stat-card positive'>
       <div class='stat-label'>Overall Win Rate</div>
-      <div class='stat-value'>14.3%</div>
-      <div class='stat-subtext'>1W - 6L</div>
+      <div class='stat-value'>30.8%</div>
+      <div class='stat-subtext'>4W - 9L</div>
     </div>
     <div class='stat-card'>
       <div class='stat-label'>Total Picks</div>
-      <div class='stat-value'>7</div>
+      <div class='stat-value'>13</div>
       <div class='stat-subtext'>NHL + NBA Combined</div>
     </div>
     <div class='stat-card'>
@@ -557,11 +557,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class='sport-stats'>
       <div class='mini-stat'>
         <div class='mini-stat-label'>Win Rate</div>
-        <div class='mini-stat-value'>14.3%</div>
+        <div class='mini-stat-value'>22.2%</div>
       </div>
       <div class='mini-stat'>
         <div class='mini-stat-label'>Record</div>
-        <div class='mini-stat-value'>1-6</div>
+        <div class='mini-stat-value'>2-7</div>
       </div>
     </div>
   </div>
@@ -575,11 +575,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class='sport-stats'>
       <div class='mini-stat'>
         <div class='mini-stat-label'>Win Rate</div>
-        <div class='mini-stat-value'>0.0%</div>
+        <div class='mini-stat-value'>50.0%</div>
       </div>
       <div class='mini-stat'>
         <div class='mini-stat-label'>Record</div>
-        <div class='mini-stat-value'>0-0</div>
+        <div class='mini-stat-value'>2-2</div>
       </div>
     </div>
   </div>
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 <script>
 (function() {
-  var calData = {"2026-09-29": {"wins": 0, "losses": 0}, "2026-09-30": {"wins": 0, "losses": 3}, "2026-10-01": {"wins": 0, "losses": 1}, "2026-10-02": {"wins": 1, "losses": 2}};
+  var calData = {"2026-09-29": {"wins": 0, "losses": 0}, "2026-09-30": {"wins": 0, "losses": 3}, "2026-10-01": {"wins": 0, "losses": 1}, "2026-10-02": {"wins": 1, "losses": 2}, "2026-10-03": {"wins": 3, "losses": 3}};
   var months = [[2026, 9], [2026, 10]];
   var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var dayLabels = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -734,6 +734,15 @@ document.addEventListener('DOMContentLoaded', function() {
   <details class='timeline-details'>
     <summary class='timeline-summary'>📅 Daily Results Timeline <span class='timeline-toggle-hint'>click to expand</span></summary>
     <div class='timeline' style='margin-top: 15px;'>
+      <div class='timeline-item '>
+        <div class='timeline-date'>2026-10-03</div>
+        <div class='timeline-record'>
+          <span class='timeline-wins'>3W</span>
+          <span class='timeline-losses'>3L</span>
+          <span class='timeline-net net-even'>0</span>
+          <span class='timeline-sports'>NBA + NHL</span>
+        </div>
+      </div>
       <div class='timeline-item loss-day'>
         <div class='timeline-date'>2026-10-02</div>
         <div class='timeline-record'>
@@ -796,22 +805,22 @@ details[open] .timeline-toggle-hint {{ display: none; }}
 </style>
 <script>
 // Prepare chart data
-const dates = ['2026-09-29', '2026-09-30', '2026-10-01', '2026-10-02'];
-const dailyWins = [0, 0, 0, 1];
-const dailyLosses = [0, 3, 1, 2];
-const dailyNet = [0, -3, -1, -1];
-const dailyColors = ['#94a3b8', '#ef4444', '#ef4444', '#ef4444'];
-const cumulativeProfit = [0, -300, -400, -509];
+const dates = ['2026-09-29', '2026-09-30', '2026-10-01', '2026-10-02', '2026-10-03'];
+const dailyWins = [0, 0, 0, 1, 3];
+const dailyLosses = [0, 3, 1, 2, 3];
+const dailyNet = [0, -3, -1, -1, 0];
+const dailyColors = ['#94a3b8', '#ef4444', '#ef4444', '#ef4444', '#94a3b8'];
+const cumulativeProfit = [0, -300, -400, -509, -536];
 const rollingWinRate = [];
 
 // Monthly chart data
 const monthLabels = ['Sep 2026', 'Oct 2026'];
-const monthWins = [0, 1];
-const monthLosses = [3, 3];
+const monthWins = [0, 4];
+const monthLosses = [3, 6];
 const monthNet = [-3, -2];
 const monthColors = ['rgba(239, 68, 68, 0.8)', 'rgba(239, 68, 68, 0.8)'];
 const monthBorderColors = ['#ef4444', '#ef4444'];
-const monthWinRates = [0.0, 25.0];
+const monthWinRates = [0.0, 40.0];
 
 // Chart.js default settings
 Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
@@ -867,7 +876,7 @@ new Chart(winRateCtx, {
     datasets: [
       {
         label: 'Win Rate',
-        data: [14.3, 0.0],
+        data: [22.2, 50.0],
         backgroundColor: ['#3b82f6', '#f59e0b'],
         borderRadius: 8,
         barThickness: 80
