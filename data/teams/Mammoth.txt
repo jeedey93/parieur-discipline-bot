@@ -1,6 +1,6 @@
 ============================================================
 MAMMOTH - LINEUP
-Last Updated: 2026-10-03 02:01 PM ET
+Last Updated: 2026-10-04 02:12 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,20 +12,20 @@ Line 4: Michael Carcone — Kevin Stenlund — Daniil But
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Mikhail Sergachev — Mackenzie Weegar
+Pair 1: Mikhail Sergachev — MacKenzie Weegar
 Pair 2: Nate Schmidt — John Marino
 Pair 3: Dmitri Simashev — Andrew Peeke
 
 GOALIES:
 ----------------------------------------
-  Sebastian Cossa
   Karel Vejmelka
+  Sebastian Cossa
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Nick De Simone (scratched)
-  Liam O'Brien (scratched)
+  Liam O'Brien (scratched)
   Kailer Yamamoto (scratched)
+  Nick De Simone (scratched)
   Maveric Lamoureux (shoulder) (injured)
 
 ============================================================
