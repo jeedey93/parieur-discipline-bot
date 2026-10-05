@@ -923,26 +923,7 @@
       return n;
     }
     function showPlayerLinks(nhlId, slug) {
-      const existing = document.getElementById('player-popup-overlay');
-      if (existing) existing.remove();
-      const name = slug ? slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : '';
-      const nhlUrl = nhlId ? `https://www.nhl.com/player/${nhlId}` : null;
-      const rotoSlug = slug ? slug.split('/').pop() : null;
-      const rotoUrl = rotoSlug ? `https://www.rotowire.com/hockey/player/${rotoSlug}` : null;
-      const overlay = document.createElement('div');
-      overlay.id = 'player-popup-overlay';
-      overlay.className = 'player-popup-overlay';
-      overlay.innerHTML = `
-        <div class="player-popup">
-          <div class="player-popup-name">${name}</div>
-          <div class="player-popup-links">
-            ${nhlUrl ? `<a class="player-popup-link nhl" href="${nhlUrl}" target="_blank" rel="noopener">🏒 NHL.com</a>` : ''}
-            ${rotoUrl ? `<a class="player-popup-link roto" href="${rotoUrl}" target="_blank" rel="noopener">📊 RotoWire</a>` : ''}
-          </div>
-          <button class="player-popup-cancel" onclick="document.getElementById('player-popup-overlay').remove()">Cancel</button>
-        </div>`;
-      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-      document.body.appendChild(overlay);
+      if (nhlId) window.open(`https://www.nhl.com/player/${nhlId}`, '_blank', 'noopener');
     }
     function rosterPlayers(rs) {
       const m = slugMap();
