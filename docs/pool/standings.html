@@ -591,7 +591,7 @@
     const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
     const PW_PLAIN = 'parieur2026'; // kept for pool.html admin only — not used here
-    const CACHE_KEY = 'hp_players_v7_' + new Date().toISOString().slice(0,10); // busts daily
+    const CACHE_KEY = 'hp_players_v8_' + new Date().toISOString().slice(0,10); // busts daily
     const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min within a day
     const ACTIVE_ACQUIRED_FALLBACK_DATE = new Date('2025-09-01T00:00:00Z');
 
@@ -1354,7 +1354,7 @@
         return (livePos || storedPos) === pos;
       });
       const seenSlugs = new Set(trades.map(t => t.player_to_slug));
-      const currentNoDraft = (team.roster[pos] || []).filter(s => s && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : null).filter(Boolean);
+      const currentNoDraft = (team.roster[pos] || []).filter(s => s && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
       if (!trades.length && !currentNoDraft.length) return '';
 
       /*
@@ -1420,7 +1420,7 @@
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
         const tenure = `${fmt(acqDate)} → Now`;
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, tenure, col1, col2, col3, pts, gp, g, a, w, so,
-          actualPos: normalizePos(p.position),
+          actualPos: p.position ? normalizePos(p.position) : pos,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
       });
