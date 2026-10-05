@@ -883,7 +883,7 @@
   const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
   const CAP_MAX = 104_000_000;
-  const PLAYER_CACHE_KEY = 'hp_players_v7';
+  const PLAYER_CACHE_KEY = 'hp_players_v7_' + new Date().toISOString().slice(0,10); // busts daily
   const UNDO_WINDOW_SECONDS = 15;
 
   const NHL_TEAM_COLORS = {
