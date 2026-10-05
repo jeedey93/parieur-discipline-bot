@@ -577,6 +577,51 @@
         .top-player-stat { font-size: 0.8rem; font-weight: 700; color: var(--silver); text-align: right; }
         .top-player-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; color: var(--gold); text-align: right; }
 
+        /* ── BACK BUTTON ── */
+        .btn-back {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 2px;
+          color: var(--silver); background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
+          padding: 5px 12px; cursor: pointer; margin-bottom: 0.9rem;
+          transition: color 0.15s, background 0.15s, border-color 0.15s;
+        }
+        .btn-back:hover { color: white; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+        /* ── DETAIL RANK ROW ── */
+        .detail-rank-row {
+          display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.15rem;
+        }
+        .detail-rank-pill {
+          font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1.5px;
+          border-radius: 4px; padding: 2px 9px;
+        }
+        .detail-rank-pill.r1 { background: rgba(255,184,28,0.15); color: var(--gold); border: 1px solid rgba(255,184,28,0.35); }
+        .detail-rank-pill.r2 { background: rgba(192,200,212,0.1); color: #c0c8d4; border: 1px solid rgba(192,200,212,0.2); }
+        .detail-rank-pill.r3 { background: rgba(205,127,50,0.1); color: #cd7f32; border: 1px solid rgba(205,127,50,0.2); }
+        .detail-rank-pill.rmid { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.1); }
+        .detail-gap-label {
+          font-size: 0.78rem; font-weight: 700;
+          color: rgba(255,80,80,0.7); letter-spacing: 0.5px;
+        }
+        .detail-gap-label.leader { color: var(--green); }
+
+        /* ── POOL LEADERS JUMP NAV ── */
+        .pos-jump-nav {
+          display: none; gap: 6px; margin-bottom: 1rem;
+        }
+        @media (max-width: 600px) { .pos-jump-nav { display: flex; } }
+        .pos-jump-btn {
+          font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 2px;
+          padding: 6px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.04); cursor: pointer;
+          transition: background 0.15s, border-color 0.15s, color 0.15s; flex: 1; text-align: center;
+        }
+        .pos-jump-btn.F { color: var(--pink); border-color: rgba(255,122,138,0.2); }
+        .pos-jump-btn.D { color: var(--blue); border-color: rgba(125,180,255,0.2); }
+        .pos-jump-btn.G { color: var(--gold); border-color: rgba(255,184,28,0.2); }
+        .pos-jump-btn:hover { background: rgba(255,255,255,0.08); }
+
         /* ── MISC ── */
         .msg { text-align: center; color: var(--silver); font-size: 0.9rem; letter-spacing: 1px; padding: 3rem 0; }
         .btn-refresh { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 2px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--silver); border-radius: 6px; padding: 4px 14px; cursor: pointer; }
@@ -1106,7 +1151,7 @@
         <div class="view-tabs">
           <div class="view-tab ${activeView==='standings'?'active':''}" onclick="setView('standings')">Standings</div>
           <div class="view-tab ${activeView==='team'?'active':''}"      onclick="setView('team')">Team Detail</div>
-          <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Pool Leaders</div>
+          <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Leaders</div>
           <div class="view-tab ${activeView==='history'?'active':''}"   onclick="setView('history')">History</div>
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
@@ -1338,9 +1383,14 @@
 
 
       return `
+        <button class="btn-back" onclick="setView('standings')">← Standings</button>
         <div class="detail-header">
           <div class="detail-header-left">
             <div class="detail-title">${team.name}</div>
+            <div class="detail-rank-row">
+              <span class="detail-rank-pill ${totalRankCls}">${totalRankText}</span>
+              <span class="detail-gap-label${rank === 1 ? ' leader' : ''}">${gap}</span>
+            </div>
           </div>
           <div class="detail-header-right">
             <div class="detail-summary">
@@ -1524,12 +1574,17 @@
       /* FIX 2: position column total row + FIX 6: pos pill next to player name */
       const grid = `
         <div class="pool-section-title">Position <span>Leaders</span></div>
+        <div class="pos-jump-nav">
+          <button class="pos-jump-btn F" onclick="document.getElementById('pos-col-F').scrollIntoView({behavior:'smooth',block:'start'})">Forwards</button>
+          <button class="pos-jump-btn D" onclick="document.getElementById('pos-col-D').scrollIntoView({behavior:'smooth',block:'start'})">Defence</button>
+          <button class="pos-jump-btn G" onclick="document.getElementById('pos-col-G').scrollIntoView({behavior:'smooth',block:'start'})">Goalies</button>
+        </div>
         <div class="pos-leaders-grid">
           ${['F','D','G'].map(pos => {
             const slice = byPos[pos].slice(0, 10);
             const colTotal = slice.reduce((s, item) => s + item.pts, 0);
             grandTotal += colTotal;
-            return `<div class="pos-leader-col">
+            return `<div class="pos-leader-col" id="pos-col-${pos}">
               <div class="pos-leader-col-header ${pos}">${posLabels[pos]} <small>POOL PTS</small></div>
               ${slice.map((item, i) => {
                 const abbr = TEAM_ABBR[item.player.team];
@@ -1600,11 +1655,13 @@
     ];
 
     let _historyCache = null;
+    let _historyRenderedHtml = null;
 
     async function loadHistory() {
       const el = document.getElementById('view-history');
       if (!el) return;
 
+      if (_historyRenderedHtml) { el.innerHTML = _historyRenderedHtml; return; }
       if (_historyCache) { renderBumpChart(_historyCache, el); return; }
 
       try {
@@ -1838,8 +1895,8 @@
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem">
           <div class="pool-section-title" style="margin:0">📈 <span>${isPts ? 'POINTS OVER TIME' : 'RANK OVER TIME'}</span></div>
           <div class="bump-toggle">
-            <button class="bump-toggle-btn ${isPts ? 'active' : ''}" onclick="_bumpMode='pts';renderBumpChart(_historyCache,document.getElementById('view-history'))">Points</button>
-            <button class="bump-toggle-btn ${!isPts ? 'active' : ''}" onclick="_bumpMode='rank';renderBumpChart(_historyCache,document.getElementById('view-history'))">Rank</button>
+            <button class="bump-toggle-btn ${isPts ? 'active' : ''}" onclick="_bumpMode='pts';_historyRenderedHtml=null;renderBumpChart(_historyCache,document.getElementById('view-history'))">Points</button>
+            <button class="bump-toggle-btn ${!isPts ? 'active' : ''}" onclick="_bumpMode='rank';_historyRenderedHtml=null;renderBumpChart(_historyCache,document.getElementById('view-history'))">Rank</button>
           </div>
         </div>
         <div class="bump-stat-cards">${statCards}</div>
@@ -1854,6 +1911,7 @@
         </div>
         <div class="bump-legend">${legend}</div>
       `;
+      _historyRenderedHtml = container.innerHTML;
     }
 
     load();
