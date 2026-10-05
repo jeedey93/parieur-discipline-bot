@@ -1078,7 +1078,7 @@
         </div>
         <div id="view-team" style="display:${activeView==='team'?'block':'none'}">
           <div class="team-tabs">
-            ${sorted.map(t => `<div class="team-tab ${t.id===activeTeamId?'active':''}" onclick="selectTeam('${t.id}')">${t.name}<span class="team-tab-pts">${teamTotalPts(t)}pts</span></div>`).join('')}
+            ${sorted.map(t => `<div class="team-tab ${t.id===activeTeamId?'active':''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">${t.name}<span class="team-tab-pts">${teamTotalPts(t)}pts</span></div>`).join('')}
           </div>
           <div class="team-detail visible">${activeTeam ? buildDetail(activeTeam, sorted, leaderPts) : ''}</div>
         </div>
@@ -1095,7 +1095,7 @@
       render();
       if (v === 'history') loadHistory();
     }
-    function selectTeam(id) { activeTeamId = id; activeView = 'team'; sessionStorage.setItem('pool_view', 'team'); render(); }
+    function selectTeam(id) { activeTeamId = decodeURIComponent(id); activeView = 'team'; sessionStorage.setItem('pool_view', 'team'); render(); }
 
     // ── SYNC ─────────────────────────────────────────────────────────────────────
 
@@ -1223,7 +1223,7 @@
         const tierCls = rankNum <= 3 ? ` rank-${rankNum}` : '';
         const isActive = t.id === activeTeamId;
 
-        const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${t.id}')">
+        const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
           <div class="lb-rank ${rankCls}">${rankInner}</div>
           <div class="lb-name">${t.name}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
