@@ -1331,7 +1331,7 @@
 
     // ── HIST TABLE ────────────────────────────────────────────────────────────────
     function buildHistTable(team, pos, label) {
-      const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(Boolean));
+      const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(s => s && typeof s === 'string'));
       const activeSlugSet = new Set((team.roster[pos] || []).filter(Boolean));
       const m = slugMap();
       const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
@@ -1343,7 +1343,7 @@
         return (livePos || storedPos) === pos;
       });
       const seenSlugs = new Set(trades.map(t => t.player_to_slug));
-      const currentNoDraft = (team.roster[pos] || []).filter(s => s && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
+      const currentNoDraft = (team.roster[pos] || []).filter(s => s && typeof s === 'string' && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
       if (!trades.length && !currentNoDraft.length) return '';
 
       /*
