@@ -707,27 +707,16 @@
     }
 
     async function loadYesterdayPts() {
-      const yesterday = yesterdayIsoDay();
-      const season = seasonFromDate(yesterday);
-      if (!season) return;
-      const allPlrs = teams.flatMap(t => {
-        const r = rosterPlayers(t.roster);
-        return [...r.F, ...r.D, ...r.G].filter(Boolean);
-      });
-      const seen = new Set();
-      const unique = allPlrs.filter(p => {
-        if (!p.nhl_player_id || seen.has(p.nhl_player_id)) return false;
-        seen.add(p.nhl_player_id); return true;
-      });
-      await Promise.all(unique.map(async p => {
-        const pos = normalizePos(p.position);
-        const games = await fetchPlayerGameLog(p.nhl_player_id, season);
-        const ytdPts = games
-          .filter(g => toIsoDay(gameDateStr(g)) === yesterday)
-          .reduce((s, g) => s + scoreGameForPool(g, pos), 0);
-        if (ytdPts > 0) _playerYesterdayPts[p.nhl_player_id] = ytdPts;
-      }));
-      render();
+      try {
+        const res = await fetch('/data/player_yesterday_pts.json');
+        if (!res.ok) return;
+        const json = await res.json();
+        const pts = json.pts || {};
+        for (const [id, p] of Object.entries(pts)) {
+          _playerYesterdayPts[Number(id)] = p;
+        }
+        render();
+      } catch(_) {}
     }
     let _windowPtsByTradeKey = {};
     const _gameLogCache = new Map();

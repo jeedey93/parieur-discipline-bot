@@ -1411,7 +1411,6 @@
       activeTeamId=teams.find(t=>t.id===preferredTeamId)?.id||firstRow.data?.activeTeamId&&teams.find(t=>t.id===firstRow.data.activeTeamId)?.id||teams[0]?.id;
       await loadTrades();
       await ensurePlayersLoaded(collectRelevantSlugs());
-      await initializeDraftDayAcquisitions();
       renderTeamSelector();
       updateTbTabBadge();
       updateProposalTabBadge();

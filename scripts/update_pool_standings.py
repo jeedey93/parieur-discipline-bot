@@ -436,6 +436,59 @@ def main():
 
     print(f"✅ Pool standings updated. History now has {len(history)} day(s).")
 
+    # ── Yesterday's pool pts per player (nhl_player_id → pts) ───────────────
+    try:
+        import urllib.request
+        yesterday_str = (today - timedelta(days=1)).isoformat()
+        YDAY_FILE = "docs/data/player_yesterday_pts.json"
+
+        # Collect all unique nhl_player_ids across all pool rosters
+        all_leagues = supabase.table("pool_rosters").select("league_code,data").execute().data
+        all_slugs = set()
+        for row in all_leagues:
+            for team in (row.get("data") or {}).get("teams", []):
+                for pos in ("F", "D", "G"):
+                    all_slugs.update(s for s in (team.get("roster") or {}).get(pos, []) if s)
+
+        # Build slug → (nhl_player_id, position) from player_map
+        slug_to_id = {}
+        for slug, p in player_map.items():
+            if slug in all_slugs and p.get("nhl_player_id"):
+                slug_to_id[slug] = (p["nhl_player_id"], (p.get("position") or "F"))
+
+        def score_game_for_pool(g: dict, pos: str) -> int:
+            pos = pos.upper()
+            if pos == "G":
+                decision = (g.get("decision") or "").upper()
+                so = 1 if g.get("shutouts") or g.get("shots_against", 1) and not g.get("goals_against") else 0
+                wins = 1 if decision == "W" else 0
+                return wins * 2 + so * 3
+            if pos == "D":
+                return (g.get("goals") or 0) * 2 + (g.get("assists") or 0)
+            return (g.get("points") or 0) or ((g.get("goals") or 0) + (g.get("assists") or 0))
+
+        yday_pts = {}  # nhl_player_id (str) → pool pts
+        season = "20262027"
+        for slug, (pid, pos) in slug_to_id.items():
+            try:
+                url = f"https://api-web.nhle.com/v1/player/{pid}/game-log/{season}/2"
+                with urllib.request.urlopen(url, timeout=8) as r:
+                    data_gl = json.loads(r.read())
+                games = data_gl.get("gameLog") or []
+                pts = sum(score_game_for_pool(g, pos) for g in games
+                          if (g.get("gameDate") or "")[:10] == yesterday_str)
+                if pts > 0:
+                    yday_pts[str(pid)] = pts
+            except Exception:
+                pass
+
+        os.makedirs(os.path.dirname(YDAY_FILE), exist_ok=True)
+        with open(YDAY_FILE, "w") as f:
+            json.dump({"date": yesterday_str, "pts": yday_pts}, f)
+        print(f"📊  Yesterday pts: {len(yday_pts)} players scored")
+    except Exception as e:
+        print(f"  ⚠️  Yesterday pts fetch failed: {e}")
+
     # ── NHL today's games (for pool standings page badge) ────────────────────
     try:
         import urllib.request
