@@ -104,11 +104,11 @@
           color: var(--gold); background: rgba(255,184,28,0.1);
           border: 1px solid rgba(255,184,28,0.3); border-radius: 4px; padding: 1px 10px;
         }
-        .header-controls { display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
+        .header-controls { display: flex; align-items: center; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
         .btn-sync {
           font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 1.5px;
           background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
-          color: var(--green); border-radius: 6px; padding: 4px 12px;
+          color: var(--green); border-radius: 6px; padding: 8px 12px;
           cursor: pointer; transition: background 0.2s, border-color 0.2s;
         }
         .btn-sync:hover { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.5); }
@@ -130,7 +130,7 @@
         }
         .view-tab {
           font-family: 'Bebas Neue', cursive; letter-spacing: 2px;
-          padding: 5px 14px; border-radius: 5px; cursor: pointer; flex: 1;
+          padding: 8px 14px; border-radius: 5px; cursor: pointer; flex: 1;
           text-align: center; color: var(--silver);
           transition: background 0.15s, color 0.15s; font-size: 0.85rem;
         }
@@ -205,7 +205,7 @@
         .lb-tier-divider::after {
           content: 'REST OF FIELD';
           position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
-          font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
           font-weight: 700; letter-spacing: 2px;
           color: rgba(255,255,255,0.2); background: #07111f; padding: 0 6px;
         }
@@ -213,7 +213,7 @@
         .lb-row {
           display: grid;
           grid-template-columns: 36px 1fr 44px 52px 52px 52px 60px 52px 60px;
-          align-items: center; padding: 0.65rem 1rem; gap: 0.5rem;
+          align-items: center; padding: 0.75rem 1rem; gap: 0.5rem;
           border-bottom: 1px solid rgba(255,255,255,0.05);
           cursor: pointer; transition: background 0.15s, box-shadow 0.15s;
           border-left: 3px solid transparent;
@@ -228,7 +228,7 @@
         }
         .lb-row.header:hover { background: rgba(255,255,255,0.03); }
         @media (min-width: 861px) { .lb-row { padding: 0.85rem 1.25rem; } }
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
           .lb-row { grid-template-columns: 30px 1fr 56px 44px 56px; }
           .lb-col-hide { display: none; }
         }
@@ -313,7 +313,7 @@
           .insights .insight-card:first-child { flex-direction: column; }
           .insights .insight-card:first-child .insight-sub { margin-left: 0; text-align: left; }
         }
-        .insight-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+        .insight-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
         .insight-icon { font-size: 1rem; line-height: 1; margin-bottom: 0.1rem; }
         .insight-main { font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1.5px; color: white; line-height: 1.2; }
         .insight-main.gold  { color: var(--gold); }
@@ -327,7 +327,7 @@
         .team-tab {
           font-family: 'Bebas Neue', cursive; font-size: 0.9rem; letter-spacing: 2px;
           background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-          color: var(--silver); border-radius: 7px; padding: 5px 16px;
+          color: var(--silver); border-radius: 7px; padding: 8px 16px;
           cursor: pointer; flex-shrink: 0; white-space: nowrap;
           transition: background 0.15s, border-color 0.15s, color 0.15s;
         }
@@ -402,10 +402,10 @@
         .pos-score-block.D .pos-score-val { color: var(--blue); }
         .pos-score-block.G .pos-score-val { color: var(--gold); }
         .pos-score-block.B .pos-score-val { color: var(--silver); }
-        .pos-score-label { font-size: 0.68rem; font-weight: 700; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+        .pos-score-label { font-size: 0.72rem; font-weight: 700; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
         .pos-rank-badge {
           display: inline-flex; align-items: center; gap: 2px; margin-top: 5px;
-          font-family: 'Bebas Neue', cursive; font-size: 0.62rem; letter-spacing: 1px;
+          font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px;
           border-radius: 3px; padding: 1px 6px; line-height: 1.4;
         }
         .pos-rank-badge.r1    { color: var(--gold);            background: rgba(255,184,28,0.15);   border: 1px solid rgba(255,184,28,0.3);   }
@@ -480,12 +480,12 @@
         .pos-leader-col-header.F { color: var(--pink); background: rgba(255,122,138,0.05); }
         .pos-leader-col-header.D { color: var(--blue); background: rgba(125,180,255,0.05); }
         .pos-leader-col-header.G { color: var(--gold); background: rgba(255,184,28,0.05); }
-        .pos-leader-col-header small { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.25); letter-spacing: 2px; }
+        .pos-leader-col-header small { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.25); letter-spacing: 2px; }
         .pos-leader-row { display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .pos-leader-row:last-child { border-bottom: none; }
         .pos-leader-rank { font-family: 'Bebas Neue', cursive; font-size: 0.9rem; color: var(--silver); min-width: 16px; text-align: center; }
         .pos-leader-name { font-size: 0.85rem; font-weight: 700; color: white; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .pos-leader-owner { font-size: 0.68rem; font-weight: 700; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; white-space: nowrap; max-width: 70px; overflow: hidden; text-overflow: ellipsis; }
+        .pos-leader-owner { font-size: 0.72rem; font-weight: 700; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; white-space: nowrap; max-width: 70px; overflow: hidden; text-overflow: ellipsis; }
         .pos-leader-team { font-family: 'Bebas Neue', cursive; font-size: 0.75rem; letter-spacing: 1px; color: var(--silver); flex-shrink: 0; }
         .pos-leader-pts { font-family: 'Bebas Neue', cursive; font-size: 0.95rem; letter-spacing: 1px; color: white; min-width: 28px; text-align: right; flex-shrink: 0; }
 
@@ -500,7 +500,7 @@
         }
         .col-tooltip-wrap:hover .col-tip { display: block; }
         .pos-pill {
-          font-family: 'Bebas Neue', cursive; font-size: 0.62rem; letter-spacing: 1px;
+          font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px;
           border-radius: 3px; padding: 1px 5px; flex-shrink: 0;
         }
         .pos-pill.F { background: rgba(255,122,138,0.15); color: var(--pink); }
@@ -515,7 +515,7 @@
           border-top: 1px solid rgba(255,255,255,0.1);
         }
         .pos-leader-total-label {
-          font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem;
           font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
           color: rgba(255,255,255,0.3);
         }
