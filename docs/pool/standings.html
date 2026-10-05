@@ -220,7 +220,7 @@
         .lb-row.header:hover { background: rgba(255,255,255,0.03); }
         @media (min-width: 861px) { .lb-row { padding: 0.85rem 1.25rem; } }
         @media (max-width: 600px) {
-          .lb-row { grid-template-columns: 30px 1fr 56px 44px 56px; }
+          .lb-row { grid-template-columns: 30px 1fr 52px 44px 44px 56px; }
           .lb-col-hide { display: none; }
         }
 
@@ -411,12 +411,12 @@
         .hist-header-row,
         .hist-row {
           display: grid;
-          grid-template-columns: 28px 1fr 40px 40px 40px 48px 60px;
+          grid-template-columns: 28px 1fr 40px 40px 40px 48px 52px 60px;
           gap: 0.4rem; padding: 0.45rem 0.75rem; align-items: center;
         }
         @media (max-width: 560px) {
           .hist-header-row,
-          .hist-row { grid-template-columns: 22px 1fr 28px 28px 28px 38px 46px; gap: 0.2rem; padding: 0.45rem 0.4rem; }
+          .hist-row { grid-template-columns: 22px 1fr 28px 28px 28px 38px 44px 44px; gap: 0.2rem; padding: 0.45rem 0.4rem; }
           .hist-col-hide-g { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
@@ -1241,7 +1241,7 @@
           <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
           <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
           <div class="lb-stat pts">${pts}</div>
-          <div class="lb-stat lb-col-hide" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
+          <div class="lb-stat" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
           ${(() => { const snap = _lastSnapshot[t.id]; if (snap === undefined) return '<div class="lb-stat delta zero">—</div>'; const d = pts - snap; const cls = d > 0 ? 'pos' : d < 0 ? 'neg' : 'zero'; const label = d > 0 ? `+${d}` : d < 0 ? String(d) : '—'; return `<div class="lb-stat delta ${cls}">${label}</div>`; })()}
           <div class="lb-stat ${i===0?'gap leader':'gap'}">${gap}</div>
         </div>`;
@@ -1258,7 +1258,7 @@
           <div class="lb-col-label lb-col-hide" style="color:var(--blue)">D</div>
           <div class="lb-col-label lb-col-hide" style="color:var(--gold)">G</div>
           <div class="lb-col-label">Total</div>
-          <div class="lb-col-label lb-col-hide" title="Pool points per average games played">PPG</div>
+          <div class="lb-col-label" title="Pool points per games played">PPG</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points since last daily update">Ytd</div>
           <div class="lb-col-label">Gap</div>
         </div>
@@ -1374,6 +1374,7 @@
             ? `${sortHdr('gp','GP')}${sortHdr('w','W')}<div class="lb-col-label hist-col-hide-g">${sortHdr('so','SO')}</div>`
             : `${sortHdr('gp','GP')}${sortHdr('g','G')}<div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
           ${sortHdr('pts','Pts')}
+          <div class="lb-col-label" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
@@ -1401,6 +1402,7 @@
           pts = _windowPtsByTradeKey[tradeKey] ?? t.points_accumulated_at_trade ?? '—';
         }
         rowData.push({ isCurrent, cls: isCurrent?'current':'past', name: t.player_to_name||t.player_to_slug, logo, tenure: tenureTooltip, col1, col2, col3, pts, gp, g, a, w, so,
+          ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: (isCurrent && p?.nhl_player_id) ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : null });
       });
 
@@ -1416,6 +1418,7 @@
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
         const tenure = `${fmt(acqDate)} → Now`;
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, tenure, col1, col2, col3, pts, gp, g, a, w, so,
+          ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
       });
 
@@ -1442,6 +1445,7 @@
           <span class="hist-stat">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
           <span class="hist-pts">${r.pts}</span>
+          <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
           ${ytdHtml}
         </div>`;
       });
@@ -1459,6 +1463,7 @@
           <div></div><div></div>
           <div class="${pos==='G'?'hist-col-hide-g':'hist-col-hide'}"></div>
           <div class="hist-pts total">${total}</div>
+          <div></div>
           <div></div>
         </div>
       </div>`;
