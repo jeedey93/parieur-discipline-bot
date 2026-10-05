@@ -1141,13 +1141,40 @@
         teamsPlayingToday = new Set();
         tonightMatchups = {};
         try {
-          const schedRes = await fetch('/data/nhl_today.json');
-          if (schedRes.ok) {
-            const sched = await schedRes.json();
-            const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-            if (sched.date === todayStr) {
-              tonightMatchups = sched.matchups || {};
-              for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
+          const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+          let schedOk = false;
+          // Try static file first (fastest, no CORS)
+          try {
+            const schedRes = await fetch('/data/nhl_today.json');
+            if (schedRes.ok) {
+              const sched = await schedRes.json();
+              if (sched.date === todayStr) {
+                tonightMatchups = sched.matchups || {};
+                for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
+                schedOk = true;
+              }
+            }
+          } catch(_) {}
+          // Fallback: fetch directly from NHL API if file is stale
+          if (!schedOk) {
+            const nhleRes = await fetch('https://api-web.nhle.com/v1/schedule/now');
+            if (nhleRes.ok) {
+              const data = await nhleRes.json();
+              for (const weekDay of (data.gameWeek || [])) {
+                if (weekDay.date === todayStr) {
+                  for (const g of (weekDay.games || [])) {
+                    const away = g.awayTeam?.abbrev;
+                    const home = g.homeTeam?.abbrev;
+                    if (away && home) {
+                      tonightMatchups[away] = home;
+                      tonightMatchups[home] = away;
+                      teamsPlayingToday.add(away);
+                      teamsPlayingToday.add(home);
+                    }
+                  }
+                  break;
+                }
+              }
             }
           }
         } catch(_) {}
