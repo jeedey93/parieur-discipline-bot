@@ -1858,6 +1858,13 @@
 
     load();
 
+    document.addEventListener('wheel', e => {
+      const tabs = e.target.closest('.team-tabs');
+      if (!tabs) return;
+      e.preventDefault();
+      tabs.scrollLeft += e.deltaY || e.deltaX;
+    }, { passive: false });
+
     // ── SHARE STANDINGS ───────────────────────────────────────────────────────────
     async function shareStandings() {
       const btn = document.getElementById('share-btn');
