@@ -320,7 +320,13 @@
         @media (max-width: 600px) { .insight-sub { font-size: 0.7rem; } }
 
         /* ── TEAM TABS ── */
-        .team-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+        .team-tabs {
+          display: flex; flex-wrap: nowrap; gap: 6px; margin-bottom: 1.25rem;
+          overflow-x: auto; -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; /* Firefox */
+          padding-bottom: 2px; /* prevent clipping shadow */
+        }
+        .team-tabs::-webkit-scrollbar { display: none; }
         .team-tab {
           font-family: 'Bebas Neue', cursive; font-size: 0.9rem; letter-spacing: 2px;
           background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
@@ -1126,7 +1132,15 @@
       render();
       if (v === 'history') loadHistory();
     }
-    function selectTeam(id) { activeTeamId = decodeURIComponent(id); activeView = 'team'; sessionStorage.setItem('pool_view', 'team'); render(); }
+    function selectTeam(id) {
+      activeTeamId = decodeURIComponent(id); activeView = 'team';
+      sessionStorage.setItem('pool_view', 'team'); render();
+      // Scroll active tab into view
+      requestAnimationFrame(() => {
+        const el = document.querySelector('.team-tab.active');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    }
 
     // ── SYNC ─────────────────────────────────────────────────────────────────────
 
