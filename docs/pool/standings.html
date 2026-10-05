@@ -1359,7 +1359,6 @@
         }
 
         // Tonight count — dressed players with a game tonight
-        const rp = rosterPlayers(t.roster);
         const tonightCount = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => {
           const abbr = TEAM_ABBR[p.team];
           return abbr && teamsPlayingToday.has(abbr);
