@@ -521,6 +521,18 @@
           transition: background 0.15s, color 0.15s;
         }
         .pm-close:hover { background: rgba(255,255,255,0.14); color: white; }
+        .pm-pts-header {
+          display: flex; flex-direction: column; align-items: flex-end;
+          margin-left: auto; margin-right: 2.2rem; flex-shrink: 0;
+        }
+        .pm-pts-header-val {
+          font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px;
+          color: var(--gold); line-height: 1;
+        }
+        .pm-pts-header-label {
+          font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+          color: rgba(255,255,255,0.35); text-transform: uppercase; margin-top: 1px;
+        }
 
         .pm-stats {
           display: grid; gap: 1px; padding: 0.85rem 1.1rem;
@@ -1160,13 +1172,18 @@
 
       // Stats grid — layout differs by position
       let statsHtml;
+      const ytdVal = d.ytd != null ? d.ytd : null;
+      const ytdDisplay = ytdVal == null ? '—' : ytdVal > 0 ? `+${ytdVal}` : '0';
+      const ytdCls = ytdVal != null && ytdVal > 0 ? ' green' : '';
+      const ytdBlock = `<div class="pm-stat-block">
+              <div class="pm-stat-val${ytdCls}">${ytdDisplay}</div>
+              <div class="pm-stat-label">Yesterday</div>
+            </div>`;
+
       if (pos === 'G') {
         statsHtml = `
           <div class="pm-stats-row">
-            <div class="pm-stat-block highlight">
-              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
-              <div class="pm-stat-label">Pool Pts</div>
-            </div>
+            ${ytdBlock}
             <div class="pm-stat-block">
               <div class="pm-stat-val">${d.gp ?? '—'}</div>
               <div class="pm-stat-label">GP</div>
@@ -1183,10 +1200,7 @@
       } else if (pos === 'D') {
         statsHtml = `
           <div class="pm-stats-row">
-            <div class="pm-stat-block highlight">
-              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
-              <div class="pm-stat-label">Pool Pts</div>
-            </div>
+            ${ytdBlock}
             <div class="pm-stat-block">
               <div class="pm-stat-val">${d.gp ?? '—'}</div>
               <div class="pm-stat-label">GP</div>
@@ -1203,10 +1217,7 @@
       } else {
         statsHtml = `
           <div class="pm-stats-row">
-            <div class="pm-stat-block highlight">
-              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
-              <div class="pm-stat-label">Pool Pts</div>
-            </div>
+            ${ytdBlock}
             <div class="pm-stat-block">
               <div class="pm-stat-val">${d.gp ?? '—'}</div>
               <div class="pm-stat-label">GP</div>
@@ -1224,11 +1235,9 @@
 
       const capStr = d.capHit ? `$${(d.capHit / 1e6).toFixed(2)}M` : null;
       const ppgStr = d.ppg ? `${d.ppg} PPG` : null;
-      const ytdStr = (d.ytd != null && d.ytd > 0) ? `+${d.ytd} yesterday` : null;
       const chips = [
         capStr     ? `<div class="pm-chip cap">💰 ${capStr}</div>` : '',
         ppgStr     ? `<div class="pm-chip">${ppgStr}</div>` : '',
-        ytdStr     ? `<div class="pm-chip ytd">${ytdStr}</div>` : '',
         tonightChip,
         statusChip,
       ].join('');
@@ -1251,6 +1260,10 @@
               ${ownerHtml}
             </div>
             ${d.tenure ? `<div class="pm-tenure">${d.tenure}</div>` : ''}
+          </div>
+          <div class="pm-pts-header">
+            <div class="pm-pts-header-val">${typeof d.pts === 'number' ? d.pts : '—'}</div>
+            <div class="pm-pts-header-label">Pool Pts</div>
           </div>
           <button class="pm-close" onclick="closePlayerModal()">✕</button>
         </div>
