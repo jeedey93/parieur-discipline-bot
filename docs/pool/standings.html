@@ -432,6 +432,7 @@
         .hist-pos.F { background: rgba(255,122,138,0.15); color: var(--pink); }
         .hist-pos.D { background: rgba(125,180,255,0.15); color: var(--blue); }
         .hist-pos.G { background: rgba(255,184,28,0.15);  color: var(--gold); }
+        .hist-pos.B { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
         .hist-name { font-size: 0.9rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; cursor: default; min-width: 0; }
         .hist-name.past { color: var(--silver); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.2); }
         .hist-name img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
@@ -1402,6 +1403,7 @@
           pts = _windowPtsByTradeKey[tradeKey] ?? t.points_accumulated_at_trade ?? '—';
         }
         rowData.push({ isCurrent, cls: isCurrent?'current':'past', name: t.player_to_name||t.player_to_slug, logo, tenure: tenureTooltip, col1, col2, col3, pts, gp, g, a, w, so,
+          actualPos: p ? normalizePos(p.position) : pos,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: (isCurrent && p?.nhl_player_id) ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : null });
       });
@@ -1418,6 +1420,7 @@
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
         const tenure = `${fmt(acqDate)} → Now`;
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, tenure, col1, col2, col3, pts, gp, g, a, w, so,
+          actualPos: normalizePos(p.position),
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
       });
@@ -1439,7 +1442,7 @@
             ? `<span class="hist-ytd pos">+${ytdVal}</span>`
             : `<span class="hist-ytd zero">—</span>`;
         return `<div class="hist-row ${r.cls}">
-          <span class="hist-pos ${pos}">${pos}</span>
+          <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}">${r.logo}${r.name}</span>
           <span class="hist-stat">${r.col1}</span>
           <span class="hist-stat">${r.col2}</span>
