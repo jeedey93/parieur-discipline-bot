@@ -1001,7 +1001,7 @@
       return [...r.F, ...r.D, ...r.G].filter(Boolean).reduce((s, p) => s + (p.cap_hit || 0), 0);
     }
     function teamFilled(rs) {
-      return [...(rs.F||[]), ...(rs.D||[]), ...(rs.G||[]), ...(rs.B||[])].filter(Boolean).length;
+      return [...(rs.F||[]), ...(rs.D||[]), ...(rs.G||[])].filter(Boolean).length;
     }
     function teamAvgPPG(team) {
       const rp = rosterPlayers(team.roster);
@@ -1345,7 +1345,7 @@
           <div class="detail-header-right">
             <div class="detail-summary">
               <span class="detail-badge cap">$${(cap / 1e6).toFixed(1)}M</span>
-              <span class="detail-badge filled">${filled}/26</span>
+              <span class="detail-badge filled">${filled}/20</span>
               <span class="detail-badge eff">${eff} pt/$M</span>
               ${ppg ? `<span class="detail-badge eff" title="Pool points per average games played">${ppg} PPG</span>` : ''}
             </div>
