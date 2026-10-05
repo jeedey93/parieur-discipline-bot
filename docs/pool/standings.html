@@ -618,18 +618,6 @@
     };
 
     // ── MOBILE NAV ───────────────────────────────────────────────────────────────
-    function toggleDrawer() {
-      const drawer = document.getElementById('nav-drawer');
-      const isOpen = drawer.classList.toggle('open');
-      document.getElementById('hamburger').setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    }
-    document.addEventListener('click', function(e) {
-      const drawer = document.getElementById('nav-drawer'), hamburger = document.getElementById('hamburger');
-      if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
-        drawer.classList.remove('open'); document.body.style.overflow = '';
-      }
-    });
 
     // ── STATE ────────────────────────────────────────────────────────────────────
     const _leagueCode = new URLSearchParams(window.location.search).get('league') || null;
