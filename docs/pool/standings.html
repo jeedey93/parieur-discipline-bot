@@ -1393,8 +1393,8 @@
           ${pos==='G'
             ? `${sortHdr('gp','GP')}${sortHdr('w','W')}<div class="lb-col-label hist-col-hide-g">${sortHdr('so','SO')}</div>`
             : `${sortHdr('gp','GP')}${sortHdr('g','G')}<div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
-          <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
           ${sortHdr('pts','Pts')}
+          <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
       // Build data objects for all rows so we can sort before rendering
@@ -1461,8 +1461,8 @@
           <span class="hist-stat">${r.col1}</span>
           <span class="hist-stat">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
-          ${ytdHtml}
           <span class="hist-pts">${r.pts}</span>
+          ${ytdHtml}
         </div>`;
       });
 
@@ -1478,8 +1478,8 @@
           <div class="lb-col-label left" style="font-size:0.75rem">TOTAL</div>
           <div></div><div></div>
           <div class="${pos==='G'?'hist-col-hide-g':'hist-col-hide'}"></div>
-          <div></div>
           <div class="hist-pts total">${total}</div>
+          <div></div>
         </div>
       </div>`;
     }
