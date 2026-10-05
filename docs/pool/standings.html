@@ -428,7 +428,7 @@
         }
         @media (max-width: 560px) {
           .hist-header-row,
-          .hist-row { grid-template-columns: 28px 1fr 36px 36px 48px 56px; }
+          .hist-row { grid-template-columns: 24px 1fr 32px 32px 44px 52px; gap: 0.25rem; padding: 0.45rem 0.5rem; }
           .hist-col-hide, .hist-col-hide-g { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
@@ -444,7 +444,7 @@
         .hist-pos.F { background: rgba(255,122,138,0.15); color: var(--pink); }
         .hist-pos.D { background: rgba(125,180,255,0.15); color: var(--blue); }
         .hist-pos.G { background: rgba(255,184,28,0.15);  color: var(--gold); }
-        .hist-name { font-size: 0.9rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; cursor: default; }
+        .hist-name { font-size: 0.9rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; cursor: default; min-width: 0; }
         .hist-name.past { color: var(--silver); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.2); }
         .hist-name img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
         .hist-stat { font-size: 0.85rem; font-weight: 700; color: var(--silver); text-align: right; }
