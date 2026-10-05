@@ -354,15 +354,6 @@
         .detail-badge.filled { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
         .detail-badge.eff    { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.25); }
 
-        /* FIX 4: View Roster button */
-        .btn-view-roster {
-          font-family: 'Bebas Neue', cursive; font-size: 0.78rem; letter-spacing: 1.5px;
-          background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
-          color: var(--silver); border-radius: 6px; padding: 4px 12px;
-          text-decoration: none; transition: background 0.15s, color 0.15s, border-color 0.15s;
-          white-space: nowrap;
-        }
-        .btn-view-roster:hover { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.25); }
 
         /* ── POS SCORES BAR ── */
         .pos-scores-bar { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
@@ -1334,8 +1325,7 @@
         <div class="pos-rank-badge ${totalRankCls}">${totalRankText}</div>
       </div>`;
 
-      /* FIX 4: View Roster link in detail header */
-      const rosterUrl = `/pool/roster?league=${_leagueCode}`;
+
 
       return `
         <div class="detail-header">
@@ -1343,7 +1333,6 @@
             <div class="detail-title">${team.name}</div>
           </div>
           <div class="detail-header-right">
-            <a class="btn-view-roster" href="${rosterUrl}" title="Open roster page">📋 View Roster →</a>
             <div class="detail-summary">
               <span class="detail-badge cap">$${(cap / 1e6).toFixed(1)}M</span>
               <span class="detail-badge filled">${filled}/26</span>
