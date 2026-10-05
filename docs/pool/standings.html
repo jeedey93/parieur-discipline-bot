@@ -712,17 +712,6 @@
         }
         .lb-tonight.zero { color: rgba(255,255,255,0.2); background: transparent; border-color: rgba(255,255,255,0.07); }
 
-        /* ── BACK BUTTON ── */
-        .btn-back {
-          display: inline-flex; align-items: center; gap: 0.35rem;
-          font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 2px;
-          color: var(--silver); background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
-          padding: 5px 12px; cursor: pointer; margin-bottom: 0.9rem;
-          transition: color 0.15s, background 0.15s, border-color 0.15s;
-        }
-        .btn-back:hover { color: white; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-
         /* ── DETAIL RANK ROW ── */
         .detail-rank-row {
           display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.15rem;
@@ -1419,39 +1408,12 @@
         tonightMatchups = {};
         try {
           const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-          let schedOk = false;
-          // Try static file first (fastest, no CORS)
-          try {
-            const schedRes = await fetch('/data/nhl_today.json');
-            if (schedRes.ok) {
-              const sched = await schedRes.json();
-              if (sched.date === todayStr) {
-                tonightMatchups = sched.matchups || {};
-                for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
-                schedOk = true;
-              }
-            }
-          } catch(_) {}
-          // Fallback: fetch directly from NHL API if file is stale
-          if (!schedOk) {
-            const nhleRes = await fetch(`https://api-web.nhle.com/v1/schedule/${todayStr}`);
-            if (nhleRes.ok) {
-              const data = await nhleRes.json();
-              for (const weekDay of (data.gameWeek || [])) {
-                if (weekDay.date === todayStr) {
-                  for (const g of (weekDay.games || [])) {
-                    const away = g.awayTeam?.abbrev;
-                    const home = g.homeTeam?.abbrev;
-                    if (away && home) {
-                      tonightMatchups[away] = home;
-                      tonightMatchups[home] = away;
-                      teamsPlayingToday.add(away);
-                      teamsPlayingToday.add(home);
-                    }
-                  }
-                  break;
-                }
-              }
+          const schedRes = await fetch('/data/nhl_today.json');
+          if (schedRes.ok) {
+            const sched = await schedRes.json();
+            if (sched.date === todayStr) {
+              tonightMatchups = sched.matchups || {};
+              for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
             }
           }
         } catch(_) {}
@@ -1743,7 +1705,6 @@
 
 
       return `
-        <button class="btn-back" onclick="setView('standings')">← Standings</button>
         <div class="detail-header">
           <div class="detail-header-left">
             <div class="detail-title">${team.name}</div>

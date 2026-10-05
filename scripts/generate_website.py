@@ -1,7 +1,9 @@
 import argparse
+import json
 import os
 import re
 import sys
+import urllib.request
 from datetime import datetime, timedelta
 from glob import glob
 from zoneinfo import ZoneInfo
@@ -1792,6 +1794,32 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
 
 
 def update_latest_predictions(preliminary=False):
+    # Refresh docs/data/nhl_today.json so the pool standings page always has today's schedule
+    try:
+        montreal_tz = ZoneInfo('America/Toronto')
+        today_str = datetime.now(montreal_tz).strftime('%Y-%m-%d')
+        nhl_today_path = "docs/data/nhl_today.json"
+        with urllib.request.urlopen(f"https://api-web.nhle.com/v1/schedule/{today_str}", timeout=10) as r:
+            sched = json.loads(r.read())
+        matchups = {}
+        games = []
+        for week_day in sched.get("gameWeek", []):
+            if week_day.get("date") == today_str:
+                for g in week_day.get("games", []):
+                    away = g.get("awayTeam", {}).get("abbrev")
+                    home = g.get("homeTeam", {}).get("abbrev")
+                    if away and home:
+                        matchups[away] = home
+                        matchups[home] = away
+                        games.append({"away": away, "home": home})
+                break
+        os.makedirs(os.path.dirname(nhl_today_path), exist_ok=True)
+        with open(nhl_today_path, "w") as f:
+            json.dump({"date": today_str, "matchups": matchups, "games": games}, f)
+        print(f"✅ Updated {nhl_today_path} — {len(games)} games on {today_str}")
+    except Exception as e:
+        print(f"⚠️  Could not update nhl_today.json: {e}")
+
     predictions_dir = "data/predictions"
     sports_config = [
         {"key": "nhl", "name": "NHL", "emoji": "🏒"},
