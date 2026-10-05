@@ -112,15 +112,6 @@
           cursor: pointer; transition: background 0.2s, border-color 0.2s;
         }
         .btn-sync:hover { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.5); }
-        .btn-sync:disabled { opacity: 0.5; cursor: not-allowed; }
-        .sync-status { font-size: 0.72rem; color: rgba(34,197,94,0.7); margin-left: 0.3rem; }
-        .sync-status.error { color: rgba(200,16,46,0.85); font-weight: 700; }
-        .last-synced-badge {
-          display: inline-flex; align-items: center; gap: 4px;
-          font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.3);
-          letter-spacing: 1px; white-space: nowrap;
-        }
-        .last-synced-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); opacity: 0.7; flex-shrink: 0; }
 
         /* ── VIEW TABS ── */
         .view-tabs {
@@ -581,10 +572,7 @@
     <header>
         <h1>Pool <span>Standings</span></h1>
         <div class="header-controls">
-            <span class="last-synced-badge" id="last-synced-badge" style="display:none"><span class="dot"></span><span id="last-synced-text"></span></span>
-            <button class="btn-sync" id="sync-btn" onclick="syncPlayerStats()" title="Manually refresh player stats from NHL API">🔄 Sync Stats</button>
             <button class="btn-sync" id="share-btn" onclick="shareStandings()" title="Share standings as image">📸 Share</button>
-            <span class="sync-status" id="sync-status"></span>
         </div>
     </header>
     <div id="content">
@@ -1010,7 +998,6 @@
     // ── LOAD ─────────────────────────────────────────────────────────────────────
     async function load() {
       initNav();
-      updateLastSyncedBadge();
       await loadScoringSettings();
       _windowPtsByTradeKey = {};
       fetch(`${SUPABASE_URL}/rest/v1/pool_leagues?code=eq.${_leagueCode}&select=name`,
@@ -1112,37 +1099,6 @@
     function selectTeam(id) { activeTeamId = id; activeView = 'team'; sessionStorage.setItem('pool_view', 'team'); render(); }
 
     // ── SYNC ─────────────────────────────────────────────────────────────────────
-    function updateLastSyncedBadge() {
-      const ts = sessionStorage.getItem('hp_last_synced');
-      if (!ts) return;
-      const d = new Date(Number(ts));
-      if (isNaN(d.getTime())) return;
-      const text = `Synced ${d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}`;
-      const badge = document.getElementById('last-synced-badge');
-      const textEl = document.getElementById('last-synced-text');
-      if (badge && textEl) { textEl.textContent = text; badge.style.display = 'inline-flex'; }
-    }
-    async function syncPlayerStats() {
-      const btn = document.getElementById('sync-btn'), status = document.getElementById('sync-status');
-      btn.disabled = true; status.textContent = 'Syncing…'; status.className = 'sync-status';
-      try { sessionStorage.removeItem(CACHE_KEY); } catch(_) {}
-      try {
-        const res = await fetch('/api/sync-pool-stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
-        const data = await res.json();
-        if (res.status === 200) {
-          sessionStorage.setItem('hp_last_synced', Date.now());
-          status.textContent = '✅ Stats updated!';
-          setTimeout(() => location.reload(), 1500);
-        }
-        else if (res.status === 202) {
-          sessionStorage.setItem('hp_last_synced', Date.now());
-          status.textContent = '✅ Sync started (check back in 5 min)';
-          updateLastSyncedBadge();
-          setTimeout(() => { btn.disabled = false; status.textContent = ''; }, 4000);
-        }
-        else { status.textContent = `❌ ${data.error || 'Failed'}`; status.className = 'sync-status error'; setTimeout(() => { btn.disabled = false; status.textContent = ''; }, 4000); }
-      } catch(e) { status.textContent = '❌ ' + e.message; status.className = 'sync-status error'; btn.disabled = false; }
-    }
 
     // ── INSIGHTS ─────────────────────────────────────────────────────────────────
     const SNAPSHOT_KEY = 'hp_pts_snapshot';
