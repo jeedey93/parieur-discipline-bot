@@ -447,18 +447,115 @@
         .hist-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: var(--gold); text-align: right; }
         .hist-pts.total { color: white; font-size: 1.1rem; }
 
-        /* ── PLAYER LINK POPUP ── */
-        .player-popup-overlay { position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.5); display: flex; align-items: flex-end; justify-content: center; padding: 0 0 env(safe-area-inset-bottom,0); }
+
+        /* ── PLAYER MODAL ── */
+        .player-popup-overlay {
+          position: fixed; inset: 0; z-index: 999;
+          background: rgba(0,0,0,0.6); display: flex; align-items: flex-end;
+          justify-content: center; padding: 0 0 env(safe-area-inset-bottom,0);
+          backdrop-filter: blur(4px);
+        }
         @media (min-width: 560px) { .player-popup-overlay { align-items: center; } }
-        .player-popup { background: #1a1d24; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px 14px 0 0; padding: 1.25rem 1rem 1.5rem; width: 100%; max-width: 420px; }
-        @media (min-width: 560px) { .player-popup { border-radius: 14px; } }
-        .player-popup-name { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; letter-spacing: 2px; color: white; margin-bottom: 1rem; text-align: center; }
-        .player-popup-links { display: flex; gap: 0.75rem; }
-        .player-popup-link { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.75rem; border-radius: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); color: white; background: rgba(255,255,255,0.05); transition: background 0.15s; }
-        .player-popup-link:hover { background: rgba(255,255,255,0.1); }
-        .player-popup-link.nhl { border-color: rgba(0,102,204,0.4); background: rgba(0,102,204,0.1); }
-        .player-popup-link.roto { border-color: rgba(255,184,28,0.3); background: rgba(255,184,28,0.06); color: var(--gold); }
-        .player-popup-cancel { margin-top: 0.75rem; width: 100%; padding: 0.6rem; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 0.85rem; cursor: pointer; }
+        .player-popup {
+          background: #111827; border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 18px 18px 0 0; width: 100%; max-width: 460px;
+          overflow: hidden;
+        }
+        @media (min-width: 560px) { .player-popup { border-radius: 18px; } }
+
+        .pm-header {
+          display: flex; align-items: center; gap: 0.9rem;
+          padding: 1.1rem 1.1rem 0.85rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+          position: relative;
+        }
+        .pm-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
+        .pm-logo-placeholder { width: 48px; height: 48px; flex-shrink: 0; }
+        .pm-header-info { flex: 1; min-width: 0; }
+        .pm-name {
+          font-family: 'Bebas Neue', cursive; font-size: 1.35rem;
+          letter-spacing: 2px; color: white; line-height: 1.1;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .pm-meta { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.3rem; flex-wrap: wrap; }
+        .pm-pos-badge {
+          font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px;
+          border-radius: 3px; padding: 1px 7px;
+        }
+        .pm-pos-badge.F { background: rgba(255,122,138,0.15); color: var(--pink); }
+        .pm-pos-badge.D { background: rgba(125,180,255,0.15); color: var(--blue); }
+        .pm-pos-badge.G { background: rgba(255,184,28,0.15); color: var(--gold); }
+        .pm-team-name { font-size: 0.8rem; font-weight: 700; color: var(--silver); letter-spacing: 0.5px; }
+        .pm-owner-badge {
+          font-size: 0.72rem; font-weight: 700; border-radius: 3px; padding: 1px 7px;
+        }
+        .pm-tenure { font-size: 0.72rem; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; margin-top: 0.15rem; }
+        .pm-close {
+          position: absolute; top: 0.85rem; right: 0.85rem;
+          width: 28px; height: 28px; border-radius: 50%;
+          background: rgba(255,255,255,0.07); border: none; color: var(--silver);
+          font-size: 1rem; line-height: 1; cursor: pointer; display: flex;
+          align-items: center; justify-content: center;
+          transition: background 0.15s, color 0.15s;
+        }
+        .pm-close:hover { background: rgba(255,255,255,0.14); color: white; }
+
+        .pm-stats {
+          display: grid; gap: 1px; padding: 0.85rem 1.1rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pm-stats-row { display: flex; gap: 0.5rem; }
+        .pm-stat-block {
+          flex: 1; background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07); border-radius: 8px;
+          padding: 0.5rem 0.6rem; text-align: center;
+        }
+        .pm-stat-val {
+          font-family: 'Bebas Neue', cursive; font-size: 1.5rem;
+          letter-spacing: 1px; line-height: 1; color: white;
+        }
+        .pm-stat-val.gold { color: var(--gold); }
+        .pm-stat-val.green { color: var(--green); }
+        .pm-stat-val.pink { color: var(--pink); }
+        .pm-stat-val.blue { color: var(--blue); }
+        .pm-stat-label {
+          font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+          text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 2px;
+        }
+        .pm-stat-block.highlight {
+          border-color: rgba(255,184,28,0.3);
+          background: rgba(255,184,28,0.05);
+        }
+
+        .pm-extra {
+          display: flex; gap: 0.5rem; padding: 0.75rem 1.1rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap;
+        }
+        .pm-chip {
+          font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
+          background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 5px; padding: 3px 10px; color: var(--silver);
+          display: flex; align-items: center; gap: 0.3rem;
+        }
+        .pm-chip.ytd { border-color: rgba(34,197,94,0.3); color: var(--green); background: rgba(34,197,94,0.07); }
+        .pm-chip.cap { border-color: rgba(255,255,255,0.1); }
+        .pm-chip.playing { border-color: rgba(255,184,28,0.3); color: var(--gold); background: rgba(255,184,28,0.07); }
+        .pm-chip.past-player { border-color: rgba(255,80,80,0.2); color: rgba(255,80,80,0.6); background: rgba(255,80,80,0.05); }
+
+        .pm-actions { display: flex; gap: 0.6rem; padding: 0.85rem 1.1rem; }
+        .pm-btn {
+          flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+          padding: 0.7rem 1rem; border-radius: 9px;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700;
+          letter-spacing: 1px; text-decoration: none; cursor: pointer;
+          border: 1px solid rgba(255,255,255,0.12); color: white;
+          background: rgba(255,255,255,0.05); transition: background 0.15s;
+        }
+        .pm-btn:hover { background: rgba(255,255,255,0.1); }
+        .pm-btn.nhl { border-color: rgba(0,102,204,0.5); background: rgba(0,102,204,0.12); color: #7db4ff; }
+        .pm-btn.nhl:hover { background: rgba(0,102,204,0.22); }
+        .pm-btn.cancel { color: rgba(255,255,255,0.4); }
+
         .hist-section-label { font-family: 'Bebas Neue', cursive; font-size: 0.78rem; letter-spacing: 3px; padding: 0.3rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .hist-section-label.F { color: var(--pink); background: rgba(255,122,138,0.04); }
         .hist-section-label.D { color: var(--blue); background: rgba(125,180,255,0.04); }
@@ -680,6 +777,10 @@
             <div class="skeleton-row"></div>
         </div>
     </div>
+</div>
+
+<div id="player-modal-overlay" class="player-popup-overlay" style="display:none" onclick="if(event.target===this)closePlayerModal()">
+  <div class="player-popup" id="player-modal-box"></div>
 </div>
 
 <script>
@@ -1006,8 +1107,146 @@
       }
       return n;
     }
+    function closePlayerModal() {
+      document.getElementById('player-modal-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function showPlayerModal(d) {
+      const pos = d.pos || 'F';
+      const posColors = { F: 'var(--pink)', D: 'var(--blue)', G: 'var(--gold)' };
+      const abbr = d.nhlTeam ? TEAM_ABBR[d.nhlTeam] : null;
+      const logoHtml = abbr
+        ? `<img class="pm-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">`
+        : `<div class="pm-logo-placeholder"></div>`;
+
+      // Tonight matchup
+      const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
+      const tonightChip = opponentAbbr
+        ? `<div class="pm-chip playing">🏒 vs ${opponentAbbr} tonight</div>`
+        : '';
+
+      // Past player chip
+      const statusChip = !d.isCurrent
+        ? `<div class="pm-chip past-player">No longer on roster</div>`
+        : '';
+
+      // Stats grid — layout differs by position
+      let statsHtml;
+      if (pos === 'G') {
+        statsHtml = `
+          <div class="pm-stats-row">
+            <div class="pm-stat-block highlight">
+              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
+              <div class="pm-stat-label">Pool Pts</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val">${d.gp ?? '—'}</div>
+              <div class="pm-stat-label">GP</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val green">${d.w ?? '—'}</div>
+              <div class="pm-stat-label">Wins</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val gold">${d.so ?? '—'}</div>
+              <div class="pm-stat-label">Shutouts</div>
+            </div>
+          </div>`;
+      } else if (pos === 'D') {
+        statsHtml = `
+          <div class="pm-stats-row">
+            <div class="pm-stat-block highlight">
+              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
+              <div class="pm-stat-label">Pool Pts</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val">${d.gp ?? '—'}</div>
+              <div class="pm-stat-label">GP</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val blue">${d.g ?? '—'}</div>
+              <div class="pm-stat-label">Goals</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val blue">${d.a ?? '—'}</div>
+              <div class="pm-stat-label">Assists</div>
+            </div>
+          </div>`;
+      } else {
+        statsHtml = `
+          <div class="pm-stats-row">
+            <div class="pm-stat-block highlight">
+              <div class="pm-stat-val gold">${typeof d.pts === 'number' ? d.pts : '—'}</div>
+              <div class="pm-stat-label">Pool Pts</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val">${d.gp ?? '—'}</div>
+              <div class="pm-stat-label">GP</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val pink">${d.g ?? '—'}</div>
+              <div class="pm-stat-label">Goals</div>
+            </div>
+            <div class="pm-stat-block">
+              <div class="pm-stat-val pink">${d.a ?? '—'}</div>
+              <div class="pm-stat-label">Assists</div>
+            </div>
+          </div>`;
+      }
+
+      const capStr = d.capHit ? `$${(d.capHit / 1e6).toFixed(2)}M` : null;
+      const ppgStr = d.ppg ? `${d.ppg} PPG` : null;
+      const ytdStr = (d.ytd != null && d.ytd > 0) ? `+${d.ytd} yesterday` : null;
+      const chips = [
+        capStr     ? `<div class="pm-chip cap">💰 ${capStr}</div>` : '',
+        ppgStr     ? `<div class="pm-chip">${ppgStr}</div>` : '',
+        ytdStr     ? `<div class="pm-chip ytd">${ytdStr}</div>` : '',
+        tonightChip,
+        statusChip,
+      ].join('');
+
+      const ownerHtml = d.owner
+        ? `<span class="pm-owner-badge" ${ownerBadge(d.owner)}>${d.owner}</span>` : '';
+
+      const nhlBtn = d.nhlId
+        ? `<a class="pm-btn nhl" href="https://www.nhl.com/player/${d.nhlId}" target="_blank" rel="noopener">NHL.com ↗</a>`
+        : '';
+
+      document.getElementById('player-modal-box').innerHTML = `
+        <div class="pm-header">
+          ${logoHtml}
+          <div class="pm-header-info">
+            <div class="pm-name">${d.name}</div>
+            <div class="pm-meta">
+              <span class="pm-pos-badge ${pos}">${pos}</span>
+              ${abbr ? `<span class="pm-team-name">${abbr}</span>` : ''}
+              ${ownerHtml}
+            </div>
+            ${d.tenure ? `<div class="pm-tenure">${d.tenure}</div>` : ''}
+          </div>
+          <button class="pm-close" onclick="closePlayerModal()">✕</button>
+        </div>
+        <div class="pm-stats">${statsHtml}</div>
+        ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
+        <div class="pm-actions">
+          ${nhlBtn}
+          <button class="pm-btn cancel" onclick="closePlayerModal()">Close</button>
+        </div>
+      `;
+
+      const overlay = document.getElementById('player-modal-overlay');
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Keep old name as alias so any remaining inline callers still work
     function showPlayerLinks(nhlId, slug) {
-      if (nhlId) window.open(`https://www.nhl.com/player/${nhlId}`, '_blank', 'noopener');
+      const p = slugMap()[slug];
+      if (!p) { if (nhlId) window.open(`https://www.nhl.com/player/${nhlId}`, '_blank', 'noopener'); return; }
+      showPlayerModal({ name: formatName(p.player_name), pos: normalizePos(p.position), nhlTeam: p.team, nhlId, isCurrent: true,
+        gp: p.games_played, g: p.goals, a: p.assists, w: p.wins, so: p.shutouts,
+        pts: poolScore(p), ppg: null, ytd: _playerYesterdayPts[nhlId] ?? null, capHit: p.cap_hit, tenure: null, owner: null });
     }
     function rosterPlayers(rs) {
       const m = slugMap();
@@ -1574,6 +1813,7 @@
         rowData.push({ isCurrent, cls: isCurrent?'current':'past', name: t.player_to_name||t.player_to_slug, logo, tenure: tenureTooltip, col1, col2, col3, pts, gp, g, a, w, so,
           actualPos: p ? normalizePos(p.position) : pos,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
+          capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: (isCurrent && p?.nhl_player_id) ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : null });
       });
@@ -1594,6 +1834,7 @@
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, tenure, col1, col2, col3, pts, gp, g, a, w, so,
           actualPos: p.position ? normalizePos(p.position) : pos,
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
+          capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
       });
@@ -1614,9 +1855,10 @@
           : ytdVal > 0
             ? `<span class="hist-ytd pos">+${ytdVal}</span>`
             : `<span class="hist-ytd zero">—</span>`;
+        const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" ${r.nhlId||r.slug ? `onclick="showPlayerLinks(${r.nhlId||'null'},'${r.slug||''}')" style="cursor:pointer"` : ''}>${r.logo}${r.name}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}</span>
           <span class="hist-stat">${r.col1}</span>
           <span class="hist-stat${pos==='G'?'':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
@@ -2004,6 +2246,10 @@
     }
 
     load();
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePlayerModal();
+    });
 
     document.addEventListener('wheel', e => {
       const tabs = e.target.closest('.team-tabs');
