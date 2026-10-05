@@ -1365,8 +1365,8 @@
       loadWarnings=[];
       const cached=sessionStorage.getItem(PLAYER_CACHE_KEY);
       const cacheTime=sessionStorage.getItem(PLAYER_CACHE_KEY+'_time');
-      const cacheAgeHours=cacheTime?Math.floor((Date.now()-parseInt(cacheTime))/3600000):-1;
-      if(cached&&cacheAgeHours<24){
+      const cacheAgeMin=cacheTime?Math.floor((Date.now()-parseInt(cacheTime))/60000):-1;
+      if(cached&&cacheAgeMin<30){
         try{
           allPlayers=JSON.parse(cached);
           if(!Array.isArray(allPlayers)||!allPlayers.length)throw new Error('empty');
