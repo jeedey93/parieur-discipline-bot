@@ -1311,7 +1311,17 @@
         ${hasF ? buildHistTable(team, 'F', 'Forwards') : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No forwards drafted yet.</div>'}
         ${hasD ? buildHistTable(team, 'D', 'Defence')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No defencemen drafted yet.</div>'}
         ${hasG ? buildHistTable(team, 'G', 'Goalies')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No goalies drafted yet.</div>'}
-        ${roster.B?.some(Boolean) ? buildHistTable(team, 'B', 'Bench') : ''}
+        ${(() => {
+          const m = slugMap();
+          const bench = (roster.B || []).filter(Boolean);
+          if (!bench.length) return '';
+          const benchSkaters = bench.filter(s => { const p = m[s]; return !p || normalizePos(p.position) !== 'G'; });
+          const benchGoalies = bench.filter(s => { const p = m[s]; return p && normalizePos(p.position) === 'G'; });
+          const skaterTeam = benchSkaters.length ? { ...team, roster: { ...team.roster, B: benchSkaters } } : null;
+          const goalieTeam = benchGoalies.length ? { ...team, roster: { ...team.roster, G: benchGoalies } } : null;
+          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench') : '') +
+                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)') : '');
+        })()}
       `;
     }
 
