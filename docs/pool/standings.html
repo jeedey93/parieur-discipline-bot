@@ -1054,7 +1054,8 @@
         render();
         loadYesterdayPts(); // async — re-renders when done
       } catch(e) {
-        document.getElementById('content').innerHTML = `<div class="msg">Failed to load data. <button class="btn-refresh" onclick="load()">Retry</button></div>`;
+        console.error('load() failed:', e);
+        document.getElementById('content').innerHTML = `<div class="msg">Failed to load data (${e?.message||e}). <button class="btn-refresh" onclick="load()">Retry</button></div>`;
       }
     }
 
