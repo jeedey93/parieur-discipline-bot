@@ -100,6 +100,7 @@ Rules:
 - Only reference stats that are actually in the data — never invent numbers or claim a player is struggling/excelling without evidence in the stats.
 - No emojis. No hashtags. No bullet points. Plain prose only.
 - Do not add quotes around your response.
+- Pool scoring: Forwards score 1pt per NHL point. Defence score 2pts/goal + 1pt/assist. Goalies score 2pts/win + 3pts/shutout + 1pt/OT loss. Goalie pts/GP is the right way to judge them — a goalie with 1.5pts/GP is performing well even if their total is lower than forwards.
 
 Team: {team_name} (managed by {owner})
 Current rank: #{rank} {rank_note}
@@ -152,13 +153,17 @@ def build_roster_summary(roster: dict, player_map: dict) -> str:
             p = player_map.get(s)
             if p:
                 name = p.get("player_name", s)
+                gp = p.get("games_played", 0) or 0
                 if pos == "G":
                     pts = (p.get("wins", 0) or 0) * 2 + (p.get("ot_losses", 0) or 0) + (p.get("shutouts", 0) or 0) * 3
+                    ppg = f"{pts / gp:.2f}" if gp > 0 else "0.00"
+                    players.append(f"{name} ({pts}pts in {gp}GP, {ppg}pts/GP)")
                 elif pos == "D":
                     pts = (p.get("goals", 0) or 0) * 2 + (p.get("assists", 0) or 0)
+                    players.append(f"{name} ({pts}pts)")
                 else:
                     pts = p.get("points", 0) or 0
-                players.append(f"{name} ({pts}pts)")
+                    players.append(f"{name} ({pts}pts)")
         if players:
             lines.append(f"{label}: {', '.join(players)}")
     return "\n".join(lines)
@@ -166,6 +171,7 @@ def build_roster_summary(roster: dict, player_map: dict) -> str:
 
 def best_player_and_weak_pos(roster: dict, player_map: dict) -> tuple[str, str]:
     pos_totals = {"F": 0, "D": 0, "G": 0}
+    pos_counts = {"F": 0, "D": 0, "G": 0}
     best_name, best_pts = "Unknown", -1
     for pos in ("F", "D", "G"):
         for s in roster.get(pos, []):
@@ -178,12 +184,17 @@ def best_player_and_weak_pos(roster: dict, player_map: dict) -> tuple[str, str]:
                 pts = (p.get("goals", 0) or 0) * 2 + (p.get("assists", 0) or 0)
             else:
                 pts = p.get("points", 0) or 0
+            gp = max(p.get("games_played", 0) or 0, 1)
             pos_totals[pos] += pts
+            pos_counts[pos] += gp
             if pts > best_pts:
                 best_pts = pts
                 best_name = p.get("player_name", s)
     labels = {"F": "Forwards", "D": "Defence", "G": "Goalies"}
-    weak_pos = labels[min(pos_totals, key=pos_totals.get)]
+    # Compare pts-per-game so goalies aren't unfairly flagged just for having fewer players
+    pos_ppg = {pos: (pos_totals[pos] / pos_counts[pos]) if pos_counts[pos] > 0 else 0
+               for pos in ("F", "D", "G")}
+    weak_pos = labels[min(pos_ppg, key=pos_ppg.get)]
     return best_name, weak_pos
 
 
