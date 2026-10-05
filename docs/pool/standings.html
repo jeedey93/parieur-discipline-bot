@@ -706,6 +706,8 @@
     let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null;
     let _lastSnapshot = {}; // team_id -> pts from most recent daily snapshot
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
+    let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
+    let tonightMatchups = {};          // abbrev → opponent abbrev
 
     function yesterdayIsoDay() {
       const d = new Date();
@@ -1119,6 +1121,20 @@
         const tRes = await fetch(`${SUPABASE_URL}/rest/v1/player_trades?league_code=eq.${_leagueCode}&select=team_id,player_to_slug,player_to_name,player_to_position,date_from_acquired,date_traded,points_accumulated_at_trade&order=date_from_acquired.asc`,
           { headers: sbHeaders() });
         if (tRes.ok) currentTrades = await tRes.json();
+        // Load today's NHL schedule for opponent logos
+        teamsPlayingToday = new Set();
+        tonightMatchups = {};
+        try {
+          const schedRes = await fetch('/data/nhl_today.json');
+          if (schedRes.ok) {
+            const sched = await schedRes.json();
+            const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+            if (sched.date === todayStr) {
+              tonightMatchups = sched.matchups || {};
+              for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
+            }
+          }
+        } catch(_) {}
         // Fetch latest snapshot for "since last update" delta
         try {
           const snapRes = await fetch(
@@ -1471,7 +1487,9 @@
         const tradeKey = tradeWindowKey(t, isCurrent);
         const p = m[t.player_to_slug] ? { ...m[t.player_to_slug], _slug: t.player_to_slug } : null;
         const abbr = p ? TEAM_ABBR[p.team] : null;
-        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+        const opponentAbbr = isCurrent && abbr ? tonightMatchups[abbr] : null;
+        const opponentLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
+        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">${opponentLogo}` : '';
         const acqDate = t.date_from_acquired ? new Date(t.date_from_acquired) : ACTIVE_ACQUIRED_FALLBACK_DATE;
         const tenureTooltip = isCurrent
           ? `${fmt(acqDate)} → Now`
@@ -1495,7 +1513,9 @@
 
       currentNoDraft.forEach(p => {
         const abbr = TEAM_ABBR[p.team];
-        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+        const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
+        const opponentLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
+        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">${opponentLogo}` : '';
         const d = ownedStatsDelta(p, team, p._slug);
         const gp=d.gamesPlayed, g=d.goals, a=d.assists, w=d.wins, so=d.shutouts;
         let col1='—', col2='—', col3='—';
@@ -1625,12 +1645,14 @@
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+            const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
+            const opponentLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:2px">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
             const d = ownedStatsDelta(p, item.team, p._slug);
             const s1 = d.pos === 'G' ? d.wins   : d.goals;
             const s2 = d.pos === 'G' ? d.shutouts : d.assists;
             return `<div class="top-player-row">
               <div class="top-player-rank">${i+1}</div>
-              <div class="top-player-info">${logo}
+              <div class="top-player-info">${logo}${opponentLogo}
                 <div>
                   <div class="top-player-name">${formatName(p.player_name)}</div>
                 </div>
