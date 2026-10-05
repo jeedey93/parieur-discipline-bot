@@ -982,10 +982,9 @@
       const dressed = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
       if (!dressed.length) return null;
       const totalGP = dressed.reduce((s, p) => s + (ownedStatsDelta(p, team, p._slug)?.gamesPlayed ?? 0), 0);
-      const avgGP = totalGP / dressed.length;
-      if (avgGP <= 0) return null;
+      if (totalGP <= 0) return null;
       const pts = teamTotalPts(team);
-      return (pts / avgGP).toFixed(2);
+      return (pts / totalGP).toFixed(2);
     }
     function posRankForTeam(team, pos) {
       const ranked = [...teams].map(t => ({ id: t.id, score: teamSubScores(t)[pos] })).sort((a, b) => b.score - a.score);
