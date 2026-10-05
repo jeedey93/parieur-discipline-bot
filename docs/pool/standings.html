@@ -167,8 +167,8 @@
          * We keep border-left-color override for the active stripe.
          */
         .lb-row.active {
-          box-shadow: inset 0 0 0 1px rgba(255,184,28,0.18), inset 4px 0 0 var(--gold);
-          background-image: linear-gradient(90deg, rgba(255,184,28,0.06) 0%, rgba(255,184,28,0.01) 50%, transparent 100%);
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), inset 4px 0 0 rgba(255,255,255,0.35);
+          background-image: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 50%, transparent 100%);
         }
         /* Rank-1 + active: merge both gold gradients so neither wipes the other */
         .lb-row.rank-1.active {
@@ -178,13 +178,13 @@
         }
         .lb-row.rank-2.active {
           background: linear-gradient(90deg, rgba(192,200,212,0.05) 0%, transparent 60%);
-          border-left: 3px solid var(--gold);
-          box-shadow: inset 0 0 0 1px rgba(255,184,28,0.18);
+          border-left: 3px solid rgba(255,255,255,0.35);
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
         }
         .lb-row.rank-3.active {
           background: linear-gradient(90deg, rgba(205,127,50,0.05) 0%, transparent 60%);
-          border-left: 3px solid var(--gold);
-          box-shadow: inset 0 0 0 1px rgba(255,184,28,0.18);
+          border-left: 3px solid rgba(255,255,255,0.35);
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
         }
 
         /* Divider between podium and rest of field */
