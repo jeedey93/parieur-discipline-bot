@@ -584,36 +584,14 @@
 <nav class="site-nav">
     <div class="site-nav-inner">
         <a class="site-nav-brand" href="../index.html">Parieur Discipliné</a>
-        <div class="site-nav-links">
-            <a href="/pool" id="nav-home">Home</a>
-            <a href="" id="nav-draft">Draft</a>
-            <a href="" id="nav-live-draft">Live Draft</a>
-            <a href="" id="nav-standings" class="active">Standings</a>
-            <a href="" id="nav-trades">Roster</a>
-            <a href="" id="nav-settings">Settings</a>
-        </div>
-        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleDrawer()">
-            <span></span><span></span><span></span>
-        </button>
+        <div id="league-badge" style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.4);"></div>
     </div>
 </nav>
-
-<div class="nav-drawer" id="nav-drawer">
-    <a href="/pool">Home</a>
-    <a href="" id="nav-drawer-draft">Draft</a>
-    <a href="" id="nav-drawer-live-draft">Live Draft</a>
-    <a href="" id="nav-drawer-standings" class="active">Standings</a>
-    <a href="" id="nav-drawer-trades">Roster</a>
-    <a href="" id="nav-drawer-settings">Settings</a>
-</div>
 
 <div class="page-wrap">
     <header>
         <h1>Pool <span>Standings</span></h1>
         <div class="header-controls">
-            <div class="league-code-badge" id="league-badge-row" style="display:none">
-                League <span id="league-badge">—</span>
-            </div>
             <span class="last-synced-badge" id="last-synced-badge" style="display:none"><span class="dot"></span><span id="last-synced-text"></span></span>
             <button class="btn-sync" id="sync-btn" onclick="syncPlayerStats()" title="Manually refresh player stats from NHL API">🔄 Sync Stats</button>
             <button class="btn-sync" id="share-btn" onclick="shareStandings()" title="Share standings as image">📸 Share</button>
@@ -1053,21 +1031,7 @@
 
     // ── NAV ──────────────────────────────────────────────────────────────────────
     function initNav() {
-      const links = {
-        'nav-draft':             `/pool/join?league=${_leagueCode}`,
-        'nav-live-draft':        `/pool/live-draft?league=${_leagueCode}`,
-        'nav-standings':         `/pool/standings?league=${_leagueCode}`,
-        'nav-trades':            `/pool/roster?league=${_leagueCode}`,
-        'nav-settings':          `/pool/settings?league=${_leagueCode}`,
-        'nav-drawer-draft':      `/pool/join?league=${_leagueCode}`,
-        'nav-drawer-live-draft': `/pool/live-draft?league=${_leagueCode}`,
-        'nav-drawer-standings':  `/pool/standings?league=${_leagueCode}`,
-        'nav-drawer-trades':     `/pool/roster?league=${_leagueCode}`,
-        'nav-drawer-settings':   `/pool/settings?league=${_leagueCode}`,
-      };
-      Object.entries(links).forEach(([id, href]) => { const el = document.getElementById(id); if (el) el.href = href; });
       document.getElementById('league-badge').textContent = _leagueCode;
-      document.getElementById('league-badge-row').style.display = '';
     }
 
     // ── LOAD ─────────────────────────────────────────────────────────────────────
