@@ -203,7 +203,7 @@
 
         .lb-row {
           display: grid;
-          grid-template-columns: 36px 1fr 44px 52px 52px 52px 60px 52px 60px;
+          grid-template-columns: 36px 1fr 44px 52px 52px 52px 60px 52px 52px 60px;
           align-items: center; padding: 0.75rem 1rem; gap: 0.5rem;
           border-bottom: 1px solid rgba(255,255,255,0.05);
           cursor: pointer; transition: background 0.15s, box-shadow 0.15s;
@@ -977,6 +977,16 @@
     function teamFilled(rs) {
       return [...(rs.F||[]), ...(rs.D||[]), ...(rs.G||[]), ...(rs.B||[])].filter(Boolean).length;
     }
+    function teamAvgPPG(team) {
+      const rp = rosterPlayers(team.roster);
+      const dressed = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
+      if (!dressed.length) return null;
+      const totalGP = dressed.reduce((s, p) => s + (ownedStatsDelta(p, team, p._slug)?.gamesPlayed ?? 0), 0);
+      const avgGP = totalGP / dressed.length;
+      if (avgGP <= 0) return null;
+      const pts = teamTotalPts(team);
+      return (pts / avgGP).toFixed(2);
+    }
     function posRankForTeam(team, pos) {
       const ranked = [...teams].map(t => ({ id: t.id, score: teamSubScores(t)[pos] })).sort((a, b) => b.score - a.score);
       return ranked.findIndex(r => r.id === team.id) + 1;
@@ -1209,6 +1219,7 @@
       const rowsHtml = sorted.map((t, i) => {
         const pts = teamTotalPts(t);
         const sub = teamSubScores(t);
+        const ppg = teamAvgPPG(t);
         const gap = i === 0 ? 'Leader' : `−${leaderPts - pts}`;
         const rp = rosterPlayers(t.roster);
         const ownedGP = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
@@ -1231,6 +1242,7 @@
           <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
           <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
           <div class="lb-stat pts">${pts}</div>
+          <div class="lb-stat lb-col-hide" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
           ${(() => { const snap = _lastSnapshot[t.id]; if (snap === undefined) return '<div class="lb-stat delta zero">—</div>'; const d = pts - snap; const cls = d > 0 ? 'pos' : d < 0 ? 'neg' : 'zero'; const label = d > 0 ? `+${d}` : d < 0 ? String(d) : '—'; return `<div class="lb-stat delta ${cls}">${label}</div>`; })()}
           <div class="lb-stat ${i===0?'gap leader':'gap'}">${gap}</div>
         </div>`;
@@ -1247,6 +1259,7 @@
           <div class="lb-col-label lb-col-hide" style="color:var(--blue)">D</div>
           <div class="lb-col-label lb-col-hide" style="color:var(--gold)">G</div>
           <div class="lb-col-label">Total</div>
+          <div class="lb-col-label lb-col-hide" title="Pool points per average games played">PPG</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points since last daily update">Ytd</div>
           <div class="lb-col-label">Gap</div>
         </div>
@@ -1265,6 +1278,7 @@
       const cap = teamCapUsed(team.roster);
       const filled = teamFilled(team.roster);
       const eff = cap > 0 ? (totalPts / (cap / 1e6)).toFixed(1) : '—';
+      const ppg = teamAvgPPG(team);
       const rank = sorted.findIndex(t => t.id === team.id) + 1;
       const gap = rank === 1 ? 'Leading 🏆' : `${leaderPts - totalPts} pts behind 1st`;
       const n = teams.length;
@@ -1299,6 +1313,7 @@
               <span class="detail-badge cap">$${(cap / 1e6).toFixed(1)}M</span>
               <span class="detail-badge filled">${filled}/26</span>
               <span class="detail-badge eff">${eff} pt/$M</span>
+              ${ppg ? `<span class="detail-badge eff" title="Pool points per average games played">${ppg} PPG</span>` : ''}
             </div>
           </div>
         </div>
