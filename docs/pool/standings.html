@@ -1317,7 +1317,7 @@
         ${hasG ? buildHistTable(team, 'G', 'Goalies')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No goalies drafted yet.</div>'}
         ${(() => {
           const m = slugMap();
-          const bench = (roster.B || []).filter(Boolean);
+          const bench = (team.roster.B || []).filter(s => s && typeof s === 'string');
           if (!bench.length) return '';
           const benchSkaters = bench.filter(s => { const p = m[s]; return !p || normalizePos(p.position) !== 'G'; });
           const benchGoalies = bench.filter(s => { const p = m[s]; return p && normalizePos(p.position) === 'G'; });
