@@ -1,14 +1,14 @@
 ============================================================
 RED WINGS - LINEUP
-Last Updated: 2026-10-02 03:21 PM ET
+Last Updated: 2026-10-04 02:12 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Alex De Brincat — Andrew Copp — Lucas Raymond
-Line 2: Emmitt Finnie — J.T. Compher — Viktor Arvidsson
-Line 3: Michael Rasmussen — Marco Kasper — Keegan Kolesar
-Line 4: Mason Appleton — Nate Danielson — Michael Brandsegg-Nygard
+Line 2: Michael Brandsegg-Nygard — Emmitt Finnie — Viktor Arvidsson
+Line 3: Michael Rasmussen — J.T. Compher — Keegan Kolesar
+Line 4: Mason Appleton — Nate Danielson — Carter Mazur
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -25,8 +25,8 @@ SCRATCHED / INJURED:
 ----------------------------------------
   Andreas Englund (scratched)
   William Wallinder (scratched)
-  Carter Mazur (scratched)
   Dylan Larkin (upper body) (injured)
   Jacob Bernard-Docker (upper body) (injured)
+  Marco Kasper (upper body) (injured)
 
 ============================================================

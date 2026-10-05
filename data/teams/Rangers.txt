@@ -1,14 +1,14 @@
 ============================================================
 RANGERS - LINEUP
-Last Updated: 2026-10-02 03:21 PM ET
+Last Updated: 2026-10-04 02:12 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Gabe Perreault — Mika Zibanejad — Alexis Lafreniere
-Line 2: Pavel Dorofeyev — J.T. Miller — Oliver Bjorkstrand
+Line 2: Tye Kartye — J.T. Miller — Pavel Dorofeyev
 Line 3: Will Cuylle — Noah Laba — Eeli Tolvanen
-Line 4: Tye Kartye — Joseph Veleno — Matt Rempe
+Line 4: Oliver Bjorkstrand — Joseph Veleno — Jaroslav Chmelar
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -24,7 +24,7 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Matthew Robertson (scratched)
-  Jaroslav Chmelar (scratched)
+  Matt Rempe (scratched)
   Scott Morrow (scratched)
   Joonas Korpisalo (lower body) (injured)
 
