@@ -335,15 +335,21 @@
         @media (min-width: 861px) { .team-tab { font-size: 1rem; padding: 7px 20px; } }
 
         /* ── DETAIL ── */
-        .detail-header { margin-bottom: 1.1rem; }
-        .detail-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 3px; color: white; line-height: 1.1; }
-        @media (min-width: 861px) { .detail-title { font-size: 1.9rem; } }
-        .detail-meta {
-          display: flex; gap: 1.25rem; margin-top: 0.45rem; flex-wrap: wrap;
+        .detail-header {
+          display: flex; align-items: flex-start; justify-content: space-between;
+          margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
         }
-        .detail-meta-item { display: flex; flex-direction: column; gap: 1px; }
-        .detail-meta-val { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: rgba(255,255,255,0.9); line-height: 1; }
-        .detail-meta-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+        .detail-header-left { display: flex; flex-direction: column; gap: 0.3rem; }
+        .detail-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 3px; color: white; }
+        @media (min-width: 861px) { .detail-title { font-size: 1.9rem; } }
+        .detail-rank-label { font-size: 0.8rem; font-weight: 700; color: var(--silver); letter-spacing: 1px; }
+        .detail-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+        .detail-summary { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+        .detail-badge { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; padding: 2px 10px; border-radius: 4px; }
+        .detail-badge.pts    { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.3); }
+        .detail-badge.cap    { background: rgba(255,255,255,0.06); color: var(--silver); border: 1px solid rgba(255,255,255,0.1); }
+        .detail-badge.filled { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+        .detail-badge.eff    { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.25); }
 
 
         /* ── POS SCORES BAR ── */
@@ -366,6 +372,7 @@
         }
         .pos-score-block.T .pos-score-val { color: var(--gold); font-size: 2rem; }
         @media (min-width: 861px) { .pos-score-block.T .pos-score-val { font-size: 2.6rem; } }
+        .pos-score-block.T .pos-rank-badge { font-size: 0.68rem; }
         .pos-score-block.rank-1st {
           box-shadow: inset 0 0 0 1px rgba(255,184,28,0.35), 0 0 12px rgba(255,184,28,0.08);
         }
@@ -384,11 +391,16 @@
         .pos-score-block.G .pos-score-val { color: var(--gold); }
         .pos-score-block.B .pos-score-val { color: var(--silver); }
         .pos-score-label { font-size: 0.72rem; font-weight: 700; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-        .pos-score-rank { font-size: 0.62rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; margin-top: 3px; }
-        .pos-score-rank.r1    { color: var(--gold); }
-        .pos-score-rank.r2    { color: #c0c8d4; }
-        .pos-score-rank.r3    { color: #cd7f32; }
-        .pos-score-rank.rlast { color: rgba(255,80,80,0.55); }
+        .pos-rank-badge {
+          display: inline-flex; align-items: center; gap: 2px; margin-top: 5px;
+          font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px;
+          border-radius: 3px; padding: 1px 6px; line-height: 1.4;
+        }
+        .pos-rank-badge.r1    { color: var(--gold);            background: rgba(255,184,28,0.15);   border: 1px solid rgba(255,184,28,0.3);   }
+        .pos-rank-badge.r2    { color: #c0c8d4;                background: rgba(192,200,212,0.1);   border: 1px solid rgba(192,200,212,0.2);  }
+        .pos-rank-badge.r3    { color: #cd7f32;                background: rgba(205,127,50,0.1);    border: 1px solid rgba(205,127,50,0.2);   }
+        .pos-rank-badge.rmid  { color: rgba(255,255,255,0.4);  background: rgba(255,255,255,0.04);  border: 1px solid rgba(255,255,255,0.08); }
+        .pos-rank-badge.rlast { color: rgba(255,80,80,0.6);    background: rgba(255,80,80,0.05);    border: 1px solid rgba(255,80,80,0.15);   }
 
         /* ── HIST TABLE ── */
         .hist-table { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; }
@@ -1298,7 +1310,7 @@
         return `<div class="pos-score-block ${pos}${r === 1 ? ' rank-1st' : ''}">
           <div class="pos-score-val">${val}</div>
           <div class="pos-score-label">${label}</div>
-          <div class="pos-score-rank ${rankCls}">${rankText}</div>
+          <div class="pos-rank-badge ${rankCls}">${rankText}</div>
         </div>`;
       }
 
@@ -1306,19 +1318,23 @@
       const totalBlock = `<div class="pos-score-block T${rank === 1 ? ' rank-1st' : ''}">
         <div class="pos-score-val">${totalPts}</div>
         <div class="pos-score-label">Total</div>
-        <div class="pos-score-rank ${totalRankCls}">${totalRankText}</div>
+        <div class="pos-rank-badge ${totalRankCls}">${totalRankText}</div>
       </div>`;
 
 
 
       return `
         <div class="detail-header">
-          <div class="detail-title">${team.name}</div>
-          <div class="detail-meta">
-            <div class="detail-meta-item"><div class="detail-meta-val">$${(cap / 1e6).toFixed(1)}M</div><div class="detail-meta-lbl">Cap</div></div>
-            <div class="detail-meta-item"><div class="detail-meta-val">${filled}/26</div><div class="detail-meta-lbl">Filled</div></div>
-            <div class="detail-meta-item"><div class="detail-meta-val">${eff}</div><div class="detail-meta-lbl">Pts/$M</div></div>
-            ${ppg ? `<div class="detail-meta-item"><div class="detail-meta-val">${ppg}</div><div class="detail-meta-lbl">PPG</div></div>` : ''}
+          <div class="detail-header-left">
+            <div class="detail-title">${team.name}</div>
+          </div>
+          <div class="detail-header-right">
+            <div class="detail-summary">
+              <span class="detail-badge cap">$${(cap / 1e6).toFixed(1)}M</span>
+              <span class="detail-badge filled">${filled}/26</span>
+              <span class="detail-badge eff">${eff} pt/$M</span>
+              ${ppg ? `<span class="detail-badge eff" title="Pool points per average games played">${ppg} PPG</span>` : ''}
+            </div>
           </div>
         </div>
         <div class="pos-scores-bar">
