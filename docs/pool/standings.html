@@ -680,7 +680,7 @@
       if (!_cache.teamPts) _cache.teamPts = {};
       if (_cache.teamPts[team.id] !== undefined) return _cache.teamPts[team.id];
       const s = teamSubScores(team);
-      _cache.teamPts[team.id] = s.F + s.D + s.G + s.B;
+      _cache.teamPts[team.id] = s.F + s.D + s.G;
       return _cache.teamPts[team.id];
     }
     function sortedTeams() {
@@ -1279,7 +1279,7 @@
       if (!allPlrs.length) return `<div class="msg" style="padding:1.5rem 0;">No players drafted yet.</div>`;
 
       const sub = teamSubScores(team);
-      const totalPts = sub.F + sub.D + sub.G + sub.B;
+      const totalPts = sub.F + sub.D + sub.G;
       const cap = teamCapUsed(team.roster);
       const filled = teamFilled(team.roster);
       const eff = cap > 0 ? (totalPts / (cap / 1e6)).toFixed(1) : '—';
