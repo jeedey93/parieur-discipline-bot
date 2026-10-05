@@ -203,7 +203,7 @@
 
         .lb-row {
           display: grid;
-          grid-template-columns: 36px 1fr 44px 52px 52px 52px 60px 52px 52px 60px;
+          grid-template-columns: 36px 1fr 44px 52px 52px 52px 60px 52px 52px 52px 60px;
           align-items: center; padding: 0.75rem 1rem; gap: 0.5rem;
           border-bottom: 1px solid rgba(255,255,255,0.05);
           cursor: pointer; transition: background 0.15s, box-shadow 0.15s;
@@ -220,8 +220,9 @@
         .lb-row.header:hover { background: rgba(255,255,255,0.03); }
         @media (min-width: 861px) { .lb-row { padding: 0.85rem 1.25rem; } }
         @media (max-width: 600px) {
-          .lb-row { grid-template-columns: 30px 1fr 52px 44px 44px 56px; }
+          .lb-row { grid-template-columns: 30px 1fr 52px 44px 48px 56px; }
           .lb-col-hide { display: none; }
+          .lb-col-hide-mobile { display: none; }
         }
 
         .lb-rank {
@@ -577,6 +578,21 @@
         .top-player-stat { font-size: 0.8rem; font-weight: 700; color: var(--silver); text-align: right; }
         .top-player-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; color: var(--gold); text-align: right; }
 
+        /* ── RANK CHANGE ── */
+        .rank-change { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1; margin-top: 2px; }
+        .rank-change.up   { color: #16a34a; }
+        .rank-change.down { color: #dc2626; }
+        .rank-change.same { color: rgba(255,255,255,0.2); }
+
+        /* ── TONIGHT BADGE ── */
+        .lb-tonight {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+          color: var(--gold); background: rgba(255,184,28,0.1);
+          border: 1px solid rgba(255,184,28,0.25); border-radius: 4px;
+          padding: 1px 6px; white-space: nowrap; letter-spacing: 0.5px;
+        }
+        .lb-tonight.zero { color: rgba(255,255,255,0.2); background: transparent; border-color: rgba(255,255,255,0.07); }
+
         /* ── BACK BUTTON ── */
         .btn-back {
           display: inline-flex; align-items: center; gap: 0.35rem;
@@ -704,7 +720,7 @@
     let _leagueName = null;
 
     let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null;
-    let _lastSnapshot = {}; // team_id -> pts from most recent daily snapshot
+    let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
     let tonightMatchups = {};          // abbrev → opponent abbrev
@@ -1144,7 +1160,7 @@
           if (snapRes.ok) {
             const snapRows = await snapRes.json();
             if (snapRows.length && Array.isArray(snapRows[0].standings)) {
-              _lastSnapshot = Object.fromEntries(snapRows[0].standings.map(s => [s.team_id, s.pts ?? 0]));
+              _lastSnapshot = Object.fromEntries(snapRows[0].standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
             }
           }
         } catch(_) {}
@@ -1329,16 +1345,40 @@
         const tierCls = rankNum <= 3 ? ` rank-${rankNum}` : '';
         const isActive = t.id === activeTeamId;
 
+        // Rank change arrow from last snapshot
+        const snapEntry = _lastSnapshot[t.id];
+        const prevRank = snapEntry?.rank ?? null;
+        let rankChangeBadge = '';
+        if (prevRank && prevRank !== rankNum) {
+          const diff = prevRank - rankNum;
+          rankChangeBadge = diff > 0
+            ? `<div class="rank-change up">▲${diff}</div>`
+            : `<div class="rank-change down">▼${Math.abs(diff)}</div>`;
+        } else if (prevRank) {
+          rankChangeBadge = `<div class="rank-change same">—</div>`;
+        }
+
+        // Tonight count — dressed players with a game tonight
+        const rp = rosterPlayers(t.roster);
+        const tonightCount = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => {
+          const abbr = TEAM_ABBR[p.team];
+          return abbr && teamsPlayingToday.has(abbr);
+        }).length;
+        const tonightHtml = teamsPlayingToday.size > 0
+          ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? `🏒 ${tonightCount}` : '—'}</div>`
+          : `<div class="lb-tonight zero">—</div>`;
+
         const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
-          <div class="lb-rank ${rankCls}">${rankInner}</div>
+          <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
           <div class="lb-name">${t.name}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
           <div class="lb-stat lb-col-hide pos-f">${sub.F}</div>
           <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
           <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
           <div class="lb-stat pts">${pts}</div>
-          <div class="lb-stat" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
-          ${(() => { const snap = _lastSnapshot[t.id]; if (snap === undefined) return '<div class="lb-stat delta zero">—</div>'; const d = pts - snap; const cls = d > 0 ? 'pos' : d < 0 ? 'neg' : 'zero'; const label = d > 0 ? `+${d}` : d < 0 ? String(d) : '—'; return `<div class="lb-stat delta ${cls}">${label}</div>`; })()}
+          <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
+          ${(() => { const snap = _lastSnapshot[t.id]; if (!snap) return '<div class="lb-stat delta zero">—</div>'; const d = pts - snap.pts; const cls = d > 0 ? 'pos' : d < 0 ? 'neg' : 'zero'; const label = d > 0 ? `+${d}` : d < 0 ? String(d) : '—'; return `<div class="lb-stat delta ${cls}">${label}</div>`; })()}
+          ${tonightHtml}
           <div class="lb-stat ${i===0?'gap leader':'gap'}">${gap}</div>
         </div>`;
 
@@ -1354,8 +1394,9 @@
           <div class="lb-col-label lb-col-hide" style="color:var(--blue)">D</div>
           <div class="lb-col-label lb-col-hide" style="color:var(--gold)">G</div>
           <div class="lb-col-label">Total</div>
-          <div class="lb-col-label" title="Pool points per games played">PPG</div>
+          <div class="lb-col-label lb-col-hide-mobile" title="Pool points per games played">PPG</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points since last daily update">Ytd</div>
+          <div class="lb-col-label" style="color:var(--gold);opacity:0.7" title="Players with a game tonight">🏒</div>
           <div class="lb-col-label">Gap</div>
         </div>
         ${rowsHtml}
