@@ -461,6 +461,21 @@
         .bump-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); padding: 1rem 0.5rem 0.5rem; }
         .bump-svg { display: block; min-width: 300px; }
         .bump-empty { text-align: center; color: rgba(255,255,255,0.25); font-size: 0.85rem; letter-spacing: 1px; padding: 3rem 0; }
+
+        /* ── WEEKLY REVIEW ── */
+        .week-review { margin-bottom: 1.75rem; }
+        .week-review-title { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.6rem; }
+        .week-review-rows { display: flex; flex-direction: column; gap: 0.35rem; }
+        .week-review-row { display: grid; grid-template-columns: 22px 1fr 80px 52px; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+        .week-review-row.winner { background: rgba(255,184,28,0.06); border-color: rgba(255,184,28,0.2); }
+        .week-review-rank { font-family: 'Bebas Neue', cursive; font-size: 0.9rem; color: var(--silver); text-align: center; }
+        .week-review-rank.r1 { color: var(--gold); }
+        .week-review-name { font-size: 0.88rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .week-review-bar-wrap { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+        .week-review-bar { height: 100%; border-radius: 3px; background: rgba(255,255,255,0.25); transition: width 0.4s; }
+        .week-review-row.winner .week-review-bar { background: var(--gold); }
+        .week-review-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: var(--silver); text-align: right; }
+        .week-review-row.winner .week-review-pts { color: var(--gold); }
         .bump-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 1rem; }
         .bump-legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; font-weight: 600; color: var(--silver); }
         .bump-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -1597,6 +1612,36 @@
 
     let _bumpMode = 'pts'; // 'pts' | 'rank'
 
+    function buildWeeklyReview(rows) {
+      if (!rows || rows.length < 2) return '';
+      const latest = rows[rows.length - 1];
+      const latestDate = new Date(latest.snapshot_date);
+      const cutoff = new Date(latestDate); cutoff.setDate(cutoff.getDate() - 7);
+      // Find the snapshot closest to (but not after) 7 days ago
+      const baseRow = [...rows].reverse().find(r => new Date(r.snapshot_date) <= cutoff) || rows[0];
+      const basePts = Object.fromEntries((baseRow.standings || []).map(t => [t.team_id, t.pts ?? 0]));
+      const weekly = (latest.standings || []).map(t => ({
+        id: t.team_id, name: t.name,
+        pts: (t.pts ?? 0) - (basePts[t.team_id] ?? 0),
+      })).sort((a, b) => b.pts - a.pts);
+      const maxPts = Math.max(...weekly.map(w => w.pts), 1);
+      const daySpan = Math.round((latestDate - new Date(baseRow.snapshot_date)) / 86400000);
+      const rows_html = weekly.map((w, i) => {
+        const isWinner = i === 0 && w.pts > 0;
+        const pct = Math.max(0, (w.pts / maxPts) * 100).toFixed(1);
+        return `<div class="week-review-row${isWinner ? ' winner' : ''}">
+          <div class="week-review-rank${i === 0 ? ' r1' : ''}">${i === 0 && w.pts > 0 ? '👑' : i + 1}</div>
+          <div class="week-review-name">${w.name}</div>
+          <div class="week-review-bar-wrap"><div class="week-review-bar" style="width:${pct}%"></div></div>
+          <div class="week-review-pts">${w.pts > 0 ? '+' + w.pts : w.pts}</div>
+        </div>`;
+      }).join('');
+      return `<div class="week-review">
+        <div class="week-review-title">🏆 Last ${daySpan} days</div>
+        <div class="week-review-rows">${rows_html}</div>
+      </div>`;
+    }
+
     function renderBumpChart(rows, container) {
       // Stable color assignment
       const teamMeta = {};
@@ -1775,7 +1820,7 @@
         `<div class="bump-legend-item"><div class="bump-legend-dot" style="background:${color}"></div><span>${name}</span><span style="color:rgba(255,255,255,0.3);margin-left:4px">${last?.pts ?? ''}pts</span></div>`
       ).join('');
 
-      container.innerHTML = `
+      container.innerHTML = buildWeeklyReview(rows) + `
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem">
           <div class="pool-section-title" style="margin:0">📈 <span>${isPts ? 'POINTS OVER TIME' : 'RANK OVER TIME'}</span></div>
           <div class="bump-toggle">
