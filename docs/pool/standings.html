@@ -571,14 +571,6 @@
 </head>
 <body>
 
-<!-- ── INVALID LINK GATE ── -->
-<div id="invalid-gate">
-    <div class="pw-box">
-        <h2>🏒 Hockey Pool</h2>
-        <p>INVALID OR MISSING INVITE LINK.<br>ASK YOUR LEAGUE ADMIN FOR THE LINK.</p>
-        <a href="/pool" class="pw-btn" style="display:block;text-decoration:none">BACK TO HOME</a>
-    </div>
-</div>
 
 <!-- ── NAV ── -->
 <nav class="site-nav">
@@ -617,29 +609,13 @@
     const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min within a day
     const ACTIVE_ACQUIRED_FALLBACK_DATE = new Date('2025-09-01T00:00:00Z');
 
-    // ── TOKEN AUTH ───────────────────────────────────────────────────────────────
-    function getToken() {
-      const fromUrl = new URLSearchParams(window.location.search).get('token');
-      if (fromUrl) {
-        try { localStorage.setItem(`pool_token_${_leagueCode}`, fromUrl); } catch(_) {}
-        const clean = new URL(window.location.href); clean.searchParams.delete('token');
-        history.replaceState(null, '', clean.toString());
-        return fromUrl;
-      }
-      try { return localStorage.getItem(`pool_token_${_leagueCode}`) || null; } catch(_) { return null; }
-    }
     function sbHeaders(extra = {}) {
-      const token = getToken();
       return {
         'apikey': SUPABASE_KEY,
         'Authorization': `Bearer ${SUPABASE_KEY}`,
         'Content-Type': 'application/json',
-        ...(token ? { 'x-pool-token': token } : {}),
         ...extra,
       };
-    }
-    function showInvalidGate() {
-      document.getElementById('invalid-gate').classList.add('show');
     }
 
     const TEAM_ABBR = {
@@ -1036,15 +1012,14 @@
 
     // ── LOAD ─────────────────────────────────────────────────────────────────────
     async function load() {
-      if (!getToken()) { showInvalidGate(); return; }
       initNav();
       updateLastSyncedBadge();
       await loadScoringSettings();
       _windowPtsByTradeKey = {};
       fetch(`${SUPABASE_URL}/rest/v1/pool_leagues?code=eq.${_leagueCode}&select=name`,
         { headers: sbHeaders() })
-        .then(r => { if (r.status === 401 || r.status === 403) { showInvalidGate(); throw new Error('unauthorized'); } return r.json(); })
-        .then(rows => { if (!rows.length) { showInvalidGate(); return; } const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; } })
+        .then(r => r.json())
+        .then(rows => { const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; } })
         .catch(() => {});
       try {
         let cacheHit = false;
