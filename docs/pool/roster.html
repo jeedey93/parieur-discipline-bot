@@ -883,7 +883,7 @@
   const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
   const CAP_MAX = 104_000_000;
-  const PLAYER_CACHE_KEY = 'hp_players_v6';
+  const PLAYER_CACHE_KEY = 'hp_players_v7';
   const UNDO_WINDOW_SECONDS = 15;
 
   const NHL_TEAM_COLORS = {
@@ -2336,7 +2336,7 @@
   function buildAllTeams(ti){
     if(!ti.length)return'<div class="msg">No teams yet.</div>';
     const SECS=[{key:'F',label:'FORWARDS',slots:12},{key:'D',label:'DEFENCE',slots:6},{key:'G',label:'GOALIES',slots:2},{key:'B',label:'BENCH',slots:6}];
-    const SALARY_CAP=95500000,m=slugMap();
+    const SALARY_CAP=CAP_MAX,m=slugMap();
     function rp(r){return{F:(r.F||[]).map(s=>s&&m[s]?{...m[s],_slug:s}:null),D:(r.D||[]).map(s=>s&&m[s]?{...m[s],_slug:s}:null),G:(r.G||[]).map(s=>s&&m[s]?{...m[s],_slug:s}:null),B:(r.B||[]).map(s=>s&&m[s]?{...m[s],_slug:s}:null)};}
     function lps(p){const pos=normalizePos(p.position);if(pos==='G')return(p.wins??0)*_scoring.g_wins+(p.shutouts??0)*_scoring.g_shutouts;if(pos==='D')return(p.goals??0)*_scoring.d_goals+(p.assists??0)*_scoring.d_assists;return(p.points??0)*_scoring.f_points;}
     function lpso(p,t,s){
