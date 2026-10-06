@@ -639,6 +639,18 @@
         .hist-section-label.F { color: var(--pink); background: rgba(255,122,138,0.04); }
         .hist-section-label.D { color: var(--blue); background: rgba(125,180,255,0.04); }
         .hist-section-label.G { color: var(--gold); background: rgba(255,184,28,0.04); }
+        .swap-history { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; }
+        .swap-row { padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .swap-row:last-child { border-bottom: none; }
+        .swap-date { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.25rem; }
+        .swap-move { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; }
+        .swap-in  { color: var(--green); }
+        .swap-out { color: rgba(255,80,80,0.8); }
+        .swap-arrow { color: rgba(255,255,255,0.25); font-size: 1rem; }
+        .swap-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+        .swap-reason { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 4px; margin-left: 4px; text-transform: uppercase; }
+        .swap-reason.injury  { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
+        .swap-reason.tactical { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
 
         /* ── BUMP CHART ── */
         .bump-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); padding: 1rem 0.5rem 0.5rem; }
@@ -930,7 +942,7 @@
     if (!_leagueCode) window.location.replace('/pool');
     let _leagueName = null;
 
-    let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null;
+    let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [];
     let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
@@ -1595,6 +1607,12 @@
         const tRes = await fetch(`${SUPABASE_URL}/rest/v1/player_trades?league_code=eq.${_leagueCode}&select=team_id,player_to_slug,player_to_name,player_to_position,date_from_acquired,date_traded,points_accumulated_at_trade&order=date_from_acquired.asc`,
           { headers: sbHeaders() });
         if (tRes.ok) currentTrades = await tRes.json();
+        // Load bench swaps
+        _benchSwaps = [];
+        try {
+          const swapRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps?league_code=eq.${_leagueCode}&select=*&order=swap_date.asc`, { headers: sbHeaders() });
+          if (swapRes.ok) _benchSwaps = await swapRes.json();
+        } catch(_) {}
         // Load today's NHL schedule for opponent logos
         teamsPlayingToday = new Set();
         tonightMatchups = {};
@@ -2075,7 +2093,42 @@
           return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench') : '') +
                  (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)') : '');
         })()}
+        ${buildSwapHistory(team)}
       `;
+    }
+
+    // ── SWAP HISTORY ─────────────────────────────────────────────────────────────
+    function buildSwapHistory(team) {
+      const swaps = _benchSwaps.filter(s => s.team_id === team.id);
+      if (!swaps.length) return '';
+      const m = slugMap();
+      const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+      const rows = swaps.map(s => {
+        const pIn  = m[s.player_in_slug];
+        const pOut = m[s.player_out_slug];
+        const inAbbr  = pIn  ? TEAM_ABBR[pIn.team]  : null;
+        const outAbbr = pOut ? TEAM_ABBR[pOut.team] : null;
+        const inLogo  = inAbbr  ? `<img src="https://assets.nhle.com/logos/nhl/svg/${inAbbr}_dark.svg"  style="width:16px;height:16px;object-fit:contain;vertical-align:middle;margin-right:4px">` : '';
+        const outLogo = outAbbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${outAbbr}_dark.svg" style="width:16px;height:16px;object-fit:contain;vertical-align:middle;margin-right:4px">` : '';
+        const reasonHtml = s.reason
+          ? `<span class="swap-reason ${s.reason}">${s.reason === 'injury' ? '🩹 Injury' : '🔄 Tactical'}</span>`
+          : '';
+        return `<div class="swap-row">
+          <div class="swap-date">${fmt(s.swap_date)}</div>
+          <div class="swap-move">
+            <span class="swap-in">${inLogo}${s.player_in_name}</span>
+            <span class="swap-arrow">⇄</span>
+            <span class="swap-out">${outLogo}${s.player_out_name}</span>
+            ${reasonHtml}
+          </div>
+          ${s.note ? `<div class="swap-note">${s.note}</div>` : ''}
+        </div>`;
+      });
+      return `
+        <div class="swap-history">
+          <div class="hist-section-label" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1);margin-top:1.5rem">Bench Swaps</div>
+          ${rows.join('')}
+        </div>`;
     }
 
     // ── HIST TABLE ────────────────────────────────────────────────────────────────
@@ -2093,7 +2146,28 @@
       });
       const seenSlugs = new Set(trades.map(t => t.player_to_slug));
       const currentNoDraft = (team.roster[pos] || []).filter(s => s && typeof s === 'string' && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
-      if (!trades.length && !currentNoDraft.length) return '';
+
+      // Inject bench-swapped-out players as past rows (only for F/D/G tables, not bench)
+      const swapOutRows = pos !== 'B' ? _benchSwaps.filter(s => {
+        if (s.team_id !== team.id) return false;
+        const swapPos = normalizePos(s.player_out_position);
+        return swapPos === pos && !seenSlugs.has(s.player_out_slug);
+      }).map(s => {
+        const p = m[s.player_out_slug];
+        const abbr = p ? TEAM_ABBR[p.team] : null;
+        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+        const swapDate = new Date(s.swap_date);
+        const tenure = `Season start → ${fmt(swapDate)}`;
+        return { isCurrent: false, cls: 'past', name: s.player_out_name, logo, vsLogo: '',
+          tenure, col1: '—', col2: '—', col3: '—',
+          pts: s.player_out_pts_at_swap ?? '—',
+          gp: 0, g: 0, a: 0, w: 0, so: 0,
+          actualPos: normalizePos(s.player_out_position),
+          nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
+          capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
+          ppg: null, ytd: null, _fromSwap: true };
+      }) : [];
+      if (!trades.length && !currentNoDraft.length && !swapOutRows.length) return '';
 
       /*
        * Column header — sortable. Default sort: pts desc.
@@ -2170,6 +2244,9 @@
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
       });
+
+      // Add bench-swapped-out players as past rows
+      swapOutRows.forEach(r => rowData.push(r));
 
       // Sort: current players first, then by selected field desc, past players always last
       const sortKey = { pts:'pts', gp:'gp', g:'g', a:'a', w:'w', so:'so' }[sortField] || 'pts';
