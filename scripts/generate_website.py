@@ -1840,6 +1840,8 @@ def update_latest_predictions(preliminary=False):
     records = {"nba": nba_record, "nhl": nhl_record, "nfl": nfl_record}
 
     # Find the latest date among all sports
+    from datetime import date as _date_module
+    _today_str = _date_module.today().isoformat()
     latest_dates = []
     sport_files = {}
     for cfg in sports_config:
@@ -1847,9 +1849,21 @@ def update_latest_predictions(preliminary=False):
         folder = os.path.join(predictions_dir, sport)
         prefix = f"{sport}_weekly_predictions" if sport == "nfl" else f"{sport}_daily_predictions"
         latest_text_file = get_latest_file(folder, prefix, ext="txt")
+        # If no final file exists for today, fall back to the 7am preliminary file
+        if sport != "nfl":
+            daily_runs_folder = os.path.join(folder, "daily_runs")
+            today_7am = os.path.join(daily_runs_folder, f"{prefix}_{_today_str}_7am.txt")
+            today_3pm = os.path.join(daily_runs_folder, f"{prefix}_{_today_str}_3pm.txt")
+            # Prefer 3pm if available, then 7am, then fall back to latest final
+            if os.path.exists(today_3pm):
+                latest_text_file = today_3pm
+            elif os.path.exists(today_7am):
+                latest_text_file = today_7am
         sport_files[sport] = latest_text_file
         if latest_text_file:
-            date_str = os.path.basename(latest_text_file).split("_")[-1].replace(".txt", "")
+            import re as _re_ws
+            m = _re_ws.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(latest_text_file))
+            date_str = m.group(1) if m else ""
             latest_dates.append(date_str)
     overall_latest_date = max(latest_dates) if latest_dates else ""
 
