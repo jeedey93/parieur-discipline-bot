@@ -519,9 +519,10 @@ def main():
                     away = g.get("awayTeam", {}).get("abbrev")
                     home = g.get("homeTeam", {}).get("abbrev")
                     if away and home:
+                        game_id = g.get("id")
                         matchups[away] = home
                         matchups[home] = away
-                        games.append({"away": away, "home": home})
+                        games.append({"id": game_id, "away": away, "home": home})
                 break
         os.makedirs(os.path.dirname(NHL_TODAY_FILE), exist_ok=True)
         with open(NHL_TODAY_FILE, "w") as f:

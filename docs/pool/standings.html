@@ -722,6 +722,25 @@
         }
         .lb-tonight.zero { color: rgba(255,255,255,0.2); }
 
+        /* ── LIVE BADGE ── */
+        .live-badge {
+          display: inline-flex; align-items: center; gap: 3px;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+          color: #ff4444; background: rgba(255,68,68,0.1);
+          border: 1px solid rgba(255,68,68,0.3); border-radius: 4px;
+          padding: 1px 5px; white-space: nowrap; vertical-align: middle;
+        }
+        .live-badge::before {
+          content: ''; display: inline-block; width: 5px; height: 5px;
+          border-radius: 50%; background: #ff4444;
+          animation: live-pulse 1.2s ease-in-out infinite;
+        }
+        @keyframes live-pulse {
+          0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+        }
+        .lb-name-wrap { display: flex; align-items: center; gap: 0.4rem; min-width: 0; }
+        .lb-name-wrap .lb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
         /* ── DETAIL RANK ROW ── */
         .detail-rank-row {
           display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.15rem;
@@ -867,6 +886,93 @@
     }
     let _windowPtsByTradeKey = {};
     const _gameLogCache = new Map();
+
+    // ── Live scoring ──────────────────────────────────────────────────────────
+    const NHL_PROXY = '/api/nhl-proxy';
+    let _livePts = {};        // nhl_player_id (number) → live pool pts tonight
+    let _liveGames = [];      // [{ id, away, home }]
+    let _liveTimer = null;
+    let _liveActive = false;
+
+    function isGameHour() {
+      const h = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', hour12: false });
+      const n = Number(h);
+      return n >= 17 && n < 24; // 5pm–midnight Montreal
+    }
+
+    function liveTeamPts(team) {
+      let total = 0;
+      const rp = rosterPlayers(team.roster);
+      [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => {
+        if (p.nhl_player_id) total += (_livePts[p.nhl_player_id] ?? 0);
+      });
+      return total;
+    }
+
+    async function pollLive() {
+      if (!_liveGames.length) return;
+      const newPts = {};
+      await Promise.all(_liveGames.map(async ({ id }) => {
+        try {
+          const res = await fetch(`${NHL_PROXY}?path=/v1/gamecenter/${id}/boxscore`);
+          if (!res.ok) return;
+          const data = await res.json();
+          const gs = data.gameState;
+          // Only process games that have started (LIVE, CRIT) or finished (OFF)
+          if (gs === 'FUT' || gs === 'PRE') return;
+          const isOver = gs === 'OFF';
+          const isOT = (data.gameOutcome?.lastPeriodType === 'OT') || (data.gameOutcome?.lastPeriodType === 'SO');
+          const ps = data.playerByGameStats || {};
+          for (const side of ['awayTeam', 'homeTeam']) {
+            const sideData = ps[side] || {};
+            // Skaters
+            for (const group of ['forwards', 'defense']) {
+              for (const p of (sideData[group] || [])) {
+                const id = p.playerId;
+                if (!id) continue;
+                const pos = group === 'defense' ? 'D' : 'F';
+                let pts;
+                if (pos === 'D') pts = (p.goals || 0) * _scoring.d_goals + (p.assists || 0) * _scoring.d_assists;
+                else pts = (p.points || 0) * _scoring.f_points;
+                if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
+              }
+            }
+            // Goalies
+            for (const g of (sideData.goalies || [])) {
+              const id = g.playerId;
+              if (!id || !g.toi || g.toi === '00:00') continue;
+              const decision = (g.decision || '').toUpperCase();
+              let pts = 0;
+              if (decision === 'W') pts += _scoring.g_wins;
+              // OTL: lost but in OT/SO and they were the losing goalie
+              if (isOver && isOT && decision === 'L') pts += 1;
+              // Shutout: game over, goalie played full game, 0 goals against
+              if (isOver && g.goalsAgainst === 0 && decision === 'W') pts += _scoring.g_shutouts;
+              if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
+            }
+          }
+        } catch(_) {}
+      }));
+      const changed = JSON.stringify(newPts) !== JSON.stringify(_livePts);
+      _livePts = newPts;
+      if (changed) render();
+    }
+
+    function startLivePolling() {
+      if (!isGameHour() || !_liveGames.length) return;
+      _liveActive = true;
+      pollLive();
+      _liveTimer = setInterval(() => {
+        if (!isGameHour()) { stopLivePolling(); return; }
+        pollLive();
+      }, 60000);
+    }
+
+    function stopLivePolling() {
+      _liveActive = false;
+      if (_liveTimer) { clearInterval(_liveTimer); _liveTimer = null; }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
     // Sort state for roster tables: { pos: 'F'|'D'|'G', field: 'pts'|'gp'|'g'|'a'|'w'|'so' }
     let _rosterSort = {}; // keyed by pos
@@ -1425,6 +1531,7 @@
             if (sched.date === todayStr) {
               tonightMatchups = sched.matchups || {};
               for (const abbr of Object.keys(tonightMatchups)) teamsPlayingToday.add(abbr);
+              _liveGames = (sched.games || []).filter(g => g.id);
             }
           }
         } catch(_) {}
@@ -1444,6 +1551,7 @@
         activeTeamId = sortedTeams()[0]?.id || teams[0]?.id;
         render();
         loadYesterdayPts(); // async — re-renders when done
+        startLivePolling(); // async — polls boxscores during game hours
       } catch(e) {
         console.error('load() failed:', e);
         document.getElementById('content').innerHTML = `<div class="msg">Failed to load data (${e?.message||e}). <button class="btn-refresh" onclick="load()">Retry</button></div>`;
@@ -1644,9 +1752,13 @@
           ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? tonightCount : '—'}</div>`
           : `<div class="lb-tonight zero">—</div>`;
 
+        // Live pts badge
+        const livePtsTeam = liveTeamPts(t);
+        const liveBadge = livePtsTeam > 0 ? `<span class="live-badge">+${livePtsTeam}</span>` : '';
+
         const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
           <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
-          <div class="lb-name">${t.name}</div>
+          <div class="lb-name-wrap"><span class="lb-name">${t.name}</span>${liveBadge}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
           <div class="lb-stat lb-col-hide pos-f">${sub.F}</div>
           <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
@@ -1865,10 +1977,12 @@
           : ytdVal > 0
             ? `<span class="hist-ytd pos">+${ytdVal}</span>`
             : `<span class="hist-ytd zero">—</span>`;
+        const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
+        const liveHtml = livePtsPlayer > 0 ? `<span class="live-badge">+${livePtsPlayer}</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}</span>
           <span class="hist-stat">${r.col1}</span>
           <span class="hist-stat${pos==='G'?'':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
