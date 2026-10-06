@@ -894,5 +894,246 @@
       "/player/travis-konecny": 2,
       "/player/jamie-drysdale": 0
     }
+  },
+  {
+    "date": "2026-10-06",
+    "teams": [
+      {
+        "id": "c4000d9d-19ee-47af-90be-710554be4448",
+        "name": "Justin Do",
+        "team_name": "JeE-DeY",
+        "total": 75,
+        "rank": 1
+      },
+      {
+        "id": "069793d4-fbab-4518-a89a-ee4e83058bc5",
+        "name": "Louis Do",
+        "team_name": "LMD",
+        "total": 73,
+        "rank": 2
+      },
+      {
+        "id": "2a3d5523-2ea7-4226-a48d-14acaef6de66",
+        "name": "Francis Desrosiers",
+        "team_name": "Frank\u2019s team",
+        "total": 73,
+        "rank": 3
+      },
+      {
+        "id": "3feb7b36-fa0d-4491-b567-22c3aa0495b4",
+        "name": "La saucisse",
+        "team_name": "Hot Dog",
+        "total": 73,
+        "rank": 4
+      },
+      {
+        "id": "51f2b6d2-04ec-4440-a2c2-6650c467f39b",
+        "name": "Corbeau",
+        "team_name": "Flying Corbeau",
+        "total": 72,
+        "rank": 5
+      },
+      {
+        "id": "bf1568eb-ed1e-4a78-8ba0-9325437e6e30",
+        "name": "Vincent Daigle",
+        "team_name": "Deagle's Team",
+        "total": 72,
+        "rank": 6
+      },
+      {
+        "id": "04d8b1b9-e507-497a-b168-c0b55403d018",
+        "name": "Olivier",
+        "team_name": "The Camaraderie",
+        "total": 71,
+        "rank": 7
+      },
+      {
+        "id": "74d55555-207c-442f-96a5-fd53997e90c0",
+        "name": "Eliott T",
+        "team_name": "Super Mario",
+        "total": 71,
+        "rank": 8
+      },
+      {
+        "id": "28172420-5c01-47c5-b824-63b5f1fd42e1",
+        "name": "Francis Barri\u00e8re",
+        "team_name": "Green Jackets",
+        "total": 71,
+        "rank": 9
+      },
+      {
+        "id": "f7d2acdf-7c19-4e12-9d55-88bf152517cf",
+        "name": "Tristan Scandar",
+        "team_name": "Mattress Dobes",
+        "total": 69,
+        "rank": 10
+      },
+      {
+        "id": "535683d9-4818-4a92-a82e-137ce424e90b",
+        "name": "Torida T\u00e9",
+        "team_name": "Mon-Q",
+        "total": 68,
+        "rank": 11
+      },
+      {
+        "id": "4bbd833d-d6e0-4c47-b6d5-f2741ecb36cf",
+        "name": "Mohamad Lasania",
+        "team_name": "Pastaboy",
+        "total": 66,
+        "rank": 12
+      },
+      {
+        "id": "e71a54eb-434f-45e0-9933-33397fd5227b",
+        "name": "Dac-Toan Do",
+        "team_name": "DTDo\u2019s squad",
+        "total": 65,
+        "rank": 13
+      },
+      {
+        "id": "fe7194b5-eb56-497a-a69d-51046a616fdd",
+        "name": "Renaud",
+        "team_name": "The rookie",
+        "total": 65,
+        "rank": 14
+      },
+      {
+        "id": "95054776-ad86-4f66-aa80-e0c0aa7e6967",
+        "name": "Mathieu st",
+        "team_name": "The best team",
+        "total": 65,
+        "rank": 15
+      },
+      {
+        "id": "9f9b0751-5db8-4627-bca5-627ae7719902",
+        "name": "Elizabeth T",
+        "team_name": "Lili",
+        "total": 65,
+        "rank": 16
+      },
+      {
+        "id": "c413b7cd-01a5-40e7-a7a1-7ffa0243c05f",
+        "name": "Yanic Larouche",
+        "team_name": "Connor McCelery",
+        "total": 63,
+        "rank": 17
+      },
+      {
+        "id": "627babc2-9a49-4841-827a-35fefcdf8078",
+        "name": "Elouan T",
+        "team_name": "Les grosses de Brossard",
+        "total": 61,
+        "rank": 18
+      },
+      {
+        "id": "a7023c43-b4ff-4da5-b854-a8eab02508dc",
+        "name": "Philippe Guite",
+        "team_name": "Lepetitpeep's squad",
+        "total": 61,
+        "rank": 19
+      },
+      {
+        "id": "571062d1-2525-4845-b3ae-17df08576347",
+        "name": "Petpou",
+        "team_name": "Jd's nightmares",
+        "total": 57,
+        "rank": 20
+      },
+      {
+        "id": "f645e641-53c7-46ca-b30e-dd7ab9957f19",
+        "name": "Alexandre Hoang",
+        "team_name": "Interdek",
+        "total": 56,
+        "rank": 21
+      },
+      {
+        "id": "cdca24a6-e785-47f8-a9f5-53bf510d7c41",
+        "name": "Rachel & Steve",
+        "team_name": "Eddy's",
+        "total": 55,
+        "rank": 22
+      },
+      {
+        "id": "90c15819-acd5-41ce-b386-dda02b54732e",
+        "name": "Laff",
+        "team_name": "Jesus take the wheel",
+        "total": 55,
+        "rank": 23
+      },
+      {
+        "id": "101f939d-92be-450f-89c0-a93ff709eb86",
+        "name": "Guigui",
+        "team_name": "Layne Hudson",
+        "total": 47,
+        "rank": 24
+      }
+    ],
+    "player_pts": {
+      "/player/connor-mcdavid": 9,
+      "/player/clayton-keller": 5,
+      "/player/nathan-mackinnon": 5,
+      "/player/macklin-celebrini": 5,
+      "/player/nick-suzuki": 4,
+      "/player/brandon-hagel": 3,
+      "/player/beckett-sennecke": 2,
+      "/player/will-smith": 3,
+      "/player/ivan-demidov": 2,
+      "/player/kirill-marchenko": 2,
+      "/player/matvei-michkov": 1,
+      "/player/jimmy-snuggerud": 2,
+      "/player/evan-bouchard": 12,
+      "/player/cale-makar": 4,
+      "/player/quinn-hughes": 4,
+      "/player/shayne-gostisbehere": 2,
+      "/player/lane-hutson": 3,
+      "/player/matthew-schaefer": 2,
+      "/player/logan-thompson": 2,
+      "/player/jakub-dobes": 3,
+      "/player/nikita-kucherov": 4,
+      "/player/porter-martone": 0,
+      "/player/zach-werenski": 2,
+      "/player/jesper-wallstedt": 4,
+      "/player/drake-batherson": 1,
+      "/player/cole-hutson": 2,
+      "/player/matthew-boldy": 0,
+      "/player/cole-caufield": 2,
+      "/player/denton-mateychuk": 1,
+      "/player/karel-vejmelka": 5,
+      "/player/carter-hart": 2,
+      "/player/mats-zuccarello": 1,
+      "/player/brandon-bussi": 1,
+      "/player/mark-scheifele": 0,
+      "/player/john-tavares": 2,
+      "/player/michael-misa": 1,
+      "/player/darren-raddysh": 1,
+      "/player/yaroslav-askarov": 4,
+      "/player/morgan-geekie": 1,
+      "/player/ryan-leonard": 1,
+      "/player/gavin-mckenna": 0,
+      "/player/jake-oettinger": 5,
+      "/player/mattias-samuelsson": 3,
+      "/player/scott-wedgewood": 0,
+      "/player/zach-hyman": 0,
+      "/player/logan-stankoven": 1,
+      "/player/charleedouard-dastous": 2,
+      "/player/brent-burns": 1,
+      "/player/andrei-vasilevskiy": 4,
+      "/player/pavel-zacha": 0,
+      "/player/wyatt-johnston": 1,
+      "/player/tage-thompson": 2,
+      "/player/chris-kreider": 2,
+      "/player/ivan-barbashev": 2,
+      "/player/jack-hughes": 1,
+      "/player/sam-malinski": 0,
+      "/player/david-pastrnak": 2,
+      "/player/oliver-ekman-larsson": 0,
+      "/player/lukas-dostal": 4,
+      "/player/tim-stuetzle": 4,
+      "/player/trevor-zegras": 1,
+      "/player/claude-giroux": 2,
+      "/player/noah-cates": 0,
+      "/player/mitchell-marner": 2,
+      "/player/travis-konecny": 2,
+      "/player/jamie-drysdale": 0
+    }
   }
 ]
