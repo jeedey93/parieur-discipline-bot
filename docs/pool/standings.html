@@ -717,12 +717,10 @@
 
         /* ── TONIGHT BADGE ── */
         .lb-tonight {
-          font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
-          color: var(--gold); background: rgba(255,184,28,0.1);
-          border: 1px solid rgba(255,184,28,0.25); border-radius: 4px;
-          padding: 1px 6px; white-space: nowrap; letter-spacing: 0.5px;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700;
+          color: var(--gold); text-align: right;
         }
-        .lb-tonight.zero { color: rgba(255,255,255,0.2); background: transparent; border-color: rgba(255,255,255,0.07); }
+        .lb-tonight.zero { color: rgba(255,255,255,0.2); }
 
         /* ── DETAIL RANK ROW ── */
         .detail-rank-row {
@@ -1643,7 +1641,7 @@
           return abbr && teamsPlayingToday.has(abbr);
         }).length;
         const tonightHtml = teamsPlayingToday.size > 0
-          ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? `🏒 ${tonightCount}` : '—'}</div>`
+          ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? tonightCount : '—'}</div>`
           : `<div class="lb-tonight zero">—</div>`;
 
         const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
