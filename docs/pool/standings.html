@@ -2167,13 +2167,15 @@
         const swapPos2 = normalizePos(s.player_out_position);
         const col1v = swapGp || '—';
         const col2v = swapPos2 === 'G' ? (p?.wins ?? '—') : (swapG || '—');
-        const col3v = swapPos2 === 'G' ? (p?.shutouts ?? '—') : (swapA || '—');
+        const col3v = swapPos2 === 'G' ? (p?.ot_losses ?? '—') : (swapA || '—');
+        const swapSo  = p?.shutouts ?? 0;
+        const swapOtl = p?.ot_losses ?? 0;
         const swapPpg = swapPos2 !== 'G' && swapGp > 0 && typeof (s.player_out_pts_at_swap) === 'number'
           ? (s.player_out_pts_at_swap / swapGp).toFixed(2) : null;
         return { isCurrent: false, cls: 'past', name: s.player_out_name, logo, vsLogo: '',
           tenure, col1: col1v, col2: col2v, col3: col3v,
           pts: s.player_out_pts_at_swap ?? '—',
-          gp: swapGp, g: swapG, a: swapA, w: p?.wins ?? 0, so: p?.shutouts ?? 0,
+          gp: swapGp, g: swapG, a: swapA, w: p?.wins ?? 0, so: swapSo, otl: swapOtl,
           actualPos: swapPos2,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
@@ -2196,10 +2198,10 @@
           <div></div>
           <div class="lb-col-label left">Player</div>
           ${pos==='G'
-            ? `${sortHdr('gp','GP')}${sortHdr('w','W')}<div class="lb-col-label hist-col-hide-g">${sortHdr('so','SO')}</div>`
+            ? `${sortHdr('gp','GP')}${sortHdr('w','W')}${sortHdr('otl','OTL')}`
             : `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide">${sortHdr('g','G')}</div><div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
           ${sortHdr('pts','Pts')}
-          <div class="lb-col-label${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
+          <div class="lb-col-label${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4)" title="${pos==='G'?'Shutouts':'Points per games played'}">${pos==='G'?'SO':'PPG'}</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
@@ -2218,17 +2220,17 @@
         const tenureTooltip = isCurrent
           ? `${fmt(acqDate)} → Now`
           : t.date_traded ? `${fmt(acqDate)} → ${fmt(t.date_traded)}` : `${fmt(acqDate)} → Now`;
-        let col1='—', col2='—', col3='—', pts, gp=0, g=0, a=0, w=0, so=0;
+        let col1='—', col2='—', col3='—', pts, gp=0, g=0, a=0, w=0, so=0, otl=0;
         if (isCurrent && p) {
           const d = ownedStatsDelta(p, team, p._slug);
-          gp=d.gamesPlayed; g=d.goals; a=d.assists; w=d.wins; so=d.shutouts;
-          if (pos === 'G') { col1 = gp; col2 = w; col3 = so; }
+          gp=d.gamesPlayed; g=d.goals; a=d.assists; w=d.wins; so=d.shutouts; otl=d.otLosses;
+          if (pos === 'G') { col1 = gp; col2 = w; col3 = otl; }
           else             { col1 = gp; col2 = g; col3 = a; }
           pts = poolScoreOwned(p, team, p._slug);
         } else {
           pts = _windowPtsByTradeKey[tradeKey] ?? t.points_accumulated_at_trade ?? '—';
         }
-        rowData.push({ isCurrent, cls: isCurrent?'current':'past', name: t.player_to_name||t.player_to_slug, logo, vsLogo, tenure: tenureTooltip, col1, col2, col3, pts, gp, g, a, w, so,
+        rowData.push({ isCurrent, cls: isCurrent?'current':'past', name: t.player_to_name||t.player_to_slug, logo, vsLogo, tenure: tenureTooltip, col1, col2, col3, pts, gp, g, a, w, so, otl,
           actualPos: p ? normalizePos(p.position) : pos,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
@@ -2242,14 +2244,14 @@
         const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
         const d = ownedStatsDelta(p, team, p._slug);
-        const gp=d.gamesPlayed, g=d.goals, a=d.assists, w=d.wins, so=d.shutouts;
+        const gp=d.gamesPlayed, g=d.goals, a=d.assists, w=d.wins, so=d.shutouts, otl=d.otLosses;
         let col1='—', col2='—', col3='—';
-        if (pos === 'G') { col1 = gp; col2 = w; col3 = so; }
+        if (pos === 'G') { col1 = gp; col2 = w; col3 = otl; }
         else             { col1 = gp; col2 = g; col3 = a; }
         const pts = poolScoreOwned(p, team, p._slug);
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
         const tenure = `${fmt(acqDate)} → Now`;
-        rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, vsLogo, tenure, col1, col2, col3, pts, gp, g, a, w, so,
+        rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, vsLogo, tenure, col1, col2, col3, pts, gp, g, a, w, so, otl,
           actualPos: p.position ? normalizePos(p.position) : pos,
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
@@ -2261,7 +2263,7 @@
       swapOutRows.forEach(r => rowData.push(r));
 
       // Sort: current players first, then by selected field desc, past players always last
-      const sortKey = { pts:'pts', gp:'gp', g:'g', a:'a', w:'w', so:'so' }[sortField] || 'pts';
+      const sortKey = { pts:'pts', gp:'gp', g:'g', a:'a', w:'w', so:'so', otl:'otl' }[sortField] || 'pts';
       rowData.sort((a, b) => {
         if (a.isCurrent !== b.isCurrent) return a.isCurrent ? -1 : 1;
         const av = typeof a[sortKey] === 'number' ? a[sortKey] : -1;
@@ -2287,7 +2289,7 @@
           <span class="hist-stat${pos==='G'?'':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
           <span class="hist-pts">${r.pts}</span>
-          <span class="hist-stat${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
+          <span class="hist-stat${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${pos==='G' ? (r.so ?? '—') : (r.ppg ?? '—')}</span>
           ${ytdHtml}
         </div>`;
       });
