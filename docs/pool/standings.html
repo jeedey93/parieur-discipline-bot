@@ -470,6 +470,11 @@
           .hist-header-row,
           .hist-row { grid-template-columns: 22px 1fr 28px 38px 44px 44px; gap: 0.2rem; padding: 0.45rem 0.4rem; }
           .hist-col-hide-g, .hist-col-hide, .hist-ppg-hide-g { display: none; }
+          /* Goalie table on mobile: drop pos badge, show SO slot, fit 5 stat cols */
+          .hist-table-g .hist-header-row,
+          .hist-table-g .hist-row { grid-template-columns: 1fr 28px 32px 32px 44px 40px; }
+          .hist-table-g .hist-pos { display: none; }
+          .hist-table-g .hist-ppg-hide-g { display: revert; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
         .hist-ytd.pos { color: var(--green); }
@@ -2297,7 +2302,7 @@
       const allPts = rowData.map(r => typeof r.pts === 'number' ? r.pts : 0);
       const total = allPts.reduce((s, v) => s + v, 0);
 
-      return `<div class="hist-table">
+      return `<div class="hist-table${pos==='G'?' hist-table-g':''}">
         <div class="hist-section-label ${pos}">${label}</div>
         ${colHeader}
         ${renderedRows.join('')}
