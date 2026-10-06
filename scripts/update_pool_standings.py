@@ -483,7 +483,8 @@ def main():
         for slug, (pid, pos) in slug_to_id.items():
             try:
                 url = f"https://api-web.nhle.com/v1/player/{pid}/game-log/{season}/2"
-                with urllib.request.urlopen(url, timeout=8) as r:
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=8) as r:
                     data_gl = json.loads(r.read())
                 games = data_gl.get("gameLog") or []
                 pts = sum(score_game_for_pool(g, pos) for g in games
