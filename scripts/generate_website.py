@@ -1799,7 +1799,11 @@ def update_latest_predictions(preliminary=False):
         montreal_tz = ZoneInfo('America/Toronto')
         today_str = datetime.now(montreal_tz).strftime('%Y-%m-%d')
         nhl_today_path = "docs/data/nhl_today.json"
-        with urllib.request.urlopen(f"https://api-web.nhle.com/v1/schedule/{today_str}", timeout=10) as r:
+        req = urllib.request.Request(
+            f"https://api-web.nhle.com/v1/schedule/{today_str}",
+            headers={"User-Agent": "Mozilla/5.0"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
             sched = json.loads(r.read())
         matchups = {}
         games = []
