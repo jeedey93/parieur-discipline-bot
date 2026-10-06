@@ -118,6 +118,7 @@
           display: flex; gap: 4px; margin-bottom: 1.25rem;
           background: rgba(255,255,255,0.03);
           border: 1px solid var(--line); border-radius: 8px; padding: 4px;
+          align-items: center;
         }
         .view-tab {
           font-family: 'Bebas Neue', cursive; letter-spacing: 2px;
@@ -128,6 +129,16 @@
         .view-tab:hover { color: white; }
         .view-tab.active { background: rgba(255,184,28,0.12); color: var(--gold); }
         @media (min-width: 861px) { .view-tab { font-size: 1rem; padding: 7px 20px; } }
+        .live-indicator {
+          display: flex; align-items: center; gap: 5px; margin-left: auto;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+          color: #ff4444; white-space: nowrap; padding: 0 6px; flex-shrink: 0;
+        }
+        .live-indicator::before {
+          content: ''; display: inline-block; width: 7px; height: 7px;
+          border-radius: 50%; background: #ff4444;
+          animation: live-pulse 1.2s ease-in-out infinite;
+        }
 
         /* ── SKELETON ── */
         .skeleton-row {
@@ -893,6 +904,7 @@
     let _liveGames = [];      // [{ id, away, home }]
     let _liveTimer = null;
     let _liveActive = false;
+    let _anyGameLive = false; // true when at least one game is in progress
 
     function isGameHour() {
       const h = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', hour12: false });
@@ -912,20 +924,20 @@
     async function pollLive() {
       if (!_liveGames.length) return;
       const newPts = {};
+      let anyLive = false;
       await Promise.all(_liveGames.map(async ({ id }) => {
         try {
           const res = await fetch(`${NHL_PROXY}?path=/v1/gamecenter/${id}/boxscore`);
           if (!res.ok) return;
           const data = await res.json();
           const gs = data.gameState;
-          // Only process games that have started (LIVE, CRIT) or finished (OFF)
           if (gs === 'FUT' || gs === 'PRE') return;
+          if (gs === 'LIVE' || gs === 'CRIT') anyLive = true;
           const isOver = gs === 'OFF';
           const isOT = (data.gameOutcome?.lastPeriodType === 'OT') || (data.gameOutcome?.lastPeriodType === 'SO');
           const ps = data.playerByGameStats || {};
           for (const side of ['awayTeam', 'homeTeam']) {
             const sideData = ps[side] || {};
-            // Skaters
             for (const group of ['forwards', 'defense']) {
               for (const p of (sideData[group] || [])) {
                 const id = p.playerId;
@@ -937,25 +949,24 @@
                 if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
               }
             }
-            // Goalies
             for (const g of (sideData.goalies || [])) {
               const id = g.playerId;
               if (!id || !g.toi || g.toi === '00:00') continue;
               const decision = (g.decision || '').toUpperCase();
               let pts = 0;
               if (decision === 'W') pts += _scoring.g_wins;
-              // OTL: lost but in OT/SO and they were the losing goalie
               if (isOver && isOT && decision === 'L') pts += 1;
-              // Shutout: game over, goalie played full game, 0 goals against
               if (isOver && g.goalsAgainst === 0 && decision === 'W') pts += _scoring.g_shutouts;
               if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
             }
           }
         } catch(_) {}
       }));
-      const changed = JSON.stringify(newPts) !== JSON.stringify(_livePts);
+      const ptsChanged = JSON.stringify(newPts) !== JSON.stringify(_livePts);
+      const liveChanged = anyLive !== _anyGameLive;
       _livePts = newPts;
-      if (changed) render();
+      _anyGameLive = anyLive;
+      if (ptsChanged || liveChanged) render();
     }
 
     function startLivePolling() {
@@ -1570,6 +1581,7 @@
           <div class="view-tab ${activeView==='team'?'active':''}"      onclick="setView('team')">Team Detail</div>
           <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Leaders</div>
           <div class="view-tab ${activeView==='history'?'active':''}"   onclick="setView('history')">History</div>
+          ${_anyGameLive ? '<div class="live-indicator">LIVE</div>' : ''}
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
           ${buildInsights(sorted, leaderPts)}
