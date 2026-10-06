@@ -651,6 +651,7 @@
         .swap-reason { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 4px; margin-left: 4px; text-transform: uppercase; }
         .swap-reason.injury  { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
         .swap-reason.tactical { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
+        .swap-date-chip { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.3px; margin-top: 1px; }
 
         /* ── BUMP CHART ── */
         .bump-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); padding: 1rem 0.5rem 0.5rem; }
@@ -2158,14 +2159,23 @@
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
         const swapDate = new Date(s.swap_date);
         const tenure = `Season start → ${fmt(swapDate)}`;
+        const swapGp = p?.games_played ?? 0;
+        const swapG  = p?.goals ?? 0;
+        const swapA  = p?.assists ?? 0;
+        const swapPos2 = normalizePos(s.player_out_position);
+        const col1v = swapGp || '—';
+        const col2v = swapPos2 === 'G' ? (p?.wins ?? '—') : (swapG || '—');
+        const col3v = swapPos2 === 'G' ? (p?.shutouts ?? '—') : (swapA || '—');
+        const swapPpg = swapPos2 !== 'G' && swapGp > 0 && typeof (s.player_out_pts_at_swap) === 'number'
+          ? (s.player_out_pts_at_swap / swapGp).toFixed(2) : null;
         return { isCurrent: false, cls: 'past', name: s.player_out_name, logo, vsLogo: '',
-          tenure, col1: '—', col2: '—', col3: '—',
+          tenure, col1: col1v, col2: col2v, col3: col3v,
           pts: s.player_out_pts_at_swap ?? '—',
-          gp: 0, g: 0, a: 0, w: 0, so: 0,
-          actualPos: normalizePos(s.player_out_position),
+          gp: swapGp, g: swapG, a: swapA, w: p?.wins ?? 0, so: p?.shutouts ?? 0,
+          actualPos: swapPos2,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
-          ppg: null, ytd: null, _fromSwap: true };
+          ppg: swapPpg, ytd: null, _fromSwap: true };
       }) : [];
       if (!trades.length && !currentNoDraft.length && !swapOutRows.length) return '';
 
@@ -2266,10 +2276,11 @@
             : `<span class="hist-ytd zero">—</span>`;
         const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
         const liveHtml = livePtsPlayer > 0 ? `<span class="live-badge">+${livePtsPlayer}</span>` : '';
+        const swapDateChip = r._fromSwap ? `<span class="swap-date-chip">${r.tenure}</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${swapDateChip}</span>
           <span class="hist-stat">${r.col1}</span>
           <span class="hist-stat${pos==='G'?'':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
