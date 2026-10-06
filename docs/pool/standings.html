@@ -1027,7 +1027,7 @@
               const decision = (g.decision || '').toUpperCase();
               let pts = 0;
               if (decision === 'W') pts += _scoring.g_wins;
-              if (isOver && isOT && decision === 'L') pts += 1;
+              if (isOver && isOT && decision === 'L') pts += _scoring.g_otl;
               if (isOver && g.goalsAgainst === 0 && decision === 'W') pts += _scoring.g_shutouts;
               if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
             }
@@ -1104,10 +1104,10 @@
     }
 
     // ── SCORING ──────────────────────────────────────────────────────────────────
-    let _scoring = { f_points:1, d_goals:2, d_assists:1, g_wins:2, g_shutouts:3 };
+    let _scoring = { f_points:1, d_goals:2, d_assists:1, g_wins:2, g_shutouts:3, g_otl:1 };
     async function loadScoringSettings() {
       try {
-        const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts`,
+        const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl`,
           { headers: sbHeaders() });
         if (r.ok) { const rows = await r.json(); if (rows.length) _scoring = { ..._scoring, ...rows[0] }; }
       } catch(e) {}
@@ -1123,7 +1123,7 @@
 
     function poolScore(p) {
       const pos = normalizePos(p.position);
-      if (pos === 'G') return (p.wins ?? 0) * _scoring.g_wins + (p.shutouts ?? 0) * _scoring.g_shutouts;
+      if (pos === 'G') return (p.wins ?? 0) * _scoring.g_wins + (p.shutouts ?? 0) * _scoring.g_shutouts + (p.ot_losses ?? 0) * _scoring.g_otl;
       if (pos === 'D') return (p.goals ?? 0) * _scoring.d_goals + (p.assists ?? 0) * _scoring.d_assists;
       return (p.points ?? 0) * _scoring.f_points;
     }
@@ -1153,7 +1153,8 @@
       if (pos === 'G') {
         const win = String(game?.decision || '').toUpperCase() === 'W' ? 1 : 0;
         const shutouts = Number(game?.shutouts ?? 0) || 0;
-        return win * _scoring.g_wins + shutouts * _scoring.g_shutouts;
+        const otl = String(game?.decision || '').toUpperCase() === 'L' && game?.otLoss ? 1 : 0;
+        return win * _scoring.g_wins + shutouts * _scoring.g_shutouts + otl * _scoring.g_otl;
       }
       if (pos === 'D') {
         const g = Number(game?.goals ?? 0) || 0;
@@ -1282,7 +1283,8 @@
       if (pos === 'G') {
         const wins = Math.max(0, (p.wins ?? 0) - (s.wins ?? 0));
         const so   = Math.max(0, (p.shutouts ?? 0) - (s.shutouts ?? 0));
-        delta = wins * _scoring.g_wins + so * _scoring.g_shutouts;
+        const otl  = Math.max(0, (p.ot_losses ?? 0) - (s.ot_losses ?? 0));
+        delta = wins * _scoring.g_wins + so * _scoring.g_shutouts + otl * _scoring.g_otl;
       } else if (pos === 'D') {
         const g = Math.max(0, (p.goals ?? 0) - (s.goals ?? 0));
         const a = Math.max(0, (p.assists ?? 0) - (s.assists ?? 0));
