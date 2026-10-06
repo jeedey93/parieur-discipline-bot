@@ -332,6 +332,32 @@
         @media (max-width: 600px) { .insight-sub { font-size: 0.7rem; } }
 
         /* ── TEAM TABS ── */
+        /* ── DRILL-DOWN NAVIGATION ── */
+        .standings-nav {
+          position: relative; overflow: hidden;
+        }
+        .standings-layer {
+          width: 100%;
+          transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
+          will-change: transform;
+        }
+        .standings-layer.behind {
+          position: absolute; top: 0; left: 0;
+          transform: translateX(-30%); opacity: 0; pointer-events: none;
+        }
+        .standings-layer.front {
+          transform: translateX(0); opacity: 1;
+        }
+        .detail-back-btn {
+          display: inline-flex; align-items: center; gap: 6px;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
+          font-weight: 700; letter-spacing: 0.5px; color: var(--gold);
+          background: none; border: none; cursor: pointer; padding: 0;
+          margin-bottom: 1rem; opacity: 0.85;
+        }
+        .detail-back-btn:hover { opacity: 1; }
+        .detail-back-btn svg { width: 16px; height: 16px; }
+
         .team-tabs {
           display: flex; flex-wrap: nowrap; gap: 6px; margin-bottom: 1.25rem;
           overflow-x: auto; -webkit-overflow-scrolling: touch;
@@ -988,6 +1014,11 @@
     // Sort state for roster tables: { pos: 'F'|'D'|'G', field: 'pts'|'gp'|'g'|'a'|'w'|'so' }
     let _rosterSort = {}; // keyed by pos
     if (activeView === 'allteams' || activeView === 'team') activeView = 'standings';
+    // Restore last-selected team (null = show leaderboard only)
+    if (activeView === 'standings') {
+      const savedTeam = sessionStorage.getItem('pool_team');
+      if (savedTeam) activeTeamId = savedTeam;
+    }
 
     let _cache = {};
     function clearCache() { _cache = {}; }
@@ -1559,7 +1590,7 @@
             }
           }
         } catch(_) {}
-        activeTeamId = sortedTeams()[0]?.id || teams[0]?.id;
+        if (!activeTeamId) activeTeamId = null; // start on leaderboard unless restored from session
         render();
         loadYesterdayPts(); // async — re-renders when done
         startLivePolling(); // async — polls boxscores during game hours
@@ -1583,12 +1614,22 @@
           ${_anyGameLive ? '<div class="live-indicator">LIVE</div>' : ''}
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
-          ${buildInsights(sorted, leaderPts)}
-          ${buildLeaderboard(sorted, leaderPts)}
-          ${activeTeam ? `<div class="team-tabs">
-            ${sorted.map(t => `<div class="team-tab ${t.id===activeTeamId?'active':''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">${t.name}<span class="team-tab-pts">${teamTotalPts(t)}pts</span></div>`).join('')}
+          <div class="standings-nav">
+            <div class="standings-layer ${activeTeam ? 'behind' : 'front'}" id="layer-list">
+              ${buildInsights(sorted, leaderPts)}
+              ${buildLeaderboard(sorted, leaderPts)}
+            </div>
+            ${activeTeam ? `<div class="standings-layer front" id="layer-detail">
+              <button class="detail-back-btn" onclick="clearTeam()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Standings
+              </button>
+              <div class="team-tabs">
+                ${sorted.map(t => `<div class="team-tab ${t.id===activeTeamId?'active':''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">${t.name}<span class="team-tab-pts">${teamTotalPts(t)}pts</span></div>`).join('')}
+              </div>
+              <div class="team-detail">${buildDetail(activeTeam, sorted, leaderPts)}</div>
+            </div>` : ''}
           </div>
-          <div class="team-detail visible">${buildDetail(activeTeam, sorted, leaderPts)}</div>` : ''}
         </div>
         <div id="view-pool"    style="display:${activeView==='pool'?'block':'none'}">${buildPoolLeaders()}</div>
         <div id="view-history" style="display:${activeView==='history'?'block':'none'}"><div class="bump-empty" id="bump-loading">Loading history…</div></div>
@@ -1604,14 +1645,42 @@
       if (v === 'history') loadHistory();
     }
     function selectTeam(id) {
-      activeTeamId = decodeURIComponent(id); activeView = 'standings';
-      sessionStorage.setItem('pool_view', 'standings'); render();
-      // Scroll to team detail
+      activeTeamId = decodeURIComponent(id);
+      activeView = 'standings';
+      sessionStorage.setItem('pool_view', 'standings');
+      sessionStorage.setItem('pool_team', activeTeamId);
+      render();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      // Scroll team tab strip to active tab
       requestAnimationFrame(() => {
-        const el = document.querySelector('.team-detail');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const el = document.querySelector('.team-tab.active');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       });
     }
+    function clearTeam() {
+      activeTeamId = null;
+      sessionStorage.removeItem('pool_team');
+      render();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // ── SWIPE BACK GESTURE ────────────────────────────────────────────────────
+    (function initSwipeBack() {
+      let startX = 0, startY = 0, tracking = false;
+      document.addEventListener('touchstart', e => {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        tracking = startX < 40; // only edge swipes
+      }, { passive: true });
+      document.addEventListener('touchend', e => {
+        if (!tracking) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = Math.abs(e.changedTouches[0].clientY - startY);
+        tracking = false;
+        if (dx > 60 && dy < 80 && activeTeamId && activeView === 'standings') clearTeam();
+      }, { passive: true });
+    })();
 
     // ── SYNC ─────────────────────────────────────────────────────────────────────
 
