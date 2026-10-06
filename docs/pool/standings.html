@@ -475,8 +475,9 @@
           .hist-table-g .hist-row { grid-template-columns: 1fr 32px 44px 44px 44px; }
           .hist-table-g .hist-pos,
           .hist-table-g .hist-pos-hdr-cell,
-          .hist-table-g .hist-col-hide-g { display: none; }
-          .hist-table-g .hist-col-hide-g-w { display: none; }
+          .hist-table-g .hist-col-hide-g,
+          .hist-table-g .hist-col-hide-g-w,
+          .hist-table-g .hist-col-hide-g-so { display: none; }
           .hist-table-g .hist-ppg-hide-g { display: revert; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
@@ -2209,7 +2210,8 @@
             ? `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide-g-w">${sortHdr('w','W')}</div>${sortHdr('otl','OTL')}`
             : `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide">${sortHdr('g','G')}</div><div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
           ${sortHdr('pts','Pts')}
-          <div class="lb-col-label${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4)" title="${pos==='G'?'Shutouts':'Points per games played'}">${pos==='G'?'SO':'PPG'}</div>
+          <div class="lb-col-label${pos==='G'?' hist-col-hide-g-so':''}" style="color:rgba(255,255,255,0.4)" title="${pos==='G'?'Shutouts':'Points per games played'}">${pos==='G'?'SO':'PPG'}</div>
+          ${pos==='G' ? `<div class="lb-col-label hist-ppg-hide-g" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>` : ''}
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
@@ -2297,7 +2299,8 @@
           <span class="hist-stat${pos==='G'?' hist-col-hide-g-w':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
           <span class="hist-pts">${r.pts}</span>
-          <span class="hist-stat${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${pos==='G' ? (r.so ?? '—') : (r.ppg ?? '—')}</span>
+          <span class="hist-stat${pos==='G'?' hist-col-hide-g-so':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${pos==='G' ? (r.so ?? '—') : (r.ppg ?? '—')}</span>
+          ${pos==='G' ? `<span class="hist-stat hist-ppg-hide-g" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>` : ''}
           ${ytdHtml}
         </div>`;
       });
@@ -2316,7 +2319,8 @@
           <div class="${pos==='G'?'hist-col-hide-g-w':'hist-col-hide'}"></div>
           <div class="${pos==='G'?'hist-col-hide-g':'hist-col-hide'}"></div>
           <div class="hist-pts total">${total}</div>
-          <div class="${pos==='G'?'hist-ppg-hide-g':''}"></div>
+          <div class="${pos==='G'?'hist-col-hide-g-so':''}"></div>
+          ${pos==='G' ? `<div class="hist-ppg-hide-g"></div>` : ''}
           <div></div>
         </div>
       </div>`;
