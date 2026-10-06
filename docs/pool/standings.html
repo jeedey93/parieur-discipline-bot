@@ -341,6 +341,9 @@
           transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
           will-change: transform;
         }
+        .standings-layer.dragging {
+          transition: none;
+        }
         .standings-layer.behind {
           position: absolute; top: 0; left: 0;
           transform: translateX(-30%); opacity: 0; pointer-events: none;
@@ -1664,21 +1667,112 @@
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
-    // ── SWIPE BACK GESTURE ────────────────────────────────────────────────────
+    // ── SWIPE BACK GESTURE (interactive drag) ────────────────────────────────
     (function initSwipeBack() {
-      let startX = 0, startY = 0, tracking = false;
+      let startX = 0, startY = 0, lastX = 0, lastT = 0;
+      let dragging = false, locked = false;
+
+      function getLayers() {
+        return {
+          front: document.getElementById('layer-detail'),
+          behind: document.getElementById('layer-list'),
+        };
+      }
+
+      function setDrag(front, behind, dx) {
+        const w = window.innerWidth;
+        const progress = Math.min(1, Math.max(0, dx / w));
+        // detail slides right (0 → 100%)
+        front.style.transform = `translateX(${dx}px)`;
+        front.style.opacity = String(1 - progress * 0.15);
+        // list slides from -30% toward 0
+        const listX = -30 + progress * 30; // -30% → 0%
+        behind.style.transform = `translateX(${listX}%)`;
+        behind.style.opacity = String(0.4 + progress * 0.6);
+      }
+
+      function clearInline(front, behind) {
+        front.style.transform = '';
+        front.style.opacity = '';
+        behind.style.transform = '';
+        behind.style.opacity = '';
+        front.classList.remove('dragging');
+        behind.classList.remove('dragging');
+      }
+
       document.addEventListener('touchstart', e => {
         if (e.touches.length !== 1) return;
-        startX = e.touches[0].clientX;
+        startX = lastX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
-        tracking = startX < 40; // only edge swipes
+        lastT = Date.now();
+        dragging = false;
+        locked = false;
       }, { passive: true });
+
+      document.addEventListener('touchmove', e => {
+        if (locked) return;
+        if (!activeTeamId || activeView !== 'standings') return;
+        const dx = e.touches[0].clientX - startX;
+        const dy = Math.abs(e.touches[0].clientY - startY);
+
+        // Determine intent on first meaningful move
+        if (!dragging) {
+          if (Math.abs(dx) < 6 && dy < 6) return;
+          if (dy > Math.abs(dx)) { locked = true; return; } // vertical scroll
+          if (dx < 0) { locked = true; return; }            // leftward swipe
+          if (startX > 60 && Math.abs(dx) < 15) return;     // not edge + not moved yet
+          dragging = true;
+        }
+
+        const { front, behind } = getLayers();
+        if (!front || !behind) return;
+
+        front.classList.add('dragging');
+        behind.classList.add('dragging');
+        setDrag(front, behind, Math.max(0, dx));
+
+        lastX = e.touches[0].clientX;
+        lastT = Date.now();
+      }, { passive: true });
+
       document.addEventListener('touchend', e => {
-        if (!tracking) return;
+        if (!dragging) return;
+        dragging = false;
+        locked = false;
+
+        const { front, behind } = getLayers();
+        if (!front || !behind) return;
+
         const dx = e.changedTouches[0].clientX - startX;
-        const dy = Math.abs(e.changedTouches[0].clientY - startY);
-        tracking = false;
-        if (dx > 60 && dy < 80 && activeTeamId && activeView === 'standings') clearTeam();
+        const dt = Date.now() - lastT;
+        const velocity = dt > 0 ? (e.changedTouches[0].clientX - lastX) / dt : 0; // px/ms
+        const w = window.innerWidth;
+
+        const shouldComplete = dx > w * 0.35 || (dx > 40 && velocity > 0.3);
+
+        if (shouldComplete) {
+          // Snap to complete: animate detail off screen, then clear
+          front.classList.remove('dragging');
+          behind.classList.remove('dragging');
+          front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+          behind.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+          front.style.transform = `translateX(${w}px)`;
+          front.style.opacity = '0';
+          behind.style.transform = 'translateX(0)';
+          behind.style.opacity = '1';
+          setTimeout(() => { clearInline(front, behind); clearTeam(); }, 300);
+        } else {
+          // Snap back
+          front.classList.remove('dragging');
+          behind.classList.remove('dragging');
+          front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+          behind.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+          front.style.transform = 'translateX(0)';
+          front.style.opacity = '1';
+          behind.style.transform = 'translateX(-30%)';
+          behind.style.opacity = '0';
+          setTimeout(() => { clearInline(front, behind); }, 300);
+        }
       }, { passive: true });
     })();
 
