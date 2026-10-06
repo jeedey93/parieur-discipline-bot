@@ -880,21 +880,21 @@
     // ── PAGE VIEW COUNTER ─────────────────────────────────────────────────────
     async function trackPageView() {
       const el = document.getElementById('view-count');
+      const today = new Date().toISOString().slice(0, 10);
       try {
-        // Increment via RPC, then read back
         await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_page_views`, {
           method: 'POST',
           headers: { ...sbHeaders(), 'Content-Type': 'application/json' },
-          body: JSON.stringify({ page_name: 'pool_standings' }),
+          body: JSON.stringify({ page_name: 'pool_standings', view_date: today }),
         });
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/page_views?page=eq.pool_standings&select=views`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/page_views?page=eq.pool_standings&date=eq.${today}&select=views`, {
           headers: sbHeaders(),
         });
         if (res.ok) {
           const rows = await res.json();
           if (rows.length && el) {
             const n = rows[0].views;
-            el.innerHTML = `👁 <span>${n.toLocaleString()}</span>`;
+            el.innerHTML = `👁 <span>${n.toLocaleString()}</span> today`;
           }
         }
       } catch (_) {}
