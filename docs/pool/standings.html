@@ -473,7 +473,8 @@
           /* Goalie table on mobile: drop pos badge, show SO slot, fit 5 stat cols */
           .hist-table-g .hist-header-row,
           .hist-table-g .hist-row { grid-template-columns: 1fr 28px 32px 32px 44px 40px; }
-          .hist-table-g .hist-pos { display: none; }
+          .hist-table-g .hist-pos,
+          .hist-table-g .hist-pos-hdr-cell { display: none; }
           .hist-table-g .hist-ppg-hide-g { display: revert; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
@@ -2200,7 +2201,7 @@
 
       const colHeader = `
         <div class="hist-header-row">
-          <div></div>
+          <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left">Player</div>
           ${pos==='G'
             ? `${sortHdr('gp','GP')}${sortHdr('w','W')}${sortHdr('otl','OTL')}`
@@ -2307,7 +2308,7 @@
         ${colHeader}
         ${renderedRows.join('')}
         <div class="hist-row total">
-          <div></div>
+          <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left" style="font-size:0.75rem">TOTAL</div>
           <div></div>
           <div class="${pos==='G'?'':'hist-col-hide'}"></div>
