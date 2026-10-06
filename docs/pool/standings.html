@@ -1764,6 +1764,14 @@
           ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? tonightCount : '—'}</div>`
           : `<div class="lb-tonight zero">—</div>`;
 
+        // Yesterday pts — sum _playerYesterdayPts across all current roster players
+        const teamYtd = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
+          return s + (_playerYesterdayPts[p.nhl_player_id] ?? 0);
+        }, 0);
+        const ytdCls = teamYtd > 0 ? 'pos' : 'zero';
+        const ytdLabel = teamYtd > 0 ? `+${teamYtd}` : '—';
+        const ytdHtmlStandings = `<div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>`;
+
         // Live pts badge
         const livePtsTeam = liveTeamPts(t);
         const liveBadge = livePtsTeam > 0 ? `<span class="live-badge">+${livePtsTeam}</span>` : '';
@@ -1777,7 +1785,7 @@
           <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
           <div class="lb-stat pts">${pts}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
-          ${(() => { const snap = _lastSnapshot[t.id]; if (!snap) return '<div class="lb-stat delta zero">—</div>'; const d = pts - snap.pts; const cls = d > 0 ? 'pos' : d < 0 ? 'neg' : 'zero'; const label = d > 0 ? `+${d}` : d < 0 ? String(d) : '—'; return `<div class="lb-stat delta ${cls}">${label}</div>`; })()}
+          ${ytdHtmlStandings}
           ${tonightHtml}
           <div class="lb-stat ${i===0?'gap leader':'gap'}">${gap}</div>
         </div>`;
@@ -1795,7 +1803,7 @@
           <div class="lb-col-label lb-col-hide" style="color:var(--gold)">G</div>
           <div class="lb-col-label">Total</div>
           <div class="lb-col-label lb-col-hide-mobile" title="Pool points per games played">PPG</div>
-          <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points since last daily update">Ytd</div>
+          <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
           <div class="lb-col-label" style="color:var(--gold);opacity:0.7" title="Players with a game tonight">🏒</div>
           <div class="lb-col-label">Gap</div>
         </div>
