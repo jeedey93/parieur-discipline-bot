@@ -987,7 +987,7 @@
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
     // Sort state for roster tables: { pos: 'F'|'D'|'G', field: 'pts'|'gp'|'g'|'a'|'w'|'so' }
     let _rosterSort = {}; // keyed by pos
-    if (activeView === 'allteams') activeView = 'standings';
+    if (activeView === 'allteams' || activeView === 'team') activeView = 'standings';
 
     let _cache = {};
     function clearCache() { _cache = {}; }
@@ -1578,7 +1578,6 @@
       document.getElementById('content').innerHTML = `
         <div class="view-tabs">
           <div class="view-tab ${activeView==='standings'?'active':''}" onclick="setView('standings')">Standings</div>
-          <div class="view-tab ${activeView==='team'?'active':''}"      onclick="setView('team')">Team Detail</div>
           <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Leaders</div>
           <div class="view-tab ${activeView==='history'?'active':''}"   onclick="setView('history')">History</div>
           ${_anyGameLive ? '<div class="live-indicator">LIVE</div>' : ''}
@@ -1586,12 +1585,10 @@
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
           ${buildInsights(sorted, leaderPts)}
           ${buildLeaderboard(sorted, leaderPts)}
-        </div>
-        <div id="view-team" style="display:${activeView==='team'?'block':'none'}">
-          <div class="team-tabs">
+          ${activeTeam ? `<div class="team-tabs">
             ${sorted.map(t => `<div class="team-tab ${t.id===activeTeamId?'active':''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">${t.name}<span class="team-tab-pts">${teamTotalPts(t)}pts</span></div>`).join('')}
           </div>
-          <div class="team-detail visible">${activeTeam ? buildDetail(activeTeam, sorted, leaderPts) : ''}</div>
+          <div class="team-detail visible">${buildDetail(activeTeam, sorted, leaderPts)}</div>` : ''}
         </div>
         <div id="view-pool"    style="display:${activeView==='pool'?'block':'none'}">${buildPoolLeaders()}</div>
         <div id="view-history" style="display:${activeView==='history'?'block':'none'}"><div class="bump-empty" id="bump-loading">Loading history…</div></div>
@@ -1607,12 +1604,12 @@
       if (v === 'history') loadHistory();
     }
     function selectTeam(id) {
-      activeTeamId = decodeURIComponent(id); activeView = 'team';
-      sessionStorage.setItem('pool_view', 'team'); render();
-      // Scroll active tab into view
+      activeTeamId = decodeURIComponent(id); activeView = 'standings';
+      sessionStorage.setItem('pool_view', 'standings'); render();
+      // Scroll to team detail
       requestAnimationFrame(() => {
-        const el = document.querySelector('.team-tab.active');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const el = document.querySelector('.team-detail');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
 
