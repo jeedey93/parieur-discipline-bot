@@ -112,6 +112,11 @@
           cursor: pointer; transition: background 0.2s, border-color 0.2s;
         }
         .btn-sync:hover { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.5); }
+        .view-count {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600;
+          color: rgba(255,255,255,0.3); letter-spacing: 0.5px; white-space: nowrap;
+        }
+        .view-count span { color: rgba(255,255,255,0.55); }
 
         /* ── VIEW TABS ── */
         .view-tabs {
@@ -845,6 +850,7 @@
     <header>
         <h1>Pool <span>Standings</span></h1>
         <div class="header-controls">
+            <div class="view-count" id="view-count"></div>
             <button class="btn-sync" id="share-btn" onclick="shareStandings()" title="Share standings as image">📸 Share</button>
         </div>
     </header>
@@ -871,7 +877,31 @@
     const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min within a day
     const ACTIVE_ACQUIRED_FALLBACK_DATE = new Date('2025-09-01T00:00:00Z');
 
-    function sbHeaders(extra = {}) {
+    // ── PAGE VIEW COUNTER ─────────────────────────────────────────────────────
+    async function trackPageView() {
+      const el = document.getElementById('view-count');
+      try {
+        // Increment via RPC, then read back
+        await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_page_views`, {
+          method: 'POST',
+          headers: { ...sbHeaders(), 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page_name: 'pool_standings' }),
+        });
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/page_views?page=eq.pool_standings&select=views`, {
+          headers: sbHeaders(),
+        });
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows.length && el) {
+            const n = rows[0].views;
+            el.innerHTML = `👁 <span>${n.toLocaleString()}</span>`;
+          }
+        }
+      } catch (_) {}
+    }
+    trackPageView();
+
+
       return {
         'apikey': SUPABASE_KEY,
         'Authorization': `Bearer ${SUPABASE_KEY}`,
