@@ -2090,14 +2090,12 @@
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-            const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
-            const opponentLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:2px">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
             const d = ownedStatsDelta(p, item.team, p._slug);
             const s1 = d.pos === 'G' ? d.wins   : d.goals;
             const s2 = d.pos === 'G' ? d.shutouts : d.assists;
             return `<div class="top-player-row">
               <div class="top-player-rank">${i+1}</div>
-              <div class="top-player-info">${logo}${opponentLogo}
+              <div class="top-player-info">${logo}
                 <div>
                   <div class="top-player-name">${formatName(p.player_name)}</div>
                 </div>
