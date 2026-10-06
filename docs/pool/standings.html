@@ -435,7 +435,7 @@
         @media (max-width: 560px) {
           .hist-header-row,
           .hist-row { grid-template-columns: 22px 1fr 28px 38px 44px 44px; gap: 0.2rem; padding: 0.45rem 0.4rem; }
-          .hist-col-hide-g, .hist-col-hide { display: none; }
+          .hist-col-hide-g, .hist-col-hide, .hist-ppg-hide-g { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
         .hist-ytd.pos { color: var(--green); }
@@ -1915,7 +1915,7 @@
             ? `${sortHdr('gp','GP')}${sortHdr('w','W')}<div class="lb-col-label hist-col-hide-g">${sortHdr('so','SO')}</div>`
             : `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide">${sortHdr('g','G')}</div><div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
           ${sortHdr('pts','Pts')}
-          <div class="lb-col-label" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
+          <div class="lb-col-label${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
@@ -1999,7 +1999,7 @@
           <span class="hist-stat${pos==='G'?'':' hist-col-hide'}">${r.col2}</span>
           <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
           <span class="hist-pts">${r.pts}</span>
-          <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
+          <span class="hist-stat${pos==='G'?' hist-ppg-hide-g':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
           ${ytdHtml}
         </div>`;
       });
@@ -2018,7 +2018,7 @@
           <div class="${pos==='G'?'':'hist-col-hide'}"></div>
           <div class="${pos==='G'?'hist-col-hide-g':'hist-col-hide'}"></div>
           <div class="hist-pts total">${total}</div>
-          <div></div>
+          <div class="${pos==='G'?'hist-ppg-hide-g':''}"></div>
           <div></div>
         </div>
       </div>`;
