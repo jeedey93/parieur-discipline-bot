@@ -470,15 +470,14 @@
           .hist-header-row,
           .hist-row { grid-template-columns: 22px 1fr 28px 38px 44px 44px; gap: 0.2rem; padding: 0.45rem 0.4rem; }
           .hist-col-hide-g, .hist-col-hide, .hist-ppg-hide-g { display: none; }
-          /* Goalie table on mobile: name | GP | Pts | PPG | Ytd */
+          /* Goalie table mobile: pos | name | GP | Pts | PPG | Ytd */
           .hist-table-g .hist-header-row,
-          .hist-table-g .hist-row { grid-template-columns: 1fr 32px 44px 44px 44px; }
-          .hist-table-g .hist-pos,
-          .hist-table-g .hist-pos-hdr-cell,
-          .hist-table-g .hist-col-hide-g,
-          .hist-table-g .hist-col-hide-g-w,
-          .hist-table-g .hist-col-hide-g-so { display: none; }
-          .hist-table-g .hist-ppg-hide-g { display: revert; }
+          .hist-table-g .hist-row { grid-template-columns: 22px 1fr 28px 44px 44px 44px; }
+          .hist-g-hide-mobile { display: none; }
+          .hist-g-show-mobile { display: revert; }
+        }
+        @media (min-width: 561px) {
+          .hist-g-show-mobile { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
         .hist-ytd.pos { color: var(--green); }
@@ -2207,11 +2206,13 @@
           <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left">Player</div>
           ${pos==='G'
-            ? `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide-g-w">${sortHdr('w','W')}</div>${sortHdr('otl','OTL')}`
+            ? `${sortHdr('gp','GP')}<div class="lb-col-label hist-g-hide-mobile">${sortHdr('w','W')}</div><div class="lb-col-label hist-g-hide-mobile">${sortHdr('otl','OTL')}</div>`
             : `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide">${sortHdr('g','G')}</div><div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
           ${sortHdr('pts','Pts')}
-          <div class="lb-col-label${pos==='G'?' hist-col-hide-g-so':''}" style="color:rgba(255,255,255,0.4)" title="${pos==='G'?'Shutouts':'Points per games played'}">${pos==='G'?'SO':'PPG'}</div>
-          ${pos==='G' ? `<div class="lb-col-label hist-ppg-hide-g" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>` : ''}
+          ${pos==='G' ? `
+            <div class="lb-col-label hist-g-hide-mobile" style="color:rgba(255,255,255,0.4)" title="Shutouts">SO</div>
+            <div class="lb-col-label hist-g-show-mobile" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
+          ` : `<div class="lb-col-label" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>`}
           <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
         </div>`;
 
@@ -2296,11 +2297,18 @@
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${swapDateChip}</span>
           <span class="hist-stat">${r.col1}</span>
-          <span class="hist-stat${pos==='G'?' hist-col-hide-g-w':' hist-col-hide'}">${r.col2}</span>
-          <span class="hist-stat${pos==='G'?' hist-col-hide-g':' hist-col-hide'}">${r.col3}</span>
-          <span class="hist-pts">${r.pts}</span>
-          <span class="hist-stat${pos==='G'?' hist-col-hide-g-so':''}" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${pos==='G' ? (r.so ?? '—') : (r.ppg ?? '—')}</span>
-          ${pos==='G' ? `<span class="hist-stat hist-ppg-hide-g" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>` : ''}
+          ${pos==='G' ? `
+            <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
+            <span class="hist-stat hist-g-hide-mobile">${r.col3}</span>
+            <span class="hist-pts">${r.pts}</span>
+            <span class="hist-stat hist-g-hide-mobile" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.so ?? '—'}</span>
+            <span class="hist-stat hist-g-show-mobile" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
+          ` : `
+            <span class="hist-stat hist-col-hide">${r.col2}</span>
+            <span class="hist-stat hist-col-hide">${r.col3}</span>
+            <span class="hist-pts">${r.pts}</span>
+            <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
+          `}
           ${ytdHtml}
         </div>`;
       });
@@ -2316,11 +2324,10 @@
           <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left" style="font-size:0.75rem">TOTAL</div>
           <div></div>
-          <div class="${pos==='G'?'hist-col-hide-g-w':'hist-col-hide'}"></div>
-          <div class="${pos==='G'?'hist-col-hide-g':'hist-col-hide'}"></div>
+          <div class="${pos==='G'?'hist-g-hide-mobile':'hist-col-hide'}"></div>
+          <div class="${pos==='G'?'hist-g-hide-mobile':'hist-col-hide'}"></div>
           <div class="hist-pts total">${total}</div>
-          <div class="${pos==='G'?'hist-col-hide-g-so':''}"></div>
-          ${pos==='G' ? `<div class="hist-ppg-hide-g"></div>` : ''}
+          ${pos==='G' ? `<div class="hist-g-hide-mobile"></div><div class="hist-g-show-mobile"></div>` : `<div></div>`}
           <div></div>
         </div>
       </div>`;
