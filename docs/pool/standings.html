@@ -1543,18 +1543,21 @@
       if (_cache.subScores[team.id]) return _cache.subScores[team.id];
       const r = rosterPlayers(team.roster);
       const sg = players => players.filter(Boolean).reduce((s, p) => s + poolScoreOwned(p, team, p._slug), 0);
-      // Split bench by the player's position so bench pts fold into the right column
+      // Only count bench players who were officially swapped out (have a bench swap entry for this team)
+      const swappedOutSlugs = new Set(_benchSwaps.filter(s => s.team_id === team.id).map(s => s.player_out_slug));
       const benchByPos = { F: 0, D: 0, G: 0 };
       (r.B || []).filter(Boolean).forEach(p => {
+        if (!swappedOutSlugs.has(p._slug)) return;
         const pos = normalizePos(p.position);
         const pts = poolScoreOwned(p, team, p._slug);
         if (pos === 'D') benchByPos.D += pts;
         else if (pos === 'G') benchByPos.G += pts;
         else benchByPos.F += pts;
       });
+      const benchTotal = benchByPos.F + benchByPos.D + benchByPos.G;
       const result = {
         F: sg(r.F), D: sg(r.D), G: sg(r.G),
-        B: sg(r.B), BF: benchByPos.F, BD: benchByPos.D, BG: benchByPos.G,
+        B: benchTotal, BF: benchByPos.F, BD: benchByPos.D, BG: benchByPos.G,
       };
       _cache.subScores[team.id] = result;
       return result;
