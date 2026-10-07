@@ -1612,7 +1612,7 @@
       fetch(`${SUPABASE_URL}/rest/v1/pool_leagues?code=eq.${_leagueCode}&select=name`,
         { headers: sbHeaders() })
         .then(r => r.json())
-        .then(rows => { const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; } })
+        .then(rows => { const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; document.title = `${n} | Parieur Discipliné`; } })
         .catch(() => {});
       try {
         let cacheHit = false;
