@@ -1543,7 +1543,19 @@
       if (_cache.subScores[team.id]) return _cache.subScores[team.id];
       const r = rosterPlayers(team.roster);
       const sg = players => players.filter(Boolean).reduce((s, p) => s + poolScoreOwned(p, team, p._slug), 0);
-      const result = { F: sg(r.F), D: sg(r.D), G: sg(r.G), B: sg(r.B) };
+      // Split bench by the player's position so bench pts fold into the right column
+      const benchByPos = { F: 0, D: 0, G: 0 };
+      (r.B || []).filter(Boolean).forEach(p => {
+        const pos = normalizePos(p.position);
+        const pts = poolScoreOwned(p, team, p._slug);
+        if (pos === 'D') benchByPos.D += pts;
+        else if (pos === 'G') benchByPos.G += pts;
+        else benchByPos.F += pts;
+      });
+      const result = {
+        F: sg(r.F), D: sg(r.D), G: sg(r.G),
+        B: sg(r.B), BF: benchByPos.F, BD: benchByPos.D, BG: benchByPos.G,
+      };
       _cache.subScores[team.id] = result;
       return result;
     }
@@ -1564,7 +1576,8 @@
       return (pts / totalGP).toFixed(2);
     }
     function posRankForTeam(team, pos) {
-      const ranked = [...teams].map(t => ({ id: t.id, score: teamSubScores(t)[pos] })).sort((a, b) => b.score - a.score);
+      const posScore = t => { const s = teamSubScores(t); return pos === 'F' ? s.F + s.BF : pos === 'D' ? s.D + s.BD : pos === 'G' ? s.G + s.BG : s[pos] || 0; };
+      const ranked = [...teams].map(t => ({ id: t.id, score: posScore(t) })).sort((a, b) => b.score - a.score);
       return ranked.findIndex(r => r.id === team.id) + 1;
     }
     function posRankLabel(rank, total) {
@@ -1951,7 +1964,8 @@
       // 7. Coldest Team — position group ranked last in the pool
       const coldCandidates = [];
       ['F','D','G'].forEach(pos => {
-        const ranked = [...teams].map(t => ({ t, score: teamSubScores(t)[pos] })).sort((a, b) => a.score - b.score);
+        const posScore = t => { const s = teamSubScores(t); return pos === 'F' ? s.F + s.BF : pos === 'D' ? s.D + s.BD : s.G + s.BG; };
+        const ranked = [...teams].map(t => ({ t, score: posScore(t) })).sort((a, b) => a.score - b.score);
         const last = ranked[0];
         const second = ranked[1];
         if (last && second && second.score - last.score >= 5) {
@@ -2056,9 +2070,9 @@
           <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
           <div class="lb-name-wrap"><span class="lb-name">${t.name}</span>${liveBadge}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
-          <div class="lb-stat lb-col-hide pos-f">${sub.F + sub.B}</div>
-          <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
-          <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
+          <div class="lb-stat lb-col-hide pos-f">${sub.F + sub.BF}</div>
+          <div class="lb-stat lb-col-hide pos-d">${sub.D + sub.BD}</div>
+          <div class="lb-stat lb-col-hide pos-g">${sub.G + sub.BG}</div>
           <div class="lb-stat pts">${pts}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
           ${ytdHtmlStandings}
@@ -2143,9 +2157,9 @@
         </div>
         <div class="pos-scores-bar">
           ${totalBlock}
-          ${posBlock('F', 'Forwards', sub.F + sub.B)}
-          ${posBlock('D', 'Defence',  sub.D)}
-          ${posBlock('G', 'Goalies',  sub.G)}
+          ${posBlock('F', 'Forwards', sub.F + sub.BF)}
+          ${posBlock('D', 'Defence',  sub.D + sub.BD)}
+          ${posBlock('G', 'Goalies',  sub.G + sub.BG)}
         </div>
         ${hasF ? buildHistTable(team, 'F', 'Forwards') : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No forwards drafted yet.</div>'}
         ${hasD ? buildHistTable(team, 'D', 'Defence')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No defencemen drafted yet.</div>'}
@@ -2818,9 +2832,9 @@
         return `<div style="display:grid;grid-template-columns:32px 1fr 36px 36px 36px 52px 44px;gap:4px;align-items:center;padding:8px 10px;border-radius:7px;background:${rowBg};margin-bottom:3px;font-size:0.95rem;font-weight:600;letter-spacing:0.5px;">
           <div style="font-size:1.1rem;text-align:center">${icon}</div>
           <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.name}</div>
-          <div style="text-align:center;color:#ff7a8a;font-size:0.8rem">${sub.F + sub.B}</div>
-          <div style="text-align:center;color:#7db4ff;font-size:0.8rem">${sub.D}</div>
-          <div style="text-align:center;color:#ffb81c;font-size:0.8rem">${sub.G}</div>
+          <div style="text-align:center;color:#ff7a8a;font-size:0.8rem">${sub.F + sub.BF}</div>
+          <div style="text-align:center;color:#7db4ff;font-size:0.8rem">${sub.D + sub.BD}</div>
+          <div style="text-align:center;color:#ffb81c;font-size:0.8rem">${sub.G + sub.BG}</div>
           <div style="text-align:center;color:#ffb81c;font-weight:800;font-size:1.05rem">${pts}</div>
           <div style="text-align:center;color:rgba(255,255,255,0.4);font-size:0.8rem">${gap}</div>
         </div>`;
