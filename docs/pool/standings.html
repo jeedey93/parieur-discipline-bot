@@ -2056,7 +2056,7 @@
           <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
           <div class="lb-name-wrap"><span class="lb-name">${t.name}</span>${liveBadge}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
-          <div class="lb-stat lb-col-hide pos-f">${sub.F}</div>
+          <div class="lb-stat lb-col-hide pos-f">${sub.F + sub.B}</div>
           <div class="lb-stat lb-col-hide pos-d">${sub.D}</div>
           <div class="lb-stat lb-col-hide pos-g">${sub.G}</div>
           <div class="lb-stat pts">${pts}</div>
@@ -2143,7 +2143,7 @@
         </div>
         <div class="pos-scores-bar">
           ${totalBlock}
-          ${posBlock('F', 'Forwards', sub.F)}
+          ${posBlock('F', 'Forwards', sub.F + sub.B)}
           ${posBlock('D', 'Defence',  sub.D)}
           ${posBlock('G', 'Goalies',  sub.G)}
         </div>
@@ -2818,7 +2818,7 @@
         return `<div style="display:grid;grid-template-columns:32px 1fr 36px 36px 36px 52px 44px;gap:4px;align-items:center;padding:8px 10px;border-radius:7px;background:${rowBg};margin-bottom:3px;font-size:0.95rem;font-weight:600;letter-spacing:0.5px;">
           <div style="font-size:1.1rem;text-align:center">${icon}</div>
           <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.name}</div>
-          <div style="text-align:center;color:#ff7a8a;font-size:0.8rem">${sub.F}</div>
+          <div style="text-align:center;color:#ff7a8a;font-size:0.8rem">${sub.F + sub.B}</div>
           <div style="text-align:center;color:#7db4ff;font-size:0.8rem">${sub.D}</div>
           <div style="text-align:center;color:#ffb81c;font-size:0.8rem">${sub.G}</div>
           <div style="text-align:center;color:#ffb81c;font-weight:800;font-size:1.05rem">${pts}</div>
