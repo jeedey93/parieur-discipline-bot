@@ -2261,8 +2261,10 @@
         else             { col1 = gp; col2 = g; col3 = a; }
         const pts = poolScoreOwned(p, team, p._slug);
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
+        const hasAcqDate = acqDate.getTime() !== ACTIVE_ACQUIRED_FALLBACK_DATE.getTime();
         const tenure = `${fmt(acqDate)} → Now`;
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, vsLogo, tenure, col1, col2, col3, pts, gp, g, a, w, so, otl,
+          _acqDateChip: hasAcqDate ? `${fmt(acqDate)} → Now` : null,
           actualPos: p.position ? normalizePos(p.position) : pos,
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
@@ -2291,7 +2293,9 @@
             : `<span class="hist-ytd zero">—</span>`;
         const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
         const liveHtml = livePtsPlayer > 0 ? `<span class="live-badge">+${livePtsPlayer}</span>` : '';
-        const swapDateChip = r._fromSwap ? `<span class="swap-date-chip">${r.tenure}</span>` : '';
+        const swapDateChip = r._fromSwap
+          ? `<span class="swap-date-chip">${r.tenure}</span>`
+          : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
