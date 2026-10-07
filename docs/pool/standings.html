@@ -336,6 +336,13 @@
         .insight-sub { font-size: 0.78rem; font-weight: 600; color: var(--silver); }
         @media (max-width: 600px) { .insight-sub { font-size: 0.7rem; } }
 
+        /* Insights page */
+        .insights-page-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.9rem; margin-top: 0.25rem; }
+        .insights-page-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 2px; color: white; }
+        .insights-page-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .insights-full { margin-bottom: 2rem; }
+        .insights-full .insight-card:first-child { grid-column: 1 / -1; }
+
         /* ── TEAM TABS ── */
         /* ── DRILL-DOWN NAVIGATION ── */
         .standings-nav {
@@ -1088,7 +1095,7 @@
       if (!_cache.teamPts) _cache.teamPts = {};
       if (_cache.teamPts[team.id] !== undefined) return _cache.teamPts[team.id];
       const s = teamSubScores(team);
-      _cache.teamPts[team.id] = s.F + s.D + s.G;
+      _cache.teamPts[team.id] = s.F + s.D + s.G + s.B;
       return _cache.teamPts[team.id];
     }
     function sortedTeams() {
@@ -1673,12 +1680,13 @@
           <div class="view-tab ${activeView==='standings'?'active':''}" onclick="setView('standings')">Standings</div>
           <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Leaders</div>
           <div class="view-tab ${activeView==='history'?'active':''}"   onclick="setView('history')">History</div>
+          <div class="view-tab ${activeView==='insights'?'active':''}"  onclick="setView('insights')">Insights</div>
           ${_anyGameLive ? '<div class="live-indicator">LIVE</div>' : ''}
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
           <div class="standings-nav">
             <div class="standings-layer ${activeTeam ? 'behind' : 'front'}" id="layer-list">
-              ${buildInsights(sorted, leaderPts)}
+              ${buildInsightsTeaser(sorted, leaderPts)}
               ${buildLeaderboard(sorted, leaderPts)}
             </div>
             ${activeTeam ? `<div class="standings-layer front" id="layer-detail">
@@ -1693,8 +1701,9 @@
             </div>` : ''}
           </div>
         </div>
-        <div id="view-pool"    style="display:${activeView==='pool'?'block':'none'}">${buildPoolLeaders()}</div>
-        <div id="view-history" style="display:${activeView==='history'?'block':'none'}"><div class="bump-empty" id="bump-loading">Loading history…</div></div>
+        <div id="view-pool"     style="display:${activeView==='pool'?'block':'none'}">${buildPoolLeaders()}</div>
+        <div id="view-history"  style="display:${activeView==='history'?'block':'none'}"><div class="bump-empty" id="bump-loading">Loading history…</div></div>
+        <div id="view-insights" style="display:${activeView==='insights'?'block':'none'}">${buildInsightsPage(sorted, leaderPts)}</div>
       `;
       window.scrollTo({ top: scrollY, behavior: 'instant' });
       if (activeView === 'history') loadHistory();
@@ -1858,6 +1867,24 @@
       } catch(_) { return null; }
     }
 
+    function buildInsightsTeaser(sorted, leaderPts) {
+      const card = (color, icon, label, main, sub) =>
+        `<div class="insight-card ${color}"><div class="insight-icon">${icon}</div><div class="insight-label">${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
+      const all = computeInsightData(sorted, leaderPts);
+      const cards = all.slice(0, 3).map(d => card(d.color, d.icon, d.label, d.main, d.sub));
+      if (!cards.length) return '';
+      return `<div class="insights">${cards.join('')}<div class="insight-card insight-more-card" onclick="setView('insights')" style="cursor:pointer;align-items:center;justify-content:center;flex-direction:row;gap:0.5rem;border-color:rgba(255,255,255,0.1)"><span style="font-size:0.85rem;color:rgba(255,255,255,0.5)">More insights</span><span style="font-size:0.75rem;color:rgba(255,255,255,0.3)">→</span></div></div>`;
+    }
+
+    function buildInsightsPage(sorted, leaderPts) {
+      const card = (color, icon, label, main, sub) =>
+        `<div class="insight-card ${color}"><div class="insight-icon">${icon}</div><div class="insight-label">${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
+      const all = computeInsightData(sorted, leaderPts);
+      if (!all.length) return '<div class="msg" style="padding:2rem 0">No insights available yet — check back after games have been played.</div>';
+      const cards = all.map(d => card(d.color, d.icon, d.label, d.main, d.sub));
+      return `<div class="insights-page-header"><span class="insights-page-title">Pool Insights</span><span class="insights-page-sub">Updated live · ${sorted.length} teams</span></div><div class="insights insights-full">${cards.join('')}</div>`;
+    }
+
     function buildInsights(sorted, leaderPts) {
       const card = (color, icon, label, main, sub) =>
         `<div class="insight-card ${color}"><div class="insight-icon">${icon}</div><div class="insight-label">${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
@@ -1937,6 +1964,36 @@
         const posLabel = { F: 'Forwards', D: 'Defence', G: 'Goalies' }[cold.pos];
         data.push({ color:'red', icon:'🥶', label:'Coldest Team', main:cold.t.name, sub:`${posLabel} last in pool with ${cold.score} pts` });
       }
+
+      // 8. Best Forward (most pts by a single F)
+      const bestF = allP.filter(x => normalizePos(x.p.position) !== 'G' && normalizePos(x.p.position) !== 'D').sort((a, b) => b.pts - a.pts);
+      if (bestF.length) { const top = bestF[0]; data.push({ color:'gold', icon:'⚽', label:'Best Forward', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+
+      // 9. Best Defenceman (most pts by a single D)
+      const bestD = allP.filter(x => normalizePos(x.p.position) === 'D').sort((a, b) => b.pts - a.pts);
+      if (bestD.length) { const top = bestD[0]; data.push({ color:'blue', icon:'🛡️', label:'Best Defenceman', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+
+      // 10. Best Goalie (most pts by a single G)
+      const gAllP = [];
+      teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.G].filter(Boolean).forEach(p => { const pts = poolScoreOwned(p, t, p._slug); gAllP.push({ p, t, pts }); }); });
+      gAllP.sort((a, b) => b.pts - a.pts);
+      if (gAllP.length && gAllP[0].pts > 0) { const top = gAllP[0]; data.push({ color:'green', icon:'🧤', label:'Best Goalie', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+
+      // 11. Most GP across a roster
+      const gpTeams = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const gp = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0), 0);
+        return { t, gp };
+      }).sort((a, b) => b.gp - a.gp);
+      if (gpTeams.length && gpTeams[0].gp > 0) { const top = gpTeams[0]; data.push({ color:'blue', icon:'🎮', label:'Most GP Played', main:top.t.name, sub:`${top.gp} total games played across roster` }); }
+
+      // 12. Deepest Roster (most players with ≥1 pt)
+      const deepTeams = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const scorers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => poolScoreOwned(p, t, p._slug) >= 1).length;
+        return { t, scorers };
+      }).sort((a, b) => b.scorers - a.scorers);
+      if (deepTeams.length && deepTeams[0].scorers > 0) { const top = deepTeams[0]; data.push({ color:'green', icon:'🌊', label:'Deepest Roster', main:top.t.name, sub:`${top.scorers} players with 1+ pts — most in pool` }); }
 
       return data;
     }
@@ -2037,7 +2094,7 @@
       if (!allPlrs.length) return `<div class="msg" style="padding:1.5rem 0;">No players drafted yet.</div>`;
 
       const sub = teamSubScores(team);
-      const totalPts = sub.F + sub.D + sub.G;
+      const totalPts = teamTotalPts(team);
       const cap = teamCapUsed(team.roster);
       const filled = teamFilled(team.roster);
       const eff = cap > 0 ? (totalPts / (cap / 1e6)).toFixed(1) : '—';
