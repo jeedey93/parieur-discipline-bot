@@ -1007,6 +1007,13 @@
       });
       return total;
     }
+    function liveSubPts(team) {
+      const out = { F: 0, D: 0, G: 0 };
+      const rp = rosterPlayers(team.roster);
+      const add = (arr, pos) => arr.filter(Boolean).forEach(p => { if (p.nhl_player_id) out[pos] += (_livePts[p.nhl_player_id] ?? 0); });
+      add(rp.F, 'F'); add(rp.D, 'D'); add(rp.G, 'G');
+      return out;
+    }
 
     async function pollLive() {
       if (!_liveGames.length) return;
@@ -1053,7 +1060,7 @@
       const liveChanged = anyLive !== _anyGameLive;
       _livePts = newPts;
       _anyGameLive = anyLive;
-      if (ptsChanged || liveChanged) render();
+      if (ptsChanged || liveChanged) { clearCache(); render(); }
     }
 
     function startLivePolling() {
@@ -1095,7 +1102,7 @@
       if (!_cache.teamPts) _cache.teamPts = {};
       if (_cache.teamPts[team.id] !== undefined) return _cache.teamPts[team.id];
       const s = teamSubScores(team);
-      _cache.teamPts[team.id] = s.F + s.D + s.G + s.B;
+      _cache.teamPts[team.id] = s.F + s.D + s.G + s.B + liveTeamPts(team);
       return _cache.teamPts[team.id];
     }
     function sortedTeams() {
@@ -2020,6 +2027,7 @@
       const rowsHtml = sorted.map((t, i) => {
         const pts = teamTotalPts(t);
         const sub = teamSubScores(t);
+        const live = liveSubPts(t);
         const ppg = teamAvgPPG(t);
         const gap = i === 0 ? 'Leader' : `−${leaderPts - pts}`;
         const rp = rosterPlayers(t.roster);
@@ -2073,9 +2081,9 @@
           <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
           <div class="lb-name-wrap"><span class="lb-name">${t.name}</span>${liveBadge}</div>
           <div class="lb-stat lb-col-hide">${ownedGP}</div>
-          <div class="lb-stat lb-col-hide pos-f">${sub.F + sub.BF}</div>
-          <div class="lb-stat lb-col-hide pos-d">${sub.D + sub.BD}</div>
-          <div class="lb-stat lb-col-hide pos-g">${sub.G + sub.BG}</div>
+          <div class="lb-stat lb-col-hide pos-f">${sub.F + sub.BF + live.F}</div>
+          <div class="lb-stat lb-col-hide pos-d">${sub.D + sub.BD + live.D}</div>
+          <div class="lb-stat lb-col-hide pos-g">${sub.G + sub.BG + live.G}</div>
           <div class="lb-stat pts">${pts}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg ?? '—'}</div>
           ${ytdHtmlStandings}
@@ -2111,6 +2119,7 @@
       if (!allPlrs.length) return `<div class="msg" style="padding:1.5rem 0;">No players drafted yet.</div>`;
 
       const sub = teamSubScores(team);
+      const live = liveSubPts(team);
       const totalPts = teamTotalPts(team);
       const cap = teamCapUsed(team.roster);
       const filled = teamFilled(team.roster);
@@ -2160,9 +2169,9 @@
         </div>
         <div class="pos-scores-bar">
           ${totalBlock}
-          ${posBlock('F', 'Forwards', sub.F + sub.BF)}
-          ${posBlock('D', 'Defence',  sub.D + sub.BD)}
-          ${posBlock('G', 'Goalies',  sub.G + sub.BG)}
+          ${posBlock('F', 'Forwards', sub.F + sub.BF + live.F)}
+          ${posBlock('D', 'Defence',  sub.D + sub.BD + live.D)}
+          ${posBlock('G', 'Goalies',  sub.G + sub.BG + live.G)}
         </div>
         ${hasF ? buildHistTable(team, 'F', 'Forwards') : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No forwards drafted yet.</div>'}
         ${hasD ? buildHistTable(team, 'D', 'Defence')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No defencemen drafted yet.</div>'}
