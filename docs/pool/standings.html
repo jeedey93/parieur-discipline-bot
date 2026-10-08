@@ -2487,8 +2487,14 @@
         </div>`;
       });
 
-      const allPts = rowData.map(r => typeof r.pts === 'number' ? r.pts : 0);
-      const total = allPts.reduce((s, v) => s + v, 0);
+      const currentRows = rowData.filter(r => r.isCurrent);
+      const total    = rowData.reduce((s, r) => s + (typeof r.pts === 'number' ? r.pts : 0), 0);
+      const totalGP  = currentRows.reduce((s, r) => s + (r.gp || 0), 0);
+      const totalG   = currentRows.reduce((s, r) => s + (r.g  || 0), 0);
+      const totalA   = currentRows.reduce((s, r) => s + (r.a  || 0), 0);
+      const totalW   = currentRows.reduce((s, r) => s + (r.w  || 0), 0);
+      const totalSO  = currentRows.reduce((s, r) => s + (r.so || 0), 0);
+      const avgPPG   = totalGP > 0 ? (total / totalGP).toFixed(2) : '—';
 
       return `<div class="hist-table${pos==='G'?' hist-table-g':''}">
         <div class="hist-section-label ${pos}">${label}</div>
@@ -2497,11 +2503,19 @@
         <div class="hist-row total">
           <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left" style="font-size:0.75rem">TOTAL</div>
-          <div></div>
-          <div class="${pos==='G'?'hist-g-hide-mobile':'hist-col-hide'}"></div>
-          <div class="${pos==='G'?'hist-g-hide-mobile':'hist-col-hide'}"></div>
-          <div class="hist-pts total">${total}</div>
-          ${pos==='G' ? `<div class="hist-g-hide-mobile"></div><div class="hist-g-show-mobile"></div>` : `<div></div>`}
+          <span class="hist-stat" style="font-weight:700">${totalGP || '—'}</span>
+          ${pos==='G' ? `
+            <span class="hist-stat hist-g-hide-mobile" style="font-weight:700">${totalW || '—'}</span>
+            <span class="hist-stat hist-g-hide-mobile" style="font-weight:700">—</span>
+            <div class="hist-pts total">${total}</div>
+            <span class="hist-stat hist-g-hide-mobile" style="font-weight:700">${totalSO || '—'}</span>
+            <span class="hist-stat hist-g-show-mobile" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${avgPPG}</span>
+          ` : `
+            <span class="hist-stat hist-col-hide" style="font-weight:700">${totalG || '—'}</span>
+            <span class="hist-stat hist-col-hide" style="font-weight:700">${totalA || '—'}</span>
+            <div class="hist-pts total">${total}</div>
+            <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${avgPPG}</span>
+          `}
           <div></div>
         </div>
       </div>`;
