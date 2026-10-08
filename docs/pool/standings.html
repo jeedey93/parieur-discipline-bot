@@ -2045,9 +2045,9 @@
           : `<span class="lb-rank-num">${rankNum}</span>`;
         const tierCls = rankNum <= 3 ? ` rank-${rankNum}` : '';
         const isActive = t.id === activeTeamId;
+        const snapEntry = _lastSnapshot[t.id];
 
         // Rank change arrow from last snapshot
-        const snapEntry = _lastSnapshot[t.id];
         const prevRank = snapEntry?.rank ?? null;
         let rankChangeBadge = '';
         if (prevRank && prevRank !== rankNum) {
@@ -2068,10 +2068,12 @@
           ? `<div class="lb-tonight${tonightCount === 0 ? ' zero' : ''}">${tonightCount > 0 ? tonightCount : '—'}</div>`
           : `<div class="lb-tonight zero">—</div>`;
 
-        // Yesterday pts — sum _playerYesterdayPts across all current roster players
-        const teamYtd = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
+        // Yesterday pts — use player-level data if available, else fall back to team snapshot delta
+        const playerYtdSum = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
           return s + (_playerYesterdayPts[p.nhl_player_id] ?? 0);
         }, 0);
+        const snapshotDelta = snapEntry ? teamTotalPts(t) - snapEntry.pts : null;
+        const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
         const ytdCls = teamYtd > 0 ? 'pos' : 'zero';
         const ytdLabel = teamYtd > 0 ? `+${teamYtd}` : '—';
         const ytdHtmlStandings = `<div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>`;
