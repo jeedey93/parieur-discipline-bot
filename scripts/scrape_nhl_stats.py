@@ -304,7 +304,7 @@ def save_standings_snapshots():
 
             # 4. Load scoring settings (defaults match the JS defaults)
             settings_rows = supabase.table("pool_settings").select(
-                "f_points,d_goals,d_assists,g_wins,g_shutouts"
+                "f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl"
             ).eq("league_code", code).execute().data
             sc = settings_rows[0] if settings_rows else {}
             scoring = {
@@ -313,6 +313,7 @@ def save_standings_snapshots():
                 "d_assists": sc.get("d_assists", 1),
                 "g_wins":   sc.get("g_wins",   2),
                 "g_shutouts": sc.get("g_shutouts", 3),
+                "g_otl":    sc.get("g_otl", 1),
             }
 
             # 5. Load trades for frozen_points
@@ -325,6 +326,18 @@ def save_standings_snapshots():
                 if tr.get("date_traded") and tr.get("player_to_slug"):
                     key = (tr["team_id"], tr["player_to_slug"])
                     frozen_by_slug_team[key] = tr.get("points_accumulated_at_trade") or 0
+
+            # 5b. Load bench swaps for this league (to count swapped-out bench players)
+            bench_swaps_rows = supabase.table("pool_bench_swaps").select(
+                "team_id,player_out_slug"
+            ).eq("league_code", code).execute().data
+            # Map: team_id → set of officially swapped-out slugs
+            swapped_out_by_team = {}
+            for sw in bench_swaps_rows:
+                tid = sw.get("team_id")
+                slug = sw.get("player_out_slug")
+                if tid and slug:
+                    swapped_out_by_team.setdefault(tid, set()).add(slug)
 
             # 6. Score each team
             def normalize_pos(pos):
@@ -350,7 +363,8 @@ def save_standings_snapshots():
                 if pos == "G":
                     wins = max(0, (p.get("wins") or 0) - (snap.get("wins") or 0))
                     so   = max(0, (p.get("shutouts") or 0) - (snap.get("shutouts") or 0))
-                    delta = wins * scoring["g_wins"] + so * scoring["g_shutouts"]
+                    otl  = max(0, (p.get("ot_losses") or 0) - (snap.get("ot_losses") or 0))
+                    delta = wins * scoring["g_wins"] + so * scoring["g_shutouts"] + otl * scoring["g_otl"]
                 elif pos == "D":
                     g = max(0, (p.get("goals") or 0) - (snap.get("goals") or 0))
                     a = max(0, (p.get("assists") or 0) - (snap.get("assists") or 0))
@@ -360,24 +374,34 @@ def save_standings_snapshots():
                 return frozen + delta, pos
 
             team_scores = []
+            player_pts = {}  # slug → pool pts (across all teams)
             for team in teams:
                 team_id = team.get("id", "")
                 acq = team.get("acquisitions", {}) or {}
                 roster = team.get("roster", {})
-                f_pts = d_pts = g_pts = 0
+                swapped_out = swapped_out_by_team.get(team_id, set())
+                f_pts = d_pts = g_pts = b_pts = 0
                 for slug in (roster.get("F") or []):
                     if slug:
                         pts, _ = score_player(slug, team_id, acq)
                         f_pts += pts
+                        player_pts[slug] = round(pts)
                 for slug in (roster.get("D") or []):
                     if slug:
                         pts, _ = score_player(slug, team_id, acq)
                         d_pts += pts
+                        player_pts[slug] = round(pts)
                 for slug in (roster.get("G") or []):
                     if slug:
                         pts, _ = score_player(slug, team_id, acq)
                         g_pts += pts
-                total = f_pts + d_pts + g_pts
+                        player_pts[slug] = round(pts)
+                for slug in (roster.get("B") or []):
+                    if slug and slug in swapped_out:
+                        pts, _ = score_player(slug, team_id, acq)
+                        b_pts += pts
+                        player_pts[slug] = round(pts)
+                total = f_pts + d_pts + g_pts + b_pts
                 team_scores.append({
                     "team_id": team_id,
                     "name": team.get("name", "?"),
@@ -397,6 +421,7 @@ def save_standings_snapshots():
                 "league_code": code,
                 "snapshot_date": today,
                 "standings": team_scores,
+                "player_pts": player_pts,
             }, on_conflict="league_code,snapshot_date").execute()
 
             print(f"  ✅  {code}: {len(team_scores)} teams snapshotted")

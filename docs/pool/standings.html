@@ -964,6 +964,7 @@
     let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [];
     let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
+    let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
     let tonightMatchups = {};          // abbrev → opponent abbrev
@@ -1676,7 +1677,7 @@
         // Fetch latest 2 snapshots: most recent for rank changes, previous for yesterday delta
         try {
           const snapRes = await fetch(
-            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=2&select=snapshot_date,standings`,
+            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=2&select=snapshot_date,standings,player_pts`,
             { headers: sbHeaders() }
           );
           if (snapRes.ok) {
@@ -1686,8 +1687,19 @@
             }
             // Use the previous day's snapshot for yesterday delta
             const prevSnap = snapRows.length >= 2 ? snapRows[1] : snapRows[0];
+            const latestSnap = snapRows[0];
             if (prevSnap && Array.isArray(prevSnap.standings)) {
               _yesterdaySnapshot = Object.fromEntries(prevSnap.standings.map(s => [s.team_id, s.pts ?? 0]));
+            }
+            // Per-player yesterday delta: latest player_pts - previous player_pts
+            const latestPlayerPts  = latestSnap?.player_pts  || {};
+            const prevPlayerPts    = prevSnap?.player_pts    || {};
+            if (Object.keys(latestPlayerPts).length) {
+              for (const [slug, pts] of Object.entries(latestPlayerPts)) {
+                const prev = prevPlayerPts[slug] ?? pts;
+                const delta = pts - prev;
+                if (delta > 0) _playerYesterdayPtsBySlug[slug] = delta;
+              }
             }
           }
         } catch(_) {}
@@ -2341,7 +2353,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: (isCurrent && p?.nhl_player_id) ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : null });
+          ytd: isCurrent ? ((_playerYesterdayPts[p?.nhl_player_id] || 0) || (_playerYesterdayPtsBySlug[p?.puckpedia_slug] ?? 0)) : null });
       });
 
       currentNoDraft.forEach(p => {
@@ -2364,7 +2376,7 @@
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: p.nhl_player_id ? (_playerYesterdayPts[p.nhl_player_id] ?? 0) : 0 });
+          ytd: (_playerYesterdayPts[p.nhl_player_id] || 0) || (_playerYesterdayPtsBySlug[p.puckpedia_slug] ?? 0) });
       });
 
       // Add bench-swapped-out players as past rows
