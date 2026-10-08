@@ -3,7 +3,7 @@ name: Update Pool Player Stats
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *'  # 6am Montreal (~2:00 UTC, runs ~4h late)
+    - cron: '0 13 * * *'  # 9am Montreal (13:00 UTC)
 
 jobs:
   update-stats:
