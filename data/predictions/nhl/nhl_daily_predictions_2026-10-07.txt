@@ -1,0 +1,42 @@
+Here's the analysis of the prediction reports and the unified final recommendation list:
+
+The comparison between the 7:00 AM and 12:00 PM prediction reports reveals several key changes in market perception and analysis, primarily driven by the availability of "Current Roster Data Verified" in the noon report. This updated information has led to significant shifts in confidence, odds, and the identification of new betting opportunities.
+
+**Summary of Changes:**
+
+*   **Plays Appearing in Both Reports (Consistency):**
+    *   **Anaheim Ducks ML vs Edmonton Oilers:** This play was present in both reports, indicating sustained interest.
+        *   Morning: Anaheim Ducks ML @ 2.1, Confidence: Medium, Units: 1u, Win Probability: 55%
+        *   Noon: Anaheim Ducks ML @ 2.09, Confidence: High, Units: 1.5u, Win Probability: 60%
+        *   *Change:* Odds slightly decreased (2.1 to 2.09), but confidence significantly increased from Medium to High, with units and win probability also rising, suggesting stronger conviction despite the minor line movement against the Ducks.
+
+*   **Plays Added in the Noon Report:**
+    *   **Edmonton Oilers vs Anaheim Ducks Over 6.5 @ 1.72:** This was a new pick and designated as the "BET OF THE DAY" in the noon report. The analysis highlights goaltending mismatches and strong offensive trends, likely informed by the newly verified roster data.
+    *   **Winnipeg Jets ML vs Colorado Avalanche @ 2.58:** Another new play in the noon report, identified as undervalued.
+
+*   **Plays Removed from the Morning Report:**
+    *   There were no specific recommended plays from the morning report that were entirely removed in the noon report, other than the morning's "Bet of the Day" (Anaheim ML) being re-evaluated and not being the *primary* Bet of the Day in the noon report.
+
+*   **Confidence Level Changes:**
+    *   The **Anaheim Ducks ML** saw its confidence increase from Medium to High.
+    *   The newly added plays in the noon report (Oilers/Ducks Over 6.5 and Jets ML) both started with High confidence levels, reflecting a strong conviction based on the verified data.
+
+*   **Odds Changes Affecting Recommendations:**
+    *   For the **Anaheim Ducks ML**, the odds slightly decreased from 2.1 to 2.09. Despite this, the updated analysis (roster data, goalie mismatch, injuries) strengthened the recommendation's confidence.
+    *   For other games, slight odds movements were observed but did not result in new recommendations within the specified confidence and odds range, except for the new plays added.
+
+---
+
+🏆 **BET OF THE DAY**
+**Edmonton Oilers vs Anaheim Ducks Over 6.5 @ 1.72**
+Confidence Level: High, Units: 1.5u, Win Probability: 70.14%
+This game presents a strong 'Over' opportunity, primarily driven by goaltending and recent offensive trends. Anaheim's Lukas Dostal, with a .918 SV% in his two starts, is rated as an average goalie for this early season. However, Edmonton's Devon Levi has struggled significantly, posting a dismal .810 SV% in his two starts, placing him in the poor tier. This goalie mismatch creates a substantial lean towards higher scoring. Both teams also exhibit strong offensive capabilities, with the Oilers averaging 5.7 goals and the Ducks 3.5 goals in their last 10 games, combining for 9.2 goals, well above the 6.5 line. Additionally, both teams possess potent power plays (Oilers 25.0%, Ducks 50.0%) and Edmonton's penalty kill is very weak at 57.1%, further enhancing the likelihood of goals.
+
+New play added at noon based on verified roster data and updated analysis.
+
+**Other Recommended Plays**
+**Anaheim Ducks ML vs Edmonton Oilers @ 2.09**
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+The Anaheim Ducks are mispriced in this matchup against the Edmonton Oilers. While Edmonton has a strong offensive core, they are playing with Devon Levi in net, who holds a concerning .810 SV% through two starts, contrasting with Anaheim's Lukas Dostal's more stable .918 SV%. Furthermore, the Oilers are heavily impacted by injuries to key players like Zach Hyman and Ryan Nugent-Hopkins, which will undoubtedly diminish their offensive firepower. The Ducks, playing at home, also hold a slight home-ice advantage (1.000 Home Win % vs 1.000 Away Win % for Edmonton, though with low sample size, still favors the home team). This goalie disparity and the Oilers' injury woes create significant value on the Ducks' moneyline.
+
+Odds moved from 2.1 (morning) to 2.09 (noon), confidence increased from Medium (morning) to High (noon), and Win Probability increased from 55% to 60%.
