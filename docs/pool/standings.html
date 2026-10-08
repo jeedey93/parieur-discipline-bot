@@ -345,6 +345,8 @@
         .insights-page-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .insights-full { margin-bottom: 2rem; }
         .insights-full .insight-card:first-child { grid-column: 1 / -1; }
+        .insights-group { margin-bottom: 1.5rem; }
+        .insights-group-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; padding-left: 0.1rem; }
 
         /* ── TEAM TABS ── */
         /* ── DRILL-DOWN NAVIGATION ── */
@@ -1925,8 +1927,19 @@
         `<div class="insight-card ${color}"><div class="insight-icon">${icon}</div><div class="insight-label">${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
       const all = computeInsightData(sorted, leaderPts);
       if (!all.length) return '<div class="msg" style="padding:2rem 0">No insights available yet — check back after games have been played.</div>';
-      const cards = all.map(d => card(d.color, d.icon, d.label, d.main, d.sub));
-      return `<div class="insights-page-header"><span class="insights-page-title">Pool Insights</span><span class="insights-page-sub">Updated live · ${sorted.length} teams</span></div><div class="insights insights-full">${cards.join('')}</div>`;
+      const GROUP_ORDER = ['Race', 'Team Performance', 'Individual Stars', 'Value'];
+      const grouped = {};
+      GROUP_ORDER.forEach(g => grouped[g] = []);
+      all.forEach(d => { if (grouped[d.group] !== undefined) grouped[d.group].push(d); });
+      const sections = GROUP_ORDER.map(g => {
+        const cards = grouped[g];
+        if (!cards.length) return '';
+        return `<div class="insights-group">
+          <div class="insights-group-label">${g}</div>
+          <div class="insights insights-full" style="margin-bottom:0">${cards.map(d => card(d.color, d.icon, d.label, d.main, d.sub)).join('')}</div>
+        </div>`;
+      }).join('');
+      return `<div class="insights-page-header"><span class="insights-page-title">Pool Insights</span><span class="insights-page-sub">Updated live · ${sorted.length} teams</span></div>${sections}`;
     }
 
     function buildInsights(sorted, leaderPts) {
@@ -1942,23 +1955,23 @@
       // 1. Leading / Closest Race
       if (sorted.length >= 2) {
         const gap = leaderPts - teamTotalPts(sorted[1]);
-        if (gap <= 15) data.push({ color:'gold', icon:'🏆', label:'Closest Race', main:`${sorted[0].name} vs ${sorted[1].name}`, sub:`Only ${gap} pts separate 1st and 2nd` });
-        else data.push({ color:'gold', icon:'👑', label:'Leading', main:sorted[0].name, sub:`${gap} pts ahead of ${sorted[1].name}` });
+        if (gap <= 15) data.push({ group:'Race', color:'gold', icon:'🏆', label:'Closest Race', main:`${sorted[0].name} vs ${sorted[1].name}`, sub:`Only ${gap} pts separate 1st and 2nd` });
+        else data.push({ group:'Race', color:'gold', icon:'👑', label:'Leading', main:sorted[0].name, sub:`${gap} pts ahead of ${sorted[1].name}` });
       }
 
       // 2. Best Efficiency
       const effTeams = sorted.map(t => { const cap = teamCapUsed(t.roster), pts = teamTotalPts(t); return { t, eff: cap > 0 ? pts / (cap / 1e6) : 0 }; }).filter(x => x.eff > 0).sort((a, b) => b.eff - a.eff);
-      if (effTeams.length) { const best = effTeams[0]; data.push({ color:'green', icon:'⚡', label:'Best Efficiency', main:best.t.name, sub:`${best.eff.toFixed(2)} pts per $M — best in pool` }); }
+      if (effTeams.length) { const best = effTeams[0]; data.push({ group:'Team Performance', color:'green', icon:'⚡', label:'Best Efficiency', main:best.t.name, sub:`${best.eff.toFixed(2)} pts per $M — best in pool` }); }
 
       // 3. Best Steal
       const allP = [];
       teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => { const pts = poolScoreOwned(p, t, p._slug), capM = (p.cap_hit || 0) / 1e6; if (pts > 0 && capM > 0) allP.push({ p, t, pts, capM, ratio: pts / capM }); }); });
       allP.sort((a, b) => b.ratio - a.ratio);
-      if (allP.length) { const steal = allP[0]; data.push({ color:'blue', icon:'🚀', label:'Best Steal', main:formatName(steal.p.player_name), sub:`${steal.pts} pts · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
+      if (allP.length) { const steal = allP[0]; data.push({ group:'Value', color:'blue', icon:'🚀', label:'Best Steal', main:formatName(steal.p.player_name), sub:`${steal.pts} pts · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
 
       // 4. Worst Contract
       const expensive = allP.filter(x => x.capM >= 2 && x.pts >= 1).sort((a, b) => a.ratio - b.ratio);
-      if (expensive.length) { const bust = expensive[0]; data.push({ color:'red', icon:'💸', label:'Worst Contract', main:formatName(bust.p.player_name), sub:`${bust.pts} pts · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
+      if (expensive.length) { const bust = expensive[0]; data.push({ group:'Value', color:'red', icon:'💸', label:'Worst Contract', main:formatName(bust.p.player_name), sub:`${bust.pts} pts · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
 
       // 5. Biggest Mover (yesterday → today delta via localStorage snapshot)
       const snap = loadPtsSnapshot();
@@ -1970,7 +1983,7 @@
         }).filter(x => x && x.delta > 0).sort((a, b) => b.delta - a.delta);
         if (movers.length) {
           const top = movers[0];
-          data.push({ color:'green', icon:'📈', label:'Biggest Mover', main:top.t.name, sub:`+${top.delta} pts since yesterday` });
+          data.push({ group:'Team Performance', color:'green', icon:'📈', label:'Biggest Mover', main:top.t.name, sub:`+${top.delta} pts since yesterday` });
         }
       }
       savePtsSnapshot();
@@ -1989,7 +2002,7 @@
       carryData.sort((a, b) => b.pct - a.pct);
       if (carryData.length) {
         const top = carryData[0];
-        data.push({ color:'blue', icon:'🏋️', label:'Biggest Carry', main:formatName(top.p.player_name), sub:`${top.pts} pts — ${Math.round(top.pct * 100)}% of ${top.t.name}'s total` });
+        data.push({ group:'Individual Stars', color:'blue', icon:'🏋️', label:'Biggest Carry', main:formatName(top.p.player_name), sub:`${top.pts} pts — ${Math.round(top.pct * 100)}% of ${top.t.name}'s total` });
       }
 
       // 7. Coldest Team — position group ranked last in the pool
@@ -2007,22 +2020,22 @@
       if (coldCandidates.length) {
         const cold = coldCandidates[0];
         const posLabel = { F: 'Forwards', D: 'Defence', G: 'Goalies' }[cold.pos];
-        data.push({ color:'red', icon:'🥶', label:'Coldest Team', main:cold.t.name, sub:`${posLabel} last in pool with ${cold.score} pts` });
+        data.push({ group:'Team Performance', color:'red', icon:'🥶', label:'Coldest Team', main:cold.t.name, sub:`${posLabel} last in pool with ${cold.score} pts` });
       }
 
       // 8. Best Forward (most pts by a single F)
       const bestF = allP.filter(x => normalizePos(x.p.position) !== 'G' && normalizePos(x.p.position) !== 'D').sort((a, b) => b.pts - a.pts);
-      if (bestF.length) { const top = bestF[0]; data.push({ color:'gold', icon:'⚽', label:'Best Forward', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+      if (bestF.length) { const top = bestF[0]; data.push({ group:'Individual Stars', color:'gold', icon:'⚽', label:'Best Forward', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
 
       // 9. Best Defenceman (most pts by a single D)
       const bestD = allP.filter(x => normalizePos(x.p.position) === 'D').sort((a, b) => b.pts - a.pts);
-      if (bestD.length) { const top = bestD[0]; data.push({ color:'blue', icon:'🛡️', label:'Best Defenceman', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+      if (bestD.length) { const top = bestD[0]; data.push({ group:'Individual Stars', color:'blue', icon:'🛡️', label:'Best Defenceman', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
 
       // 10. Best Goalie (most pts by a single G)
       const gAllP = [];
       teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.G].filter(Boolean).forEach(p => { const pts = poolScoreOwned(p, t, p._slug); gAllP.push({ p, t, pts }); }); });
       gAllP.sort((a, b) => b.pts - a.pts);
-      if (gAllP.length && gAllP[0].pts > 0) { const top = gAllP[0]; data.push({ color:'green', icon:'🧤', label:'Best Goalie', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
+      if (gAllP.length && gAllP[0].pts > 0) { const top = gAllP[0]; data.push({ group:'Individual Stars', color:'green', icon:'🧤', label:'Best Goalie', main:formatName(top.p.player_name), sub:`${top.pts} pts · owned by ${top.t.name}` }); }
 
       // 11. Most GP across a roster
       const gpTeams = sorted.map(t => {
@@ -2030,7 +2043,7 @@
         const gp = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0), 0);
         return { t, gp };
       }).sort((a, b) => b.gp - a.gp);
-      if (gpTeams.length && gpTeams[0].gp > 0) { const top = gpTeams[0]; data.push({ color:'blue', icon:'🎮', label:'Most GP Played', main:top.t.name, sub:`${top.gp} total games played across roster` }); }
+      if (gpTeams.length && gpTeams[0].gp > 0) { const top = gpTeams[0]; data.push({ group:'Team Performance', color:'blue', icon:'🎮', label:'Most GP Played', main:top.t.name, sub:`${top.gp} total games played across roster` }); }
 
       // 12. Deepest Roster (most players with ≥1 pt)
       const deepTeams = sorted.map(t => {
@@ -2038,7 +2051,7 @@
         const scorers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => poolScoreOwned(p, t, p._slug) >= 1).length;
         return { t, scorers };
       }).sort((a, b) => b.scorers - a.scorers);
-      if (deepTeams.length && deepTeams[0].scorers > 0) { const top = deepTeams[0]; data.push({ color:'green', icon:'🌊', label:'Deepest Roster', main:top.t.name, sub:`${top.scorers} players with 1+ pts — most in pool` }); }
+      if (deepTeams.length && deepTeams[0].scorers > 0) { const top = deepTeams[0]; data.push({ group:'Team Performance', color:'green', icon:'🌊', label:'Deepest Roster', main:top.t.name, sub:`${top.scorers} players with 1+ pts — most in pool` }); }
 
       // 13. Best PPG (pts per game played, min 10 GP across roster)
       const ppgTeams = sorted.map(t => {
@@ -2047,7 +2060,7 @@
         const pts = teamTotalPts(t);
         return { t, ppg: gp >= 10 ? pts / gp : 0, gp };
       }).filter(x => x.ppg > 0).sort((a, b) => b.ppg - a.ppg);
-      if (ppgTeams.length) { const top = ppgTeams[0]; data.push({ color:'gold', icon:'📊', label:'Best Avg PPG', main:top.t.name, sub:`${top.ppg.toFixed(2)} pts/game across ${top.gp} GP` }); }
+      if (ppgTeams.length) { const top = ppgTeams[0]; data.push({ group:'Team Performance', color:'gold', icon:'📊', label:'Best Avg PPG', main:top.t.name, sub:`${top.ppg.toFixed(2)} pts/game across ${top.gp} GP` }); }
 
       // 14. Dead Weight (most 0-pt players on dressed roster)
       const deadTeams = sorted.map(t => {
@@ -2056,7 +2069,7 @@
         const total = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).length;
         return { t, zeros, total };
       }).filter(x => x.zeros > 0).sort((a, b) => b.zeros - a.zeros);
-      if (deadTeams.length) { const top = deadTeams[0]; data.push({ color:'red', icon:'🪦', label:'Dead Weight', main:top.t.name, sub:`${top.zeros} of ${top.total} dressed players still at 0 pts` }); }
+      if (deadTeams.length) { const top = deadTeams[0]; data.push({ group:'Team Performance', color:'red', icon:'🪦', label:'Dead Weight', main:top.t.name, sub:`${top.zeros} of ${top.total} dressed players still at 0 pts` }); }
 
       // 15. Sniper (most goals by a single player pool-wide)
       const sniperData = [];
@@ -2069,7 +2082,7 @@
         });
       });
       sniperData.sort((a, b) => b.g - a.g);
-      if (sniperData.length) { const top = sniperData[0]; data.push({ color:'red', icon:'🎯', label:'Top Sniper', main:formatName(top.p.player_name), sub:`${top.g} goals · owned by ${top.t.name}` }); }
+      if (sniperData.length) { const top = sniperData[0]; data.push({ group:'Individual Stars', color:'red', icon:'🎯', label:'Top Sniper', main:formatName(top.p.player_name), sub:`${top.g} goals · owned by ${top.t.name}` }); }
 
       // 16. Playmaker (most assists by a single player pool-wide)
       const playmakerData = [];
@@ -2082,7 +2095,7 @@
         });
       });
       playmakerData.sort((a, b) => b.a - a.a);
-      if (playmakerData.length) { const top = playmakerData[0]; data.push({ color:'blue', icon:'🎪', label:'Top Playmaker', main:formatName(top.p.player_name), sub:`${top.a} assists · owned by ${top.t.name}` }); }
+      if (playmakerData.length) { const top = playmakerData[0]; data.push({ group:'Individual Stars', color:'blue', icon:'🎪', label:'Top Playmaker', main:formatName(top.p.player_name), sub:`${top.a} assists · owned by ${top.t.name}` }); }
 
       // 17. Hottest Team (most pts scored yesterday via snapshot delta)
       {
@@ -2093,9 +2106,9 @@
         }).sort((a, b) => b.ytd - a.ytd);
         const top = hotTeams[0];
         if (top && top.ytd > 0) {
-          data.push({ color:'green', icon:'🔥', label:'Hottest Team', main:top.t.name, sub:`+${top.ytd} pts yesterday — most in pool` });
+          data.push({ group:'Team Performance', color:'green', icon:'🔥', label:'Hottest Team', main:top.t.name, sub:`+${top.ytd} pts yesterday — most in pool` });
         } else {
-          data.push({ color:'blue', icon:'🔥', label:'Hottest Team', main:'No data yet', sub:'Yesterday pts available after daily update' });
+          data.push({ group:'Team Performance', color:'blue', icon:'🔥', label:'Hottest Team', main:'No data yet', sub:'Yesterday pts available after daily update' });
         }
       }
 
@@ -2104,8 +2117,8 @@
         const last = sorted[sorted.length - 1];
         const secondLast = sorted[sorted.length - 2];
         const escapeGap = teamTotalPts(secondLast) - teamTotalPts(last);
-        if (escapeGap <= 20) data.push({ color:'green', icon:'🚪', label:'Closest to Escape', main:last.name, sub:`Only ${escapeGap} pts behind ${secondLast.name}` });
-        else data.push({ color:'red', icon:'⛓️', label:'Stuck in Last', main:last.name, sub:`${escapeGap} pts behind ${secondLast.name}` });
+        if (escapeGap <= 20) data.push({ group:'Race', color:'green', icon:'🚪', label:'Closest to Escape', main:last.name, sub:`Only ${escapeGap} pts behind ${secondLast.name}` });
+        else data.push({ group:'Race', color:'red', icon:'⛓️', label:'Stuck in Last', main:last.name, sub:`${escapeGap} pts behind ${secondLast.name}` });
       }
 
       return data;
