@@ -287,13 +287,13 @@
         /* ── INSIGHTS ── */
         .insights {
           display: grid; grid-template-columns: repeat(2, 1fr);
-          gap: 0.6rem; margin-bottom: 1.25rem;
+          gap: 0.6rem; margin-bottom: 1.25rem; align-items: stretch;
         }
         .insight-card {
           background: rgba(255,255,255,0.03); border: 1px solid var(--line);
           border-radius: 8px; padding: 0.55rem 0.75rem;
           display: flex; flex-direction: column; gap: 0.15rem;
-          transition: border-color 0.2s, background 0.2s;
+          transition: border-color 0.2s, background 0.2s; height: 100%;
         }
         .insight-card:hover { background: rgba(255,255,255,0.05); }
         .insight-card.gold  { border-color: rgba(255,184,28,0.25);  background: rgba(255,184,28,0.04); }
