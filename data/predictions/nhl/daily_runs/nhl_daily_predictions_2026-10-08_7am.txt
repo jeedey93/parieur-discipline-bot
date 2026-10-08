@@ -1,0 +1,48 @@
+Date: 2026-10-08
+
+Utah Mammoth @ Boston Bruins
+Boston Bruins ML (Home): 2.04, Utah Mammoth ML (Away): 1.79, O/U: 6.0 (Over: 1.93 / Under: 1.88)
+------
+Dallas Stars @ Buffalo Sabres
+Buffalo Sabres ML (Home): 2.0, Dallas Stars ML (Away): 1.82, O/U: 6.0 (Over: 1.89 / Under: 1.92)
+------
+Nashville Predators @ Montréal Canadiens
+Montréal Canadiens ML (Home): 1.58, Nashville Predators ML (Away): 2.39, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+Philadelphia Flyers @ Ottawa Senators
+Ottawa Senators ML (Home): 1.66, Philadelphia Flyers ML (Away): 2.23, O/U: 6.0 (Over: 2.01 / Under: 1.81)
+------
+Minnesota Wild @ Tampa Bay Lightning
+Tampa Bay Lightning ML (Home): 1.66, Minnesota Wild ML (Away): 2.24, O/U: 6.0 (Over: 1.98 / Under: 1.84)
+------
+Vancouver Canucks @ Carolina Hurricanes
+Carolina Hurricanes ML (Home): 1.29, Vancouver Canucks ML (Away): 3.6, O/U: 6.5 (Over: 1.94 / Under: 1.87)
+------
+Chicago Blackhawks @ New York Islanders
+New York Islanders ML (Home): 1.55, Chicago Blackhawks ML (Away): 2.47, O/U: 6.0 (Over: 2.02 / Under: 1.81)
+------
+San Jose Sharks @ St Louis Blues
+St Louis Blues ML (Home): 1.65, San Jose Sharks ML (Away): 2.26, O/U: 6.0 (Over: 1.98 / Under: 1.83)
+------
+Colorado Avalanche @ Calgary Flames
+Calgary Flames ML (Home): 3.03, Colorado Avalanche ML (Away): 1.42, O/U: 6.0 (Over: 1.83 / Under: 2.0)
+------
+Toronto Maple Leafs @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.61, Toronto Maple Leafs ML (Away): 2.34, O/U: 6.5 (Over: 2.01 / Under: 1.81)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable
+Starting goalies are not announced until closer to puck drop, so their specific impact is TBD and factored into our confidence levels.
+
+BET OF THE DAY
+
+Buffalo Sabres ML vs Dallas Stars @ 2.0
+The Buffalo Sabres present a strong value play at home against the Dallas Stars. Buffalo boasts a perfect 1.000 home win percentage this season, a significant advantage over Dallas's 0.000 away win percentage. While Dallas has a slightly better goal differential in their last ten games, Buffalo's dominant home ice advantage, coupled with their overall better points percentage early in the season, creates a substantial market inefficiency. Our model estimates a true probability of 61% for the Sabres, offering an 11% edge over the implied odds.
+Confidence Level: High, Units: 1.5u, Win Probability: 61%
+
+Other Recommended Plays:
+
+Montréal Canadiens vs Nashville Predators Over 6.0 @ 1.83
+This play fulfills our mandatory Montreal Canadiens game requirement, demonstrating a marginal but valid edge. The Canadiens have been involved in high-scoring games recently, with their last 10 contests averaging 8.7 total goals (4.0 GF / 4.7 GA), significantly above the 6.0 game line. Although Nashville's games trend lower, Montreal's porous defense and active offense strongly lean this matchup towards an Over. Our analysis indicates a 56% probability for this game to exceed 6.0 goals, providing a 1.36% edge over the implied odds.
+Confidence Level: Medium, Units: 1u, Win Probability: 56%
