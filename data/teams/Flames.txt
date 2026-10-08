@@ -1,31 +1,31 @@
 ============================================================
 FLAMES - LINEUP
-Last Updated: 2026-10-04 02:12 PM ET
+Last Updated: 2026-10-08 04:00 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Matvei Gridin — Morgan Frost — Matt Coronato
-Line 2: Samuel Honzek — Mikael Backlund — Joel Farabee
-Line 3: Brennan Othmann — Ryan Strome — Yegor Sharangovich
-Line 4: Maksim Tsyplakov — Martin Pospisil — Adam Klapka
+Line 2: Yegor Sharangovich — Mikael Backlund — Joel Farabee
+Line 3: Samuel Honzek — Martin Pospisil — Ryan Strome
+Line 4: Aydar Suniev — Jonathan Castagna — Adam Klapka
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Joel Hanley — Simon Nemec
-Pair 2: Kevin Bahl — Zach Whitecloud
+Pair 1: Kevin Bahl — Zach Whitecloud
+Pair 2: Yan Kuznetsov — Simon Nemec
 Pair 3: Jake Middleton — Zayne Parekh
 
 GOALIES:
 ----------------------------------------
-  Dustin Wolf
   Devin Cooley
+  Dustin Wolf
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Connor Zary (scratched)
-  Brayden Pachal (scratched)
-  Yan Kuznetsov (scratched)
+  Maksim Tsyplakov (scratched)
+  Brennan Othmann (scratched)
+  Joel Hanley (scratched)
   Jonathan Huberdeau (hip) (injured)
 
 ============================================================

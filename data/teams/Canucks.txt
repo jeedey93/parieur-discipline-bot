@@ -1,20 +1,20 @@
 ============================================================
 CANUCKS - LINEUP
-Last Updated: 2026-09-29 06:13 PM ET
+Last Updated: 2026-10-08 04:00 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Jake De Brusk — Elias Pettersson — Jonathan Lekkerimaki
-Line 2: Liam Ohgren — Marco Rossi — Brock Boeser
-Line 3: Drew OConnor — Max Sasson — Linus Karlsson
-Line 4: Arshdeep Bains — Paul Cotter — Brendan Gallagher
+Line 2: Paul Cotter — Marco Rossi — Brock Boeser
+Line 3: Liam Ohgren — Max Sasson — Linus Karlsson
+Line 4: Arshdeep Bains — Drew OConnor — Aatu Raty
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Zeev Buium — Filip Hronek
 Pair 2: Jamie Oleksiak — Tom Willander
-Pair 3: Elias Nils Pettersson — Luke Schenn
+Pair 3: Elias Pettersson — Victor Mancini
 
 GOALIES:
 ----------------------------------------
@@ -23,9 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Aatu Raty (scratched)
+  Brendan Gallagher (scratched)
   Guillaume Brisebois (scratched)
-  Victor Mancini (scratched)
   Thatcher Demko (hip) (injured)
   Filip Chytil (shoulder) (injured)
 

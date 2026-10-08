@@ -1,6 +1,6 @@
 ============================================================
 CANADIENS - LINEUP
-Last Updated: 2026-10-06 03:36 PM ET
+Last Updated: 2026-10-08 04:00 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,16 +14,17 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Mike Matheson — Noah Dobson
 Pair 2: Lane Hutson — Alexandre Carrier
-Pair 3: Jayden Struble — Arber Xhekaj
+Pair 3: Arber Xhekaj — Adam Engstrom
 
 GOALIES:
 ----------------------------------------
+  Jacob Fowler
   Jakub Dobes
-  Samuel Montembeault
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Adam Engstrom (scratched)
+  Jayden Struble (scratched)
+  Samuel Montembeault (undisclosed) (injured)
   Ivan Demidov (lower body) (injured)
   Kaiden Guhle (adductor) (injured)
   Oliver Kapanen (lower body) (injured)

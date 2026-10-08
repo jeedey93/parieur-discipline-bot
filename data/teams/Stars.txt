@@ -1,6 +1,6 @@
 ============================================================
 STARS - LINEUP
-Last Updated: 2026-10-05 05:32 PM ET
+Last Updated: 2026-10-08 04:00 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,8 +8,7 @@ FORWARD LINES:
 Line 1: Jason Robertson — Roope Hintz — Jamie Benn
 Line 2: Sam Steel — Wyatt Johnston — Mikko Rantanen
 Line 3: Justin Hryckowian — Arttu Hyry — Tyler Seguin
-Line 4: Oskar Back — Radek Faksa — Joel Kiviranta
-Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
+Line 4: Oskar Back — Radek Faksa — Colin Blackwell
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -24,8 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Colin Blackwell (scratched)
   Kyle Capobianco (scratched)
   Matt Duchene (lower body) (injured)
+  Joel Kiviranta (lower body) (injured)
 
 ============================================================

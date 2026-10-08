@@ -1,0 +1,34 @@
+Here's an analysis comparing the morning and noon prediction reports, followed by a unified final recommendation list.
+
+**Comparison Analysis:**
+
+1.  **Consistency (Plays in both reports):**
+    *   Buffalo Sabres ML vs Dallas Stars: Featured as the "BET OF THE DAY" in both reports.
+
+2.  **Added/Removed Plays (Line movement impact):**
+    *   **Removed:** Montréal Canadiens vs Nashville Predators Over 6.0 (was "Other Recommended Play" in the morning, but not in the noon report's summary). This indicates a change in conviction or re-evaluation making it no longer a recommended bet.
+    *   **Added:** No new explicit recommendations in the noon report's summary other than the retained "Bet of the Day."
+
+3.  **Confidence Level Changes:**
+    *   Buffalo Sabres ML: Confidence remained "High" in both reports.
+
+4.  **Odds Changes Affecting Recommendations:**
+    *   **Buffalo Sabres ML:** Odds shifted from 2.0 (morning) to 1.98 (noon). While a slight decrease, it remains a strong recommendation, with its win probability increasing from 61% to 62%.
+    *   **Montréal Canadiens vs Nashville Predators Over 6.0:** Morning odds were 1.83. Noon odds for Over 6.0 were 1.81. The slight decrease in odds might have contributed to its removal from the recommended plays, or other factors led to a re-evaluation of its edge.
+    *   **Philadelphia Flyers @ Ottawa Senators:** The Over/Under line changed from 6.0 (morning) to 5.5 (noon), indicating a shift in expectations for total goals, likely due to updated information.
+    *   **Toronto Maple Leafs @ Vegas Golden Knights:** The O/U odds shifted slightly, with Over 6.5 moving from 2.01 to 1.88, and Under 6.5 from 1.81 to 1.93.
+
+---
+
+**Unified Final Recommendation List**
+
+🏆 **BET OF THE DAY**
+**Buffalo Sabres ML vs Dallas Stars @ 1.98**
+Confidence Level: High, Units: 1.5u, Win Probability: 62%
+
+The Buffalo Sabres, playing at home, are facing the Dallas Stars. In goal, Buffalo starts Ukko-Pekka Luukkonen (1-1-0, 4.0 GAA Last 5), while Dallas counters with Jake Oettinger (1-1-0, 1.0 GAA Last 5). Despite both goalies defaulting to "Average" due to the early season's limited sample sizes, the market has mispriced the Sabres' significant home-ice advantage. Buffalo boasts a perfect 1.000 home win percentage (2-0-0), contrasting sharply with Dallas's 0.000 away win percentage (0-1-0), creating an +8% home ice adjustment. While recent form is neutral, Buffalo's strong home record and the overall context suggest they are undervalued at these odds.
+
+Odds moved from 2.0 (morning) to 1.98 (noon), and Win Probability increased from 61% to 62%. Confidence level and units remained High and 1.5u respectively.
+
+**Other Recommended Plays**
+No additional qualified plays today that meet all specified criteria (high/medium confidence AND odds between 1.60 and 2.20 inclusive, and present in the noon summary or consistently high conviction).
