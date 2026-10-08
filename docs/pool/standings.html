@@ -2085,13 +2085,18 @@
       if (playmakerData.length) { const top = playmakerData[0]; data.push({ color:'blue', icon:'🎪', label:'Top Playmaker', main:formatName(top.p.player_name), sub:`${top.a} assists · owned by ${top.t.name}` }); }
 
       // 17. Hottest Team (most pts scored yesterday via snapshot delta)
-      if (Object.keys(_playerYesterdayPtsBySlug).length > 0) {
+      {
         const hotTeams = sorted.map(t => {
           const rp = rosterPlayers(t.roster);
           const ytd = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => s + (_playerYesterdayPtsBySlug[p._slug] ?? 0), 0);
           return { t, ytd };
-        }).filter(x => x.ytd > 0).sort((a, b) => b.ytd - a.ytd);
-        if (hotTeams.length) { const top = hotTeams[0]; data.push({ color:'green', icon:'🔥', label:'Hottest Team', main:top.t.name, sub:`+${top.ytd} pts yesterday — most in pool` }); }
+        }).sort((a, b) => b.ytd - a.ytd);
+        const top = hotTeams[0];
+        if (top && top.ytd > 0) {
+          data.push({ color:'green', icon:'🔥', label:'Hottest Team', main:top.t.name, sub:`+${top.ytd} pts yesterday — most in pool` });
+        } else {
+          data.push({ color:'blue', icon:'🔥', label:'Hottest Team', main:'No data yet', sub:'Yesterday pts available after daily update' });
+        }
       }
 
       // 18. Closest to Escape (last-place team with smallest gap to 2nd-last)
