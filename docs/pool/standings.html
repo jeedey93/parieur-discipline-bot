@@ -2040,6 +2040,59 @@
       }).sort((a, b) => b.scorers - a.scorers);
       if (deepTeams.length && deepTeams[0].scorers > 0) { const top = deepTeams[0]; data.push({ color:'green', icon:'🌊', label:'Deepest Roster', main:top.t.name, sub:`${top.scorers} players with 1+ pts — most in pool` }); }
 
+      // 13. Best PPG (pts per game played, min 10 GP across roster)
+      const ppgTeams = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const gp = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0), 0);
+        const pts = teamTotalPts(t);
+        return { t, ppg: gp >= 10 ? pts / gp : 0, gp };
+      }).filter(x => x.ppg > 0).sort((a, b) => b.ppg - a.ppg);
+      if (ppgTeams.length) { const top = ppgTeams[0]; data.push({ color:'gold', icon:'📊', label:'Best Avg PPG', main:top.t.name, sub:`${top.ppg.toFixed(2)} pts/game across ${top.gp} GP` }); }
+
+      // 14. Dead Weight (most 0-pt players on dressed roster)
+      const deadTeams = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const zeros = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => poolScoreOwned(p, t, p._slug) === 0).length;
+        const total = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).length;
+        return { t, zeros, total };
+      }).filter(x => x.zeros > 0).sort((a, b) => b.zeros - a.zeros);
+      if (deadTeams.length) { const top = deadTeams[0]; data.push({ color:'red', icon:'🪦', label:'Dead Weight', main:top.t.name, sub:`${top.zeros} of ${top.total} dressed players still at 0 pts` }); }
+
+      // 15. Sniper (most goals by a single player pool-wide)
+      const sniperData = [];
+      teams.forEach(t => {
+        const rp = rosterPlayers(t.roster);
+        [...rp.F, ...rp.D].filter(Boolean).forEach(p => {
+          const d = ownedStatsDelta(p, t, p._slug);
+          const g = d?.goals ?? 0;
+          if (g > 0) sniperData.push({ p, t, g });
+        });
+      });
+      sniperData.sort((a, b) => b.g - a.g);
+      if (sniperData.length) { const top = sniperData[0]; data.push({ color:'red', icon:'🎯', label:'Top Sniper', main:formatName(top.p.player_name), sub:`${top.g} goals · owned by ${top.t.name}` }); }
+
+      // 16. Playmaker (most assists by a single player pool-wide)
+      const playmakerData = [];
+      teams.forEach(t => {
+        const rp = rosterPlayers(t.roster);
+        [...rp.F, ...rp.D].filter(Boolean).forEach(p => {
+          const d = ownedStatsDelta(p, t, p._slug);
+          const a = d?.assists ?? 0;
+          if (a > 0) playmakerData.push({ p, t, a });
+        });
+      });
+      playmakerData.sort((a, b) => b.a - a.a);
+      if (playmakerData.length) { const top = playmakerData[0]; data.push({ color:'blue', icon:'🎪', label:'Top Playmaker', main:formatName(top.p.player_name), sub:`${top.a} assists · owned by ${top.t.name}` }); }
+
+      // 17. Closest to Escape (last-place team with smallest gap to 2nd-last)
+      if (sorted.length >= 3) {
+        const last = sorted[sorted.length - 1];
+        const secondLast = sorted[sorted.length - 2];
+        const escapeGap = teamTotalPts(secondLast) - teamTotalPts(last);
+        if (escapeGap <= 20) data.push({ color:'green', icon:'🚪', label:'Closest to Escape', main:last.name, sub:`Only ${escapeGap} pts behind ${secondLast.name}` });
+        else data.push({ color:'red', icon:'⛓️', label:'Stuck in Last', main:last.name, sub:`${escapeGap} pts behind ${secondLast.name}` });
+      }
+
       return data;
     }
 
