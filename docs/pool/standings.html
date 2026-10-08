@@ -963,6 +963,7 @@
 
     let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [];
     let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot
+    let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
     let tonightMatchups = {};          // abbrev → opponent abbrev
@@ -1672,16 +1673,21 @@
             }
           }
         } catch(_) {}
-        // Fetch latest snapshot for "since last update" delta
+        // Fetch latest 2 snapshots: most recent for rank changes, previous for yesterday delta
         try {
           const snapRes = await fetch(
-            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=1&select=standings`,
+            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=2&select=snapshot_date,standings`,
             { headers: sbHeaders() }
           );
           if (snapRes.ok) {
             const snapRows = await snapRes.json();
             if (snapRows.length && Array.isArray(snapRows[0].standings)) {
               _lastSnapshot = Object.fromEntries(snapRows[0].standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
+            }
+            // Use the previous day's snapshot for yesterday delta
+            const prevSnap = snapRows.length >= 2 ? snapRows[1] : snapRows[0];
+            if (prevSnap && Array.isArray(prevSnap.standings)) {
+              _yesterdaySnapshot = Object.fromEntries(prevSnap.standings.map(s => [s.team_id, s.pts ?? 0]));
             }
           }
         } catch(_) {}
@@ -2072,7 +2078,8 @@
         const playerYtdSum = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
           return s + (_playerYesterdayPts[p.nhl_player_id] ?? 0);
         }, 0);
-        const snapshotDelta = snapEntry ? teamTotalPts(t) - snapEntry.pts : null;
+        const prevPts = _yesterdaySnapshot[t.id];
+        const snapshotDelta = prevPts != null ? teamTotalPts(t) - prevPts : null;
         const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
         const ytdCls = teamYtd > 0 ? 'pos' : 'zero';
         const ytdLabel = teamYtd > 0 ? `+${teamYtd}` : '—';
