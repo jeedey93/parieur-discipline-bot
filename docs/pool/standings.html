@@ -344,6 +344,11 @@
         .insights-page-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 2px; color: white; }
         .insights-page-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .insights-full { margin-bottom: 2rem; }
+        .insights-grouped .insight-card:first-child { grid-column: unset; background: transparent; border-color: rgba(255,255,255,0.08); padding: 0.55rem 0.75rem; flex-direction: column; align-items: flex-start; }
+        .insights-grouped .insight-card:first-child:hover { background: rgba(255,255,255,0.05); }
+        .insights-grouped .insight-card:first-child .insight-icon { font-size: 0.9rem; }
+        .insights-grouped .insight-card:first-child .insight-main { font-size: 0.95rem; }
+        .insights-grouped .insight-card:first-child .insight-sub { margin-left: 0; text-align: left; }
         .insights-group { margin-bottom: 1.5rem; }
         .insights-group-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; padding-left: 0.1rem; }
 
@@ -1935,7 +1940,7 @@
         if (!cards.length) return '';
         return `<div class="insights-group">
           <div class="insights-group-label">${g}</div>
-          <div class="insights insights-full" style="margin-bottom:0">${cards.map(d => card(d.color, d.icon, d.label, d.main, d.sub)).join('')}</div>
+          <div class="insights insights-full insights-grouped" style="margin-bottom:0">${cards.map(d => card(d.color, d.icon, d.label, d.main, d.sub)).join('')}</div>
         </div>`;
       }).join('');
       return `<div class="insights-page-header"><span class="insights-page-title">Pool Insights</span><span class="insights-page-sub">Updated live · ${sorted.length} teams</span></div>${sections}`;
