@@ -2287,7 +2287,7 @@
         if (col === 'ppg')     return r.ppg;
         if (col === 'ytd')     return r.ytd;
         if (col === 'tonight') return r.tonight;
-        if (col === 'gap')     return -r.pts; // gap ascending = pts descending
+        if (col === 'gap')     return r.pts; // highest pts = smallest gap = sort same as pts
         return r.pts;
       };
       rowData.sort((a, b) => dir * (colVal(b) - colVal(a)));
