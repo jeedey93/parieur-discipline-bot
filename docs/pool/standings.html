@@ -2277,7 +2277,7 @@
 
         // Yesterday pts — use player-level data if available, else fall back to team snapshot delta
         const playerYtdSum = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
-          return s + (_playerYesterdayPts[p.nhl_player_id] ?? 0);
+          return s + (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
         }, 0);
         const prevPts = _yesterdaySnapshot[t.id];
         const snapshotDelta = prevPts != null ? teamTotalPts(t) - prevPts : null;
@@ -2542,7 +2542,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: isCurrent ? ((_playerYesterdayPts[p?.nhl_player_id] || 0) || (_playerYesterdayPtsBySlug[p?.puckpedia_slug] ?? 0)) : null });
+          ytd: isCurrent ? ((_playerYesterdayPts[Number(p?.nhl_player_id)] || 0) || (_playerYesterdayPtsBySlug[p?.puckpedia_slug] ?? 0)) : null });
       });
 
       currentNoDraft.forEach(p => {
@@ -2565,7 +2565,7 @@
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: (_playerYesterdayPts[p.nhl_player_id] || 0) || (_playerYesterdayPtsBySlug[p.puckpedia_slug] ?? 0) });
+          ytd: (_playerYesterdayPts[Number(p.nhl_player_id)] || 0) || (_playerYesterdayPtsBySlug[p.puckpedia_slug] ?? 0) });
       });
 
       // Add bench-swapped-out players as past rows
