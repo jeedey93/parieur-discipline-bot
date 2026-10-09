@@ -2298,7 +2298,7 @@
 
       const ind = c => {
         if (c !== col) return '';
-        return `<span class="sort-indicator">${dir === -1 ? '▼' : '▲'}</span>`;
+        return `<span class="sort-indicator">▼</span>`;
       };
       const hdr = (c, label, extra = '', style = '') => {
         const active = c === col ? ' active' : '';
@@ -2368,13 +2368,8 @@
     }
 
     function lbSortBy(col) {
-      if (_lbSort.col === col) {
-        _lbSort.dir *= -1;
-      } else {
-        _lbSort.col = col;
-        // Default direction: descending for numeric cols, ascending for gap
-        _lbSort.dir = -1;
-      }
+      _lbSort.col = col;
+      _lbSort.dir = -1; // always highest to lowest
       // Re-render just the standings panel
       const el = document.getElementById('view-standings');
       if (!el) return;
