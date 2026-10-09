@@ -2290,7 +2290,7 @@
         if (col === 'gap')     return r.pts; // highest pts = smallest gap = sort same as pts
         return r.pts;
       };
-      rowData.sort((a, b) => dir * (colVal(b) - colVal(a)));
+      rowData.sort((a, b) => dir * (colVal(a) - colVal(b)));
 
       // Re-compute visual rank from sorted order (pts-based rank stays on medal)
       const ptsSorted = [...rowData].sort((a, b) => b.pts - a.pts);
