@@ -1945,21 +1945,26 @@
     }
 
     function buildFreeAgents() {
+      const TOP_N = 20;
+
       // Collect every slug currently on any roster (F/D/G/B)
       const draftedSlugs = new Set();
       teams.forEach(t => {
         ['F','D','G','B'].forEach(pos => (t.roster[pos] || []).filter(Boolean).forEach(s => draftedSlugs.add(s)));
       });
 
+      // Compute pool pts for each FA, then sort by pts desc
+      const poolPts = p => {
+        const pos = normalizePos(p.position);
+        if (pos === 'G') return (p.wins || 0) * _scoring.g_wins + (p.shutouts || 0) * _scoring.g_shutouts + (p.ot_losses || 0) * _scoring.g_otl;
+        if (pos === 'D') return (p.goals || 0) * _scoring.d_goals + (p.assists || 0) * _scoring.d_assists;
+        return (p.points || 0) * _scoring.f_points;
+      };
+
       const fas = allPlayers
         .filter(p => p.puckpedia_slug && !draftedSlugs.has(p.puckpedia_slug))
-        .sort((a, b) => {
-          // Sort: skaters by points desc, goalies by wins desc
-          const posA = normalizePos(a.position), posB = normalizePos(b.position);
-          if (posA !== posB) return posA === 'G' ? 1 : posB === 'G' ? -1 : 0;
-          if (posA === 'G') return (b.wins || 0) - (a.wins || 0);
-          return (b.points || 0) - (a.points || 0);
-        });
+        .map(p => ({ ...p, _poolPts: poolPts(p) }))
+        .sort((a, b) => b._poolPts - a._poolPts);
 
       if (!fas.length) return '<div class="msg" style="padding:2rem 0">All players have been drafted!</div>';
 
@@ -1969,12 +1974,13 @@
       const renderSection = (pos, label, players) => {
         if (!players.length) return '';
         const isG = pos === 'G';
-        const rows = players.map(p => {
+        const top = players.slice(0, TOP_N);
+        const rows = top.map(p => {
           const abbr = TEAM_ABBR[p.team];
           const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}" style="width:16px;height:16px;object-fit:contain;opacity:0.7;margin-right:0.3rem;vertical-align:middle">` : '';
           const stat1 = isG ? (p.wins ?? '—') : (p.goals ?? '—');
           const stat2 = isG ? (p.shutouts ?? '—') : (p.assists ?? '—');
-          const pts   = isG ? (p.wins != null ? p.wins * _scoring.g_wins + (p.shutouts||0) * _scoring.g_shutouts + (p.ot_losses||0) * _scoring.g_otl : '—') : (p.points ?? '—');
+          const pts   = p._poolPts > 0 ? p._poolPts : '—';
           const gp    = p.games_played ?? '—';
           const cap   = p.cap_hit ? `$${(p.cap_hit/1e6).toFixed(1)}M` : '—';
           const posChip = `<span class="hist-pos ${pos}" style="margin-right:0.35rem;vertical-align:middle">${pos}</span>`;
@@ -1990,7 +1996,7 @@
         const h1 = isG ? 'W' : 'G';
         const h2 = isG ? 'SO' : 'A';
         return `<div class="fa-section">
-          <div class="fa-section-label ${pos}">${label} <span style="opacity:0.4;font-size:0.7rem">${players.length}</span></div>
+          <div class="fa-section-label ${pos}">${label} <span style="opacity:0.4;font-size:0.7rem">top ${top.length} of ${players.length}</span></div>
           <div class="fa-header">
             <div class="fa-name" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700;letter-spacing:1px">PLAYER</div>
             <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">GP</div>
