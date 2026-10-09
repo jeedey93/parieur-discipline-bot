@@ -926,14 +926,14 @@
     const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
     const PW_PLAIN = 'parieur2026'; // kept for pool.html admin only — not used here
-    const CACHE_KEY = 'hp_players_v11_' + new Date().toISOString().slice(0,10); // busts daily
+    const CACHE_KEY = 'hp_players_v11_' + new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // busts daily
     const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min within a day
     const ACTIVE_ACQUIRED_FALLBACK_DATE = new Date('2025-09-01T00:00:00Z');
 
     // ── PAGE VIEW COUNTER ─────────────────────────────────────────────────────
     async function trackPageView() {
       const el = document.getElementById('view-count');
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
       try {
         await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_page_views`, {
           method: 'POST',
@@ -994,7 +994,7 @@
     function yesterdayIsoDay() {
       const d = new Date();
       d.setDate(d.getDate() - 1);
-      return d.toISOString().slice(0, 10);
+      return d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
     }
 
     async function loadYesterdayPts() {
@@ -1918,7 +1918,7 @@
     const SNAPSHOT_KEY = 'hp_pts_snapshot';
 
     function savePtsSnapshot() {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
       const snap = { date: today, pts: {} };
       teams.forEach(t => { snap.pts[t.id] = teamTotalPts(t); });
       try { localStorage.setItem(SNAPSHOT_KEY, JSON.stringify(snap)); } catch(_) {}
@@ -1929,7 +1929,7 @@
         const raw = localStorage.getItem(SNAPSHOT_KEY);
         if (!raw) return null;
         const snap = JSON.parse(raw);
-        const today = new Date().toISOString().slice(0, 10);
+        const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
         if (snap.date === today) return null; // same day — no delta yet
         return snap;
       } catch(_) { return null; }
