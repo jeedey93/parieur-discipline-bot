@@ -159,9 +159,9 @@ def build_stats_map(skaters: list[dict], goalies: list[dict]) -> dict[str, dict]
         result[name] = {
             "nhl_player_id": g.get("playerId"),
             "games_played": g.get("gamesPlayed"),
-            "goals":        None,
-            "assists":      None,
-            "points":       None,
+            "goals":        g.get("goals"),
+            "assists":      g.get("assists"),
+            "points":       g.get("points"),
             "wins":         g.get("wins"),
             "ot_losses":    g.get("overtimeLosses"),
             "shutouts":     g.get("shutouts"),
@@ -304,16 +304,18 @@ def save_standings_snapshots():
 
             # 4. Load scoring settings (defaults match the JS defaults)
             settings_rows = supabase.table("pool_settings").select(
-                "f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl"
+                "f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl,g_goals,g_assists"
             ).eq("league_code", code).execute().data
             sc = settings_rows[0] if settings_rows else {}
             scoring = {
-                "f_points": sc.get("f_points", 1),
-                "d_goals":  sc.get("d_goals",  2),
-                "d_assists": sc.get("d_assists", 1),
-                "g_wins":   sc.get("g_wins",   2),
+                "f_points":   sc.get("f_points",   1),
+                "d_goals":    sc.get("d_goals",    2),
+                "d_assists":  sc.get("d_assists",  1),
+                "g_wins":     sc.get("g_wins",     2),
                 "g_shutouts": sc.get("g_shutouts", 3),
-                "g_otl":    sc.get("g_otl", 1),
+                "g_otl":      sc.get("g_otl",      1),
+                "g_goals":    sc.get("g_goals",    1),
+                "g_assists":  sc.get("g_assists",  1),
             }
 
             # 5. Load trades for frozen_points
@@ -364,7 +366,10 @@ def save_standings_snapshots():
                     wins = max(0, (p.get("wins") or 0) - (snap.get("wins") or 0))
                     so   = max(0, (p.get("shutouts") or 0) - (snap.get("shutouts") or 0))
                     otl  = max(0, (p.get("ot_losses") or 0) - (snap.get("ot_losses") or 0))
-                    delta = wins * scoring["g_wins"] + so * scoring["g_shutouts"] + otl * scoring["g_otl"]
+                    g    = max(0, (p.get("goals") or 0) - (snap.get("goals") or 0))
+                    a    = max(0, (p.get("assists") or 0) - (snap.get("assists") or 0))
+                    delta = (wins * scoring["g_wins"] + so * scoring["g_shutouts"] +
+                             otl * scoring["g_otl"] + g * scoring["g_goals"] + a * scoring["g_assists"])
                 elif pos == "D":
                     g = max(0, (p.get("goals") or 0) - (snap.get("goals") or 0))
                     a = max(0, (p.get("assists") or 0) - (snap.get("assists") or 0))
