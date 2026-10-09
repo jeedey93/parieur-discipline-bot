@@ -2266,7 +2266,7 @@
         }).length;
         return {
           t, naturalRank,
-          pts, sub, live, ppg: ppg ?? 0,
+          pts, sub, live, ppg: parseFloat(ppg) || 0,
           gp: ownedGP,
           f: sub.F + sub.BF + live.F,
           d: sub.D + sub.BD + live.D,
@@ -2341,7 +2341,7 @@
           <div class="lb-stat lb-col-hide pos-d">${d}</div>
           <div class="lb-stat lb-col-hide pos-g">${g}</div>
           <div class="lb-stat pts">${pts}</div>
-          <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed ? ppg : ppg : '—'}</div>
+          <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed(2) : '—'}</div>
           <div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>
           ${tonightHtml}
           <div class="lb-stat ${rankNum===1?'gap leader':'gap'}">${gapVal}</div>
