@@ -2298,7 +2298,7 @@
 
       const ind = c => {
         if (c !== col) return '';
-        return `<span class="sort-indicator">▼</span>`;
+        return `<span class="sort-indicator">${dir === -1 ? '▼' : '▲'}</span>`;
       };
       const hdr = (c, label, extra = '', style = '') => {
         const active = c === col ? ' active' : '';
@@ -2368,8 +2368,12 @@
     }
 
     function lbSortBy(col) {
-      _lbSort.col = col;
-      _lbSort.dir = -1; // always highest to lowest
+      if (_lbSort.col === col) {
+        _lbSort.dir *= -1; // toggle when clicking the active column
+      } else {
+        _lbSort.col = col;
+        _lbSort.dir = -1; // always start descending on a new column
+      }
       // Re-render just the standings panel
       const el = document.getElementById('view-standings');
       if (!el) return;
