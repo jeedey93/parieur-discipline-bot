@@ -347,6 +347,27 @@
         .insights-group { margin-bottom: 1.5rem; }
         .insights-group-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; padding-left: 0.1rem; }
 
+        /* Free Agents */
+        .fa-section { margin-bottom: 1.5rem; }
+        .fa-section-label { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px; padding: 0.3rem 0 0.4rem; border-bottom: 1px solid var(--line); margin-bottom: 0.3rem; }
+        .fa-section-label.F { color: #7db4ff; }
+        .fa-section-label.D { color: #22c55e; }
+        .fa-section-label.G { color: var(--gold); }
+        .fa-header, .fa-row { display: grid; grid-template-columns: 1fr 32px 32px 32px 40px 48px; gap: 0.25rem; align-items: center; padding: 0.3rem 0.4rem; }
+        .fa-row { border-radius: 6px; }
+        .fa-row:hover { background: rgba(255,255,255,0.04); }
+        .fa-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+        .fa-row:nth-child(even):hover { background: rgba(255,255,255,0.05); }
+        .fa-name { font-size: 0.82rem; font-weight: 600; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .fa-stat { font-size: 0.82rem; font-weight: 600; color: var(--silver); text-align: center; }
+        .fa-pts  { font-size: 0.82rem; font-weight: 700; color: white; text-align: center; }
+        .fa-cap  { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.4); text-align: right; }
+        @media (max-width: 600px) {
+          .fa-header, .fa-row { grid-template-columns: 1fr 28px 28px 28px 36px 44px; padding: 0.25rem 0.3rem; }
+          .fa-name { font-size: 0.78rem; }
+          .fa-stat, .fa-pts { font-size: 0.78rem; }
+        }
+
         /* ── TEAM TABS ── */
         /* ── DRILL-DOWN NAVIGATION ── */
         .standings-nav {
@@ -1726,6 +1747,7 @@
           <div class="view-tab ${activeView==='pool'?'active':''}"      onclick="setView('pool')">Leaders</div>
           <div class="view-tab ${activeView==='history'?'active':''}"   onclick="setView('history')">History</div>
           <div class="view-tab ${activeView==='insights'?'active':''}"  onclick="setView('insights')">Insights</div>
+          <div class="view-tab ${activeView==='fa'?'active':''}"        onclick="setView('fa')">Free Agents</div>
           ${_anyGameLive ? '<div class="live-indicator">LIVE</div>' : ''}
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
@@ -1749,6 +1771,7 @@
         <div id="view-pool"     style="display:${activeView==='pool'?'block':'none'}">${buildPoolLeaders()}</div>
         <div id="view-history"  style="display:${activeView==='history'?'block':'none'}"><div class="bump-empty" id="bump-loading">Loading history…</div></div>
         <div id="view-insights" style="display:${activeView==='insights'?'block':'none'}">${buildInsightsPage(sorted, leaderPts)}</div>
+        <div id="view-fa"       style="display:${activeView==='fa'?'block':'none'}">${buildFreeAgents()}</div>
       `;
       window.scrollTo({ top: scrollY, behavior: 'instant' });
       if (activeView === 'history') loadHistory();
@@ -1919,6 +1942,76 @@
       const cards = all.slice(0, 3).map(d => card(d.color, d.icon, d.label, d.main, d.sub));
       if (!cards.length) return '';
       return `<div class="insights">${cards.join('')}<div class="insight-card insight-more-card" onclick="setView('insights')" style="cursor:pointer;align-items:center;justify-content:center;flex-direction:row;gap:0.5rem;border-color:rgba(255,255,255,0.1)"><span style="font-size:0.85rem;color:rgba(255,255,255,0.5)">More insights</span><span style="font-size:0.75rem;color:rgba(255,255,255,0.3)">→</span></div></div>`;
+    }
+
+    function buildFreeAgents() {
+      // Collect every slug currently on any roster (F/D/G/B)
+      const draftedSlugs = new Set();
+      teams.forEach(t => {
+        ['F','D','G','B'].forEach(pos => (t.roster[pos] || []).filter(Boolean).forEach(s => draftedSlugs.add(s)));
+      });
+
+      const fas = allPlayers
+        .filter(p => p.puckpedia_slug && !draftedSlugs.has(p.puckpedia_slug))
+        .sort((a, b) => {
+          // Sort: skaters by points desc, goalies by wins desc
+          const posA = normalizePos(a.position), posB = normalizePos(b.position);
+          if (posA !== posB) return posA === 'G' ? 1 : posB === 'G' ? -1 : 0;
+          if (posA === 'G') return (b.wins || 0) - (a.wins || 0);
+          return (b.points || 0) - (a.points || 0);
+        });
+
+      if (!fas.length) return '<div class="msg" style="padding:2rem 0">All players have been drafted!</div>';
+
+      const byPos = { F: [], D: [], G: [] };
+      fas.forEach(p => { const pos = normalizePos(p.position); byPos[pos].push(p); });
+
+      const renderSection = (pos, label, players) => {
+        if (!players.length) return '';
+        const isG = pos === 'G';
+        const rows = players.map(p => {
+          const abbr = TEAM_ABBR[p.team];
+          const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}" style="width:16px;height:16px;object-fit:contain;opacity:0.7;margin-right:0.3rem;vertical-align:middle">` : '';
+          const stat1 = isG ? (p.wins ?? '—') : (p.goals ?? '—');
+          const stat2 = isG ? (p.shutouts ?? '—') : (p.assists ?? '—');
+          const pts   = isG ? (p.wins != null ? p.wins * _scoring.g_wins + (p.shutouts||0) * _scoring.g_shutouts + (p.ot_losses||0) * _scoring.g_otl : '—') : (p.points ?? '—');
+          const gp    = p.games_played ?? '—';
+          const cap   = p.cap_hit ? `$${(p.cap_hit/1e6).toFixed(1)}M` : '—';
+          const posChip = `<span class="hist-pos ${pos}" style="margin-right:0.35rem;vertical-align:middle">${pos}</span>`;
+          return `<div class="fa-row">
+            <div class="fa-name">${posChip}${logo}${formatName(p.player_name)}</div>
+            <div class="fa-stat">${gp}</div>
+            <div class="fa-stat">${stat1}</div>
+            <div class="fa-stat">${stat2}</div>
+            <div class="fa-pts">${pts}</div>
+            <div class="fa-cap">${cap}</div>
+          </div>`;
+        }).join('');
+        const h1 = isG ? 'W' : 'G';
+        const h2 = isG ? 'SO' : 'A';
+        return `<div class="fa-section">
+          <div class="fa-section-label ${pos}">${label} <span style="opacity:0.4;font-size:0.7rem">${players.length}</span></div>
+          <div class="fa-header">
+            <div class="fa-name" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700;letter-spacing:1px">PLAYER</div>
+            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">GP</div>
+            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h1}</div>
+            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h2}</div>
+            <div class="fa-pts"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">PTS</div>
+            <div class="fa-cap"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">CAP</div>
+          </div>
+          ${rows}
+        </div>`;
+      };
+
+      return `
+        <div class="insights-page-header">
+          <span class="insights-page-title">Free Agents</span>
+          <span class="insights-page-sub">${fas.length} available · not on any roster</span>
+        </div>
+        ${renderSection('F', 'Forwards', byPos.F)}
+        ${renderSection('D', 'Defence', byPos.D)}
+        ${renderSection('G', 'Goalies', byPos.G)}
+      `;
     }
 
     function buildInsightsPage(sorted, leaderPts) {
