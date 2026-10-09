@@ -1,0 +1,25 @@
+Date: 2026-10-09
+
+Seattle Kraken @ Detroit Red Wings
+Detroit Red Wings ML (Home): 1.69, Seattle Kraken ML (Away): 2.18, O/U: 6.0 (Over: 1.9 / Under: 1.91)
+------
+New York Rangers @ Washington Capitals
+Washington Capitals ML (Home): 1.71, New York Rangers ML (Away): 2.15, O/U: 5.5 (Over: 1.82 / Under: 2.0)
+------
+Pittsburgh Penguins @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.84, Pittsburgh Penguins ML (Away): 1.97, O/U: 6.5 (Over: 1.83 / Under: 1.99)
+------
+Anaheim Ducks @ Winnipeg Jets
+Winnipeg Jets ML (Home): 1.82, Anaheim Ducks ML (Away): 2.0, O/U: 6.5 (Over: 1.97 / Under: 1.84)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+Today's date, 2026-10-09, falls within the first three weeks of the NHL season. Therefore, I will be applying the early-season warning criteria: the minimum required edge for a play is raised to +7% (from +5%), and goalie stats are treated with lower reliability unless they have 3+ games played. Under picks are approached with extra skepticism.
+
+**BET OF THE DAY**
+
+**New York Rangers @ Washington Capitals Under 5.5 @ 2.0**
+New York Rangers starting goalie Igor Shesterkin enters this game in elite form with a 0.926 SV% in his last 5 starts, while Washington Capitals' Logan Thompson also stands strong with a 0.921 SV% in his recent starts, both indicating high-level goaltending. Both teams boast formidable penalty-killing units, with Washington at an impressive 91.7% and New York at 87.5%, which historically suppresses scoring opportunities. Although the Capitals hold a slight home-ice advantage, the presence of two elite goaltenders and strong defensive special teams suggests a lower-scoring affair than the oddsmakers imply. The market seems to undervalue the defensive capabilities and goaltending prowess, leading to a mispriced line for the Under.
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
