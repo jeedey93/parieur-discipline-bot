@@ -283,7 +283,7 @@ def save_standings_snapshots():
 
     # 1. Load all player stats into a slug → player dict
     players_rows = supabase.table("nhl_players").select(
-        "puckpedia_slug,position,points,goals,assists,wins,shutouts,games_played"
+        "puckpedia_slug,position,points,goals,assists,wins,shutouts,ot_losses,games_played"
     ).execute().data
     player_map = {r["puckpedia_slug"]: r for r in players_rows if r.get("puckpedia_slug")}
 
