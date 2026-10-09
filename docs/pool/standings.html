@@ -289,11 +289,17 @@
           display: grid; grid-template-columns: repeat(2, 1fr);
           gap: 0.6rem; margin-bottom: 1.25rem; align-items: stretch;
         }
+        @media (min-width: 861px) {
+          .insights { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        }
         .insight-card {
           background: rgba(255,255,255,0.03); border: 1px solid var(--line);
           border-radius: 8px; padding: 0.45rem 0.65rem;
           display: flex; flex-direction: column; gap: 0.1rem;
           transition: border-color 0.2s, background 0.2s; height: 100%;
+        }
+        @media (min-width: 861px) {
+          .insight-card { padding: 0.75rem 1rem; border-radius: 10px; }
         }
         .insight-card:hover { background: rgba(255,255,255,0.05); }
         .insight-card.gold  { border-color: rgba(255,184,28,0.25);  background: rgba(255,184,28,0.04); }
@@ -325,15 +331,19 @@
         }
         .insight-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 0.35rem; }
         @media (max-width: 600px) { .insight-label { font-size: 0.62rem; letter-spacing: 1px; } }
+        @media (min-width: 861px) { .insight-label { font-size: 0.8rem; } }
         .insight-icon { font-size: 0.8rem; line-height: 1; flex-shrink: 0; }
+        @media (min-width: 861px) { .insight-icon { font-size: 1rem; } }
         .insight-main { font-family: 'Bebas Neue', cursive; font-size: 0.95rem; letter-spacing: 1.5px; color: white; line-height: 1.2; }
         @media (max-width: 600px) { .insight-main { font-size: 0.88rem; } }
+        @media (min-width: 861px) { .insight-main { font-size: 1.2rem; } }
         .insight-main.gold  { color: var(--gold); }
         .insight-main.green { color: var(--green); }
         .insight-main.red   { color: #ff5050; }
         .insight-main.blue  { color: var(--blue); }
         .insight-sub { font-size: 0.78rem; font-weight: 600; color: var(--silver); }
         @media (max-width: 600px) { .insight-sub { font-size: 0.7rem; } }
+        @media (min-width: 861px) { .insight-sub { font-size: 0.88rem; } }
 
         /* Insights page */
         .insights-page-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.9rem; margin-top: 0.25rem; }
