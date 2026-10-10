@@ -1,34 +1,20 @@
 ============================================================
 SENATORS - LINEUP
-Last Updated: 2026-10-08 04:00 PM ET
+Last Updated: 2026-10-10 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: William Eklund — Tim Stutzle — Drake Batherson
+Line 1: Andre Burakovsky — Tim Stutzle — Drake Batherson
 Line 2: Ridly Greig — Dylan Cozens — Fabian Zetterlund
 Line 3: Michael Amadio — Shane Pinto — Claude Giroux
 Line 4: Warren Foegele — Stephen Halliday — Nick Cousins
-Line 5: Kirill Kaprizov — Danila Yurov — Maxim Shabanov
-Line 6: Blake Coleman — Joel Eriksson Ek — Matt Boldy
-Line 7: Marcus Foligno — Ryan Hartman — Bobby Brink
-Line 8: Yakov Trenin — Michael McCarron — Nico Sturm
-Line 9: Gage Goncalves — Brayden Point — Nikita Kucherov
-Line 10: Jake Guentzel — Anthony Cirelli — Brandon Hagel
-Line 11: Ilya Mikheyev — Zemgus Girgensons — Pontus Holmberg
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Thomas Chabot — Jordan Spence
 Pair 2: Tyler Kleven — Carter Yakemchuk
-Pair 3: Cameron Crotty — Nikolas Matinpalo
-Pair 4: Quinn Hughes — Jared Spurgeon
-Pair 5: Olli Maatta — Jonas Brodin
-Pair 6: Daemon Hunt — Zach Bogosian
-Pair 7: Jeffrey Viel — - Conor Geekie
-Pair 8: J.J. Moser — John Carlson
-Pair 9: Ryan McDonagh — Erik Cernak
-Pair 10: Victor Hedman — Charle-Edouard DAstous
+Pair 3: Nikolas Matinpalo — Hoyt Stanley
 
 GOALIES:
 ----------------------------------------
@@ -40,15 +26,8 @@ SCRATCHED / INJURED:
   Hayden Hodgson (scratched)
   Artem Zub (knee) (injured)
   Kurtis MacDermid (upper body) (injured)
-  Andre Burakovsky (upper body) (injured)
   Jake Sanderson (undisclosed) (injured)
-  David Spacek (scratched)
-  Brock Faber (skull fracture) (injured)
-  Filip Gustavsson (lower body) (injured)
-  Nick Foligno (upper body) (injured)
-  Scott Sabourin (scratched)
-  Emil Lilleberg (undisclosed) (injured)
-  Dominic James (hand) (injured)
-  Yanni Gourde (hip) (injured)
+  William Eklund (ankle) (injured)
+  Cameron Crotty (illness) (injured)
 
 ============================================================

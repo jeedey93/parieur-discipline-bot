@@ -1,24 +1,32 @@
 ============================================================
 MAPLE LEAFS - LINEUP
-Last Updated: 2026-10-08 04:00 PM ET
+Last Updated: 2026-10-10 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Kirill Marchenko — Auston Matthews — Jack Roslovic
-Line 2: Easton Cowan — John Tavares — William Nylander
-Line 3: Gavin McKenna — Nick Paul — Colton Sissons
-Line 4: Brandon Duhaime — Teddy Blueger — Bo Groulx
+Line 2: Easton Cowan — Nick Paul — William Nylander
+Line 3: Gavin McKenna — Colton Sissons — Bo Groulx
+Line 4: Zack MacEwen — Teddy Blueger — Brandon Duhaime
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Morgan Rielly — Darren Raddysh
-Pair 2: Jake McCabe — Chris Tanev
+Pair 1: Jake McCabe — Darren Raddysh
+Pair 2: Morgan Rielly — Chris Tanev
 Pair 3: Oliver Ekman-Larsson — Troy Stecher
 
 GOALIES:
 ----------------------------------------
-  Sergei Bobrovsky
   Anthony Stolarz
+  Sergei Bobrovsky
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Nick Blankenburg (scratched)
+  Miles Wood (scratched)
+  John Tavares (scratched)
+  Dakota Joshua (core) (injured)
+  Max Domi (undisclosed) (injured)
 
 ============================================================
