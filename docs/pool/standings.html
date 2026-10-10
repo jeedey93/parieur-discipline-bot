@@ -1039,7 +1039,7 @@
     function isGameHour() {
       const h = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', hour12: false });
       const n = Number(h);
-      return n >= 17 && n < 24; // 5pm–midnight Montreal
+      return n >= 12 && n < 24; // noon–midnight Montreal (covers afternoon + evening games)
     }
 
     function liveTeamPts(team) {
