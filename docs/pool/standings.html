@@ -2260,8 +2260,9 @@
         const playerYtdSum = dressedAndBench.reduce((s, p) => {
           return s + (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
         }, 0);
-        const prevPts = _yesterdaySnapshot[t.id];
-        const snapshotDelta = prevPts != null ? pts - prevPts : null;
+        const latestSnapPts = _lastSnapshot[t.id]?.pts ?? null;
+        const prevPts = _yesterdaySnapshot[t.id] ?? null;
+        const snapshotDelta = (latestSnapPts != null && prevPts != null) ? latestSnapPts - prevPts : null;
         const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
         const tonightCount = dressedAndBench.filter(p => {
           const abbr = TEAM_ABBR[p.team];
