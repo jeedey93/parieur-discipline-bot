@@ -1,6 +1,6 @@
 ============================================================
 RED WINGS - LINEUP
-Last Updated: 2026-10-06 03:36 PM ET
+Last Updated: 2026-10-09 03:34 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -13,18 +13,18 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Nate Danielson — Carter Mazur
 Pair 2: Albert Johansson — Moritz Seider
-Pair 3: Anton Johansson — Justin Faulk
-Pair 4: Ben Chiarot — Axel Sandin-Pellikka
+Pair 3: Anton Johansson — Ben Chiarot
+Pair 4: William Wallinder — Justin Faulk
 
 GOALIES:
 ----------------------------------------
-  Andreas Englund
+  Axel Sandin-Pellikka
   John Gibson
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  William Wallinder (scratched)
-  Jacob Bernard-Docker (upper body) (injured)
+  Andreas Englund (scratched)
+  Jacob Bernard-Docker (scratched)
   Marco Kasper (upper body) (injured)
   J.T. Compher (undisclosed) (injured)
   Mason Appleton (undisclosed) (injured)
