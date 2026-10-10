@@ -2251,16 +2251,19 @@
         const live   = liveSubPts(t);
         const ppg    = teamAvgPPG(t);
         const rp     = rosterPlayers(t.roster);
-        const ownedGP = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
+        const swappedOutSlugs = new Set(_benchSwaps.filter(s => s.team_id === t.id).map(s => s.player_out_slug));
+        const activeBench = (rp.B || []).filter(p => p && swappedOutSlugs.has(p._slug));
+        const dressedAndBench = [...rp.F, ...rp.D, ...rp.G, ...activeBench].filter(Boolean);
+        const ownedGP = dressedAndBench.reduce((s, p) => {
           return s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0);
         }, 0);
-        const playerYtdSum = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).reduce((s, p) => {
+        const playerYtdSum = dressedAndBench.reduce((s, p) => {
           return s + (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
         }, 0);
         const prevPts = _yesterdaySnapshot[t.id];
         const snapshotDelta = prevPts != null ? pts - prevPts : null;
         const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
-        const tonightCount = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => {
+        const tonightCount = dressedAndBench.filter(p => {
           const abbr = TEAM_ABBR[p.team];
           return abbr && teamsPlayingToday.has(abbr);
         }).length;
