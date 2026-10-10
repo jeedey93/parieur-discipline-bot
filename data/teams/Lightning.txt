@@ -1,6 +1,6 @@
 ============================================================
 LIGHTNING - LINEUP
-Last Updated: 2026-10-05 05:32 PM ET
+Last Updated: 2026-10-10 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -11,7 +11,7 @@ Line 3: Ilya Mikheyev — Zemgus Girgensons — Pontus Holmberg
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Jeffrey Viel — Conor Geekie
+Pair 1: Jeffrey Viel — - Conor Geekie
 Pair 2: J.J. Moser — John Carlson
 Pair 3: Ryan McDonagh — Erik Cernak
 Pair 4: Victor Hedman — Charle-Edouard DAstous
@@ -24,7 +24,6 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Scott Sabourin (scratched)
-  Jansen Harkins (scratched)
   Emil Lilleberg (undisclosed) (injured)
   Dominic James (hand) (injured)
   Yanni Gourde (hip) (injured)

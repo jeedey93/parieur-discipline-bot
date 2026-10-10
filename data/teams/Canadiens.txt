@@ -1,32 +1,31 @@
 ============================================================
 CANADIENS - LINEUP
-Last Updated: 2026-10-08 04:00 PM ET
+Last Updated: 2026-10-10 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Cole Caufield — Nick Suzuki — Chris Kreider
-Line 2: Juraj Slafkovsky — Alex Newhook — Kirby Dach
+Line 1: Cole Caufield — Nick Suzuki — Juraj Slafkovsky
+Line 2: Chris Kreider — Alex Newhook — Josh Anderson
 Line 3: Zachary Bolduc — Phillip Danault — Alexandre Texier
-Line 4: Florian Xhekaj — Jake Evans — Josh Anderson
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Mike Matheson — Noah Dobson
-Pair 2: Lane Hutson — Alexandre Carrier
-Pair 3: Arber Xhekaj — Adam Engstrom
+Pair 1: Jake Evans — Kirby Dach
+Pair 2: Lane Hutson — Noah Dobson
+Pair 3: Mike Matheson — Alexandre Carrier
+Pair 4: Kaiden Guhle — Adam Engstrom
 
 GOALIES:
 ----------------------------------------
+  Arber Xhekaj
   Jacob Fowler
-  Jakub Dobes
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Jayden Struble (scratched)
-  Samuel Montembeault (undisclosed) (injured)
+  Samuel Montembeault (lower body) (injured)
   Ivan Demidov (lower body) (injured)
-  Kaiden Guhle (adductor) (injured)
   Oliver Kapanen (lower body) (injured)
+  Florian Xhekaj (undisclosed) (injured)
 
 ============================================================

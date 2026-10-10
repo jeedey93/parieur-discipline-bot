@@ -1,13 +1,13 @@
 ============================================================
 PENGUINS - LINEUP
-Last Updated: 2026-10-09 03:34 PM ET
+Last Updated: 2026-10-10 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Rickard Rakell — Sidney Crosby — Bryan Rust
 Line 2: Egor Chinakhov — Tommy Novak — Evgeni Malkin
-Line 3: Ville Koivunen — Ben Kindel — Hendrix Lapierre
+Line 3: Hendrix Lapierre — Ben Kindel — Ville Koivunen
 Line 4: Connor Dewar — Blake Lizotte — Nick Robertson
 
 DEFENSE PAIRS:
@@ -18,8 +18,8 @@ Pair 3: Trevor van Riemsdyk — Kris Letang
 
 GOALIES:
 ----------------------------------------
-  Sergei Murashov
   Arturs Silovs
+  Sergei Murashov
 
 SCRATCHED / INJURED:
 ----------------------------------------
