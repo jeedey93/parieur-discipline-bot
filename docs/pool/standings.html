@@ -2258,9 +2258,9 @@
           return s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0);
         }, 0);
         const playerYtdSum = dressedAndBench.reduce((s, p) => {
-          const byId   = _playerYesterdayPts[Number(p.nhl_player_id)] ?? 0;
           const bySlug = _playerYesterdayPtsBySlug[p._slug] ?? 0;
-          return s + Math.max(byId, bySlug); // take the higher of the two to avoid double-counting
+          const byId   = _playerYesterdayPts[Number(p.nhl_player_id)] ?? 0;
+          return s + (bySlug || byId); // prefer snapshot delta (same formula as team total); fall back to game log
         }, 0);
         const latestSnapPts = _lastSnapshot[t.id]?.pts ?? null;
         const prevPts = _yesterdaySnapshot[t.id] ?? null;
@@ -2611,7 +2611,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: isCurrent ? ((_playerYesterdayPts[Number(p?.nhl_player_id)] || 0) || (_playerYesterdayPtsBySlug[p?.puckpedia_slug] ?? 0)) : null });
+          ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null });
       });
 
       currentNoDraft.forEach(p => {
@@ -2634,7 +2634,7 @@
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          ytd: (_playerYesterdayPts[Number(p.nhl_player_id)] || 0) || (_playerYesterdayPtsBySlug[p.puckpedia_slug] ?? 0) });
+          ytd: (_playerYesterdayPtsBySlug[p.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) });
       });
 
       // Add bench-swapped-out players as past rows
