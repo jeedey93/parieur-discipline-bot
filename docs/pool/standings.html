@@ -2258,9 +2258,9 @@
           return s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0);
         }, 0);
         const playerYtdSum = dressedAndBench.reduce((s, p) => {
-          const byId  = _playerYesterdayPts[Number(p.nhl_player_id)] ?? 0;
+          const byId   = _playerYesterdayPts[Number(p.nhl_player_id)] ?? 0;
           const bySlug = _playerYesterdayPtsBySlug[p._slug] ?? 0;
-          return s + (byId || bySlug);
+          return s + Math.max(byId, bySlug); // take the higher of the two to avoid double-counting
         }, 0);
         const latestSnapPts = _lastSnapshot[t.id]?.pts ?? null;
         const prevPts = _yesterdaySnapshot[t.id] ?? null;
