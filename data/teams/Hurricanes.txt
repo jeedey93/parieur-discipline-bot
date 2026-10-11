@@ -1,6 +1,6 @@
 ============================================================
 HURRICANES - LINEUP
-Last Updated: 2026-10-10 02:40 PM ET
+Last Updated: 2026-10-11 02:57 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,18 +8,18 @@ FORWARD LINES:
 Line 1: William Carrier — Sebastian Aho — Andrei Svechnikov
 Line 2: Taylor Hall — Logan Stankoven — Jackson Blake
 Line 3: Nikolaj Ehlers — Jordan Staal — Jordan Martinook
-Line 4: Jesperi Kotkaniemi — Mark Jankowski — Eric Robinson
+Line 4: Eric Robinson — Mark Jankowski — Jesperi Kotkaniemi
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Jaccob Slavin — Jacob Chatfield
+Pair 1: Jaccob Slavin — Jalen Chatfield
 Pair 2: KAndre Miller — Sean Walker
 Pair 3: Shayne Gostisbehere — Mike Reilly
 
 GOALIES:
 ----------------------------------------
-  Brandon Bussi
   Pyotr Kochetkov
+  Brandon Bussi
 
 SCRATCHED / INJURED:
 ----------------------------------------
