@@ -1836,7 +1836,7 @@
     // ── SWIPE BACK GESTURE (interactive drag) ────────────────────────────────
     (function initSwipeBack() {
       let startX = 0, startY = 0, lastX = 0, lastT = 0;
-      let dragging = false, locked = false;
+      let dragging = false, locked = false, transitioning = false;
 
       function getLayers() {
         return {
@@ -1867,6 +1867,7 @@
       }
 
       document.addEventListener('touchstart', e => {
+        if (transitioning) return;
         if (e.touches.length !== 1) return;
         startX = lastX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
@@ -1876,7 +1877,7 @@
       }, { passive: true });
 
       document.addEventListener('touchmove', e => {
-        if (locked) return;
+        if (locked || transitioning) return;
         if (!activeTeamId || activeView !== 'standings') return;
         const dx = e.touches[0].clientX - startX;
         const dy = Math.abs(e.touches[0].clientY - startY);
@@ -1928,6 +1929,7 @@
           // Animate out → go to prev team or back to standings
           const sorted = sortedTeams();
           const idx = sorted.findIndex(t => t.id === activeTeamId);
+          transitioning = true;
           front.classList.remove('dragging');
           behind.classList.remove('dragging');
           front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
@@ -1937,20 +1939,21 @@
           behind.style.transform = 'translateX(0)';
           behind.style.opacity = '1';
           if (idx > 0) {
-            setTimeout(() => { clearInline(front, behind); selectTeam(encodeURIComponent(sorted[idx - 1].id)); }, 300);
+            setTimeout(() => { clearInline(front, behind); transitioning = false; selectTeam(encodeURIComponent(sorted[idx - 1].id)); }, 300);
           } else {
-            setTimeout(() => { clearInline(front, behind); clearTeam(); }, 300);
+            setTimeout(() => { clearInline(front, behind); transitioning = false; clearTeam(); }, 300);
           }
         } else if (shouldGoNext) {
           // Animate out left → go to next team
           const sorted = sortedTeams();
           const idx = sorted.findIndex(t => t.id === activeTeamId);
           if (idx < sorted.length - 1) {
+            transitioning = true;
             front.classList.remove('dragging');
             front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
             front.style.transform = `translateX(-${w}px)`;
             front.style.opacity = '0';
-            setTimeout(() => { clearInline(front, behind); selectTeam(encodeURIComponent(sorted[idx + 1].id)); }, 300);
+            setTimeout(() => { clearInline(front, behind); transitioning = false; selectTeam(encodeURIComponent(sorted[idx + 1].id)); }, 300);
           } else {
             // Already last team — snap back
             front.classList.remove('dragging');
