@@ -922,6 +922,7 @@
             <button class="btn-sync" id="share-btn" onclick="shareStandings()" title="Share standings as image">📸 Share</button>
         </div>
     </header>
+    <div id="last-updated" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:1px;color:rgba(255,255,255,0.25);text-transform:uppercase;margin:-0.5rem 0 1rem;padding:0 0.25rem"></div>
     <div id="content">
         <div style="margin-bottom:1.25rem">
             <div class="skeleton-row"></div>
@@ -1661,6 +1662,16 @@
         .then(r => r.json())
         .then(rows => { const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; document.title = `${n} | Parieur Discipliné`; } })
         .catch(() => {});
+      // Last updated timestamp
+      fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=updated_at&order=updated_at.desc&limit=1`, { headers: sbHeaders() })
+        .then(r => r.json())
+        .then(rows => {
+          const ts = rows[0]?.updated_at;
+          if (!ts) return;
+          const d = new Date(ts);
+          const el = document.getElementById('last-updated');
+          if (el) el.textContent = 'Stats updated ' + d.toLocaleString('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }).catch(() => {});
       try {
         let cacheHit = false;
         try {
@@ -1875,8 +1886,8 @@
         if (!dragging) {
           if (Math.abs(dx) < 6 && dy < 6) return;
           if (dy > Math.abs(dx)) { locked = true; return; } // vertical scroll
-          if (dx < 0) { locked = true; return; }            // leftward swipe
-          if (startX > 60 && Math.abs(dx) < 15) return;     // not edge + not moved yet
+          // Right swipe: only from left edge (back gesture)
+          if (dx > 0 && startX > 60 && Math.abs(dx) < 15) return;
           dragging = true;
         }
 
@@ -1885,7 +1896,14 @@
 
         front.classList.add('dragging');
         behind.classList.add('dragging');
-        setDrag(front, behind, Math.max(0, dx));
+        if (dx > 0) {
+          // Right swipe: slide detail right (back)
+          setDrag(front, behind, Math.max(0, dx));
+        } else {
+          // Left swipe: slide detail left (next team) — subtle feedback only
+          front.style.transform = `translateX(${Math.max(-80, dx * 0.3)}px)`;
+          front.style.opacity = String(1 + dx * 0.001);
+        }
 
         lastX = e.touches[0].clientX;
         lastT = Date.now();
@@ -1904,10 +1922,13 @@
         const velocity = dt > 0 ? (e.changedTouches[0].clientX - lastX) / dt : 0; // px/ms
         const w = window.innerWidth;
 
-        const shouldComplete = dx > w * 0.35 || (dx > 40 && velocity > 0.3);
+        const shouldGoBack = dx > w * 0.35 || (dx > 40 && velocity > 0.3);
+        const shouldGoNext = dx < -w * 0.25 || (dx < -40 && velocity < -0.3);
 
-        if (shouldComplete) {
-          // Snap to complete: animate detail off screen, then clear
+        if (shouldGoBack) {
+          // Animate out → go to prev team or back to standings
+          const sorted = sortedTeams();
+          const idx = sorted.findIndex(t => t.id === activeTeamId);
           front.classList.remove('dragging');
           behind.classList.remove('dragging');
           front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
@@ -1916,7 +1937,30 @@
           front.style.opacity = '0';
           behind.style.transform = 'translateX(0)';
           behind.style.opacity = '1';
-          setTimeout(() => { clearInline(front, behind); clearTeam(); }, 300);
+          if (idx > 0) {
+            setTimeout(() => { clearInline(front, behind); selectTeam(encodeURIComponent(sorted[idx - 1].id)); }, 300);
+          } else {
+            setTimeout(() => { clearInline(front, behind); clearTeam(); }, 300);
+          }
+        } else if (shouldGoNext) {
+          // Animate out left → go to next team
+          const sorted = sortedTeams();
+          const idx = sorted.findIndex(t => t.id === activeTeamId);
+          if (idx < sorted.length - 1) {
+            front.classList.remove('dragging');
+            front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+            front.style.transform = `translateX(-${w}px)`;
+            front.style.opacity = '0';
+            setTimeout(() => { clearInline(front, behind); selectTeam(encodeURIComponent(sorted[idx + 1].id)); }, 300);
+          } else {
+            // Already last team — snap back
+            front.classList.remove('dragging');
+            behind.classList.remove('dragging');
+            front.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+            front.style.transform = 'translateX(0)';
+            front.style.opacity = '1';
+            setTimeout(() => { clearInline(front, behind); }, 300);
+          }
         } else {
           // Snap back
           front.classList.remove('dragging');
