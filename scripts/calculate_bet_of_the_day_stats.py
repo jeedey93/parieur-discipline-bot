@@ -164,8 +164,8 @@ def calculate_botd_stats():
     # Directories
     nhl_predictions_dir = "data/predictions/nhl"
     nba_predictions_dir = "data/predictions/nba"
-    nhl_results_dir = "data/bot_results/nhl"
-    nba_results_dir = "data/bot_results/nba"
+    nhl_results_dir = "data/bot_results/nhl/2026-27"
+    nba_results_dir = "data/bot_results/nba/2026-27"
 
     # Track bet of the day results
     botd_results = {
