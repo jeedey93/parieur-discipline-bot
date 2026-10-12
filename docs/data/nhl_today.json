@@ -1,1 +1,1 @@
-{"date": "2026-10-11", "games": [{"id": 2026020084, "away": "SEA", "home": "WSH"}, {"id": 2026020085, "away": "VAN", "home": "NYR"}, {"id": 2026020086, "away": "CAR", "home": "PHI"}], "matchups": {"SEA": "WSH", "WSH": "SEA", "VAN": "NYR", "NYR": "VAN", "CAR": "PHI", "PHI": "CAR"}}
+{"date": "2026-10-12", "matchups": {"FLA": "BUF", "BUF": "FLA", "OTT": "NJD", "NJD": "OTT", "VGK": "MIN", "MIN": "VGK"}, "games": [{"id": 2026020087, "away": "FLA", "home": "BUF"}, {"id": 2026020088, "away": "OTT", "home": "NJD"}, {"id": 2026020089, "away": "VGK", "home": "MIN"}]}

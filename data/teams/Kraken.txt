@@ -1,6 +1,6 @@
 ============================================================
 KRAKEN - LINEUP
-Last Updated: 2026-10-09 03:34 PM ET
+Last Updated: 2026-10-11 02:57 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,7 +14,7 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Vince Dunn — Adam Larsson
 Pair 2: Ryker Evans — Brandon Montour
-Pair 3: Josh Mahura — Cale Fleury
+Pair 3: Josh Mahura — Ville Ottavainen
 
 GOALIES:
 ----------------------------------------
@@ -23,8 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Ville Ottavainen (scratched)
   Curtis Douglas (scratched)
+  Cale Fleury (scratched)
   Jacob Melanson (upper body) (injured)
   Ryan Lindgren (upper body) (injured)
 
