@@ -13,7 +13,7 @@ on:
           - 7am
           - 3pm
   schedule:
-    - cron: '15 1 * * *'    # 7am run (1:15am UTC targets ~7-8am Montreal after typical 6h queue delay)
+    - cron: '15 23 * * *'   # 7am run (11:15pm UTC targets ~7am Montreal after typical 6-7h queue delay)
     - cron: '15 9 * * *'    # 3pm run (9:15am UTC targets ~3-4pm Montreal after typical 6h queue delay)
 
 jobs:
