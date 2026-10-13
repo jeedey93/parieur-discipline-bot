@@ -3,7 +3,7 @@ name: Daily NHL/NBA Bot Results
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # targets ~6am Montreal after typical 6h queue delay
+    - cron: '0 2 * * *'  # targets ~6am Montreal (2am UTC + ~4h queue delay)
 
 jobs:
   run-results:
