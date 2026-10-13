@@ -48,14 +48,21 @@ jobs:
       - name: Determine run time
         id: run_time
         run: |
-          # Crons: 1:15 UTC = 7am Montreal run, 9:15 UTC = 3pm Montreal run
-          # Window: anything before UTC 8 = 7am run (midpoint between 1:15+6h=7:15 and 9:15)
+          # Use the scheduled cron expression to identify which run this is.
+          # GITHUB_EVENT_SCHEDULE is set to the cron string that triggered this job.
+          # Crons: "0 4 * * *" = 7am run, "15 9 * * *" = 3pm run
           FORCE="${{ github.event.inputs.force_run_time }}"
+          SCHEDULE="${{ github.event.schedule }}"
           if [ -n "$FORCE" ]; then
             echo "time=$FORCE" >> $GITHUB_OUTPUT
+          elif [ "$SCHEDULE" = "0 4 * * *" ]; then
+            echo "time=7am" >> $GITHUB_OUTPUT
+          elif [ "$SCHEDULE" = "15 9 * * *" ]; then
+            echo "time=3pm" >> $GITHUB_OUTPUT
           else
+            # Fallback: hour-based guess
             HOUR=$(date -u +%H)
-            if [ "$HOUR" -lt 8 ]; then
+            if [ "$HOUR" -lt 12 ]; then
               echo "time=7am" >> $GITHUB_OUTPUT
             else
               echo "time=3pm" >> $GITHUB_OUTPUT
