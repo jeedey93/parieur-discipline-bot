@@ -115,6 +115,9 @@ Actual Results:
 # Read the predictions file
 yesterday = (date.today() - timedelta(days=1)).isoformat()
 predictions_file = f"data/predictions/nba/nba_daily_predictions_{yesterday}.txt"
+if not os.path.exists(predictions_file):
+    print(f"⚠️  No predictions file for {yesterday} — skipping analysis.")
+    sys.exit(0)
 with open(predictions_file, "r") as f:
     results_text = f.read()
 

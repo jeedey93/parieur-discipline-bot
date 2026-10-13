@@ -109,6 +109,9 @@ Actual Results:
 # Read the predictions file
 yesterday = (date.today() - timedelta(days=1)).isoformat()
 predictions_file = f"data/predictions/nhl/nhl_daily_predictions_{yesterday}.txt"
+if not os.path.exists(predictions_file):
+    print(f"⚠️  No predictions file for {yesterday} — skipping analysis.")
+    sys.exit(0)
 with open(predictions_file, "r") as f:
     predictions_text = f.read()
 
