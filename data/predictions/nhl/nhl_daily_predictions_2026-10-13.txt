@@ -1,0 +1,53 @@
+Here's a comparison and unified recommendation list based on the provided morning and noon prediction reports:
+
+**Summary of Changes:**
+
+*   **Consistent Plays (Appeared in both reports' recommendations):**
+    *   Detroit Red Wings ML vs New Jersey Devils
+    *   Columbus Blue Jackets ML vs Florida Panthers
+    *   Ottawa Senators ML vs St Louis Blues
+*   **Plays Removed from Recommendations at Noon:**
+    *   Montréal Canadiens ML vs Buffalo Sabres (present in morning, not in noon recommendations)
+*   **Plays Added to Recommendations at Noon:**
+    *   Chicago Blackhawks ML vs Pittsburgh Penguins
+*   **Confidence Changes for Consistent Plays:**
+    *   Detroit Red Wings ML: Medium -> High
+    *   Columbus Blue Jackets ML: Medium -> High
+    *   Ottawa Senators ML: Medium -> High
+*   **Odds Movement for Consistent Plays:**
+    *   Detroit Red Wings ML: 1.90 (morning) -> 1.89 (noon)
+    *   Columbus Blue Jackets ML: 1.81 (morning) -> 1.81 (noon) (No change)
+    *   Ottawa Senators ML: 1.87 (morning) -> 1.87 (noon) (No change)
+
+---
+
+🏆 **BET OF THE DAY**
+**Detroit Red Wings ML vs New Jersey Devils @ 1.89**
+Confidence Level: High, Units: 1.5u, Win Probability: 66%
+
+The Detroit Red Wings, despite an unconfirmed starting goalie (assumed average performance), face the New Jersey Devils, who also have an unconfirmed starting goalie (assumed average performance). This nullifies any goalie advantage. The Red Wings boast a significant home-ice advantage, with a home win percentage of 0.250 compared to the Devils' 0.000 road win percentage, granting Detroit an +8% boost. Furthermore, the Devils are on the second leg of a back-to-back, while the Red Wings have had two days of rest, giving Detroit a crucial +4% fatigue advantage. Combining these factors, Detroit has a strong mathematical edge over the market's implied probability.
+
+The line moved slightly from 1.90 (morning) to 1.89 (noon), and confidence increased from Medium to High.
+
+**Other Recommended Plays**
+
+**Columbus Blue Jackets ML vs Florida Panthers @ 1.81**
+Confidence Level: High, Units: 1.5u, Win Probability: 66%
+
+Both the Columbus Blue Jackets and Florida Panthers have unconfirmed starting goalies, leading to a neutral assessment in that critical area. However, the Blue Jackets hold a substantial home-ice advantage, with a home win percentage of 0.667 against the Panthers' 0.400 away record, contributing an +8% probability adjustment. Adding to this, Florida is playing on a back-to-back, while Columbus is well-rested with two days off, providing the Blue Jackets with a +4% edge from fatigue. These combined advantages present a clear mispricing by the market.
+
+The line remained at 1.81 (morning to noon), and confidence increased from Medium to High.
+
+**Ottawa Senators ML vs St Louis Blues @ 1.87**
+Confidence Level: High, Units: 1.5u, Win Probability: 61%
+
+With both the Ottawa Senators and St Louis Blues having unconfirmed starting goalies, their individual net impact is neutral. The Senators possess a formidable home-ice advantage, holding a perfect 1.000 home win percentage against the Blues' 0.333 away record, leading to an +8% adjustment for Ottawa. While Ottawa has a superior goal differential (+1.2 vs -0.4) over their last 10 games, providing a +3% edge, they are on a back-to-back, which gives a +4% advantage to the rested St Louis Blues. Despite the fatigue, the strong home-ice advantage and better recent form differential still provide a valuable edge for Ottawa.
+
+The line remained at 1.87 (morning to noon), and confidence increased from Medium to High.
+
+**Chicago Blackhawks ML vs Pittsburgh Penguins @ 2.14**
+Confidence Level: Medium, Units: 1u, Win Probability: 54%
+
+The goaltending matchup between the Chicago Blackhawks and Pittsburgh Penguins is neutral, with both teams having unconfirmed starting goalies. The Blackhawks benefit from a moderate home-ice advantage with a 0.500 home win rate against the Penguins' 0.333 away rate, granting Chicago a +4% edge. However, the Penguins show significantly better recent form, with a +0.9 goal differential compared to Chicago's struggling -2.3, giving Pittsburgh a +4% edge. Furthermore, Pittsburgh is a playoff contender (.583 Points %) facing an eliminated Chicago team (.167 Points %), adding another +2% to the Penguins. The market has undervalued the Blackhawks' chances at home against a Penguins team that, while better, is playing away, and a modest home ice advantage exists.
+
+This play was added as a recommendation in the noon report.
