@@ -1091,10 +1091,16 @@
               const id = g.playerId;
               if (!id || !g.toi || g.toi === '00:00') continue;
               const decision = (g.decision || '').toUpperCase();
+              // During live games decision is blank — infer win from score
+              const teamScore = data[side]?.score ?? 0;
+              const oppSide = side === 'homeTeam' ? 'awayTeam' : 'homeTeam';
+              const oppScore = data[oppSide]?.score ?? 0;
+              const isWin = isOver ? decision === 'W' : teamScore > oppScore;
               let pts = 0;
-              if (decision === 'W') pts += _scoring.g_wins;
+              if (isWin) pts += _scoring.g_wins;
               if (isOver && isOT && decision === 'L') pts += _scoring.g_otl;
               if (isOver && g.goalsAgainst === 0 && decision === 'W') pts += _scoring.g_shutouts;
+              pts += (g.goals || 0) * _scoring.g_goals + (g.assists || 0) * _scoring.g_assists;
               if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
             }
           }
