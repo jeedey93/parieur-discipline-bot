@@ -1078,7 +1078,7 @@
             const sideData = ps[side] || {};
             for (const group of ['forwards', 'defense']) {
               for (const p of (sideData[group] || [])) {
-                const id = p.playerId;
+                const id = Number(p.playerId);
                 if (!id) continue;
                 const pos = group === 'defense' ? 'D' : 'F';
                 let pts;
@@ -1088,7 +1088,7 @@
               }
             }
             for (const g of (sideData.goalies || [])) {
-              const id = g.playerId;
+              const id = Number(g.playerId);
               if (!id || !g.toi || g.toi === '00:00') continue;
               const decision = (g.decision || '').toUpperCase();
               // During live games decision is blank — infer win from score
