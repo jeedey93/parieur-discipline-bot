@@ -843,6 +843,10 @@
           border: 1px solid rgba(34,197,94,0.3); border-radius: 4px;
           padding: 1px 5px; white-space: nowrap; vertical-align: middle;
         }
+        .live-badge-dot {
+          padding: 0; background: transparent; border: none;
+          width: 8px; height: 8px;
+        }
         .live-badge::before {
           content: ''; display: inline-block; width: 5px; height: 5px;
           border-radius: 50%; background: #ff4444;
@@ -1032,6 +1036,7 @@
     // ── Live scoring ──────────────────────────────────────────────────────────
     const NHL_PROXY = '/api/nhl-schedule';
     let _livePts = {};        // nhl_player_id (number) → live pool pts tonight
+    let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
     let _liveTimer = null;
     let _liveActive = false;
@@ -1062,6 +1067,7 @@
     async function pollLive() {
       if (!_liveGames.length) return;
       const newPts = {};
+      const newLiveIds = new Set();
       let anyLive = false;
       await Promise.all(_liveGames.map(async ({ id }) => {
         try {
@@ -1070,7 +1076,8 @@
           const data = await res.json();
           const gs = data.gameState;
           if (gs === 'FUT' || gs === 'PRE') return;
-          if (gs === 'LIVE' || gs === 'CRIT') anyLive = true;
+          const isLiveNow = gs === 'LIVE' || gs === 'CRIT';
+          if (isLiveNow) anyLive = true;
           const isOver = gs === 'OFF';
           const isOT = (data.gameOutcome?.lastPeriodType === 'OT') || (data.gameOutcome?.lastPeriodType === 'SO');
           const ps = data.playerByGameStats || {};
@@ -1080,6 +1087,7 @@
               for (const p of (sideData[group] || [])) {
                 const id = Number(p.playerId);
                 if (!id) continue;
+                if (isLiveNow) newLiveIds.add(id);
                 const pos = group === 'defense' ? 'D' : 'F';
                 let pts;
                 if (pos === 'D') pts = (p.goals || 0) * _scoring.d_goals + (p.assists || 0) * _scoring.d_assists;
@@ -1090,6 +1098,7 @@
             for (const g of (sideData.goalies || [])) {
               const id = Number(g.playerId);
               if (!id || !g.toi || g.toi === '00:00') continue;
+              if (isLiveNow) newLiveIds.add(id);
               const decision = (g.decision || '').toUpperCase();
               if (!isOver) continue; // only score goalies once game is final
               const isWin = decision === 'W';
@@ -1106,6 +1115,7 @@
       const ptsChanged = JSON.stringify(newPts) !== JSON.stringify(_livePts);
       const liveChanged = anyLive !== _anyGameLive;
       _livePts = newPts;
+      _livePlayerIds = newLiveIds;
       _anyGameLive = anyLive;
       if (ptsChanged || liveChanged) { clearCache(); render(); }
     }
@@ -2669,7 +2679,10 @@
             ? `<span class="hist-ytd pos">+${ytdVal}</span>`
             : `<span class="hist-ytd zero">—</span>`;
         const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
-        const liveHtml = livePtsPlayer > 0 ? `<span class="live-badge">+${livePtsPlayer}</span>` : '';
+        const isPlayingNow = r.isCurrent && r.nhlId ? _livePlayerIds.has(Number(r.nhlId)) : false;
+        const liveHtml = livePtsPlayer > 0
+          ? `<span class="live-badge">+${livePtsPlayer}</span>`
+          : isPlayingNow ? `<span class="live-badge live-badge-dot"></span>` : '';
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
