@@ -345,7 +345,7 @@ def save_standings_snapshots():
             def normalize_pos(pos):
                 if not pos:
                     return "F"
-                p = pos.upper()
+                p = pos.upper().split(",")[0].strip()
                 if p in ("C", "LW", "RW", "F", "W"):
                     return "F"
                 if p in ("D", "LD", "RD"):

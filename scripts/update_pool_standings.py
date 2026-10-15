@@ -41,6 +41,17 @@ POOL_SUMMARY_FILE = "docs/data/pool_weekly_summary.json"
 
 # ── Scoring ────────────────────────────────────────────────────────────────────
 
+def normalize_pos(pos: str) -> str:
+    """Normalize position string (handles comma-separated like 'LD,RD')."""
+    if not pos:
+        return "F"
+    p = pos.upper().split(",")[0].strip()
+    if p in ("D", "LD", "RD"):
+        return "D"
+    if p in ("G", "GK"):
+        return "G"
+    return "F"
+
 def score_team(roster, player_map):
     f_pts = sum((player_map[s].get("points", 0) or 0)
                 for s in roster.get("F", []) if s in player_map)
@@ -254,7 +265,7 @@ Weekly pool summary:"""
 
 def playerPoolScore_py(p: dict, pos: str) -> int:
     """Compute pool points for a single player row given their position."""
-    pos = pos.upper()
+    pos = normalize_pos(pos)
     if pos == "G":
         return (p.get("wins") or 0) * 2 + (p.get("ot_losses") or 0) + (p.get("shutouts") or 0) * 3
     if pos == "D":
@@ -468,7 +479,7 @@ def main():
                 slug_to_id[slug] = (p["nhl_player_id"], (p.get("position") or "F"))
 
         def score_game_for_pool(g: dict, pos: str) -> int:
-            pos = pos.upper()
+            pos = normalize_pos(pos)
             if pos == "G":
                 decision = (g.get("decision") or "").upper()
                 so = 1 if g.get("shutouts") or g.get("shots_against", 1) and not g.get("goals_against") else 0
