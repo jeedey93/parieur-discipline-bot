@@ -1,0 +1,36 @@
+Here's a comparison of the morning and noon prediction reports, along with a unified final recommendation list:
+
+The AI's prediction strategy evolved between the morning (7:00 AM) and noon (12:00 PM) reports. While current roster data remained verified, the noon report specifically noted early-season NHL context (first three weeks) and adjusted the minimum required edge for all plays to +7% due to limited reliable data and confirmed goalie information. This likely influenced the changes in recommended plays.
+
+**Consistency & Changes Summary:**
+
+*   **Toronto Maple Leafs ML** was recommended in both reports. It was an "Other Recommended Play" in the morning and elevated to "BET OF THE DAY" in the noon report. The odds slightly increased from 1.84 to 1.85, but confidence and win probability remained High (63%).
+*   **Minnesota Wild ML** was the "BET OF THE DAY" in the morning report but was **removed** from the recommended plays in the noon report's summary, despite its high win probability (64%) and favorable odds movement (1.7 to 1.69).
+*   **Chicago Blackhawks ML** was an "Other Recommended Play" in the morning but was also **removed** from the recommended plays in the noon report's summary. Its odds remained 2.06.
+*   No new plays were added to the recommendation summary in the noon report that weren't present in the morning's.
+
+---
+
+🏆 **BET OF THE DAY**
+**Toronto Maple Leafs ML vs Buffalo Sabres @ 1.85**
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
+
+With no starting goalies confirmed for either team, both are treated as having average goaltending, resulting in no direct adjustment from this factor. The Toronto Maple Leafs enter this home game with a +0.1 goal differential over their last 10 games, slightly better than the Buffalo Sabres' -1.0 differential, giving Toronto a marginal edge in recent form. Critically, Toronto holds a substantial home-ice advantage, boasting a 0.500 home win percentage compared to Buffalo's 0.000 road win percentage this season, translating to a significant statistical boost. Given these factors, especially Toronto's strong home-ice performance against a weaker road team, the market odds of 1.85 appear mispriced, offering a solid value bet.
+
+Line moved from Toronto ML @ 1.84 (morning) to @ 1.85 (noon). Confidence and Win Probability remained High and 63% respectively. This play was recommended in both reports, elevated to Bet of the Day in the noon report.
+
+**Other Recommended Plays**
+
+**Minnesota Wild ML vs St Louis Blues @ 1.69**
+Confidence Level: Medium, Units: 1u, Win Probability: 64%
+
+The Minnesota Wild enter this home game with strong recent form, sporting a +0.7 goal differential over their last 10 games, while St. Louis lacks available recent performance data. The most significant edge comes from Minnesota's exceptional home-ice advantage, boasting a perfect 1.000 home win percentage against St. Louis's 0.500 road win rate. This substantial home performance gap creates a considerable market inefficiency that the current odds do not fully reflect. Both teams are well-rested, ensuring fatigue is not a factor.
+
+Line moved from Minnesota ML @ 1.7 (morning) to @ 1.69 (noon). This play was the Bet of the Day in the morning report but was removed from the recommended plays in the noon report summary, despite its high win probability.
+
+**Chicago Blackhawks ML vs Winnipeg Jets @ 2.06**
+Confidence Level: Medium, Units: 1u, Win Probability: 56%
+
+The Chicago Blackhawks present a value opportunity at home against the Winnipeg Jets, despite missing recent goal differential or home/away split data for both teams. In the absence of specific performance data, we revert to a standard home ice adjustment. The 2.06 odds for the Blackhawks imply a win probability that undervalues the inherent home advantage in NHL matchups. Both teams have had two days of rest, ensuring no fatigue factors influence this early morning prediction.
+
+Odds remained Chicago ML @ 2.06 in both reports. This play was recommended in the morning report but was removed from the recommended plays in the noon report summary.
