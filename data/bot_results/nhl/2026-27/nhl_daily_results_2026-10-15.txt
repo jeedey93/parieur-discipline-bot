@@ -1,0 +1,19 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-10-14.
+
+Here's the breakdown:
+
+1.  **Colorado Avalanche ML vs Dallas Stars @ 1.68 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Dallas 3 @ Colorado 2 (Total goals: 5)
+    *   Outcome: **LOSS** (Colorado lost the game.)
+
+2.  **Washington Capitals ML vs Montréal Canadiens @ 1.76 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Montréal 4 @ Washington 5 (Total goals: 9)
+    *   Outcome: **WIN** (Washington won the game.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 1**
+*   **Total Pushes: 0**
