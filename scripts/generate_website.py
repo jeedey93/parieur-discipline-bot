@@ -2190,7 +2190,7 @@ def update_latest_predictions(preliminary=False):
             file_date = datetime.fromtimestamp(os.path.getmtime(dual_bet_path)).date()
             if file_date == _today_date:
                 dual_content = read_file(dual_bet_path).strip()
-                if dual_content:
+                if dual_content and 'no qualified plays' not in dual_content.lower():
                     featured_content = format_dual_bet(dual_content)
         if not featured_content:
             featured_content = f"""<div style='text-align:center;padding:2.5rem 1rem;color:#6b7280;'>
