@@ -1868,7 +1868,6 @@ def update_latest_predictions(preliminary=False):
     overall_latest_date = max(latest_dates) if latest_dates else ""
 
     # ── Build the page ──
-    from datetime import datetime
     nice_date = datetime.now().strftime("%A, %B %-d, %Y").replace(" 0", " ")
     content = ""
 
@@ -2186,13 +2185,19 @@ def update_latest_predictions(preliminary=False):
             featured_content += "</div>\n"
     else:
         # Show 3pm final featured picks from dual bet file (only if written today)
+        _today_date = datetime.now(tz=ZoneInfo('America/Toronto')).date()
         if os.path.exists(dual_bet_path):
             file_date = datetime.fromtimestamp(os.path.getmtime(dual_bet_path)).date()
-            today = datetime.now(tz=ZoneInfo('America/Toronto')).date()
-            if file_date == today:
+            if file_date == _today_date:
                 dual_content = read_file(dual_bet_path).strip()
                 if dual_content:
                     featured_content = format_dual_bet(dual_content)
+        if not featured_content:
+            featured_content = f"""<div style='text-align:center;padding:2.5rem 1rem;color:#6b7280;'>
+  <div style='font-size:2rem;margin-bottom:0.5rem;'>🔍</div>
+  <div style='font-size:1.1rem;font-weight:600;margin-bottom:0.25rem;'>No Qualified Plays Today</div>
+  <div style='font-size:0.9rem;'>The model found no plays with sufficient edge for {_today_date.strftime("%B %-d, %Y")}.</div>
+</div>"""
 
     # Build NFL section separately (shown all week, outside the daily featured box)
     nfl_section = ""
