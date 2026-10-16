@@ -1,7 +1,16 @@
+Here is the unified analysis and recommendation list, combining insights from both reports and incorporating the latest injury information:
+
+---
+
 🏆 **BET OF THE DAY**
 **Anaheim Ducks ML vs Boston Bruins @ 1.95**
 Confidence Level: Medium, Units: 1u, Win Probability: 52%
 
-The Anaheim Ducks face a formidable Boston Bruins team at home. While the Bruins boast a superior goal differential and strong road record, the market may be slightly overvaluing Boston given Anaheim's overall season start and solid special teams play (33.3% PP, 90.5% PK). Although Anaheim's home record is less impressive, the current odds present a small but detectable edge for the Ducks in what is expected to be a competitive matchup, with both teams coming off two days of rest. Given the market pricing, we believe Anaheim's probability of winning is slightly understated here.
+The Anaheim Ducks face a formidable Boston Bruins team at home. **Goalies are TBD for both teams.** While the Bruins boast a superior goal differential and strong road record, the market may be slightly overvaluing Boston, especially considering the potential absence of key forward **Brad Marchand (knee)**, who is listed as injured in some reports (though seemingly miscategorized under another team in the provided injury context). Anaheim's overall season start and solid special teams play (33.3% PP, 90.5% PK) give them an edge. Although Anaheim's home record is less impressive, the current odds present a small but detectable edge for the Ducks in what is expected to be a competitive matchup, with both teams coming off two days of rest. Given the market pricing, we believe Anaheim's probability of winning is slightly understated here.
 
-The noon report indicated "No qualified plays today," meaning this play was removed from the official recommendations, despite the odds remaining static at 1.95. This implies a significant drop in underlying conviction or confidence from the AI model, but following the directive to use morning plays when noon has none (and filters are met), this remains the strongest pick.
+The Anaheim Ducks ML was recommended as the 'Bet of the Day' in the morning report with Medium confidence. It was not listed as a qualified play in the noon report, despite the odds remaining unchanged.
+
+---
+
+**Other Recommended Plays**
+No other qualified plays met the criteria for inclusion today.

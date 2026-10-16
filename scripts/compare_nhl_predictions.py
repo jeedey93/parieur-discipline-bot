@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 from google import genai
 import re
 
+# Ensure repo root is on sys.path so sibling scripts can be imported
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 load_dotenv()
 
 def read_prompt(prompt_path):
