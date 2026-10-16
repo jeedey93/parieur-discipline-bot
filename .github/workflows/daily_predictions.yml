@@ -13,8 +13,8 @@ on:
           - 7am
           - 3pm
   schedule:
-    - cron: '0 4 * * *'     # 7am run (4am UTC, lands 6-8am Montreal depending on queue delay)
-    - cron: '15 9 * * *'    # 3pm run (9:15am UTC targets ~3-4pm Montreal after typical 6h queue delay)
+    - cron: '0 11 * * *'    # 7am run  (11am UTC = 7am Montreal EDT / 6am EST)
+    - cron: '0 19 * * *'    # 3pm run  (7pm UTC = 3pm Montreal EDT / 2pm EST) — use 19 UTC for EDT, 20 UTC for EST
 
 jobs:
   run-dual-predictions:
@@ -50,14 +50,14 @@ jobs:
         run: |
           # Use the scheduled cron expression to identify which run this is.
           # GITHUB_EVENT_SCHEDULE is set to the cron string that triggered this job.
-          # Crons: "0 4 * * *" = 7am run, "15 9 * * *" = 3pm run
+          # Crons: "0 11 * * *" = 7am run, "0 19 * * *" = 3pm run
           FORCE="${{ github.event.inputs.force_run_time }}"
           SCHEDULE="${{ github.event.schedule }}"
           if [ -n "$FORCE" ]; then
             echo "time=$FORCE" >> $GITHUB_OUTPUT
-          elif [ "$SCHEDULE" = "0 4 * * *" ]; then
+          elif [ "$SCHEDULE" = "0 11 * * *" ]; then
             echo "time=7am" >> $GITHUB_OUTPUT
-          elif [ "$SCHEDULE" = "15 9 * * *" ]; then
+          elif [ "$SCHEDULE" = "0 19 * * *" ]; then
             echo "time=3pm" >> $GITHUB_OUTPUT
           else
             # Fallback: hour-based guess
