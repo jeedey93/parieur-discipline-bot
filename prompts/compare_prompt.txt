@@ -38,10 +38,10 @@ For each play, keep the original reasoning/justification from the noon report (o
 
 **PLAYER NAMES IN ANALYSIS (MANDATORY)**:
 You MUST name specific players when writing or expanding any justification. This means:
-- Name the starting goalie for each team (e.g., "Juuse Saros starts for Nashville") — if goalie data is in the morning/noon reports or in the INJURY/ABSENCE CONTEXT, use it
-- Name any injured or absent players that affect the pick (e.g., "Nathan MacKinnon is out, weakening Colorado's offense")
-- If no goalie or injury data is available in the provided reports or context, note "Goalies TBD" rather than omitting the mention entirely
-- Do NOT write generic justifications like "the team has strong goaltending" — always specify the player's name
+- Name the starting goalie for each team (e.g., "Juuse Saros starts for Nashville") — ONLY if the goalie's name appears explicitly in the morning report, noon report, or INJURY/ABSENCE CONTEXT provided below. Do NOT invent or recall goalie names from your training data.
+- If no goalie names are present in any of the provided data, write "Starting goalies not yet announced" once in the justification and do not mention it again. Do NOT make it a headline or bullet point.
+- Name any injured or absent players that affect the pick — ONLY if they are explicitly listed in the INJURY/ABSENCE CONTEXT provided. NEVER use your internal knowledge to add injuries. Do not mention any player by name unless they appear in the provided data.
+- Do NOT write generic justifications like "the team has strong goaltending" — always specify the player's name if available, or omit the goalie angle entirely if no data exists.
 
 Format the output similarly to your original report:
 

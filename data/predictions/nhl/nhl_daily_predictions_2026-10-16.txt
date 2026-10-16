@@ -1,16 +1,38 @@
-Here is the unified analysis and recommendation list, combining insights from both reports and incorporating the latest injury information:
+Here's an analysis comparing the morning and noon prediction reports, along with the unified final recommendations:
+
+**Report Comparison & Analysis:**
+
+1.  **Consistency:**
+    *   Both games, Pittsburgh Penguins @ Colorado Avalanche and Boston Bruins @ Anaheim Ducks, appeared in both the morning and noon reports.
+    *   The "Bet of the Day" – Anaheim Ducks ML vs Boston Bruins – was explicitly recommended in the morning report. While the game itself was in the noon report, the Ducks ML was not re-listed as a qualified play in the noon AI analysis.
+
+2.  **Added/Removed Plays & Line Movement Impact:**
+    *   No new plays were explicitly added in the noon report, as it stated "No qualified plays today."
+    *   The Anaheim Ducks ML, which was the Bet of the Day in the morning, was effectively removed from the recommended plays in the noon report, despite the odds remaining unchanged.
+    *   **Pittsburgh Penguins @ Colorado Avalanche:**
+        *   Colorado Avalanche ML moved from 1.51 (morning) to 1.5 (noon).
+        *   Pittsburgh Penguins ML moved from 2.59 (morning) to 2.6 (noon).
+        *   O/U 6.5 Under moved from 1.99 (morning) to 1.98 (noon). Over 6.5 remained 1.83.
+    *   **Boston Bruins @ Anaheim Ducks:** All odds (ML and O/U) remained identical between the morning and noon reports for this game.
+
+3.  **Confidence Level Changes:**
+    *   The only play with an explicit confidence level was the Anaheim Ducks ML (Medium, 52% Win Probability) from the morning report. Since no plays were recommended at noon, there were no confidence level changes for any specific play in the noon report.
+
+4.  **Odds Changes Affecting Recommendations:**
+    *   For the Pittsburgh Penguins @ Colorado Avalanche game, the Colorado Avalanche ML (1.51 / 1.5) falls outside the 1.60-2.20 odds range. The Pittsburgh Penguins ML (2.59 / 2.6) also falls outside this range.
+    *   For the Boston Bruins @ Anaheim Ducks game, the Anaheim Ducks ML remained at 1.95, which is within the 1.60-2.20 odds range. The Boston Bruins ML at 1.86 also falls within this range, but was not the selected side.
+    *   Despite the unchanged odds for Anaheim Ducks ML, the AI's noon analysis chose not to recommend any plays, suggesting a potential shift in underlying conviction or model output that isn't explicitly detailed. However, per instructions, if the noon report has no plays but the morning report does, we use the morning plays as a basis, applying the filters.
 
 ---
+
+**Unified Final Recommendation List:**
+
+Given the explicit instructions to prioritize plays from both reports, include only high/medium confidence plays, adhere to the 1.60-2.20 odds range, and crucially, include "Confidence Level, Units, and Win Probability" for every play, only the Anaheim Ducks ML from the morning report qualifies. The other available odds in either report do not have these mandatory confidence metrics attached. No player names for goalies or injuries could be included as they were not specified for these particular teams in the provided context or reports.
 
 🏆 **BET OF THE DAY**
 **Anaheim Ducks ML vs Boston Bruins @ 1.95**
 Confidence Level: Medium, Units: 1u, Win Probability: 52%
 
-The Anaheim Ducks face a formidable Boston Bruins team at home. **Goalies are TBD for both teams.** While the Bruins boast a superior goal differential and strong road record, the market may be slightly overvaluing Boston, especially considering the potential absence of key forward **Brad Marchand (knee)**, who is listed as injured in some reports (though seemingly miscategorized under another team in the provided injury context). Anaheim's overall season start and solid special teams play (33.3% PP, 90.5% PK) give them an edge. Although Anaheim's home record is less impressive, the current odds present a small but detectable edge for the Ducks in what is expected to be a competitive matchup, with both teams coming off two days of rest. Given the market pricing, we believe Anaheim's probability of winning is slightly understated here.
+The Anaheim Ducks face a formidable Boston Bruins team at home. While the Bruins boast a superior goal differential and strong road record, the market may be slightly overvaluing Boston given Anaheim's overall season start and solid special teams play (33.3% PP, 90.5% PK). Although Anaheim's home record is less impressive, the current odds present a small but detectable edge for the Ducks in what is expected to be a competitive matchup, with both teams coming off two days of rest. Given the market pricing, we believe Anaheim's probability of winning is slightly understated here. Starting goalies not yet announced.
 
-The Anaheim Ducks ML was recommended as the 'Bet of the Day' in the morning report with Medium confidence. It was not listed as a qualified play in the noon report, despite the odds remaining unchanged.
-
----
-
-**Other Recommended Plays**
-No other qualified plays met the criteria for inclusion today.
+This play appeared in the morning report as Bet of the Day with identical odds; it was effectively removed from the noon report's recommendations as no plays were qualified at noon.
