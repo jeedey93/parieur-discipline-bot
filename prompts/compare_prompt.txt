@@ -36,6 +36,13 @@ IMPORTANT: Use normal capitalization for team names (e.g., "San Antonio Spurs" n
 
 For each play, keep the original reasoning/justification from the noon report (or morning if only present there), but add a line explicitly stating the line/odds/confidence change from morning to noon (e.g., "Line moved from -1.5 @ 1.91 (morning) to -1.0 @ 1.97 (noon), confidence increased from Medium to High"). Always skip a blank line before adding this brief note about changes.
 
+**PLAYER NAMES IN ANALYSIS (MANDATORY)**:
+You MUST name specific players when writing or expanding any justification. This means:
+- Name the starting goalie for each team (e.g., "Juuse Saros starts for Nashville") — if goalie data is in the morning/noon reports or in the INJURY/ABSENCE CONTEXT, use it
+- Name any injured or absent players that affect the pick (e.g., "Nathan MacKinnon is out, weakening Colorado's offense")
+- If no goalie or injury data is available in the provided reports or context, note "Goalies TBD" rather than omitting the mention entirely
+- Do NOT write generic justifications like "the team has strong goaltending" — always specify the player's name
+
 Format the output similarly to your original report:
 
 🏆 **BET OF THE DAY**
