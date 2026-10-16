@@ -1,6 +1,6 @@
 ============================================================
 BRUINS - LINEUP
-Last Updated: 2026-10-10 02:40 PM ET
+Last Updated: 2026-10-16 05:54 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,18 +12,19 @@ Line 4: Tanner Jeannot — Matt Poitras — Mark Kastelic
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Hampus Lindholm — Will Borgen
-Pair 2: Nikita Zadorov — Connor Clifton
+Pair 1: Hampus Lindholm — Charlie McAvoy
+Pair 2: Nikita Zadorov — Will Borgen
 Pair 3: Frederic Brunet — Mason Lohrei
 
 GOALIES:
 ----------------------------------------
-  Jeremy Swayman
   Michael Di Pietro
+  Jeremy Swayman
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Jonathan Aspirot (scratched)
   Sean Kuraly (scratched)
+  Connor Clifton (scratched)
 
 ============================================================
