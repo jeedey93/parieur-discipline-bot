@@ -37,7 +37,7 @@ def ensure_confidence_line(text):
         i += 1
     return '\n'.join(output_lines)
 
-def compare_predictions(morning_file, noon_file, output_file, prompt_path):
+def compare_predictions(morning_file, noon_file, output_file, prompt_path, injuries_text=None):
     """
     Compare morning (7am) and afternoon (3pm) NHL predictions and generate a combined analysis.
     """
@@ -65,6 +65,10 @@ def compare_predictions(morning_file, noon_file, output_file, prompt_path):
         morning_predictions=morning_predictions,
         noon_predictions=noon_predictions
     )
+
+    # Append injury context if provided (used when noon has no qualified plays)
+    if injuries_text:
+        comparison_prompt += f"\n\n---\nINJURY / ABSENCE CONTEXT (fetched at 3pm):\n{injuries_text}\nUse this to adjust confidence and reasoning for any plays from the morning report."
 
     models_to_try = [
         "models/gemini-2.5-flash",
@@ -149,8 +153,29 @@ def main():
     print(f"Morning file: {morning_file}")
     print(f"Noon file: {noon_file}")
 
+    # If noon has no qualified plays, fetch injuries to enrich the 7am fallback
+    injuries_text = None
+    with open(noon_file, "r", encoding="utf-8") as f:
+        noon_content = f.read()
+    if "no qualified plays" in noon_content.lower():
+        print("ℹ️  Noon has no qualified plays — fetching injuries to enrich 7am picks...")
+        try:
+            from scripts.scrape_nhl_absences import scrape_nhl_absences_by_team
+            absences = scrape_nhl_absences_by_team()
+            if absences:
+                injuries_text = "NHL Player Absences by Team:\n"
+                for team, players in absences.items():
+                    injuries_text += f"{team}:\n"
+                    for player in players:
+                        injuries_text += f"  - {player}\n"
+                print(f"✅ Fetched injuries for {len(absences)} teams")
+            else:
+                print("⚠️  No injury data available")
+        except Exception as e:
+            print(f"⚠️  Could not fetch injuries: {e}")
+
     # Run comparison
-    compare_predictions(morning_file, noon_file, output_file, prompt_path)
+    compare_predictions(morning_file, noon_file, output_file, prompt_path, injuries_text=injuries_text)
 
 if __name__ == "__main__":
     main()
