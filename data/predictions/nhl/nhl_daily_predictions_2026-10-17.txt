@@ -1,0 +1,51 @@
+Here's an analysis comparing the morning and noon prediction reports, followed by the unified final recommendation list.
+
+**Report Comparison Analysis:**
+
+**1. Consistent Plays (appeared in both reports' recommendations):**
+There were no plays that appeared as a formal recommendation in both the morning and noon reports. The noon report introduced entirely new recommendations with updated data.
+
+**2. Added/Removed Plays & Line Movement Impact:**
+
+*   **Removed Plays (from Morning report to Noon report):**
+    *   **Washington Capitals ML vs New Jersey Devils:** This was the "Bet of the Day" in the morning report (Capitals ML @ 1.8, Medium Confidence, 63% Win Probability). However, the game itself is not listed in the noon report's game list, suggesting it may have been postponed or removed from the betting slate, thus it is not available for reconsideration.
+    *   **Montréal Canadiens ML vs Buffalo Sabres:** This was a recommended play in the morning (Canadiens ML @ 1.7, Medium Confidence, 58% Win Probability). While the game is still listed in the noon report's odds, it is no longer a recommended play, indicating a shift in the model's confidence or updated data prioritizing other opportunities.
+
+*   **Added Plays (in Noon report, not in Morning report's recommendations):**
+    *   **Tampa Bay Lightning ML vs Vancouver Canucks:** This play was not recommended in the morning. The Lightning's ML odds significantly increased from 1.22 (morning) to 2.05 (noon), bringing it into a viable range for recommendation. This became the "Bet of the Day" in the noon report.
+    *   **Utah Mammoth ML vs Edmonton Oilers:** This play was not recommended in the morning. The Mammoth's ML odds slightly decreased from 1.75 (morning) to 1.71 (noon), remaining within a viable range for recommendation.
+    *   **Boston Bruins ML vs Los Angeles Kings:** This play was not recommended in the morning. The Bruins' ML odds slightly increased from 2.1 (morning) to 2.15 (noon), remaining within a viable range for recommendation.
+
+**3. Confidence Level Changes for Same Plays:**
+Not applicable as there were no consistent recommended plays across both reports.
+
+**4. Odds Changes that Affected Recommendations:**
+The most significant odds change affecting a recommendation was for the **Tampa Bay Lightning ML**. In the morning, their odds were 1.22, making them too heavy a favorite for a typical value bet. By noon, their odds had climbed to 2.05, creating substantial value and making it the "Bet of the Day." The other new noon plays (Utah Mammoth ML, Boston Bruins ML) saw minor odds fluctuations that kept them within the favorable range and allowed them to be recommended with high confidence based on updated data.
+
+---
+
+### **Unified Final Recommendations (Ranked by Win Probability)**
+
+🏆 **BET OF THE DAY**
+**Tampa Bay Lightning ML vs Vancouver Canucks @ 2.05**
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+The Tampa Bay Lightning are poised for a strong performance against the Vancouver Canucks. While Vancouver's Leevi Merilainen is in elite form with a 0.926 SV% in his last 5 starts, Tampa Bay is confirmed to start Dennis Hildeby, who has a 0.944 SV% in his single season start; however, given the early season, Hildeby is still considered an average tier goalie. The significant market inefficiency arises from the Canucks missing their starting goalie Thatcher Demko, which applies a -5% penalty to their probability, directly boosting Tampa Bay's outlook. Additionally, Tampa Bay boasts a perfect 1.000 home win percentage this season, providing a substantial home-ice advantage against a Canucks team with a poor 0.167 road win percentage. Vancouver's recent form is concerning, with a -1.5 goal differential and a 6-game losing streak. These combined factors give the Lightning a strong mathematical edge that the odds do not fully reflect.
+
+This play was added in the noon report, with the line moving significantly from 1.22 (morning) to 2.05 (noon), and confidence set to High.
+
+**Other Recommended Plays**
+
+**Utah Mammoth ML vs Edmonton Oilers @ 1.71**
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+The Utah Mammoth present a high-value opportunity against the Edmonton Oilers. Utah's Karel Vejmelka, with a 0.907 SV% in his last 5 starts, matches up against Edmonton's Tristan Jarry, who has an 0.837 SV% in his last 5, though both are currently classified as average goalies due to Jarry's low sample size in the early season. The major factor here is Edmonton's extensive injury list, including star forward Ryan Nugent-Hopkins and confirmed starting goalie Frederik Andersen. This severely weakens the Oilers, contributing a significant +10% to Utah's win probability from absences alone. Furthermore, the Mammoth are in strong form with a 3-game win streak and have a perfect 1.000 home record this season, creating a formidable environment for the Oilers who are heavily impacted by injuries.
+
+This play was added in the noon report. The line slightly shifted from 1.75 (morning) to 1.71 (noon), and confidence set to High.
+
+**Boston Bruins ML vs Los Angeles Kings @ 2.15**
+Confidence Level: High, Units: 1u, Win Probability: 56%
+
+The Boston Bruins offer solid value on the road against the struggling Los Angeles Kings. Boston's Jeremy Swayman is performing at an above-average level with a 0.918 SV% in his last 5 starts, while Los Angeles is starting Anton Forsberg, who has a poor 0.800 SV% in his only season start, rating him as an average goalie given the early season. The Kings are significantly hampered by absences, missing key offensive players like Kevin Fiala (leg surgery) and Mats Zuccarello, which is a substantial blow to their scoring capabilities. Compounding their issues, Los Angeles is on a 5-game losing streak, has a -2.0 goal differential, and a 0.000 home win percentage this season, giving Boston a clear edge despite playing on the second night of a back-to-back.
+
+This play was added in the noon report. The line slightly shifted from 2.1 (morning) to 2.15 (noon), and confidence set to High.
