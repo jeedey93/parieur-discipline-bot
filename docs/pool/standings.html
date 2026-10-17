@@ -1038,6 +1038,7 @@
     let _livePts = {};        // nhl_player_id (number) → live pool pts tonight
     let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
+    let _livePtsDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // date _livePts belongs to
     let _liveTimer = null;
     let _liveActive = false;
     let _anyGameLive = false; // true when at least one game is in progress
@@ -1045,7 +1046,8 @@
     function isGameHour() {
       const h = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', hour12: false });
       const n = Number(h);
-      return n >= 12 && n < 24; // noon–midnight Montreal (covers afternoon + evening games)
+      // noon–2am Montreal: covers afternoon + evening + late west-coast games
+      return n >= 12 || n < 2;
     }
 
     function liveTeamPts(team) {
@@ -1066,6 +1068,11 @@
 
     async function pollLive() {
       if (!_liveGames.length) return;
+      // Reset if the date has rolled over (page open across midnight)
+      const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+      if (todayStr !== _livePtsDate) {
+        _livePts = {}; _livePlayerIds = new Set(); _livePtsDate = todayStr;
+      }
       const newPts = {};
       const newLiveIds = new Set();
       let anyLive = false;
@@ -1112,9 +1119,16 @@
           }
         } catch(_) {}
       }));
-      const ptsChanged = JSON.stringify(newPts) !== JSON.stringify(_livePts);
+      // Merge with previous: never drop pts that were already seen for a player.
+      // This ensures that once a game goes Final, the scored pts aren't lost on the
+      // next poll (which would return an empty entry for that now-finished game).
+      const mergedPts = { ..._livePts };
+      for (const [id, pts] of Object.entries(newPts)) {
+        mergedPts[id] = Math.max(mergedPts[id] ?? 0, pts);
+      }
+      const ptsChanged = JSON.stringify(mergedPts) !== JSON.stringify(_livePts);
       const liveChanged = anyLive !== _anyGameLive;
-      _livePts = newPts;
+      _livePts = mergedPts;
       _livePlayerIds = newLiveIds;
       _anyGameLive = anyLive;
       if (ptsChanged || liveChanged) { clearCache(); render(); }
