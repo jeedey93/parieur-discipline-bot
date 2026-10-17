@@ -1,0 +1,60 @@
+Date: 2026-10-17
+
+Carolina Hurricanes @ Winnipeg Jets
+Winnipeg Jets ML (Home): 1.6, Carolina Hurricanes ML (Away): 2.3, O/U: 6.5 (Over: 1.85 / Under: 1.85)
+------
+Vancouver Canucks @ Tampa Bay Lightning
+Tampa Bay Lightning ML (Home): 2.05, Vancouver Canucks ML (Away): 1.75, O/U: 6.5 (Over: 1.65 / Under: 2.1)
+------
+Seattle Kraken @ Florida Panthers
+Florida Panthers ML (Home): 1.51, Seattle Kraken ML (Away): 2.57, O/U: 6.0 (Over: 1.87 / Under: 1.94)
+------
+New York Islanders @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.71, New York Islanders ML (Away): 2.14, O/U: 6.0 (Over: 1.83 / Under: 1.99)
+------
+Buffalo Sabres @ Montréal Canadiens
+Montréal Canadiens ML (Home): 1.7, Buffalo Sabres ML (Away): 2.17, O/U: 6.5 (Over: 1.9 / Under: 1.91)
+------
+San Jose Sharks @ Detroit Red Wings
+Detroit Red Wings ML (Home): 1.64, San Jose Sharks ML (Away): 2.27, O/U: 6.5 (Over: 2.01 / Under: 1.81)
+------
+Ottawa Senators @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 2.24, Ottawa Senators ML (Away): 1.66, O/U: 5.5 (Over: 1.94 / Under: 1.87)
+------
+New York Rangers @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.75, New York Rangers ML (Away): 2.09, O/U: 6.0 (Over: 1.82 / Under: 2.0)
+------
+Dallas Stars @ Chicago Blackhawks
+Chicago Blackhawks ML (Home): 2.77, Dallas Stars ML (Away): 1.45, O/U: 6.0 (Over: 1.93 / Under: 1.88)
+------
+St Louis Blues @ Nashville Predators
+Nashville Predators ML (Home): 1.9, St Louis Blues ML (Away): 1.91, O/U: 6.0 (Over: 1.92 / Under: 1.89)
+------
+Boston Bruins @ Los Angeles Kings
+Los Angeles Kings ML (Home): 1.74, Boston Bruins ML (Away): 2.15, O/U: 5.5 (Over: 1.8 / Under: 2.05)
+------
+Edmonton Oilers @ Utah Mammoth
+Utah Mammoth ML (Home): 1.71, Edmonton Oilers ML (Away): 2.14, O/U: 6.5 (Over: 1.85 / Under: 1.96)
+------
+Pittsburgh Penguins @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.51, Pittsburgh Penguins ML (Away): 2.67, O/U: 6.5 (Over: 1.83 / Under: 2.0)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Tampa Bay Lightning ML vs Vancouver Canucks @ 2.05
+The Tampa Bay Lightning are poised for a strong performance against the Vancouver Canucks. While Vancouver's Leevi Merilainen is in elite form with a 0.926 SV% in his last 5 starts, Tampa Bay is confirmed to start Dennis Hildeby, who has a 0.944 SV% in his single season start; however, given the early season, Hildeby is still considered an average tier goalie. The significant market inefficiency arises from the Canucks missing their starting goalie Thatcher Demko, which applies a -5% penalty to their probability, directly boosting Tampa Bay's outlook. Additionally, Tampa Bay boasts a perfect 1.000 home win percentage this season, providing a substantial home-ice advantage against a Canucks team with a poor 0.167 road win percentage. Vancouver's recent form is concerning, with a -1.5 goal differential and a 6-game losing streak. These combined factors give the Lightning a strong mathematical edge that the odds do not fully reflect.
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+**Other Recommended Plays**
+
+Utah Mammoth ML vs Edmonton Oilers @ 1.71
+The Utah Mammoth present a high-value opportunity against the Edmonton Oilers. Utah's Karel Vejmelka, with a 0.907 SV% in his last 5 starts, matches up against Edmonton's Tristan Jarry, who has an 0.837 SV% in his last 5, though both are currently classified as average goalies due to Jarry's low sample size in the early season. The major factor here is Edmonton's extensive injury list, including star forward Ryan Nugent-Hopkins and confirmed starting goalie Frederik Andersen. This severely weakens the Oilers, contributing a significant +10% to Utah's win probability from absences alone. Furthermore, the Mammoth are in strong form with a 3-game win streak and have a perfect 1.000 home record this season, creating a formidable environment for the Oilers who are heavily impacted by injuries.
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+Boston Bruins ML vs Los Angeles Kings @ 2.15
+The Boston Bruins offer solid value on the road against the struggling Los Angeles Kings. Boston's Jeremy Swayman is performing at an above-average level with a 0.918 SV% in his last 5 starts, while Los Angeles is starting Anton Forsberg, who has a poor 0.800 SV% in his only season start, rating him as an average goalie given the early season. The Kings are significantly hampered by absences, missing key offensive players like Kevin Fiala (leg surgery) and Mats Zuccarello, which is a substantial blow to their scoring capabilities. Compounding their issues, Los Angeles is on a 5-game losing streak, has a -2.0 goal differential, and a 0.000 home win percentage this season, giving Boston a clear edge despite playing on the second night of a back-to-back.
+Confidence Level: High, Units: 1u, Win Probability: 56%

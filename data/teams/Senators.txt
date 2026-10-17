@@ -1,20 +1,20 @@
 ============================================================
 SENATORS - LINEUP
-Last Updated: 2026-10-10 02:40 PM ET
+Last Updated: 2026-10-17 05:15 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Andre Burakovsky — Tim Stutzle — Drake Batherson
-Line 2: Ridly Greig — Dylan Cozens — Fabian Zetterlund
-Line 3: Michael Amadio — Shane Pinto — Claude Giroux
-Line 4: Warren Foegele — Stephen Halliday — Nick Cousins
+Line 1: Stephen Halliday — Tim Stutzle — Drake Batherson
+Line 2: Andre Burakovsky — Dylan Cozens — Claude Giroux
+Line 3: Nick Cousins — Shane Pinto — Michael Amadio
+Line 4: Warren Foegele — Ridly Greig — Fabian Zetterlund
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Thomas Chabot — Jordan Spence
-Pair 2: Tyler Kleven — Carter Yakemchuk
-Pair 3: Nikolas Matinpalo — Hoyt Stanley
+Pair 1: Thomas Chabot — Artem Zub
+Pair 2: Tyler Kleven — Jordan Spence
+Pair 3: Nikolas Matinpalo — Carter Yakemchuk
 
 GOALIES:
 ----------------------------------------
@@ -24,10 +24,9 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Hayden Hodgson (scratched)
-  Artem Zub (knee) (injured)
-  Kurtis MacDermid (upper body) (injured)
+  Cameron Crotty (scratched)
   Jake Sanderson (undisclosed) (injured)
   William Eklund (ankle) (injured)
-  Cameron Crotty (illness) (injured)
+  Kurtis MacDermid (upper body) (injured)
 
 ============================================================

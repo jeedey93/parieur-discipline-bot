@@ -1,20 +1,20 @@
 ============================================================
 FLYERS - LINEUP
-Last Updated: 2026-10-11 02:57 PM ET
+Last Updated: 2026-10-17 05:15 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Trevor Zegras — Christian Dvorak — Tyson Foerster
-Line 2: Owen Tippett — Sean Couturier — Matvei Michkov
-Line 3: Denver Barkey — Noah Cates — Porter Martone
-Line 4: Michael Bunting — Noel Acciari — Garrett Wilson
+Line 2: Denver Barkey — Sean Couturier — Owen Tippett
+Line 3: Porter Martone — Noah Cates — Matvei Michkov
+Line 4: Michael Bunting — Noel Acciari — Jack Studnicka
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Travis Sanheim — Jamie Drysdale
-Pair 2: Nick Seeler — David Jiricek
-Pair 3: Helge Grans — Simon Benoit
+Pair 1: Travis Sanheim — Oliver Bonk
+Pair 2: Nick Seeler — Jamie Drysdale
+Pair 3: Simon Benoit — David Jiricek
 
 GOALIES:
 ----------------------------------------
@@ -23,7 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Carl Grundstrom (scratched)
+  Garrett Wilson (scratched)
+  Helge Grans (scratched)
   Nikita Grebenkin (back) (injured)
   Travis Konecny (lower body) (injured)
   Cam York (upper body) (injured)
