@@ -2708,9 +2708,13 @@
         const liveHtml = livePtsPlayer > 0
           ? `<span class="live-badge">+${livePtsPlayer}</span>`
           : isPlayingNow ? `<span class="live-badge live-badge-dot"></span>` : '';
+        const hasLive = livePtsPlayer > 0 || isPlayingNow;
         const displayPts = typeof r.pts === 'number'
           ? (livePtsPlayer > 0 ? `<span style="color:var(--green)">${r.pts + livePtsPlayer}</span>` : `${r.pts}`)
           : r.pts;
+        const displayGP = typeof r.gp === 'number' && hasLive
+          ? `<span style="color:var(--green)">${r.gp + 1}</span>`
+          : r.col1;
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
@@ -2718,7 +2722,7 @@
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${swapDateChip}</span>
-          <span class="hist-stat">${r.col1}</span>
+          <span class="hist-stat">${displayGP}</span>
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
             <span class="hist-stat hist-g-hide-mobile">${r.col3}</span>
@@ -2738,15 +2742,21 @@
       const currentRows = rowData.filter(r => r.isCurrent);
       const total    = rowData.reduce((s, r) => s + (typeof r.pts === 'number' ? r.pts : 0), 0);
       const totalLive = currentRows.reduce((s, r) => s + (r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0), 0);
+      const totalLiveGP = currentRows.reduce((s, r) => s + (r.nhlId && (_livePts[r.nhlId] > 0 || _livePlayerIds.has(Number(r.nhlId))) ? 1 : 0), 0);
       const totalGP  = currentRows.reduce((s, r) => s + (r.gp || 0), 0);
       const totalG   = currentRows.reduce((s, r) => s + (r.g  || 0), 0);
       const totalA   = currentRows.reduce((s, r) => s + (r.a  || 0), 0);
       const totalW   = currentRows.reduce((s, r) => s + (r.w  || 0), 0);
       const totalSO  = currentRows.reduce((s, r) => s + (r.so || 0), 0);
-      const avgPPG   = totalGP > 0 ? (total / totalGP).toFixed(2) : '—';
+      const effectiveGP = totalGP + totalLiveGP;
+      const effectivePts = total + totalLive;
+      const avgPPG   = effectiveGP > 0 ? (effectivePts / effectiveGP).toFixed(2) : '—';
       const totalDisplay = totalLive > 0
-        ? `<span style="color:var(--green)">${total + totalLive}</span>`
+        ? `<span style="color:var(--green)">${effectivePts}</span>`
         : `${total}`;
+      const totalGPDisplay = totalLiveGP > 0
+        ? `<span style="color:var(--green)">${effectiveGP}</span>`
+        : `${totalGP || '—'}`;
 
       return `<div class="hist-table${pos==='G'?' hist-table-g':''}">
         <div class="hist-section-label ${pos}">${label}</div>
@@ -2755,7 +2765,7 @@
         <div class="hist-row total">
           <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left" style="font-size:0.75rem">TOTAL</div>
-          <span class="hist-stat" style="font-weight:700">${totalGP || '—'}</span>
+          <span class="hist-stat" style="font-weight:700">${totalGPDisplay}</span>
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile" style="font-weight:700">${totalW || '—'}</span>
             <span class="hist-stat hist-g-hide-mobile" style="font-weight:700">—</span>
