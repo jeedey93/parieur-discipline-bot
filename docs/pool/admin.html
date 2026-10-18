@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Admin — P27A</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rink:   #07111f;
+      --red:    #c8102e;
+      --gold:   #ffb81c;
+      --green:  #22c55e;
+      --blue:   #7db4ff;
+      --line:   rgba(255,255,255,0.08);
+      --card:   rgba(255,255,255,0.04);
+      --bg:     #0d1f30;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--rink); color: #fff; font-family: 'Barlow Condensed', sans-serif; min-height: 100vh; }
+
+    /* ── AUTH GATE ── */
+    #gate {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; gap: 1rem;
+    }
+    #gate h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
+    #gate input {
+      background: rgba(255,255,255,0.06); border: 1px solid var(--line); border-radius: 8px;
+      color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
+      padding: 0.6rem 1rem; width: 240px; outline: none; text-align: center; letter-spacing: 2px;
+    }
+    #gate input:focus { border-color: var(--blue); }
+    #gate button {
+      background: var(--blue); color: #0d1f30; border: none; border-radius: 8px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px;
+      padding: 0.5rem 2rem; cursor: pointer;
+    }
+    #gate-error { color: var(--red); font-size: 0.9rem; display: none; }
+
+    /* ── MAIN UI ── */
+    #app { display: none; max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    h1.page-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 2px;
+      color: rgba(255,255,255,0.85); margin-bottom: 0.25rem;
+    }
+    .page-sub { font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2rem; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6); margin: 2rem 0 1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem;
+    }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+
+    /* ── FORM ── */
+    .form-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 180px; }
+    label { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    select, input[type="text"], input[type="date"], textarea {
+      background: rgba(255,255,255,0.06); border: 1px solid var(--line); border-radius: 8px;
+      color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+      padding: 0.5rem 0.75rem; outline: none; width: 100%;
+    }
+    select:focus, input:focus, textarea:focus { border-color: var(--blue); }
+    select option { background: #0d1f30; }
+    select:disabled, input:disabled { opacity: 0.4; cursor: not-allowed; }
+    textarea { resize: vertical; min-height: 60px; }
+
+    .radio-group { display: flex; gap: 0.75rem; }
+    .radio-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 8px;
+      padding: 0.5rem 0.75rem; cursor: pointer; font-size: 0.95rem; font-weight: 600;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .radio-btn input { display: none; }
+    .radio-btn.selected-swap { border-color: var(--blue); background: rgba(125,180,255,0.1); color: var(--blue); }
+    .radio-btn.selected-injury { border-color: var(--gold); background: rgba(255,184,28,0.1); color: var(--gold); }
+
+    .stats-preview {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 8px;
+      padding: 0.6rem 0.75rem; font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      min-height: 36px;
+    }
+    .stats-preview strong { color: rgba(255,255,255,0.8); }
+
+    .btn {
+      border: none; border-radius: 8px; font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: 1px; padding: 0.6rem 2rem; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-primary { background: var(--green); color: #07111f; }
+    .btn-small { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); font-size: 0.85rem; padding: 0.3rem 0.9rem; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
+    .btn-small:hover { background: rgba(255,255,255,0.12); }
+
+    .msg { font-size: 0.9rem; padding: 0.5rem 0.75rem; border-radius: 6px; margin-top: 0.75rem; display: none; }
+    .msg.success { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: var(--green); }
+    .msg.error   { background: rgba(200,16,46,0.12); border: 1px solid rgba(200,16,46,0.3); color: #ff6b6b; }
+
+    /* ── SWAP LOG TABLE ── */
+    .swap-log { display: flex; flex-direction: column; gap: 0.6rem; }
+    .swap-log-row {
+      background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+      padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .swap-log-header { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .swap-log-date { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .swap-log-team { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+    .swap-log-players { font-size: 1rem; font-weight: 700; }
+    .swap-in  { color: var(--green); }
+    .swap-out { color: rgba(255,100,100,0.8); }
+    .reason-badge {
+      display: inline-flex; align-items: center; gap: 3px; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.5px; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;
+    }
+    .reason-swap   { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
+    .reason-injury { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
+    .swap-log-note-row { display: flex; gap: 0.5rem; align-items: flex-start; }
+    .swap-log-note-row textarea { font-size: 0.9rem; min-height: 40px; }
+    .save-note-msg { font-size: 0.8rem; margin-left: 0.5rem; display: none; }
+
+    .logout-btn {
+      float: right; background: none; border: 1px solid var(--line); color: rgba(255,255,255,0.3);
+      border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+      padding: 0.2rem 0.7rem; cursor: pointer; letter-spacing: 0.5px;
+    }
+    .logout-btn:hover { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.2); }
+
+    @media (max-width: 500px) {
+      .form-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- AUTH GATE -->
+<div id="gate">
+  <h1>Pool Admin</h1>
+  <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
+  <button onclick="checkPassword()">Enter</button>
+  <span id="gate-error">Incorrect password</span>
+</div>
+
+<!-- ADMIN APP -->
+<div id="app">
+  <button class="logout-btn" onclick="logout()">Log out</button>
+  <h1 class="page-title">Pool Admin</h1>
+  <p class="page-sub">P27A · Roster Swaps</p>
+
+  <!-- SECTION 1: PERFORM SWAP -->
+  <div class="section-title">Perform Swap</div>
+  <div class="card">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Team</label>
+        <select id="sel-team" onchange="onTeamChange()">
+          <option value="">— Select team —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="swap-date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Player Out (dressed → bench)</label>
+        <select id="sel-out" onchange="onPlayerChange()" disabled>
+          <option value="">— Select player —</option>
+        </select>
+        <div class="stats-preview" id="stats-out">Select a player to see stats</div>
+      </div>
+      <div class="form-group">
+        <label>Player In (bench → dressed)</label>
+        <select id="sel-in" onchange="onPlayerChange()" disabled>
+          <option value="">— Select player —</option>
+        </select>
+        <div class="stats-preview" id="stats-in">Select a player to see stats</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Swap Type</label>
+        <div class="radio-group">
+          <label class="radio-btn" id="lbl-swap">
+            <input type="radio" name="swap-type" value="swap" checked onchange="updateRadioStyle()">
+            🔄 Official Swap
+          </label>
+          <label class="radio-btn" id="lbl-injury">
+            <input type="radio" name="swap-type" value="injury" onchange="updateRadioStyle()">
+            🩹 Injury
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Note</label>
+        <textarea id="swap-note" placeholder="Auto-filled when players are selected…"></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="btn-confirm" onclick="confirmSwap()" disabled>Confirm Swap</button>
+    <div class="msg" id="swap-msg"></div>
+  </div>
+
+  <!-- SECTION 2: SWAP LOG -->
+  <div class="section-title">Swap History</div>
+  <div class="swap-log" id="swap-log">
+    <div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
+  const LEAGUE = 'P27A';
+  const PW_HASH = 'ae1466adc889e2cec02c34575681b6b38388a1056dcde156a6381dc25ac270eb';
+
+  function sbHeaders() {
+    return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+  }
+
+  // ── AUTH ──────────────────────────────────────────────────────────────────
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function checkPassword() {
+    const val = document.getElementById('pw-input').value;
+    const hash = await sha256(val);
+    if (hash === PW_HASH) {
+      localStorage.setItem('pool_admin_auth', hash);
+      showApp();
+    } else {
+      document.getElementById('gate-error').style.display = 'block';
+    }
+  }
+
+  document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+  function logout() {
+    localStorage.removeItem('pool_admin_auth');
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('gate').style.display = 'flex';
+  }
+
+  async function init() {
+    const stored = localStorage.getItem('pool_admin_auth');
+    if (stored === PW_HASH) showApp();
+  }
+
+  async function showApp() {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    // Set today's date
+    document.getElementById('swap-date').value = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+    updateRadioStyle();
+    await loadTeams();
+    await loadSwapLog();
+  }
+
+  // ── DATA ──────────────────────────────────────────────────────────────────
+  let _rosters = null; // full data object from pool_rosters
+  let _players = {};   // puckpedia_slug → player row
+
+  async function loadTeams() {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
+    const rows = await r.json();
+    _rosters = rows[0];
+    const sel = document.getElementById('sel-team');
+    sel.innerHTML = '<option value="">— Select team —</option>';
+    for (const t of _rosters.data.teams) {
+      const opt = document.createElement('option');
+      opt.value = t.id;
+      opt.textContent = t.name;
+      sel.appendChild(opt);
+    }
+  }
+
+  async function fetchPlayerStats(slug) {
+    if (_players[slug]) return _players[slug];
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?puckpedia_slug=eq.${encodeURIComponent(slug)}&select=player_name,position,points,goals,assists,games_played,wins,shutouts,ot_losses`, { headers: sbHeaders() });
+    const rows = await r.json();
+    if (rows[0]) _players[slug] = rows[0];
+    return rows[0] || null;
+  }
+
+  function formatName(raw) {
+    // "Ritchie, Calum" → "Calum Ritchie"
+    if (!raw) return '';
+    const parts = raw.split(',').map(s => s.trim());
+    return parts.length === 2 ? `${parts[1]} ${parts[0]}` : raw;
+  }
+
+  function isGoalie(p) {
+    return p && /G/.test(p.position);
+  }
+
+  function statsNote(p, slug) {
+    if (!p) return '';
+    if (isGoalie(p)) {
+      return `${formatName(p.player_name)} at swap: ${p.wins ?? 0}W ${p.shutouts ?? 0}SO ${p.ot_losses ?? 0}OTL in ${p.games_played ?? 0} GP`;
+    }
+    return `${formatName(p.player_name)} at swap: ${p.points ?? 0} pts (${p.goals ?? 0}G, ${p.assists ?? 0}A) in ${p.games_played ?? 0} GP`;
+  }
+
+  function statsPreviewHtml(p, label) {
+    if (!p) return `<span>No stats found</span>`;
+    if (isGoalie(p)) {
+      return `<strong>${p.wins ?? 0}W</strong> · <strong>${p.shutouts ?? 0}SO</strong> · <strong>${p.ot_losses ?? 0}OTL</strong> · ${p.games_played ?? 0} GP`;
+    }
+    return `<strong>${p.points ?? 0} pts</strong> · ${p.goals ?? 0}G ${p.assists ?? 0}A · ${p.games_played ?? 0} GP`;
+  }
+
+  // ── TEAM / PLAYER SELECTION ───────────────────────────────────────────────
+  function onTeamChange() {
+    const teamId = document.getElementById('sel-team').value;
+    const selOut = document.getElementById('sel-out');
+    const selIn  = document.getElementById('sel-in');
+    selOut.innerHTML = '<option value="">— Select player —</option>';
+    selIn.innerHTML  = '<option value="">— Select player —</option>';
+    selOut.disabled = true;
+    selIn.disabled  = true;
+    document.getElementById('stats-out').innerHTML = 'Select a player to see stats';
+    document.getElementById('stats-in').innerHTML  = 'Select a player to see stats';
+    document.getElementById('swap-note').value = '';
+    document.getElementById('btn-confirm').disabled = true;
+    if (!teamId) return;
+
+    const team = _rosters.data.teams.find(t => t.id === teamId);
+    if (!team) return;
+
+    const dressed = [
+      ...(team.roster.F || []).map(s => ({ slug: s, pos: 'F' })),
+      ...(team.roster.D || []).map(s => ({ slug: s, pos: 'D' })),
+      ...(team.roster.G || []).map(s => ({ slug: s, pos: 'G' })),
+    ].filter(x => x.slug);
+
+    const bench = (team.roster.B || []).filter(Boolean).map(s => ({ slug: s, pos: 'B' }));
+
+    for (const { slug, pos } of dressed) {
+      const name = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const opt = document.createElement('option');
+      opt.value = slug;
+      opt.dataset.pos = pos;
+      opt.textContent = `[${pos}] ${name}`;
+      selOut.appendChild(opt);
+    }
+
+    for (const { slug } of bench) {
+      const name = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const opt = document.createElement('option');
+      opt.value = slug;
+      opt.textContent = name;
+      selIn.appendChild(opt);
+    }
+
+    selOut.disabled = false;
+    selIn.disabled  = false;
+  }
+
+  async function onPlayerChange() {
+    const outSlug = document.getElementById('sel-out').value;
+    const inSlug  = document.getElementById('sel-in').value;
+
+    if (outSlug) {
+      const p = await fetchPlayerStats(outSlug);
+      document.getElementById('stats-out').innerHTML = statsPreviewHtml(p);
+    }
+    if (inSlug) {
+      const p = await fetchPlayerStats(inSlug);
+      document.getElementById('stats-in').innerHTML = statsPreviewHtml(p);
+    }
+
+    if (outSlug && inSlug) {
+      const pOut = await fetchPlayerStats(outSlug);
+      document.getElementById('swap-note').value = statsNote(pOut, outSlug);
+      document.getElementById('btn-confirm').disabled = false;
+    } else {
+      document.getElementById('btn-confirm').disabled = true;
+    }
+  }
+
+  function updateRadioStyle() {
+    const val = document.querySelector('input[name="swap-type"]:checked')?.value;
+    document.getElementById('lbl-swap').className   = 'radio-btn' + (val === 'swap'   ? ' selected-swap'   : '');
+    document.getElementById('lbl-injury').className = 'radio-btn' + (val === 'injury' ? ' selected-injury' : '');
+  }
+
+  // ── CONFIRM SWAP ──────────────────────────────────────────────────────────
+  async function confirmSwap() {
+    const btn = document.getElementById('btn-confirm');
+    btn.disabled = true;
+    const msgEl = document.getElementById('swap-msg');
+    msgEl.style.display = 'none';
+
+    const teamId  = document.getElementById('sel-team').value;
+    const outSlug = document.getElementById('sel-out').value;
+    const inSlug  = document.getElementById('sel-in').value;
+    const date    = document.getElementById('swap-date').value;
+    const reason  = document.querySelector('input[name="swap-type"]:checked').value;
+    const note    = document.getElementById('swap-note').value.trim();
+
+    const outOpt  = document.querySelector(`#sel-out option[value="${outSlug}"]`);
+    const outPos  = outOpt?.dataset.pos || 'F';
+
+    const pOut = await fetchPlayerStats(outSlug);
+    const pIn  = await fetchPlayerStats(inSlug);
+
+    try {
+      // 1. Update pool_rosters
+      const rosterRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
+      const rosterRows = await rosterRes.json();
+      const data = JSON.parse(JSON.stringify(rosterRows[0].data));
+
+      for (const t of data.teams) {
+        if (t.id !== teamId) continue;
+        // Remove inSlug from bench
+        t.roster.B = (t.roster.B || []).filter(s => s !== inSlug);
+        // Replace outSlug with inSlug in the dressed position array
+        for (const pos of ['F', 'D', 'G']) {
+          t.roster[pos] = (t.roster[pos] || []).map(s => s === outSlug ? inSlug : s);
+        }
+        // Add outSlug to bench
+        t.roster.B.push(outSlug);
+        // Add activation snapshot for inSlug
+        if (!t.acquisitions) t.acquisitions = {};
+        if (pIn) {
+          const snap = isGoalie(pIn)
+            ? { wins: pIn.wins ?? 0, shutouts: pIn.shutouts ?? 0, ot_losses: pIn.ot_losses ?? 0, goals: pIn.goals ?? 0, assists: pIn.assists ?? 0, games_played: pIn.games_played ?? 0 }
+            : { points: pIn.points ?? 0, goals: pIn.goals ?? 0, assists: pIn.assists ?? 0, games_played: pIn.games_played ?? 0 };
+          t.acquisitions[inSlug] = { date, stats_snapshot: snap };
+        }
+        break;
+      }
+
+      const patchRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}`, {
+        method: 'PATCH', headers: sbHeaders(), body: JSON.stringify({ data })
+      });
+      if (!patchRes.ok) throw new Error(`Roster patch failed: ${patchRes.status}`);
+
+      // 2. Insert pool_bench_swaps
+      const outNameRaw = pOut?.player_name || outSlug.split('/').pop();
+      const inNameRaw  = pIn?.player_name  || inSlug.split('/').pop();
+      const outPts = pOut ? (isGoalie(pOut)
+        ? (pOut.wins ?? 0) * 2 + (pOut.shutouts ?? 0) * 3 + (pOut.ot_losses ?? 0)
+        : (pOut.points ?? 0)) : 0;
+      const outPosRaw = pOut?.position?.split(',')[0] || outPos;
+      const inPosRaw  = pIn?.position?.split(',')[0]  || 'F';
+
+      const swap = {
+        league_code: LEAGUE, team_id: teamId, swap_date: date,
+        player_in_slug: inSlug,   player_in_name: formatName(inNameRaw),   player_in_position: inPosRaw,
+        player_out_slug: outSlug, player_out_name: formatName(outNameRaw), player_out_position: outPosRaw,
+        player_out_pts_at_swap: outPts, reason, note: note || null
+      };
+
+      const swapRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps`, {
+        method: 'POST', headers: sbHeaders(), body: JSON.stringify(swap)
+      });
+      if (!swapRes.ok) throw new Error(`Swap insert failed: ${swapRes.status}`);
+
+      showMsg('swap-msg', 'success', `✅ Swap saved — ${formatName(inNameRaw)} in, ${formatName(outNameRaw)} out.`);
+      // Reset form
+      document.getElementById('sel-team').value = '';
+      document.getElementById('sel-out').innerHTML = '<option value="">— Select player —</option>';
+      document.getElementById('sel-in').innerHTML  = '<option value="">— Select player —</option>';
+      document.getElementById('sel-out').disabled = true;
+      document.getElementById('sel-in').disabled  = true;
+      document.getElementById('stats-out').innerHTML = 'Select a player to see stats';
+      document.getElementById('stats-in').innerHTML  = 'Select a player to see stats';
+      document.getElementById('swap-note').value = '';
+      // Reload roster data and swap log
+      await loadTeams();
+      await loadSwapLog();
+    } catch (err) {
+      showMsg('swap-msg', 'error', `❌ ${err.message}`);
+      btn.disabled = false;
+    }
+  }
+
+  // ── SWAP LOG ──────────────────────────────────────────────────────────────
+  async function loadSwapLog() {
+    const logEl = document.getElementById('swap-log');
+    logEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>';
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps?league_code=eq.${LEAGUE}&select=*&order=swap_date.desc,created_at.desc`, { headers: sbHeaders() });
+    const swaps = await r.json();
+    if (!swaps.length) { logEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem">No swaps yet.</div>'; return; }
+
+    logEl.innerHTML = swaps.map(s => {
+      const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+      const reasonHtml = s.reason === 'injury'
+        ? `<span class="reason-badge reason-injury">🩹 Injury</span>`
+        : `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
+      return `<div class="swap-log-row">
+        <div class="swap-log-header">
+          <span class="swap-log-date">${fmt(s.swap_date)}</span>
+          <span class="swap-log-team">${s.team_id}</span>
+          ${reasonHtml}
+        </div>
+        <div class="swap-log-players">
+          <span class="swap-in">↑ ${s.player_in_name}</span>
+          &nbsp;·&nbsp;
+          <span class="swap-out">↓ ${s.player_out_name}</span>
+          <span style="color:rgba(255,255,255,0.25);font-size:0.8em;margin-left:6px">(${s.player_out_pts_at_swap ?? 0} pts frozen)</span>
+        </div>
+        <div class="swap-log-note-row">
+          <textarea id="note-${s.id}" rows="1">${s.note || ''}</textarea>
+          <button class="btn-small" onclick="saveNote(${s.id})">Save</button>
+          <span class="save-note-msg" id="note-msg-${s.id}"></span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  async function saveNote(id) {
+    const note = document.getElementById(`note-${id}`).value.trim();
+    const msgEl = document.getElementById(`note-msg-${id}`);
+    msgEl.style.display = 'inline';
+    msgEl.style.color = 'rgba(255,255,255,0.4)';
+    msgEl.textContent = 'Saving…';
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps?id=eq.${id}`, {
+      method: 'PATCH', headers: sbHeaders(), body: JSON.stringify({ note: note || null })
+    });
+    if (r.ok) {
+      msgEl.style.color = 'var(--green)';
+      msgEl.textContent = '✓ Saved';
+      setTimeout(() => { msgEl.style.display = 'none'; }, 2000);
+    } else {
+      msgEl.style.color = '#ff6b6b';
+      msgEl.textContent = '✗ Failed';
+    }
+  }
+
+  // ── HELPERS ───────────────────────────────────────────────────────────────
+  function showMsg(id, type, text) {
+    const el = document.getElementById(id);
+    el.className = `msg ${type}`;
+    el.textContent = text;
+    el.style.display = 'block';
+    if (type === 'success') setTimeout(() => { el.style.display = 'none'; }, 4000);
+  }
+
+  init();
+</script>
+</body>
+</html>
