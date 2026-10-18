@@ -2705,9 +2705,12 @@
             : `<span class="hist-ytd zero">—</span>`;
         const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
         const isPlayingNow = r.isCurrent && r.nhlId ? _livePlayerIds.has(Number(r.nhlId)) : false;
-        const liveHtml = livePtsPlayer > 0
-          ? `<span class="live-badge">+${livePtsPlayer}</span>`
-          : isPlayingNow ? `<span class="live-badge live-badge-dot"></span>` : '';
+        const liveHtml = isPlayingNow
+          ? `<span class="live-badge live-badge-dot"></span>`
+          : '';
+        const displayPts = typeof r.pts === 'number'
+          ? (livePtsPlayer > 0 ? `${r.pts + livePtsPlayer}<span style="color:var(--green);font-size:0.72em;font-weight:600;margin-left:2px">(+${livePtsPlayer})</span>` : `${r.pts}`)
+          : r.pts;
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
@@ -2719,13 +2722,13 @@
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
             <span class="hist-stat hist-g-hide-mobile">${r.col3}</span>
-            <span class="hist-pts">${r.pts}</span>
+            <span class="hist-pts">${displayPts}</span>
             <span class="hist-stat hist-g-hide-mobile" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.so ?? '—'}</span>
             <span class="hist-stat hist-g-show-mobile" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
           ` : `
             <span class="hist-stat hist-col-hide">${r.col2}</span>
             <span class="hist-stat hist-col-hide">${r.col3}</span>
-            <span class="hist-pts">${r.pts}</span>
+            <span class="hist-pts">${displayPts}</span>
             <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
           `}
           ${ytdHtml}
