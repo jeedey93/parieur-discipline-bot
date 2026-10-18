@@ -1,0 +1,23 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-10-17.
+
+Here's the breakdown:
+
+1.  **Tampa Bay Lightning ML vs Vancouver Canucks @ 2.05 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Vancouver 2 @ Tampa Bay 4 (Total goals: 6)
+    *   Outcome: **WIN** (Tampa Bay won the game 4-2, covering the Moneyline.)
+
+2.  **Utah Mammoth ML vs Edmonton Oilers @ 1.71 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Edmonton 6 @ Utah 2 (Total goals: 8)
+    *   Outcome: **LOSS** (Utah lost the game 2-6, so the Moneyline bet did not win.)
+
+3.  **Boston Bruins ML vs Los Angeles Kings @ 2.15 - Confidence: High, Units: 1u**
+    *   Actual Result: Boston 4 @ Los Angeles 1 (Total goals: 5)
+    *   Outcome: **WIN** (Boston won the game 4-1, covering the Moneyline.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 1**
+*   **Total Pushes: 0**
