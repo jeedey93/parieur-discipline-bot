@@ -1,0 +1,65 @@
+Date: 2026-10-18
+
+Columbus Blue Jackets @ Minnesota Wild
+Minnesota Wild ML (Home): 1.53, Columbus Blue Jackets ML (Away): 2.63, O/U: 6.5 (Over: 2.0 / Under: 1.83)
+------
+Carolina Hurricanes @ Calgary Flames
+Calgary Flames ML (Home): 2.78, Carolina Hurricanes ML (Away): 1.45, O/U: 6.0 (Over: 1.84 / Under: 1.97)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+Today's Date is 2026-10-18. As this is within the first three weeks of the NHL season, the minimum required edge for a play is raised to +7%. Goalie reliability for "Last 5 SV%" is considered low for those with fewer than 3 starts, defaulting them to an "Average" tier. Under picks are also approached with extra skepticism.
+
+**Game 1: Columbus Blue Jackets @ Minnesota Wild**
+
+*   **Minnesota Wild ML (Home): 1.53**
+    *   Implied Probability: 65.36%
+    *   **Factor 1: Goalie Matchup (35%)**
+        *   Minnesota's Jesper Wallstedt has a Last 5 SV% of 0.908 (Average tier, with 5 starts as a clear signal). Columbus's Cam Talbot has a Last 5 SV% of 0.822 but only 2 starts, so he defaults to an "Average" tier. This results in an Average vs. Average matchup (0% adjustment). However, Wild's starting goalie Filip Gustavsson is out (lower body), which results in a -5% adjustment for the Wild, making the net goalie impact -5% for Minnesota.
+    *   **Factor 2: Home Ice Advantage (10%)**
+        *   Minnesota has a perfect home record (1.000 Win %) against Columbus's winless road record (0.000 Win %). This significant gap (1.000) provides a +8% adjustment for the Wild.
+    *   **Factor 3: Recent Form & Matchup Quality (35%)**
+        *   Minnesota's last 10 games goal differential is +0.7 (+2% adjustment). They also show an improving form trend (+1% adjustment). Columbus has a negative goal differential and no explicit trend. No head-to-head games this season. Total +3% adjustment for Minnesota.
+    *   **Factor 4: Fatigue & Schedule (20%)**
+        *   Columbus is on a back-to-back (0 rest days) while Minnesota has 2 days of rest. This gives Minnesota a +4% adjustment.
+    *   **Estimated Probability Calculation for Minnesota Wild:** 54% (Baseline) - 5% (Goalie) + 8% (Home Ice) + 3% (Form) + 4% (Fatigue) = 64%.
+    *   **Edge:** 64% - 65.36% = -1.36%. This is below the +7% early season threshold.
+
+*   **Columbus Blue Jackets ML (Away): 2.63**
+    *   Implied Probability: 38.02%
+    *   Applying the inverse of the above adjustments: 46% (Baseline) + 5% (Goalie for Gustavsson absence) - 8% (Home Ice for Wild) - 3% (Form for Wild) - 4% (Fatigue for Wild) = 36%.
+    *   **Edge:** 36% - 38.02% = -2.02%. This is below the +7% early season threshold.
+
+*   **Columbus Blue Jackets @ Minnesota Wild O/U: 6.5 (Over: 2.0 / Under: 1.83)**
+    *   **Over 6.5 @ 2.0**
+        *   Implied Probability: 50%
+        *   **Factor 1: Goalie Matchup:** Wallstedt (Average) vs. Talbot (Defaulted Average). No strong signal based on thresholds for both goalies. 0% adjustment.
+        *   **Factor 2: H2H Scoring:** No H2H games. 0% adjustment.
+        *   **Factor 3: Team Scoring Trends:** Combined average goals from last 10 games is 6.0, which is not significantly above or below the 6.5 line (not > line + 1.2 or < line - 1.2). 0% adjustment.
+        *   **Factor 4: Special Teams Impact:** Minnesota's Power Play (33.3%) is > 22% and Columbus's Penalty Kill (66.7%) is < 78%. This provides a +2% edge to the Over.
+        *   **Estimated Edge:** +2%. This is below the +7% early season threshold.
+    *   **Under 6.5 @ 1.83**
+        *   Given the low edge on the Over and the early-season warning regarding Under picks, this play does not qualify.
+
+**Game 2: Carolina Hurricanes @ Calgary Flames**
+
+*   **Calgary Flames ML (Home): 2.78**
+    *   Implied Probability: 35.97%
+    *   The odds of 2.78 are outside the acceptable range (1.60-2.20). This play cannot be recommended.
+
+*   **Carolina Hurricanes ML (Away): 1.45**
+    *   Implied Probability: 68.97%
+    *   The odds of 1.45 are outside the acceptable range (1.60-2.20). This play cannot be recommended.
+
+*   **Carolina Hurricanes @ Calgary Flames O/U: 6.0 (Over: 1.84 / Under: 1.97)**
+    *   **Under 6.0 @ 1.97**
+        *   Implied Probability: 50.76%
+        *   **Factor 1: Goalie Matchup:** Carolina's Brandon Bussi has a Last 5 SV% of 0.871 (Poor tier, 4 starts as a clear signal). Calgary's Devin Cooley has a Last 5 SV% of 0.818 but only 2 starts, so he defaults to an "Average" tier. Neither strict rule for "strong Over/Under signal" (both > .915 or both < .895) applies. 0% adjustment.
+        *   **Factor 2: H2H Scoring:** No H2H games. 0% adjustment.
+        *   **Factor 3: Team Scoring Trends:** Combined average goals from last 10 games for both teams is 6.55. This is not significantly above or below the 6.0 line. 0% adjustment.
+        *   **Factor 4: Special Teams Impact:** No specific rule for special teams applies to favor the Under here. 0% adjustment.
+        *   **Estimated Edge:** 0%. This is below the +7% early season threshold.
+
+No qualified plays today.
