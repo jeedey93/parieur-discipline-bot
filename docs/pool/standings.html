@@ -2709,7 +2709,7 @@
           ? `<span class="live-badge">+${livePtsPlayer}</span>`
           : isPlayingNow ? `<span class="live-badge live-badge-dot"></span>` : '';
         const displayPts = typeof r.pts === 'number'
-          ? (livePtsPlayer > 0 ? `${r.pts + livePtsPlayer}<span style="color:var(--green);font-size:0.72em;font-weight:600;margin-left:2px">(+${livePtsPlayer})</span>` : `${r.pts}`)
+          ? (livePtsPlayer > 0 ? `<span style="color:var(--green)">${r.pts + livePtsPlayer}</span>` : `${r.pts}`)
           : r.pts;
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
@@ -2745,7 +2745,7 @@
       const totalSO  = currentRows.reduce((s, r) => s + (r.so || 0), 0);
       const avgPPG   = totalGP > 0 ? (total / totalGP).toFixed(2) : '—';
       const totalDisplay = totalLive > 0
-        ? `${total + totalLive}<span style="color:var(--green);font-size:0.72em;font-weight:600;margin-left:2px">(+${totalLive})</span>`
+        ? `<span style="color:var(--green)">${total + totalLive}</span>`
         : `${total}`;
 
       return `<div class="hist-table${pos==='G'?' hist-table-g':''}">
