@@ -2705,9 +2705,9 @@
             : `<span class="hist-ytd zero">—</span>`;
         const livePtsPlayer = r.isCurrent && r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0;
         const isPlayingNow = r.isCurrent && r.nhlId ? _livePlayerIds.has(Number(r.nhlId)) : false;
-        const liveHtml = isPlayingNow
-          ? `<span class="live-badge live-badge-dot"></span>`
-          : '';
+        const liveHtml = livePtsPlayer > 0
+          ? `<span class="live-badge">+${livePtsPlayer}</span>`
+          : isPlayingNow ? `<span class="live-badge live-badge-dot"></span>` : '';
         const displayPts = typeof r.pts === 'number'
           ? (livePtsPlayer > 0 ? `${r.pts + livePtsPlayer}<span style="color:var(--green);font-size:0.72em;font-weight:600;margin-left:2px">(+${livePtsPlayer})</span>` : `${r.pts}`)
           : r.pts;
