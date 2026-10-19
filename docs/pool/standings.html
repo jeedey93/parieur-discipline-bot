@@ -6,7 +6,7 @@
     <title>Pool Standings | Parieur Discipliné</title>
     <link rel="icon" type="image/png" href="../parieur_discipline_icon_1024.png">
   <link rel="apple-touch-icon" href="../parieur_discipline_icon_1024.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Pool McKenna">
   <meta name="application-name" content="Pool McKenna">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
@@ -2378,7 +2378,6 @@
           const cold = coldCandidates[0];
           const coldStr = cold.coldPts === 0 ? '0 pts' : `${cold.coldPts} pts`;
           data.push({ group: 'Player Picks', color: 'blue', icon: '🧊', label: `${t.name} · Cold Streak`, main: formatName(cold.p.player_name), sub: `${coldStr} (${cold.window}) · ${cold.pts} total` });
-        }
         }
       });
 
