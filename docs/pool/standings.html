@@ -2121,7 +2121,7 @@
             }).join('');
             return `<div style="margin-bottom:1rem">
               <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;padding-left:2px">${teamName}</div>
-              <div class="insights insights-full insights-grouped insights-3col" style="margin-bottom:0">${teamCards}</div>
+              <div class="insights insights-full insights-grouped" style="margin-bottom:0">${teamCards}</div>
             </div>`;
           }).join('');
           return `<div class="insights-group">
@@ -2328,7 +2328,8 @@
           const capM   = (p.cap_hit || 0) / 1e6;
           const ytd    = (_playerYesterdayPtsBySlug[p._slug] ?? 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
           const ratio  = capM > 0 ? pts / capM : null;
-          return { p, pts, capM, ytd, ratio };
+          const gp     = ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0;
+          return { p, pts, capM, ytd, ratio, gp };
         });
 
         // 💰 Best value — highest pts/$M (must have cap hit and pts)
@@ -2353,8 +2354,8 @@
           const pts7d  = _player7dPtsBySlug[x.p._slug]  ?? 0;
           const pts30d = _player30dPtsBySlug[x.p._slug] ?? 0;
           const ptsYtd = x.ytd;
-          if (pts7d > 0)  return { ...x, hotPts: pts7d,  window: 'last 7 days' };
-          if (pts30d > 0) return { ...x, hotPts: pts30d, window: 'last 30 days' };
+          if (pts7d > 0)  return { ...x, hotPts: pts7d,  window: 'last 7d' };
+          if (pts30d > 0) return { ...x, hotPts: pts30d, window: 'last 30d' };
           if (ptsYtd > 0) return { ...x, hotPts: ptsYtd, window: 'yesterday' };
           return null;
         }).filter(Boolean);
@@ -2362,6 +2363,22 @@
           hotCandidates.sort((a, b) => b.hotPts - a.hotPts);
           const hot = hotCandidates[0];
           data.push({ group: 'Player Picks', color: 'gold', icon: '🔥', label: `${t.name} · Hot Hand`, main: formatName(hot.p.player_name), sub: `+${hot.hotPts} pts (${hot.window}) · ${hot.pts} total` });
+        }
+
+        // 🧊 Cold streak — least pts over last 7d (or 30d), among players with GP
+        const coldCandidates = playerData.filter(x => x.gp >= 3).map(x => {
+          const pts7d  = _player7dPtsBySlug[x.p._slug]  ?? 0;
+          const pts30d = _player30dPtsBySlug[x.p._slug] ?? 0;
+          if (pts7d === 0 && pts30d === 0) return { ...x, coldPts: 0, window: 'last 7d' };
+          // Use 7d window; if everyone has 7d data pick the lowest
+          return { ...x, coldPts: pts7d, window: 'last 7d' };
+        });
+        if (coldCandidates.length) {
+          coldCandidates.sort((a, b) => a.coldPts - b.coldPts);
+          const cold = coldCandidates[0];
+          const coldStr = cold.coldPts === 0 ? '0 pts' : `${cold.coldPts} pts`;
+          data.push({ group: 'Player Picks', color: 'blue', icon: '🧊', label: `${t.name} · Cold Streak`, main: formatName(cold.p.player_name), sub: `${coldStr} (${cold.window}) · ${cold.pts} total` });
+        }
         }
       });
 
