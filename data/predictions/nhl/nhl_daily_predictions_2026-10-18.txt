@@ -1,0 +1,27 @@
+### Comparative Analysis (Morning vs. Noon)
+
+1. **Plays Appearing in Both Reports (Consistency):**
+   - Both the morning (7:00 AM) and noon (12:00 PM) reports evaluated the exact same two matchups: Columbus Blue Jackets @ Minnesota Wild and Carolina Hurricanes @ Calgary Flames.
+   - Neither report produced any qualifying recommendations. Both reports concluded with: *"No qualified plays today."*
+
+2. **Plays Added / Removed Between Reports:**
+   - No plays were added or removed from the qualified list, as zero bets met the model's threshold in either report.
+
+3. **Confidence Level Changes:**
+   - Neither report assigned a playable confidence level (High or Medium) to any market. The noon report detailed that due to early-season restrictions (requiring a minimum edge of +7%), no wager generated sufficient positive expected value (e.g., Over 6.5 in Blue Jackets/Wild generated only a +2% edge, while Under 6.0 in Hurricanes/Flames generated a 0% edge).
+
+4. **Odds Movement Impact:**
+   - **Columbus Blue Jackets @ Minnesota Wild:**
+     - Minnesota Wild ML shifted from 1.54 to 1.53 (remains outside the required 1.60–2.20 range).
+     - Columbus Blue Jackets ML shifted from 2.60 to 2.63 (remains outside the required 1.60–2.20 range).
+     - Total (6.5): Over stayed at 2.00, Under stayed at 1.83.
+   - **Carolina Hurricanes @ Calgary Flames:**
+     - Calgary Flames ML moved from 2.74 to 2.78 (remains outside the required 1.60–2.20 range).
+     - Carolina Hurricanes ML moved from 1.46 to 1.45 (remains outside the required 1.60–2.20 range).
+     - Total (6.0): Over shifted from 1.85 to 1.84; Under remained steady at 1.97.
+
+---
+
+### Final Recommendations
+
+No qualified plays today.

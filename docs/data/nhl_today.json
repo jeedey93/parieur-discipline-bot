@@ -1,1 +1,1 @@
-{"date": "2026-10-18", "matchups": {"CBJ": "MIN", "MIN": "CBJ", "CAR": "CGY", "CGY": "CAR"}, "games": [{"id": 2026020135, "away": "CBJ", "home": "MIN"}, {"id": 2026020136, "away": "CAR", "home": "CGY"}]}
+{"date": "2026-10-19", "matchups": {"ANA": "NYR", "NYR": "ANA", "COL": "PHI", "PHI": "COL", "SJS": "TOR", "TOR": "SJS", "PIT": "UTA", "UTA": "PIT"}, "games": [{"id": 2026020137, "away": "ANA", "home": "NYR"}, {"id": 2026020138, "away": "COL", "home": "PHI"}, {"id": 2026020139, "away": "SJS", "home": "TOR"}, {"id": 2026020140, "away": "PIT", "home": "UTA"}]}
