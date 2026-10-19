@@ -1008,6 +1008,8 @@
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
+    let _player7dPtsBySlug = {};  // slug -> pool pts delta over last 7 days
+    let _player30dPtsBySlug = {}; // slug -> pool pts delta over last 30 days
     let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
     let tonightMatchups = {};          // abbrev → opponent abbrev
@@ -1757,7 +1759,7 @@
         // Fetch latest 2 snapshots: most recent for rank changes, previous for yesterday delta
         try {
           const snapRes = await fetch(
-            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=2&select=snapshot_date,standings,player_pts`,
+            `${SUPABASE_URL}/rest/v1/pool_standings_snapshots?league_code=eq.${_leagueCode}&order=snapshot_date.desc&limit=31&select=snapshot_date,standings,player_pts`,
             { headers: sbHeaders() }
           );
           if (snapRes.ok) {
@@ -1779,6 +1781,16 @@
                 const prev = prevPlayerPts[slug] ?? pts;
                 const delta = pts - prev;
                 if (delta > 0) _playerYesterdayPtsBySlug[slug] = delta;
+              }
+            }
+            // 7-day and 30-day player deltas
+            const snap7d  = snapRows.length >= 8  ? snapRows[7]  : snapRows[snapRows.length - 1];
+            const snap30d = snapRows.length >= 31 ? snapRows[30] : snapRows[snapRows.length - 1];
+            for (const [snap, map] of [[snap7d, _player7dPtsBySlug], [snap30d, _player30dPtsBySlug]]) {
+              const basePts = snap?.player_pts || {};
+              for (const [slug, pts] of Object.entries(latestPlayerPts)) {
+                const delta = pts - (basePts[slug] ?? pts);
+                if (delta > 0) map[slug] = delta;
               }
             }
           }
@@ -2081,7 +2093,7 @@
         `<div class="insight-card ${color}"><div class="insight-label"><span class="insight-icon">${icon}</span>${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
       const all = computeInsightData(sorted, leaderPts);
       if (!all.length) return '<div class="msg" style="padding:2rem 0">No insights available yet — check back after games have been played.</div>';
-      const GROUP_ORDER = ['Race', 'Team Performance', 'Individual Stars', 'Value'];
+      const GROUP_ORDER = ['Race', 'Team Performance', 'Individual Stars', 'Player Picks'];
       const grouped = {};
       GROUP_ORDER.forEach(g => grouped[g] = []);
       all.forEach(d => { if (grouped[d.group] !== undefined) grouped[d.group].push(d); });
@@ -2117,15 +2129,15 @@
       const effTeams = sorted.map(t => { const cap = teamCapUsed(t.roster), pts = teamTotalPts(t); return { t, eff: cap > 0 ? pts / (cap / 1e6) : 0 }; }).filter(x => x.eff > 0).sort((a, b) => b.eff - a.eff);
       if (effTeams.length) { const best = effTeams[0]; data.push({ group:'Team Performance', color:'green', icon:'⚡', label:'Best Efficiency', main:best.t.name, sub:`${best.eff.toFixed(2)} pts per $M — best in pool` }); }
 
-      // 3. Best Steal
+      // 3. Pool-wide Best Steal (cross-team highlight, kept in Individual Stars)
       const allP = [];
       teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => { const pts = poolScoreOwned(p, t, p._slug), capM = (p.cap_hit || 0) / 1e6; if (pts > 0 && capM > 0) allP.push({ p, t, pts, capM, ratio: pts / capM }); }); });
       allP.sort((a, b) => b.ratio - a.ratio);
-      if (allP.length) { const steal = allP[0]; data.push({ group:'Value', color:'blue', icon:'🚀', label:'Best Steal', main:formatName(steal.p.player_name), sub:`${steal.pts} pts · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
+      if (allP.length) { const steal = allP[0]; data.push({ group:'Individual Stars', color:'blue', icon:'🚀', label:'Best Steal in Pool', main:formatName(steal.p.player_name), sub:`${steal.pts} pts · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
 
-      // 4. Worst Contract
-      const expensive = allP.filter(x => x.capM >= 2 && x.pts >= 1).sort((a, b) => a.ratio - b.ratio);
-      if (expensive.length) { const bust = expensive[0]; data.push({ group:'Value', color:'red', icon:'💸', label:'Worst Contract', main:formatName(bust.p.player_name), sub:`${bust.pts} pts · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
+      // 4. Pool-wide Worst Contract (cross-team highlight, kept in Individual Stars)
+      const worstPool = allP.filter(x => x.capM >= 2 && x.pts >= 1).sort((a, b) => a.ratio - b.ratio);
+      if (worstPool.length) { const bust = worstPool[0]; data.push({ group:'Individual Stars', color:'red', icon:'💸', label:'Worst Contract in Pool', main:formatName(bust.p.player_name), sub:`${bust.pts} pts · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
 
       // 5. Biggest Mover (yesterday → today delta via localStorage snapshot)
       const snap = loadPtsSnapshot();
@@ -2274,6 +2286,55 @@
         if (escapeGap <= 20) data.push({ group:'Race', color:'green', icon:'🚪', label:'Closest to Escape', main:last.name, sub:`Only ${escapeGap} pts behind ${secondLast.name}` });
         else data.push({ group:'Race', color:'red', icon:'⛓️', label:'Stuck in Last', main:last.name, sub:`${escapeGap} pts behind ${secondLast.name}` });
       }
+
+      // ── PLAYER PICKS (per-team best/worst/hot) ─────────────────────────────
+      sorted.forEach(t => {
+        const rp = rosterPlayers(t.roster);
+        const dressed = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
+        if (!dressed.length) return;
+
+        // Build per-player data
+        const playerData = dressed.map(p => {
+          const pts    = poolScoreOwned(p, t, p._slug);
+          const capM   = (p.cap_hit || 0) / 1e6;
+          const ytd    = (_playerYesterdayPtsBySlug[p._slug] ?? 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
+          const ratio  = capM > 0 ? pts / capM : null;
+          return { p, pts, capM, ytd, ratio };
+        });
+
+        // 💰 Best value — highest pts/$M (must have cap hit and pts)
+        const withRatio = playerData.filter(x => x.ratio !== null && x.pts > 0);
+        if (withRatio.length) {
+          withRatio.sort((a, b) => b.ratio - a.ratio);
+          const best = withRatio[0];
+          data.push({ group: 'Player Picks', color: 'green', icon: '💰', label: `${t.name} · Best Value`, main: formatName(best.p.player_name), sub: `${best.pts} pts · $${best.capM.toFixed(1)}M · ${best.ratio.toFixed(1)} pt/$M` });
+        }
+
+        // 💸 Worst value — lowest pts/$M among expensive players (cap ≥ $3M)
+        const expensive = playerData.filter(x => x.capM >= 3);
+        if (expensive.length) {
+          expensive.sort((a, b) => (a.ratio ?? 0) - (b.ratio ?? 0));
+          const bust = expensive[0];
+          const ratioStr = bust.ratio !== null ? `${bust.ratio.toFixed(1)} pt/$M` : '0 pts';
+          data.push({ group: 'Player Picks', color: 'red', icon: '💸', label: `${t.name} · Worst Value`, main: formatName(bust.p.player_name), sub: `${bust.pts} pts · $${bust.capM.toFixed(1)}M · ${ratioStr}` });
+        }
+
+        // 🔥 Hot hand — best scorer over last 7d, fall back to 30d, then yesterday
+        const hotCandidates = playerData.map(x => {
+          const pts7d  = _player7dPtsBySlug[x.p._slug]  ?? 0;
+          const pts30d = _player30dPtsBySlug[x.p._slug] ?? 0;
+          const ptsYtd = x.ytd;
+          if (pts7d > 0)  return { ...x, hotPts: pts7d,  window: 'last 7 days' };
+          if (pts30d > 0) return { ...x, hotPts: pts30d, window: 'last 30 days' };
+          if (ptsYtd > 0) return { ...x, hotPts: ptsYtd, window: 'yesterday' };
+          return null;
+        }).filter(Boolean);
+        if (hotCandidates.length) {
+          hotCandidates.sort((a, b) => b.hotPts - a.hotPts);
+          const hot = hotCandidates[0];
+          data.push({ group: 'Player Picks', color: 'gold', icon: '🔥', label: `${t.name} · Hot Hand`, main: formatName(hot.p.player_name), sub: `+${hot.hotPts} pts (${hot.window}) · ${hot.pts} total` });
+        }
+      });
 
       return data;
     }
