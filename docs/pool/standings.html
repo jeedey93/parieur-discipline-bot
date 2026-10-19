@@ -1013,7 +1013,7 @@
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
-    let _player7dPtsBySlug = {};  // slug -> pool pts delta over last 7 days
+    let _player10dPtsBySlug = {}; // slug -> pool pts delta over last 10 games
     let _player30dPtsBySlug = {}; // slug -> pool pts delta over last 30 days
     let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
@@ -1788,10 +1788,10 @@
                 if (delta > 0) _playerYesterdayPtsBySlug[slug] = delta;
               }
             }
-            // 7-day and 30-day player deltas
-            const snap7d  = snapRows.length >= 8  ? snapRows[7]  : snapRows[snapRows.length - 1];
+            // ~10 games (14-day proxy) and 30-day player deltas
+            const snap10g = snapRows.length >= 15 ? snapRows[14] : snapRows[snapRows.length - 1];
             const snap30d = snapRows.length >= 31 ? snapRows[30] : snapRows[snapRows.length - 1];
-            for (const [snap, map] of [[snap7d, _player7dPtsBySlug], [snap30d, _player30dPtsBySlug]]) {
+            for (const [snap, map] of [[snap10g, _player10dPtsBySlug], [snap30d, _player30dPtsBySlug]]) {
               const basePts = snap?.player_pts || {};
               for (const [slug, pts] of Object.entries(latestPlayerPts)) {
                 const delta = pts - (basePts[slug] ?? pts);
@@ -2349,12 +2349,12 @@
           data.push({ group: 'Player Picks', color: 'red', icon: '💸', label: `${t.name} · Worst Value`, main: formatName(bust.p.player_name), sub: `${bust.pts} pts · $${bust.capM.toFixed(1)}M · ${ratioStr}` });
         }
 
-        // 🔥 Hot hand — best scorer over last 7d, fall back to 30d, then yesterday
+        // 🔥 Hot hand — best scorer over last 10 games, fall back to 30d, then yesterday
         const hotCandidates = playerData.map(x => {
-          const pts7d  = _player7dPtsBySlug[x.p._slug]  ?? 0;
+          const pts10d = _player10dPtsBySlug[x.p._slug] ?? 0;
           const pts30d = _player30dPtsBySlug[x.p._slug] ?? 0;
           const ptsYtd = x.ytd;
-          if (pts7d > 0)  return { ...x, hotPts: pts7d,  window: 'last 7d' };
+          if (pts10d > 0) return { ...x, hotPts: pts10d, window: 'L10' };
           if (pts30d > 0) return { ...x, hotPts: pts30d, window: 'last 30d' };
           if (ptsYtd > 0) return { ...x, hotPts: ptsYtd, window: 'yesterday' };
           return null;
@@ -2365,13 +2365,12 @@
           data.push({ group: 'Player Picks', color: 'gold', icon: '🔥', label: `${t.name} · Hot Hand`, main: formatName(hot.p.player_name), sub: `+${hot.hotPts} pts (${hot.window}) · ${hot.pts} total` });
         }
 
-        // 🧊 Cold streak — least pts over last 7d (or 30d), among players with GP
+        // 🧊 Cold streak — least pts over last 10 games, among players with GP
         const coldCandidates = playerData.filter(x => x.gp >= 3).map(x => {
-          const pts7d  = _player7dPtsBySlug[x.p._slug]  ?? 0;
+          const pts10d = _player10dPtsBySlug[x.p._slug] ?? 0;
           const pts30d = _player30dPtsBySlug[x.p._slug] ?? 0;
-          if (pts7d === 0 && pts30d === 0) return { ...x, coldPts: 0, window: 'last 7d' };
-          // Use 7d window; if everyone has 7d data pick the lowest
-          return { ...x, coldPts: pts7d, window: 'last 7d' };
+          if (pts10d === 0 && pts30d === 0) return { ...x, coldPts: 0, window: 'L10' };
+          return { ...x, coldPts: pts10d, window: 'L10' };
         });
         if (coldCandidates.length) {
           coldCandidates.sort((a, b) => a.coldPts - b.coldPts);

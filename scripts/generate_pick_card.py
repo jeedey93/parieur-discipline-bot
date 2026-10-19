@@ -172,7 +172,7 @@ def parse_teams_full(pick_line):
 def parse_pick_file(path):
     text = path.read_text(encoding="utf-8")
     picks = []
-    for section in re.split(r'[⸻—]{2,}', text):
+    for section in re.split(r'[⸻—]+', text):
         lines = [l.strip() for l in section.strip().splitlines() if l.strip()]
         if not lines:
             continue
