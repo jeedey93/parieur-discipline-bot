@@ -2328,24 +2328,26 @@
           const gp     = ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0;
           const ppg    = gp > 0 ? pts / gp : 0;
           const ratio  = capM > 0 && gp > 0 ? ppg / capM : null;
-          return { p, pts, capM, ytd, ratio, gp, ppg };
+          // Mixed score: production × sqrt(value) — rewards high scorers but boosts cap efficiency
+          const score  = ratio !== null ? ppg * Math.sqrt(ratio) : null;
+          return { p, pts, capM, ytd, ratio, gp, ppg, score };
         });
 
-        // 💰 Best value — highest (pts/GP)/$M (must have cap hit, pts, and games played)
-        const withRatio = playerData.filter(x => x.ratio !== null && x.pts > 0 && x.gp > 0);
-        if (withRatio.length) {
-          withRatio.sort((a, b) => b.ratio - a.ratio);
-          const best = withRatio[0];
-          data.push({ group: 'Player Picks', color: 'green', icon: '💰', label: `${t.name} · Best Value`, main: formatName(best.p.player_name), sub: `${best.pts} pts · ${best.gp} GP · $${best.capM.toFixed(1)}M · ${best.ratio.toFixed(2)} pt/GP/$M` });
+        // 💰 Best value — mixed score: pts/GP × sqrt(pts/GP/$M)
+        const withScore = playerData.filter(x => x.score !== null && x.pts > 0 && x.gp > 0);
+        if (withScore.length) {
+          withScore.sort((a, b) => b.score - a.score);
+          const best = withScore[0];
+          data.push({ group: 'Player Picks', color: 'green', icon: '💰', label: `${t.name} · Best Value`, main: formatName(best.p.player_name), sub: `${best.pts} pts · ${best.gp} GP · $${best.capM.toFixed(1)}M · ${best.ppg.toFixed(2)} pt/GP` });
         }
 
-        // 💸 Worst value — lowest (pts/GP)/$M among expensive players (cap ≥ $3M, GP ≥ 3)
+        // 💸 Worst value — lowest mixed score among expensive players (cap ≥ $3M, GP ≥ 3)
         const expensive = playerData.filter(x => x.capM >= 3 && x.gp >= 3);
         if (expensive.length) {
-          expensive.sort((a, b) => (a.ratio ?? 0) - (b.ratio ?? 0));
+          expensive.sort((a, b) => (a.score ?? 0) - (b.score ?? 0));
           const bust = expensive[0];
-          const ratioStr = bust.ratio !== null ? `${bust.ratio.toFixed(2)} pt/GP/$M` : '0 pts';
-          data.push({ group: 'Player Picks', color: 'red', icon: '💸', label: `${t.name} · Worst Value`, main: formatName(bust.p.player_name), sub: `${bust.pts} pts · ${bust.gp} GP · $${bust.capM.toFixed(1)}M · ${ratioStr}` });
+          const ppgStr = bust.ppg > 0 ? `${bust.ppg.toFixed(2)} pt/GP` : '0 pts';
+          data.push({ group: 'Player Picks', color: 'red', icon: '💸', label: `${t.name} · Worst Value`, main: formatName(bust.p.player_name), sub: `${bust.pts} pts · ${bust.gp} GP · $${bust.capM.toFixed(1)}M · ${ppgStr}` });
         }
 
       });
