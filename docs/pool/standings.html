@@ -294,6 +294,11 @@
         @media (min-width: 861px) {
           .insights { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
         }
+        .insights-3col { grid-template-columns: repeat(3, 1fr) !important; gap: 0.4rem; }
+        .insights-3col .insight-card { padding: 0.35rem 0.5rem; }
+        .insights-3col .insight-main { font-size: 0.82rem; }
+        .insights-3col .insight-sub  { font-size: 0.68rem; }
+        .insights-3col .insight-label { font-size: 0.6rem; }
         .insight-card {
           background: rgba(255,255,255,0.03); border: 1px solid var(--line);
           border-radius: 8px; padding: 0.45rem 0.65rem;
@@ -2116,7 +2121,7 @@
             }).join('');
             return `<div style="margin-bottom:1rem">
               <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;padding-left:2px">${teamName}</div>
-              <div class="insights insights-full insights-grouped" style="margin-bottom:0">${teamCards}</div>
+              <div class="insights insights-full insights-grouped insights-3col" style="margin-bottom:0">${teamCards}</div>
             </div>`;
           }).join('');
           return `<div class="insights-group">
