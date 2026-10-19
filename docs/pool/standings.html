@@ -2100,6 +2100,30 @@
       const sections = GROUP_ORDER.map(g => {
         const cards = grouped[g];
         if (!cards.length) return '';
+        if (g === 'Player Picks') {
+          // Group by team (team name is the prefix before ' · ' in label)
+          const byTeam = {};
+          const teamOrder = [];
+          cards.forEach(d => {
+            const teamName = d.label.split(' · ')[0];
+            if (!byTeam[teamName]) { byTeam[teamName] = []; teamOrder.push(teamName); }
+            byTeam[teamName].push(d);
+          });
+          const teamSections = teamOrder.map(teamName => {
+            const teamCards = byTeam[teamName].map(d => {
+              const shortLabel = d.label.split(' · ').slice(1).join(' · ');
+              return card(d.color, d.icon, shortLabel, d.main, d.sub);
+            }).join('');
+            return `<div style="margin-bottom:1rem">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;padding-left:2px">${teamName}</div>
+              <div class="insights insights-full insights-grouped" style="margin-bottom:0">${teamCards}</div>
+            </div>`;
+          }).join('');
+          return `<div class="insights-group">
+            <div class="insights-group-label">${g}</div>
+            ${teamSections}
+          </div>`;
+        }
         return `<div class="insights-group">
           <div class="insights-group-label">${g}</div>
           <div class="insights insights-full insights-grouped" style="margin-bottom:0">${cards.map(d => card(d.color, d.icon, d.label, d.main, d.sub)).join('')}</div>
