@@ -2679,12 +2679,13 @@
       const currentNoDraft = (team.roster[pos] || []).filter(s => s && typeof s === 'string' && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
 
       // Inject bench-swapped-out players as past rows (only for F/D/G tables, not bench)
-      // Exclude players still sitting on the bench — they show there with full stats instead
+      // For goalies on bench: skip the ghost row (they show with full stats in bench section)
+      // For skaters on bench: still show their historical stats row in the dressed section
       const benchSlugs = new Set((team.roster.B || []).filter(Boolean));
       const swapOutRows = pos !== 'B' ? _benchSwaps.filter(s => {
         if (s.team_id !== team.id) return false;
-        if (benchSlugs.has(s.player_out_slug)) return false; // still on bench, don't ghost them
         const swapPos = normalizePos(s.player_out_position);
+        if (swapPos === 'G' && benchSlugs.has(s.player_out_slug)) return false; // bench goalie: skip ghost
         return swapPos === pos && !seenSlugs.has(s.player_out_slug);
       }).map(s => {
         const p = m[s.player_out_slug];
