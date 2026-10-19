@@ -24,7 +24,7 @@ ANALYSIS TASK:
    - Ranked by confidence %
    - Show the "Bet of the Day" first
    - If the noon report has no plays but the morning report does, use the morning plays as the basis for recommendations (apply the same odds range and confidence filters)
-   - If no plays fall within the 1.60–2.20 odds range in either report, output "No qualified plays today."
+   - **Exception: if no plays fall within the 1.60–2.20 odds range in either report, you MUST still output exactly one play — the one closest to the range with the highest confidence. Never output "No qualified plays today."**
 
 For every play in the unified final recommendation list (including Bet of the Day and all others), you must always include the fields: Confidence Level, Units, and Win Probability, with their actual values for that play, as part of the output for that play. These fields must be present for every play, not just the Bet of the Day.
 

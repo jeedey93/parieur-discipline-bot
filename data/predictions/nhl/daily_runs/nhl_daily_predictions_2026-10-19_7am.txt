@@ -1,0 +1,25 @@
+Date: 2026-10-19
+
+Anaheim Ducks @ New York Rangers
+New York Rangers ML (Home): 1.65, Anaheim Ducks ML (Away): 2.25, O/U: 6.5 (Over: 1.92 / Under: 1.89)
+------
+Colorado Avalanche @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 2.93, Colorado Avalanche ML (Away): 1.41, O/U: 6.0 (Over: 1.88 / Under: 1.93)
+------
+San Jose Sharks @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.76, San Jose Sharks ML (Away): 2.08, O/U: 6.5 (Over: 1.76 / Under: 2.08)
+------
+Pittsburgh Penguins @ Utah Mammoth
+Utah Mammoth ML (Home): 1.55, Pittsburgh Penguins ML (Away): 2.48, O/U: 6.5 (Over: 1.76 / Under: 2.07)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+No starting goalies have been announced for today's games, so this analysis accounts for that uncertainty. There are no reported player absences for any team today.
+
+**BET OF THE DAY**
+
+San Jose Sharks ML vs Toronto Maple Leafs @ 2.08
+The San Jose Sharks present the best value on today's short slate. While the Maple Leafs are at home, their home record (0.333 win percentage) is actually worse than the Sharks' road record (0.500 win percentage), negating the typical home-ice advantage and even giving a slight edge to San Jose. Furthermore, San Jose is currently performing as a playoff contender based on points percentage (0.562), while Toronto is not (0.444), adding a motivational boost for the Sharks. Given the market implies a win probability of 48.08% for San Jose, our model's estimated probability of 49% suggests a small but meaningful edge, making it the top play for the day.
+Confidence Level: Medium, Units: 1u, Win Probability: 49%
