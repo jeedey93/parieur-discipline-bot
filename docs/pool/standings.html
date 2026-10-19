@@ -2516,12 +2516,7 @@
           const m = slugMap();
           const bench = (team.roster.B || []).filter(s => s && typeof s === 'string');
           if (!bench.length) return '';
-          const benchSkaters = bench.filter(s => { const p = m[s]; return !p || normalizePos(p.position) !== 'G'; });
-          const benchGoalies = bench.filter(s => { const p = m[s]; return p && normalizePos(p.position) === 'G'; });
-          const skaterTeam = benchSkaters.length ? { ...team, roster: { ...team.roster, B: benchSkaters } } : null;
-          const goalieTeam = benchGoalies.length ? { ...team, roster: { ...team.roster, G: benchGoalies } } : null;
-          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench') : '') +
-                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)') : '');
+          return buildHistTable(team, 'B', 'Bench');
         })()}
         ${buildSwapHistory(team)}
       `;
@@ -2631,15 +2626,15 @@
         <div class="hist-header-row">
           <div class="hist-pos-hdr-cell"></div>
           <div class="lb-col-label left">Player</div>
-          ${pos==='G'
+          ${pos === 'B' ? '' : pos==='G'
             ? `${sortHdr('gp','GP')}<div class="lb-col-label hist-g-hide-mobile">${sortHdr('w','W')}</div><div class="lb-col-label hist-g-hide-mobile">${sortHdr('otl','OTL')}</div>`
             : `${sortHdr('gp','GP')}<div class="lb-col-label hist-col-hide">${sortHdr('g','G')}</div><div class="lb-col-label hist-col-hide">${sortHdr('a','A')}</div>`}
-          ${sortHdr('pts','Pts')}
-          ${pos==='G' ? `
+          ${pos === 'B' ? '' : sortHdr('pts','Pts')}
+          ${pos === 'B' ? '' : pos==='G' ? `
             <div class="lb-col-label hist-g-hide-mobile" style="color:rgba(255,255,255,0.4)" title="Shutouts">SO</div>
             <div class="lb-col-label hist-g-show-mobile" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>
           ` : `<div class="lb-col-label" style="color:rgba(255,255,255,0.4)" title="Points per games played">PPG</div>`}
-          <div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>
+          ${pos === 'B' ? '' : `<div class="lb-col-label" style="color:var(--green);opacity:0.7" title="Points scored yesterday">Ytd</div>`}
         </div>`;
 
       // Build data objects for all rows so we can sort before rendering
@@ -2736,8 +2731,8 @@
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${swapDateChip}</span>
-          <span class="hist-stat">${displayGP}</span>
-          ${pos==='G' ? `
+          ${pos === 'B' ? '' : `<span class="hist-stat">${displayGP}</span>`}
+          ${pos === 'B' ? '' : pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
             <span class="hist-stat hist-g-hide-mobile">${r.col3}</span>
             <span class="hist-pts">${displayPts}</span>
@@ -2749,7 +2744,7 @@
             <span class="hist-pts">${displayPts}</span>
             <span class="hist-stat" style="color:rgba(255,255,255,0.4);font-size:0.78rem">${r.ppg ?? '—'}</span>
           `}
-          ${ytdHtml}
+          ${pos === 'B' ? '' : ytdHtml}
         </div>`;
       });
 
