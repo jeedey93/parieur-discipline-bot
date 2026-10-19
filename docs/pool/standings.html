@@ -2439,7 +2439,9 @@
       const sub = teamSubScores(team);
       const live = liveSubPts(team);
       const totalPts = teamTotalPts(team);
+      const CAP_BUDGET = 104e6;
       const cap = teamCapUsed(team.roster);
+      const capRemaining = CAP_BUDGET - cap;
       const filled = teamFilled(team.roster);
       const eff = cap > 0 ? (totalPts / (cap / 1e6)).toFixed(1) : '—';
       const ppg = teamAvgPPG(team);
@@ -2483,7 +2485,17 @@
           <div class="detail-header-right">
             <div class="detail-summary">
               ${ytdBadgeHtml}
-              <span class="detail-badge cap">$${(cap / 1e6).toFixed(1)}M</span>
+              ${(() => {
+                const usedM = (cap / 1e6).toFixed(1);
+                const remM  = (capRemaining / 1e6).toFixed(1);
+                const over  = capRemaining < 0;
+                const tight = !over && capRemaining < 5e6;
+                const color = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--silver)';
+                const borderColor = over ? 'rgba(239,68,68,0.3)' : tight ? 'rgba(251,191,36,0.3)' : 'rgba(255,255,255,0.1)';
+                const bg    = over ? 'rgba(239,68,68,0.08)' : tight ? 'rgba(251,191,36,0.06)' : 'rgba(255,255,255,0.06)';
+                const label = over ? `$${usedM}M used · OVER CAP` : `$${usedM}M used · $${remM}M left`;
+                return `<span class="detail-badge" style="color:${color};border-color:${borderColor};background:${bg};" title="Cap budget: $104M">💰 ${label}</span>`;
+              })()}
               <span class="detail-badge filled">${filled}/20</span>
               <span class="detail-badge eff">${eff} pt/$M</span>
               ${ppg ? `<span class="detail-badge eff" title="Pool points per average games played">${ppg} PPG</span>` : ''}
