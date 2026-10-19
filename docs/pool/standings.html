@@ -2016,7 +2016,7 @@
     }
 
     function buildFreeAgents() {
-      const TOP_N = 50;
+      const DEFAULT_N = 25;
 
       // Collect every slug currently on any roster (F/D/G/B)
       const draftedSlugs = new Set();
@@ -2042,30 +2042,46 @@
       const byPos = { F: [], D: [], G: [] };
       fas.forEach(p => { const pos = normalizePos(p.position); byPos[pos].push(p); });
 
+      const renderRow = (p, pos) => {
+        const isG = pos === 'G';
+        const abbr = TEAM_ABBR[p.team];
+        const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}" style="width:16px;height:16px;object-fit:contain;opacity:0.7;margin-right:0.3rem;vertical-align:middle">` : '';
+        const stat1 = isG ? (p.wins ?? '—') : (p.goals ?? '—');
+        const stat2 = isG ? (p.shutouts ?? '—') : (p.assists ?? '—');
+        const pts   = p._poolPts > 0 ? p._poolPts : '—';
+        const gp    = p.games_played ?? '—';
+        const cap   = p.cap_hit ? `$${(p.cap_hit/1e6).toFixed(1)}M` : '—';
+        const posChip = `<span class="hist-pos ${pos}" style="margin-right:0.35rem;vertical-align:middle">${pos}</span>`;
+        return `<div class="fa-row">
+          <div class="fa-name">${posChip}${logo}${formatName(p.player_name)}</div>
+          <div class="fa-stat">${gp}</div>
+          <div class="fa-stat">${stat1}</div>
+          <div class="fa-stat">${stat2}</div>
+          <div class="fa-pts">${pts}</div>
+          <div class="fa-cap">${cap}</div>
+        </div>`;
+      };
+
       const renderSection = (pos, label, players) => {
         if (!players.length) return '';
         const isG = pos === 'G';
-        const top = players.slice(0, TOP_N);
-        const rows = top.map(p => {
-          const abbr = TEAM_ABBR[p.team];
-          const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}" style="width:16px;height:16px;object-fit:contain;opacity:0.7;margin-right:0.3rem;vertical-align:middle">` : '';
-          const stat1 = isG ? (p.wins ?? '—') : (p.goals ?? '—');
-          const stat2 = isG ? (p.shutouts ?? '—') : (p.assists ?? '—');
-          const pts   = p._poolPts > 0 ? p._poolPts : '—';
-          const gp    = p.games_played ?? '—';
-          const cap   = p.cap_hit ? `$${(p.cap_hit/1e6).toFixed(1)}M` : '—';
-          const posChip = `<span class="hist-pos ${pos}" style="margin-right:0.35rem;vertical-align:middle">${pos}</span>`;
-          return `<div class="fa-row">
-            <div class="fa-name">${posChip}${logo}${formatName(p.player_name)}</div>
-            <div class="fa-stat">${gp}</div>
-            <div class="fa-stat">${stat1}</div>
-            <div class="fa-stat">${stat2}</div>
-            <div class="fa-pts">${pts}</div>
-            <div class="fa-cap">${cap}</div>
-          </div>`;
-        }).join('');
         const h1 = isG ? 'W' : 'G';
         const h2 = isG ? 'SO' : 'A';
+        const top  = players.slice(0, DEFAULT_N);
+        const rest = players.slice(DEFAULT_N);
+        const sectionId = `fa-more-${pos}`;
+        const btnId     = `fa-btn-${pos}`;
+        const moreRows  = rest.map(p => renderRow(p, pos)).join('');
+        const moreBlock = rest.length ? `
+          <div id="${sectionId}" style="display:none">${moreRows}</div>
+          <div style="text-align:center;padding:0.75rem 0">
+            <button id="${btnId}" class="btn-refresh" onclick="
+              var el=document.getElementById('${sectionId}');
+              var btn=document.getElementById('${btnId}');
+              if(el.style.display==='none'){el.style.display='';btn.textContent='Show less';}
+              else{el.style.display='none';btn.textContent='Load ${rest.length} more';}
+            ">Load ${rest.length} more</button>
+          </div>` : '';
         return `<div class="fa-section">
           <div class="fa-section-label ${pos}">${label} <span style="opacity:0.4;font-size:0.7rem">top ${top.length} of ${players.length}</span></div>
           <div class="fa-header">
@@ -2076,7 +2092,8 @@
             <div class="fa-pts"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">PTS</div>
             <div class="fa-cap"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">CAP</div>
           </div>
-          ${rows}
+          ${top.map(p => renderRow(p, pos)).join('')}
+          ${moreBlock}
         </div>`;
       };
 
