@@ -3144,10 +3144,17 @@
       const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'America/Toronto' });
       // Sort newest first
       const sorted = [..._benchSwaps].sort((a, b) => b.swap_date.localeCompare(a.swap_date));
+      // Count official swaps per team for numbering (must use asc order for correct numbering)
+      const swapCounters = {};
+      [..._benchSwaps].sort((a, b) => a.swap_date.localeCompare(b.swap_date) || a.id - b.id)
+        .forEach(s => { if (s.reason === 'swap') { swapCounters[s.id] = (swapCounters[s.team_id] = (swapCounters[s.team_id] || 0) + 1); } });
       const rows = sorted.map(s => {
-        const reasonBadge = s.reason
-          ? `<span class="swap-reason ${s.reason}">${s.reason === 'injury' ? '🩹 Injury' : '🔄 Tactical'}</span>`
-          : '';
+        let reasonBadge = '';
+        if (s.reason === 'injury') {
+          reasonBadge = `<span class="swap-reason injury">🩹 Injury</span>`;
+        } else if (s.reason === 'swap') {
+          reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
+        }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row">
           <div class="swap-date"><span class="all-swaps-team">${teamName}</span> &nbsp;${fmt(s.swap_date)}</div>
