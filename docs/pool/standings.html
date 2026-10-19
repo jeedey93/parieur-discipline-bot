@@ -2033,7 +2033,7 @@
       };
 
       const fas = allPlayers
-        .filter(p => p.puckpedia_slug && !draftedSlugs.has(p.puckpedia_slug))
+        .filter(p => p.puckpedia_slug && !draftedSlugs.has(p.puckpedia_slug) && (p.games_played ?? 0) >= 1)
         .map(p => ({ ...p, _poolPts: poolPts(p) }))
         .sort((a, b) => b._poolPts - a._poolPts);
 
