@@ -115,6 +115,22 @@
     }
     .reason-swap   { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
     .reason-injury { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
+    .reason-pickup { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+
+    /* ── FREE AGENT SEARCH ── */
+    .fa-search-row { display: flex; gap: 0.5rem; align-items: flex-end; margin-bottom: 0.75rem; }
+    .fa-search-row input { flex: 1; }
+    #fa-results { max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.5rem; }
+    .fa-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 8px;
+      padding: 0.45rem 0.75rem; cursor: pointer; transition: border-color 0.12s;
+    }
+    .fa-row:hover { border-color: rgba(255,255,255,0.2); }
+    .fa-row.selected { border-color: var(--green); background: rgba(34,197,94,0.08); }
+    .fa-row-name { font-size: 0.95rem; font-weight: 700; }
+    .fa-row-meta { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    .fa-row-stats { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-align: right; }
     .swap-log-note-row { display: flex; gap: 0.5rem; align-items: flex-start; }
     .swap-log-note-row textarea { font-size: 0.9rem; min-height: 40px; }
     .save-note-msg { font-size: 0.8rem; margin-left: 0.5rem; display: none; }
@@ -207,7 +223,62 @@
     <div class="msg" id="swap-msg"></div>
   </div>
 
-  <!-- SECTION 2: SWAP LOG -->
+  <!-- SECTION 2: DROP & PICK UP -->
+  <div class="section-title">Drop & Pick Up (End of Month)</div>
+  <div class="card">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Team</label>
+        <select id="pu-sel-team" onchange="onPuTeamChange()">
+          <option value="">— Select team —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="pu-date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Player to Drop (removed from roster)</label>
+        <select id="pu-sel-drop" onchange="onPuDropChange()" disabled>
+          <option value="">— Select player —</option>
+        </select>
+        <div class="stats-preview" id="pu-stats-drop">Select a player to see stats</div>
+      </div>
+      <div class="form-group">
+        <label>Position for Pick Up</label>
+        <select id="pu-pos" onchange="onPuPosChange()" disabled>
+          <option value="">— Select position —</option>
+          <option value="F">Forward (F)</option>
+          <option value="D">Defence (D)</option>
+          <option value="G">Goalie (G)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group" id="pu-fa-group" style="display:none;margin-bottom:1rem">
+      <label>Pick Up from Free Agents</label>
+      <div class="fa-search-row">
+        <input type="text" id="pu-fa-search" placeholder="Search by name…" oninput="filterFreeAgents()">
+      </div>
+      <div id="fa-results"></div>
+      <div class="stats-preview" id="pu-stats-in" style="margin-top:0.5rem">Search and select a free agent above</div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Note</label>
+        <textarea id="pu-note" placeholder="Auto-filled when players are selected…"></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="pu-btn-confirm" onclick="confirmPickup()" disabled>Confirm Drop & Pick Up</button>
+    <div class="msg" id="pu-msg"></div>
+  </div>
+
+  <!-- SECTION 3: SWAP LOG -->
   <div class="section-title">Swap History</div>
   <div class="swap-log" id="swap-log">
     <div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>
@@ -257,8 +328,9 @@
   async function showApp() {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    // Set today's date
-    document.getElementById('swap-date').value = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+    document.getElementById('swap-date').value = today;
+    document.getElementById('pu-date').value   = today;
     updateRadioStyle();
     await loadTeams();
     await loadSwapLog();
@@ -272,13 +344,15 @@
     const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
     const rows = await r.json();
     _rosters = rows[0];
-    const sel = document.getElementById('sel-team');
-    sel.innerHTML = '<option value="">— Select team —</option>';
-    for (const t of _rosters.data.teams) {
-      const opt = document.createElement('option');
-      opt.value = t.id;
-      opt.textContent = t.name;
-      sel.appendChild(opt);
+    for (const selId of ['sel-team', 'pu-sel-team']) {
+      const sel = document.getElementById(selId);
+      sel.innerHTML = '<option value="">— Select team —</option>';
+      for (const t of _rosters.data.teams) {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.name;
+        sel.appendChild(opt);
+      }
     }
   }
 
@@ -496,6 +570,8 @@
       const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
       const reasonHtml = s.reason === 'injury'
         ? `<span class="reason-badge reason-injury">🩹 Injury</span>`
+        : s.reason === 'pickup'
+        ? `<span class="reason-badge reason-pickup">📥 Pickup</span>`
         : `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
       return `<div class="swap-log-row">
         <div class="swap-log-header">
@@ -534,6 +610,234 @@
     } else {
       msgEl.style.color = '#ff6b6b';
       msgEl.textContent = '✗ Failed';
+    }
+  }
+
+  // ── DROP & PICK UP ────────────────────────────────────────────────────────
+  let _freeAgents = [];      // all FA rows fetched once per position
+  let _puSelectedFa = null;  // currently selected FA slug
+
+  function onPuTeamChange() {
+    const teamId = document.getElementById('pu-sel-team').value;
+    const selDrop = document.getElementById('pu-sel-drop');
+    const selPos  = document.getElementById('pu-pos');
+    selDrop.innerHTML = '<option value="">— Select player —</option>';
+    selDrop.disabled = true;
+    selPos.disabled  = true;
+    selPos.value = '';
+    document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
+    document.getElementById('pu-fa-group').style.display = 'none';
+    document.getElementById('pu-btn-confirm').disabled = true;
+    document.getElementById('pu-note').value = '';
+    _puSelectedFa = null;
+    if (!teamId) return;
+
+    const team = _rosters.data.teams.find(t => t.id === teamId);
+    if (!team) return;
+
+    const all = [
+      ...(team.roster.F || []).map(s => ({ slug: s, pos: 'F' })),
+      ...(team.roster.D || []).map(s => ({ slug: s, pos: 'D' })),
+      ...(team.roster.G || []).map(s => ({ slug: s, pos: 'G' })),
+      ...(team.roster.B || []).map(s => ({ slug: s, pos: 'B' })),
+    ].filter(x => x.slug);
+
+    for (const { slug, pos } of all) {
+      const name = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const opt = document.createElement('option');
+      opt.value = slug;
+      opt.dataset.pos = pos;
+      opt.textContent = `[${pos}] ${name}`;
+      selDrop.appendChild(opt);
+    }
+    selDrop.disabled = false;
+    selPos.disabled  = false;
+  }
+
+  async function onPuDropChange() {
+    const slug = document.getElementById('pu-sel-drop').value;
+    document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
+    document.getElementById('pu-btn-confirm').disabled = true;
+    _puSelectedFa = null;
+    if (!slug) return;
+    const p = await fetchPlayerStats(slug);
+    document.getElementById('pu-stats-drop').innerHTML = statsPreviewHtml(p);
+    updatePuNote();
+  }
+
+  async function onPuPosChange() {
+    const pos = document.getElementById('pu-pos').value;
+    const faGroup = document.getElementById('pu-fa-group');
+    document.getElementById('fa-results').innerHTML = '';
+    document.getElementById('pu-stats-in').innerHTML = 'Search and select a free agent above';
+    _puSelectedFa = null;
+    document.getElementById('pu-btn-confirm').disabled = true;
+    if (!pos) { faGroup.style.display = 'none'; return; }
+    faGroup.style.display = 'block';
+    await loadFreeAgents(pos);
+  }
+
+  async function loadFreeAgents(pos) {
+    // Collect all slugs already on any roster
+    const ownedSlugs = new Set();
+    for (const t of _rosters.data.teams) {
+      for (const arr of Object.values(t.roster)) {
+        for (const s of arr) { if (s) ownedSlugs.add(s); }
+      }
+    }
+
+    // Determine which NHL positions to query
+    const posFilter = pos === 'F'
+      ? ['C','LW','RW','L','R','W']  // forward positions
+      : pos === 'D'
+      ? ['D']
+      : ['G'];
+
+    const posQ = posFilter.map(p => `position.ilike.*${p}*`).join(',');
+    const url = `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,team,points,goals,assists,games_played,wins,shutouts,ot_losses&or=(${posQ})&order=points.desc&limit=300`;
+    const r = await fetch(url, { headers: sbHeaders() });
+    const all = await r.json();
+    _freeAgents = all.filter(p => p.puckpedia_slug && !ownedSlugs.has(p.puckpedia_slug));
+    filterFreeAgents();
+  }
+
+  function filterFreeAgents() {
+    const q = document.getElementById('pu-fa-search').value.toLowerCase();
+    const shown = q
+      ? _freeAgents.filter(p => (p.player_name || '').toLowerCase().includes(q))
+      : _freeAgents.slice(0, 30);
+
+    const container = document.getElementById('fa-results');
+    if (!shown.length) { container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem;padding:0.4rem">No players found.</div>'; return; }
+
+    container.innerHTML = shown.slice(0, 50).map(p => {
+      const name = formatName(p.player_name);
+      const stats = isGoalie(p)
+        ? `${p.wins ?? 0}W · ${p.shutouts ?? 0}SO · ${p.ot_losses ?? 0}OTL`
+        : `${p.points ?? 0} pts (${p.goals ?? 0}G ${p.assists ?? 0}A)`;
+      const sel = _puSelectedFa === p.puckpedia_slug ? ' selected' : '';
+      return `<div class="fa-row${sel}" onclick="selectFreeAgent('${p.puckpedia_slug}')" data-slug="${p.puckpedia_slug}">
+        <div>
+          <div class="fa-row-name">${name}</div>
+          <div class="fa-row-meta">${p.position || ''} · ${p.team || 'UFA'}</div>
+        </div>
+        <div class="fa-row-stats">${stats} · ${p.games_played ?? 0} GP</div>
+      </div>`;
+    }).join('');
+  }
+
+  async function selectFreeAgent(slug) {
+    _puSelectedFa = slug;
+    // Update selected highlight
+    document.querySelectorAll('#fa-results .fa-row').forEach(el => {
+      el.classList.toggle('selected', el.dataset.slug === slug);
+    });
+    const p = await fetchPlayerStats(slug);
+    document.getElementById('pu-stats-in').innerHTML = p ? statsPreviewHtml(p) : '<span>No stats found</span>';
+    updatePuConfirmBtn();
+    updatePuNote();
+  }
+
+  async function updatePuNote() {
+    const dropSlug = document.getElementById('pu-sel-drop').value;
+    if (!dropSlug) return;
+    const pOut = await fetchPlayerStats(dropSlug);
+    document.getElementById('pu-note').value = statsNote(pOut, dropSlug);
+  }
+
+  function updatePuConfirmBtn() {
+    const dropSlug = document.getElementById('pu-sel-drop').value;
+    const pos      = document.getElementById('pu-pos').value;
+    document.getElementById('pu-btn-confirm').disabled = !(dropSlug && pos && _puSelectedFa);
+  }
+
+  async function confirmPickup() {
+    const btn   = document.getElementById('pu-btn-confirm');
+    const msgEl = document.getElementById('pu-msg');
+    btn.disabled = true;
+    msgEl.style.display = 'none';
+
+    const teamId  = document.getElementById('pu-sel-team').value;
+    const dropSlug = document.getElementById('pu-sel-drop').value;
+    const inSlug  = _puSelectedFa;
+    const pos     = document.getElementById('pu-pos').value;
+    const date    = document.getElementById('pu-date').value;
+    const note    = document.getElementById('pu-note').value.trim();
+
+    const pOut = await fetchPlayerStats(dropSlug);
+    const pIn  = await fetchPlayerStats(inSlug);
+
+    try {
+      // 1. Update pool_rosters
+      const rosterRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
+      const rosterRows = await rosterRes.json();
+      const data = JSON.parse(JSON.stringify(rosterRows[0].data));
+
+      for (const t of data.teams) {
+        if (t.id !== teamId) continue;
+        // Remove dropSlug from ALL arrays (dressed + bench)
+        for (const key of ['F','D','G','B']) {
+          t.roster[key] = (t.roster[key] || []).filter(s => s !== dropSlug);
+        }
+        // Add inSlug to the chosen position
+        if (!t.roster[pos]) t.roster[pos] = [];
+        t.roster[pos].push(inSlug);
+        // Activation snapshot for picked-up player
+        if (!t.acquisitions) t.acquisitions = {};
+        if (pIn) {
+          const snap = isGoalie(pIn)
+            ? { wins: pIn.wins ?? 0, shutouts: pIn.shutouts ?? 0, ot_losses: pIn.ot_losses ?? 0, goals: pIn.goals ?? 0, assists: pIn.assists ?? 0, games_played: pIn.games_played ?? 0 }
+            : { points: pIn.points ?? 0, goals: pIn.goals ?? 0, assists: pIn.assists ?? 0, games_played: pIn.games_played ?? 0 };
+          t.acquisitions[inSlug] = { date, stats_snapshot: snap };
+        }
+        break;
+      }
+
+      const patchRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}`, {
+        method: 'PATCH', headers: sbHeaders(), body: JSON.stringify({ data })
+      });
+      if (!patchRes.ok) throw new Error(`Roster patch failed: ${patchRes.status}`);
+
+      // 2. Insert pool_bench_swaps with reason "pickup"
+      const outNameRaw = pOut?.player_name || dropSlug.split('/').pop();
+      const inNameRaw  = pIn?.player_name  || inSlug.split('/').pop();
+      const outPts = pOut ? (isGoalie(pOut)
+        ? (pOut.wins ?? 0) * 2 + (pOut.shutouts ?? 0) * 3 + (pOut.ot_losses ?? 0)
+        : (pOut.points ?? 0)) : 0;
+      const outPosRaw = pOut?.position?.split(',')[0] || pos;
+      const inPosRaw  = pIn?.position?.split(',')[0]  || pos;
+
+      const swap = {
+        league_code: LEAGUE, team_id: teamId, swap_date: date,
+        player_in_slug: inSlug,    player_in_name: formatName(inNameRaw),  player_in_position: inPosRaw,
+        player_out_slug: dropSlug, player_out_name: formatName(outNameRaw), player_out_position: outPosRaw,
+        player_out_pts_at_swap: outPts, reason: 'pickup', note: note || null
+      };
+
+      const swapRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps`, {
+        method: 'POST', headers: sbHeaders(), body: JSON.stringify(swap)
+      });
+      if (!swapRes.ok) throw new Error(`Log insert failed: ${swapRes.status}`);
+
+      showMsg('pu-msg', 'success', `✅ Done — ${formatName(outNameRaw)} dropped, ${formatName(inNameRaw)} picked up.`);
+      // Reset form
+      document.getElementById('pu-sel-team').value = '';
+      document.getElementById('pu-sel-drop').innerHTML = '<option value="">— Select player —</option>';
+      document.getElementById('pu-sel-drop').disabled = true;
+      document.getElementById('pu-pos').value = '';
+      document.getElementById('pu-pos').disabled = true;
+      document.getElementById('pu-fa-group').style.display = 'none';
+      document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
+      document.getElementById('pu-stats-in').innerHTML = 'Search and select a free agent above';
+      document.getElementById('pu-note').value = '';
+      document.getElementById('fa-results').innerHTML = '';
+      _puSelectedFa = null;
+      _freeAgents   = [];
+      await loadTeams();
+      await loadSwapLog();
+    } catch (err) {
+      showMsg('pu-msg', 'error', `❌ ${err.message}`);
+      btn.disabled = false;
     }
   }
 

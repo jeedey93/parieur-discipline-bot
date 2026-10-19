@@ -2547,6 +2547,8 @@
         } else if (s.reason === 'swap') {
           swapCounter++;
           reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapCounter}</span>`;
+        } else if (s.reason === 'pickup') {
+          reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
         }
         return `<div class="swap-row">
           <div class="swap-date">${fmt(s.swap_date)}</div>
@@ -3166,6 +3168,8 @@
           reasonBadge = `<span class="swap-reason injury">🩹 Injury</span>`;
         } else if (s.reason === 'swap') {
           reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
+        } else if (s.reason === 'pickup') {
+          reasonBadge = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row">
