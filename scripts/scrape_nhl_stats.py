@@ -5,7 +5,7 @@ Matches players by normalised full name (first + last, lowercase, no accents).
 Run after scrape_nhl_players.py so rows already exist.
 
 Also populates:
-  injury_status  — from roster endpoint injuryStatus field
+  injury_status  — from ESPN injuries API (Injured Reserve / Active)
   last5_game_pts — last 5 games pool points (oldest→newest) from game-log endpoint
 """
 
@@ -93,8 +93,29 @@ def fetch_team_stats(abbr: str) -> tuple[list[dict], list[dict]]:
         return [], []
 
 
-def fetch_roster_injury_map(abbr: str) -> dict[int, str]:
-    """Return {playerId: injuryStatus} for a team from the roster endpoint."""
+def fetch_espn_injury_map() -> dict[str, str]:
+    """Return {normalized_player_name: status} for all NHL injured players via ESPN."""
+    url = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/injuries"
+    try:
+        r = SESSION.get(url, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as e:
+        print(f"    ⚠️  ESPN injuries API: {e}")
+        return {}
+    result = {}
+    for team in data.get("injuries", []):
+        for inj in team.get("injuries", []):
+            athlete = inj.get("athlete", {})
+            name = athlete.get("displayName", "")
+            status = inj.get("status", "Active") or "Active"
+            if name:
+                result[normalize(name)] = status
+    return result
+
+
+def fetch_roster_injury_map(abbr: str, espn_map: dict[str, str] | None = None) -> dict[int, str]:
+    """Return {playerId: injuryStatus} for a team, using ESPN injury data when available."""
     url = f"https://api-web.nhle.com/v1/roster/{abbr}/{SEASON}"
     try:
         r = SESSION.get(url, timeout=15)
@@ -107,9 +128,16 @@ def fetch_roster_injury_map(abbr: str) -> dict[int, str]:
     for group in ("forwards", "defensemen", "goalies"):
         for p in data.get(group, []):
             pid = p.get("id")
-            status = p.get("injuryStatus") or "Active"
-            if pid:
-                result[pid] = status
+            if not pid:
+                continue
+            if espn_map:
+                first = p.get("firstName", {}).get("default", "")
+                last = p.get("lastName", {}).get("default", "")
+                key = normalize(f"{first} {last}")
+                status = espn_map.get(key, "Active")
+            else:
+                status = "Active"
+            result[pid] = status
     return result
 
 
@@ -200,6 +228,10 @@ def main():
     print(f"📊  NHL Stats Scraper — {SEASON} regular season → Supabase")
     print("─" * 50)
 
+    espn_injury_map = {} if args.no_extras else fetch_espn_injury_map()
+    if espn_injury_map:
+        print(f"  🩹  ESPN injuries loaded: {len(espn_injury_map)} players")
+
     total_matched = 0
     total_missed  = 0
 
@@ -214,7 +246,7 @@ def main():
         stats_map = build_stats_map(skaters, goalies)
 
         # Injury status map: {playerId → status}
-        injury_map = {} if args.no_extras else fetch_roster_injury_map(abbr)
+        injury_map = {} if args.no_extras else fetch_roster_injury_map(abbr, espn_injury_map)
 
         # Fetch existing DB rows for this team
         db_rows = supabase.table("nhl_players").select(
