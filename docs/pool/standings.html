@@ -1781,7 +1781,7 @@
           if (raw) { const { ts, data } = JSON.parse(raw); if (Date.now() - ts < CACHE_TTL_MS && Array.isArray(data) && data.length) { allPlayers = data; cacheHit = true; } }
         } catch(_) {}
         if (!cacheHit) {
-          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id,last5_game_pts&order=cap_hit.desc&limit=1000`,
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id,last5_game_pts,injury_status&order=cap_hit.desc&limit=1000`,
             { headers: sbHeaders() });
           if (!res.ok) throw new Error(res.status);
           allPlayers = await res.json();
@@ -2862,7 +2862,8 @@
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           form5d: isCurrent ? (p?.last5_game_pts ?? null) : null,
-          ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null });
+          ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null,
+          injuryStatus: isCurrent ? (p?.injury_status || null) : null });
       });
 
       currentNoDraft.forEach(p => {
@@ -2886,7 +2887,8 @@
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
           form5d: p.last5_game_pts ?? null,
-          ytd: (_playerYesterdayPtsBySlug[p.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) });
+          ytd: (_playerYesterdayPtsBySlug[p.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0),
+          injuryStatus: p.injury_status || null });
       });
 
       // Add bench-swapped-out players as past rows
@@ -2925,10 +2927,11 @@
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
         const form5d = r.form5d ?? null;
         const formBadge = r.isCurrent ? hotColdBadge(form5d) : '';
+        const injuryBadge = r.isCurrent && r.injuryStatus && r.injuryStatus !== 'Active' ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">🚑</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${formBadge}${swapDateChip}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapDateChip}</span>
           <span class="hist-stat">${displayGP}</span>
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
