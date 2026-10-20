@@ -1,0 +1,29 @@
+Date: 2026-10-20
+
+Detroit Pistons vs Boston Celtics
+Detroit Pistons ML (Home): 1.96, Boston Celtics ML (Away): 1.89, O/U: 221.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -1.5 (1.94)
+------
+New York Knicks vs Philadelphia 76ers
+New York Knicks ML (Home): 1.53, Philadelphia 76ers ML (Away): 2.56, O/U: 232.5 (Over: 1.98 / Under: 1.83)
+Spreads: Home None (1.94), Away 4.5 (1.95)
+------
+San Antonio Spurs vs Oklahoma City Thunder
+San Antonio Spurs ML (Home): 1.85, Oklahoma City Thunder ML (Away): 2.0, O/U: 232.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.98), Away 1.5 (1.94)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Detroit Pistons ML vs Boston Celtics @ 2.06
+The Detroit Pistons are playing at home in their season opener. While current season statistics for home and away records are 0-0 for all teams, the fundamental advantage of playing on one's home court is a consistent factor in the NBA. Our model assigns a baseline home win probability, which, combined with the minimal home court adjustment for a 0-0 record gap, estimates the Pistons' true win probability at 60%. With odds of 2.06, the implied probability is 48.54%, creating a significant edge of +11.46%. The market appears to be undervaluing the Pistons' home court advantage at the very start of the season.
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+
+**Other Recommended Plays**
+
+San Antonio Spurs ML vs Oklahoma City Thunder @ 1.86
+The San Antonio Spurs are hosting the Oklahoma City Thunder for their first game of the season. Given that all teams are starting with 0-0 records, the established NBA home court advantage plays a crucial role in our model. We calculate the Spurs' win probability at 60%, accounting for the standard home court bump at the beginning of the season. The available odds of 1.86 for the Spurs imply a win probability of 53.76%. This difference provides a +6.24% edge, suggesting the market is slightly underestimating the value of playing at home in this matchup.
+Confidence Level: Medium, Units: 1u, Win Probability: 60%

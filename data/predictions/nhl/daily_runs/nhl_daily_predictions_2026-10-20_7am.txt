@@ -1,0 +1,65 @@
+Date: 2026-10-20
+
+San Jose Sharks @ Montréal Canadiens
+Montréal Canadiens ML (Home): 1.49, San Jose Sharks ML (Away): 2.65, O/U: 6.5 (Over: 1.85 / Under: 1.96)
+------
+Colorado Avalanche @ New Jersey Devils
+New Jersey Devils ML (Home): 1.89, Colorado Avalanche ML (Away): 1.92, O/U: 6.5 (Over: 2.0 / Under: 1.82)
+------
+Anaheim Ducks @ New York Islanders
+New York Islanders ML (Home): 1.64, Anaheim Ducks ML (Away): 2.27, O/U: 6.0 (Over: 1.93 / Under: 1.88)
+------
+Los Angeles Kings @ Washington Capitals
+Washington Capitals ML (Home): 1.64, Los Angeles Kings ML (Away): 2.27, O/U: 5.5 (Over: 1.81 / Under: 2.0)
+------
+Toronto Maple Leafs @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.64, Toronto Maple Leafs ML (Away): 2.27, O/U: 6.5 (Over: 1.93 / Under: 1.88)
+------
+Winnipeg Jets @ St Louis Blues
+St Louis Blues ML (Home): 1.7, Winnipeg Jets ML (Away): 2.16, O/U: 6.0 (Over: 2.02 / Under: 1.81)
+------
+Boston Bruins @ Dallas Stars
+Dallas Stars ML (Home): 1.6, Boston Bruins ML (Away): 2.35, O/U: 5.5 (Over: 1.83 / Under: 1.98)
+------
+Minnesota Wild @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.74, Minnesota Wild ML (Away): 2.11, O/U: 6.5 (Over: 2.01 / Under: 1.81)
+------
+Detroit Red Wings @ Seattle Kraken
+Seattle Kraken ML (Home): 1.89, Detroit Red Wings ML (Away): 1.92, O/U: 6.5 (Over: 1.96 / Under: 1.85)
+------
+Carolina Hurricanes @ Vancouver Canucks
+Vancouver Canucks ML (Home): 3.42, Carolina Hurricanes ML (Away): 1.32, O/U: 6.5 (Over: 1.91 / Under: 1.9)
+------
+Tampa Bay Lightning @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.89, Tampa Bay Lightning ML (Away): 1.92, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+
+AI Analysis Summary:
+Today's Date is 2026-10-20.
+Current Roster Data Verified.
+NHL Player Absences by Team: None.
+Goalie matchups are TBD and this uncertainty is factored into confidence levels.
+
+BET OF THE DAY
+
+Washington Capitals ML vs Los Angeles Kings @ 1.64
+The Washington Capitals enter this game with strong home form (0.800 Win %) and a clear motivation advantage, sitting as a playoff contender against a struggling Los Angeles Kings team. The Kings are on a 6-game losing streak with a dismal 0.000 away win percentage and a significant negative goal differential over their last 10 games. While starting goalies are TBD, the fundamental matchup discrepancies in form, home-ice strength, and team standing suggest the market has slightly undervalued Washington's probability to win at home against a heavily slumping opponent.
+Confidence Level: Medium, Units: 1u, Win Probability: 66%
+
+**Other Recommended Plays**
+
+Columbus Blue Jackets ML vs Toronto Maple Leafs @ 1.64
+The Columbus Blue Jackets, despite a middling record, boast a decent home win percentage of 0.600. They face a Toronto Maple Leafs team on the second leg of a back-to-back, which historically impacts performance. Toronto's away record is less impressive at 0.333, creating a significant home-ice advantage for Columbus. Given Toronto's fatigue and Columbus's home strength, the odds present a valuable opportunity despite the TBD goalie situation.
+Confidence Level: Medium, Units: 1u, Win Probability: 66%
+
+Seattle Kraken ML vs Detroit Red Wings @ 1.89
+The Seattle Kraken are in strong form, with a 5-3-1 record in their last 10 games and an improving trend. They face a Detroit Red Wings team that has struggled on the road (0.000 away win percentage). Seattle also holds a favorable head-to-head win this season against Detroit. Combined with a significant home-ice advantage, the Kraken are a clear value play, even with goalie matchups pending.
+Confidence Level: High, Units: 1.5u, Win Probability: 65%
+
+Vegas Golden Knights ML vs Tampa Bay Lightning @ 1.89
+The Vegas Golden Knights are one of the league's top teams, holding an impressive 8-2-0 record in their last 10 games and an 0.833 home win percentage. They possess a strong goal differential of +1.8 and face a Tampa Bay Lightning team with a less dominant away record (0.333 win percentage). The significant home-ice advantage for Vegas, coupled with their overall superior form, creates a strong edge on the moneyline despite the TBD goalie situation.
+Confidence Level: High, Units: 1.5u, Win Probability: 65%
+
+Montréal Canadiens vs San Jose Sharks Under 6.5 @ 1.96
+Both the Montréal Canadiens and San Jose Sharks have shown declining form trends in terms of total goals in their recent games. San Jose is also on a back-to-back, which often leads to tired legs and can suppress offensive output. While the expected average goals based on season stats are around 6.7, the combination of negative form trends and San Jose's fatigue suggests a higher probability for a lower-scoring affair than the line indicates, providing a slight edge on the Under.
+Confidence Level: Medium, Units: 1u, Win Probability: 54%
