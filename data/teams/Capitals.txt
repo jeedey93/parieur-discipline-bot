@@ -1,20 +1,20 @@
 ============================================================
 CAPITALS - LINEUP
-Last Updated: 2026-10-16 05:54 PM ET
+Last Updated: 2026-10-20 03:12 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Alex Tuch — Dylan Strome — Jordan Kyrou
-Line 2: Alaiksei Protas — Boone Jenner — Tom Wilson
-Line 3: Alex Ovechkin — Ilya Protas — Ivan Miroshnichenko
-Line 4: Anthony Beauvillier — Justin Sourdif — Ryan Leonard
+Line 2: Alex Ovechkin — Ilya Protas — Ivan Miroshnichenko
+Line 3: Alaiksei Protas — Boone Jenner — Tom Wilson
+Line 4: Anthony Beauvillier — Jonny Brodzinski — Ryan Leonard
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Jakob Chychrun — Timothy Liljegren
+Pair 1: Jakob Chychrun — Matt Roy
 Pair 2: Martin Fehervary — Vincent Desharnais
-Pair 3: Cole Hutson — Justin Holl
+Pair 3: Cole Hutson — Timothy Liljegren
 
 GOALIES:
 ----------------------------------------
@@ -26,7 +26,7 @@ SCRATCHED / INJURED:
   Ethen Frank (scratched)
   Dylan McIlrath (scratched)
   Rasmus Sandin (knee) (injured)
-  Matt Roy (lower body) (injured)
   Pierre-Luc Dubois (illness) (injured)
+  Justin Sourdif (illness) (injured)
 
 ============================================================

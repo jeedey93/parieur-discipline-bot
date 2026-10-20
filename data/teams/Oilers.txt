@@ -1,12 +1,12 @@
 ============================================================
 OILERS - LINEUP
-Last Updated: 2026-10-17 05:15 PM ET
+Last Updated: 2026-10-20 03:12 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Vasily Podkolzin — Connor McDavid — Leon Draisaitl
-Line 2: Kasperi Kapanen — Colton Dach — Zach Hyman
+Line 2: Zach Hyman — Colton Dach — Kasperi Kapanen
 Line 3: Alex Formenton — Owen Michaels — Mathieu Joseph
 Line 4: Filip Hallander — Trent Frederic — Isaac Howard
 
@@ -18,18 +18,17 @@ Pair 3: Jake Walman — Ty Emberson
 
 GOALIES:
 ----------------------------------------
-  Tristan Jarry
   Devon Levi
+  Tristan Jarry
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Max Jones (scratched)
   Shakir Mukhamadullin (scratched)
-  Josh Samanski (scratched)
   Frederik Andersen (undisclosed) (injured)
   Jason Dickinson (undisclosed) (injured)
   Mattias Janmark (undisclosed) (injured)
-  Ryan Nugent-Hopkins (lower body) (injured)
+  Ryan Nugent-Hopkins (lower-body) (injured)
   Alec Regula (undisclosed) (injured)
   Matthew Savoie (undisclosed) (injured)
 

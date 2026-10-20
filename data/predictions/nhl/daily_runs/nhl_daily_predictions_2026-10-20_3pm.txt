@@ -1,0 +1,60 @@
+Date: 2026-10-20
+
+San Jose Sharks @ Montréal Canadiens
+Montréal Canadiens ML (Home): 1.44, San Jose Sharks ML (Away): 2.8, O/U: 6.5 (Over: 1.84 / Under: 1.97)
+------
+Colorado Avalanche @ New Jersey Devils
+New Jersey Devils ML (Home): 1.85, Colorado Avalanche ML (Away): 1.97, O/U: 6.5 (Over: 1.99 / Under: 1.83)
+------
+Anaheim Ducks @ New York Islanders
+New York Islanders ML (Home): 1.66, Anaheim Ducks ML (Away): 2.23, O/U: 6.0 (Over: 1.96 / Under: 1.85)
+------
+Los Angeles Kings @ Washington Capitals
+Washington Capitals ML (Home): 1.63, Los Angeles Kings ML (Away): 2.29, O/U: 5.5 (Over: 1.81 / Under: 2.0)
+------
+Toronto Maple Leafs @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 1.65, Toronto Maple Leafs ML (Away): 2.26, O/U: 6.5 (Over: 1.92 / Under: 1.89)
+------
+Winnipeg Jets @ St Louis Blues
+St Louis Blues ML (Home): 1.72, Winnipeg Jets ML (Away): 2.14, O/U: 6.0 (Over: 2.0 / Under: 1.81)
+------
+Boston Bruins @ Dallas Stars
+Dallas Stars ML (Home): 1.6, Boston Bruins ML (Away): 2.35, O/U: 5.5 (Over: 1.83 / Under: 1.98)
+------
+Minnesota Wild @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.76, Minnesota Wild ML (Away): 2.07, O/U: 6.5 (Over: 2.01 / Under: 1.81)
+------
+Detroit Red Wings @ Seattle Kraken
+Seattle Kraken ML (Home): 1.93, Detroit Red Wings ML (Away): 1.87, O/U: 6.5 (Over: 1.96 / Under: 1.85)
+------
+Carolina Hurricanes @ Vancouver Canucks
+Vancouver Canucks ML (Home): 3.4, Carolina Hurricanes ML (Away): 1.32, O/U: 6.5 (Over: 1.92 / Under: 1.89)
+------
+Tampa Bay Lightning @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.92, Tampa Bay Lightning ML (Away): 1.89, O/U: 6.0 (Over: 1.82 / Under: 2.0)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+**EARLY-SEASON WARNING APPLIED**: Today's Date is 2026-10-20, which falls within the first three weeks of the NHL season. As per the guidelines, the minimum required edge for all plays is raised to +7%. Goalie last 5 SV% data is used but with an understanding of smaller sample sizes, and goalies are defaulted to "Average" unless a clear signal from 3+ games emerges. Under picks are treated with extra skepticism.
+
+BET OF THE DAY
+
+**Washington Capitals ML vs Los Angeles Kings @ 1.63**
+The Washington Capitals present a compelling value opportunity against a struggling Los Angeles Kings squad. Capitals starting goalie Logan Thompson (Last 5 SV%: 0.903) holds an advantage over the Kings' Darcy Kuemper (Last 5 SV%: 0.847), who has been in poor form. The Capitals also boast a dominant home record (0.800 Win %) compared to the Kings' abysmal road performance (0.000 Win %), creating a significant home-ice edge. Furthermore, Los Angeles enters this game on a 6-game losing streak and is severely hampered by key absences including Kevin Fiala (leg surgery) and Alex Turcotte (undisclosed), while Washington is a more stable playoff contender. All factors combine to suggest the market has underestimated Washington's likelihood of victory at these odds.
+Confidence Level: High, Units: 1.5u, Win Probability: 73%
+
+**Other Recommended Plays**
+
+**New York Islanders ML vs Anaheim Ducks @ 1.66**
+The New York Islanders are poised for a strong performance against the Anaheim Ducks. Islanders' elite goaltender Ilya Sorokin (Last 5 SV%: 0.943) provides a substantial advantage over Anaheim's Lukas Dostal (Last 5 SV%: 0.877), who has been struggling. The Islanders are well-rested, while the Ducks are playing on the second night of a back-to-back, a taxing situation that often leads to fatigue and defensive lapses. With key offensive players like Troy Terry (hip) and Ryan Poehling (knee) absent for Anaheim, their already weak offense faces a formidable challenge against Sorokin. This combination of superior goaltending, rest advantage, and opponent's key absences creates a significant edge for the Islanders.
+Confidence Level: High, Units: 1.5u, Win Probability: 72%
+
+**Columbus Blue Jackets ML vs Toronto Maple Leafs @ 1.65**
+The Columbus Blue Jackets offer strong value facing a Toronto Maple Leafs team dealing with significant roster issues and fatigue. Blue Jackets goalie Jet Greaves (Last 5 SV%: 0.904) is in better form than Toronto's Anthony Stolarz (Last 5 SV%: 0.875). Crucially, Toronto is playing on a back-to-back while Columbus is more rested, and the Maple Leafs are missing key offensive leaders in John Tavares (lower body) and Max Domi (undisclosed), as well as defenseman Chris Tanev (upper body). The Blue Jackets also hold a considerable home-ice advantage, with a 0.600 home win percentage compared to Toronto's 0.333 away. These factors collectively create a notable mispricing in favor of Columbus.
+Confidence Level: High, Units: 1.5u, Win Probability: 69%
+
+**Vegas Golden Knights ML vs Tampa Bay Lightning @ 1.92**
+The Vegas Golden Knights present a solid betting opportunity at home against the Tampa Bay Lightning. Vegas starting goalie Carter Hart (Last 5 SV%: 0.908) is performing at an average level, while Tampa Bay's Andrei Vasilevskiy (Last 5 SV%: 0.898) has shown below-average form, with his season SV% (.886) indicating deeper struggles. The Golden Knights possess a commanding home-ice advantage (0.833 Home Win %) over the Lightning's pedestrian road record (0.333 Away Win %). Furthermore, Vegas has a superior goal differential (+1.8) over their last 10 games compared to Tampa Bay's (+0.5). Despite both teams being contenders, the market has not fully accounted for Vegas's home dominance and Vasilevskiy's early-season dip.
+Confidence Level: High, Units: 1.5u, Win Probability: 64%
