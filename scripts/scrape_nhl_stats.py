@@ -114,7 +114,7 @@ def fetch_roster_injury_map(abbr: str) -> dict[int, str]:
 
 
 def fetch_last5_game_pts(player_id: int, position: str, scoring: dict) -> list[int]:
-    """Return list of pool-points for the last ≤5 games (oldest→newest)."""
+    """Return list of pool-points for the last ≤10 games (oldest→newest)."""
     url = f"https://api-web.nhle.com/v1/player/{player_id}/game-log/{SEASON}/2"
     try:
         r = SESSION.get(url, timeout=15)
@@ -126,7 +126,7 @@ def fetch_last5_game_pts(player_id: int, position: str, scoring: dict) -> list[i
     pos = position.upper() if position else "F"
     is_goalie = pos == "G"
     pts_list = []
-    for g in games[-5:]:
+    for g in games[-10:]:
         if is_goalie:
             w = 1 if g.get("decision", "").upper() == "W" else 0
             so = g.get("shutouts", 0) or 0

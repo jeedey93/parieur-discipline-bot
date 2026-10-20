@@ -529,6 +529,11 @@
           .hist-g-show-mobile { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
+        .form-label-mobile { display: none; }
+        @media (max-width: 560px) {
+          .form-label-desktop { display: none; }
+          .form-label-mobile { display: inline; }
+        }
         .hist-ytd.pos { color: var(--green); }
         .hist-ytd.zero { color: rgba(255,255,255,0.15); }
         .hist-header-row { background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.35rem 0.75rem; }
@@ -1218,12 +1223,13 @@
       try { vals = typeof last5Raw === 'string' ? JSON.parse(last5Raw) : last5Raw; } catch { return ''; }
       if (!Array.isArray(vals) || vals.length === 0) return '';
       const played = vals.filter(v => v !== null);
-      if (played.length < 2) return '';
-      const recent = played.slice(-5);
+      if (played.length < 3) return '';
+      const recent = played.slice(-10);
       const scoringGames = recent.filter(v => v > 0).length;
       const total = recent.reduce((a, b) => a + b, 0);
-      if (scoringGames >= 3) return `<span title="${total} pts in last ${recent.length} games" style="cursor:default;font-size:0.8rem;margin-left:3px">🔥</span>`;
-      if (scoringGames === 0) return `<span title="0 pts in last ${recent.length} games" style="cursor:default;font-size:0.8rem;margin-left:3px">🧊</span>`;
+      const threshold = Math.ceil(recent.length / 2); // hot if scoring in majority of games
+      if (scoringGames >= threshold) return `<span style="cursor:default;font-size:0.78rem;margin-left:4px;white-space:nowrap;color:var(--gold)">🔥<span class="form-label-desktop"> ${total}pts L${recent.length}</span><span class="form-label-mobile">+${total}</span></span>`;
+      if (scoringGames === 0) return `<span style="cursor:default;font-size:0.78rem;margin-left:4px;white-space:nowrap;color:rgba(150,180,255,0.7)">🧊<span class="form-label-desktop"> 0pts L${recent.length}</span><span class="form-label-mobile"> 0</span></span>`;
       return '';
     }
 
