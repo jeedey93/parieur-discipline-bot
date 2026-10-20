@@ -13,8 +13,8 @@ on:
           - 7am
           - 3pm
   schedule:
-    - cron: '17 11 * * *'   # 7am run  (11:17am UTC = ~7:17am Montreal EDT)
-    - cron: '17 19 * * *'   # 3pm run  (7:17pm UTC = ~3:17pm Montreal EDT)
+    - cron: '0 1 * * *'   # targets ~7am Montreal after typical 6h GH Actions queue delay
+    - cron: '0 9 * * *'   # targets ~3pm Montreal after typical 6h GH Actions queue delay
 
 jobs:
   run-dual-predictions:
