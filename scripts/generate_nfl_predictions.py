@@ -343,8 +343,7 @@ def analyze_results(results_text, team_stats_text, h2h_stats_text, home_away_spl
 
     models_to_try = [
         "models/gemini-2.5-flash",
-        "models/gemini-2.0-flash",
-        "models/gemini-2.0-flash-lite",
+        "models/gemini-3.8-flash",
         "models/gemini-2.5-flash-lite",
     ]
     retry_waits = [30, 60]
