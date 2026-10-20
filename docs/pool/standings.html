@@ -2704,8 +2704,8 @@
           const benchGoalies = bench.filter(s => { const p = m[s]; return p && normalizePos(p.position) === 'G'; });
           const skaterTeam = benchSkaters.length ? { ...team, roster: { ...team.roster, B: benchSkaters } } : null;
           const goalieTeam = benchGoalies.length ? { ...team, roster: { ...team.roster, G: benchGoalies } } : null;
-          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench') : '') +
-                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)') : '');
+          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench', false) : '') +
+                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)', false) : '');
         })()}
         ${buildSwapHistory(team)}
       `;
@@ -2753,7 +2753,7 @@
     }
 
     // ── HIST TABLE ────────────────────────────────────────────────────────────────
-    function buildHistTable(team, pos, label) {
+    function buildHistTable(team, pos, label, showSwapGhosts = true) {
       const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(s => s && typeof s === 'string'));
       const activeSlugSet = new Set((team.roster[pos] || []).filter(Boolean));
       const m = slugMap();
@@ -2773,7 +2773,7 @@
       // Inject bench-swapped-out players as past rows (only for F/D/G tables, not bench)
       // For goalies on bench: skip the ghost row (they show with full stats in bench section)
       // For skaters on bench: still show their historical stats row in the dressed section
-      const swapOutRows = pos !== 'B' ? _benchSwaps.filter(s => {
+      const swapOutRows = (pos !== 'B' && showSwapGhosts) ? _benchSwaps.filter(s => {
         if (s.team_id !== team.id) return false;
         const swapPos = normalizePos(s.player_out_position);
         return swapPos === pos && !seenSlugs.has(s.player_out_slug);
