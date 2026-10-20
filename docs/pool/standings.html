@@ -764,6 +764,9 @@
         .all-swaps { margin-top: 2rem; }
         .all-swaps-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; }
         .all-swaps-team { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.2rem; }
+        .swap-filter-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: rgba(255,255,255,0.5); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+        .swap-filter-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+        .swap-filter-btn.active { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.4); color: var(--gold); }
         .swap-date-chip { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.3px; margin-top: 1px; }
 
         /* ── BUMP CHART ── */
@@ -3428,7 +3431,7 @@
           reasonBadge = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
-        return `<div class="swap-row">
+        return `<div class="swap-row" data-reason="${s.reason}" data-team="${s.team_id}">
           <div class="swap-date"><span class="all-swaps-team">${teamName}</span> &nbsp;${fmt(s.swap_date)}</div>
           <div class="swap-move">
             <span class="swap-in">▲ ${s.player_in_name}</span>
@@ -3439,10 +3442,46 @@
           ${s.note ? `<div class="swap-note">${s.note}</div>` : ''}
         </div>`;
       }).join('');
+      const teamIds = [...new Set(sorted.map(s => s.team_id))];
+      const teamBtns = teamIds.map(id => {
+        const name = teams.find(t => t.id === id)?.name ?? id;
+        const short = name.split(' ').slice(0,2).join(' ');
+        return `<button onclick="setSwapFilter('team:${id}')" id="sf-team-${id}" class="swap-filter-btn">${short}</button>`;
+      }).join('');
+
       return `<div class="all-swaps">
-        <div class="all-swaps-title">All Swaps</div>
-        <div class="swap-history">${rows}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;flex-wrap:wrap;gap:0.5rem">
+          <div class="all-swaps-title" style="margin-bottom:0">All Swaps</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            <button onclick="setSwapFilter('all')"    id="sf-all"    class="swap-filter-btn active">All</button>
+            <button onclick="setSwapFilter('swap')"   id="sf-swap"   class="swap-filter-btn">🔄 Official</button>
+            <button onclick="setSwapFilter('injury')" id="sf-injury" class="swap-filter-btn">🩹 Injury</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.75rem">${teamBtns}</div>
+        <div class="swap-history" id="all-swaps-list">${rows}</div>
       </div>`;
+    }
+
+    function setSwapFilter(filter) {
+      const list = document.getElementById('all-swaps-list');
+      if (!list) return;
+      // Update active button
+      document.querySelectorAll('.swap-filter-btn').forEach(b => b.classList.remove('active'));
+      const btnId = filter.startsWith('team:') ? `sf-team-${filter.slice(5)}` : `sf-${filter}`;
+      const activeBtn = document.getElementById(btnId);
+      if (activeBtn) activeBtn.classList.add('active');
+      // Show/hide rows
+      list.querySelectorAll('.swap-row').forEach(row => {
+        const reason = row.dataset.reason;
+        const team   = row.dataset.team;
+        let show = false;
+        if (filter === 'all')               show = true;
+        else if (filter === 'swap')         show = reason === 'swap';
+        else if (filter === 'injury')       show = reason === 'injury';
+        else if (filter.startsWith('team:')) show = team === filter.slice(5);
+        row.style.display = show ? '' : 'none';
+      });
     }
 
     load();
