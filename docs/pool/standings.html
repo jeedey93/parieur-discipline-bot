@@ -2895,7 +2895,7 @@
         const hasAcqDate = acqDate.getTime() !== ACTIVE_ACQUIRED_FALLBACK_DATE.getTime();
         const tenure = `${fmt(acqDate)} → Now`;
         rowData.push({ isCurrent: true, cls: 'current', name: formatName(p.player_name), logo, vsLogo, tenure, col1, col2, col3, pts, gp, g, a, w, so, otl,
-          _acqDateChip: hasAcqDate ? `${fmt(acqDate)} → Now` : null,
+          _acqDateChip: (!isBench && hasAcqDate) ? `${fmt(acqDate)} → Now` : null,
           actualPos: p.position ? normalizePos(p.position) : pos,
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
