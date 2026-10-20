@@ -2773,11 +2773,9 @@
       // Inject bench-swapped-out players as past rows (only for F/D/G tables, not bench)
       // For goalies on bench: skip the ghost row (they show with full stats in bench section)
       // For skaters on bench: still show their historical stats row in the dressed section
-      const benchSlugs = new Set((team.roster.B || []).filter(Boolean));
       const swapOutRows = pos !== 'B' ? _benchSwaps.filter(s => {
         if (s.team_id !== team.id) return false;
         const swapPos = normalizePos(s.player_out_position);
-        if (swapPos === 'G' && benchSlugs.has(s.player_out_slug)) return false; // bench goalie: skip ghost
         return swapPos === pos && !seenSlugs.has(s.player_out_slug);
       }).map(s => {
         const p = m[s.player_out_slug];
