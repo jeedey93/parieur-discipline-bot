@@ -110,6 +110,8 @@ jobs:
         if: steps.run_time.outputs.time == '3pm'
         run: python scripts/generate_website.py
       - name: Commit predictions
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           set -e
           git config user.name "github-actions[bot]"
