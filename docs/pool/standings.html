@@ -582,11 +582,6 @@
           .hist-g-show-mobile { display: none; }
         }
         .hist-ytd { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px; text-align: right; }
-        .form-label-mobile { display: none; }
-        @media (max-width: 560px) {
-          .form-label-desktop { display: none; }
-          .form-label-mobile { display: inline; }
-        }
         .hist-ytd.pos { color: var(--green); }
         .hist-ytd.zero { color: rgba(255,255,255,0.15); }
         .hist-header-row { background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.35rem 0.75rem; }
@@ -1280,8 +1275,8 @@
       if (played.length < 3) return '';
       const recent = played.slice(-5);
       const total = recent.reduce((a, b) => a + b, 0);
-      if (total >= 5) return `<span style="cursor:default;font-size:0.78rem;margin-left:4px;white-space:nowrap;color:var(--gold)">🔥<span class="form-label-desktop"> ${total}pts L${recent.length}</span><span class="form-label-mobile">+${total}</span></span>`;
-      if (total <= 1) return `<span style="cursor:default;font-size:0.78rem;margin-left:4px;white-space:nowrap;color:rgba(150,180,255,0.7)">🧊<span class="form-label-desktop"> ${total}pts L${recent.length}</span><span class="form-label-mobile">${total}</span></span>`;
+      if (total >= 5) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px">🔥</span>`;
+      if (total <= 1) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px">🧊</span>`;
       return '';
     }
 
