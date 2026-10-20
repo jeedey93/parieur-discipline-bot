@@ -1013,6 +1013,7 @@
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
+    let _player5dPtsBySlug  = {}; // slug -> pool pts delta over last ~5 games (5 days)
     let _player30dPtsBySlug = {}; // slug -> pool pts delta over last 30 days
     let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
@@ -1787,9 +1788,10 @@
                 if (delta > 0) _playerYesterdayPtsBySlug[slug] = delta;
               }
             }
-            // 30-day player deltas
+            // 5-day and 30-day player deltas
+            const snap5d  = snapRows.length >= 6  ? snapRows[5]  : snapRows[snapRows.length - 1];
             const snap30d = snapRows.length >= 31 ? snapRows[30] : snapRows[snapRows.length - 1];
-            for (const [snap, map] of [[snap30d, _player30dPtsBySlug]]) {
+            for (const [snap, map] of [[snap5d, _player5dPtsBySlug], [snap30d, _player30dPtsBySlug]]) {
               const basePts = snap?.player_pts || {};
               for (const [slug, pts] of Object.entries(latestPlayerPts)) {
                 const delta = pts - (basePts[slug] ?? pts);
@@ -2772,6 +2774,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
+          form5d: isCurrent ? (_player5dPtsBySlug[p?.puckpedia_slug] ?? 0) : null,
           ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null });
       });
 
@@ -2795,6 +2798,7 @@
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
+          form5d: _player5dPtsBySlug[p.puckpedia_slug] ?? 0,
           ytd: (_playerYesterdayPtsBySlug[p.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) });
       });
 
@@ -2832,10 +2836,16 @@
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
+        const form5d = r.form5d ?? null;
+        const formBadge = r.isCurrent && form5d !== null
+          ? (form5d >= 3 ? `<span title="${form5d} pts last 5 days" style="cursor:default;font-size:0.8rem;margin-left:3px">🔥</span>`
+           : form5d === 0 && r.gp >= 3 ? `<span title="0 pts last 5 days" style="cursor:default;font-size:0.8rem;margin-left:3px">🧊</span>`
+           : '')
+          : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${swapDateChip}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${formBadge}${swapDateChip}</span>
           <span class="hist-stat">${displayGP}</span>
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
