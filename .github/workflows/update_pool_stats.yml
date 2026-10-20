@@ -32,7 +32,6 @@ jobs:
 
       - name: Update NHL player stats
         run: python scripts/scrape_nhl_stats.py
-        continue-on-error: true
 
       - name: Update pool standings metadata
         run: python scripts/update_pool_standings.py
