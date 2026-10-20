@@ -1164,7 +1164,7 @@
             }
             for (const g of (sideData.goalies || [])) {
               const id = Number(g.playerId);
-              if (!id || !g.toi || g.toi === '00:00') continue;
+              if (!id || !g.toi || g.toi === '00:00' || g.toi === '0:00') continue;
               if (isLiveNow) newLiveIds.add(id);
               const decision = (g.decision || '').toUpperCase();
               if (!isOver) continue; // only score goalies once game is final
