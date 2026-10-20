@@ -2927,7 +2927,7 @@
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
         const form5d = r.form5d ?? null;
         const formBadge = r.isCurrent ? hotColdBadge(form5d) : '';
-        const injuryBadge = r.isCurrent && r.injuryStatus && r.injuryStatus !== 'Active' ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">🚑</span>` : '';
+        const injuryBadge = r.isCurrent && r.injuryStatus && r.injuryStatus !== 'Active' ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">🩹</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
