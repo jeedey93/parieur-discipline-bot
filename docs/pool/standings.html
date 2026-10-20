@@ -3093,9 +3093,8 @@
         });
       });
       const injuredPlayers = allWithBench
-        .filter(({ player }) => player.injury_status && player.injury_status !== 'Active')
+        .filter(({ player, bench }) => !bench && player.injury_status && player.injury_status !== 'Active')
         .sort((a, b) => {
-          if (a.bench !== b.bench) return a.bench ? 1 : -1;
           const pa = poolScoreOwned(a.player, a.team, a.player._slug);
           const pb = poolScoreOwned(b.player, b.team, b.player._slug);
           return pb - pa;
@@ -3121,7 +3120,6 @@
               <div class="top-player-info">${logo}
                 <div><div class="top-player-name">❌ ${formatName(p.player_name)}</div></div>
                 <span class="pos-pill ${item.pos}">${item.pos}</span>
-                <span style="font-size:0.65rem;font-weight:700;padding:1px 5px;border-radius:3px;background:${item.bench?'rgba(255,255,255,0.08)':'rgba(34,197,94,0.15)'};color:${item.bench?'var(--silver)':'var(--green)'}">${item.bench?'Bench':'Dressed'}</span>
               </div>
               <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
               <div class="top-player-stat inj-status-col" style="font-size:0.7rem;color:var(--red)">${p.injury_status}</div>
