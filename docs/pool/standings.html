@@ -2675,7 +2675,9 @@
         const storedPos = t.player_to_position ? normalizePos(t.player_to_position) : null;
         return (livePos || storedPos) === pos;
       });
-      const seenSlugs = new Set(trades.map(t => t.player_to_slug));
+      // seenSlugs: only block swap ghost rows for players currently dressed in this position
+      const dressedSlugsForPos = new Set((team.roster[pos] || []).filter(Boolean));
+      const seenSlugs = new Set(trades.map(t => t.player_to_slug).filter(s => dressedSlugsForPos.has(s)));
       const currentNoDraft = (team.roster[pos] || []).filter(s => s && typeof s === 'string' && currentSlugs.has(s) && !seenSlugs.has(s)).map(s => m[s] ? { ...m[s], _slug: s } : { puckpedia_slug: s, player_name: s.split('/').pop()?.replace(/-/g,' '), position: pos === 'B' ? '' : pos, cap_hit: 0, _slug: s, _unknown: true }).filter(Boolean);
 
       // Inject bench-swapped-out players as past rows (only for F/D/G tables, not bench)
@@ -2686,9 +2688,7 @@
         if (s.team_id !== team.id) return false;
         const swapPos = normalizePos(s.player_out_position);
         if (swapPos === 'G' && benchSlugs.has(s.player_out_slug)) return false; // bench goalie: skip ghost
-        // Skip if currently dressed (already shown as active row via trade or currentNoDraft)
-        if (activeSlugSet.has(s.player_out_slug)) return false;
-        return swapPos === pos;
+        return swapPos === pos && !seenSlugs.has(s.player_out_slug);
       }).map(s => {
         const p = m[s.player_out_slug];
         const abbr = p ? TEAM_ABBR[p.team] : null;
