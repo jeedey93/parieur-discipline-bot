@@ -3037,7 +3037,7 @@
             </div>`;
           }).join('')}
         </div>
-        <div class="pos-leaders-grand-total">
+        <div class="pos-leaders-grand-total" style="display:none">
           Combined top-10 pool pts across all positions <strong>${grandTotal}</strong>
         </div>`;
 
@@ -3079,7 +3079,44 @@
           }).join('')}
         </div>`;
 
-      return grid + top;
+      // Injured players section
+      const injuredPlayers = drafted
+        .filter(({ player }) => player.injury_status && player.injury_status !== 'Active')
+        .sort((a, b) => {
+          const pa = poolScoreOwned(a.player, a.team, a.player._slug);
+          const pb = poolScoreOwned(b.player, b.team, b.player._slug);
+          return pb - pa;
+        });
+
+      const injured = injuredPlayers.length === 0 ? '' : `
+        <div class="pool-section-title" style="margin-top:1.5rem">Injured <span>Players</span></div>
+        <div class="top-players-list">
+          <div class="top-player-row header">
+            <div></div>
+            <div class="lb-col-label left">Player</div>
+            <div class="lb-col-label">Owner</div>
+            <div class="lb-col-label">Status</div>
+            <div class="lb-col-label">Pts</div>
+          </div>
+          ${injuredPlayers.map((item, i) => {
+            const p = item.player;
+            const abbr = TEAM_ABBR[p.team];
+            const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+            const pts = poolScoreOwned(p, item.team, p._slug);
+            return `<div class="top-player-row">
+              <div class="top-player-rank">${i+1}</div>
+              <div class="top-player-info">${logo}
+                <div><div class="top-player-name">${formatName(p.player_name)}</div></div>
+                <span class="pos-pill ${item.pos}">${item.pos}</span>
+              </div>
+              <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
+              <div class="top-player-stat" style="font-size:0.7rem;color:var(--red)">❌ ${p.injury_status}</div>
+              <div class="top-player-pts">${pts}</div>
+            </div>`;
+          }).join('')}
+        </div>`;
+
+      return grid + top + injured;
     }
 
     // ── HISTORY / BUMP CHART ─────────────────────────────────────────────────────
