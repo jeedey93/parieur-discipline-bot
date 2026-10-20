@@ -1013,7 +1013,6 @@
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
-    let _player5dPtsBySlug  = {}; // slug -> pool pts delta over last ~5 games (5 days)
     let _player30dPtsBySlug = {}; // slug -> pool pts delta over last 30 days
     let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
@@ -1211,6 +1210,21 @@
           { headers: sbHeaders() });
         if (r.ok) { const rows = await r.json(); if (rows.length) _scoring = { ..._scoring, ...rows[0] }; }
       } catch(e) {}
+    }
+
+    function hotColdBadge(last5Raw) {
+      if (!last5Raw) return '';
+      let vals;
+      try { vals = typeof last5Raw === 'string' ? JSON.parse(last5Raw) : last5Raw; } catch { return ''; }
+      if (!Array.isArray(vals) || vals.length === 0) return '';
+      const played = vals.filter(v => v !== null);
+      if (played.length < 2) return '';
+      const recent = played.slice(-5);
+      const scoringGames = recent.filter(v => v > 0).length;
+      const total = recent.reduce((a, b) => a + b, 0);
+      if (scoringGames >= 3) return `<span title="${total} pts in last ${recent.length} games" style="cursor:default;font-size:0.8rem;margin-left:3px">🔥</span>`;
+      if (scoringGames === 0) return `<span title="0 pts in last ${recent.length} games" style="cursor:default;font-size:0.8rem;margin-left:3px">🧊</span>`;
+      return '';
     }
 
     function normalizePos(pos) {
@@ -1713,7 +1727,7 @@
           if (raw) { const { ts, data } = JSON.parse(raw); if (Date.now() - ts < CACHE_TTL_MS && Array.isArray(data) && data.length) { allPlayers = data; cacheHit = true; } }
         } catch(_) {}
         if (!cacheHit) {
-          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id&order=cap_hit.desc&limit=1000`,
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id,last5_game_pts&order=cap_hit.desc&limit=1000`,
             { headers: sbHeaders() });
           if (!res.ok) throw new Error(res.status);
           allPlayers = await res.json();
@@ -1788,10 +1802,9 @@
                 if (delta > 0) _playerYesterdayPtsBySlug[slug] = delta;
               }
             }
-            // 5-day and 30-day player deltas
-            const snap5d  = snapRows.length >= 6  ? snapRows[5]  : snapRows[snapRows.length - 1];
+            // 30-day player deltas
             const snap30d = snapRows.length >= 31 ? snapRows[30] : snapRows[snapRows.length - 1];
-            for (const [snap, map] of [[snap5d, _player5dPtsBySlug], [snap30d, _player30dPtsBySlug]]) {
+            for (const [snap, map] of [[snap30d, _player30dPtsBySlug]]) {
               const basePts = snap?.player_pts || {};
               for (const [slug, pts] of Object.entries(latestPlayerPts)) {
                 const delta = pts - (basePts[slug] ?? pts);
@@ -2774,7 +2787,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          form5d: isCurrent ? (_player5dPtsBySlug[p?.puckpedia_slug] ?? 0) : null,
+          form5d: isCurrent ? (p?.last5_game_pts ?? null) : null,
           ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null });
       });
 
@@ -2798,7 +2811,7 @@
           nhlId: p.nhl_player_id || null, slug: p.puckpedia_slug || null,
           capHit: p.cap_hit || null, nhlTeam: p.team || null, owner: team.name,
           ppg: (typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          form5d: _player5dPtsBySlug[p.puckpedia_slug] ?? 0,
+          form5d: p.last5_game_pts ?? null,
           ytd: (_playerYesterdayPtsBySlug[p.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) });
       });
 
@@ -2837,11 +2850,7 @@
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
         const form5d = r.form5d ?? null;
-        const formBadge = r.isCurrent && form5d !== null
-          ? (form5d >= 3 ? `<span title="${form5d} pts last 5 days" style="cursor:default;font-size:0.8rem;margin-left:3px">🔥</span>`
-           : form5d === 0 && r.gp >= 3 ? `<span title="0 pts last 5 days" style="cursor:default;font-size:0.8rem;margin-left:3px">🧊</span>`
-           : '')
-          : '';
+        const formBadge = r.isCurrent ? hotColdBadge(form5d) : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
