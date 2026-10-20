@@ -317,6 +317,59 @@
         .insight-card.green:hover { background: rgba(34,197,94,0.07); }
         .insight-card.red:hover   { background: rgba(200,16,46,0.07); }
         .insight-card.blue:hover  { background: rgba(125,180,255,0.07); }
+
+        /* ── Podium ───────────────────────────────────────────────────── */
+        .podium {
+          display: flex; align-items: flex-end; justify-content: center;
+          gap: 0.5rem; padding: 1.25rem 0.5rem 0; margin-bottom: 1rem;
+        }
+        .podium-block {
+          flex: 1; max-width: 200px; display: flex; flex-direction: column;
+          align-items: center; border-radius: 10px 10px 0 0;
+          padding: 1rem 0.5rem 0.75rem; cursor: pointer; transition: filter 0.15s;
+          position: relative; border: 1px solid transparent; border-bottom: none;
+        }
+        .podium-block:hover { filter: brightness(1.15); }
+        .podium-block.p1 {
+          background: linear-gradient(180deg, rgba(255,184,28,0.12) 0%, rgba(255,184,28,0.04) 100%);
+          border-color: rgba(255,184,28,0.35); min-height: 130px;
+        }
+        .podium-block.p2 {
+          background: linear-gradient(180deg, rgba(192,200,212,0.08) 0%, rgba(192,200,212,0.02) 100%);
+          border-color: rgba(192,200,212,0.2); min-height: 100px;
+        }
+        .podium-block.p3 {
+          background: linear-gradient(180deg, rgba(205,127,50,0.08) 0%, rgba(205,127,50,0.02) 100%);
+          border-color: rgba(205,127,50,0.2); min-height: 80px;
+        }
+        .podium-medal {
+          font-size: 1.4rem; line-height: 1; margin-bottom: 0.35rem;
+        }
+        .podium-name {
+          font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 0.5px;
+          text-align: center; line-height: 1.1; margin-bottom: 0.25rem;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+        }
+        .podium-block.p1 .podium-name { color: var(--gold); font-size: 1.2rem; }
+        .podium-block.p2 .podium-name { color: #c0c8d4; }
+        .podium-block.p3 .podium-name { color: #cd7f32; }
+        .podium-pts {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700;
+          line-height: 1;
+        }
+        .podium-block.p1 .podium-pts { font-size: 1.75rem; color: var(--gold); }
+        .podium-block.p2 .podium-pts { color: #c0c8d4; }
+        .podium-block.p3 .podium-pts { color: #cd7f32; }
+        .podium-gap {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+          color: rgba(255,255,255,0.3); margin-top: 0.2rem;
+        }
+        .podium-footer {
+          text-align: center; padding: 0.5rem 0 0.25rem;
+          font-size: 0.75rem; color: rgba(255,255,255,0.3);
+          cursor: pointer;
+        }
+        .podium-footer:hover { color: rgba(255,255,255,0.55); }
         /* First card (leader/race) gets a larger, more prominent treatment */
         .insights .insight-card:first-child {
           grid-column: 1 / -1;
@@ -1845,7 +1898,7 @@
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
           <div class="standings-nav">
             <div class="standings-layer ${activeTeam ? 'behind' : 'front'}" id="layer-list">
-              ${buildInsightsTeaser(sorted, leaderPts)}
+              ${buildPodium(sorted, leaderPts)}
               ${buildLeaderboard(sorted, leaderPts)}
             </div>
             ${activeTeam ? `<div class="standings-layer front" id="layer-detail">
@@ -2024,6 +2077,28 @@
         if (snap.date === today) return null; // same day — no delta yet
         return snap;
       } catch(_) { return null; }
+    }
+
+    function buildPodium(sorted, leaderPts) {
+      if (sorted.length < 2) return '';
+      const top3 = sorted.slice(0, 3);
+      const pts = t => teamTotalPts(t);
+      const block = (t, rank, cls, medal) => {
+        const p = pts(t);
+        const gap = rank === 1 ? '' : `<div class="podium-gap">−${leaderPts - p} pts</div>`;
+        return `<div class="podium-block ${cls}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
+          <div class="podium-medal">${medal}</div>
+          <div class="podium-name">${t.name}</div>
+          <div class="podium-pts">${p}</div>
+          ${gap}
+        </div>`;
+      };
+      // Order: 2nd left, 1st centre, 3rd right
+      const b1 = block(top3[0], 1, 'p1', '👑');
+      const b2 = top3[1] ? block(top3[1], 2, 'p2', '🥈') : '';
+      const b3 = top3[2] ? block(top3[2], 3, 'p3', '🥉') : '';
+      return `<div class="podium">${b2}${b1}${b3}</div>
+        <div class="podium-footer" onclick="setView('insights')">Insights →</div>`;
     }
 
     function buildInsightsTeaser(sorted, leaderPts) {
