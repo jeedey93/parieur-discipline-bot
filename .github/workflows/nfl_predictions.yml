@@ -41,6 +41,8 @@ jobs:
         run: python scripts/generate_nfl_page.py
 
       - name: Commit and push
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           set -e
           git config user.name "github-actions[bot]"
