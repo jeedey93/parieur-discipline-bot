@@ -195,7 +195,7 @@ def main():
     teams = [args.team] if args.team else list(NHL_TEAM_ABBR.keys())
 
     # Default scoring multipliers (matches pool defaults)
-    scoring = {"g_wins": 2, "g_shutouts": 3}
+    scoring = {"f_points": 1, "d_goals": 2, "d_assists": 1, "g_wins": 2, "g_shutouts": 3, "g_otl": 1}
 
     print(f"📊  NHL Stats Scraper — {SEASON} regular season → Supabase")
     print("─" * 50)
