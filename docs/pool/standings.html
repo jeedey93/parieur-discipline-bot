@@ -2708,8 +2708,8 @@
           const benchGoalies = bench.filter(s => { const p = m[s]; return p && normalizePos(p.position) === 'G'; });
           const skaterTeam = benchSkaters.length ? { ...team, roster: { ...team.roster, B: benchSkaters } } : null;
           const goalieTeam = benchGoalies.length ? { ...team, roster: { ...team.roster, G: benchGoalies } } : null;
-          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench', false) : '') +
-                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)', false) : '');
+          return (skaterTeam ? buildHistTable(skaterTeam, 'B', 'Bench', false, true) : '') +
+                 (goalieTeam ? buildHistTable(goalieTeam, 'G', 'Bench (G)', false, true) : '');
         })()}
         ${buildSwapHistory(team)}
       `;
@@ -2757,7 +2757,7 @@
     }
 
     // ── HIST TABLE ────────────────────────────────────────────────────────────────
-    function buildHistTable(team, pos, label, showSwapGhosts = true) {
+    function buildHistTable(team, pos, label, showSwapGhosts = true, isBench = false) {
       const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(s => s && typeof s === 'string'));
       const activeSlugSet = new Set((team.roster[pos] || []).filter(Boolean));
       const m = slugMap();
@@ -2874,12 +2874,23 @@
         const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
         const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-        const d = ownedStatsDelta(p, team, p._slug);
-        const gp=d.gamesPlayed, g=d.goals, a=d.assists, w=d.wins, so=d.shutouts, otl=d.otLosses;
+        let gp, g, a, w, so, otl, pts;
+        if (isBench) {
+          // Bench: show raw season stats (no snapshot subtraction)
+          gp = p.games_played ?? 0; g = p.goals ?? 0; a = p.assists ?? 0;
+          w = p.wins ?? 0; so = p.shutouts ?? 0; otl = p.ot_losses ?? 0;
+          const posB = normalizePos(p.position);
+          if (posB === 'G') pts = w * _scoring.g_wins + so * _scoring.g_shutouts + otl * _scoring.g_otl + g * _scoring.g_goals + a * _scoring.g_assists;
+          else if (posB === 'D') pts = g * _scoring.d_goals + a * _scoring.d_assists;
+          else pts = (p.points ?? 0) * _scoring.f_points;
+        } else {
+          const d = ownedStatsDelta(p, team, p._slug);
+          gp=d.gamesPlayed; g=d.goals; a=d.assists; w=d.wins; so=d.shutouts; otl=d.otLosses;
+          pts = poolScoreOwned(p, team, p._slug);
+        }
         let col1='—', col2='—', col3='—';
         if (pos === 'G') { col1 = gp; col2 = w; col3 = otl; }
         else             { col1 = gp; col2 = g; col3 = a; }
-        const pts = poolScoreOwned(p, team, p._slug);
         const acqDate = resolveActiveAcquiredDate(team, p._slug);
         const hasAcqDate = acqDate.getTime() !== ACTIVE_ACQUIRED_FALLBACK_DATE.getTime();
         const tenure = `${fmt(acqDate)} → Now`;
