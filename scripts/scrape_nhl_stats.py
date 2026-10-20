@@ -124,15 +124,20 @@ def fetch_last5_game_pts(player_id: int, position: str, scoring: dict) -> list[i
         return []
 
     pos = position.upper() if position else "F"
-    is_goalie = pos == "G"
+    is_goalie = "G" in pos
+    is_defence = pos == "D"
     pts_list = []
     for g in games[-10:]:
         if is_goalie:
             w = 1 if g.get("decision", "").upper() == "W" else 0
             so = g.get("shutouts", 0) or 0
             pts_list.append(w * scoring["g_wins"] + so * scoring["g_shutouts"])
+        elif is_defence:
+            goals   = g.get("goals", 0) or 0
+            assists = g.get("assists", 0) or 0
+            pts_list.append(goals * scoring["d_goals"] + assists * scoring["d_assists"])
         else:
-            pts_list.append(g.get("points", 0) or 0)
+            pts_list.append((g.get("points", 0) or 0) * scoring["f_points"])
     return pts_list
 
 
