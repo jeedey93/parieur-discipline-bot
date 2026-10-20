@@ -178,7 +178,7 @@ def parse_pick_file(path):
             continue
         pick_line, sport_label = None, "NHL"
         for line in lines:
-            m = re.search(r'PICK\s*[–\-]?\s*(NHL|NBA)\s*[🏒🏀]?\s*(.+)', line, re.IGNORECASE)
+            m = re.search(r'PICK\s*(?:#\d+\s*)?[–\-]?\s*(NHL|NBA)\s*[🏒🏀]?\s*(.+)', line, re.IGNORECASE)
             if m:
                 sport_label = m.group(1).upper()
                 pick_line = strip_md(m.group(2)).strip()
@@ -187,7 +187,7 @@ def parse_pick_file(path):
             continue
         raw, in_pick = [], False
         for line in lines:
-            if re.search(r'PICK\s*[–\-]', line, re.IGNORECASE):
+            if re.search(r'PICK\s*(?:#\d+\s*)?[–\-]', line, re.IGNORECASE):
                 in_pick = True
                 continue
             if in_pick:
