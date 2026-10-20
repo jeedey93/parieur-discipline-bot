@@ -2101,15 +2101,6 @@
         <div class="podium-footer" onclick="setView('insights')">Insights →</div>`;
     }
 
-    function buildInsightsTeaser(sorted, leaderPts) {
-      const card = (color, icon, label, main, sub) =>
-        `<div class="insight-card ${color}"><div class="insight-label"><span class="insight-icon">${icon}</span>${label}</div><div class="insight-main ${color}">${main}</div><div class="insight-sub">${sub}</div></div>`;
-      const all = computeInsightData(sorted, leaderPts);
-      const cards = all.slice(0, 3).map(d => card(d.color, d.icon, d.label, d.main, d.sub));
-      if (!cards.length) return '';
-      return `<div class="insights">${cards.join('')}<div class="insight-card insight-more-card" onclick="setView('insights')" style="cursor:pointer;align-items:center;justify-content:center;flex-direction:row;gap:0.5rem;border-color:rgba(255,255,255,0.1)"><span style="font-size:0.85rem;color:rgba(255,255,255,0.5)">More insights</span><span style="font-size:0.75rem;color:rgba(255,255,255,0.3)">→</span></div></div>`;
-    }
-
     function buildFreeAgents() {
       const DEFAULT_N = 25;
 
@@ -3429,19 +3420,22 @@
       const sorted = sortedTeams();
       const leaderPts = sorted.length ? teamTotalPts(sorted[0]) : 0;
 
-      // Top 3 insights
-      const insightColors = { gold: '#ffb81c', green: '#22c55e', blue: '#7db4ff', red: '#ff5050' };
-      const insightBgs    = { gold: 'rgba(255,184,28,0.08)', green: 'rgba(34,197,94,0.07)', blue: 'rgba(125,180,255,0.07)', red: 'rgba(255,80,80,0.07)' };
-      const insights = computeInsightData(sorted, leaderPts).slice(0, 3);
-      const insightHtml = insights.map(d => `
-        <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;background:${insightBgs[d.color]};border:1px solid ${insightColors[d.color]}22;margin-bottom:6px">
-          <div style="font-size:1.3rem;line-height:1;flex-shrink:0">${d.icon}</div>
-          <div>
-            <div style="font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1px">${d.label}</div>
-            <div style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:1.5px;color:${insightColors[d.color]};line-height:1.2">${d.main}</div>
-            <div style="font-size:0.75rem;font-weight:600;color:rgba(168,178,190,0.9);margin-top:1px">${d.sub}</div>
-          </div>
-        </div>`).join('');
+      // Top 3 podium
+      const top3 = sorted.slice(0, 3);
+      const podiumBlock = (t, rank, medal, color, minH) => {
+        const p = teamTotalPts(t);
+        const gap = rank === 1 ? '' : `<div style="font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:2px">−${leaderPts - p} pts</div>`;
+        return `<div style="flex:1;max-width:160px;display:flex;flex-direction:column;align-items:center;border-radius:10px 10px 0 0;padding:12px 6px 10px;background:linear-gradient(180deg,${color}18 0%,${color}06 100%);border:1px solid ${color}44;border-bottom:none;min-height:${minH}px">
+          <div style="font-size:1.3rem;line-height:1;margin-bottom:4px">${medal}</div>
+          <div style="font-family:'Bebas Neue',cursive;font-size:${rank===1?'1.15rem':'0.95rem'};color:${color};text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;margin-bottom:3px">${t.name}</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:${rank===1?'1.7rem':'1.35rem'};font-weight:700;color:${color};line-height:1">${p}</div>
+          ${gap}
+        </div>`;
+      };
+      const p1 = top3[0] ? podiumBlock(top3[0], 1, '👑', '#ffb81c', 120) : '';
+      const p2 = top3[1] ? podiumBlock(top3[1], 2, '🥈', '#c0c8d4', 95) : '';
+      const p3 = top3[2] ? podiumBlock(top3[2], 3, '🥉', '#cd7f32', 75) : '';
+      const podiumHtml = `<div style="display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:4px 0 0;margin-bottom:16px">${p2}${p1}${p3}</div>`;
 
       // Build an off-screen card to capture
       const card = document.createElement('div');
@@ -3482,7 +3476,7 @@
           </div>
           <div style="font-size:0.7rem;color:rgba(255,255,255,0.25);letter-spacing:1px">parieurdiscipline.com</div>
         </div>
-        ${insightHtml ? `<div style="margin-bottom:14px">${insightHtml}</div>` : ''}
+        ${podiumHtml}
         <div style="display:grid;grid-template-columns:32px 1fr 36px 36px 36px 52px 44px;gap:4px;align-items:center;padding:4px 10px 8px;font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);">
           <div></div><div>Team</div>
           <div style="text-align:center;color:#ff7a8a">F</div>
