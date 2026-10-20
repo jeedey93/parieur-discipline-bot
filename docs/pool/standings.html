@@ -1275,8 +1275,9 @@
       if (played.length < 3) return '';
       const recent = played.slice(-5);
       const total = recent.reduce((a, b) => a + b, 0);
-      if (total >= 5) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px">🔥</span>`;
-      if (total <= 1) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px">🧊</span>`;
+      const tooltip = `${total} pts in last ${recent.length} games (${recent.map(v => v === 0 ? '0' : `+${v}`).join(', ')})`;
+      if (total >= 5) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px" title="${tooltip}">🔥</span>`;
+      if (total <= 1) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px" title="${tooltip}">🧊</span>`;
       return '';
     }
 
