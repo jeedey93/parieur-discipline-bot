@@ -51,16 +51,16 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "NFL results update for $(date -u +%Y-%m-%d)"
             for i in 1 2 3; do
-              if git push --set-upstream https://${GH_PAT}@github.com/${{ github.repository }} HEAD:master; then
+              if git push origin HEAD:master; then
                 break
               elif [ $i -lt 3 ]; then
                 echo "Push failed (attempt $i), rebasing..."
-                git fetch https://${GH_PAT}@github.com/${{ github.repository }} master
-                git rebase FETCH_HEAD
+                git pull --rebase origin master
               else
                 echo "Push failed after 3 attempts"
                 exit 1
