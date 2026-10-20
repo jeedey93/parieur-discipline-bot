@@ -2500,6 +2500,7 @@
           <div class="lb-stat lb-col-hide pos-g">${g}</div>
           <div class="lb-stat pts">${pts}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed(2) : '—'}</div>
+          ${tonightHtml}
           <div class="lb-stat lb-col-hide-mobile live-col" style="color:var(--green)">${(() => {
             const rp = rosterPlayers(t.roster);
             const hasLiveGame = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).some(p => p.nhl_player_id && _livePlayerIds.has(Number(p.nhl_player_id)));
@@ -2507,7 +2508,6 @@
             return livePtsTeam > 0 ? `${dot}+${livePtsTeam}` : (hasLiveGame ? dot : '—');
           })()}</div>
           <div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>
-          ${tonightHtml}
           <div class="lb-stat ${rankNum===1?'gap leader':'gap'}">${gapVal}</div>
         </div>`;
         return rankNum === 3 && n > 3 && col === 'pts' && dir === -1 ? row + `<div class="lb-tier-divider"></div>` : row;
@@ -2523,9 +2523,9 @@
           ${hdr('g', 'G', ' lb-col-hide', 'color:var(--gold)')}
           ${hdr('pts', 'Total')}
           ${hdr('ppg', 'PPG', ' lb-col-hide-mobile')}
+          ${hdr('tonight', '🏒', '', 'color:var(--gold);opacity:0.7')}
           ${hdr('livepts', 'Live', ' lb-col-hide-mobile', 'color:var(--green);opacity:0.85')}
           ${hdr('ytd', 'Ytd', '', 'color:var(--green);opacity:0.7')}
-          ${hdr('tonight', '🏒', '', 'color:var(--gold);opacity:0.7')}
           ${hdr('gap', 'Gap')}
         </div>
         ${rowsHtml}
