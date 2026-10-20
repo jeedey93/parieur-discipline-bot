@@ -1019,7 +1019,7 @@
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
     let _player30dPtsBySlug = {}; // slug -> pool pts delta over last 30 days
-    let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
+    let _lbSort = { col: 'pts', dir: -1 }; // col: 'pts'|'gp'|'f'|'d'|'g'|'ppg'|'livepts'|'ytd'|'tonight'|'gap', dir: 1=asc -1=desc
     let teamsPlayingToday = new Set(); // NHL team abbrevs with a game today
     let tonightMatchups = {};          // abbrev → opponent abbrev
 
@@ -2419,6 +2419,7 @@
           const abbr = TEAM_ABBR[p.team];
           return abbr && teamsPlayingToday.has(abbr);
         }).length;
+        const livePtsTeam = liveTeamPts(t);
         return {
           t, naturalRank,
           pts, sub, live, ppg: parseFloat(ppg) || 0,
@@ -2428,6 +2429,7 @@
           g: sub.G + sub.BG + live.G,
           ytd: teamYtd,
           tonight: tonightCount,
+          livePtsTeam,
         };
       });
 
@@ -2443,6 +2445,7 @@
         if (col === 'ytd')     return r.ytd;
         if (col === 'tonight') return r.tonight;
         if (col === 'gap')     return r.pts; // highest pts = smallest gap = sort same as pts
+        if (col === 'livepts') return r.livePtsTeam;
         return r.pts;
       };
       rowData.sort((a, b) => dir * (colVal(a) - colVal(b)));
@@ -2461,7 +2464,7 @@
       };
 
       const rowsHtml = rowData.map((r, i) => {
-        const { t, pts, sub, live, ppg, gp, f, d, g, ytd, tonight } = r;
+        const { t, pts, sub, live, ppg, gp, f, d, g, ytd, tonight, livePtsTeam } = r;
         const rankNum = ptsRankOf(t.id);
         const rankCls = rankNum === 1 ? 'gold' : rankNum === 2 ? 'silver' : rankNum === 3 ? 'bronze' : '';
         const rankInner = rankNum === 1
@@ -2480,7 +2483,6 @@
         } else if (prevRank) {
           rankChangeBadge = `<div class="rank-change same">—</div>`;
         }
-        const livePtsTeam = liveTeamPts(t);
         const liveBadge = livePtsTeam > 0 ? `<span class="live-badge">+${livePtsTeam}</span>` : '';
         const ytdCls = ytd > 0 ? 'pos' : 'zero';
         const ytdLabel = ytd > 0 ? `+${ytd}` : '—';
@@ -2497,6 +2499,7 @@
           <div class="lb-stat lb-col-hide pos-g">${g}</div>
           <div class="lb-stat pts">${pts}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed(2) : '—'}</div>
+          <div class="lb-stat lb-col-hide-mobile live-col" style="color:var(--green)">${livePtsTeam > 0 ? `+${livePtsTeam}` : '—'}</div>
           <div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>
           ${tonightHtml}
           <div class="lb-stat ${rankNum===1?'gap leader':'gap'}">${gapVal}</div>
@@ -2514,6 +2517,7 @@
           ${hdr('g', 'G', ' lb-col-hide', 'color:var(--gold)')}
           ${hdr('pts', 'Total')}
           ${hdr('ppg', 'PPG', ' lb-col-hide-mobile')}
+          ${hdr('livepts', 'Live', ' lb-col-hide-mobile', 'color:var(--green);opacity:0.85')}
           ${hdr('ytd', 'Ytd', '', 'color:var(--green);opacity:0.7')}
           ${hdr('tonight', '🏒', '', 'color:var(--gold);opacity:0.7')}
           ${hdr('gap', 'Gap')}
