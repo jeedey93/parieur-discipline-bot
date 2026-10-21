@@ -3148,9 +3148,13 @@
       const coldPlayers = drafted.filter(({ player }) => (hotColdBadge(player.last5_game_pts)||'').includes('🧊'))
         .sort((a, b) => poolScoreOwned(b.player, b.team, b.player._slug) - poolScoreOwned(a.player, a.team, a.player._slug));
 
-      const streakSection = (title, emoji, list) => list.length === 0 ? '' : `
-        <div class="pool-section-title" style="margin-top:1.5rem">${emoji} <span>${title}</span></div>
-        <div class="top-players-list">
+      const streaks = (hotPlayers.length === 0 && coldPlayers.length === 0) ? '' : `
+        <div class="pool-section-title" style="margin-top:1.5rem">Streaks</div>
+        <div style="display:flex;gap:4px;margin-bottom:0.75rem">
+          <button onclick="setStreakFilter('hot')"  id="streak-hot"  class="swap-filter-btn active">🔥 Hot (${hotPlayers.length})</button>
+          <button onclick="setStreakFilter('cold')" id="streak-cold" class="swap-filter-btn">🧊 Cold (${coldPlayers.length})</button>
+        </div>
+        <div class="top-players-list" id="streak-list-hot">
           <div class="top-player-row injured-row header">
             <div></div>
             <div class="lb-col-label left">Player</div>
@@ -3158,19 +3162,44 @@
             <div class="lb-col-label inj-status-col">Last 5</div>
             <div class="lb-col-label">Pts</div>
           </div>
-          ${list.map((item, i) => {
+          ${hotPlayers.map((item, i) => {
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
             const pts = poolScoreOwned(p, item.team, p._slug);
-            const badge = hotColdBadge(p.last5_game_pts);
             const vals = p.last5_game_pts ? (typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts) : [];
-            const recent = vals.filter(v => v !== null).slice(-5);
-            const last5str = recent.join(', ');
+            const last5str = vals.filter(v => v !== null).slice(-5).join(', ');
             return `<div class="top-player-row injured-row">
               <div class="top-player-rank">${i+1}</div>
               <div class="top-player-info">${logo}
-                <div><div class="top-player-name">${badge} ${formatName(p.player_name)}</div></div>
+                <div><div class="top-player-name">🔥 ${formatName(p.player_name)}</div></div>
+                <span class="pos-pill ${item.pos}">${item.pos}</span>
+              </div>
+              <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
+              <div class="top-player-stat inj-status-col" style="font-size:0.75rem;color:var(--silver)">${last5str}</div>
+              <div class="top-player-pts">${pts}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="top-players-list" id="streak-list-cold" style="display:none">
+          <div class="top-player-row injured-row header">
+            <div></div>
+            <div class="lb-col-label left">Player</div>
+            <div class="lb-col-label">Owner</div>
+            <div class="lb-col-label inj-status-col">Last 5</div>
+            <div class="lb-col-label">Pts</div>
+          </div>
+          ${coldPlayers.map((item, i) => {
+            const p = item.player;
+            const abbr = TEAM_ABBR[p.team];
+            const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
+            const pts = poolScoreOwned(p, item.team, p._slug);
+            const vals = p.last5_game_pts ? (typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts) : [];
+            const last5str = vals.filter(v => v !== null).slice(-5).join(', ');
+            return `<div class="top-player-row injured-row">
+              <div class="top-player-rank">${i+1}</div>
+              <div class="top-player-info">${logo}
+                <div><div class="top-player-name">🧊 ${formatName(p.player_name)}</div></div>
                 <span class="pos-pill ${item.pos}">${item.pos}</span>
               </div>
               <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
@@ -3179,8 +3208,6 @@
             </div>`;
           }).join('')}
         </div>`;
-
-      const streaks = streakSection('Hot Streak', '🔥', hotPlayers) + streakSection('Cold Streak', '🧊', coldPlayers);
 
       return grid + top + injured + streaks;
     }
@@ -3501,6 +3528,13 @@
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.75rem">${teamBtns}</div>
         <div class="swap-history" id="all-swaps-list">${rows}</div>
       </div>`;
+    }
+
+    function setStreakFilter(type) {
+      document.getElementById('streak-list-hot').style.display  = type === 'hot'  ? '' : 'none';
+      document.getElementById('streak-list-cold').style.display = type === 'cold' ? '' : 'none';
+      document.getElementById('streak-hot').classList.toggle('active',  type === 'hot');
+      document.getElementById('streak-cold').classList.toggle('active', type === 'cold');
     }
 
     function setSwapFilter(filter) {
