@@ -1278,8 +1278,8 @@
       try { vals = typeof last5Raw === 'string' ? JSON.parse(last5Raw) : last5Raw; } catch { return ''; }
       if (!Array.isArray(vals) || vals.length === 0) return '';
       const played = vals.filter(v => v !== null);
-      if (played.length < 3) return '';
       const recent = played.slice(-5);
+      if (recent.length < 5) return '';  // need a full 5-game sample
       const total = recent.reduce((a, b) => a + b, 0);
       const tooltip = `${total} pts in last ${recent.length} games`;
       if (total >= 5) return `<span style="cursor:default;font-size:0.85rem;margin-left:4px" title="${tooltip}">🔥</span>`;
