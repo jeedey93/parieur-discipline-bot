@@ -2438,8 +2438,8 @@
           return { p, pts, capM, ytd, ratio, gp, ppg, score };
         });
 
-        // 💰 Best value — mixed score: pts/GP × sqrt(pts/GP/$M)
-        const withScore = playerData.filter(x => x.score !== null && x.pts > 0 && x.gp > 0);
+        // 💰 Best value — mixed score: pts/GP × sqrt(pts/GP/$M), min 5 GP and 3 pts to filter flukes
+        const withScore = playerData.filter(x => x.score !== null && x.pts >= 3 && x.gp >= 5);
         if (withScore.length) {
           withScore.sort((a, b) => b.score - a.score);
           const best = withScore[0];
