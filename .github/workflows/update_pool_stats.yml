@@ -3,7 +3,7 @@ name: Update Pool Player Stats
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *'  # targets ~8am Montreal after typical 6h GH Actions queue delay
+    - cron: '0 6 * * *'  # targets ~8am Montreal (EDT=UTC-4, minus 6h queue delay)
 
 jobs:
   update-stats:
