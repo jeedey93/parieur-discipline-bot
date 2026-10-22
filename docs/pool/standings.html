@@ -1706,13 +1706,13 @@
       if (_cache.subScores[team.id]) return _cache.subScores[team.id];
       const r = rosterPlayers(team.roster);
       const sg = players => players.filter(Boolean).reduce((s, p) => s + poolScoreOwned(p, team, p._slug), 0);
-      // Only count bench players who were officially swapped out (have a bench swap entry for this team)
-      const swappedOutSlugs = new Set(_benchSwaps.filter(s => s.team_id === team.id).map(s => s.player_out_slug));
+      // Add points for players who were benched OUT (their pts are locked at player_out_pts_at_swap).
+      // Players activated FROM bench are already fully scored via poolScoreOwned in sg(r.G/F/D).
       const benchByPos = { F: 0, D: 0, G: 0 };
-      (r.B || []).filter(Boolean).forEach(p => {
-        if (!swappedOutSlugs.has(p._slug)) return;
-        const pos = normalizePos(p.position);
-        const pts = poolScoreOwned(p, team, p._slug);
+      _benchSwaps.filter(s => s.team_id === team.id).forEach(s => {
+        const pts = s.player_out_pts_at_swap;
+        if (typeof pts !== 'number') return;
+        const pos = normalizePos(s.player_out_position);
         if (pos === 'D') benchByPos.D += pts;
         else if (pos === 'G') benchByPos.G += pts;
         else benchByPos.F += pts;
