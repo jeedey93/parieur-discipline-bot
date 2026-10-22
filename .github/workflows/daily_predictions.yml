@@ -49,20 +49,19 @@ jobs:
         id: run_time
         run: |
           # Use the scheduled cron expression to identify which run this is.
-          # GITHUB_EVENT_SCHEDULE is set to the cron string that triggered this job.
-          # Crons: "17 11 * * *" = 7am run, "17 19 * * *" = 3pm run
+          # Crons: "0 5 * * *" = 7am Montreal run, "0 13 * * *" = 3pm Montreal run
           FORCE="${{ github.event.inputs.force_run_time }}"
           SCHEDULE="${{ github.event.schedule }}"
           if [ -n "$FORCE" ]; then
             echo "time=$FORCE" >> $GITHUB_OUTPUT
-          elif [ "$SCHEDULE" = "17 11 * * *" ]; then
+          elif [ "$SCHEDULE" = "0 5 * * *" ]; then
             echo "time=7am" >> $GITHUB_OUTPUT
-          elif [ "$SCHEDULE" = "17 19 * * *" ]; then
+          elif [ "$SCHEDULE" = "0 13 * * *" ]; then
             echo "time=3pm" >> $GITHUB_OUTPUT
           else
-            # Fallback: hour-based guess
+            # Fallback: hour-based guess (UTC)
             HOUR=$(date -u +%H)
-            if [ "$HOUR" -lt 12 ]; then
+            if [ "$HOUR" -lt 11 ]; then
               echo "time=7am" >> $GITHUB_OUTPUT
             else
               echo "time=3pm" >> $GITHUB_OUTPUT
@@ -72,8 +71,12 @@ jobs:
         if: steps.run_time.outputs.time == '7am'
         run: python scripts/cleanup_cache.py
       - name: Run NHL daily predictions bot
+        env:
+          NHL_RUN_TIME: ${{ steps.run_time.outputs.time }}
         run: python scripts/generate_nhl_predictions.py
       - name: Run NBA daily predictions bot
+        env:
+          NBA_RUN_TIME: ${{ steps.run_time.outputs.time }}
         run: python scripts/generate_nba_predictions.py
       - name: Compare NBA predictions (3pm)
         if: steps.run_time.outputs.time == '3pm'
