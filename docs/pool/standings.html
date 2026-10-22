@@ -2484,7 +2484,8 @@
         const prevPts = _yesterdaySnapshot[t.id] ?? null;
         const snapshotDelta = (latestSnapPts != null && prevPts != null) ? latestSnapPts - prevPts : null;
         const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
-        const tonightCount = dressedAndBench.filter(p => {
+        const dressedOnly = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
+        const tonightCount = dressedOnly.filter(p => {
           const abbr = TEAM_ABBR[p.team];
           return abbr && teamsPlayingToday.has(abbr);
         }).length;
