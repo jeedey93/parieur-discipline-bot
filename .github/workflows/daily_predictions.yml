@@ -14,7 +14,7 @@ on:
           - 3pm
   schedule:
     - cron: '0 5 * * *'   # targets ~7am Montreal (EDT=UTC-4, minus 6h queue delay)
-    - cron: '0 15 * * *'  # targets ~5pm Montreal (EDT=UTC-4, minus 6h queue delay)
+    - cron: '0 16 * * *'  # targets ~6pm Montreal (EDT=UTC-4, minus 6h queue delay)
 
 jobs:
   run-dual-predictions:
@@ -49,14 +49,14 @@ jobs:
         id: run_time
         run: |
           # Use the scheduled cron expression to identify which run this is.
-          # Crons: "0 5 * * *" = 7am Montreal run, "0 15 * * *" = 3pm Montreal run
+          # Crons: "0 5 * * *" = 7am Montreal run, "0 16 * * *" = 3pm Montreal run
           FORCE="${{ github.event.inputs.force_run_time }}"
           SCHEDULE="${{ github.event.schedule }}"
           if [ -n "$FORCE" ]; then
             echo "time=$FORCE" >> $GITHUB_OUTPUT
           elif [ "$SCHEDULE" = "0 5 * * *" ]; then
             echo "time=7am" >> $GITHUB_OUTPUT
-          elif [ "$SCHEDULE" = "0 15 * * *" ]; then
+          elif [ "$SCHEDULE" = "0 16 * * *" ]; then
             echo "time=3pm" >> $GITHUB_OUTPUT
           else
             # Fallback: hour-based guess (UTC)
