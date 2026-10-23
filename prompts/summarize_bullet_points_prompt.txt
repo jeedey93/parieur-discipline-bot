@@ -18,13 +18,15 @@ Keep the wording short, punchy, and social-media friendly.
 
 Do not copy full sentences from the paragraph — summarize.
 
+IMPORTANT: For the goalie bullet (🥅), you MUST name both starting goalies explicitly (e.g. "Lehner vs Vasilevskiy" or "Hellebuyck confirmed, Saros confirmed"). Never write generic phrases like "Goalies Confirmed" or "Starting goalies locked in" without naming them.
+
 Format exactly like this:
 
 🏠Short Title
 Short explanation
 
-🥅Short Title
-Short explanation
+🥅Goalie Name vs Goalie Name
+One line about their recent form or matchup edge
 
 Text to convert:
 
