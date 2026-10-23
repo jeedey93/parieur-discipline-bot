@@ -1,0 +1,56 @@
+Date: 2026-10-22
+
+Nashville Predators @ Boston Bruins
+Boston Bruins ML (Home): 1.69, Nashville Predators ML (Away): 2.18, O/U: 6.0 (Over: 1.85 / Under: 1.96)
+------
+New York Rangers @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.92, New York Rangers ML (Away): 1.89, O/U: 6.5 (Over: 1.98 / Under: 1.84)
+------
+San Jose Sharks @ Ottawa Senators
+Ottawa Senators ML (Home): 1.77, San Jose Sharks ML (Away): 2.1, O/U: 6.5 (Over: 1.97 / Under: 1.85)
+------
+Anaheim Ducks @ New Jersey Devils
+New Jersey Devils ML (Home): 1.45, Anaheim Ducks ML (Away): 2.77, O/U: 6.5 (Over: 1.83 / Under: 1.99)
+------
+Florida Panthers @ Pittsburgh Penguins
+Pittsburgh Penguins ML (Home): 1.87, Florida Panthers ML (Away): 1.95, O/U: 6.5 (Over: 1.8 / Under: 2.05)
+------
+Los Angeles Kings @ New York Islanders
+New York Islanders ML (Home): 1.93, Los Angeles Kings ML (Away): 1.88, O/U: 5.5 (Over: 1.83 / Under: 1.99)
+------
+Vegas Golden Knights @ St Louis Blues
+St Louis Blues ML (Home): 2.06, Vegas Golden Knights ML (Away): 1.77, O/U: 6.0 (Over: 1.88 / Under: 1.93)
+------
+Winnipeg Jets @ Dallas Stars
+Dallas Stars ML (Home): 1.51, Winnipeg Jets ML (Away): 2.59, O/U: 5.5 (Over: 1.92 / Under: 1.89)
+------
+Minnesota Wild @ Calgary Flames
+Calgary Flames ML (Home): 2.64, Minnesota Wild ML (Away): 1.49, O/U: 6.0 (Over: 1.91 / Under: 1.9)
+------
+Carolina Hurricanes @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.99, Carolina Hurricanes ML (Away): 1.83, O/U: 6.5 (Over: 1.88 / Under: 1.93)
+------
+Utah Mammoth @ Seattle Kraken
+Seattle Kraken ML (Home): 2.38, Utah Mammoth ML (Away): 1.59, O/U: 6.5 (Over: 1.88 / Under: 1.93)
+------
+Detroit Red Wings @ Vancouver Canucks
+Vancouver Canucks ML (Home): 2.33, Detroit Red Wings ML (Away): 1.61, O/U: 6.5 (Over: 1.97 / Under: 1.84)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable.
+
+Today's Date is 2026-10-22. This falls within the early-season period, so the minimum required edge is +7% for all plays. All confirmed starting goalies are implicitly treated as "Average" due to the lack of specific statistics (Last 5 SV% or Season SV%) in the provided data. Therefore, the Goalie Matchup factor (Factor 1) will default to a 0% adjustment for all games, as no discernible edge can be identified without specific goalie performance metrics or confirmation of starters. No player absences are reported for any team today.
+
+---
+BET OF THE DAY
+
+NEW YORK ISLANDERS ML vs LOS ANGELES KINGS @ 1.93
+The New York Islanders are positioned as our top play today, demonstrating a significant edge against the Los Angeles Kings. With no specific starting goalies confirmed for either team, the goalie matchup factor is neutral. The Islanders benefit from a substantial home ice advantage, boasting an impressive 0.800 home win percentage compared to the Kings' struggling 0.250 away record, contributing an +8% adjustment. Furthermore, the Islanders show better recent form with a +0.8 goal differential in their last 10 games, while the Kings sit at a -1.5 differential, adding another +2% to New York. The Kings' overall poor performance (1-4-2 in last 10) further solidifies the Islanders' position. Given equal rest for both teams, New York's strong home performance and better recent play suggest the market has undervalued them, presenting a clear opportunity.
+Confidence Level: High, Units: 1.5u, Win Probability: 64%
+
+**Other Recommended Plays**
+
+PITTSBURGH PENGUINS ML vs FLORIDA PANTHERS @ 1.87
+The Pittsburgh Penguins present a strong value opportunity against the Florida Panthers. With no specific starting goalies confirmed for either team, the goalie matchup is neutral. The Penguins enjoy a considerable home-ice advantage with a 0.667 home win percentage compared to Florida's 0.429 road win percentage, granting them a +6% adjustment. While Pittsburgh is on a current 4-game losing streak (-2%) and their form trend is stable (0%), Florida is playing on a back-to-back with 0 rest days, while Pittsburgh has 2 days of rest, giving the Penguins a crucial +4% fatigue advantage. This confluence of home advantage and significant rest disparity creates a favorable betting scenario that the odds do not fully reflect.
+Confidence Level: Medium, Units: 1u, Win Probability: 61%
