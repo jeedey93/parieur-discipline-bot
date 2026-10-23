@@ -1,0 +1,65 @@
+Date: 2026-10-23
+
+Milwaukee Bucks vs Chicago Bulls
+Milwaukee Bucks ML (Home): 1.96, Chicago Bulls ML (Away): 1.89, O/U: 237.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.95), Away 1.0 (1.94)
+------
+Charlotte Hornets vs Atlanta Hawks
+Charlotte Hornets ML (Home): 2.2, Atlanta Hawks ML (Away): 1.7, O/U: 226.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.95), Away -2.5 (1.91)
+------
+Boston Celtics vs New York Knicks
+Boston Celtics ML (Home): 1.7, New York Knicks ML (Away): 2.2, O/U: 223.5 (Over: 1.89 / Under: 1.93)
+Spreads: Home None (1.95), Away 2.5 (1.94)
+------
+Indiana Pacers vs Dallas Mavericks
+Indiana Pacers ML (Home): 1.47, Dallas Mavericks ML (Away): 2.8, O/U: 237.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.95), Away 6.5 (1.91)
+------
+Orlando Magic vs Minnesota Timberwolves
+Orlando Magic ML (Home): 2.08, Minnesota Timberwolves ML (Away): 1.79, O/U: 236.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (1.95), Away -1.5 (1.94)
+------
+Washington Wizards vs Toronto Raptors
+Washington Wizards ML (Home): 2.98, Toronto Raptors ML (Away): 1.42, O/U: 235.5 (Over: 1.85 / Under: 1.96)
+Spreads: Home None (1.91), Away -6.5 (1.99)
+------
+Miami Heat vs Detroit Pistons
+Miami Heat ML (Home): 1.96, Detroit Pistons ML (Away): 1.89, O/U: 236.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away 0.0 (1.94)
+------
+San Antonio Spurs vs Houston Rockets
+San Antonio Spurs ML (Home): 1.49, Houston Rockets ML (Away): 2.7, O/U: 227.5 (Over: 1.89 / Under: 1.93)
+Spreads: Home None (1.93), Away 5.5 (1.91)
+------
+Utah Jazz vs New Orleans Pelicans
+Utah Jazz ML (Home): 1.75, New Orleans Pelicans ML (Away): 2.14, O/U: 239.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (2.01), Away 2.5 (1.91)
+------
+Golden State Warriors vs Memphis Grizzlies
+Golden State Warriors ML (Home): 1.72, Memphis Grizzlies ML (Away): 2.18, O/U: 235.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (1.91), Away 3.0 (1.99)
+------
+Los Angeles Lakers vs Los Angeles Clippers
+Los Angeles Lakers ML (Home): 1.26, Los Angeles Clippers ML (Away): 4.1, O/U: 228.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.95), Away 9.5 (1.94)
+------
+Sacramento Kings vs Portland Trail Blazers
+Sacramento Kings ML (Home): 3.6, Portland Trail Blazers ML (Away): 1.31, O/U: 232.5 (Over: 1.89 / Under: 1.93)
+Spreads: Home None (1.91), Away -8.5 (1.95)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Milwaukee Bucks ML vs Chicago Bulls @ 1.96
+The Milwaukee Bucks, playing at home, hold a standard home court advantage in this early season matchup. Both teams enter this game with a 0-1 record, making initial season win percentages unindicative of overall team quality. However, evaluating their single game performance, the Bucks allowed 128.0 points while scoring 116.0, resulting in a -12.0 point differential. The Chicago Bulls, on the other hand, scored only 92.0 points and allowed a staggering 135.0, for a -43.0 point differential. While neither team has a positive differential to earn a direct "recent form" bonus, the implied relative strength favors the Bucks significantly given the Bulls' exceptionally poor scoring and defense in their opening game. This disparity, combined with home court, suggests the market is underestimating Milwaukee's probability of victory.
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+**Other Recommended Plays**
+
+Charlotte Hornets ML vs Atlanta Hawks @ 2.20
+The Charlotte Hornets host the Atlanta Hawks in a game where both teams currently sit at 1-0. The Hornets enter this game with a home record of 0-0, while the Hawks have an away record of 1-0. Based on these early season home/away records, a negative home court advantage adjustment of -2% is applied to the Hornets. However, both teams demonstrated solid performance in their opening games, with the Hornets scoring 110.0 points and allowing 103.0 (a +7.0 point differential), and the Hawks scoring 132.0 points and allowing 125.0 (also a +7.0 point differential). With both teams showing identical positive recent form, no further adjustment is made for current performance beyond the initial home court adjustment. The market appears to undervalue the Hornets at home despite a comparable start to the season.
+Confidence Level: Medium, Units: 1u, Win Probability: 56%
