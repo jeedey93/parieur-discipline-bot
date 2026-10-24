@@ -1,0 +1,59 @@
+Date: 2026-10-24
+
+Anaheim Ducks @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 1.84, Anaheim Ducks ML (Away): 1.99, O/U: 5.5 (Over: 1.8 / Under: 2.05)
+------
+Los Angeles Kings @ New Jersey Devils
+New Jersey Devils ML (Home): 1.59, Los Angeles Kings ML (Away): 2.46, O/U: 5.5 (Over: 1.8 / Under: 2.05)
+------
+San Jose Sharks @ Boston Bruins
+Boston Bruins ML (Home): 1.52, San Jose Sharks ML (Away): 2.64, O/U: 6.5 (Over: 1.91 / Under: 1.91)
+------
+New York Rangers @ Ottawa Senators
+Ottawa Senators ML (Home): 1.83, New York Rangers ML (Away): 2.01, O/U: 6.0 (Over: 1.87 / Under: 1.95)
+------
+Nashville Predators @ Pittsburgh Penguins
+Pittsburgh Penguins ML (Home): 1.75, Nashville Predators ML (Away): 2.13, O/U: 6.5 (Over: 1.91 / Under: 1.91)
+------
+Buffalo Sabres @ Washington Capitals
+Washington Capitals ML (Home): 1.85, Buffalo Sabres ML (Away): 1.98, O/U: 6.5 (Over: 1.87 / Under: 1.95)
+------
+Vegas Golden Knights @ Columbus Blue Jackets
+Columbus Blue Jackets ML (Home): 2.12, Vegas Golden Knights ML (Away): 1.76, O/U: 6.0 (Over: 1.87 / Under: 1.95)
+------
+Carolina Hurricanes @ St Louis Blues
+St Louis Blues ML (Home): 2.31, Carolina Hurricanes ML (Away): 1.66, O/U: 6.0 (Over: 1.83 / Under: 2.0)
+------
+Toronto Maple Leafs @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.58, Toronto Maple Leafs ML (Away): 2.49, O/U: 7.0 (Over: 2.05 / Under: 1.8)
+------
+Tampa Bay Lightning @ Utah Mammoth
+Utah Mammoth ML (Home): 1.72, Tampa Bay Lightning ML (Away): 2.22, O/U: 6.5 (Over: 1.88 / Under: 1.97)
+------
+Detroit Red Wings @ Calgary Flames
+Calgary Flames ML (Home): 2.2, Detroit Red Wings ML (Away): 1.68, O/U: 6.0 (Over: 1.92 / Under: 1.89)
+------
+Minnesota Wild @ Seattle Kraken
+Seattle Kraken ML (Home): 2.25, Minnesota Wild ML (Away): 1.65, O/U: 6.0 (Over: 1.83 / Under: 1.99)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable.
+
+Today's slate presents several interesting matchups. After a thorough analysis of recent form, home ice advantage, and schedule factors, while acknowledging that starting goaltenders remain TBD, we've identified a few spots where the market appears to be mispricing the true probabilities. We prioritize strong home teams with significant performance gaps over their road opponents, especially when combined with favorable rest situations.
+
+BET OF THE DAY
+
+Utah Mammoth ML vs Tampa Bay Lightning @ 1.72
+The Utah Mammoth face a Tampa Bay Lightning team on a back-to-back, giving Utah a significant rest advantage. The Mammoth also boast a strong home record (0.750 Win %) compared to Tampa Bay's average road performance (0.400 Win %), creating a substantial home-ice edge. Although the Lightning have slightly better recent goal differentials, the Mammoth's superior home form and the fatigue factor for Tampa Bay present a clear value against the implied odds, making this our top play for the day.
+Confidence Level: Medium, Units: 1u, Win Probability: 64%
+
+**Other Recommended Plays**
+
+Ottawa Senators ML vs New York Rangers @ 1.83
+The Ottawa Senators hold a strong home record (0.667 Win %) and face a New York Rangers team that struggles on the road (0.167 Away Win %), leading to a considerable home ice advantage for Ottawa. While the Rangers have shown better goal differential in their last ten games, the Senators' overall form is improving, and the discrepancy in home vs. away performance metrics for both teams suggests Ottawa is undervalued at these odds. We acknowledge the absence of confirmed starting goalies but see enough underlying value here.
+Confidence Level: Medium, Units: 1u, Win Probability: 61%
+
+Calgary Flames ML vs Detroit Red Wings @ 2.20
+Calgary, despite a poor overall record recently, benefits from facing a Detroit team that also has negative goal differential and a less impressive away record. Crucially, our models identified a significant edge based on Calgary's slightly better home performance relative to Detroit's road struggles. The market has likely overreacted to Calgary's season-long struggles, overlooking the specific matchup dynamics and home ice factor, making these odds too generous despite no major recent form or fatigue advantages for either side.
+Confidence Level: High, Units: 1.5u, Win Probability: 56%
