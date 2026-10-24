@@ -1,20 +1,20 @@
 ============================================================
 PREDATORS - LINEUP
-Last Updated: 2026-10-17 05:15 PM ET
+Last Updated: 2026-10-24 02:33 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Steven Stamkos — Ryan OReilly — Alexander Kerfoot
-Line 2: Filip Forsberg — Matthew Wood — Nils Hoglander
-Line 3: Ross Colton — Vitali Pinchuk — Jonathan Marchessault
+Line 1: Steven Stamkos — Ryan OReilly — Matthew Wood
+Line 2: Filip Forsberg — Mavrik Bourque — Jonathan Marchessault
+Line 3: Ross Colton — Alexander Kerfoot — Nils Hoglander
 Line 4: Reid Schaefer — Jack Drury — Adam Edstrom
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Jayden Struble — Roman Josi
-Pair 2: Brady Skjei — Nick Perbix
-Pair 3: Nicolas Hague — Adam Wilsby
+Pair 1: Roman Josi — Adam Wilsby
+Pair 2: Nicolas Hague — Jayden Struble
+Pair 3: Brady Skjei — Nick Perbix
 
 GOALIES:
 ----------------------------------------
@@ -24,8 +24,8 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Jack Ahcan (scratched)
+  Vitali Pinchuk (scratched)
   Ilya Lyubushkin (scratched)
-  Mavrik Bourque (upper body) (injured)
   William Trudeau (upper body) (injured)
 
 ============================================================

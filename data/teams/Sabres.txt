@@ -1,14 +1,13 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-10-21 02:54 PM ET
+Last Updated: 2026-10-24 02:33 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Josh Doan — Jiri Kulich — Tage Thompson
-Line 2: Zach Benson — Noah Ostlund — Jack Quinn
-Line 3: Jason Zucker — Josh Norris — Konsta Helenius
-Line 4: Peyton Krebs — Ryan McLeod — Beck Malenstyn
+Line 1: Jason Zucker — Tage Thompson — Konsta Helenius
+Line 2: Ryan McLeod — Josh Norris — Josh Doan
+Line 3: Tyson Kozak — Peyton Krebs — Beck Malenstyn
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -23,8 +22,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Tyson Kozak (scratched)
   Dennis Gilbert (scratched)
+  Jiri Kulich (upper body) (injured)
   Justin Danforth (upper body) (injured)
   Sam Carrick (middle body) (injured)
   Matt Grzelcyk (lower body) (injured)

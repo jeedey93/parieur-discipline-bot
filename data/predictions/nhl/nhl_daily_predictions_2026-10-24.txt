@@ -1,0 +1,56 @@
+Here's the comparative analysis and final recommendation list based on the morning and noon prediction reports:
+
+**Comparative Analysis Summary:**
+
+1.  **Consistency (Plays appearing in both reports' odds lists and fitting criteria):**
+    *   Utah Mammoth ML vs Tampa Bay Lightning
+    *   Ottawa Senators ML vs New York Rangers
+    *   Calgary Flames ML vs Detroit Red Wings
+
+2.  **Additions/Removals (as recommended plays):**
+    *   **Added (Noon):** Washington Capitals ML (new Bet of the Day)
+    *   **Removed (Noon, from recommended list):** Utah Mammoth ML (was Morning BOTD), Ottawa Senators ML, Calgary Flames ML. While removed from the noon *summary*, their odds were still listed, and they still met the criteria based on their morning analysis.
+
+3.  **Confidence Level Changes:**
+    *   No confidence level changes for plays that appeared in both *recommended* summaries, as the only consistent recommendations (Utah, Ottawa, Calgary) were not re-analyzed in the noon summary.
+
+4.  **Odds Changes Affecting Recommendations:**
+    *   **Washington Capitals ML:** Morning @ 1.85, Noon @ 1.83. This slight movement, coupled with roster verification, made it the Noon Bet of the Day.
+    *   **Utah Mammoth ML:** Morning @ 1.72, Noon @ 1.71. Minor shift.
+    *   **Ottawa Senators ML:** Morning @ 1.83, Noon @ 1.80. Minor shift.
+    *   **Calgary Flames ML:** Morning @ 2.20, Noon @ 2.04. This significant movement (lowering the odds) still kept it within our acceptable range and made it a more attractive price for a morning high-confidence play.
+
+---
+
+**Unified Final Recommendation List:**
+
+🏆 **BET OF THE DAY**
+**Washington Capitals ML vs Buffalo Sabres @ 1.83**
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+The Washington Capitals, hosting the Buffalo Sabres, present a strong value bet today. Capitals starting goaltender Charlie Lindgren and Sabres starting goaltender Ukko-Pekka Luukkonen are both early in their seasons (2 and 8 starts respectively), and with both showing sub-par Save Percentages (.897 for Lindgren's last 5 starts, .891 for Luukkonen's last 5), I'm conservatively categorizing both as 'Average' due to the early-season data reliability warning, resulting in a neutral goalie matchup. The Capitals hold a substantial home-ice advantage, with a 0.667 home win percentage against the Sabres' 0.250 away win percentage, translating to an +8% boost for Washington. Recent form also favors Washington slightly; while both teams are improving in their form trends, the Sabres are on a 2-game losing streak. Crucially, Buffalo is significantly hampered by injuries to key players like Jiri Kulich, Justin Danforth, Matt Grzelcyk, and Conor Timmins, particularly impacting their defensive depth, which gives the Capitals a +3% edge due to weakened opposition. Combining these factors, my model estimates Washington's win probability at 68%, offering a considerable 13.36% edge over the implied probability of 54.64%. The market appears to be undervaluing the Capitals' strong home performance and the impact of Buffalo's extensive injury list.
+
+This is a new play added in the noon report, identified as the Bet of the Day due to updated roster data and a 1.83 line (morning was 1.85).
+
+**Other Recommended Plays**
+
+**Utah Mammoth ML vs Tampa Bay Lightning @ 1.71**
+Confidence Level: Medium, Units: 1u, Win Probability: 64%
+
+The Utah Mammoth face a Tampa Bay Lightning team on a back-to-back, giving Utah a significant rest advantage. The Mammoth also boast a strong home record (0.750 Win %) compared to Tampa Bay's average road performance (0.400 Win %), creating a substantial home-ice edge. Although the Lightning have slightly better recent goal differentials, the Mammoth's superior home form and the fatigue factor for Tampa Bay present a clear value against the implied odds, making this our top play for the day. Starting goalies not yet announced.
+
+The line moved from 1.72 (morning) to 1.71 (noon). This play was the Bet of the Day in the morning report but was not re-highlighted in the noon report.
+
+**Ottawa Senators ML vs New York Rangers @ 1.80**
+Confidence Level: Medium, Units: 1u, Win Probability: 61%
+
+The Ottawa Senators hold a strong home record (0.667 Win %) and face a New York Rangers team that struggles on the road (0.167 Away Win %), leading to a considerable home ice advantage for Ottawa. While the Rangers have shown better goal differential in their last ten games, the Senators' overall form is improving, and the discrepancy in home vs. away performance metrics for both teams suggests Ottawa is undervalued at these odds. We acknowledge the absence of confirmed starting goalies but see enough underlying value here.
+
+The line moved from 1.83 (morning) to 1.80 (noon). This play was recommended in the morning report but was not re-highlighted in the noon report.
+
+**Calgary Flames ML vs Detroit Red Wings @ 2.04**
+Confidence Level: High, Units: 1.5u, Win Probability: 56%
+
+Calgary, despite a poor overall record recently, benefits from facing a Detroit team that also has negative goal differential and a less impressive away record. Crucially, our models identified a significant edge based on Calgary's slightly better home performance relative to Detroit's road struggles. The market has likely overreacted to Calgary's season-long struggles, overlooking the specific matchup dynamics and home ice factor, making these odds too generous despite no major recent form or fatigue advantages for either side. Starting goalies not yet announced.
+
+The line moved from 2.20 (morning) to 2.04 (noon). This play was recommended in the morning report but was not re-highlighted in the noon report.
