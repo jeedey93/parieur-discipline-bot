@@ -1,0 +1,27 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-10-24.
+
+Here's the breakdown:
+
+1.  **Washington Capitals ML vs Buffalo Sabres @ 1.83 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Buffalo 3 @ Washington 4 (Total goals: 7)
+    *   Outcome: **WIN** (Washington won the game)
+
+2.  **Utah Mammoth ML vs Tampa Bay Lightning @ 1.71 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Tampa Bay 4 @ Utah 5 (Total goals: 9)
+    *   Outcome: **WIN** (Utah won the game)
+
+3.  **Ottawa Senators ML vs New York Rangers @ 1.80 - Confidence: Medium, Units: 1u**
+    *   Actual Result: New York 4 @ Ottawa 7 (Total goals: 11)
+    *   Outcome: **WIN** (Ottawa won the game)
+
+4.  **Calgary Flames ML vs Detroit Red Wings @ 2.04 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Detroit 1 @ Calgary 4 (Total goals: 5)
+    *   Outcome: **WIN** (Calgary won the game)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 4**
+*   **Total Losses: 0**
+*   **Total Pushes: 0**
