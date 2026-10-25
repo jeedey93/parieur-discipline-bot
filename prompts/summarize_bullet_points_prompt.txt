@@ -20,6 +20,8 @@ Do not copy full sentences from the paragraph — summarize.
 
 IMPORTANT: For the goalie bullet (🥅), you MUST name both starting goalies explicitly (e.g. "Lehner vs Vasilevskiy" or "Hellebuyck confirmed, Saros confirmed"). Never write generic phrases like "Goalies Confirmed" or "Starting goalies locked in" without naming them.
 
+IMPORTANT: NBA analyses NEVER have goalies. Do NOT write any goalie bullet for NBA picks — basketball has no goalies. Only apply the goalie rule to NHL analyses.
+
 IMPORTANT: If the analysis mentions a 🔥HOT or 🧊COLD player, you MUST include a bullet naming that specific player (e.g. "🔥 MacKinnon on fire — 7 pts in last 5 games drives COL offense"). Never write generic "Team in good form" if a specific player name is available in the analysis.
 
 Format exactly like this:

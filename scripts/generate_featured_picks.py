@@ -145,7 +145,8 @@ def summarize_justifications(nhl_just, nba_just):
     if not reasonings:
         return nhl_just, nba_just
 
-    batch_request = "I have multiple NHL/NBA betting analyses to convert to bullet points. Please process each one and return them with the same identifiers.\n\n"
+    batch_request = "I have multiple betting analyses to convert to bullet points. Please process each one and return them with the same identifiers.\n\n"
+    batch_request += "IMPORTANT: The identifier prefix tells you the sport. 'nhl_*' = NHL (hockey — apply the goalie rule). 'nba_*' = NBA (basketball — NO goalies exist, NEVER write a goalie bullet for NBA picks).\n\n"
     for key, reasoning in reasonings.items():
         batch_request += f"=== {key} ===\n{reasoning}\n\n"
     batch_request += "\n\nPlease return the summarized bullet points for each analysis using the EXACT same identifier (e.g., === nhl_0 ===) followed by the bullet points, then a blank line before the next one."
