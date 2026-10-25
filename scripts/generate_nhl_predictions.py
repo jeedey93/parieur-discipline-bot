@@ -20,6 +20,125 @@ from datetime import datetime
 import requests
 import time
 
+# Full Odds API team name → NHL abbreviation (for nhl_players table lookup)
+_ODDS_NAME_TO_ABBR = {
+    # Full Odds API names → puckpedia team slug (matches nhl_players.team field)
+    'Anaheim Ducks': 'anaheim-ducks', 'Boston Bruins': 'boston-bruins', 'Buffalo Sabres': 'buffalo-sabres',
+    'Calgary Flames': 'calgary-flames', 'Carolina Hurricanes': 'carolina-hurricanes', 'Chicago Blackhawks': 'chicago-blackhawks',
+    'Colorado Avalanche': 'colorado-avalanche', 'Columbus Blue Jackets': 'columbus-blue-jackets', 'Dallas Stars': 'dallas-stars',
+    'Detroit Red Wings': 'detroit-red-wings', 'Edmonton Oilers': 'edmonton-oilers', 'Florida Panthers': 'florida-panthers',
+    'Los Angeles Kings': 'los-angeles-kings', 'Minnesota Wild': 'minnesota-wild', 'Montreal Canadiens': 'montreal-canadiens',
+    'Montréal Canadiens': 'montreal-canadiens', 'Nashville Predators': 'nashville-predators', 'New Jersey Devils': 'new-jersey-devils',
+    'New York Islanders': 'new-york-islanders', 'New York Rangers': 'new-york-rangers', 'Ottawa Senators': 'ottawa-senators',
+    'Philadelphia Flyers': 'philadelphia-flyers', 'Pittsburgh Penguins': 'pittsburgh-penguins', 'San Jose Sharks': 'san-jose-sharks',
+    'Seattle Kraken': 'seattle-kraken', 'St. Louis Blues': 'st-louis-blues', 'Tampa Bay Lightning': 'tampa-bay-lightning',
+    'Toronto Maple Leafs': 'toronto-maple-leafs', 'Utah Mammoth': 'utah-mammoth', 'Vancouver Canucks': 'vancouver-canucks',
+    'Vegas Golden Knights': 'vegas-golden-knights', 'Washington Capitals': 'washington-capitals', 'Winnipeg Jets': 'winnipeg-jets',
+    # Short NHL API place names → puckpedia team slug
+    'Anaheim': 'anaheim-ducks', 'Boston': 'boston-bruins', 'Buffalo': 'buffalo-sabres',
+    'Calgary': 'calgary-flames', 'Carolina': 'carolina-hurricanes', 'Chicago': 'chicago-blackhawks',
+    'Colorado': 'colorado-avalanche', 'Columbus': 'columbus-blue-jackets', 'Dallas': 'dallas-stars',
+    'Detroit': 'detroit-red-wings', 'Edmonton': 'edmonton-oilers', 'Florida': 'florida-panthers',
+    'Los Angeles': 'los-angeles-kings', 'Minnesota': 'minnesota-wild', 'Montréal': 'montreal-canadiens',
+    'Montreal': 'montreal-canadiens', 'Nashville': 'nashville-predators', 'New Jersey': 'new-jersey-devils',
+    'New York Islanders': 'new-york-islanders', 'New York Rangers': 'new-york-rangers', 'New York': 'new-york-rangers',
+    'Ottawa': 'ottawa-senators', 'Philadelphia': 'philadelphia-flyers', 'Pittsburgh': 'pittsburgh-penguins',
+    'San Jose': 'san-jose-sharks', 'Seattle': 'seattle-kraken', 'St. Louis': 'st-louis-blues',
+    'Tampa Bay': 'tampa-bay-lightning', 'Toronto': 'toronto-maple-leafs', 'Utah': 'utah-mammoth',
+    'Vancouver': 'vancouver-canucks', 'Vegas': 'vegas-golden-knights', 'Washington': 'washington-capitals',
+    'Winnipeg': 'winnipeg-jets',
+}
+
+_player_form_cache = {}  # abbr -> list of player dicts
+
+def fetch_player_form_for_teams(team_names: list[str]) -> dict[str, list]:
+    """
+    Query Supabase nhl_players for players on the given teams (by abbr).
+    Returns {abbr: [player_dict, ...]} with last5_game_pts parsed.
+    """
+    import json as _json
+    supabase_url = os.environ.get("SUPABASE_URL", "")
+    supabase_key = os.environ.get("SUPABASE_SERVICE_KEY", "") or os.environ.get("SUPABASE_ANON_KEY", "")
+    if not supabase_url or not supabase_key:
+        return {}
+
+    abbrs = []
+    for name in team_names:
+        abbr = _ODDS_NAME_TO_ABBR.get(name)
+        if abbr and abbr not in _player_form_cache:
+            abbrs.append(abbr)
+
+    if abbrs:
+        abbr_filter = ",".join(abbrs)
+        url = (f"{supabase_url}/rest/v1/nhl_players"
+               f"?team=in.({abbr_filter})"
+               f"&select=player_name,position,team,goals,assists,points,games_played,last5_game_pts,injury_status"
+               f"&order=points.desc&limit=500")
+        headers = {"apikey": supabase_key, "Authorization": f"Bearer {supabase_key}"}
+        try:
+            r = requests.get(url, headers=headers, timeout=10)
+            r.raise_for_status()
+            for p in r.json():
+                abbr = p.get("team")
+                if abbr not in _player_form_cache:
+                    _player_form_cache[abbr] = []
+                # Parse last5_game_pts JSON string -> sum
+                l5 = p.get("last5_game_pts")
+                if isinstance(l5, str):
+                    try:
+                        vals = _json.loads(l5)
+                        p["_last5_sum"] = sum(v for v in vals if v is not None)
+                        p["_last5_count"] = sum(1 for v in vals if v is not None)
+                    except Exception:
+                        p["_last5_sum"] = None
+                        p["_last5_count"] = 0
+                elif isinstance(l5, list):
+                    p["_last5_sum"] = sum(v for v in l5 if v is not None)
+                    p["_last5_count"] = sum(1 for v in l5 if v is not None)
+                else:
+                    p["_last5_sum"] = None
+                    p["_last5_count"] = 0
+                _player_form_cache[abbr].append(p)
+        except Exception as e:
+            print(f"⚠️ Could not fetch player form: {e}")
+
+    return {name: _player_form_cache.get(_ODDS_NAME_TO_ABBR.get(name, ""), []) for name in team_names}
+
+
+def format_player_form(team_name: str, players: list) -> str:
+    """Format top skaters + hot/cold flags for one team into a prompt block."""
+    if not players:
+        return f"{team_name} Key Players: No data\n"
+
+    skaters = [p for p in players if p.get("position", "").upper() not in ("G", "")]
+    skaters_sorted = sorted(skaters, key=lambda p: p.get("points", 0) or 0, reverse=True)
+    top = skaters_sorted[:8]
+
+    lines = [f"{team_name} Key Players (skaters only, season stats + last-5 pts):"]
+    for p in top:
+        name = p.get("player_name", "Unknown")
+        pos = p.get("position", "?")
+        gp = p.get("games_played") or 0
+        g = p.get("goals") or 0
+        a = p.get("assists") or 0
+        pts = p.get("points") or 0
+        l5 = p.get("_last5_sum")
+        l5c = p.get("_last5_count", 0)
+        inj = p.get("injury_status") or ""
+
+        l5_str = f"{l5}pts in last {l5c}GP" if l5 is not None and l5c >= 3 else "< 3GP sample"
+        hot_cold = ""
+        if l5 is not None and l5c >= 5:
+            if l5 >= 5:
+                hot_cold = " 🔥HOT"
+            elif l5 <= 1:
+                hot_cold = " 🧊COLD"
+        inj_str = f" [{inj}]" if inj and inj != "Active" else ""
+
+        lines.append(f"  {name} ({pos}) — {g}G {a}A {pts}pts in {gp}GP | L5: {l5_str}{hot_cold}{inj_str}")
+
+    return "\n".join(lines) + "\n"
+
 load_dotenv()
 
 
@@ -935,7 +1054,7 @@ def get_playoff_goalie_stats(home_team, away_team, starting_goalies, season='202
     return output
 
 
-def analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text="", playoff_goalie_stats_text=""):
+def analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text="", playoff_goalie_stats_text="", player_form_text=""):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
@@ -990,6 +1109,7 @@ def analyze_results(results_text, absences_text, recent_games, team_stats_text, 
             prompt_text = prompt_text.replace("{{SPECIAL_TEAMS}}", special_teams_text)
             prompt_text = prompt_text.replace("{{PLAYOFF_SERIES_STATUS}}", playoff_series_text)
             prompt_text = prompt_text.replace("{{PLAYOFF_GOALIE_STATS}}", playoff_goalie_stats_text)
+            prompt_text = prompt_text.replace("{{PLAYER_FORM}}", player_form_text)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 
@@ -1143,6 +1263,7 @@ with open(filename, "w") as f:
         standings_text = ""
         special_teams_text = ""
         playoff_goalie_stats_text = ""
+        player_form_text = ""
 
         # Fetch playoff series status once (only in playoff mode)
         is_playoffs = os.environ.get("PLAYOFF_MODE", "").lower() in ("1", "true", "yes")
@@ -1156,6 +1277,12 @@ with open(filename, "w") as f:
         # Fetch special teams stats once (not per-game)
         print("Fetching NHL special teams stats (PP%/PK%)...")
         special_teams_data = get_nhl_special_teams_stats()
+
+        # Pre-fetch player form data for all teams playing tonight
+        # Use all scheduled games (not just odds-matched) so player form is always available
+        all_team_names = list({g['home'] for g in (matched or games)} | {g['away'] for g in (matched or games)})
+        print(f"Fetching player form data for {len(all_team_names)} teams...")
+        player_form_by_team = fetch_player_form_for_teams(all_team_names)
 
         for g in matched:
             away_team = g['away']
@@ -1173,6 +1300,13 @@ with open(filename, "w") as f:
             )
             f.write(line)
             results_text += line
+
+            # Add player form (hot/cold skaters) for this matchup
+            away_players = player_form_by_team.get(away_team, [])
+            home_players = player_form_by_team.get(home_team, [])
+            player_form_text += f"\n--- {away_team} @ {home_team} ---\n"
+            player_form_text += format_player_form(away_team, away_players)
+            player_form_text += format_player_form(home_team, home_players)
 
             # Extract proper team names for API calls
             # Map full team names to searchable names used in NHL_TEAM_ABBREV_MAP
@@ -1403,7 +1537,7 @@ with open(filename, "w") as f:
         print(recent_games)
 
         if results_text:
-            summary = analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text, playoff_goalie_stats_text)
+            summary = analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text, playoff_goalie_stats_text, player_form_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")

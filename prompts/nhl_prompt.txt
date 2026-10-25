@@ -5,7 +5,7 @@ DATA INTEGRITY & TEMPORAL ANCHOR
 Today's Date is {{TODAY_DATE}}.
 Before analysis, perform a "Roster Check" to ensure you are not using outdated player data from 2024 or earlier seasons.
 If your internal database for the 2026-27 season is unavailable, state: "Current Roster Data Unavailable" and do not mention player names in your analysis unless they are explicitly provided in the input data.
-If roster data is available, simply state: "Current Roster Data Verified." Only mention player names if they appear in {{ABSENCES}} or {{GOALIE_STATS}}.
+If roster data is available, simply state: "Current Roster Data Verified." Only mention player names if they appear in {{ABSENCES}}, {{GOALIE_STATS}}, or {{PLAYER_FORM}}.
 
 **CRITICAL ODDS ATTRIBUTION RULE**:
 The odds format is: "<Home Team> ML (Home): X.XX, <Away Team> ML (Away): X.XX"
@@ -58,6 +58,14 @@ You have access to comprehensive statistics:
 - {{RECENT_RESULTS}} - Last 5 days outcomes for context
 - {{ABSENCES}} - Injured/scratched players by team
 - {{HISTORICAL_RESULTS}} - Bot's previous predictions and outcomes
+- {{PLAYER_FORM}} - Top skaters by team tonight: season points, last-5 game points, 🔥HOT (≥5 pts in last 5) or 🧊COLD (≤1 pt in last 5) flags, and any injury notes
+
+**PLAYER FORM USAGE RULES**:
+- Use {{PLAYER_FORM}} to identify which team has elite players surging or struggling
+- When a team has 2+ 🔥HOT players, that is a meaningful offensive momentum signal — factor into Factor 3 (Offensive/Defensive)
+- When a team's top scorer is 🧊COLD, that is a suppressed offense signal — factor into Factor 3
+- You MUST name at least one specific hot or cold player (from {{PLAYER_FORM}}) when it materially affects your recommendation
+- Do NOT name players whose form is neutral (no 🔥 or 🧊 flag) unless they have an exceptional statistical profile (top-3 on team in points)
 
 SIMPLIFIED ANALYSIS FRAMEWORK (4 Core Factors Only)
 
@@ -278,7 +286,7 @@ Format:
 BET OF THE DAY
 
 <TEAM/MARKET> <MARKET_TYPE> vs <OPPONENT> @ <ODDS>
-Write 4-5 sentences of analysis: first summarize teams, fatigue, momentum, matchup context, and absences/goalie status (**MANDATORY: mention both starting goalies by name and their Last 5 SV% or GAA**); then explain the edge, how factors combine, and why the market has mispriced this game, discussing the goalie matchup impact explicitly (e.g., "Elite goalie X with .930 SV% in last 5 gives them a significant advantage over struggling goalie Y at .885"). Make it accessible for beginner bettors.
+Write 4-5 sentences of analysis: first summarize teams, fatigue, momentum, matchup context, and absences/goalie status (**MANDATORY: mention both starting goalies by name and their Last 5 SV% or GAA**); if {{PLAYER_FORM}} contains a 🔥HOT or 🧊COLD player that influences this pick, **you MUST name that player by name** (e.g., "Nathan MacKinnon is 🔥HOT with 7 pts in his last 5 games"); then explain the edge, how factors combine, and why the market has mispriced this game, discussing the goalie matchup impact explicitly (e.g., "Elite goalie X with .930 SV% in last 5 gives them a significant advantage over struggling goalie Y at .885"). Make it accessible for beginner bettors.
 Confidence Level: (High/Medium), Units: (1.5u/1u), Win Probability: XX%
 
 **Other Recommended Plays**
@@ -304,3 +312,4 @@ DATA TO ANALYZE
 {{RECENT_RESULTS}}
 {{RECENT_GAMES}}
 {{ABSENCES}}
+{{PLAYER_FORM}}

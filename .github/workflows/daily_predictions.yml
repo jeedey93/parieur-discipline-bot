@@ -28,6 +28,8 @@ jobs:
       ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       PLAYOFF_MODE: ${{ vars.PLAYOFF_MODE }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,6 +47,8 @@ jobs:
         run: |
           echo "ODDS_API_KEY=${ODDS_API_KEY}" > .env
           echo "GOOGLE_API_KEY=${GOOGLE_API_KEY}" >> .env
+          echo "SUPABASE_URL=${SUPABASE_URL}" >> .env
+          echo "SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}" >> .env
       - name: Determine run time
         id: run_time
         run: |
