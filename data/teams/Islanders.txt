@@ -1,6 +1,6 @@
 ============================================================
 ISLANDERS - LINEUP
-Last Updated: 2026-10-20 03:12 PM ET
+Last Updated: 2026-10-25 02:43 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,15 +14,16 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Logan Stanley — Matthew Schaefer
 Pair 2: Adam Pelech — Ryan Pulock
-Pair 3: Matt Kessel — Tony De Angelo
+Pair 3: Matthew Kessel — Tony De Angelo
 
 GOALIES:
 ----------------------------------------
-  Ilya Sorokin
   Semyon Varlamov
+  Ilya Sorokin
 
 SCRATCHED / INJURED:
 ----------------------------------------
+  Scott Mayfield (scratched)
   Mathew Barzal (knee) (injured)
   Alexander Romanov (torn right ACL) (injured)
   Matias Maccelli (lower body) (injured)

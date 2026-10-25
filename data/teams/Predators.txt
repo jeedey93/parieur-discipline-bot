@@ -1,6 +1,6 @@
 ============================================================
 PREDATORS - LINEUP
-Last Updated: 2026-10-24 02:33 PM ET
+Last Updated: 2026-10-25 02:43 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,14 +18,14 @@ Pair 3: Brady Skjei — Nick Perbix
 
 GOALIES:
 ----------------------------------------
-  Juuse Saros
   Justus Annunen
+  Juuse Saros
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Jack Ahcan (scratched)
-  Vitali Pinchuk (scratched)
+  Daemon Hunt (scratched)
   Ilya Lyubushkin (scratched)
+  Vitali Pinchuk (scratched)
   William Trudeau (upper body) (injured)
 
 ============================================================

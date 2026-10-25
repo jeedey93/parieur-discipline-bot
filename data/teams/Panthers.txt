@@ -1,13 +1,13 @@
 ============================================================
 PANTHERS - LINEUP
-Last Updated: 2026-10-21 02:54 PM ET
+Last Updated: 2026-10-25 02:43 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Brady Tkachuk — Sam Bennett — Matthew Tkachuk
-Line 2: Carter Verhaeghe — Sam Reinhart — Lars Eller
-Line 3: Eetu Luostarinen — Anton Lundell — Sandis Vilmanis
+Line 2: Sandis Vilmanis — Carter Verhaeghe — Sam Reinhart
+Line 3: Lars Eller — Eetu Luostarinen — Anton Lundell
 Line 4: Bokondji Imama — Cole Schwindt — Garnet Hathaway
 
 DEFENSE PAIRS:
@@ -24,6 +24,7 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Uvis Balinskis (scratched)
+  Cole Reinhardt (scratched)
   Jacob Markstrom (upper body) (injured)
   Aleksander Barkov (knee) (injured)
   Brad Marchand (knee) (injured)
