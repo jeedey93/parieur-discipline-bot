@@ -33,7 +33,7 @@ NHL_TEAM_NICKNAME_MAP = {
     'Penguins': 'Pittsburgh Penguins',
     'Sharks': 'San Jose Sharks',
     'Kraken': 'Seattle Kraken',
-    'Blues': 'St Louis Blues',
+    'Blues': 'St. Louis Blues',
     'Lightning': 'Tampa Bay Lightning',
     'Maple Leafs': 'Toronto Maple Leafs',
     'Canucks': 'Vancouver Canucks',

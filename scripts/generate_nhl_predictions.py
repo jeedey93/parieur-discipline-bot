@@ -1284,7 +1284,40 @@ with open(filename, "w") as f:
         print(f"Fetching player form data for {len(all_team_names)} teams...")
         player_form_by_team = fetch_player_form_for_teams(all_team_names)
 
-        for g in matched:
+        # Short NHL API name → full name matching starting_goalies keys
+        _SHORT_TO_FULL = {
+            'Anaheim': 'Anaheim Ducks', 'Boston': 'Boston Bruins', 'Buffalo': 'Buffalo Sabres',
+            'Calgary': 'Calgary Flames', 'Carolina': 'Carolina Hurricanes', 'Chicago': 'Chicago Blackhawks',
+            'Colorado': 'Colorado Avalanche', 'Columbus': 'Columbus Blue Jackets', 'Dallas': 'Dallas Stars',
+            'Detroit': 'Detroit Red Wings', 'Edmonton': 'Edmonton Oilers', 'Florida': 'Florida Panthers',
+            'Los Angeles': 'Los Angeles Kings', 'Minnesota': 'Minnesota Wild',
+            'Montréal': 'Montreal Canadiens', 'Montreal': 'Montreal Canadiens',
+            'Nashville': 'Nashville Predators', 'New Jersey': 'New Jersey Devils',
+            'New York': 'New York Islanders',
+            'Ottawa': 'Ottawa Senators', 'Philadelphia': 'Philadelphia Flyers',
+            'Pittsburgh': 'Pittsburgh Penguins', 'San Jose': 'San Jose Sharks',
+            'Seattle': 'Seattle Kraken', 'St. Louis': 'St. Louis Blues', 'St Louis': 'St. Louis Blues',
+            'Tampa Bay': 'Tampa Bay Lightning', 'Toronto': 'Toronto Maple Leafs',
+            'Utah': 'Utah Mammoth', 'Vancouver': 'Vancouver Canucks',
+            'Vegas': 'Vegas Golden Knights', 'Washington': 'Washington Capitals', 'Winnipeg': 'Winnipeg Jets',
+        }
+
+        # When odds are unavailable, fall back to schedule-only games with no odds lines
+        games_to_process = matched if matched else [
+            {**g, 'home': _SHORT_TO_FULL.get(g['home'], g['home']),
+                  'away': _SHORT_TO_FULL.get(g['away'], g['away']),
+                  'home_odds': 'N/A', 'away_odds': 'N/A', 'over_under': None,
+                  'over_price': None, 'under_price': None, 'home_spread': None,
+                  'away_spread': None, 'home_spread_odds': None, 'away_spread_odds': None}
+            for g in games
+        ]
+        if not matched:
+            print("⚠️ No odds available — running predictions from schedule only (no lines)")
+            # Re-fetch player form with full names now that we have them
+            full_team_names = list({g['home'] for g in games_to_process} | {g['away'] for g in games_to_process})
+            player_form_by_team = fetch_player_form_for_teams(full_team_names)
+
+        for g in games_to_process:
             away_team = g['away']
             home_team = g['home']
 
