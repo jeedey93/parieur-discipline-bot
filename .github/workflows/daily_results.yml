@@ -26,9 +26,9 @@ jobs:
           echo "ODDS_API_KEY=${{ secrets.ODDS_API_KEY }}" > .env
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
       - name: Run NHL daily results bot
-        run: python scripts/analyze_nhl_results.py
+        run: python scripts/analyze_results.py --sport nhl
       - name: Run NBA daily results bot
-        run: python scripts/analyze_nba_results.py
+        run: python scripts/analyze_results.py --sport nba
       - name: Run daily results summary
         run: python scripts/generate_combined_summary.py
       - name: Generate performance dashboard

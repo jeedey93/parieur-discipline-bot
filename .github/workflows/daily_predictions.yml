@@ -86,11 +86,11 @@ jobs:
       - name: Compare NBA predictions (3pm)
         if: steps.run_time.outputs.time == '3pm'
         continue-on-error: true
-        run: python scripts/compare_nba_predictions.py
+        run: python scripts/compare_predictions.py --sport nba
       - name: Compare NHL predictions (3pm)
         if: steps.run_time.outputs.time == '3pm'
         continue-on-error: true
-        run: python scripts/compare_nhl_predictions.py
+        run: python scripts/compare_predictions.py --sport nhl
       - name: Run Dual Bet of the Day (3pm)
         if: steps.run_time.outputs.time == '3pm'
         continue-on-error: true
