@@ -155,7 +155,7 @@ def fetch_last5_game_pts(player_id: int, position: str, scoring: dict) -> list[i
     is_goalie = "G" in pos
     is_defence = pos == "D"
     pts_list = []
-    for g in games[-5:]:
+    for g in games[:5]:  # game-log is newest-first; take top 5 then reverse for oldest→newest
         if is_goalie:
             w = 1 if g.get("decision", "").upper() == "W" else 0
             so = g.get("shutouts", 0) or 0
@@ -166,7 +166,7 @@ def fetch_last5_game_pts(player_id: int, position: str, scoring: dict) -> list[i
             pts_list.append(goals * scoring["d_goals"] + assists * scoring["d_assists"])
         else:
             pts_list.append((g.get("points", 0) or 0) * scoring["f_points"])
-    return pts_list
+    return pts_list[::-1]  # reverse to oldest→newest
 
 
 def build_stats_map(skaters: list[dict], goalies: list[dict]) -> dict[str, dict]:
