@@ -2369,6 +2369,15 @@
       }).filter(x => x.zeros > 0).sort((a, b) => b.zeros - a.zeros);
       if (deadTeams.length) { const top = deadTeams[0]; data.push({ group:'Team Performance', color:'red', icon:'🪦', label:'Dead Weight', main:top.t.name, sub:`${top.zeros} of ${top.total} dressed players still at 0 pts` }); }
 
+      // 14b. Most Injured Team (most dressed players with non-Active injury_status)
+      const injTeams = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const injured = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => p.injury_status && p.injury_status !== 'Active');
+        const names = injured.map(p => formatName(p.player_name)).join(', ');
+        return { t, count: injured.length, names };
+      }).filter(x => x.count > 0).sort((a, b) => b.count - a.count);
+      if (injTeams.length) { const top = injTeams[0]; data.push({ group:'Team Performance', color:'red', icon:'🏥', label:'Most Injuries', main:top.t.name, sub:`${top.count} injured: ${top.names}` }); }
+
       // 15. Sniper (most goals by a single player pool-wide)
       const sniperData = [];
       teams.forEach(t => {
