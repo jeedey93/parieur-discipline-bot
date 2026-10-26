@@ -2378,6 +2378,22 @@
       }).filter(x => x.count > 0).sort((a, b) => b.count - a.count);
       if (injTeams.length) { const top = injTeams[0]; data.push({ group:'Team Performance', color:'red', icon:'🏥', label:'Most Injuries', main:top.t.name, sub:`${top.count} injured: ${top.names}` }); }
 
+      // 14c. Team with most players on a hot streak (🔥)
+      const hotTeamData = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const hotPlayers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => (hotColdBadge(p.last5_game_pts) || '').includes('🔥'));
+        return { t, count: hotPlayers.length, names: hotPlayers.map(p => formatName(p.player_name)).join(', ') };
+      }).filter(x => x.count > 0).sort((a, b) => b.count - a.count);
+      if (hotTeamData.length) { const top = hotTeamData[0]; data.push({ group:'Team Performance', color:'green', icon:'🔥', label:'Most on Fire', main:top.t.name, sub:`${top.count} hot players: ${top.names}` }); }
+
+      // 14d. Team with most players on a cold streak (🧊)
+      const coldTeamData = sorted.map(t => {
+        const rp = rosterPlayers(t.roster);
+        const coldPlayers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => (hotColdBadge(p.last5_game_pts) || '').includes('🧊') && (!p.injury_status || p.injury_status === 'Active'));
+        return { t, count: coldPlayers.length, names: coldPlayers.map(p => formatName(p.player_name)).join(', ') };
+      }).filter(x => x.count > 0).sort((a, b) => b.count - a.count);
+      if (coldTeamData.length) { const top = coldTeamData[0]; data.push({ group:'Team Performance', color:'red', icon:'🧊', label:'Most Ice Cold', main:top.t.name, sub:`${top.count} cold players: ${top.names}` }); }
+
       // 15. Sniper (most goals by a single player pool-wide)
       const sniperData = [];
       teams.forEach(t => {
