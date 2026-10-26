@@ -1,12 +1,12 @@
 ============================================================
 FLAMES - LINEUP
-Last Updated: 2026-10-18 05:14 PM ET
+Last Updated: 2026-10-26 04:58 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Joel Farabee — Mikael Backlund — Matt Coronato
-Line 2: Aydar Suniev — Morgan Frost — Yegor Sharangovich
+Line 2: Yegor Sharangovich — Morgan Frost — Aydar Suniev
 Line 3: Matvei Gridin — Martin Pospisil — Ryan Strome
 Line 4: Brennan Othmann — Jonathan Castagna — Adam Klapka
 
@@ -20,12 +20,5 @@ GOALIES:
 ----------------------------------------
   Devin Cooley
   Dustin Wolf
-
-SCRATCHED / INJURED:
-----------------------------------------
-  Maksim Tsyplakov (scratched)
-  Joel Hanley (scratched)
-  Jonathan Huberdeau (hip) (injured)
-  Samuel Honzek (lower body) (injured)
 
 ============================================================
