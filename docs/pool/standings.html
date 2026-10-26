@@ -2721,11 +2721,16 @@
 
     // ── SWAP HISTORY ─────────────────────────────────────────────────────────────
     function buildSwapHistory(team) {
-      const swaps = _benchSwaps.filter(s => s.team_id === team.id);
-      if (!swaps.length) return '';
+      const swapsAsc = _benchSwaps.filter(s => s.team_id === team.id);
+      if (!swapsAsc.length) return '';
       const m = slugMap();
       const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
-      let swapCounter = 0;
+      // Number swaps in chronological order (oldest = #1)
+      let counter = 0;
+      const swapNumbers = {};
+      swapsAsc.forEach(s => { if (s.reason === 'swap') swapNumbers[s.id] = ++counter; });
+      // Display newest first
+      const swaps = [...swapsAsc].sort((a, b) => b.swap_date.localeCompare(a.swap_date) || b.id - a.id);
       const rows = swaps.map(s => {
         const pIn  = m[s.player_in_slug];
         const pOut = m[s.player_out_slug];
@@ -2737,8 +2742,7 @@
         if (s.reason === 'injury') {
           reasonHtml = `<span class="swap-reason injury">🩹 Injury</span>`;
         } else if (s.reason === 'swap') {
-          swapCounter++;
-          reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapCounter}</span>`;
+          reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapNumbers[s.id]}</span>`;
         } else if (s.reason === 'pickup') {
           reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
         }
