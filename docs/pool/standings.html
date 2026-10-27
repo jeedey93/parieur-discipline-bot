@@ -745,6 +745,21 @@
         .pm-btn.nhl:hover { background: rgba(0,102,204,0.22); }
         .pm-btn.cancel { color: rgba(255,255,255,0.4); }
 
+        .detail-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.1rem; }
+        .detail-tab { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); cursor: pointer; background: transparent; transition: all 0.15s; }
+        .detail-tab:hover { color: white; background: rgba(255,255,255,0.05); }
+        .detail-tab.active { background: rgba(255,184,28,0.12); color: var(--gold); border-color: rgba(255,184,28,0.3); }
+        .cap-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .cap-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 0.3rem 0.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .cap-table th.right, .cap-table td.right { text-align: right; }
+        .cap-table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.85); vertical-align: middle; }
+        .cap-table tr:last-child td { border-bottom: none; }
+        .cap-table tr.bench-row td { color: rgba(255,255,255,0.45); font-style: italic; }
+        .cap-table tr.cap-total td { border-top: 1px solid rgba(255,255,255,0.12); border-bottom: none; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; letter-spacing: 0.5px; color: white; padding-top: 0.6rem; }
+        .cap-bar-wrap { margin: 1rem 0 1.5rem; }
+        .cap-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.45); margin-bottom: 0.35rem; letter-spacing: 0.5px; }
+        .cap-bar-track { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+        .cap-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
         .hist-section-label { font-family: 'Bebas Neue', cursive; font-size: 0.78rem; letter-spacing: 3px; padding: 0.3rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .hist-section-label.F { color: var(--pink); background: rgba(255,122,138,0.04); }
         .hist-section-label.D { color: var(--blue); background: rgba(125,180,255,0.04); }
@@ -1216,6 +1231,7 @@
     }
     // ─────────────────────────────────────────────────────────────────────────
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
+    let _detailTab = 'roster'; // 'roster' | 'cap'
     // Sort state for roster tables: { pos: 'F'|'D'|'G', field: 'pts'|'gp'|'g'|'a'|'w'|'so' }
     let _rosterSort = {}; // keyed by pos
     if (activeView === 'allteams' || activeView === 'team') activeView = 'standings';
@@ -1929,6 +1945,10 @@
       sessionStorage.setItem('pool_view', v);
       render();
       if (v === 'history') loadHistory();
+    }
+    function setDetailTab(tab) {
+      _detailTab = tab;
+      render();
     }
     function selectTeam(id) {
       activeTeamId = decodeURIComponent(id);
@@ -2690,7 +2710,73 @@
         ? `<span class="detail-badge" style="color:var(--green);border-color:rgba(34,197,94,0.35);background:rgba(34,197,94,0.08);">+${teamYtd} ytd</span>`
         : `<span class="detail-badge" style="color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.1);">0 ytd</span>`;
 
+      const tabStrip = `<div class="detail-tabs">
+        <div class="detail-tab ${_detailTab==='roster'?'active':''}" onclick="setDetailTab('roster')">Roster</div>
+        <div class="detail-tab ${_detailTab==='cap'?'active':''}" onclick="setDetailTab('cap')">💰 Cap</div>
+      </div>`;
+
+      // ── CAP VIEW ──────────────────────────────────────────────────────────────
+      if (_detailTab === 'cap') {
+        const CAP_BUDGET = 104e6;
+        const m = slugMap();
+        const posColor = { F: 'var(--pink)', D: 'var(--blue)', G: 'var(--gold)', B: 'rgba(255,255,255,0.35)' };
+
+        const sections = ['F', 'D', 'G', 'B'];
+        let rows = '';
+        let dressedTotal = 0;
+        let benchTotal = 0;
+
+        sections.forEach(pos => {
+          const slugs = (team.roster[pos] || []).filter(Boolean);
+          if (!slugs.length) return;
+          const isBench = pos === 'B';
+          slugs.forEach(slug => {
+            const p = m[slug];
+            const name = p ? (p.player_name || slug) : slug;
+            const capHit = p?.cap_hit || 0;
+            const capM = capHit > 0 ? `$${(capHit / 1e6).toFixed(2)}M` : '—';
+            const posTag = p ? normalizePos(p.position) : pos;
+            const color = posColor[posTag] || posColor.F;
+            if (isBench) benchTotal += capHit; else dressedTotal += capHit;
+            rows += `<tr class="${isBench ? 'bench-row' : ''}">
+              <td><span style="font-size:0.65rem;font-weight:700;color:${color};margin-right:6px;letter-spacing:1px">${posTag}</span>${name}${isBench ? ' <span style="font-size:0.65rem;color:rgba(255,255,255,0.3)">(bench)</span>' : ''}</td>
+              <td class="right">${capM}</td>
+            </tr>`;
+          });
+        });
+
+        const grandTotal = dressedTotal + benchTotal;
+        const remaining = CAP_BUDGET - grandTotal;
+        const over = remaining < 0;
+        const tight = !over && remaining < 5e6;
+        const barColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
+        const barPct = Math.min(100, (grandTotal / CAP_BUDGET) * 100).toFixed(1);
+        const totalColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'white';
+        const remLabel = over ? `$${(Math.abs(remaining)/1e6).toFixed(2)}M OVER` : `$${(remaining/1e6).toFixed(2)}M remaining`;
+        const remColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
+
+        return `
+          ${tabStrip}
+          <div class="cap-bar-wrap">
+            <div class="cap-bar-label">
+              <span>$${(grandTotal/1e6).toFixed(2)}M used of $104M cap</span>
+              <span style="color:${remColor}">${remLabel}</span>
+            </div>
+            <div class="cap-bar-track"><div class="cap-bar-fill" style="width:${barPct}%;background:${barColor}"></div></div>
+          </div>
+          <table class="cap-table">
+            <thead><tr><th>Player</th><th class="right">Cap Hit</th></tr></thead>
+            <tbody>${rows}</tbody>
+            <tfoot>
+              <tr class="cap-total"><td>Total (dressed)</td><td class="right">$${(dressedTotal/1e6).toFixed(2)}M</td></tr>
+              ${benchTotal > 0 ? `<tr class="cap-total" style="color:rgba(255,255,255,0.45);font-size:0.78rem"><td>Bench</td><td class="right">$${(benchTotal/1e6).toFixed(2)}M</td></tr>` : ''}
+              <tr class="cap-total"><td style="color:${totalColor}">Grand Total</td><td class="right" style="color:${totalColor}">$${(grandTotal/1e6).toFixed(2)}M</td></tr>
+            </tfoot>
+          </table>`;
+      }
+
       return `
+        ${tabStrip}
         <div class="detail-header">
           <div class="detail-header-left">
             <div class="detail-title">${team.name}</div>
