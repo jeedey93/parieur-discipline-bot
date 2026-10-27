@@ -1,0 +1,67 @@
+Date: 2026-10-27
+
+Columbus Blue Jackets @ Philadelphia Flyers
+Philadelphia Flyers ML (Home): 2.0, Columbus Blue Jackets ML (Away): 1.81, O/U: 5.5 (Over: 1.88 / Under: 1.93)
+------
+Boston Bruins @ Carolina Hurricanes
+Carolina Hurricanes ML (Home): 1.53, Boston Bruins ML (Away): 2.51, O/U: 6.0 (Over: 1.81 / Under: 2.01)
+------
+Los Angeles Kings @ Chicago Blackhawks
+Chicago Blackhawks ML (Home): 1.98, Los Angeles Kings ML (Away): 1.83, O/U: 6.0 (Over: 1.93 / Under: 1.88)
+------
+Montréal Canadiens @ St Louis Blues
+St Louis Blues ML (Home): 1.82, Montréal Canadiens ML (Away): 2.0, O/U: 6.0 (Over: 1.86 / Under: 1.95)
+------
+New York Islanders @ Nashville Predators
+Nashville Predators ML (Home): 1.82, New York Islanders ML (Away): 1.99, O/U: 5.5 (Over: 1.82 / Under: 2.0)
+------
+New Jersey Devils @ Dallas Stars
+Dallas Stars ML (Home): 1.83, New Jersey Devils ML (Away): 1.99, O/U: 5.5 (Over: 1.84 / Under: 1.98)
+------
+Florida Panthers @ Winnipeg Jets
+Winnipeg Jets ML (Home): 2.07, Florida Panthers ML (Away): 1.77, O/U: 6.0 (Over: 1.93 / Under: 1.88)
+------
+Minnesota Wild @ Utah Mammoth
+Utah Mammoth ML (Home): 1.78, Minnesota Wild ML (Away): 2.07, O/U: 6.5 (Over: 1.95 / Under: 1.87)
+------
+Ottawa Senators @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.65, Ottawa Senators ML (Away): 2.25, O/U: 6.5 (Over: 1.91 / Under: 1.9)
+------
+Vancouver Canucks @ Anaheim Ducks
+Anaheim Ducks ML (Home): 1.48, Vancouver Canucks ML (Away): 2.67, O/U: 6.5 (Over: 1.81 / Under: 2.02)
+------
+Buffalo Sabres @ San Jose Sharks
+San Jose Sharks ML (Home): 2.15, Buffalo Sabres ML (Away): 1.71, O/U: 6.5 (Over: 1.81 / Under: 2.01)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable.
+Today's Date is 2026-10-27. Starting goalies are not yet confirmed for this early prediction run, and this uncertainty has been factored into the confidence levels.
+
+BET OF THE DAY
+
+Dallas Stars ML vs New Jersey Devils @ 1.83
+The Dallas Stars are in dominant form with a 7-2-1 record and a 5-game winning streak in their last 10, boasting a superior goal differential of +1.6 compared to the Devils' +0.3. While both teams are playoff contenders, Dallas also enjoys a significant home-ice advantage, with a home win percentage of 0.667 against New Jersey's 0.333 road win percentage, generating an 8% boost. Despite New Jersey having an extra day of rest, the fatigue factor is deemed neutral as per the strict framework. All these factors combine to give the Stars a strong perceived edge, which the market's 1.83 odds appear to undervalue.
+Confidence Level: High, Units: 1.5u, Win Probability: 65.0%
+
+**Other Recommended Plays**
+
+San Jose Sharks ML vs Buffalo Sabres @ 2.15
+The San Jose Sharks enter this matchup at home with a considerable advantage in home-ice performance, boasting a 0.500 home win percentage against Buffalo's paltry 0.200 away record, translating to an 8% boost for the Sharks. Neither team shows a significant edge in recent form or differential, nor is there any head-to-head or motivation factor at play. With both teams having two days of rest, fatigue is not a factor. This strong home-ice split provides a clear value play for San Jose at attractive odds, identifying a market inefficiency.
+Confidence Level: High, Units: 1.5u, Win Probability: 62.0%
+
+Philadelphia Flyers ML vs Columbus Blue Jackets @ 2.0
+The Philadelphia Flyers, despite a slightly worse overall record than Columbus recently, hold a significant home-ice advantage with a 0.286 home win percentage against Columbus's 0.000 away win rate, generating an 8% boost. Both teams are struggling in recent form and carry negative goal differentials, neutralizing that factor. With both squads well-rested, fatigue is not a concern. The market odds at 2.0 for the Flyers at home overlook their substantial home-ice differential against a team that has yet to win on the road this season.
+Confidence Level: High, Units: 1.5u, Win Probability: 62.0%
+
+Nashville Predators ML vs New York Islanders @ 1.82
+Nashville hosts the Islanders with a slight advantage from recent form, having a positive goal differential of +0.4 over the Islanders' -0.2 (factored as +1% for NYI in calculations, hence -1% for NSH). However, the Predators benefit from a substantial home-ice edge, with a 0.500 home win percentage compared to the Islanders' 0.200 road win percentage, contributing an 8% boost. With both teams having one day of rest, fatigue is not a distinguishing factor. The solid home-ice advantage and the competitive odds make the Predators a strong value play.
+Confidence Level: Medium, Units: 1u, Win Probability: 61.0%
+
+Chicago Blackhawks ML vs Los Angeles Kings @ 1.98
+The Chicago Blackhawks are at home facing the Los Angeles Kings, who are on the second half of a back-to-back road trip. This fatigue factor for the Kings awards a significant 4% edge to the rested Blackhawks. While neither team demonstrates a strong recent form or goal differential advantage, and home-ice splits are close, the Kings' back-to-back situation creates a clear opportunity. The market's odds of 1.98 for Chicago do not fully account for the fatigue disadvantage their opponent is facing.
+Confidence Level: Medium, Units: 1u, Win Probability: 59.0%
+
+St Louis Blues ML vs Montréal Canadiens @ 1.82
+As per the mandatory rule to include a play from the Montreal Canadiens game, the St. Louis Blues ML at 1.82 is selected as the best available option. Although the calculated edge of -0.4% does not meet the typical +1% minimum, it represents the closest to value among all options in the Montreal game after comprehensive analysis. The Blues hold a slight home-ice advantage, calculated at a minimal 0.5% boost, which is somewhat mitigated by Montréal's respectable 0.600 away win percentage. Recent team form and fatigue are neutral factors.
+Confidence Level: Medium, Units: 1u, Win Probability: 54.5%
