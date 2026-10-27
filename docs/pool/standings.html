@@ -2065,13 +2065,28 @@
           _selectedSlug = null;
           capRender();
         } else {
-          // Second tap: swap the two players' zones
-          const fromZone = _capState[_selectedSlug];
-          const toZone   = _capState[slug];
-          _capState[_selectedSlug] = toZone;
-          _capState[slug] = fromZone;
-          _selectedSlug = null;
-          capRender();
+          // Second tap: only allow swaps within the same position group (F↔F, D↔D, G↔G)
+          const posA = ORIG[_selectedSlug]?.pos;
+          const posB = ORIG[slug]?.pos;
+          if (posA !== posB) {
+            // Incompatible positions: flash selection and abort
+            _selectedSlug = null;
+            capRender();
+          } else {
+            // Always exchange zones between the two players
+            const zoneA = _capState[_selectedSlug];
+            const zoneB = _capState[slug];
+            if (zoneA === zoneB) {
+              // Same zone: move A to the opposite zone, B stays
+              _capState[_selectedSlug] = zoneA === 'dressed' ? 'bench' : 'dressed';
+            } else {
+              // Different zones: true swap
+              _capState[_selectedSlug] = zoneB;
+              _capState[slug] = zoneA;
+            }
+            _selectedSlug = null;
+            capRender();
+          }
         }
       };
 
