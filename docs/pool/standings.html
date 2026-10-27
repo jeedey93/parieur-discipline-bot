@@ -1954,6 +1954,7 @@
     function selectTeam(id) {
       activeTeamId = decodeURIComponent(id);
       activeView = 'standings';
+      _detailTab = 'roster';
       sessionStorage.setItem('pool_view', 'standings');
       sessionStorage.setItem('pool_team', activeTeamId);
       render();
