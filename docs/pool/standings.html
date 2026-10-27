@@ -760,6 +760,7 @@
         .cap-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.45); margin-bottom: 0.35rem; letter-spacing: 0.5px; }
         .cap-bar-track { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
         .cap-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .cap-drop-zone { min-height: 48px; border-radius: 8px; transition: outline 0.1s; }
         .hist-section-label { font-family: 'Bebas Neue', cursive; font-size: 0.78rem; letter-spacing: 3px; padding: 0.3rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .hist-section-label.F { color: var(--pink); background: rgba(255,122,138,0.04); }
         .hist-section-label.D { color: var(--blue); background: rgba(125,180,255,0.04); }
@@ -2715,80 +2716,175 @@
       if (_detailTab === 'cap') {
         const CAP_BUDGET = 104e6;
         const m = slugMap();
-        const posColor  = { F: 'var(--pink)', D: 'var(--blue)', G: 'var(--gold)' };
-        const posBg     = { F: 'rgba(255,122,138,0.08)', D: 'rgba(125,180,255,0.08)', G: 'rgba(255,184,28,0.08)' };
-        const sectionLabel = { F: 'Forwards', D: 'Defence', G: 'Goalies', B: 'Bench' };
+        const posColor = { F: 'var(--pink)', D: 'var(--blue)', G: 'var(--gold)' };
+        const posBg    = { F: 'rgba(255,122,138,0.08)', D: 'rgba(125,180,255,0.08)', G: 'rgba(255,184,28,0.08)' };
 
-        let sectionsHtml = '';
-        let dressedTotal = 0;
-        let benchTotal = 0;
-
-        ['F', 'D', 'G', 'B'].forEach(pos => {
-          const slugs = (team.roster[pos] || []).filter(Boolean);
-          if (!slugs.length) return;
-          const isBench = pos === 'B';
-          let cardsHtml = '';
-          slugs.forEach(slug => {
+        // Build player data payload for JS
+        const playerData = {};
+        ['F','D','G','B'].forEach(pos => {
+          (team.roster[pos] || []).filter(Boolean).forEach(slug => {
             const p = m[slug];
-            const name = p ? (p.player_name || slug) : slug;
-            const capHit = p?.cap_hit || 0;
-            const capM = capHit > 0 ? `$${(capHit / 1e6).toFixed(2)}M` : '—';
-            const posTag = p ? normalizePos(p.position) : pos;
-            const color = posColor[posTag] || 'rgba(255,255,255,0.4)';
-            const bg    = isBench ? 'rgba(255,255,255,0.03)' : (posBg[posTag] || 'rgba(255,255,255,0.03)');
-            if (isBench) benchTotal += capHit; else dressedTotal += capHit;
-            cardsHtml += `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 0.9rem;background:${bg};border:1px solid rgba(255,255,255,0.06);border-radius:8px;margin-bottom:0.4rem;">
-              <div style="display:flex;align-items:center;gap:0.6rem;">
-                <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:1.5px;color:${color};background:${bg};border:1px solid ${color};border-radius:4px;padding:2px 6px;flex-shrink:0">${posTag}</span>
-                <span style="font-size:0.95rem;font-weight:600;color:${isBench ? 'rgba(255,255,255,0.45)' : 'white'}">${name}</span>
-              </div>
-              <span style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:1px;color:${isBench ? 'rgba(255,255,255,0.35)' : color};flex-shrink:0;margin-left:1rem">${capM}</span>
-            </div>`;
+            if (!p) return;
+            const posTag = normalizePos(p.position);
+            playerData[slug] = {
+              name: p.player_name || slug,
+              cap: p.cap_hit || 0,
+              pos: posTag,
+              section: pos === 'B' ? 'bench' : 'dressed',
+            };
           });
-          sectionsHtml += `<div style="margin-bottom:1rem">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;padding-left:2px">${sectionLabel[pos]}</div>
-            ${cardsHtml}
-          </div>`;
         });
 
-        const grandTotal = dressedTotal + benchTotal;
-        const remaining = CAP_BUDGET - grandTotal;
-        const over = remaining < 0;
-        const tight = !over && remaining < 5e6;
-        const barColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
-        const barPct = Math.min(100, (grandTotal / CAP_BUDGET) * 100).toFixed(1);
-        const totalColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
-        const remLabel = over ? `$${(Math.abs(remaining)/1e6).toFixed(2)}M OVER CAP` : `$${(remaining/1e6).toFixed(2)}M remaining`;
-        const remColor = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
+        const dataJson = JSON.stringify(playerData).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
 
         return `
           ${tabStrip}
-          <div class="cap-bar-wrap">
-            <div class="cap-bar-label">
-              <span style="font-size:0.85rem;color:white;font-weight:700">$${(grandTotal/1e6).toFixed(2)}M <span style="color:rgba(255,255,255,0.4);font-weight:500">of $104M cap</span></span>
-              <span style="color:${remColor};font-size:0.85rem;font-weight:700">${remLabel}</span>
+          <div id="cap-sandbox" data-budget="${CAP_BUDGET}" data-players='${dataJson}'>
+            <div class="cap-bar-wrap" id="cap-summary-bar"><!-- filled by JS --></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Drag to simulate swaps</div>
+              <button id="cap-reset-btn" onclick="capReset()" style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.15s" onmouseover="this.style.color='white';this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.06)'">↺ Reset</button>
             </div>
-            <div class="cap-bar-track" style="height:10px"><div class="cap-bar-fill" style="width:${barPct}%;background:${barColor}"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:1.2rem;gap:0.5rem">
-              <div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">
-                <div style="font-family:'Bebas Neue',cursive;font-size:1.4rem;color:white">$${(dressedTotal/1e6).toFixed(1)}M</div>
-                <div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)">Dressed</div>
+            <div style="display:flex;gap:0.75rem;flex-direction:column">
+              <div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem">Dressed</div>
+                <div id="cap-zone-dressed" class="cap-drop-zone" ondragover="capDragOver(event)" ondrop="capDrop(event,'dressed')" ondragleave="capDragLeave(event)"></div>
               </div>
-              ${benchTotal > 0 ? `<div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">
-                <div style="font-family:'Bebas Neue',cursive;font-size:1.4rem;color:rgba(255,255,255,0.45)">$${(benchTotal/1e6).toFixed(1)}M</div>
-                <div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Bench</div>
-              </div>` : ''}
-              <div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">
-                <div style="font-family:'Bebas Neue',cursive;font-size:1.4rem;color:${totalColor}">$${(grandTotal/1e6).toFixed(1)}M</div>
-                <div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)">Total</div>
-              </div>
-              <div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">
-                <div style="font-family:'Bebas Neue',cursive;font-size:1.4rem;color:${remColor}">${over ? 'OVER' : '$' + (remaining/1e6).toFixed(1) + 'M'}</div>
-                <div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)">Remaining</div>
+              <div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem">Bench</div>
+                <div id="cap-zone-bench" class="cap-drop-zone" ondragover="capDragOver(event)" ondrop="capDrop(event,'bench')" ondragleave="capDragLeave(event)"></div>
               </div>
             </div>
           </div>
-          ${sectionsHtml}`;
+          <script>
+          (function(){
+            const CAP = ${CAP_BUDGET};
+            const posColor = ${JSON.stringify({F:'var(--pink)',D:'var(--blue)',G:'var(--gold)'})};
+            const posBg    = ${JSON.stringify({F:'rgba(255,122,138,0.08)',D:'rgba(125,180,255,0.08)',G:'rgba(255,184,28,0.08)'})};
+            const ORIG = JSON.parse(document.getElementById('cap-sandbox').dataset.players);
+
+            // Live state: slug → 'dressed'|'bench'
+            let state = {};
+            Object.entries(ORIG).forEach(([s,p]) => { state[s] = p.section; });
+
+            window.capReset = function() {
+              Object.entries(ORIG).forEach(([s,p]) => { state[s] = p.section; });
+              capRender();
+            };
+
+            function capCard(slug, isBench) {
+              const p = ORIG[slug];
+              const color = posColor[p.pos] || 'rgba(255,255,255,0.4)';
+              const bg    = isBench ? 'rgba(255,255,255,0.03)' : (posBg[p.pos] || 'rgba(255,255,255,0.03)');
+              const capM  = p.cap > 0 ? '$' + (p.cap/1e6).toFixed(2) + 'M' : '—';
+              const nameColor = isBench ? 'rgba(255,255,255,0.45)' : 'white';
+              const capColor  = isBench ? 'rgba(255,255,255,0.35)' : color;
+              return '<div class="cap-card" draggable="true" data-slug="' + slug + '" ' +
+                'ondragstart="capDragStart(event)" ' +
+                'style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 0.9rem;' +
+                'background:' + bg + ';border:1px solid rgba(255,255,255,0.06);border-radius:8px;margin-bottom:0.4rem;cursor:grab;user-select:none">' +
+                '<div style="display:flex;align-items:center;gap:0.6rem">' +
+                '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:1.5px;' +
+                'color:' + color + ';border:1px solid ' + color + ';border-radius:4px;padding:2px 6px;flex-shrink:0">' + p.pos + '</span>' +
+                '<span style="font-size:0.95rem;font-weight:600;color:' + nameColor + '">' + p.name + '</span>' +
+                '</div>' +
+                '<span style="font-family:\'Bebas Neue\',cursive;font-size:1.1rem;letter-spacing:1px;color:' + capColor + ';flex-shrink:0;margin-left:1rem">' + capM + '</span>' +
+                '</div>';
+            }
+
+            function capRender() {
+              const dSlugs = Object.keys(state).filter(s => state[s] === 'dressed');
+              const bSlugs = Object.keys(state).filter(s => state[s] === 'bench');
+              document.getElementById('cap-zone-dressed').innerHTML = dSlugs.map(s => capCard(s, false)).join('') || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">Drop players here</div>';
+              document.getElementById('cap-zone-bench').innerHTML   = bSlugs.map(s => capCard(s, true)).join('')  || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">Drop players here</div>';
+
+              const dTotal = dSlugs.reduce((s,slug) => s + (ORIG[slug]?.cap||0), 0);
+              const bTotal = bSlugs.reduce((s,slug) => s + (ORIG[slug]?.cap||0), 0);
+              const rem    = CAP - dTotal;  // only dressed counts toward cap
+              const over   = rem < 0;
+              const tight  = !over && rem < 5e6;
+              const barCol = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
+              const remCol = barCol;
+              const totCol = over ? 'var(--red)' : tight ? 'var(--gold)' : 'var(--green)';
+              const barPct = Math.min(100, (dTotal/CAP)*100).toFixed(1);
+              const remLbl = over ? '$' + (Math.abs(rem)/1e6).toFixed(2) + 'M OVER CAP' : '$' + (rem/1e6).toFixed(2) + 'M remaining';
+
+              // Check if modified from original
+              const modified = Object.keys(state).some(s => state[s] !== ORIG[s].section);
+              const resetBtn = document.getElementById('cap-reset-btn');
+              if (resetBtn) resetBtn.style.color = modified ? 'var(--gold)' : 'rgba(255,255,255,0.5)';
+
+              document.getElementById('cap-summary-bar').innerHTML =
+                '<div class="cap-bar-label">' +
+                '<span style="font-size:0.85rem;color:white;font-weight:700">$' + (dTotal/1e6).toFixed(2) + 'M <span style="color:rgba(255,255,255,0.4);font-weight:500">of $104M cap (dressed only)</span></span>' +
+                '<span style="color:' + remCol + ';font-size:0.85rem;font-weight:700">' + remLbl + '</span>' +
+                '</div>' +
+                '<div class="cap-bar-track" style="height:10px"><div class="cap-bar-fill" style="width:' + barPct + '%;background:' + barCol + '"></div></div>' +
+                '<div style="display:flex;justify-content:space-between;margin-top:1.2rem;gap:0.5rem">' +
+                '<div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">' +
+                '<div style="font-family:\'Bebas Neue\',cursive;font-size:1.4rem;color:' + totCol + '">$' + (dTotal/1e6).toFixed(1) + 'M</div>' +
+                '<div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)">Dressed</div></div>' +
+                (bTotal > 0 ? '<div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">' +
+                '<div style="font-family:\'Bebas Neue\',cursive;font-size:1.4rem;color:rgba(255,255,255,0.35)">$' + (bTotal/1e6).toFixed(1) + 'M</div>' +
+                '<div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Bench (excl.)</div></div>' : '') +
+                '<div style="flex:1;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.5rem">' +
+                '<div style="font-family:\'Bebas Neue\',cursive;font-size:1.4rem;color:' + remCol + '">' + (over ? 'OVER' : '$' + (rem/1e6).toFixed(1) + 'M') + '</div>' +
+                '<div style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)">Remaining</div></div>' +
+                '</div>';
+            }
+
+            let _dragSlug = null;
+            window.capDragStart = function(e) {
+              _dragSlug = e.currentTarget.dataset.slug;
+              e.dataTransfer.effectAllowed = 'move';
+              setTimeout(() => { if(e.target) e.target.style.opacity = '0.4'; }, 0);
+            };
+            window.capDragOver = function(e) {
+              e.preventDefault();
+              e.currentTarget.style.outline = '2px dashed rgba(255,184,28,0.5)';
+              e.currentTarget.style.borderRadius = '8px';
+            };
+            window.capDragLeave = function(e) {
+              e.currentTarget.style.outline = '';
+            };
+            window.capDrop = function(e, zone) {
+              e.preventDefault();
+              e.currentTarget.style.outline = '';
+              if (_dragSlug) {
+                state[_dragSlug] = zone;
+                _dragSlug = null;
+                capRender();
+              }
+            };
+
+            // Touch support
+            let _touchSlug = null, _touchClone = null;
+            document.addEventListener('touchstart', function(e) {
+              const card = e.target.closest('.cap-card');
+              if (!card) return;
+              _touchSlug = card.dataset.slug;
+              _touchClone = card.cloneNode(true);
+              _touchClone.style.cssText += ';position:fixed;opacity:0.8;pointer-events:none;z-index:9999;width:' + card.offsetWidth + 'px';
+              document.body.appendChild(_touchClone);
+            }, {passive:true});
+            document.addEventListener('touchmove', function(e) {
+              if (!_touchClone) return;
+              const t = e.touches[0];
+              _touchClone.style.left = (t.clientX - _touchClone.offsetWidth/2) + 'px';
+              _touchClone.style.top  = (t.clientY - 30) + 'px';
+            }, {passive:true});
+            document.addEventListener('touchend', function(e) {
+              if (!_touchSlug || !_touchClone) return;
+              const t = e.changedTouches[0];
+              const el = document.elementFromPoint(t.clientX, t.clientY);
+              const zone = el && el.closest('#cap-zone-dressed') ? 'dressed' : el && el.closest('#cap-zone-bench') ? 'bench' : null;
+              if (zone) { state[_touchSlug] = zone; capRender(); }
+              _touchClone.remove(); _touchClone = null; _touchSlug = null;
+            });
+
+            capRender();
+          })();
+          <\/script>`;
       }
 
       return `
