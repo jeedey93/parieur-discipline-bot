@@ -2896,8 +2896,8 @@
             <div class="detail-rank-row">
               <span class="detail-rank-pill ${totalRankCls}">${totalRankText}</span>
               <span class="detail-gap-label${rank === 1 ? ' leader' : ''}">${gap}</span>
-              ${teamYtd > 0 ? `<span class="detail-badge" style="color:var(--green);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08)">+${teamYtd} ytd</span>` : ''}
-              ${(() => { const sc = _benchSwaps.filter(s => s.team_id === team.id && s.reason === 'swap').length; return sc > 0 ? `<span class="detail-badge" style="color:var(--blue);border-color:rgba(125,180,255,0.25);background:rgba(125,180,255,0.08)">${sc}/3 swaps</span>` : ''; })()}
+              ${teamYtd > 0 ? `<span class="detail-badge" style="color:var(--green);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08)">+${teamYtd} yesterday</span>` : ''}
+              ${(() => { const sc = _benchSwaps.filter(s => s.team_id === team.id && s.reason === 'swap').length; const full = sc >= 5; return `<span class="detail-badge" style="color:${full ? 'var(--red)' : 'var(--blue)'};border-color:${full ? 'rgba(239,68,68,0.3)' : 'rgba(125,180,255,0.25)'};background:${full ? 'rgba(239,68,68,0.08)' : 'rgba(125,180,255,0.08)'}">${sc}/5 swaps</span>`; })()}
             </div>
           </div>
         </div>
