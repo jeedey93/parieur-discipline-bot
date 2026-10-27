@@ -2258,11 +2258,15 @@ def update_latest_predictions(preliminary=False):
             "tennessee titans":"ten","washington commanders":"was",
         }
         def _nfl_logo(name):
+            if not name:
+                return ""
             k = name.lower().strip()
             abbr = _NFL_ABBR.get(k)
             if not abbr:
+                k_last = k.split()[-1] if k.split() else ""
                 for full, ab in _NFL_ABBR.items():
-                    if full.split()[-1] == k.split()[-1]:
+                    parts = full.split()
+                    if parts and k_last and parts[-1] == k_last:
                         abbr = ab; break
             return f"https://a.espncdn.com/i/teamlogos/nfl/500/{abbr}.png" if abbr else ""
 
