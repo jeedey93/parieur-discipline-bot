@@ -2799,6 +2799,8 @@
             <div class="detail-rank-row">
               <span class="detail-rank-pill ${totalRankCls}">${totalRankText}</span>
               <span class="detail-gap-label${rank === 1 ? ' leader' : ''}">${gap}</span>
+              ${teamYtd > 0 ? `<span class="detail-badge" style="color:var(--green);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08)">+${teamYtd} ytd</span>` : ''}
+              ${(() => { const sc = _benchSwaps.filter(s => s.team_id === team.id && s.reason === 'swap').length; return sc > 0 ? `<span class="detail-badge" style="color:var(--blue);border-color:rgba(125,180,255,0.25);background:rgba(125,180,255,0.08)">${sc}/3 swaps</span>` : ''; })()}
             </div>
           </div>
         </div>
@@ -2807,8 +2809,6 @@
           ${posBlock('F', 'Forwards', sub.F + sub.BF + live.F)}
           ${posBlock('D', 'Defence',  sub.D + sub.BD + live.D)}
           ${posBlock('G', 'Goalies',  sub.G + sub.BG + live.G)}
-          ${teamYtd > 0 ? `<div class="pos-score-block" style="border-color:rgba(34,197,94,0.2)"><div class="pos-score-val" style="color:var(--green)">+${teamYtd}</div><div class="pos-score-label">Yesterday</div></div>` : ''}
-          ${(() => { const sc = _benchSwaps.filter(s => s.team_id === team.id && s.reason === 'swap').length; return sc > 0 ? `<div class="pos-score-block" style="border-color:rgba(125,180,255,0.2)"><div class="pos-score-val" style="color:var(--blue)">${sc}/3</div><div class="pos-score-label">Swaps</div></div>` : ''; })()}
         </div>
         ${hasF ? buildHistTable(team, 'F', 'Forwards') : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No forwards drafted yet.</div>'}
         ${hasD ? buildHistTable(team, 'D', 'Defence')  : '<div class="msg" style="padding:0.5rem 0;font-size:0.8rem;text-align:left;color:rgba(255,255,255,0.25)">No defencemen drafted yet.</div>'}
