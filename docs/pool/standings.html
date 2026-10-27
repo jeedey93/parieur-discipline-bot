@@ -1957,6 +1957,9 @@
       _capState = {};
       Object.entries(ORIG).forEach(([s,p]) => { _capState[s] = p.section; });
 
+      const isMobile = 'ontouchstart' in window;
+      let _selectedSlug = null;
+
       function capCard(slug, isBench) {
         const p = ORIG[slug];
         const color = posColor[p.pos] || 'rgba(255,255,255,0.4)';
@@ -1964,11 +1967,15 @@
         const capM  = p.cap > 0 ? '$' + (p.cap/1e6).toFixed(2) + 'M' : '—';
         const nameColor = isBench ? 'rgba(255,255,255,0.45)' : 'white';
         const capColor  = isBench ? 'rgba(255,255,255,0.35)' : color;
-        return '<div class="cap-card" draggable="true" data-slug="' + slug + '" ' +
-          'ondragstart="capDragStart(event)" ' +
+        const isSelected = _selectedSlug === slug;
+        const selectedStyle = isSelected ? ';outline:2px solid var(--gold);outline-offset:2px' : '';
+        const clickAttr = isMobile ? 'onclick="capTap(event)"' : 'ondragstart="capDragStart(event)"';
+        return '<div class="cap-card" draggable="' + (!isMobile) + '" data-slug="' + slug + '" ' + clickAttr + ' ' +
           'style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 0.9rem;' +
-          'background:' + bg + ';border:1px solid rgba(255,255,255,0.06);border-radius:8px;margin-bottom:0.4rem;cursor:grab;user-select:none">' +
+          'background:' + bg + ';border:1px solid rgba(255,255,255,0.06);border-radius:8px;margin-bottom:0.4rem;' +
+          'cursor:' + (isMobile ? 'pointer' : 'grab') + ';user-select:none' + selectedStyle + '">' +
           '<div style="display:flex;align-items:center;gap:0.6rem">' +
+          (isSelected ? '<span style="font-size:0.75rem;margin-right:2px">👆</span>' : '') +
           '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:1.5px;' +
           'color:' + color + ';border:1px solid ' + color + ';border-radius:4px;padding:2px 6px;flex-shrink:0">' + p.pos + '</span>' +
           '<span style="font-size:0.95rem;font-weight:600;color:' + nameColor + '">' + p.name + '</span>' +
@@ -1984,8 +1991,9 @@
         const zd = document.getElementById('cap-zone-dressed');
         const zb = document.getElementById('cap-zone-bench');
         if (!zd || !zb) return;
-        zd.innerHTML = dSlugs.map(s => capCard(s, false)).join('') || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">Drop players here</div>';
-        zb.innerHTML = bSlugs.map(s => capCard(s, true)).join('')  || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">Drop players here</div>';
+        const emptyHint = isMobile ? 'Tap a player to select, then tap here' : 'Drop players here';
+        zd.innerHTML = dSlugs.map(s => capCard(s, false)).join('') || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">' + emptyHint + '</div>';
+        zb.innerHTML = bSlugs.map(s => capCard(s, true)).join('')  || '<div style="padding:1rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.8rem">' + emptyHint + '</div>';
 
         const dTotal = dSlugs.reduce((acc,slug) => acc + (ORIG[slug]?.cap||0), 0);
         const bTotal = bSlugs.reduce((acc,slug) => acc + (ORIG[slug]?.cap||0), 0);
@@ -2044,32 +2052,43 @@
         capRender();
       };
 
-      // Touch support
-      let _touchSlug = null, _touchClone = null;
-      sandbox.addEventListener('touchstart', function(e) {
-        const card = e.target.closest('.cap-card');
-        if (!card) return;
-        _touchSlug = card.dataset.slug;
-        _touchClone = card.cloneNode(true);
-        _touchClone.style.cssText += ';position:fixed;opacity:0.8;pointer-events:none;z-index:9999;width:' + card.offsetWidth + 'px';
-        document.body.appendChild(_touchClone);
-      }, {passive:true});
-      sandbox.addEventListener('touchmove', function(e) {
-        if (!_touchClone) return;
-        const t = e.touches[0];
-        _touchClone.style.left = (t.clientX - _touchClone.offsetWidth/2) + 'px';
-        _touchClone.style.top  = (t.clientY - 30) + 'px';
-      }, {passive:true});
-      sandbox.addEventListener('touchend', function(e) {
-        if (!_touchSlug || !_touchClone) return;
-        const t = e.changedTouches[0];
-        const el = document.elementFromPoint(t.clientX, t.clientY);
-        const zone = el && el.closest('#cap-zone-dressed') ? 'dressed' : el && el.closest('#cap-zone-bench') ? 'bench' : null;
-        if (zone) { _capState[_touchSlug] = zone; capRender(); }
-        _touchClone.remove(); _touchClone = null; _touchSlug = null;
+      // Mobile: click-to-select then click-to-move
+      window.capTap = function(e) {
+        const card = e.currentTarget;
+        const slug = card.dataset.slug;
+        if (_selectedSlug === null) {
+          // First tap: select this player
+          _selectedSlug = slug;
+          capRender();
+        } else if (_selectedSlug === slug) {
+          // Tap same player: deselect
+          _selectedSlug = null;
+          capRender();
+        } else {
+          // Second tap: swap the two players' zones
+          const fromZone = _capState[_selectedSlug];
+          const toZone   = _capState[slug];
+          _capState[_selectedSlug] = toZone;
+          _capState[slug] = fromZone;
+          _selectedSlug = null;
+          capRender();
+        }
+      };
+
+      // Also allow tapping the empty zone label to move selected player there
+      sandbox.addEventListener('click', function(e) {
+        if (!_selectedSlug) return;
+        const zone = e.target.closest('#cap-zone-dressed') ? 'dressed' : e.target.closest('#cap-zone-bench') ? 'bench' : null;
+        if (!zone) return;
+        if (e.target.closest('.cap-card')) return; // handled by capTap
+        _capState[_selectedSlug] = zone;
+        _selectedSlug = null;
+        capRender();
       });
 
       capRender();
+      const hint = sandbox.querySelector('[data-hint]');
+      if (hint) hint.textContent = isMobile ? 'Tap a player, then tap another to swap' : 'Drag to simulate swaps';
     }
 
     function setView(v) {
@@ -2856,25 +2875,24 @@
         ['F','D','G','B'].forEach(pos => {
           (team.roster[pos] || []).filter(Boolean).forEach(slug => {
             const p = m[slug];
-            if (!p) return;
-            const posTag = normalizePos(p.position);
+            const posTag = p ? normalizePos(p.position) : (pos === 'B' ? 'F' : pos);
             playerData[slug] = {
-              name: p.player_name || slug,
-              cap: p.cap_hit || 0,
+              name: p ? (p.player_name || slug) : slug.split('/').pop().replace(/-/g,' '),
+              cap: (p && p.cap_hit) || 0,
               pos: posTag,
               section: pos === 'B' ? 'bench' : 'dressed',
             };
           });
         });
 
-        const dataJson = JSON.stringify(playerData).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+        const dataJson = JSON.stringify(playerData).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/'/g,'\\u0027');
 
         return `
           ${tabStrip}
           <div id="cap-sandbox" data-budget="${CAP_BUDGET}" data-players='${dataJson}'>
             <div class="cap-bar-wrap" id="cap-summary-bar"><!-- filled by JS --></div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Drag to simulate swaps</div>
+              <div data-hint style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Drag to simulate swaps</div>
               <button id="cap-reset-btn" onclick="capReset()" style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.15s" onmouseover="this.style.color='white';this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.06)'">↺ Reset</button>
             </div>
             <div style="display:flex;gap:0.75rem;flex-direction:column">
