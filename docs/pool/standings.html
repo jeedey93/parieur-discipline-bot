@@ -1960,6 +1960,8 @@
 
       // Always reset to original on setup
       _capState = {};
+      // _capOrder: ordered array of slugs preserving position slots
+      let _capOrder = Object.keys(ORIG);
       Object.entries(ORIG).forEach(([s,p]) => { _capState[s] = p.section; });
 
       const isMobile = 'ontouchstart' in window;
@@ -1991,8 +1993,8 @@
 
       function capRender() {
         const state = _capState;
-        const dSlugs = Object.keys(state).filter(s => state[s] === 'dressed');
-        const bSlugs = Object.keys(state).filter(s => state[s] === 'bench');
+        const dSlugs = _capOrder.filter(s => state[s] === 'dressed');
+        const bSlugs = _capOrder.filter(s => state[s] === 'bench');
         const zd = document.getElementById('cap-zone-dressed');
         const zb = document.getElementById('cap-zone-bench');
         if (!zd || !zb) return;
@@ -2053,6 +2055,7 @@
         if (_dragSlug) { _capState[_dragSlug] = zone; _dragSlug = null; capRender(); }
       };
       window.capReset = function() {
+        _capOrder = Object.keys(ORIG);
         Object.entries(ORIG).forEach(([s,p]) => { _capState[s] = p.section; });
         capRender();
       };
@@ -2079,15 +2082,20 @@
             capRender();
           } else {
             // Always exchange zones between the two players
-            const zoneA = _capState[_selectedSlug];
+            const slugA = _selectedSlug;
+            const zoneA = _capState[slugA];
             const zoneB = _capState[slug];
             if (zoneA === zoneB) {
               // Same zone: move A to the opposite zone, B stays
-              _capState[_selectedSlug] = zoneA === 'dressed' ? 'bench' : 'dressed';
+              _capState[slugA] = zoneA === 'dressed' ? 'bench' : 'dressed';
             } else {
-              // Different zones: true swap
-              _capState[_selectedSlug] = zoneB;
-              _capState[slug] = zoneA;
+              // Different zones: swap zones AND swap positions in order array
+              _capState[slugA] = zoneB;
+              _capState[slug]  = zoneA;
+              const iA = _capOrder.indexOf(slugA);
+              const iB = _capOrder.indexOf(slug);
+              _capOrder[iA] = slug;
+              _capOrder[iB] = slugA;
             }
             _selectedSlug = null;
             capRender();
