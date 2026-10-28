@@ -1085,7 +1085,8 @@
     let _leagueName = null;
 
     let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [];
-    let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot
+    let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot (today)
+    let _prevDaySnapshot = {}; // team_id -> { pts, rank } from previous day's snapshot (for rank arrows)
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
     let _playerYesterdayPtsBySlug = {}; // slug -> pool pts delta since yesterday
     let _playerYesterdayPts = {}; // nhl_player_id -> pool pts scored yesterday
@@ -1861,9 +1862,11 @@
           if (snapRes.ok) {
             const snapRows = await snapRes.json();
             if (snapRows.length && Array.isArray(snapRows[0].standings)) {
-              // Use yesterday's snapshot for rank change arrows (live vs. yesterday)
+              // Today's snapshot: used for ytd pts delta
+              _lastSnapshot = Object.fromEntries(snapRows[0].standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
+              // Yesterday's snapshot: used for rank change arrows
               const rankSnapRow = snapRows.length >= 2 ? snapRows[1] : snapRows[0];
-              _lastSnapshot = Object.fromEntries(rankSnapRow.standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
+              _prevDaySnapshot = Object.fromEntries(rankSnapRow.standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
             }
             // Use the previous day's snapshot for yesterday delta
             const prevSnap = snapRows.length >= 2 ? snapRows[1] : snapRows[0];
@@ -2756,7 +2759,7 @@
           : `<span class="lb-rank-num">${rankNum}</span>`;
         const tierCls = rankNum <= 3 ? ` rank-${rankNum}` : '';
         const isActive = t.id === activeTeamId;
-        const snapEntry = _lastSnapshot[t.id];
+        const snapEntry = _prevDaySnapshot[t.id];
         const prevRank = snapEntry?.rank ?? null;
         let rankChangeBadge = '';
         if (prevRank && prevRank !== rankNum) {
