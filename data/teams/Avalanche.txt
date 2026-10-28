@@ -1,6 +1,6 @@
 ============================================================
 AVALANCHE - LINEUP
-Last Updated: 2026-10-25 02:43 PM ET
+Last Updated: 2026-10-28 04:47 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,7 +8,7 @@ FORWARD LINES:
 Line 1: Artturi Lehkonen — Nathan MacKinnon — Martin Necas
 Line 2: Gabriel Landeskog — Brock Nelson — Nazem Kadri
 Line 3: Jaden Schwartz — Fedor Svechkov — T.J. Hughes
-Line 4: Taylor Makar — Parker Kelly — Logan OConnor
+Line 4: Parker Kelly — Nicolas Roy — Logan OConnor
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -18,13 +18,12 @@ Pair 3: Josh Manson — Brent Burns
 
 GOALIES:
 ----------------------------------------
-  Scott Wedgewood
   Mackenzie Blackwood
+  Scott Wedgewood
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Noah Juulsen (scratched)
   Zachary L'Heureux (upper body) (injured)
-  Nicolas Roy (lower body) (injured)
 
 ============================================================

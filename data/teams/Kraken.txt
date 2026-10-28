@@ -1,12 +1,12 @@
 ============================================================
 KRAKEN - LINEUP
-Last Updated: 2026-10-20 03:12 PM ET
+Last Updated: 2026-10-28 04:47 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Jared McCann — Matty Beniers — Jordan Eberle
-Line 2: Bobby McMann — Chandler Stephenson — Mackie Samoskevich
+Line 1: Bobby McMann — Matty Beniers — Jordan Eberle
+Line 2: Jani Nyman — Chandler Stephenson — Mackie Samoskevich
 Line 3: Kaapo Kakko — Berkly Catton — Shane Wright
 Line 4: Ben Meyers — Frederick Gaudreau — Ryan Winterton
 
@@ -14,19 +14,19 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Vince Dunn — Adam Larsson
 Pair 2: Ryker Evans — Brandon Montour
-Pair 3: Josh Mahura — Ville Ottavainen
+Pair 3: Josh Mahura — Cale Fleury
 
 GOALIES:
 ----------------------------------------
-  Joey Daccord
   Philipp Grubauer
+  Joey Daccord
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Curtis Douglas (scratched)
-  Ty Nelson (scratched)
-  Cale Fleury (scratched)
+  Ville Ottavainen (scratched)
   Jacob Melanson (upper body) (injured)
   Ryan Lindgren (upper body) (injured)
+  Jared McCann (lower body) (injured)
 
 ============================================================
