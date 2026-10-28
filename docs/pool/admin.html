@@ -541,7 +541,11 @@
       // 2. Insert pool_bench_swaps
       const outNameRaw = pOut?.player_name || outSlug.split('/').pop();
       const inNameRaw  = pIn?.player_name  || inSlug.split('/').pop();
-      const outPts = calcPoolPts(pOut);
+      // If player was previously activated from bench, only count pts earned while dressed (subtract activation snapshot)
+      const outTeam = data.teams.find(t => t.id === teamId);
+      const outSnapRaw = outTeam?.acquisitions?.[outSlug]?.stats_snapshot || null;
+      const snapPts = outSnapRaw ? calcPoolPts({ ...outSnapRaw, position: pOut?.position }) : 0;
+      const outPts = Math.max(0, calcPoolPts(pOut) - snapPts);
       const outPosRaw = pOut?.position?.split(',')[0] || outPos;
       const inPosRaw  = pIn?.position?.split(',')[0]  || 'F';
 
@@ -819,7 +823,10 @@
       // 2. Insert pool_bench_swaps with reason "pickup"
       const outNameRaw = pOut?.player_name || dropSlug.split('/').pop();
       const inNameRaw  = pIn?.player_name  || inSlug.split('/').pop();
-      const outPts = calcPoolPts(pOut);
+      const outTeamPu  = data.teams.find(t => t.id === teamId);
+      const outSnapPu  = outTeamPu?.acquisitions?.[dropSlug]?.stats_snapshot || null;
+      const snapPtsPu  = outSnapPu ? calcPoolPts({ ...outSnapPu, position: pOut?.position }) : 0;
+      const outPts = Math.max(0, calcPoolPts(pOut) - snapPtsPu);
       const outPosRaw = pOut?.position?.split(',')[0] || pos;
       const inPosRaw  = pIn?.position?.split(',')[0]  || pos;
 
