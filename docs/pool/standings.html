@@ -1864,8 +1864,8 @@
             if (snapRows.length && Array.isArray(snapRows[0].standings)) {
               // Today's snapshot: used for ytd pts delta
               _lastSnapshot = Object.fromEntries(snapRows[0].standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
-              // Yesterday's snapshot: used for rank change arrows
-              const rankSnapRow = snapRows.length >= 2 ? snapRows[1] : snapRows[0];
+              // Yesterday's snapshot: used for rank change arrows (live vs. start of yesterday)
+              const rankSnapRow = snapRows.length >= 3 ? snapRows[2] : snapRows.length >= 2 ? snapRows[1] : snapRows[0];
               _prevDaySnapshot = Object.fromEntries(rankSnapRow.standings.map(s => [s.team_id, { pts: s.pts ?? 0, rank: s.rank ?? null }]));
             }
             // Use the previous day's snapshot for yesterday delta
