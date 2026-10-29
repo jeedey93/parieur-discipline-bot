@@ -1,0 +1,59 @@
+Date: 2026-10-29
+
+Winnipeg Jets @ Tampa Bay Lightning
+Tampa Bay Lightning ML (Home): 1.43, Winnipeg Jets ML (Away): 2.86, O/U: 6.0 (Over: 1.91 / Under: 1.9)
+------
+Utah Mammoth @ Pittsburgh Penguins
+Pittsburgh Penguins ML (Home): 2.06, Utah Mammoth ML (Away): 1.77, O/U: 6.5 (Over: 1.74 / Under: 2.11)
+------
+Columbus Blue Jackets @ Carolina Hurricanes
+Carolina Hurricanes ML (Home): 1.43, Columbus Blue Jackets ML (Away): 2.86, O/U: 6.0 (Over: 1.86 / Under: 1.95)
+------
+Chicago Blackhawks @ Detroit Red Wings
+Detroit Red Wings ML (Home): 1.57, Chicago Blackhawks ML (Away): 2.42, O/U: 6.0 (Over: 1.9 / Under: 1.91)
+------
+Boston Bruins @ St Louis Blues
+St Louis Blues ML (Home): 1.88, Boston Bruins ML (Away): 1.93, O/U: 6.0 (Over: 1.97 / Under: 1.84)
+------
+Washington Capitals @ Nashville Predators
+Nashville Predators ML (Home): 1.93, Washington Capitals ML (Away): 1.88, O/U: 6.5 (Over: 1.95 / Under: 1.86)
+------
+Montréal Canadiens @ Dallas Stars
+Dallas Stars ML (Home): 1.62, Montréal Canadiens ML (Away): 2.3, O/U: 6.0 (Over: 1.91 / Under: 1.9)
+------
+New York Islanders @ Minnesota Wild
+Minnesota Wild ML (Home): 1.53, New York Islanders ML (Away): 2.53, O/U: 5.5 (Over: 1.83 / Under: 1.98)
+------
+Buffalo Sabres @ Anaheim Ducks
+Anaheim Ducks ML (Home): 2.1, Buffalo Sabres ML (Away): 1.75, O/U: 6.5 (Over: 1.79 / Under: 2.04)
+------
+Ottawa Senators @ Los Angeles Kings
+Los Angeles Kings ML (Home): 1.93, Ottawa Senators ML (Away): 1.88, O/U: 6.0 (Over: 2.01 / Under: 1.81)
+------
+Vancouver Canucks @ San Jose Sharks
+San Jose Sharks ML (Home): 1.56, Vancouver Canucks ML (Away): 2.44, O/U: 6.5 (Over: 1.74 / Under: 2.1)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+Starting goalies are TBD, and this uncertainty is factored into the confidence levels. NHL Player Absences by Team: None.
+
+BET OF THE DAY
+
+Nashville Predators ML vs Washington Capitals @ 1.93
+The Nashville Predators are getting favorable odds at home against a Washington Capitals team playing on a back-to-back. Nashville, despite a neutral recent form, benefits from significant rest advantage (1 day vs 0 for Washington), which accounts for a 4% probability boost. Coupled with a slight home-ice advantage (home win % gap of 0.096 favoring Nashville), these factors combine to give the Predators a solid edge, making the market odds mispriced for a team well-rested at home.
+Confidence Level: Medium, Units: 1u, Win Probability: 59%
+
+**Other Recommended Plays**
+
+Pittsburgh Penguins ML vs Utah Mammoth @ 2.06
+The Pittsburgh Penguins, despite a negative goal differential, show a strong home record (0.800 win %) which creates a significant home ice advantage gap against Utah's road performance. While Utah is a playoff contender, Pittsburgh's robust home play, combined with 4 days of rest compared to Utah's 1, presents a substantial market inefficiency. The odds of 2.06 for Pittsburgh's moneyline offer compelling value for a team highly effective on home ice.
+Confidence Level: High, Units: 1.5u, Win Probability: 58%
+
+Montréal Canadiens vs Dallas Stars Under 6.0 @ 1.9
+This play is identified under the mandatory Montreal Canadiens priority. The Dallas Stars boast an elite penalty kill (92.9%) and an outstanding average goals allowed (1.9) over their last 10 games, signaling a tight defensive matchup. Although Montréal has a decent scoring record, Dallas's defensive prowess suggests a lower-scoring affair, with an estimated combined total goals averaging below the 6.0 line. The market's implied probability for the Under at 1.9 does not fully account for Dallas's ability to suppress offense.
+Confidence Level: Medium, Units: 1u, Win Probability: 54%
+
+San Jose Sharks vs Vancouver Canucks Under 6.5 @ 2.1
+This matchup features two teams with below-average scoring from their last 10 games, with San Jose averaging 2.8 GF and Vancouver averaging 2.4 GF, resulting in a combined average of 5.2 goals per game. This combined scoring trend is significantly below the 6.5 total goals line, suggesting that the game is likely to stay Under. The Vancouver Canucks also exhibit a high average goals allowed (4.7), which typically points to higher totals, but their inability to score themselves against a San Jose team that also struggles to put up big numbers creates value on the Under.
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
