@@ -423,9 +423,11 @@
         .fa-section-label.F { color: #7db4ff; }
         .fa-section-label.D { color: #22c55e; }
         .fa-section-label.G { color: var(--gold); }
-        .fa-header, .fa-row { display: grid; grid-template-columns: 28px 1fr 36px 36px 36px 52px 56px; gap: 0.5rem; align-items: center; padding: 0.55rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .fa-header, .fa-row { display: grid; grid-template-columns: 28px 1fr 36px 36px 36px 52px 56px; gap: 0.5rem; align-items: center; padding: 0.55rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .fa-row:last-child { border-bottom: none; }
-        .fa-row:hover { background: rgba(255,255,255,0.04); }
+        .fa-row:hover { background: rgba(255,255,255,0.05); }
+        .fa-row:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .fa-row:nth-child(even):hover { background: rgba(255,255,255,0.06); }
         .fa-rank { font-family: 'Bebas Neue', cursive; font-size: 1rem; color: rgba(255,255,255,0.3); text-align: center; }
         .fa-name { font-size: 0.95rem; font-weight: 600; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 0.4rem; }
         .fa-stat { font-size: 0.9rem; font-weight: 600; color: var(--silver); text-align: center; }
