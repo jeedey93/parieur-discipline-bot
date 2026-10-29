@@ -432,9 +432,9 @@
         .fa-pts  { font-size: 0.95rem; font-weight: 700; color: white; text-align: center; }
         .fa-cap  { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.4); text-align: right; }
         @media (max-width: 600px) {
-          .fa-header, .fa-row { grid-template-columns: 24px 1fr 32px 32px 44px 48px; padding: 0.45rem 0.75rem; gap: 0.35rem; }
+          .fa-header, .fa-row { grid-template-columns: 0 1fr 32px 32px 44px 48px; padding: 0.45rem 0.75rem; gap: 0.35rem; }
           .fa-col-hide { display: none; }
-          .fa-rank { display: none; }
+          .fa-rank { overflow: hidden; width: 0; padding: 0; margin: 0; }
           .fa-name { font-size: 0.88rem; }
           .fa-stat, .fa-pts { font-size: 0.85rem; }
         }
