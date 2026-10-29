@@ -1,6 +1,6 @@
 ============================================================
 WILD - LINEUP
-Last Updated: 2026-10-27 04:34 PM ET
+Last Updated: 2026-10-29 04:49 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,9 +12,9 @@ Line 4: Nico Sturm — Ryan Hartman — Tyler Pitlick
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Quinn Hughes — Jared Spurgeon
-Pair 2: Jonas Brodin — Olli Maatta
-Pair 3: Matt Kiersted — Zach Bogosian
+Pair 1: Quinn Hughes — Jonas Brodin
+Pair 2: Olli Maatta — Zach Bogosian
+Pair 3: Matt Kiersted — David Spacek
 
 GOALIES:
 ----------------------------------------
@@ -23,11 +23,12 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  David Spacek (scratched)
   Mason Shaw (scratched)
+  Carson Lambos (scratched)
   Brock Faber (skull fracture) (injured)
   Marcus Foligno (lower body) (injured)
   Nick Foligno (upper body) (injured)
-  Filip Gustavsson (hip) (injured)
+  Filip Gustavsson (lower body) (injured)
+  Jared Spurgeon (lower body) (injured)
 
 ============================================================

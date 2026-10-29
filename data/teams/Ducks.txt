@@ -1,20 +1,20 @@
 ============================================================
 DUCKS - LINEUP
-Last Updated: 2026-10-27 04:34 PM ET
+Last Updated: 2026-10-29 04:49 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Cutter Gauthier — Leo Carlsson — Judd Caulfield
+Line 1: Alex Killorn — Leo Carlsson — Judd Caulfield
 Line 2: Jeff Malott — Mikael Granlund — Beckett Sennecke
-Line 3: Nikita Nesterenko — Roger McQueen — Alex Killorn
-Line 4: A.J. Greer — Tim Washe — Sam Colangelo
+Line 3: A.J. Greer — Tim Washe — Cutter Gauthier
+Line 4: Frank Vatrano — Roger McQueen — Sam Colangelo
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jackson La Combe — Noah Warren
 Pair 2: Tyson Hinds — Tristan Luneau
-Pair 3: Travis Mitchell — Nick Jensen
+Pair 3: Pavel Mintyukov — Drew Helleson
 
 GOALIES:
 ----------------------------------------
@@ -23,12 +23,12 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Frank Vatrano (scratched)
   Nikita Klepov (scratched)
-  Drew Helleson (scratched)
+  Nikita Nesterenko (scratched)
+  Travis Mitchell (scratched)
+  Nick Jensen (scratched)
   Ian Moore (lower body) (injured)
   Troy Terry (hip) (injured)
   Ryan Poehling (knee) (injured)
-  Pavel Mintyukov (lower body) (injured)
 
 ============================================================

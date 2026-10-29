@@ -1,14 +1,14 @@
 ============================================================
 HURRICANES - LINEUP
-Last Updated: 2026-10-27 04:34 PM ET
+Last Updated: 2026-10-29 04:49 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: William Carrier — Sebastian Aho — Andrei Svechnikov
 Line 2: Nikolaj Ehlers — Logan Stankoven — Jackson Blake
-Line 3: Taylor Hall — Jordan Martinook — Seth Jarvis
-Line 4: Eric Robinson — Mark Jankowski — Jesperi Kotkaniemi
+Line 3: Jordan Martinook — Mark Jankowski — Seth Jarvis
+Line 4: Eric Robinson — Jesperi Kotkaniemi — Nicolas Deslauriers
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -24,7 +24,7 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Mike Reilly (scratched)
-  Nicolas Deslauriers (scratched)
   Jordan Staal (calf) (injured)
+  Taylor Hall (upper body) (injured)
 
 ============================================================
