@@ -2581,7 +2581,7 @@
       // 14c. Team with most players on a hot streak (🔥)
       const hotTeamData = sorted.map(t => {
         const rp = rosterPlayers(t.roster);
-        const hotPlayers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => (hotColdBadge(p.last5_game_pts) || '').includes('🔥'));
+        const hotPlayers = [...rp.F, ...rp.D, ...rp.G].filter(Boolean).filter(p => (hotColdBadge(p.last5_game_pts) || '').includes('🔥') && (!p.injury_status || p.injury_status === 'Active'));
         return { t, count: hotPlayers.length, names: hotPlayers.map(p => formatName(p.player_name)).join(', ') };
       }).filter(x => x.count > 0).sort((a, b) => b.count - a.count);
       if (hotTeamData.length) { const top = hotTeamData[0]; data.push({ group:'Team Performance', color:'green', icon:'🔥', label:'Most on Fire', main:top.t.name, sub:`${top.count} hot players: ${top.names}` }); }
@@ -3205,7 +3205,7 @@
         const form5d = r.form5d ?? null;
         const isInjured = r.isCurrent && r.injuryStatus && r.injuryStatus !== 'Active';
         const rawBadge = r.isCurrent ? hotColdBadge(form5d) : '';
-        const formBadge = isInjured && (rawBadge||'').includes('🧊') ? '' : rawBadge;
+        const formBadge = isInjured ? '' : rawBadge;
         const injuryBadge = isInjured ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">❌</span>` : '';
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}">
