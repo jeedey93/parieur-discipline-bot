@@ -432,11 +432,13 @@
         .fa-pts  { font-size: 0.95rem; font-weight: 700; color: white; text-align: center; }
         .fa-cap  { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.4); text-align: right; }
         @media (max-width: 600px) {
-          .fa-header, .fa-row { grid-template-columns: 0 1fr 32px 32px 44px 48px; padding: 0.45rem 0.75rem; gap: 0.35rem; }
+          .fa-header, .fa-row { grid-template-columns: 24px 1fr 44px 52px; padding: 0.45rem 0.75rem; gap: 0.35rem; }
           .fa-col-hide { display: none; }
-          .fa-rank { overflow: hidden; width: 0; padding: 0; margin: 0; }
+          .fa-rank { overflow: visible; width: auto; padding: 0; margin: 0; font-size: 0.85rem; }
+          .fa-gp-col, .fa-stat-col { display: none; }
           .fa-name { font-size: 0.88rem; }
-          .fa-stat, .fa-pts { font-size: 0.85rem; }
+          .fa-pts { font-size: 0.9rem; }
+          .fa-cap { font-size: 0.78rem; }
         }
 
         /* ── TEAM TABS ── */
@@ -2344,9 +2346,9 @@
         return `<div class="fa-row">
           <div class="fa-rank">${rank}</div>
           <div class="fa-name">${posChip}${logo}${formatName(p.player_name)}</div>
-          <div class="fa-stat">${gp}</div>
-          <div class="fa-stat">${stat1}</div>
-          <div class="fa-stat">${stat2}</div>
+          <div class="fa-stat fa-gp-col">${gp}</div>
+          <div class="fa-stat fa-stat-col">${stat1}</div>
+          <div class="fa-stat fa-stat-col">${stat2}</div>
           <div class="fa-pts">${pts}</div>
           <div class="fa-cap">${cap}</div>
         </div>`;
@@ -2377,9 +2379,9 @@
           <div class="fa-header">
             <div class="fa-rank" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">#</div>
             <div class="fa-name" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700;letter-spacing:1px">PLAYER</div>
-            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">GP</div>
-            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h1}</div>
-            <div class="fa-stat" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h2}</div>
+            <div class="fa-stat fa-gp-col" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">GP</div>
+            <div class="fa-stat fa-stat-col" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h1}</div>
+            <div class="fa-stat fa-stat-col" style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">${h2}</div>
             <div class="fa-pts"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">PTS</div>
             <div class="fa-cap"  style="color:rgba(255,255,255,0.3);font-size:0.7rem;font-weight:700">CAP</div>
           </div>
