@@ -24,6 +24,8 @@ CACHE_DIR = "data/cache"
 NHL_CACHE_FILE_TEMPLATE = os.path.join(CACHE_DIR, "nhl_odds_{date}.json")
 NBA_CACHE_FILE_TEMPLATE = os.path.join(CACHE_DIR, "nba_odds_{date}.json")
 NFL_CACHE_FILE_TEMPLATE = os.path.join(CACHE_DIR, "nfl_odds_{date}.json")
+NHL_MORNING_ODDS_TEMPLATE = os.path.join(CACHE_DIR, "nhl_morning_odds_{date}.json")
+NBA_MORNING_ODDS_TEMPLATE = os.path.join(CACHE_DIR, "nba_morning_odds_{date}.json")
 CACHE_TTL = 2 * 60 * 60  # 2 hours in seconds
 
 
@@ -134,6 +136,42 @@ def save_odds_to_cache(sport, odds_data, date_str=None):
     cache_file = get_cache_filepath(sport, date_str)
     save_cache(cache_file, odds_data)
     print(f"✓ Saved {sport.upper()} odds to cache: {cache_file}")
+
+
+def save_morning_odds(sport, odds_data, date_str=None):
+    """Save 7am odds snapshot for line-movement comparison at 3pm."""
+    if date_str is None:
+        date_str = get_current_date_montreal()
+    if sport.lower() == 'nhl':
+        path = NHL_MORNING_ODDS_TEMPLATE.format(date=date_str)
+    elif sport.lower() == 'nba':
+        path = NBA_MORNING_ODDS_TEMPLATE.format(date=date_str)
+    else:
+        return
+    ensure_cache_dir()
+    with open(path, 'w') as f:
+        json.dump({'timestamp': datetime.now().isoformat(), 'odds': odds_data}, f, indent=2)
+    print(f"✓ Saved {sport.upper()} morning odds snapshot: {path}")
+
+
+def load_morning_odds(sport, date_str=None):
+    """Load 7am odds snapshot. Returns list of raw odds or None if not available."""
+    if date_str is None:
+        date_str = get_current_date_montreal()
+    if sport.lower() == 'nhl':
+        path = NHL_MORNING_ODDS_TEMPLATE.format(date=date_str)
+    elif sport.lower() == 'nba':
+        path = NBA_MORNING_ODDS_TEMPLATE.format(date=date_str)
+    else:
+        return None
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, 'r') as f:
+            data = json.load(f)
+            return data.get('odds', [])
+    except (json.JSONDecodeError, IOError):
+        return None
 
 
 def clear_old_caches(days_to_keep=2):

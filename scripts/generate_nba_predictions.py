@@ -7,7 +7,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from dotenv import load_dotenv
 from google import genai
-from data.odds import get_nba_odds, match_nba_odds_to_games
+from data.odds import get_nba_odds, match_nba_odds_to_games, build_line_movement_text
+from data.odds_cache import save_morning_odds, load_morning_odds
 from datetime import date, timedelta, datetime
 from data.odds import NBA_TEAM_NAME_MAP
 from data.nba_games import get_nba_games_today
@@ -363,7 +364,7 @@ def filter_low_odds_picks(text):
 
     return '\n'.join(result)
 
-def analyze_results(results_text, team_stats_text, h2h_stats_text, home_away_splits_text, standings_text, recent_games, playoff_series_text=""):
+def analyze_results(results_text, team_stats_text, h2h_stats_text, home_away_splits_text, standings_text, recent_games, playoff_series_text="", line_movement_text=""):
     import time
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
@@ -406,6 +407,7 @@ def analyze_results(results_text, team_stats_text, h2h_stats_text, home_away_spl
             prompt_text = prompt_text.replace("{{HOME_AWAY_SPLITS}}", home_away_splits_text)
             prompt_text = prompt_text.replace("{{STANDINGS}}", standings_text)
             prompt_text = prompt_text.replace("{{PLAYOFF_SERIES_STATUS}}", playoff_series_text)
+            prompt_text = prompt_text.replace("{{LINE_MOVEMENT}}", line_movement_text)
     except Exception as e:
         # If prompt file is missing or unreadable, skip AI analysis
         return "AI analysis skipped: prompt file not found or unreadable."
@@ -491,6 +493,12 @@ print(f"✅ Saved raw games data to: {games_data_file}")
 
 odds = get_nba_odds()
 
+# 7am: save morning snapshot for line-movement comparison at 3pm
+if run_time == "7am" and odds:
+    save_morning_odds('nba', odds)
+
+line_movement_text = ""
+
 # Optional: allow passing injury notes via environment or external pre-processing
 extra_injury_notes = os.getenv("NBA_INJURY_NOTES")
 
@@ -511,6 +519,17 @@ if not recent_games:
 
 # Match structured odds to games
 matched = match_nba_odds_to_games(games, odds, NBA_TEAM_NAME_MAP)
+
+# 3pm: compute line movement vs morning snapshot
+if run_time == "3pm":
+    morning_raw = load_morning_odds('nba')
+    if morning_raw and matched:
+        line_movement_text = build_line_movement_text(morning_raw, matched)
+        if not line_movement_text:
+            line_movement_text = "No significant line movement detected."
+    elif not morning_raw:
+        line_movement_text = "Morning odds snapshot not available."
+
 predictions_text = ""
 
 # Collect team stats, H2H stats, home/away splits, and standings
@@ -668,7 +687,7 @@ with open(filename, "w") as f:
                 print("playoff_series_text:\n", playoff_series_text)
 
             summary = analyze_results(predictions_text, team_stats_text, h2h_stats_text,
-                                     home_away_splits_text, standings_text, recent_games, playoff_series_text)
+                                     home_away_splits_text, standings_text, recent_games, playoff_series_text, line_movement_text)
             summary = filter_low_odds_picks(summary)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")

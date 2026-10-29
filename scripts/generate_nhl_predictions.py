@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 import google.genai as genai
 from google.genai import types
 from data.nhl_games import get_games_today
-from data.odds import get_nhl_odds, match_odds_to_games
+from data.odds import get_nhl_odds, match_odds_to_games, build_line_movement_text
+from data.odds_cache import save_morning_odds, load_morning_odds
 from datetime import date, timedelta
 from data.odds import NHL_TEAM_NAME_MAP
 import glob
@@ -1054,7 +1055,8 @@ def get_playoff_goalie_stats(home_team, away_team, starting_goalies, season='202
     return output
 
 
-def analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text="", playoff_goalie_stats_text="", player_form_text=""):
+
+def analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text="", playoff_goalie_stats_text="", player_form_text="", line_movement_text=""):
     api_key = os.environ["GOOGLE_API_KEY"]
     client = genai.Client(api_key=api_key)
 
@@ -1110,6 +1112,7 @@ def analyze_results(results_text, absences_text, recent_games, team_stats_text, 
             prompt_text = prompt_text.replace("{{PLAYOFF_SERIES_STATUS}}", playoff_series_text)
             prompt_text = prompt_text.replace("{{PLAYOFF_GOALIE_STATS}}", playoff_goalie_stats_text)
             prompt_text = prompt_text.replace("{{PLAYER_FORM}}", player_form_text)
+            prompt_text = prompt_text.replace("{{LINE_MOVEMENT}}", line_movement_text)
     except Exception:
         return "AI analysis skipped: prompt file not found or unreadable."
 
@@ -1245,6 +1248,24 @@ with open(filename, "w") as f:
     else:
         odds_data = get_nhl_odds()
         matched = match_odds_to_games(games, odds_data, NHL_TEAM_NAME_MAP)
+
+        # 7am: save a morning snapshot for line-movement comparison at 3pm
+        if run_time == "7am" and odds_data:
+            save_morning_odds('nhl', odds_data)
+
+        # 3pm: compute line movement vs morning snapshot
+        line_movement_text = ""
+        if run_time == "3pm":
+            morning_raw = load_morning_odds('nhl')
+            if morning_raw:
+                line_movement_text = build_line_movement_text(morning_raw, matched)
+                if line_movement_text:
+                    print("\nLine Movement (morning → afternoon):")
+                    print(line_movement_text)
+                else:
+                    line_movement_text = "No significant line movement detected."
+            else:
+                line_movement_text = "Morning odds snapshot not available."
 
         # Get starting goalies (only for 3pm run)
         if run_time == "3pm":
@@ -1570,7 +1591,7 @@ with open(filename, "w") as f:
         print(recent_games)
 
         if results_text:
-            summary = analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text, playoff_goalie_stats_text, player_form_text)
+            summary = analyze_results(results_text, absences_text, recent_games, team_stats_text, h2h_stats_text, goalie_stats_text, home_away_splits_text, standings_text, special_teams_text, playoff_series_text, playoff_goalie_stats_text, player_form_text, line_movement_text)
             f.write("\nAI Analysis Summary:\n")
             f.write(summary + "\n")
             print("\nAI Analysis Summary:")

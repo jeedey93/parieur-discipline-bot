@@ -38,6 +38,14 @@ You have access to comprehensive statistics:
 - {{RECENT_GAMES}} - Last 7 days schedule for fatigue analysis
 - {{RECENT_RESULTS}} - Last 5 days outcomes for context
 - {{HISTORICAL_RESULTS}} - Bot's previous predictions and outcomes
+- {{LINE_MOVEMENT}} - Morning vs afternoon line movement: ML shifts and O/U total movement since 7am
+
+**LINE MOVEMENT USAGE RULES**:
+- If a line moved **toward** a team (odds shortened, e.g. 2.10→1.85), sharp money is likely on that team — treat as a mild confirming signal (+2%) if it aligns with your analysis
+- If a line moved **away** from a team (odds lengthened, e.g. 1.75→2.00), the market is fading them — treat as a mild caution (-1%) even if your model likes them
+- If the O/U total moved ≥1.0 (e.g. 223.5→224.5), note the direction as context for your totals analysis
+- Only mention line movement if the shift was ≥0.05 in ML or ≥1.0 in total — ignore noise
+- If {{LINE_MOVEMENT}} is empty or unavailable, skip this factor entirely
 
 SIMPLIFIED ANALYSIS FRAMEWORK (4 Core Factors Only)
 
@@ -269,3 +277,4 @@ DATA TO ANALYZE
 {{HISTORICAL_RESULTS}}
 {{RECENT_RESULTS}}
 {{RECENT_GAMES}}
+{{LINE_MOVEMENT}}

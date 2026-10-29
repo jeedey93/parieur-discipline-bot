@@ -513,3 +513,87 @@ def match_nba_odds_to_games(games, odds_data, team_name_map=NBA_TEAM_NAME_MAP):
             })
 
     return matched_games
+
+
+def build_line_movement_text(morning_raw, afternoon_matched):
+    """Compare morning odds snapshot to afternoon matched games; return formatted movement text.
+
+    morning_raw: list of raw Odds API game dicts (from morning snapshot)
+    afternoon_matched: list of matched game dicts with home_odds/away_odds/over_under fields
+    """
+    # Build morning lookup by (away, home) team names
+    morning_by_teams = {}
+    for g in (morning_raw or []):
+        home = g.get('home_team', '')
+        away = g.get('away_team', '')
+        home_ml = away_ml = total = None
+        for bk in g.get('bookmakers', []):
+            for mkt in bk.get('markets', []):
+                if mkt['key'] == 'h2h' and home_ml is None:
+                    for o in mkt.get('outcomes', []):
+                        if o['name'] == home:
+                            home_ml = o['price']
+                        elif o['name'] == away:
+                            away_ml = o['price']
+                elif mkt['key'] == 'totals' and total is None:
+                    for o in mkt.get('outcomes', []):
+                        if o.get('name', '').lower() == 'over':
+                            total = o.get('point')
+            if home_ml is not None:
+                break
+        if home_ml is not None:
+            morning_by_teams[(away, home)] = {
+                'home': home, 'away': away,
+                'home_ml': home_ml, 'away_ml': away_ml, 'total': total
+            }
+
+    if not morning_by_teams or not afternoon_matched:
+        return ""
+
+    lines = []
+    for g in afternoon_matched:
+        home = g.get('home', '')
+        away = g.get('away', '')
+        pm = morning_by_teams.get((away, home))
+        if pm is None:
+            # Fuzzy last-word match
+            for (ma, mh), mv in morning_by_teams.items():
+                if (home.split()[-1] in mh or mh.split()[-1] in home) and \
+                   (away.split()[-1] in ma or ma.split()[-1] in away):
+                    pm = mv
+                    break
+        if pm is None:
+            continue
+
+        parts = []
+        try:
+            af_home = float(g.get('home_odds', 0) or 0)
+            af_away = float(g.get('away_odds', 0) or 0)
+            pm_home = float(pm['home_ml'] or 0)
+            pm_away = float(pm['away_ml'] or 0)
+            if pm_home and af_home:
+                diff_home = round(af_home - pm_home, 2)
+                diff_away = round(af_away - pm_away, 2)
+                if abs(diff_home) >= 0.05 or abs(diff_away) >= 0.05:
+                    ha = '▲' if diff_home > 0 else '▼'
+                    aa = '▲' if diff_away > 0 else '▼'
+                    parts.append(
+                        f"  ML: {home} {pm_home}→{af_home} ({ha}{abs(diff_home):.2f}), "
+                        f"{away} {pm_away}→{af_away} ({aa}{abs(diff_away):.2f})"
+                    )
+        except (TypeError, ValueError):
+            pass
+        try:
+            af_total = float(g.get('over_under', 0) or 0)
+            pm_total = float(pm['total'] or 0)
+            if pm_total and af_total and abs(af_total - pm_total) >= 0.5:
+                dt = round(af_total - pm_total, 1)
+                parts.append(f"  O/U: {pm_total}→{af_total} ({'▲' if dt > 0 else '▼'}{abs(dt):.1f})")
+        except (TypeError, ValueError):
+            pass
+
+        if parts:
+            lines.append(f"{away} @ {home}:")
+            lines.extend(parts)
+
+    return '\n'.join(lines)

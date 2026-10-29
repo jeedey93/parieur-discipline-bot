@@ -59,6 +59,14 @@ You have access to comprehensive statistics:
 - {{ABSENCES}} - Injured/scratched players by team
 - {{HISTORICAL_RESULTS}} - Bot's previous predictions and outcomes
 - {{PLAYER_FORM}} - Top skaters by team tonight: season points, last-5 game points, 🔥HOT (≥5 pts in last 5) or 🧊COLD (≤1 pt in last 5) flags, and any injury notes
+- {{LINE_MOVEMENT}} - Morning vs afternoon line movement: ML shifts and O/U total movement since 7am
+
+**LINE MOVEMENT USAGE RULES**:
+- If a line moved **toward** a team (odds shortened, e.g. 2.10→1.85), sharp money is likely on that team — treat as a mild confirming signal (+2%) if it aligns with your analysis
+- If a line moved **away** from a team (odds lengthened, e.g. 1.75→2.00), the market is fading them — treat as a mild caution (-1%) even if your model likes them
+- If the O/U total moved ≥0.5 (e.g. 5.5→6.0), note the direction as context for your totals analysis
+- Only mention line movement if the shift was ≥0.05 in ML or ≥0.5 in total — ignore noise
+- If {{LINE_MOVEMENT}} is empty or unavailable, skip this factor entirely
 
 **PLAYER FORM USAGE RULES**:
 - Use {{PLAYER_FORM}} to identify which team has elite players surging or struggling
@@ -313,3 +321,4 @@ DATA TO ANALYZE
 {{RECENT_GAMES}}
 {{ABSENCES}}
 {{PLAYER_FORM}}
+{{LINE_MOVEMENT}}
