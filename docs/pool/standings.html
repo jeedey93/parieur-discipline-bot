@@ -3405,7 +3405,7 @@
         </div>`;
 
       // Hot / Cold streaks — dressed only, full 5-game sample required
-      const hotPlayers  = drafted.filter(({ player }) => (hotColdBadge(player.last5_game_pts)||'').includes('🔥'))
+      const hotPlayers  = drafted.filter(({ player }) => (hotColdBadge(player.last5_game_pts)||'').includes('🔥') && (!player.injury_status || player.injury_status === 'Active'))
         .sort((a, b) => {
           const sum = p => (p.last5_game_pts ? (typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts) : []).filter(v => v !== null).reduce((s,v) => s+v, 0);
           return sum(b.player) - sum(a.player);
