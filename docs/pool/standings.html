@@ -3421,16 +3421,16 @@
             <div></div>
             <div class="lb-col-label left">Player</div>
             <div class="lb-col-label">Owner</div>
-            <div class="lb-col-label inj-status-col">Last 5</div>
-            <div class="lb-col-label">Pts</div>
+            <div class="lb-col-label inj-status-col">Game by game</div>
+            <div class="lb-col-label">L5 Pts</div>
           </div>
           ${hotPlayers.map((item, i) => {
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-            const pts = poolScoreOwned(p, item.team, p._slug);
             const vals = p.last5_game_pts ? (typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts) : [];
             const last5str = vals.filter(v => v !== null).slice(-5).join(', ');
+            const last5pts = vals.filter(v => v !== null).reduce((s, v) => s + v, 0);
             return `<div class="top-player-row injured-row">
               <div class="top-player-rank">${i+1}</div>
               <div class="top-player-info">${logo}
@@ -3439,7 +3439,7 @@
               </div>
               <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
               <div class="top-player-stat inj-status-col" style="font-size:0.75rem;color:var(--silver)">${last5str}</div>
-              <div class="top-player-pts">${pts}</div>
+              <div class="top-player-pts">${last5pts}</div>
             </div>`;
           }).join('')}
         </div>
@@ -3448,16 +3448,16 @@
             <div></div>
             <div class="lb-col-label left">Player</div>
             <div class="lb-col-label">Owner</div>
-            <div class="lb-col-label inj-status-col">Last 5</div>
-            <div class="lb-col-label">Pts</div>
+            <div class="lb-col-label inj-status-col">Game by game</div>
+            <div class="lb-col-label">L5 Pts</div>
           </div>
           ${coldPlayers.map((item, i) => {
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-            const pts = poolScoreOwned(p, item.team, p._slug);
             const vals = p.last5_game_pts ? (typeof p.last5_game_pts === 'string' ? JSON.parse(p.last5_game_pts) : p.last5_game_pts) : [];
             const last5str = vals.filter(v => v !== null).slice(-5).join(', ');
+            const last5pts = vals.filter(v => v !== null).reduce((s, v) => s + v, 0);
             return `<div class="top-player-row injured-row">
               <div class="top-player-rank">${i+1}</div>
               <div class="top-player-info">${logo}
@@ -3466,7 +3466,7 @@
               </div>
               <div class="top-player-owner" ${ownerBadge(item.owner)}>${item.owner}</div>
               <div class="top-player-stat inj-status-col" style="font-size:0.75rem;color:var(--silver)">${last5str}</div>
-              <div class="top-player-pts">${pts}</div>
+              <div class="top-player-pts">${last5pts}</div>
             </div>`;
           }).join('')}
         </div>`;
