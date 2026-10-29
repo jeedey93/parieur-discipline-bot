@@ -1,6 +1,6 @@
 ============================================================
 CAPITALS - LINEUP
-Last Updated: 2026-10-24 02:33 PM ET
+Last Updated: 2026-10-28 04:47 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,19 +14,19 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jakob Chychrun — Matt Roy
 Pair 2: Martin Fehervary — Timothy Liljegren
-Pair 3: Cole Hutson — Dylan McIlrath
+Pair 3: Cole Hutson — Jack St. Ivany
 
 GOALIES:
 ----------------------------------------
+  Logan Thompson
   Charlie Lindgren
-  Mitch Gibson
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Ethen Frank (scratched)
   Ivan Miroshnichenko (scratched)
+  Dylan McIlrath (scratched)
   Rasmus Sandin (knee) (injured)
-  Logan Thompson (lower body) (injured)
   Vincent Desharnais (appendectomy) (injured)
 
 ============================================================
