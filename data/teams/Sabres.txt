@@ -1,6 +1,6 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-10-29 04:49 PM ET
+Last Updated: 2026-10-31 03:42 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,14 +12,14 @@ Line 4: Tyson Kozak — Sam Carrick — Beck Malenstyn
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Rasmus Dahlin — Mattias Samuelsson
+Pair 1: Mattias Samuelsson — Rasmus Dahlin
 Pair 2: Olen Zellweger — Owen Power
 Pair 3: Dennis Gilbert — Louis Crevier
 
 GOALIES:
 ----------------------------------------
-  Colten Ellis
   Ukko-Pekka Luukkonen
+  Colten Ellis
 
 SCRATCHED / INJURED:
 ----------------------------------------

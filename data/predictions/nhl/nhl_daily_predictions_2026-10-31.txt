@@ -1,0 +1,23 @@
+Here's the comparative analysis and final unified recommendation list based on the morning and noon prediction reports:
+
+**Comparative Analysis:**
+
+1.  **Consistent Plays:** All 10 games were present in both the morning and noon reports, indicating a consistent slate of matchups for the day.
+2.  **Added/Removed Recommendations (based on confidence/odds):**
+    *   **Detroit Red Wings ML:** Recommended as "Bet of the Day" in the morning report (ML @ 2.02, Medium confidence). This play was effectively removed from consideration by noon due to a massive odds shift to ML @ 8.0, which also placed it outside the acceptable odds range (1.60-2.20).
+    *   **Montréal Canadiens ML:** Recommended as an "Other Recommended Play" in the morning (ML @ 1.69, Medium confidence). By noon, it was upgraded to the "Bet of the Day" (ML @ 1.82, High confidence) with updated player-specific analysis.
+3.  **Confidence Level Changes:**
+    *   **Montréal Canadiens ML:** Confidence increased from Medium (morning) to High (noon).
+4.  **Odds Changes Affecting Recommendations:**
+    *   **Detroit Red Wings ML:** Odds moved significantly from 2.02 (morning) to 8.0 (noon). This extreme change, likely due to new information or market shifts (e.g., goalie confirmation, major injury), rendered the morning's "Bet of the Day" unplayable and outside the recommended odds range.
+    *   **Montréal Canadiens ML:** Odds shifted from 1.69 (morning) to 1.82 (noon). This movement, while still within a favourable range, likely contributed to its elevated confidence and status as the new "Bet of the Day."
+    *   The noon report also incorporated explicit goaltender matchups (Jacob Fowler vs. Sergei Murashov) and player news (Nick Suzuki injury, Cole Caufield hot streak), which were TBD in the morning. This added detail provided a more robust basis for the noon predictions and the increased confidence in the Canadiens pick.
+
+---
+
+🏆 **BET OF THE DAY**
+**Montréal Canadiens ML vs Pittsburgh Penguins @ 1.82**
+Confidence Level: High, Units: 1.5u, Win Probability: 74%
+Montréal is a compelling play at home against Pittsburgh today. Canadiens goaltender Jacob Fowler has been elite recently, boasting an outstanding 0.944 SV% in his last five starts, providing a significant advantage over Pittsburgh's Sergei Murashov, who has struggled with a poor 0.883 SV% over the same span. Montréal also benefits from a substantial home-ice advantage, with their 0.500 home win percentage significantly better than Pittsburgh's dismal 0.143 away record, leading to an +8% adjustment. Despite the absence of key forward Nick Suzuki due to an upper body injury, which incurs a -3% penalty, Montréal's overall recent form is strong with a 7-2-1 record in their last 10 games and a +0.7 goal differential. Additionally, forward Cole Caufield is playing exceptionally well, marked as 🔥HOT with 6 points in his last 5 games. The Penguins, meanwhile, have a negative goal differential in their last 10 games. Combining these factors, the Canadiens' true win probability is estimated at 74%, far exceeding the implied probability of 54.95% from the odds, providing a substantial edge for this matchup.
+
+Line moved from ML @ 1.69 (morning) to ML @ 1.82 (noon), confidence increased from Medium to High.
