@@ -2491,13 +2491,13 @@
 
       // 3. Pool-wide Best Steal (cross-team highlight, kept in Individual Stars)
       const allP = [];
-      teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => { const pts = poolScoreOwned(p, t, p._slug), capM = (p.cap_hit || 0) / 1e6; if (pts > 0 && capM > 0) allP.push({ p, t, pts, capM, ratio: pts / capM }); }); });
+      teams.forEach(t => { const rp = rosterPlayers(t.roster); [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => { const pts = poolScore(p), capM = (p.cap_hit || 0) / 1e6; if (pts > 0 && capM > 0) allP.push({ p, t, pts, capM, ratio: pts / capM }); }); });
       allP.sort((a, b) => b.ratio - a.ratio);
-      if (allP.length) { const steal = allP[0]; data.push({ group:'Individual Stars', color:'blue', icon:'🚀', label:'Best Steal in Pool', main:formatName(steal.p.player_name), sub:`${steal.pts} pts · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
+      if (allP.length) { const steal = allP[0]; data.push({ group:'Individual Stars', color:'blue', icon:'🚀', label:'Best Steal in Pool', main:formatName(steal.p.player_name), sub:`${steal.pts} pts (season) · $${steal.capM.toFixed(1)}M · owned by ${steal.t.name}` }); }
 
       // 4. Pool-wide Worst Contract (cross-team highlight, kept in Individual Stars)
       const worstPool = allP.filter(x => x.capM >= 2 && x.pts >= 1).sort((a, b) => a.ratio - b.ratio);
-      if (worstPool.length) { const bust = worstPool[0]; data.push({ group:'Individual Stars', color:'red', icon:'💸', label:'Worst Contract in Pool', main:formatName(bust.p.player_name), sub:`${bust.pts} pts · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
+      if (worstPool.length) { const bust = worstPool[0]; data.push({ group:'Individual Stars', color:'red', icon:'💸', label:'Worst Contract in Pool', main:formatName(bust.p.player_name), sub:`${bust.pts} pts (season) · $${bust.capM.toFixed(1)}M · owned by ${bust.t.name}` }); }
 
       // 5. Biggest Mover (yesterday → today delta via localStorage snapshot)
       const snap = loadPtsSnapshot();
