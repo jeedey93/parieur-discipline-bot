@@ -142,6 +142,17 @@
     }
     .logout-btn:hover { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.2); }
 
+    /* ── FILTER BAR ── */
+    .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .filter-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: 6px;
+      color: rgba(255,255,255,0.45); font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.5px; padding: 0.3rem 0.85rem; cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .filter-btn:hover { background: rgba(255,255,255,0.09); color: rgba(255,255,255,0.7); }
+    .filter-btn.active { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
+
     @media (max-width: 500px) {
       .form-row { flex-direction: column; }
     }
@@ -280,6 +291,12 @@
 
   <!-- SECTION 3: SWAP LOG -->
   <div class="section-title">Swap History</div>
+  <div class="filter-bar" id="swap-filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="setSwapFilter('all')">All</button>
+    <button class="filter-btn" data-filter="swap" onclick="setSwapFilter('swap')">🔄 Swaps</button>
+    <button class="filter-btn" data-filter="injury" onclick="setSwapFilter('injury')">🩹 Injuries</button>
+    <button class="filter-btn" data-filter="pickup" onclick="setSwapFilter('pickup')">📥 Pickups</button>
+  </div>
   <div class="swap-log" id="swap-log">
     <div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>
   </div>
@@ -329,8 +346,11 @@
     document.getElementById('gate').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+    const tomorrow = new Date(new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' }));
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toLocaleDateString('en-CA');
     document.getElementById('swap-date').value = today;
-    document.getElementById('pu-date').value   = today;
+    document.getElementById('pu-date').value   = tomorrowStr;
     updateRadioStyle();
     await loadScoring();
     await loadTeams();
@@ -581,20 +601,42 @@
   }
 
   // ── SWAP LOG ──────────────────────────────────────────────────────────────
+  let _allSwaps = [];
+  let _swapFilter = 'all';
+
+  function setSwapFilter(f) {
+    _swapFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    renderSwapLog();
+  }
+
   async function loadSwapLog() {
     const logEl = document.getElementById('swap-log');
     logEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>';
     const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps?league_code=eq.${LEAGUE}&select=*&order=swap_date.desc,created_at.desc`, { headers: sbHeaders() });
-    const swaps = await r.json();
-    if (!swaps.length) { logEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem">No swaps yet.</div>'; return; }
+    _allSwaps = await r.json();
+    renderSwapLog();
+  }
+
+  function renderSwapLog() {
+    const logEl = document.getElementById('swap-log');
+    const swaps = _swapFilter === 'all' ? _allSwaps : _allSwaps.filter(s => s.reason === _swapFilter);
+    if (!swaps.length) { logEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.9rem">No entries.</div>'; return; }
+
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
     logEl.innerHTML = swaps.map(s => {
       const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
-      const reasonHtml = s.reason === 'injury'
-        ? `<span class="reason-badge reason-injury">🩹 Injury</span>`
-        : s.reason === 'pickup'
-        ? `<span class="reason-badge reason-pickup">📥 Pickup</span>`
-        : `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
+      let reasonHtml;
+      if (s.reason === 'injury') {
+        reasonHtml = `<span class="reason-badge reason-injury">🩹 Injury</span>`;
+      } else if (s.reason === 'pickup') {
+        const d = new Date(s.swap_date);
+        const monthName = MONTHS[d.getUTCMonth()];
+        reasonHtml = `<span class="reason-badge reason-pickup">📥 ${monthName} Pickup</span>`;
+      } else {
+        reasonHtml = `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
+      }
       return `<div class="swap-log-row">
         <div class="swap-log-header">
           <span class="swap-log-date">${fmt(s.swap_date)}</span>
