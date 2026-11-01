@@ -3071,6 +3071,7 @@
       // For skaters on bench: still show their historical stats row in the dressed section
       const swapOutRows = (pos !== 'B' && showSwapGhosts) ? _benchSwaps.filter(s => {
         if (s.team_id !== team.id) return false;
+        if (s.reason === 'pickup' && s.player_out_pts_at_swap === 0) return false; // was on bench, never active
         const swapPos = normalizePos(s.player_out_position);
         return swapPos === pos && !seenSlugs.has(s.player_out_slug);
       }).map(s => {
