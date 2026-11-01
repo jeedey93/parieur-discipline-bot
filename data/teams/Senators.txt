@@ -1,14 +1,14 @@
 ============================================================
 SENATORS - LINEUP
-Last Updated: 2026-10-31 03:42 PM ET
+Last Updated: 2026-11-01 03:04 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Fabian Zetterlund — Tim Stutzle — Claude Giroux
-Line 2: Andre Burakovsky — Dylan Cozens — Drake Batherson
-Line 3: Ridly Greig — Shane Pinto — Michael Amadio
-Line 4: Hayden Hodgson — Stephen Halliday — Nick Cousins
+Line 1: Fabian Zetterlund — Tim Stutzle — Dylan Cozens
+Line 2: Philip Tomasino — Shane Pinto — Drake Batherson
+Line 3: Michael Amadio — Ridly Greig — Claude Giroux
+Line 4: Nick Cousins — Stephen Halliday — Xavier Bourgault
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -28,5 +28,6 @@ SCRATCHED / INJURED:
   Linus Ullmark (lower body) (injured)
   William Eklund (ankle) (injured)
   Kurtis MacDermid (upper body) (injured)
+  Andre Burakovsky (lower body) (injured)
 
 ============================================================
