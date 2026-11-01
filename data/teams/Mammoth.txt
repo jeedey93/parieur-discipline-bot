@@ -1,6 +1,6 @@
 ============================================================
 MAMMOTH - LINEUP
-Last Updated: 2026-10-27 04:34 PM ET
+Last Updated: 2026-10-31 03:42 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,13 +8,13 @@ FORWARD LINES:
 Line 1: Clayton Keller — Nick Schmaltz — Lawson Crouse
 Line 2: Logan Cooley — Vincent Trocheck — Dylan Guenther
 Line 3: Anders Lee — Barrett Hayton — Kailer Yamamoto
-Line 4: Jack McBain — Kevin Stenlund — Liam OBrien
+Line 4: Jack McBain — Kevin Stenlund — Liam OBrien
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Mikhail Sergachev — Mackenzie Weegar
 Pair 2: Nate Schmidt — Andrew Peeke
-Pair 3: Dmitri Simashev — Nick De Simone
+Pair 3: Artem Duda — Nick De Simone
 
 GOALIES:
 ----------------------------------------
@@ -23,8 +23,7 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Artem Duda (scratched)
-  Daniil But (scratched)
+  Dmitri Simashev (scratched)
   Maveric Lamoureux (shoulder) (injured)
   Michael Carcone (upper body) (injured)
   John Marino (upper body) (injured)

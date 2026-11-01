@@ -1,6 +1,6 @@
 ============================================================
 PREDATORS - LINEUP
-Last Updated: 2026-10-27 04:34 PM ET
+Last Updated: 2026-10-31 03:42 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -13,12 +13,12 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Steven Stamkos — Ryan OReilly
 Pair 2: Roman Josi — Adam Wilsby
-Pair 3: Nicolas Hague — Jayden Struble
-Pair 4: Brady Skjei — Nick Perbix
+Pair 3: Brady Skjei — Nick Perbix
+Pair 4: Daemon Hunt — Jayden Struble
 
 GOALIES:
 ----------------------------------------
-  Daemon Hunt
+  Nicolas Hague
   Juuse Saros
 
 SCRATCHED / INJURED:
