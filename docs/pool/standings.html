@@ -3791,7 +3791,9 @@
         } else if (s.reason === 'swap') {
           reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
         } else if (s.reason === 'pickup') {
-          reasonBadge = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
+          const _months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          const _pickupMonth = _months[new Date(s.swap_date).getUTCMonth()];
+          reasonBadge = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 ${_pickupMonth} Pickup</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row" data-reason="${s.reason}" data-team="${s.team_id}">
@@ -3819,6 +3821,7 @@
             <button onclick="setSwapFilter('all')"    id="sf-all"    class="swap-filter-btn active">All</button>
             <button onclick="setSwapFilter('swap')"   id="sf-swap"   class="swap-filter-btn">🔄 Official</button>
             <button onclick="setSwapFilter('injury')" id="sf-injury" class="swap-filter-btn">🩹 Injury</button>
+            <button onclick="setSwapFilter('pickup')" id="sf-pickup" class="swap-filter-btn">📥 Pickup</button>
           </div>
         </div>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.75rem">${teamBtns}</div>
@@ -3849,6 +3852,7 @@
         if (filter === 'all')               show = true;
         else if (filter === 'swap')         show = reason === 'swap';
         else if (filter === 'injury')       show = reason === 'injury';
+        else if (filter === 'pickup')       show = reason === 'pickup';
         else if (filter.startsWith('team:')) show = team === filter.slice(5);
         row.style.display = show ? '' : 'none';
       });
