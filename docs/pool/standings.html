@@ -1714,7 +1714,7 @@
     }
     function resolveActiveAcquiredDate(team, slug) {
       const acqRaw = team?.acquisitions?.[slug];
-      const acqDate = (typeof acqRaw === 'object' && acqRaw?.date) ? new Date(acqRaw.date + 'T12:00:00') : null;
+      const acqDate = (typeof acqRaw === 'object' && acqRaw?.date) ? new Date(acqRaw.date.length === 10 ? acqRaw.date + 'T12:00:00' : acqRaw.date) : null;
       return (acqDate && !Number.isNaN(acqDate.getTime())) ? acqDate : ACTIVE_ACQUIRED_FALLBACK_DATE;
     }
     function teamColor(name) {
@@ -3007,7 +3007,7 @@
       const swapsAsc = _benchSwaps.filter(s => s.team_id === team.id);
       if (!swapsAsc.length) return '';
       const m = slugMap();
-      const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+      const fmt = d => new Date(d.length === 10 ? d + 'T12:00:00' : d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
       // Number swaps in chronological order (oldest = #1)
       let counter = 0;
       const swapNumbers = {};
@@ -3053,7 +3053,7 @@
       const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(s => s && typeof s === 'string'));
       const activeSlugSet = new Set((team.roster[pos] || []).filter(Boolean));
       const m = slugMap();
-      const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+      const fmt = d => new Date(d.length === 10 ? d + 'T12:00:00' : d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
 
       const trades = currentTrades.filter(t => {
         if (t.team_id !== team.id || !t.player_to_slug) return false;
@@ -3651,7 +3651,7 @@
 
       // Date labels
       const dateLabels = dates.map((d, i) => {
-        const dt = new Date(d + 'T12:00:00');
+        const dt = new Date(d.length === 10 ? d + 'T12:00:00' : d);
         const label = dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
         return `<text x="${xScale(i)}" y="${PT - 14}" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)" font-family="Barlow Condensed,sans-serif" font-weight="600">${label}</text>`;
       }).join('');
