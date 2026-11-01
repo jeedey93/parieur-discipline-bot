@@ -746,8 +746,27 @@
     const teamId = document.getElementById('pu-sel-team').value;
     document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
     document.getElementById('pu-btn-confirm').disabled = true;
+    document.getElementById('pu-fa-group').style.display = 'none';
+    document.getElementById('fa-results').innerHTML = '';
+    document.getElementById('pu-stats-in').innerHTML = 'Search and select a free agent above';
     _puSelectedFa = null;
     if (!slug) return;
+
+    const selectedOpt = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(slug)}"]`);
+    const isFromBench = selectedOpt?.dataset?.pos === 'B';
+    const selPos = document.getElementById('pu-pos');
+
+    if (isFromBench) {
+      // Bench drop → bench pickup: skip position selector, go straight to FA search
+      selPos.value = '';
+      selPos.disabled = true;
+      document.getElementById('pu-fa-group').style.display = 'block';
+      await loadFreeAgents('F'); // load all skaters + goalies for bench
+    } else {
+      selPos.disabled = false;
+      selPos.value = '';
+    }
+
     const p    = await fetchPlayerStats(slug);
     const team = _rosters.data.teams.find(t => t.id === teamId);
     const snap = team?.acquisitions?.[slug]?.stats_snapshot || null;
@@ -777,14 +796,16 @@
     }
 
     // Determine which NHL positions to query
-    const posFilter = pos === 'F'
-      ? ['C','LW','RW','L','R','W']  // forward positions
+    const posFilter = pos === 'B'
+      ? ['C','LW','RW','L','R','W','D','G']  // all positions for bench slot
+      : pos === 'F'
+      ? ['C','LW','RW','L','R','W']
       : pos === 'D'
       ? ['D']
       : ['G'];
 
     const posQ = posFilter.map(p => `position.ilike.*${p}*`).join(',');
-    const url = `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,team,points,goals,assists,games_played,wins,shutouts,ot_losses&or=(${posQ})&order=points.desc&limit=300`;
+    const url = `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,team,points,goals,assists,games_played,wins,shutouts,ot_losses&or=(${posQ})&order=points.desc&limit=500`;
     const r = await fetch(url, { headers: sbHeaders() });
     const all = await r.json();
     _freeAgents = all.filter(p => p.puckpedia_slug && !ownedSlugs.has(p.puckpedia_slug));
@@ -841,7 +862,8 @@
   function updatePuConfirmBtn() {
     const dropSlug = document.getElementById('pu-sel-drop').value;
     const pos      = document.getElementById('pu-pos').value;
-    document.getElementById('pu-btn-confirm').disabled = !(dropSlug && pos && _puSelectedFa);
+    const isFromBench = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(dropSlug)}"]`)?.dataset?.pos === 'B';
+    document.getElementById('pu-btn-confirm').disabled = !(dropSlug && (pos || isFromBench) && _puSelectedFa);
   }
 
   async function confirmPickup() {
@@ -850,11 +872,12 @@
     btn.disabled = true;
     msgEl.style.display = 'none';
 
-    const teamId  = document.getElementById('pu-sel-team').value;
+    const teamId   = document.getElementById('pu-sel-team').value;
     const dropSlug = document.getElementById('pu-sel-drop').value;
-    const inSlug  = _puSelectedFa;
-    const pos     = document.getElementById('pu-pos').value;
-    const date    = document.getElementById('pu-date').value;
+    const dropPos  = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(dropSlug)}"]`)?.dataset?.pos || 'F';
+    const inSlug   = _puSelectedFa;
+    const pos      = dropPos === 'B' ? 'B' : document.getElementById('pu-pos').value;
+    const date     = document.getElementById('pu-date').value;
     const note    = document.getElementById('pu-note').value.trim();
 
     const pOut = await fetchPlayerStats(dropSlug);
@@ -895,9 +918,11 @@
       const outNameRaw = pOut?.player_name || dropSlug.split('/').pop();
       const inNameRaw  = pIn?.player_name  || inSlug.split('/').pop();
       const outTeamPu  = data.teams.find(t => t.id === teamId);
+      // If player was on bench, they scored 0 pts for the team
+      const wasOnBench = dropPos === 'B';
       const outSnapPu  = outTeamPu?.acquisitions?.[dropSlug]?.stats_snapshot || null;
       const snapPtsPu  = outSnapPu ? calcPoolPts({ ...outSnapPu, position: pOut?.position }) : 0;
-      const outPts = Math.max(0, calcPoolPts(pOut) - snapPtsPu);
+      const outPts = wasOnBench ? 0 : Math.max(0, calcPoolPts(pOut) - snapPtsPu);
       const outPosRaw = pOut?.position?.split(',')[0] || pos;
       const inPosRaw  = pIn?.position?.split(',')[0]  || pos;
 
