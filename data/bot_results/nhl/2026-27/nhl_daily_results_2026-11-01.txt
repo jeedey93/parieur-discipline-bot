@@ -1,0 +1,15 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-10-31.
+
+Here's the breakdown:
+
+1.  **Montréal Canadiens ML vs Pittsburgh Penguins @ 1.82 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Pittsburgh 4 @ Montréal 5 (Total goals: 9)
+    *   Outcome: **WIN** (Montréal won the game outright)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 0**
+*   **Total Pushes: 0**
