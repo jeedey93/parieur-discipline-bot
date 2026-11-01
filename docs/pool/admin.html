@@ -415,20 +415,38 @@
     return p && /G/.test(p.position);
   }
 
-  function statsNote(p, slug) {
+  function statsNote(p, slug, snap) {
     if (!p) return '';
     if (isGoalie(p)) {
-      return `${formatName(p.player_name)} at swap: ${p.wins ?? 0}W ${p.shutouts ?? 0}SO ${p.ot_losses ?? 0}OTL in ${p.games_played ?? 0} GP`;
+      const w  = Math.max(0, (p.wins      ?? 0) - (snap?.wins      ?? 0));
+      const so = Math.max(0, (p.shutouts  ?? 0) - (snap?.shutouts  ?? 0));
+      const otl= Math.max(0, (p.ot_losses ?? 0) - (snap?.ot_losses ?? 0));
+      const gp = Math.max(0, (p.games_played ?? 0) - (snap?.games_played ?? 0));
+      return `${formatName(p.player_name)} at swap: ${w}W ${so}SO ${otl}OTL in ${gp} GP`;
     }
-    return `${formatName(p.player_name)} at swap: ${p.points ?? 0} pts (${p.goals ?? 0}G, ${p.assists ?? 0}A) in ${p.games_played ?? 0} GP`;
+    const pts = Math.max(0, (p.points ?? 0) - (snap?.points ?? 0));
+    const g   = Math.max(0, (p.goals  ?? 0) - (snap?.goals  ?? 0));
+    const a   = Math.max(0, (p.assists?? 0) - (snap?.assists ?? 0));
+    const gp  = Math.max(0, (p.games_played ?? 0) - (snap?.games_played ?? 0));
+    return `${formatName(p.player_name)} at swap: ${pts} pts (${g}G, ${a}A) in ${gp} GP`;
   }
 
-  function statsPreviewHtml(p, label) {
+  function statsPreviewHtml(p, snap) {
     if (!p) return `<span>No stats found</span>`;
     if (isGoalie(p)) {
-      return `<strong>${p.wins ?? 0}W</strong> · <strong>${p.shutouts ?? 0}SO</strong> · <strong>${p.ot_losses ?? 0}OTL</strong> · ${p.games_played ?? 0} GP`;
+      const w  = Math.max(0, (p.wins      ?? 0) - (snap?.wins      ?? 0));
+      const so = Math.max(0, (p.shutouts  ?? 0) - (snap?.shutouts  ?? 0));
+      const otl= Math.max(0, (p.ot_losses ?? 0) - (snap?.ot_losses ?? 0));
+      const gp = Math.max(0, (p.games_played ?? 0) - (snap?.games_played ?? 0));
+      const suffix = snap ? ` <span style="color:rgba(255,255,255,0.25);font-size:0.8em">(since activation)</span>` : '';
+      return `<strong>${w}W</strong> · <strong>${so}SO</strong> · <strong>${otl}OTL</strong> · ${gp} GP${suffix}`;
     }
-    return `<strong>${p.points ?? 0} pts</strong> · ${p.goals ?? 0}G ${p.assists ?? 0}A · ${p.games_played ?? 0} GP`;
+    const pts = Math.max(0, (p.points ?? 0) - (snap?.points ?? 0));
+    const g   = Math.max(0, (p.goals  ?? 0) - (snap?.goals  ?? 0));
+    const a   = Math.max(0, (p.assists?? 0) - (snap?.assists ?? 0));
+    const gp  = Math.max(0, (p.games_played ?? 0) - (snap?.games_played ?? 0));
+    const suffix = snap ? ` <span style="color:rgba(255,255,255,0.25);font-size:0.8em">(since activation)</span>` : '';
+    return `<strong>${pts} pts</strong> · ${g}G ${a}A · ${gp} GP${suffix}`;
   }
 
   // ── TEAM / PLAYER SELECTION ───────────────────────────────────────────────
@@ -481,19 +499,24 @@
   async function onPlayerChange() {
     const outSlug = document.getElementById('sel-out').value;
     const inSlug  = document.getElementById('sel-in').value;
+    const teamId  = document.getElementById('sel-team').value;
+    const team    = _rosters.data.teams.find(t => t.id === teamId);
 
     if (outSlug) {
-      const p = await fetchPlayerStats(outSlug);
-      document.getElementById('stats-out').innerHTML = statsPreviewHtml(p);
+      const p    = await fetchPlayerStats(outSlug);
+      const snap = team?.acquisitions?.[outSlug]?.stats_snapshot || null;
+      document.getElementById('stats-out').innerHTML = statsPreviewHtml(p, snap);
     }
     if (inSlug) {
-      const p = await fetchPlayerStats(inSlug);
-      document.getElementById('stats-in').innerHTML = statsPreviewHtml(p);
+      const p    = await fetchPlayerStats(inSlug);
+      const snap = team?.acquisitions?.[inSlug]?.stats_snapshot || null;
+      document.getElementById('stats-in').innerHTML = statsPreviewHtml(p, snap);
     }
 
     if (outSlug && inSlug) {
       const pOut = await fetchPlayerStats(outSlug);
-      document.getElementById('swap-note').value = statsNote(pOut, outSlug);
+      const snap = team?.acquisitions?.[outSlug]?.stats_snapshot || null;
+      document.getElementById('swap-note').value = statsNote(pOut, outSlug, snap);
       document.getElementById('btn-confirm').disabled = false;
     } else {
       document.getElementById('btn-confirm').disabled = true;
@@ -719,13 +742,16 @@
   }
 
   async function onPuDropChange() {
-    const slug = document.getElementById('pu-sel-drop').value;
+    const slug   = document.getElementById('pu-sel-drop').value;
+    const teamId = document.getElementById('pu-sel-team').value;
     document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
     document.getElementById('pu-btn-confirm').disabled = true;
     _puSelectedFa = null;
     if (!slug) return;
-    const p = await fetchPlayerStats(slug);
-    document.getElementById('pu-stats-drop').innerHTML = statsPreviewHtml(p);
+    const p    = await fetchPlayerStats(slug);
+    const team = _rosters.data.teams.find(t => t.id === teamId);
+    const snap = team?.acquisitions?.[slug]?.stats_snapshot || null;
+    document.getElementById('pu-stats-drop').innerHTML = statsPreviewHtml(p, snap);
     updatePuNote();
   }
 
@@ -804,9 +830,12 @@
 
   async function updatePuNote() {
     const dropSlug = document.getElementById('pu-sel-drop').value;
+    const teamId   = document.getElementById('pu-sel-team').value;
     if (!dropSlug) return;
     const pOut = await fetchPlayerStats(dropSlug);
-    document.getElementById('pu-note').value = statsNote(pOut, dropSlug);
+    const team = _rosters.data.teams.find(t => t.id === teamId);
+    const snap = team?.acquisitions?.[dropSlug]?.stats_snapshot || null;
+    document.getElementById('pu-note').value = statsNote(pOut, dropSlug, snap);
   }
 
   function updatePuConfirmBtn() {
