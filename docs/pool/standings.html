@@ -1714,7 +1714,7 @@
     }
     function resolveActiveAcquiredDate(team, slug) {
       const acqRaw = team?.acquisitions?.[slug];
-      const acqDate = (typeof acqRaw === 'object' && acqRaw?.date) ? new Date(acqRaw.date) : null;
+      const acqDate = (typeof acqRaw === 'object' && acqRaw?.date) ? new Date(acqRaw.date + 'T12:00:00') : null;
       return (acqDate && !Number.isNaN(acqDate.getTime())) ? acqDate : ACTIVE_ACQUIRED_FALLBACK_DATE;
     }
     function teamColor(name) {
@@ -3007,7 +3007,7 @@
       const swapsAsc = _benchSwaps.filter(s => s.team_id === team.id);
       if (!swapsAsc.length) return '';
       const m = slugMap();
-      const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+      const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
       // Number swaps in chronological order (oldest = #1)
       let counter = 0;
       const swapNumbers = {};
@@ -3027,7 +3027,8 @@
         } else if (s.reason === 'swap') {
           reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapNumbers[s.id]}</span>`;
         } else if (s.reason === 'pickup') {
-          reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`;
+          const _pm = ['January','February','March','April','May','June','July','August','September','October','November','December'][new Date(s.swap_date).getUTCMonth()];
+          reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 ${_pm} Pickup</span>`;
         }
         return `<div class="swap-row">
           <div class="swap-date">${fmt(s.swap_date)}</div>
@@ -3052,7 +3053,7 @@
       const currentSlugs = new Set([...team.roster.F, ...team.roster.D, ...team.roster.G, ...(team.roster.B||[])].filter(s => s && typeof s === 'string'));
       const activeSlugSet = new Set((team.roster[pos] || []).filter(Boolean));
       const m = slugMap();
-      const fmt = d => new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+      const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
 
       const trades = currentTrades.filter(t => {
         if (t.team_id !== team.id || !t.player_to_slug) return false;
