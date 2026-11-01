@@ -1125,6 +1125,7 @@
 
     // ── Live scoring ──────────────────────────────────────────────────────────
     const NHL_PROXY = '/api/nhl-schedule';
+    const _LIVE_PTS_KEY = 'pool_live_pts';
     let _livePts = {};        // nhl_player_id (number) → live pool pts tonight
     let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
@@ -1132,6 +1133,24 @@
     let _liveTimer = null;
     let _liveActive = false;
     let _anyGameLive = false; // true when at least one game is in progress
+
+    // Restore persisted live pts for today (survives page refresh until DB stats update)
+    (function restorePersistedLivePts() {
+      try {
+        const raw = localStorage.getItem(_LIVE_PTS_KEY);
+        if (!raw) return;
+        const { date, pts } = JSON.parse(raw);
+        if (date === _livePtsDate && pts && typeof pts === 'object') {
+          _livePts = Object.fromEntries(Object.entries(pts).map(([k, v]) => [Number(k), v]));
+        }
+      } catch(_) {}
+    })();
+
+    function persistLivePts() {
+      try {
+        localStorage.setItem(_LIVE_PTS_KEY, JSON.stringify({ date: _livePtsDate, pts: _livePts }));
+      } catch(_) {}
+    }
 
     function isGameHour() {
       const h = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', hour12: false });
@@ -1162,6 +1181,7 @@
       const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
       if (todayStr !== _livePtsDate) {
         _livePts = {}; _livePlayerIds = new Set(); _livePtsDate = todayStr;
+        persistLivePts();
       }
       const newPts = {};
       const newLiveIds = new Set();
@@ -1221,6 +1241,7 @@
       _livePts = mergedPts;
       _livePlayerIds = newLiveIds;
       _anyGameLive = anyLive;
+      if (ptsChanged) persistLivePts();
       if (ptsChanged || liveChanged) { clearCache(); render(); }
     }
 
