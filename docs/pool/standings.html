@@ -2680,10 +2680,10 @@
 
         // Build per-player data
         const playerData = dressed.map(p => {
-          const pts    = poolScoreOwned(p, t, p._slug);
+          const pts    = poolScore(p);
           const capM   = (p.cap_hit || 0) / 1e6;
           const ytd    = (_playerYesterdayPtsBySlug[p._slug] ?? 0) || (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0);
-          const gp     = ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0;
+          const gp     = p.games_played ?? 0;
           const ppg    = gp > 0 ? pts / gp : 0;
           const ratio  = capM > 0 && gp > 0 ? ppg / capM : null;
           // Mixed score: production × sqrt(value) — rewards high scorers but boosts cap efficiency
