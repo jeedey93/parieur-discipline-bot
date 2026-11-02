@@ -808,7 +808,7 @@
       : ['G'];
 
     const posQ = posFilter.map(p => `position.ilike.*${p}*`).join(',');
-    const url = `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,team,points,goals,assists,games_played,wins,shutouts,ot_losses&or=(${posQ})&order=points.desc&limit=500`;
+    const url = `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,team,points,goals,assists,games_played,wins,shutouts,ot_losses&or=(${posQ})&order=points.desc&limit=2000`;
     const r = await fetch(url, { headers: sbHeaders() });
     const all = await r.json();
     _freeAgents = all.filter(p => p.puckpedia_slug && !ownedSlugs.has(p.puckpedia_slug));
