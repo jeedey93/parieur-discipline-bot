@@ -173,7 +173,11 @@ def build_stats_map(skaters: list[dict], goalies: list[dict]) -> dict[str, dict]
     """Key: normalised full name → stats dict."""
     result = {}
     for s in skaters:
-        name = normalize(f"{s['firstName']['default']} {s['lastName']['default']}")
+        first = s['firstName']['default']
+        last  = s['lastName']['default']
+        name = normalize(f"{first} {last}")
+        pos_raw = (s.get("positionCode") or "C").upper()
+        pos = "D" if pos_raw in ("D", "LD", "RD") else "F"
         result[name] = {
             "nhl_player_id": s.get("playerId"),
             "games_played": s.get("gamesPlayed"),
@@ -185,10 +189,14 @@ def build_stats_map(skaters: list[dict], goalies: list[dict]) -> dict[str, dict]
             "shutouts":     None,
             "save_pct":     None,
             "gaa":          None,
-            "_position":    "F",
+            "_position":    pos,
+            "_first":       first,
+            "_last":        last,
         }
     for g in goalies:
-        name = normalize(f"{g['firstName']['default']} {g['lastName']['default']}")
+        first = g['firstName']['default']
+        last  = g['lastName']['default']
+        name = normalize(f"{first} {last}")
         result[name] = {
             "nhl_player_id": g.get("playerId"),
             "games_played": g.get("gamesPlayed"),
@@ -201,6 +209,8 @@ def build_stats_map(skaters: list[dict], goalies: list[dict]) -> dict[str, dict]
             "save_pct":     g.get("savePercentage") if g.get("savePercentage") is not None else g.get("savePctg"),
             "gaa":          g.get("goalsAgainstAverage"),
             "_position":    "G",
+            "_first":       first,
+            "_last":        last,
         }
     return result
 
@@ -212,6 +222,26 @@ def upsert_stats(rows: list[dict]) -> None:
         if hasattr(result, "error") and result.error:
             print(f"  ❌  {slug}: {result.error}")
     print(f"  ✅  Updated {len(rows)} rows")
+
+
+def slug_from_name(first: str, last: str) -> str:
+    """Generate a puckpedia-style slug: /player/firstname-lastname"""
+    combined = f"{first}-{last}".lower()
+    combined = unicodedata.normalize("NFKD", combined)
+    combined = "".join(c for c in combined if not unicodedata.combining(c))
+    combined = re.sub(r"[^a-z0-9\-]", "", combined)
+    combined = re.sub(r"-+", "-", combined).strip("-")
+    return f"/player/{combined}"
+
+
+def insert_missing_players(players: list[dict]) -> None:
+    if not players:
+        return
+    result = supabase.table("nhl_players").insert(players).execute()
+    if hasattr(result, "error") and result.error:
+        print(f"  ❌  Insert failed: {result.error}")
+    else:
+        print(f"  ➕  Inserted {len(players)} new players")
 
 
 def main():
@@ -253,7 +283,23 @@ def main():
             "puckpedia_slug,player_name"
         ).eq("team", slug).execute().data
 
+        # Build a set of normalised names already in DB
+        db_name_set = set()
+        for row in db_rows:
+            raw_name = row["player_name"] or ""
+            if "," in raw_name:
+                last, first = raw_name.split(",", 1)
+                full = f"{first.strip()} {last.strip()}"
+            else:
+                full = raw_name
+            db_name_set.add(normalize(full))
+
+        # Also collect existing slugs to avoid slug collisions on insert
+        existing_slugs = supabase.table("nhl_players").select("puckpedia_slug").execute().data
+        existing_slug_set = {r["puckpedia_slug"] for r in existing_slugs}
+
         updates = []
+        inserts = []
         now = datetime.now(timezone.utc).isoformat()
 
         for row in db_rows:
@@ -300,9 +346,49 @@ def main():
                 print(f"      ⚠️  No stats match: {full!r}")
                 total_missed += 1
 
+        # Insert players from NHL API not yet in DB
+        for norm_name, stats in stats_map.items():
+            if norm_name in db_name_set:
+                continue  # already handled above
+            first = stats.get("_first", "")
+            last  = stats.get("_last", "")
+            full_name = f"{first} {last}".strip()
+            candidate_slug = slug_from_name(first, last)
+            # Ensure slug uniqueness (append player_id suffix if collision)
+            final_slug = candidate_slug
+            if final_slug in existing_slug_set:
+                pid = stats.get("nhl_player_id")
+                final_slug = f"{candidate_slug}-{pid}" if pid else f"{candidate_slug}-x"
+            existing_slug_set.add(final_slug)
+
+            player_id = stats.get("nhl_player_id")
+            position  = stats.get("_position", "F")
+            injury_status = injury_map.get(player_id, "Active") if player_id and not args.no_extras else "Active"
+            if player_id and not args.no_extras:
+                last5 = fetch_last5_game_pts(player_id, position, scoring)
+                time.sleep(0.05)
+            else:
+                last5 = None
+
+            clean_stats = {k: v for k, v in stats.items() if not k.startswith("_")}
+            inserts.append({
+                "puckpedia_slug": final_slug,
+                "player_name":    full_name,
+                "position":       position,
+                "team":           slug,
+                "updated_at":     now,
+                "injury_status":  injury_status,
+                "last5_game_pts": json.dumps(last5) if last5 is not None else None,
+                **clean_stats,
+            })
+            print(f"      ➕  New player: {full_name!r} → {final_slug}")
+            total_matched += 1
+
         if updates:
             upsert_stats(updates)
-        else:
+        if inserts:
+            insert_missing_players(inserts)
+        if not updates and not inserts:
             print("      (no updates)")
 
         time.sleep(0.3)
