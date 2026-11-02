@@ -1,0 +1,23 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-01.
+
+Here's the breakdown:
+
+1.  **Washington Capitals ML vs Minnesota Wild @ 2.02 - Confidence Level: High, Units: 1.5u**
+    *   Actual Result: Minnesota 5 @ Washington 1 (Total goals: 6)
+    *   Outcome: **LOSS** (Washington lost the game)
+
+2.  **Anaheim Ducks ML vs Ottawa Senators @ 2.0 - Confidence Level: Medium, Units: 1u**
+    *   Actual Result: Ottawa 3 @ Anaheim 6 (Total goals: 9)
+    *   Outcome: **WIN** (Anaheim won the game)
+
+3.  **Carolina Hurricanes vs Winnipeg Jets Under 6.5 @ 2.1 - Confidence Level: Medium, Units: 1u**
+    *   Actual Result: Winnipeg 0 @ Carolina 7 (Total goals: 7)
+    *   Outcome: **LOSS** (Total goals 7, which is not under 6.5)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**
