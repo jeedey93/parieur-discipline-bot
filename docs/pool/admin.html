@@ -703,6 +703,7 @@
   // ── DROP & PICK UP ────────────────────────────────────────────────────────
   let _freeAgents = [];      // all FA rows fetched once per position
   let _puSelectedFa = null;  // currently selected FA slug
+  let _puDropIsFromBench = false; // whether the dropped player was on bench
 
   function onPuTeamChange() {
     const teamId = document.getElementById('pu-sel-team').value;
@@ -717,6 +718,7 @@
     document.getElementById('pu-btn-confirm').disabled = true;
     document.getElementById('pu-note').value = '';
     _puSelectedFa = null;
+    _puDropIsFromBench = false;
     if (!teamId) return;
 
     const team = _rosters.data.teams.find(t => t.id === teamId);
@@ -754,6 +756,7 @@
 
     const selectedOpt = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(slug)}"]`);
     const isFromBench = selectedOpt?.dataset?.pos === 'B';
+    _puDropIsFromBench = isFromBench;
     const selPos = document.getElementById('pu-pos');
 
     if (isFromBench) {
@@ -862,8 +865,7 @@
   function updatePuConfirmBtn() {
     const dropSlug = document.getElementById('pu-sel-drop').value;
     const pos      = document.getElementById('pu-pos').value;
-    const isFromBench = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(dropSlug)}"]`)?.dataset?.pos === 'B';
-    document.getElementById('pu-btn-confirm').disabled = !(dropSlug && (pos || isFromBench) && _puSelectedFa);
+    document.getElementById('pu-btn-confirm').disabled = !(dropSlug && (pos || _puDropIsFromBench) && _puSelectedFa);
   }
 
   async function confirmPickup() {
@@ -874,9 +876,9 @@
 
     const teamId   = document.getElementById('pu-sel-team').value;
     const dropSlug = document.getElementById('pu-sel-drop').value;
-    const dropPos  = document.querySelector(`#pu-sel-drop option[value="${CSS.escape(dropSlug)}"]`)?.dataset?.pos || 'F';
+    const dropPos  = _puDropIsFromBench ? 'B' : (document.querySelector(`#pu-sel-drop option[value="${CSS.escape(dropSlug)}"]`)?.dataset?.pos || 'F');
     const inSlug   = _puSelectedFa;
-    const pos      = dropPos === 'B' ? 'B' : document.getElementById('pu-pos').value;
+    const pos      = _puDropIsFromBench ? 'B' : document.getElementById('pu-pos').value;
     const date     = document.getElementById('pu-date').value;
     const note    = document.getElementById('pu-note').value.trim();
 
