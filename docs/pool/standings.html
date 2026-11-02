@@ -3772,19 +3772,61 @@
           </svg>
         </div>
         <div class="bump-legend">${legend}</div>
+        ${buildMonthlyPickups()}
         ${buildAllSwaps()}
       `;
       _historyRenderedHtml = container.innerHTML;
     }
 
+    function buildMonthlyPickups() {
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const pickups = [..._benchSwaps].filter(s => s.reason === 'pickup').sort((a, b) => b.swap_date.localeCompare(a.swap_date));
+      if (!pickups.length) return '';
+      const fmt = d => new Date(d.length === 10 ? d + 'T12:00:00' : d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'America/Toronto' });
+      // Group by YYYY-MM
+      const byMonth = {};
+      pickups.forEach(s => {
+        const key = s.swap_date.slice(0, 7); // YYYY-MM
+        if (!byMonth[key]) byMonth[key] = [];
+        byMonth[key].push(s);
+      });
+      const monthSections = Object.keys(byMonth).sort((a, b) => b.localeCompare(a)).map(key => {
+        const [yr, mo] = key.split('-').map(Number);
+        const monthLabel = `${MONTHS[mo - 1]} ${yr}`;
+        const rows = byMonth[key].map(s => {
+          const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
+          return `<div class="swap-row">
+            <div class="swap-date"><span class="all-swaps-team">${teamName}</span> &nbsp;${fmt(s.swap_date)}</div>
+            <div class="swap-move">
+              <span class="swap-in">▲ ${s.player_in_name}</span>
+              <span class="swap-arrow">⇄</span>
+              <span class="swap-out">▼ ${s.player_out_name}</span>
+              <span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>
+            </div>
+            ${s.note ? `<div class="swap-note">${s.note}</div>` : ''}
+          </div>`;
+        }).join('');
+        return `<div style="margin-bottom:1.25rem">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1px;color:var(--green);margin-bottom:0.5rem;opacity:0.85">${monthLabel}</div>
+          <div class="swap-history">${rows}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="all-swaps" style="margin-bottom:1.5rem">
+        <div class="all-swaps-title">Monthly Pickups</div>
+        ${monthSections}
+      </div>`;
+    }
+
     function buildAllSwaps() {
-      if (!_benchSwaps.length) return '';
+      const nonPickups = _benchSwaps.filter(s => s.reason !== 'pickup');
+      if (!nonPickups.length) return '';
       const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'America/Toronto' });
       // Sort newest first
-      const sorted = [..._benchSwaps].sort((a, b) => b.swap_date.localeCompare(a.swap_date));
+      const sorted = [...nonPickups].sort((a, b) => b.swap_date.localeCompare(a.swap_date));
       // Count official swaps per team for numbering (must use asc order for correct numbering)
       const swapCounters = {};
-      [..._benchSwaps].sort((a, b) => a.swap_date.localeCompare(b.swap_date) || a.id - b.id)
+      [...nonPickups].sort((a, b) => a.swap_date.localeCompare(b.swap_date) || a.id - b.id)
         .forEach(s => { if (s.reason === 'swap') { swapCounters[s.id] = (swapCounters[s.team_id] = (swapCounters[s.team_id] || 0) + 1); } });
       const rows = sorted.map(s => {
         let reasonBadge = '';
@@ -3792,10 +3834,6 @@
           reasonBadge = `<span class="swap-reason injury">🩹 Injury</span>`;
         } else if (s.reason === 'swap') {
           reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
-        } else if (s.reason === 'pickup') {
-          const _months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-          const _pickupMonth = _months[new Date(s.swap_date).getUTCMonth()];
-          reasonBadge = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 ${_pickupMonth} Pickup</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row" data-reason="${s.reason}" data-team="${s.team_id}">
@@ -3823,7 +3861,6 @@
             <button onclick="setSwapFilter('all')"    id="sf-all"    class="swap-filter-btn active">All</button>
             <button onclick="setSwapFilter('swap')"   id="sf-swap"   class="swap-filter-btn">🔄 Official</button>
             <button onclick="setSwapFilter('injury')" id="sf-injury" class="swap-filter-btn">🩹 Injury</button>
-            <button onclick="setSwapFilter('pickup')" id="sf-pickup" class="swap-filter-btn">📥 Pickup</button>
           </div>
         </div>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.75rem">${teamBtns}</div>
@@ -3854,7 +3891,6 @@
         if (filter === 'all')               show = true;
         else if (filter === 'swap')         show = reason === 'swap';
         else if (filter === 'injury')       show = reason === 'injury';
-        else if (filter === 'pickup')       show = reason === 'pickup';
         else if (filter.startsWith('team:')) show = team === filter.slice(5);
         row.style.display = show ? '' : 'none';
       });

@@ -919,14 +919,13 @@
       document.getElementById('pu-sel-team').value = '';
       document.getElementById('pu-sel-drop').innerHTML = '<option value="">— Select player —</option>';
       document.getElementById('pu-sel-drop').disabled = true;
-      document.getElementById('pu-pos').value = '';
-      document.getElementById('pu-pos').disabled = true;
       document.getElementById('pu-fa-group').style.display = 'none';
       document.getElementById('pu-stats-drop').innerHTML = 'Select a player to see stats';
       document.getElementById('pu-stats-in').innerHTML = 'Search and select a free agent above';
       document.getElementById('pu-note').value = '';
       document.getElementById('fa-results').innerHTML = '';
       _puSelectedFa = null;
+      _puDropIsFromBench = false;
       _freeAgents   = [];
       await loadTeams();
       await loadSwapLog();
