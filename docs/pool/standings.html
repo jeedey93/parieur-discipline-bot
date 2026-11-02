@@ -1133,7 +1133,13 @@
     let _anyGameLive = false; // true when at least one game is in progress
 
     // Restore persisted live pts for today (survives page refresh until DB stats update)
+    // Only restore during game hours (noon–2am Montreal) — outside that window games are
+    // finished and the DB stats already include last night, so live overlay would double-count.
     (function restorePersistedLivePts() {
+      if (!isGameHour()) {
+        localStorage.removeItem(_LIVE_PTS_KEY);
+        return;
+      }
       try {
         const raw = localStorage.getItem(_LIVE_PTS_KEY);
         if (!raw) return;
