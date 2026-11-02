@@ -1,6 +1,6 @@
 ============================================================
 PANTHERS - LINEUP
-Last Updated: 2026-10-30 04:21 PM ET
+Last Updated: 2026-11-02 06:20 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,14 +18,14 @@ Pair 3: Dmitry Kulikov — Radko Gudas
 
 GOALIES:
 ----------------------------------------
+  Jacob Markstrom
   Akira Schmid
-  Cooper Black
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Uvis Balinskis (scratched)
   Cole Reinhardt (scratched)
-  Jacob Markstrom (upper body) (injured)
+  Cooper Black (scratched)
   Aleksander Barkov (knee) (injured)
   Brad Marchand (knee) (injured)
   Jonah Gadjovich (neck) (injured)

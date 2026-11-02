@@ -1,0 +1,20 @@
+Here's a comparison of the two prediction reports and a unified final recommendation list:
+
+The morning report focused on Colorado Avalanche ML as the Bet of the Day and Calgary Flames ML as an additional play. The noon report saw a significant shift, introducing Boston Bruins ML as the new Bet of the Day and pivoting to San Jose Sharks ML for the Calgary vs. San Jose game, citing updated information including confirmed starting goalies and line movements. The Colorado Avalanche ML, despite being a morning recommendation, falls outside our current odds filtering range (1.60-2.20) and is thus excluded from the final recommendations.
+
+🏆 **BET OF THE DAY**
+**Boston Bruins ML vs Vegas Golden Knights @ 1.93**
+
+Boston Bruins ML is our top play today. Goalie Jeremy Swayman, despite a recent 0.889 SV% in his last five starts, holds a solid 0.912 Season SV%, offering an Above Average performance against Carter Hart of the Golden Knights, who has a concerning 0.888 SV% in his last five and a 0.889 Season SV%. Boston benefits from a significant home-ice advantage, boasting an impressive 0.857 home win percentage compared to Vegas's 0.500 away win rate. Furthermore, the Bruins are in excellent recent form, with a +1.6 goal differential over their last 10 games, and their offense is hot, led by David Pastrnak who has 7 points in his last 5 games, and three other 🔥HOT players including Elias Lindholm, JJ Peterka, and Casey Mittelstadt. This combination of superior goaltending, dominant home performance, and strong offensive momentum presents a clear market inefficiency.
+Confidence Level: High, Units: 1.5u, Win Probability: 70%
+
+This play was newly added in the noon report and immediately designated as the Bet of the Day, indicating a strong conviction based on updated information.
+
+**Other Recommended Plays**
+
+**San Jose Sharks ML vs Calgary Flames @ 1.82**
+
+The San Jose Sharks Moneyline offers good value in this matchup against the Calgary Flames. San Jose's starting goalie Yaroslav Askarov is playing exceptionally well with an Elite 0.927 SV% in his last five starts, providing a significant advantage over Calgary's Dustin Wolf, who has struggled with a Poor 0.87 SV% in his last five games and a 0.847 Season SV%. The Sharks also benefit from a substantial home-ice advantage, with a 0.429 home win percentage against Calgary's dismal 0.167 away record. While Calgary's skaters like Joel Farabee, Matt Coronato, and Matvei Gridin are currently 🔥HOT, the Flames' overall form is only slightly better in goal differential, and both teams are playing on a back-to-back. The critical edge comes from Askarov's current elite performance and the Sharks' strong home splits, which the market seems to be underestimating.
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+The morning report recommended Calgary Flames ML at 2.08 with Medium confidence. The noon report shifted its recommendation to San Jose Sharks ML at 1.82, with an increased confidence level of High, and the odds for San Jose ML moved from 1.75 (morning) to 1.82 (noon), reflecting better value.
