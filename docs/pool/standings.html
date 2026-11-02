@@ -3780,17 +3780,27 @@
 
     function buildMonthlyPickups() {
       const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       const pickups = [..._benchSwaps].filter(s => s.reason === 'pickup').sort((a, b) => b.swap_date.localeCompare(a.swap_date));
       if (!pickups.length) return '';
       const fmt = d => new Date(d.length === 10 ? d + 'T12:00:00' : d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'America/Toronto' });
       // Group by YYYY-MM
       const byMonth = {};
       pickups.forEach(s => {
-        const key = s.swap_date.slice(0, 7); // YYYY-MM
+        const key = s.swap_date.slice(0, 7);
         if (!byMonth[key]) byMonth[key] = [];
         byMonth[key].push(s);
       });
-      const monthSections = Object.keys(byMonth).sort((a, b) => b.localeCompare(a)).map(key => {
+      const sortedKeys = Object.keys(byMonth).sort((a, b) => b.localeCompare(a));
+      const defaultKey = sortedKeys[0];
+
+      const pills = sortedKeys.map((key, i) => {
+        const [yr, mo] = key.split('-').map(Number);
+        const label = `${MONTHS_SHORT[mo - 1]} ${yr}`;
+        return `<button class="swap-filter-btn${i === 0 ? ' active' : ''}" id="mp-pill-${key}" onclick="setPickupMonth('${key}')">${label}</button>`;
+      }).join('');
+
+      const sections = sortedKeys.map(key => {
         const [yr, mo] = key.split('-').map(Number);
         const monthLabel = `${MONTHS[mo - 1]} ${yr}`;
         const rows = byMonth[key].map(s => {
@@ -3806,16 +3816,27 @@
             ${s.note ? `<div class="swap-note">${s.note}</div>` : ''}
           </div>`;
         }).join('');
-        return `<div style="margin-bottom:1.25rem">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1px;color:var(--green);margin-bottom:0.5rem;opacity:0.85">${monthLabel}</div>
+        return `<div id="mp-section-${key}" style="${key === defaultKey ? '' : 'display:none'}">
           <div class="swap-history">${rows}</div>
         </div>`;
       }).join('');
 
       return `<div class="all-swaps" style="margin-bottom:1.5rem">
-        <div class="all-swaps-title">Monthly Pickups</div>
-        ${monthSections}
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;flex-wrap:wrap;gap:0.5rem">
+          <div class="all-swaps-title" style="margin-bottom:0">Monthly Pickups</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">${pills}</div>
+        </div>
+        ${sections}
       </div>`;
+    }
+
+    function setPickupMonth(key) {
+      document.querySelectorAll('[id^="mp-section-"]').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('[id^="mp-pill-"]').forEach(b => b.classList.remove('active'));
+      const sec = document.getElementById(`mp-section-${key}`);
+      const pill = document.getElementById(`mp-pill-${key}`);
+      if (sec) sec.style.display = '';
+      if (pill) pill.classList.add('active');
     }
 
     function buildAllSwaps() {
