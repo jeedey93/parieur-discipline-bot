@@ -1,6 +1,6 @@
 ============================================================
 GOLDEN KNIGHTS - LINEUP
-Last Updated: 2026-11-02 06:20 PM ET
+Last Updated: 2026-11-03 04:26 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,7 +18,14 @@ Pair 3: Noah Hanifin — Dylan Coghlan
 
 GOALIES:
 ----------------------------------------
-  Carter Hart
   Adin Hill
+  Carter Hart
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Raphael Lavoie (scratched)
+  Viliam Kmec (scratched)
+  Victor Olofsson (lower body) (injured)
+  Parker Wotherspoon (upper body) (injured)
 
 ============================================================
