@@ -1967,6 +1967,11 @@
             </div>`;
 
       // Pool pts stat blocks (delta since activation)
+      // Hide entirely if pool stats are identical to full season stats
+      const poolSameAsSeason = pos === 'G'
+        ? (d.gp === d.fullGp && d.w === d.fullW && d.so === d.fullSo && d.otl === d.fullOtl)
+        : (d.gp === d.fullGp && d.g === d.fullG && d.a === d.fullA);
+
       let poolStatsHtml;
       if (pos === 'G') {
         poolStatsHtml = `
@@ -2035,10 +2040,10 @@
         ${fullStatsHtml}
         ${last5Html}
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
-        <div class="pm-stats">
+        ${!poolSameAsSeason ? `<div class="pm-stats">
           <div class="pm-section-label" style="padding:0 0 0.4rem">STATS POOL (depuis activation)</div>
           ${poolStatsHtml}
-        </div>
+        </div>` : `<div class="pm-stats"><div class="pm-stats-row">${ytdBlock}</div></div>`}
         <div class="pm-actions">
           ${nhlBtn}
           <button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>
