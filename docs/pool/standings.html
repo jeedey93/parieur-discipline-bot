@@ -1304,6 +1304,7 @@
     let _livePtsDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // date _livePts belongs to
     let _liveTimer = null;
     let _liveActive = false;
+    let _currentModalData = null; // set by showPlayerModal, read by sharePlayerCard
     let _anyGameLive = false; // true when at least one game is in progress
 
     // Restore persisted live pts for today (survives page refresh until DB stats update)
@@ -1740,60 +1741,201 @@
     }
 
     async function sharePlayerCard(btn) {
-      const box = document.getElementById('player-modal-box');
-      if (!box) return;
+      const d = _currentModalData;
+      if (!d) return;
 
       const orig = btn.textContent;
       btn.disabled = true;
       btn.textContent = '⏳…';
 
-      // Helper: fetch an image URL and return a base64 data URL via a canvas
-      async function toDataUrl(src) {
-        try {
-          const res = await fetch(src, { mode: 'cors' });
-          if (!res.ok) return null;
-          const blob = await res.blob();
-          return new Promise(resolve => {
-            const r = new FileReader();
-            r.onload = () => resolve(r.result);
-            r.onerror = () => resolve(null);
-            r.readAsDataURL(blob);
-          });
-        } catch { return null; }
-      }
-
-      // Replace all <img src="…"> in the modal with inline data URLs before screenshotting
-      const imgs = Array.from(box.querySelectorAll('img'));
-      const origSrcs = imgs.map(img => img.src);
-      await Promise.all(imgs.map(async (img, i) => {
-        const data = await toDataUrl(origSrcs[i]);
-        if (data) img.src = data;
-      }));
-
       try {
-        if (!window.html2canvas) {
-          await new Promise((res, rej) => {
-            const s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-            s.onload = res; s.onerror = rej;
-            document.head.appendChild(s);
+        const loadImg = (src) => new Promise(resolve => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+          img.src = src + '?cors';
+        });
+
+        const pos = d.pos || 'F';
+        const abbr = d.nhlTeam ? TEAM_ABBR[d.nhlTeam] : null;
+        const accentColor = pos === 'G' ? '#fbbf24' : pos === 'D' ? '#60a5fa' : '#f472b6';
+
+        const hsUrl   = d.nhlId ? `https://assets.nhle.com/mugs/nhl/latest/${d.nhlId}.png` : null;
+        const logoUrl = abbr    ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg` : null;
+        const [hsImg, logoImg] = await Promise.all([
+          hsUrl   ? loadImg(hsUrl)   : Promise.resolve(null),
+          logoUrl ? loadImg(logoUrl) : Promise.resolve(null),
+        ]);
+
+        const DPR = 2, W = 640, H = 400;
+        const canvas = document.createElement('canvas');
+        canvas.width = W * DPR; canvas.height = H * DPR;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(DPR, DPR);
+
+        // ── Background ──────────────────────────────────────────────────
+        ctx.fillStyle = '#111827';
+        ctx.beginPath(); ctx.roundRect(0, 0, W, H, 18); ctx.fill();
+        const bgGrad = ctx.createLinearGradient(0, 0, W * 0.6, H * 0.5);
+        bgGrad.addColorStop(0, accentColor + '18'); bgGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = bgGrad;
+        ctx.beginPath(); ctx.roundRect(0, 0, W, H, 18); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.12)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.roundRect(0.5, 0.5, W - 1, H - 1, 18); ctx.stroke();
+
+        // ── Team logo watermark (top-right) ──────────────────────────────
+        if (logoImg) {
+          ctx.save(); ctx.globalAlpha = 0.07;
+          ctx.drawImage(logoImg, W - 195, -20, 200, 200);
+          ctx.restore();
+        }
+
+        // ── Headshot circle ──────────────────────────────────────────────
+        const HS = 80, HSX = 28, HSY = 26;
+        ctx.save();
+        ctx.beginPath(); ctx.arc(HSX + HS/2, HSY + HS/2, HS/2, 0, Math.PI*2); ctx.clip();
+        if (hsImg) {
+          ctx.drawImage(hsImg, HSX, HSY, HS, HS);
+        } else {
+          ctx.fillStyle = 'rgba(255,255,255,0.08)'; ctx.fill();
+          ctx.fillStyle = 'rgba(255,255,255,0.3)';
+          ctx.font = 'bold 32px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText((d.name || '?')[0].toUpperCase(), HSX + HS/2, HSY + HS/2);
+        }
+        ctx.restore();
+        ctx.beginPath(); ctx.arc(HSX + HS/2, HSY + HS/2, HS/2, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 2; ctx.stroke();
+        if (logoImg) {
+          const OL = 26;
+          ctx.save(); ctx.beginPath();
+          ctx.arc(HSX + HS - OL/2 + 1, HSY + HS - OL/2 + 1, OL/2 + 3, 0, Math.PI*2);
+          ctx.fillStyle = '#111827'; ctx.fill(); ctx.restore();
+          ctx.drawImage(logoImg, HSX + HS - OL - 1, HSY + HS - OL - 1, OL + 4, OL + 4);
+        }
+
+        // ── Player name ──────────────────────────────────────────────────
+        ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.font = '700 34px Bebas Neue, cursive';
+        ctx.fillText(d.name || '', HSX + HS + 16, 28);
+
+        // Pos badge
+        const bX = HSX + HS + 16, bY = 70;
+        ctx.fillStyle = accentColor + '28';
+        ctx.beginPath(); ctx.roundRect(bX, bY, 32, 17, 3); ctx.fill();
+        ctx.fillStyle = accentColor; ctx.font = '700 12px Bebas Neue, cursive';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(pos, bX + 16, bY + 8);
+
+        // Team abbr + owner
+        ctx.fillStyle = 'rgba(255,255,255,0.5)'; ctx.font = '700 12px Barlow Condensed, sans-serif';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        let metaX = bX + 40;
+        if (abbr) { ctx.fillText(abbr, metaX, bY + 8); metaX += ctx.measureText(abbr).width + 10; }
+        if (d.owner) {
+          ctx.fillStyle = 'rgba(255,255,255,0.12)';
+          const ow = ctx.measureText(d.owner).width + 14;
+          ctx.beginPath(); ctx.roundRect(metaX, bY, ow, 17, 3); ctx.fill();
+          ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.font = '700 11px Barlow Condensed, sans-serif';
+          ctx.fillText(d.owner, metaX + 7, bY + 8);
+        }
+
+        // ── Pool pts (top-right) ─────────────────────────────────────────
+        ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+        ctx.fillStyle = accentColor;
+        ctx.font = '700 50px Bebas Neue, cursive';
+        ctx.fillText(typeof d.pts === 'number' ? d.pts : '—', W - 28, 20);
+        ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.font = '700 10px Barlow Condensed, sans-serif';
+        ctx.textBaseline = 'top'; ctx.fillText('POOL PTS', W - 28, 74);
+
+        // ── Divider ──────────────────────────────────────────────────────
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(24, 118); ctx.lineTo(W - 24, 118); ctx.stroke();
+
+        // ── Season stats ─────────────────────────────────────────────────
+        const isGoalie = pos === 'G';
+        const tY = 130;
+        const cols  = isGoalie ? ['SAISON','ÉQ','PJ','V','BL','OTL'] : ['SAISON','ÉQ','PJ','B','A','PTS','PPG'];
+        const colXs = isGoalie ? [28,140,230,310,390,470]            : [28,128,218,298,368,438,528];
+
+        ctx.fillStyle = 'rgba(255,255,255,0.28)'; ctx.font = '700 10px Barlow Condensed, sans-serif';
+        ctx.textBaseline = 'top';
+        cols.forEach((c, i) => { ctx.textAlign = i === 0 ? 'left' : 'center'; ctx.fillText(c, colXs[i], tY); });
+        ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(24, tY + 15); ctx.lineTo(W - 24, tY + 15); ctx.stroke();
+
+        const drawRow = (ry, label, team, vals, color) => {
+          ctx.font = '700 13px Barlow Condensed, sans-serif'; ctx.textBaseline = 'middle';
+          ctx.fillStyle = color; ctx.textAlign = 'left'; ctx.fillText(label, colXs[0], ry);
+          ctx.textAlign = 'center'; ctx.fillText(team || '', colXs[1], ry);
+          vals.forEach((v, i) => { ctx.fillStyle = color; ctx.fillText(v ?? '—', colXs[i + 2], ry); });
+        };
+
+        const fgp = d.fullGp ?? 0;
+        if (isGoalie) {
+          drawRow(tY + 27, '2026-27 réel', abbr, [fgp, d.fullW??0, d.fullSo??0, d.fullOtl??0], '#60a5fa');
+          if ((d.gp ?? 0) > 0 && (d.gp ?? 0) !== fgp)
+            drawRow(tY + 45, 'Pool', '', [d.gp, d.w??0, d.so??0, d.otl??0], '#22c55e');
+        } else {
+          const hpts = d.fullPts ?? ((d.fullG??0) + (d.fullA??0));
+          const ppg  = fgp > 0 ? (hpts / fgp).toFixed(2) : '—';
+          drawRow(tY + 27, '2026-27 réel', abbr, [fgp, d.fullG??0, d.fullA??0, hpts, ppg], '#60a5fa');
+          if ((d.gp ?? 0) > 0 && (d.gp ?? 0) !== fgp) {
+            const ppts = typeof d.pts === 'number' ? d.pts : 0;
+            drawRow(tY + 45, 'Pool', '', [d.gp, d.g??0, d.a??0, ppts, (d.gp > 0 ? (ppts/d.gp).toFixed(2) : '—')], '#22c55e');
+          }
+        }
+
+        // ── Last 5 bar chart ─────────────────────────────────────────────
+        let last5 = [];
+        try { last5 = d.form5d ? (typeof d.form5d === 'string' ? JSON.parse(d.form5d) : d.form5d) : []; } catch {}
+        last5 = Array.isArray(last5) ? last5.filter(v => v !== null).slice(-5) : [];
+
+        if (last5.length > 0) {
+          const barAreaTop = 220, barH = 72, barW = 60, barGap = 18;
+          const totalBarW = last5.length * (barW + barGap) - barGap;
+          const startX = (W - totalBarW) / 2;
+          const maxV = Math.max(...last5, 1);
+          const total = last5.reduce((s, v) => s + v, 0);
+
+          ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(24, barAreaTop - 12); ctx.lineTo(W - 24, barAreaTop - 12); ctx.stroke();
+
+          ctx.fillStyle = 'rgba(255,255,255,0.28)'; ctx.font = '700 10px Barlow Condensed, sans-serif';
+          ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+          ctx.fillText('DERNIERS 5 MATCHS', 28, barAreaTop - 4);
+
+          const emoji = total >= 8 ? '🔥' : total <= 1 ? '🧊' : '';
+          ctx.fillStyle = accentColor; ctx.font = '700 15px Bebas Neue, cursive';
+          ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+          ctx.fillText(`${emoji} +${total} pts`, W - 28, barAreaTop - 4);
+
+          last5.forEach((v, i) => {
+            const x = startX + i * (barW + barGap);
+            const fillH = v === 0 ? 3 : Math.max(6, Math.round((v / maxV) * barH));
+            const barColor = v === 0 ? 'rgba(255,255,255,0.07)' : v >= maxV ? accentColor : 'rgba(255,255,255,0.38)';
+
+            ctx.fillStyle = 'rgba(255,255,255,0.04)';
+            ctx.beginPath(); ctx.roundRect(x, barAreaTop + 8, barW, barH, 4); ctx.fill();
+            ctx.fillStyle = barColor;
+            ctx.beginPath(); ctx.roundRect(x, barAreaTop + 8 + barH - fillH, barW, fillH, 4); ctx.fill();
+
+            ctx.fillStyle = v === 0 ? 'rgba(255,255,255,0.2)' : v >= maxV ? accentColor : 'rgba(255,255,255,0.8)';
+            ctx.font = '700 17px Bebas Neue, cursive'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+            ctx.fillText(v, x + barW/2, barAreaTop + 8 + barH - fillH - 2);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.font = '700 9px Barlow Condensed, sans-serif';
+            ctx.textBaseline = 'top';
+            ctx.fillText(`J${i+1}`, x + barW/2, barAreaTop + 8 + barH + 3);
           });
         }
 
-        // Hide the actions row so it doesn't appear in the screenshot
-        const actions = box.querySelector('.pm-actions');
-        if (actions) actions.style.display = 'none';
+        // ── Watermark ────────────────────────────────────────────────────
+        ctx.fillStyle = 'rgba(255,255,255,0.15)'; ctx.font = '700 10px Barlow Condensed, sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+        ctx.fillText('parieurdiscipline.com', W / 2, H - 8);
 
-        const canvas = await html2canvas(box, {
-          backgroundColor: '#111827',
-          scale: 2,
-          useCORS: false,
-          allowTaint: true,
-          logging: false,
-        });
-
-        if (actions) actions.style.display = '';
-
+        // ── Share / export ───────────────────────────────────────────────
         const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
         const file = new File([blob], 'player-card.png', { type: 'image/png' });
 
@@ -1814,16 +1956,13 @@
       } catch (e) {
         console.error('Share failed:', e);
       } finally {
-        // Restore original src on all images
-        imgs.forEach((img, i) => { img.src = origSrcs[i]; });
-        const actions = box.querySelector('.pm-actions');
-        if (actions) actions.style.display = '';
         btn.textContent = orig;
         btn.disabled = false;
       }
     }
 
     function showPlayerModal(d) {
+      _currentModalData = d;
       const pos = d.pos || 'F';
       const abbr = d.nhlTeam ? TEAM_ABBR[d.nhlTeam] : null;
       const hs = getHeadshotUrl(d.nhlId, d.nhlTeam);
