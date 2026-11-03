@@ -237,7 +237,8 @@ def slug_from_name(first: str, last: str) -> str:
 def insert_missing_players(players: list[dict]) -> None:
     if not players:
         return
-    result = supabase.table("nhl_players").insert(players).execute()
+    # upsert with ignoreDuplicates as a safety net against any remaining collisions
+    result = supabase.table("nhl_players").upsert(players, on_conflict="puckpedia_slug", ignore_duplicates=True).execute()
     if hasattr(result, "error") and result.error:
         print(f"  ❌  Insert failed: {result.error}")
     else:
@@ -261,6 +262,9 @@ def main():
     espn_injury_map = {} if args.no_extras else fetch_espn_injury_map()
     if espn_injury_map:
         print(f"  🩹  ESPN injuries loaded: {len(espn_injury_map)} players")
+
+    # Load all existing slugs once — updated in-place after each insert batch
+    existing_slug_set = {r["puckpedia_slug"] for r in supabase.table("nhl_players").select("puckpedia_slug").execute().data}
 
     total_matched = 0
     total_missed  = 0
@@ -293,10 +297,6 @@ def main():
             else:
                 full = raw_name
             db_name_set.add(normalize(full))
-
-        # Also collect existing slugs to avoid slug collisions on insert
-        existing_slugs = supabase.table("nhl_players").select("puckpedia_slug").execute().data
-        existing_slug_set = {r["puckpedia_slug"] for r in existing_slugs}
 
         updates = []
         inserts = []
@@ -388,6 +388,8 @@ def main():
             upsert_stats(updates)
         if inserts:
             insert_missing_players(inserts)
+            # Keep slug set current so subsequent teams don't collide
+            existing_slug_set.update(r["puckpedia_slug"] for r in inserts)
         if not updates and not inserts:
             print("      (no updates)")
 
