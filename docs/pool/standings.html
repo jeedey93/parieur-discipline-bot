@@ -1752,7 +1752,7 @@
       // includes Access-Control-Allow-Origin: * (NHL CDN sends no CORS headers).
       function proxyImgSrc(src) {
         if (!src || !src.includes('assets.nhle.com')) return src;
-        return '/api/img-proxy?url=' + encodeURIComponent(src);
+        return '/api/nhl-schedule?img=' + encodeURIComponent(src);
       }
 
       // Convert an image URL to a base64 data URL by drawing it on a temp canvas.
