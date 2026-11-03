@@ -40,7 +40,7 @@
           backdrop-filter: blur(12px);
         }
         .site-nav-inner {
-          max-width: 1100px; margin: 0 auto;
+          max-width: 1320px; margin: 0 auto;
           display: flex; align-items: center; justify-content: space-between;
           height: var(--nav-h); padding: 0 1.5rem;
         }
@@ -85,8 +85,8 @@
         }
 
         /* ── LAYOUT ── */
-        .page-wrap { max-width: 980px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
-        @media (min-width: 861px) { .page-wrap { padding: 2rem 1.5rem 4rem; } }
+        .page-wrap { max-width: 1320px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+        @media (min-width: 861px) { .page-wrap { padding: 2rem 2rem 4rem; } }
 
         /* ── HEADER ── */
         header { text-align: center; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
@@ -500,7 +500,7 @@
         }
         .detail-header-left { display: flex; flex-direction: column; gap: 0.3rem; }
         .detail-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 3px; color: white; }
-        @media (min-width: 861px) { .detail-title { font-size: 1.9rem; } }
+        @media (min-width: 861px) { .detail-title { font-size: 2.8rem; letter-spacing: 5px; } }
         .detail-rank-label { font-size: 0.8rem; font-weight: 700; color: var(--silver); letter-spacing: 1px; }
         .detail-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
         .detail-summary { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
@@ -513,6 +513,7 @@
 
         /* ── POS SCORES BAR ── */
         .pos-scores-bar { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+        @media (min-width: 861px) { .pos-scores-bar { gap: 1rem; margin-bottom: 1.75rem; } }
         @media (max-width: 480px) { .pos-scores-bar { flex-wrap: wrap; } }
         .pos-score-block {
           flex: 1; background: rgba(255,255,255,0.03);
@@ -520,6 +521,7 @@
           padding: 0.6rem 0.75rem; text-align: center;
           position: relative; overflow: hidden;
         }
+        @media (min-width: 861px) { .pos-score-block { padding: 1.25rem 1.5rem; border-radius: 12px; } }
         .pos-score-block.F { border-color: rgba(255,122,138,0.2); }
         .pos-score-block.D { border-color: rgba(125,180,255,0.2); }
         .pos-score-block.G { border-color: rgba(255,184,28,0.2); }
@@ -530,7 +532,7 @@
           flex: 1.3;
         }
         .pos-score-block.T .pos-score-val { color: var(--gold); font-size: 2rem; }
-        @media (min-width: 861px) { .pos-score-block.T .pos-score-val { font-size: 2.6rem; } }
+        @media (min-width: 861px) { .pos-score-block.T .pos-score-val { font-size: 3.8rem; } }
         .pos-score-block.T .pos-rank-badge { font-size: 0.68rem; }
         .pos-score-block.rank-1st {
           box-shadow: inset 0 0 0 1px rgba(255,184,28,0.35), 0 0 12px rgba(255,184,28,0.08);
@@ -544,12 +546,13 @@
           font-family: 'Bebas Neue', cursive; font-size: 1.6rem;
           letter-spacing: 2px; line-height: 1;
         }
-        @media (min-width: 861px) { .pos-score-val { font-size: 2rem; } }
+        @media (min-width: 861px) { .pos-score-val { font-size: 2.8rem; } }
         .pos-score-block.F .pos-score-val { color: var(--pink); }
         .pos-score-block.D .pos-score-val { color: var(--blue); }
         .pos-score-block.G .pos-score-val { color: var(--gold); }
         .pos-score-block.B .pos-score-val { color: var(--silver); }
         .pos-score-label { font-size: 0.72rem; font-weight: 700; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+        @media (min-width: 861px) { .pos-score-label { font-size: 0.85rem; margin-top: 6px; } }
         .pos-rank-badge {
           display: inline-flex; align-items: center; gap: 2px; margin-top: 5px;
           font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px;
@@ -572,6 +575,13 @@
           display: grid;
           grid-template-columns: 28px 1fr 40px 40px 40px 48px 52px 60px;
           gap: 0.4rem; padding: 0.45rem 0.75rem; align-items: center;
+        }
+        @media (min-width: 861px) {
+          .hist-header-row,
+          .hist-row {
+            grid-template-columns: 36px 1fr 52px 52px 52px 60px 68px 76px;
+            gap: 0.75rem; padding: 0.65rem 1.25rem;
+          }
         }
         @media (max-width: 560px) {
           .hist-header-row,
@@ -596,16 +606,22 @@
         .hist-row.current { background: rgba(34,197,94,0.04); }
         .hist-row.total   { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.1); opacity: 1; }
         .hist-pos { font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px; border-radius: 3px; padding: 1px 5px; text-align: center; }
+        @media (min-width: 861px) { .hist-pos { font-size: 0.85rem; padding: 2px 7px; } }
         .hist-pos.F { background: rgba(255,122,138,0.15); color: var(--pink); }
         .hist-pos.D { background: rgba(125,180,255,0.15); color: var(--blue); }
         .hist-pos.G { background: rgba(255,184,28,0.15);  color: var(--gold); }
         .hist-pos.B { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
         .hist-name { font-size: 0.9rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; cursor: default; min-width: 0; }
+        @media (min-width: 861px) { .hist-name { font-size: 1.05rem; gap: 0.6rem; } }
         .hist-name.past { color: var(--silver); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.2); }
         .hist-name img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+        @media (min-width: 861px) { .hist-name img { width: 26px; height: 26px; } }
         .hist-stat { font-size: 0.85rem; font-weight: 700; color: var(--silver); text-align: right; }
+        @media (min-width: 861px) { .hist-stat { font-size: 1rem; } }
         .hist-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: var(--gold); text-align: right; }
+        @media (min-width: 861px) { .hist-pts { font-size: 1.25rem; } }
         .hist-pts.total { color: white; font-size: 1.1rem; }
+        @media (min-width: 861px) { .hist-pts.total { font-size: 1.4rem; } }
 
 
         /* ── PLAYER MODAL ── */
