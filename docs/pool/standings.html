@@ -1895,7 +1895,8 @@
           const hw = d.fullW ?? 0; const hso = d.fullSo ?? 0; const hotl = d.fullOtl ?? 0;
           const pw = d.w ?? 0;    const pso = d.so ?? 0;    const potl = d.otl ?? 0;
           const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="blue">${hw}</td><td class="gold">${hso}</td><td class="blue">${hotl}</td></tr>`;
-          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
+          const sameGoalie = poolGp === fgp && pw === hw && pso === hso && potl === hotl;
+          const poolRow = poolGp > 0 && !sameGoalie ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
           fullStatsHtml = `
             <div class="pm-season-table">
               <div class="pm-section-label">STATS NHL 2026-27</div>
@@ -1907,7 +1908,7 @@
           const pg = d.g  ?? 0;  const pa = d.a  ?? 0;  const ppts = typeof d.pts === 'number' ? d.pts : (pg + pa);
           const ppg82 = fgp > 0 ? (hpts / fgp).toFixed(2) : '—';
           const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="pink">${hg}</td><td class="pink">${ha}</td><td class="white">${hpts}</td><td class="dim">${ppg82}</td></tr>`;
-          const showPool = poolGp > 0 && poolGp !== fgp;
+          const showPool = poolGp > 0 && !(poolGp === fgp && pg === hg && pa === ha && ppts === hpts);
           const poolPpg = poolGp > 0 ? (ppts / poolGp).toFixed(2) : '—';
           const poolRow = showPool ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pg}</td><td class="green">${pa}</td><td class="green">${ppts}</td><td class="dim">${poolPpg}</td></tr>` : '';
           fullStatsHtml = `
