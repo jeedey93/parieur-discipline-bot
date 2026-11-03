@@ -1,6 +1,6 @@
 ============================================================
 FLAMES - LINEUP
-Last Updated: 2026-10-31 03:42 PM ET
+Last Updated: 2026-11-02 06:20 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,7 +8,7 @@ FORWARD LINES:
 Line 1: Joel Farabee — Mikael Backlund — Matt Coronato
 Line 2: Yegor Sharangovich — Morgan Frost — Aydar Suniev
 Line 3: Matvei Gridin — Martin Pospisil — Ryan Strome
-Line 4: Maksim Tsyplakov — Jonathan Castagna — Adam Klapka
+Line 4: William Stromgren — Jonathan Castagna — Adam Klapka
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -18,12 +18,12 @@ Pair 3: Yan Kuznetsov — Zayne Parekh
 
 GOALIES:
 ----------------------------------------
-  Arsenii Sergeev
   Dustin Wolf
+  Arsenii Sergeev
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  William Stromgren (scratched)
+  Maksim Tsyplakov (scratched)
   Joel Hanley (scratched)
   Devin Cooley (lower body) (injured)
   Brennan Othmann (upper body) (injured)

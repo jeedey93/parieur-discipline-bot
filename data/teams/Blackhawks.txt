@@ -1,20 +1,20 @@
 ============================================================
 BLACKHAWKS - LINEUP
-Last Updated: 2026-10-31 03:42 PM ET
+Last Updated: 2026-11-02 06:20 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Roman Kantserov — Connor Bedard — Teuvo Teravainen
-Line 2: Tyler Bertuzzi — Anton Frondell — Ryan Donato
+Line 1: Roman Kantserov — Connor Bedard — Ryan Donato
+Line 2: Tyler Bertuzzi — Anton Frondell — Andrew Mangiapane
 Line 3: Oliver Moore — Frank Nazar — Patrick Kane
-Line 4: Cole Smith — Jordan Greenway — Ryan Greene
+Line 4: Cole Smith — Ryan Greene — Teuvo Teravainen
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Alex Vlasic — Ian Cole
 Pair 2: Wyatt Kaiser — Artyom Levshunov
-Pair 3: Kevin Korchinski — Sam Rinzel
+Pair 3: Ethan Del Mastro — Sam Rinzel
 
 GOALIES:
 ----------------------------------------
@@ -23,8 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Andrew Mangiapane (scratched)
-  Ethan Del Mastro (scratched)
+  Kevin Korchinski (scratched)
+  Jordan Greenway (scratched)
   Bowen Byram (upper body) (injured)
 
 ============================================================
