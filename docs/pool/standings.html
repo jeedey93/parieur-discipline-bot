@@ -797,6 +797,8 @@
         }
         .pm-chip.ytd { border-color: rgba(34,197,94,0.3); color: var(--green); background: rgba(34,197,94,0.07); }
         .pm-chip.cap { border-color: rgba(255,255,255,0.1); }
+        .pm-chip.ytd { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .pm-chip.ytd.green { border-color: rgba(34,197,94,0.3); color: var(--green); background: rgba(34,197,94,0.07); }
         .pm-chip.playing { border-color: rgba(255,184,28,0.3); color: var(--gold); background: rgba(255,184,28,0.07); }
         .pm-chip.past-player { border-color: rgba(255,80,80,0.2); color: rgba(255,80,80,0.6); background: rgba(255,80,80,0.05); }
         .pm-chip.hot { border-color: rgba(251,146,60,0.4); color: #fb923c; background: rgba(251,146,60,0.08); }
@@ -1895,8 +1897,7 @@
           const hw = d.fullW ?? 0; const hso = d.fullSo ?? 0; const hotl = d.fullOtl ?? 0;
           const pw = d.w ?? 0;    const pso = d.so ?? 0;    const potl = d.otl ?? 0;
           const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="blue">${hw}</td><td class="gold">${hso}</td><td class="blue">${hotl}</td></tr>`;
-          const sameGoalie = poolGp === fgp && pw === hw && pso === hso && potl === hotl;
-          const poolRow = poolGp > 0 && !sameGoalie ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
+          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
           fullStatsHtml = `
             <div class="pm-season-table">
               <div class="pm-section-label">STATS NHL 2026-27</div>
@@ -1907,10 +1908,9 @@
           const hg = d.fullG ?? 0; const ha = d.fullA ?? 0; const hpts = d.fullPts ?? (hg + ha);
           const pg = d.g  ?? 0;  const pa = d.a  ?? 0;  const ppts = typeof d.pts === 'number' ? d.pts : (pg + pa);
           const ppg82 = fgp > 0 ? (hpts / fgp).toFixed(2) : '—';
-          const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="pink">${hg}</td><td class="pink">${ha}</td><td class="white">${hpts}</td><td class="dim">${ppg82}</td></tr>`;
-          const showPool = poolGp > 0 && !(poolGp === fgp && pg === hg && pa === ha && ppts === hpts);
           const poolPpg = poolGp > 0 ? (ppts / poolGp).toFixed(2) : '—';
-          const poolRow = showPool ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pg}</td><td class="green">${pa}</td><td class="green">${ppts}</td><td class="dim">${poolPpg}</td></tr>` : '';
+          const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="pink">${hg}</td><td class="pink">${ha}</td><td class="white">${hpts}</td><td class="dim">${ppg82}</td></tr>`;
+          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pg}</td><td class="green">${pa}</td><td class="green">${ppts}</td><td class="dim">${poolPpg}</td></tr>` : '';
           fullStatsHtml = `
             <div class="pm-season-table">
               <div class="pm-section-label">STATS NHL 2026-27</div>
@@ -1957,47 +1957,11 @@
       // Hot streak badge (chip version, only if no bar chart space)
       const hotBadge = '';
 
-      // Yesterday chip
       const ytdVal = d.ytd != null ? d.ytd : null;
-      const ytdDisplay = ytdVal == null ? '—' : ytdVal > 0 ? `+${ytdVal}` : '0';
-      const ytdCls = ytdVal != null && ytdVal > 0 ? ' green' : '';
-      const ytdBlock = `<div class="pm-stat-block">
-              <div class="pm-stat-val${ytdCls}">${ytdDisplay}</div>
-              <div class="pm-stat-label">Hier</div>
-            </div>`;
-
-      // Pool pts stat blocks (delta since activation)
-      // Hide entirely if pool stats are identical to full season stats
-      const poolSameAsSeason = pos === 'G'
-        ? (d.gp === d.fullGp && d.w === d.fullW && d.so === d.fullSo && d.otl === d.fullOtl)
-        : (d.gp === d.fullGp && d.g === d.fullG && d.a === d.fullA);
-
-      let poolStatsHtml;
-      if (pos === 'G') {
-        poolStatsHtml = `
-          <div class="pm-stats-row">
-            ${ytdBlock}
-            <div class="pm-stat-block"><div class="pm-stat-val">${d.gp ?? '—'}</div><div class="pm-stat-label">GP</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val green">${d.w ?? '—'}</div><div class="pm-stat-label">Victoires</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val gold">${d.so ?? '—'}</div><div class="pm-stat-label">BL</div></div>
-          </div>`;
-      } else if (pos === 'D') {
-        poolStatsHtml = `
-          <div class="pm-stats-row">
-            ${ytdBlock}
-            <div class="pm-stat-block"><div class="pm-stat-val">${d.gp ?? '—'}</div><div class="pm-stat-label">GP</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val blue">${d.g ?? '—'}</div><div class="pm-stat-label">Buts</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val blue">${d.a ?? '—'}</div><div class="pm-stat-label">Passes</div></div>
-          </div>`;
-      } else {
-        poolStatsHtml = `
-          <div class="pm-stats-row">
-            ${ytdBlock}
-            <div class="pm-stat-block"><div class="pm-stat-val">${d.gp ?? '—'}</div><div class="pm-stat-label">GP</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val pink">${d.g ?? '—'}</div><div class="pm-stat-label">Buts</div></div>
-            <div class="pm-stat-block"><div class="pm-stat-val pink">${d.a ?? '—'}</div><div class="pm-stat-label">Passes</div></div>
-          </div>`;
-      }
+      const ytdDisplay = ytdVal == null ? null : ytdVal > 0 ? `+${ytdVal}` : '0';
+      const ytdChip = ytdDisplay != null
+        ? `<div class="pm-chip ytd${ytdVal > 0 ? ' green' : ''}">Hier&nbsp;${ytdDisplay}</div>`
+        : '';
 
       const capStr = d.capHit ? `$${(d.capHit / 1e6).toFixed(2)}M` : null;
       const ppgStr = d.ppg ? `${d.ppg} PPG` : null;
@@ -2005,6 +1969,7 @@
         hotBadge,
         capStr ? `<div class="pm-chip cap">💰 ${capStr}</div>` : '',
         ppgStr ? `<div class="pm-chip">${ppgStr}</div>` : '',
+        ytdChip,
         statusChip,
       ].join('');
 
@@ -2040,10 +2005,6 @@
         ${fullStatsHtml}
         ${last5Html}
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
-        ${!poolSameAsSeason ? `<div class="pm-stats">
-          <div class="pm-section-label" style="padding:0 0 0.4rem">STATS POOL (depuis activation)</div>
-          ${poolStatsHtml}
-        </div>` : `<div class="pm-stats"><div class="pm-stats-row">${ytdBlock}</div></div>`}
         <div class="pm-actions">
           ${nhlBtn}
           <button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>
