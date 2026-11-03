@@ -638,6 +638,54 @@
           overflow: hidden;
         }
         @media (min-width: 560px) { .player-popup { border-radius: 18px; } }
+        @media (min-width: 820px) {
+          .player-popup {
+            max-width: 680px;
+            border-radius: 22px;
+            border-color: rgba(255,255,255,0.18);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+          }
+          .pm-header {
+            padding: 1.5rem 1.6rem 1.25rem;
+            gap: 1.25rem;
+          }
+          .pm-headshot-wrap { width: 88px; height: 88px; }
+          .pm-headshot, .pm-headshot-fallback { width: 88px; height: 88px; }
+          .pm-headshot-fallback { font-size: 2.2rem; }
+          .pm-team-logo-overlay { width: 30px; height: 30px; }
+          .pm-name { font-size: 1.9rem; letter-spacing: 3px; }
+          .pm-pos-badge { font-size: 0.82rem; padding: 2px 10px; }
+          .pm-team-name { font-size: 0.9rem; }
+          .pm-owner-badge { font-size: 0.82rem; padding: 2px 10px; }
+          .pm-tenure { font-size: 0.8rem; margin-top: 0.25rem; }
+          .pm-pts-header-val { font-size: 2.8rem; }
+          .pm-pts-header-label { font-size: 0.72rem; }
+          .pm-close { width: 34px; height: 34px; font-size: 1.1rem; top: 1.1rem; right: 1.1rem; }
+          .pm-opponent-logo { width: 56px; height: 56px; }
+          .pm-opponent-label { font-size: 0.62rem; }
+          .pm-opponent-abbr { font-size: 1rem; }
+
+          .pm-injury-banner { font-size: 0.95rem; padding: 0.55rem 1.6rem; }
+
+          .pm-season-table { padding: 1rem 1.6rem 0.75rem; }
+          .pm-section-label { font-size: 0.65rem; letter-spacing: 3px; margin-bottom: 0.65rem; }
+          .pm-season-table table { font-size: 0.95rem; }
+          .pm-season-table thead th { font-size: 0.65rem; padding: 0.25rem 0.6rem; }
+          .pm-srow td { padding: 0.4rem 0.6rem; }
+          .pm-srow.full td { font-size: 1.05rem; }
+
+          .pm-stats { padding: 1rem 1.6rem; }
+          .pm-stats-row { gap: 0.75rem; }
+          .pm-stat-block { padding: 0.75rem 0.9rem; border-radius: 10px; }
+          .pm-stat-val { font-size: 2rem; }
+          .pm-stat-label { font-size: 0.7rem; letter-spacing: 2px; margin-top: 4px; }
+
+          .pm-extra { padding: 0.85rem 1.6rem; gap: 0.65rem; }
+          .pm-chip { font-size: 0.82rem; padding: 4px 13px; border-radius: 6px; }
+
+          .pm-actions { padding: 1rem 1.6rem; gap: 0.75rem; }
+          .pm-btn { font-size: 1.05rem; padding: 0.8rem 1.2rem; border-radius: 10px; }
+        }
 
         .pm-header {
           display: flex; align-items: center; gap: 0.9rem;
@@ -774,6 +822,49 @@
           padding: 0.45rem 1.1rem; display: flex; align-items: center; gap: 0.4rem;
         }
 
+        .pm-last5 {
+          padding: 0.75rem 1.1rem 0.6rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pm-last5-header {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-bottom: 0.6rem;
+        }
+        .pm-last5-total {
+          font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px;
+        }
+        .pm-bar-chart {
+          display: flex; gap: 0.4rem; align-items: flex-end; height: 64px;
+        }
+        .pm-bar-col {
+          flex: 1; display: flex; flex-direction: column; align-items: center;
+          gap: 0.2rem; height: 100%;
+        }
+        .pm-bar-val {
+          font-family: 'Bebas Neue', cursive; font-size: 0.95rem; letter-spacing: 0.5px;
+          line-height: 1;
+        }
+        .pm-bar-wrap {
+          flex: 1; width: 100%; display: flex; align-items: flex-end;
+          background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden;
+        }
+        .pm-bar {
+          width: 100%; border-radius: 4px 4px 0 0;
+          transition: height 0.3s ease;
+          min-height: 2px;
+        }
+        .pm-bar-label {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700;
+          letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.25);
+        }
+        @media (min-width: 820px) {
+          .pm-last5 { padding: 1rem 1.6rem 0.8rem; }
+          .pm-bar-chart { height: 80px; gap: 0.6rem; }
+          .pm-bar-val { font-size: 1.1rem; }
+          .pm-last5-total { font-size: 1.3rem; }
+          .pm-bar-label { font-size: 0.65rem; }
+        }
+
         .pm-season-table {
           padding: 0.75rem 1.1rem 0.5rem;
           border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -822,6 +913,8 @@
         .pm-btn:hover { background: rgba(255,255,255,0.1); }
         .pm-btn.nhl { border-color: rgba(0,102,204,0.5); background: rgba(0,102,204,0.12); color: #7db4ff; }
         .pm-btn.nhl:hover { background: rgba(0,102,204,0.22); }
+        .pm-btn.share { border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.08); color: var(--blue); }
+        .pm-btn.share:hover { background: rgba(96,165,250,0.15); }
         .pm-btn.cancel { color: rgba(255,255,255,0.4); }
 
         .detail-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.1rem; }
@@ -1646,6 +1739,65 @@
       document.body.style.overflow = '';
     }
 
+    async function sharePlayerCard(btn) {
+      const box = document.getElementById('player-modal-box');
+      if (!box) return;
+
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '⏳…';
+
+      try {
+        if (!window.html2canvas) {
+          await new Promise((res, rej) => {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+            s.onload = res; s.onerror = rej;
+            document.head.appendChild(s);
+          });
+        }
+
+        // Hide the actions row so it doesn't appear in the screenshot
+        const actions = box.querySelector('.pm-actions');
+        if (actions) actions.style.display = 'none';
+
+        const canvas = await html2canvas(box, {
+          backgroundColor: null,
+          scale: 2,
+          useCORS: true,
+          allowTaint: false,
+          logging: false,
+        });
+
+        if (actions) actions.style.display = '';
+
+        const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+        const file = new File([blob], 'player-card.png', { type: 'image/png' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: 'Parieur Discipline' });
+        } else if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          btn.textContent = '✅ Copié!';
+          setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000);
+          return;
+        } else {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'player-card.png';
+          a.click();
+          URL.revokeObjectURL(a.href);
+        }
+      } catch (e) {
+        console.error('Share failed:', e);
+      } finally {
+        const actions = box.querySelector('.pm-actions');
+        if (actions) actions.style.display = '';
+        btn.textContent = orig;
+        btn.disabled = false;
+      }
+    }
+
     function showPlayerModal(d) {
       const pos = d.pos || 'F';
       const abbr = d.nhlTeam ? TEAM_ABBR[d.nhlTeam] : null;
@@ -1722,9 +1874,42 @@
         }
       }
 
-      // Hot streak badge
-      const f5 = d.form5d ?? null;
-      const hotBadge = (f5 != null && f5 >= 6) ? `<div class="pm-chip hot">🔥 En feu +${f5} pts · 5 derniers matchs</div>` : '';
+      // Last 5 games bar chart
+      const f5Raw = d.form5d ?? null;
+      let last5Vals = [];
+      try { last5Vals = f5Raw ? (typeof f5Raw === 'string' ? JSON.parse(f5Raw) : f5Raw) : []; } catch {}
+      last5Vals = Array.isArray(last5Vals) ? last5Vals.filter(v => v !== null).slice(-5) : [];
+      const last5Total = last5Vals.reduce((s, v) => s + v, 0);
+      const last5Max = Math.max(...last5Vals, 1);
+      const posColor = pos === 'G' ? 'var(--gold)' : pos === 'D' ? 'var(--blue)' : 'var(--pink)';
+      let last5Html = '';
+      if (last5Vals.length > 0) {
+        const bars = last5Vals.map((v, i) => {
+          const pct = Math.round((v / last5Max) * 100);
+          const barH = Math.max(pct, v === 0 ? 0 : 8);
+          const col = v === 0 ? 'rgba(255,255,255,0.1)' : v >= last5Max && last5Max > 0 ? posColor : 'rgba(255,255,255,0.45)';
+          const numCol = v === 0 ? 'rgba(255,255,255,0.25)' : v >= last5Max && last5Max > 0 ? posColor : 'rgba(255,255,255,0.8)';
+          return `<div class="pm-bar-col">
+            <div class="pm-bar-val" style="color:${numCol}">${v}</div>
+            <div class="pm-bar-wrap">
+              <div class="pm-bar" style="height:${barH}%;background:${col}"></div>
+            </div>
+            <div class="pm-bar-label">J${i+1}</div>
+          </div>`;
+        }).join('');
+        const streakEmoji = last5Total >= 8 ? '🔥' : last5Total <= 1 ? '🧊' : '';
+        last5Html = `
+          <div class="pm-last5">
+            <div class="pm-last5-header">
+              <span class="pm-section-label" style="margin:0">DERNIERS 5 MATCHS</span>
+              <span class="pm-last5-total" style="color:${posColor}">${streakEmoji} +${last5Total} pts</span>
+            </div>
+            <div class="pm-bar-chart">${bars}</div>
+          </div>`;
+      }
+
+      // Hot streak badge (chip version, only if no bar chart space)
+      const hotBadge = '';
 
       // Yesterday chip
       const ytdVal = d.ytd != null ? d.ytd : null;
@@ -1779,8 +1964,10 @@
         ? `<a class="pm-btn nhl" href="https://www.nhl.com/player/${d.nhlId}" target="_blank" rel="noopener">NHL.com ↗</a>`
         : '';
 
+      const headerAccent = pos === 'G' ? 'rgba(255,184,28,0.08)' : pos === 'D' ? 'rgba(96,165,250,0.08)' : 'rgba(244,114,182,0.08)';
+
       document.getElementById('player-modal-box').innerHTML = `
-        <div class="pm-header">
+        <div class="pm-header" style="background: linear-gradient(135deg, ${headerAccent} 0%, transparent 60%)">
           ${headshotHtml}
           <div class="pm-header-info">
             <div class="pm-name">${d.name}</div>
@@ -1800,6 +1987,7 @@
         </div>
         ${injuryBanner}
         ${fullStatsHtml}
+        ${last5Html}
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
         <div class="pm-stats">
           <div class="pm-section-label" style="padding:0 0 0.4rem">STATS POOL (depuis activation)</div>
@@ -1807,7 +1995,8 @@
         </div>
         <div class="pm-actions">
           ${nhlBtn}
-          <button class="pm-btn cancel" onclick="closePlayerModal()">Close</button>
+          <button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>
+          <button class="pm-btn cancel" onclick="closePlayerModal()">Fermer</button>
         </div>
       `;
 
