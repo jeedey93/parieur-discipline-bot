@@ -263,8 +263,11 @@ def main():
     if espn_injury_map:
         print(f"  🩹  ESPN injuries loaded: {len(espn_injury_map)} players")
 
-    # Load all existing slugs once — updated in-place after each insert batch
-    existing_slug_set = {r["puckpedia_slug"] for r in supabase.table("nhl_players").select("puckpedia_slug").execute().data}
+    # Load all existing players once — updated in-place after each insert batch
+    all_db_players = supabase.table("nhl_players").select("puckpedia_slug,nhl_player_id,team").execute().data
+    existing_slug_set = {r["puckpedia_slug"] for r in all_db_players}
+    # nhl_player_id → puckpedia_slug for traded-player detection
+    player_id_to_slug = {r["nhl_player_id"]: r["puckpedia_slug"] for r in all_db_players if r.get("nhl_player_id")}
 
     total_matched = 0
     total_missed  = 0
@@ -346,21 +349,13 @@ def main():
                 print(f"      ⚠️  No stats match: {full!r}")
                 total_missed += 1
 
-        # Insert players from NHL API not yet in DB
+        # Insert players from NHL API not yet in DB (or update traded players)
         for norm_name, stats in stats_map.items():
             if norm_name in db_name_set:
                 continue  # already handled above
             first = stats.get("_first", "")
             last  = stats.get("_last", "")
             full_name = f"{first} {last}".strip()
-            candidate_slug = slug_from_name(first, last)
-            # Ensure slug uniqueness (append player_id suffix if collision)
-            final_slug = candidate_slug
-            if final_slug in existing_slug_set:
-                pid = stats.get("nhl_player_id")
-                final_slug = f"{candidate_slug}-{pid}" if pid else f"{candidate_slug}-x"
-            existing_slug_set.add(final_slug)
-
             player_id = stats.get("nhl_player_id")
             position  = stats.get("_position", "F")
             injury_status = injury_map.get(player_id, "Active") if player_id and not args.no_extras else "Active"
@@ -369,8 +364,32 @@ def main():
                 time.sleep(0.05)
             else:
                 last5 = None
-
             clean_stats = {k: v for k, v in stats.items() if not k.startswith("_")}
+
+            # Traded player: already in DB under a different team — just update
+            if player_id and player_id in player_id_to_slug:
+                existing_slug = player_id_to_slug[player_id]
+                updates.append({
+                    "puckpedia_slug": existing_slug,
+                    "team":           slug,
+                    "updated_at":     now,
+                    "injury_status":  injury_status,
+                    "last5_game_pts": json.dumps(last5) if last5 is not None else None,
+                    **clean_stats,
+                })
+                print(f"      🔀  Traded: {full_name!r} → {slug}")
+                total_matched += 1
+                continue
+
+            # Genuinely new player — insert
+            candidate_slug = slug_from_name(first, last)
+            final_slug = candidate_slug
+            if final_slug in existing_slug_set:
+                final_slug = f"{candidate_slug}-{player_id}" if player_id else f"{candidate_slug}-x"
+            existing_slug_set.add(final_slug)
+            if player_id:
+                player_id_to_slug[player_id] = final_slug
+
             inserts.append({
                 "puckpedia_slug": final_slug,
                 "player_name":    full_name,
@@ -388,8 +407,9 @@ def main():
             upsert_stats(updates)
         if inserts:
             insert_missing_players(inserts)
-            # Keep slug set current so subsequent teams don't collide
+            # Keep slug set and player_id map current so subsequent teams don't collide
             existing_slug_set.update(r["puckpedia_slug"] for r in inserts)
+            player_id_to_slug.update({r["nhl_player_id"]: r["puckpedia_slug"] for r in inserts if r.get("nhl_player_id")})
         if not updates and not inserts:
             print("      (no updates)")
 
