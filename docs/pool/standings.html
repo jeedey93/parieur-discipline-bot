@@ -788,19 +788,26 @@
         .hist-section-label.G { color: var(--gold); background: rgba(255,184,28,0.04); }
         .swap-history { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; }
         .swap-row { padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        @media (min-width: 861px) { .swap-row { padding: 0.9rem 1.25rem; } }
         .swap-row:last-child { border-bottom: none; }
         .swap-date { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.25rem; }
+        @media (min-width: 861px) { .swap-date { font-size: 0.82rem; } }
         .swap-move { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; }
+        @media (min-width: 861px) { .swap-move { font-size: 1.1rem; gap: 0.75rem; } }
         .swap-in  { color: var(--green); }
         .swap-out { color: rgba(255,80,80,0.8); }
         .swap-arrow { color: rgba(255,255,255,0.25); font-size: 1rem; }
+        @media (min-width: 861px) { .swap-arrow { font-size: 1.2rem; } }
         .swap-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+        @media (min-width: 861px) { .swap-note { font-size: 0.88rem; } }
         .swap-reason { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 4px; margin-left: 4px; text-transform: uppercase; }
+        @media (min-width: 861px) { .swap-reason { font-size: 0.8rem; padding: 3px 9px; } }
         .swap-reason.injury  { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
         .swap-reason.swap { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
         .all-swaps { margin-top: 2rem; }
         .all-swaps-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; }
         .all-swaps-team { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.2rem; }
+        @media (min-width: 861px) { .all-swaps-team { font-size: 0.78rem; } }
         .swap-filter-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: rgba(255,255,255,0.5); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
         .swap-filter-btn:hover { background: rgba(255,255,255,0.1); color: white; }
         .swap-filter-btn.active { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.4); color: var(--gold); }
