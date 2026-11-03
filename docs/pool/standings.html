@@ -1748,10 +1748,14 @@
       btn.disabled = true;
       btn.textContent = '⏳…';
 
+      // Route NHL CDN images through our Vercel proxy so the response
+      // includes Access-Control-Allow-Origin: * (NHL CDN sends no CORS headers).
+      function proxyImgSrc(src) {
+        if (!src || !src.includes('assets.nhle.com')) return src;
+        return '/api/img-proxy?url=' + encodeURIComponent(src);
+      }
+
       // Convert an image URL to a base64 data URL by drawing it on a temp canvas.
-      // The ?cors suffix forces a separate cache slot so the browser issues a new
-      // CORS request instead of serving the cached non-CORS response (which would
-      // taint the canvas).
       async function imgToDataUrl(src) {
         return new Promise(resolve => {
           const img = new Image();
@@ -1766,7 +1770,7 @@
             } catch { resolve(null); }
           };
           img.onerror = () => resolve(null);
-          img.src = src.includes('?') ? src : src + '?cors';
+          img.src = proxyImgSrc(src);
         });
       }
 
@@ -1815,7 +1819,7 @@
         const file = new File([blob], 'player-card.png', { type: 'image/png' });
 
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: 'Parieur Discipline' });
+          await navigator.share({ files: [file] });
         } else if (navigator.clipboard && window.ClipboardItem) {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
           btn.textContent = '✅ Copié!';
