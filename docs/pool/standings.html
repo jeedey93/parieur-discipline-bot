@@ -1747,6 +1747,29 @@
       btn.disabled = true;
       btn.textContent = '⏳…';
 
+      // Helper: fetch an image URL and return a base64 data URL via a canvas
+      async function toDataUrl(src) {
+        try {
+          const res = await fetch(src, { mode: 'cors' });
+          if (!res.ok) return null;
+          const blob = await res.blob();
+          return new Promise(resolve => {
+            const r = new FileReader();
+            r.onload = () => resolve(r.result);
+            r.onerror = () => resolve(null);
+            r.readAsDataURL(blob);
+          });
+        } catch { return null; }
+      }
+
+      // Replace all <img src="…"> in the modal with inline data URLs before screenshotting
+      const imgs = Array.from(box.querySelectorAll('img'));
+      const origSrcs = imgs.map(img => img.src);
+      await Promise.all(imgs.map(async (img, i) => {
+        const data = await toDataUrl(origSrcs[i]);
+        if (data) img.src = data;
+      }));
+
       try {
         if (!window.html2canvas) {
           await new Promise((res, rej) => {
@@ -1762,10 +1785,10 @@
         if (actions) actions.style.display = 'none';
 
         const canvas = await html2canvas(box, {
-          backgroundColor: null,
+          backgroundColor: '#111827',
           scale: 2,
-          useCORS: true,
-          allowTaint: false,
+          useCORS: false,
+          allowTaint: true,
           logging: false,
         });
 
@@ -1791,6 +1814,8 @@
       } catch (e) {
         console.error('Share failed:', e);
       } finally {
+        // Restore original src on all images
+        imgs.forEach((img, i) => { img.src = origSrcs[i]; });
         const actions = box.querySelector('.pm-actions');
         if (actions) actions.style.display = '';
         btn.textContent = orig;
