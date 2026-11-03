@@ -2153,7 +2153,7 @@
           if (raw) { const { ts, data } = JSON.parse(raw); if (Date.now() - ts < CACHE_TTL_MS && Array.isArray(data) && data.length) { allPlayers = data; cacheHit = true; } }
         } catch(_) {}
         if (!cacheHit) {
-          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id,last5_game_pts,injury_status&order=cap_hit.desc&limit=5000`,
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,save_pct,nhl_player_id,last5_game_pts,injury_status&games_played=gt.0&order=cap_hit.desc&limit=2000`,
             { headers: sbHeaders() });
           if (!res.ok) throw new Error(res.status);
           allPlayers = await res.json();
