@@ -147,7 +147,10 @@ def fetch_player_season_stats(player_id: int) -> dict | None:
 
 
 def fetch_espn_injury_map() -> dict[str, str]:
-    """Return {normalized_player_name: status} for all NHL injured players via ESPN."""
+    """Return {normalized_player_name: injury_string} for all NHL injured players via ESPN.
+
+    injury_string format: "Out · Hand · Returns 2026-11-18" (or just "Out" if no details).
+    """
     url = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/injuries"
     try:
         r = SESSION.get(url, timeout=15)
@@ -162,8 +165,17 @@ def fetch_espn_injury_map() -> dict[str, str]:
             athlete = inj.get("athlete", {})
             name = athlete.get("displayName", "")
             status = inj.get("status", "Active") or "Active"
-            if name:
-                result[normalize(name)] = status
+            if not name:
+                continue
+            details = inj.get("details", {})
+            injury_type = details.get("type", "")
+            return_date = details.get("returnDate", "")
+            parts = [status]
+            if injury_type and injury_type not in ("Not Specified", ""):
+                parts.append(injury_type)
+            if return_date:
+                parts.append(f"Returns {return_date}")
+            result[normalize(name)] = " · ".join(parts)
     return result
 
 
