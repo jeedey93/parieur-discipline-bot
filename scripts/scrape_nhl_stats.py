@@ -266,8 +266,14 @@ def main():
     # Load all existing players once — updated in-place after each insert batch
     all_db_players = supabase.table("nhl_players").select("puckpedia_slug,nhl_player_id,team").execute().data
     existing_slug_set = {r["puckpedia_slug"] for r in all_db_players}
-    # nhl_player_id → puckpedia_slug for traded-player detection
+    # nhl_player_id → primary puckpedia_slug (last-seen wins) for traded-player detection
     player_id_to_slug = {r["nhl_player_id"]: r["puckpedia_slug"] for r in all_db_players if r.get("nhl_player_id")}
+    # nhl_player_id → ALL slugs (to keep duplicate rows in sync when NHL renames a player URL)
+    from collections import defaultdict
+    player_id_to_all_slugs: dict[str, list[str]] = defaultdict(list)
+    for r in all_db_players:
+        if r.get("nhl_player_id"):
+            player_id_to_all_slugs[r["nhl_player_id"]].append(r["puckpedia_slug"])
 
     total_matched = 0
     total_missed  = 0
@@ -366,7 +372,8 @@ def main():
                 last5 = None
             clean_stats = {k: v for k, v in stats.items() if not k.startswith("_")}
 
-            # Traded player: already in DB under a different team — just update
+            # Traded player: already in DB under a different team — just update.
+            # Also sync any duplicate rows (e.g. old slug kept when NHL renamed the player URL).
             if player_id and player_id in player_id_to_slug:
                 existing_slug = player_id_to_slug[player_id]
                 updates.append({
@@ -378,6 +385,18 @@ def main():
                     **clean_stats,
                 })
                 print(f"      🔀  Traded: {full_name!r} → {slug}")
+                # Sync any additional duplicate slug rows for the same player
+                for dup_slug in player_id_to_all_slugs.get(player_id, []):
+                    if dup_slug != existing_slug:
+                        updates.append({
+                            "puckpedia_slug": dup_slug,
+                            "team":           slug,
+                            "updated_at":     now,
+                            "injury_status":  injury_status,
+                            "last5_game_pts": json.dumps(last5) if last5 is not None else None,
+                            **clean_stats,
+                        })
+                        print(f"      🔁  Synced duplicate slug: {dup_slug!r}")
                 total_matched += 1
                 continue
 
