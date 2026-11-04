@@ -1,6 +1,6 @@
 ============================================================
 SHARKS - LINEUP
-Last Updated: 2026-11-02 06:20 PM ET
+Last Updated: 2026-11-04 04:41 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,13 +8,13 @@ FORWARD LINES:
 Line 1: Tyler Toffoli — Macklin Celebrini — Will Smith
 Line 2: Mason Marchment — Michael Misa — Kiefer Sherwood
 Line 3: Ivar Stenberg — Filip Bystedt — Collin Graf
-Line 4: Barclay Goodrow — Zack Ostapchuk — Adam Gaudette
+Line 4: Barclay Goodrow — Zack Ostapchuk — Ty Dellandrea
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Darnell Nurse — Michael Kesselring
 Pair 2: Sam Dickinson — Jacob Trouba
-Pair 3: Nolan Allan — Dmitry Orlov
+Pair 3: Dmitry Orlov — Eric Pohlkamp
 
 GOALIES:
 ----------------------------------------
@@ -23,8 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Libor Hajek (scratched)
-  Ty Dellandrea (scratched)
+  Adam Gaudette (scratched)
+  Nolan Allan (scratched)
   Alexander Wennberg (upper body) (injured)
   Igor Chernyshov (upper body) (injured)
 

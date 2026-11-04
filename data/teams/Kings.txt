@@ -1,14 +1,14 @@
 ============================================================
 KINGS - LINEUP
-Last Updated: 2026-10-31 03:42 PM ET
+Last Updated: 2026-11-04 04:41 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Artemi Panarin — Alex Laferriere — Adrian Kempe
 Line 2: Trevor Moore — Quinton Byfield — Corey Perry
-Line 3: Erik Haula — Scott Laughton — Joel Armia
-Line 4: Andre Lee — Samuel Helenius — Taylor Ward
+Line 3: Andre Lee — Scott Laughton — Martin Chromiak
+Line 4: Erik Haula — Kenny Connors — Joel Armia
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -23,8 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Martin Chromiak (scratched)
   Cody Ceci (scratched)
+  Samuel Helenius (scratched)
   Alex Turcotte (undisclosed) (injured)
   Kevin Fiala (leg surgery) (injured)
   Mats Zuccarello (upper body) (injured)
