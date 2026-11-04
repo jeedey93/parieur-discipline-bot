@@ -659,7 +659,7 @@
           .pm-team-name { font-size: 0.9rem; }
           .pm-owner-badge { font-size: 0.82rem; padding: 2px 10px; }
           .pm-tenure { font-size: 0.8rem; margin-top: 0.25rem; }
-          .pm-pts-header-val { font-size: 2.8rem; }
+          .pm-pts-header-val { font-size: clamp(2rem, 5vw, 2.8rem); }
           .pm-pts-header-label { font-size: 0.72rem; }
           .pm-close { width: 34px; height: 34px; font-size: 1.1rem; top: 1.1rem; right: 1.1rem; }
           .pm-opponent-logo { width: 56px; height: 56px; }
@@ -751,7 +751,7 @@
           margin-left: auto; margin-right: 2.2rem; flex-shrink: 0;
         }
         .pm-pts-header-val {
-          font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px;
+          font-family: 'Bebas Neue', cursive; font-size: clamp(1.4rem, 6vw, 2rem); letter-spacing: 2px;
           color: var(--gold); line-height: 1;
         }
         .pm-pts-header-label {
@@ -940,6 +940,8 @@
         .hist-section-label.F { color: var(--pink); background: rgba(255,122,138,0.04); }
         .hist-section-label.D { color: var(--blue); background: rgba(125,180,255,0.04); }
         .hist-section-label.G { color: var(--gold); background: rgba(255,184,28,0.04); }
+        .hist-table-bench { opacity: 0.8; border-left: 2px solid rgba(255,255,255,0.06); margin-left: 0.5rem; padding-left: 0.25rem; }
+        .hist-table-bench .hist-section-label { color: rgba(255,255,255,0.35) !important; background: rgba(255,255,255,0.02) !important; font-size: 0.7rem; }
         .swap-history { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; }
         .swap-row { padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
         @media (min-width: 861px) { .swap-row { padding: 0.9rem 1.25rem; } }
@@ -1938,7 +1940,7 @@
             <div class="pm-bar-wrap">
               <div class="pm-bar" style="height:${barH}%;background:${col}"></div>
             </div>
-            <div class="pm-bar-label">J${i+1}</div>
+            <div class="pm-bar-label">G${i+1}</div>
           </div>`;
         }).join('');
         const streakEmoji = last5Total >= 8 ? '🔥' : last5Total <= 1 ? '🧊' : '';
@@ -2005,7 +2007,7 @@
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
         <div class="pm-actions">
           ${nhlBtn}
-          <button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>
+          ${d.isCurrent ? `<button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>` : ''}
           <button class="pm-btn cancel" onclick="closePlayerModal()">Fermer</button>
         </div>
       `;
@@ -3130,9 +3132,14 @@
         const ytdCls = ytd > 0 ? 'pos' : 'zero';
         const ytdLabel = ytd > 0 ? `+${ytd}` : '—';
         const tonightHtml = teamsPlayingToday.size > 0
-          ? `<div class="lb-tonight${tonight === 0 ? ' zero' : ''}">${tonight > 0 ? tonight : '—'}</div>`
-          : `<div class="lb-tonight zero">—</div>`;
-        const gapVal = rankNum === 1 ? 'Leader' : `−${leaderPts - pts}`;
+          ? `<div class="lb-tonight${tonight === 0 ? ' zero' : ''}" title="${tonight} player${tonight !== 1 ? 's' : ''} playing tonight">${tonight > 0 ? tonight : '—'}</div>`
+          : `<div class="lb-tonight zero" title="No games tonight">—</div>`;
+        const storedPts = pts - livePtsTeam;
+        const gapLeader = leaderPts - pts;
+        const gapVal = rankNum === 1 ? 'Leader' : `−${Math.abs(gapLeader)}`;
+        const totalDisplay = livePtsTeam > 0
+          ? `${storedPts}<span style="color:var(--green);font-size:0.78em;font-weight:700;margin-left:3px">+${livePtsTeam}</span>`
+          : `${pts}`;
         const row = `<div class="lb-row${tierCls}${isActive ? ' active' : ''}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
           <div class="lb-rank ${rankCls}">${rankInner}${rankChangeBadge}</div>
           <div class="lb-name-wrap"><span class="lb-name">${t.name}</span>${liveBadge}</div>
@@ -3140,7 +3147,7 @@
           <div class="lb-stat lb-col-hide pos-f">${f}</div>
           <div class="lb-stat lb-col-hide pos-d">${d}</div>
           <div class="lb-stat lb-col-hide pos-g">${g}</div>
-          <div class="lb-stat pts">${pts}</div>
+          <div class="lb-stat pts">${totalDisplay}</div>
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed(2) : '—'}</div>
           ${tonightHtml}
           <div class="lb-stat lb-col-hide-mobile live-col" style="color:var(--green)">${(() => {
@@ -3418,7 +3425,7 @@
           actualPos: swapPos2,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
-          ppg: swapPpg, ytd: null, _fromSwap: true };
+          ppg: swapPpg, ytd: null, _fromSwap: true, _swapReason: s.reason ?? null };
       }) : [];
       if (!trades.length && !currentNoDraft.length && !swapOutRows.length) return '';
 
@@ -3552,6 +3559,11 @@
         const swapDateChip = r._fromSwap
           ? `<span class="swap-date-chip">${r.tenure}</span>`
           : r._acqDateChip ? `<span class="swap-date-chip">${r._acqDateChip}</span>` : '';
+        const swapReasonPill = r._swapReason === 'injury'
+          ? `<span class="swap-reason injury">🩹 Injury</span>`
+          : r._swapReason === 'swap' ? `<span class="swap-reason swap">🔄 Swap</span>`
+          : r._swapReason === 'pickup' ? `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`
+          : '';
         const form5d = r.form5d ?? null;
         const isInjured = r.isCurrent && r.injuryStatus && r.injuryStatus !== 'Active';
         const rawBadge = r.isCurrent ? hotColdBadge(form5d) : '';
@@ -3561,7 +3573,7 @@
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}${hasLive ? ' live' : ''}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
-          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapDateChip}</span>
+          <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapReasonPill}${swapDateChip}</span>
           <span class="hist-stat">${displayGP}</span>
           ${pos==='G' ? `
             <span class="hist-stat hist-g-hide-mobile">${r.col2}</span>
@@ -3598,7 +3610,7 @@
         ? `<span style="color:var(--green)">${effectiveGP}</span>`
         : `${totalGP || '—'}`;
 
-      return `<div class="hist-table${pos==='G'?' hist-table-g':''}">
+      return `<div class="hist-table${pos==='G'?' hist-table-g':''}${isBench?' hist-table-bench':''}">
         <div class="hist-section-label ${pos}">${label}</div>
         ${colHeader}
         ${renderedRows.join('')}
