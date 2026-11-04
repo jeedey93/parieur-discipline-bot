@@ -604,6 +604,7 @@
         .hist-row:last-child { border-bottom: none; }
         .hist-row.past    { opacity: 0.45; }
         .hist-row.current { background: rgba(34,197,94,0.04); }
+        .hist-row.live    { background: rgba(34,197,94,0.10); border-left: 2px solid var(--green); }
         .hist-row.total   { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.1); opacity: 1; }
         .hist-pos { font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1px; border-radius: 3px; padding: 1px 5px; text-align: center; }
         @media (min-width: 861px) { .hist-pos { font-size: 0.85rem; padding: 2px 7px; } }
@@ -3558,7 +3559,7 @@
         const injuryBadge = isInjured ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">❌</span>` : '';
         const _fp = r.slug ? slugMap()[r.slug] : null;
         const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null }).replace(/'/g, '&#39;');
-        return `<div class="hist-row ${r.cls}">
+        return `<div class="hist-row ${r.cls}${hasLive ? ' live' : ''}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapDateChip}</span>
           <span class="hist-stat">${displayGP}</span>
