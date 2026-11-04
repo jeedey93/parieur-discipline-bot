@@ -1069,7 +1069,7 @@
 
         .top-players-list { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 1.75rem; }
         .top-player-row { display: grid; grid-template-columns: 30px 1fr 70px 36px 36px 36px 52px; align-items: center; padding: 0.55rem 1rem; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .top-player-row.injured-row { grid-template-columns: 30px 1fr 70px 70px 90px 110px 44px; }
+        .top-player-row.injured-row { grid-template-columns: 30px 1fr 70px 70px 90px 110px; }
         @media (max-width: 560px) {
           .top-player-row { grid-template-columns: 28px 1fr 60px 44px; }
           .top-col-hide { display: none; }
@@ -1088,7 +1088,7 @@
         .top-player-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; color: var(--gold); text-align: right; }
         @media (min-width: 561px) {
           .top-player-row { grid-template-columns: 32px 1fr 80px 40px 40px 40px 58px; padding: 0.7rem 1.1rem; gap: 0.6rem; }
-          .top-player-row.injured-row { grid-template-columns: 32px 1fr 80px 80px 100px 120px 50px; }
+          .top-player-row.injured-row { grid-template-columns: 32px 1fr 80px 80px 100px 120px; }
           .top-player-row.header { padding: 0.5rem 1.1rem; }
           .top-player-rank { font-size: 1.1rem; }
           .top-player-logo { width: 24px; height: 24px; }
@@ -3741,9 +3741,11 @@
       const injuredPlayers = allWithBench
         .filter(({ player, bench }) => !bench && player.injury_status && player.injury_status !== 'Active')
         .sort((a, b) => {
-          const pa = poolScoreOwned(a.player, a.team, a.player._slug);
-          const pb = poolScoreOwned(b.player, b.team, b.player._slug);
-          return pb - pa;
+          const getReturn = p => {
+            const m = (p.injury_status || '').match(/Returns (\d{4}-\d{2}-\d{2})/);
+            return m ? m[1] : '9999-99-99';
+          };
+          return getReturn(a.player).localeCompare(getReturn(b.player));
         });
 
       const injured = injuredPlayers.length === 0 ? '' : `
@@ -3756,13 +3758,11 @@
             <div class="lb-col-label inj-status-col">Status</div>
             <div class="lb-col-label inj-detail-col">Body Part</div>
             <div class="lb-col-label inj-detail-col">Return</div>
-            <div class="lb-col-label">Pts</div>
           </div>
           ${injuredPlayers.map((item, i) => {
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-            const pts = poolScoreOwned(p, item.team, p._slug);
             const injParts = (p.injury_status || '').split(' · ');
             const injStatus   = injParts[0] || '';
             const injBodyPart = injParts[1] || '—';
@@ -3777,7 +3777,6 @@
               <div class="top-player-stat inj-status-col" style="font-size:0.75rem;color:var(--red)">${injStatus}</div>
               <div class="top-player-stat inj-detail-col" style="font-size:0.75rem;color:rgba(255,255,255,0.6)">${injBodyPart}</div>
               <div class="top-player-stat inj-detail-col" style="font-size:0.75rem;color:rgba(255,255,255,0.5)">${injReturn}</div>
-              <div class="top-player-pts">${pts}</div>
             </div>`;
           }).join('')}
         </div>`;
