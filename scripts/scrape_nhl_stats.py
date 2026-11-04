@@ -93,6 +93,59 @@ def fetch_team_stats(abbr: str) -> tuple[list[dict], list[dict]]:
         return [], []
 
 
+def fetch_player_season_stats(player_id: int) -> dict | None:
+    """Fetch current-season stats for a player via their landing page seasonTotals.
+
+    Used as a fallback for players absent from club-stats (e.g. currently on IR).
+    Returns a partial stats dict keyed the same as build_stats_map entries, or None.
+    Only returns data for the current SEASON to avoid accidentally using prior-year stats.
+    """
+    url = f"https://api-web.nhle.com/v1/player/{player_id}/landing"
+    try:
+        r = SESSION.get(url, timeout=15)
+        r.raise_for_status()
+        d = r.json()
+    except Exception:
+        return None
+
+    # Find this season's regular-season totals — never fall back to featuredStats
+    # since that returns the most recent season with games, which may be last year.
+    season_int = int(SEASON)
+    for st in d.get("seasonTotals", []):
+        if st.get("season") == season_int and st.get("gameTypeId") == GAMETYPE and st.get("leagueAbbrev") == "NHL":
+            pos_raw = (d.get("position") or "C").upper()
+            pos = "D" if pos_raw in ("D", "LD", "RD") else ("G" if pos_raw == "G" else "F")
+            first = d.get("firstName", {}).get("default", "")
+            last  = d.get("lastName",  {}).get("default", "")
+            return {
+                "nhl_player_id": player_id,
+                "games_played":  st.get("gamesPlayed", 0),
+                "goals":         st.get("goals", 0),
+                "assists":       st.get("assists", 0),
+                "points":        st.get("points", 0),
+                "wins":          st.get("wins"),
+                "ot_losses":     st.get("otLosses") or st.get("overtimeLosses"),
+                "shutouts":      st.get("shutouts"),
+                "save_pct":      st.get("savePctg") or st.get("savePercentage"),
+                "gaa":           st.get("goalsAgainstAvg"),
+                "_position":     pos,
+                "_first":        first,
+                "_last":         last,
+            }
+
+    # Player has genuinely 0 GP this season — return zeroed stats so DB stays accurate
+    pos_raw = (d.get("position") or "C").upper()
+    pos = "D" if pos_raw in ("D", "LD", "RD") else ("G" if pos_raw == "G" else "F")
+    first = d.get("firstName", {}).get("default", "")
+    last  = d.get("lastName",  {}).get("default", "")
+    return {
+        "nhl_player_id": player_id,
+        "games_played": 0, "goals": 0, "assists": 0, "points": 0,
+        "wins": None, "ot_losses": None, "shutouts": None, "save_pct": None, "gaa": None,
+        "_position": pos, "_first": first, "_last": last,
+    }
+
+
 def fetch_espn_injury_map() -> dict[str, str]:
     """Return {normalized_player_name: status} for all NHL injured players via ESPN."""
     url = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/injuries"
@@ -293,7 +346,7 @@ def main():
 
         # Fetch existing DB rows for this team
         db_rows = supabase.table("nhl_players").select(
-            "puckpedia_slug,player_name"
+            "puckpedia_slug,player_name,nhl_player_id"
         ).eq("team", slug).execute().data
 
         # Build a set of normalised names already in DB
@@ -325,6 +378,16 @@ def main():
                 # Try last-name-only fallback for common mismatches
                 last_key = normalize(full.split()[-1]) if full else ""
                 stats = next((v for k, v in stats_map.items() if k.endswith(last_key) and last_key), None)
+
+            if not stats:
+                # Fallback: player absent from club-stats (likely on IR with 0 GP this season).
+                # Fetch via individual player endpoint — but only use current-season data.
+                player_id_fb = row.get("nhl_player_id")
+                if player_id_fb:
+                    stats = fetch_player_season_stats(int(player_id_fb))
+                    if stats:
+                        print(f"      🔍  Fallback stats for {full!r}: {stats.get('games_played')} GP")
+                        time.sleep(0.05)
 
             if stats:
                 player_id = stats.get("nhl_player_id")
