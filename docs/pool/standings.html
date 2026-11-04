@@ -1463,11 +1463,8 @@
     }
 
     function teamTotalPts(team) {
-      if (!_cache.teamPts) _cache.teamPts = {};
-      if (_cache.teamPts[team.id] !== undefined) return _cache.teamPts[team.id];
       const s = teamSubScores(team);
-      _cache.teamPts[team.id] = s.F + s.D + s.G + s.B + liveTeamPts(team);
-      return _cache.teamPts[team.id];
+      return s.F + s.D + s.G + s.B + liveTeamPts(team);
     }
     function sortedTeams() {
       if (!_cache.sorted) _cache.sorted = [...teams].sort((a, b) => teamTotalPts(b) - teamTotalPts(a));
@@ -3081,7 +3078,7 @@
       // Apply sort
       const col = _lbSort.col, dir = _lbSort.dir;
       const colVal = r => {
-        if (col === 'pts')     return r.pts + r.livePtsTeam;
+        if (col === 'pts')     return r.pts; // already includes live
         if (col === 'gp')      return r.gp;
         if (col === 'f')       return r.f;
         if (col === 'd')       return r.d;
@@ -3089,14 +3086,14 @@
         if (col === 'ppg')     return r.ppg;
         if (col === 'ytd')     return r.ytd;
         if (col === 'tonight') return r.tonight;
-        if (col === 'gap')     return r.pts + r.livePtsTeam;
+        if (col === 'gap')     return r.pts;
         if (col === 'livepts') return r.livePtsTeam;
-        return r.pts + r.livePtsTeam;
+        return r.pts;
       };
       rowData.sort((a, b) => dir * (colVal(a) - colVal(b)));
 
-      // Re-compute visual rank from sorted order (live pts included)
-      const ptsSorted = [...rowData].sort((a, b) => (b.pts + b.livePtsTeam) - (a.pts + a.livePtsTeam));
+      // Re-compute visual rank from sorted order (live pts included in r.pts)
+      const ptsSorted = [...rowData].sort((a, b) => b.pts - a.pts);
       const ptsRankOf = id => ptsSorted.findIndex(r => r.t.id === id) + 1;
 
       const ind = c => {
