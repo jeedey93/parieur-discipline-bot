@@ -3130,10 +3130,9 @@
         const isActive = t.id === activeTeamId;
         const snapEntry = _prevDaySnapshot[t.id];
         const prevRank = snapEntry?.rank ?? null;
-        const todaySnapRank = _lastSnapshot[t.id]?.rank ?? rankNum;
         let rankChangeBadge = '';
-        if (prevRank && prevRank !== todaySnapRank) {
-          const diff = prevRank - todaySnapRank;
+        if (prevRank && prevRank !== rankNum) {
+          const diff = prevRank - rankNum;
           rankChangeBadge = diff > 0
             ? `<div class="rank-change up">▲${diff}</div>`
             : `<div class="rank-change down">▼${Math.abs(diff)}</div>`;
