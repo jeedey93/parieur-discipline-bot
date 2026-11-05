@@ -1,6 +1,6 @@
 ============================================================
 PANTHERS - LINEUP
-Last Updated: 2026-11-02 06:20 PM ET
+Last Updated: 2026-11-04 04:41 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,7 +14,7 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Gustav Forsling — Aaron Ekblad
 Pair 2: Niko Mikkola — Seth Jones
-Pair 3: Dmitry Kulikov — Radko Gudas
+Pair 3: Dmitry Kulikov — Uvis Balinskis
 
 GOALIES:
 ----------------------------------------
@@ -23,9 +23,8 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Uvis Balinskis (scratched)
+  Radko Gudas (scratched)
   Cole Reinhardt (scratched)
-  Cooper Black (scratched)
   Aleksander Barkov (knee) (injured)
   Brad Marchand (knee) (injured)
   Jonah Gadjovich (neck) (injured)
