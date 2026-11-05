@@ -3061,16 +3061,16 @@
         const ownedGP = dressedAndBench.reduce((s, p) => {
           return s + (ownedStatsDelta(p, t, p._slug)?.gamesPlayed ?? 0);
         }, 0);
-        const playerYtdSum = dressedAndBench.reduce((s, p) => {
+        const dressedOnly = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
+        const playerYtdSum = dressedOnly.reduce((s, p) => {
           const bySlug = _playerYesterdayPtsBySlug[p._slug] ?? 0;
           const byId   = _playerYesterdayPts[Number(p.nhl_player_id)] ?? 0;
-          return s + (bySlug || byId); // prefer snapshot delta (same formula as team total); fall back to game log
+          return s + (bySlug || byId);
         }, 0);
         const latestSnapPts = _lastSnapshot[t.id]?.pts ?? null;
         const prevPts = _yesterdaySnapshot[t.id] ?? null;
         const snapshotDelta = (latestSnapPts != null && prevPts != null) ? latestSnapPts - prevPts : null;
         const teamYtd = playerYtdSum > 0 ? playerYtdSum : (snapshotDelta != null && snapshotDelta > 0 ? snapshotDelta : 0);
-        const dressedOnly = [...rp.F, ...rp.D, ...rp.G].filter(Boolean);
         const tonightCount = dressedOnly.filter(p => {
           const abbr = TEAM_ABBR[p.team];
           return abbr && teamsPlayingToday.has(abbr);
@@ -3247,10 +3247,7 @@
       </div>`;
 
       const dressedSlugs = [...(team.roster.F||[]), ...(team.roster.D||[]), ...(team.roster.G||[])].filter(Boolean);
-      const swappedOutBenchSlugs = new Set(_benchSwaps.filter(s => s.team_id === team.id).map(s => s.player_out_slug));
-      const activeBenchSlugs = (team.roster.B || []).filter(s => s && swappedOutBenchSlugs.has(s));
-      const ytdSlugs = [...dressedSlugs, ...activeBenchSlugs];
-      const teamYtd = ytdSlugs.reduce((s, slug) => {
+      const teamYtd = dressedSlugs.reduce((s, slug) => {
         const p = slugMap()[slug];
         const bySlug = _playerYesterdayPtsBySlug[slug] ?? 0;
         const byId   = p ? (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) : 0;
