@@ -568,17 +568,7 @@ def save_standings_snapshots():
                     key = (tr["team_id"], tr["player_to_slug"])
                     frozen_by_slug_team[key] = tr.get("points_accumulated_at_trade") or 0
 
-            # 5b. Load bench swaps for this league (to count swapped-out bench players)
-            bench_swaps_rows = supabase.table("pool_bench_swaps").select(
-                "team_id,player_out_slug"
-            ).eq("league_code", code).execute().data
-            # Map: team_id → set of officially swapped-out slugs
-            swapped_out_by_team = {}
-            for sw in bench_swaps_rows:
-                tid = sw.get("team_id")
-                slug = sw.get("player_out_slug")
-                if tid and slug:
-                    swapped_out_by_team.setdefault(tid, set()).add(slug)
+            # 5b. Load bench swaps — no longer scored (bench players excluded from pool total)
 
             # 6. Score each team
             def normalize_pos(pos):
@@ -623,8 +613,7 @@ def save_standings_snapshots():
                 team_id = team.get("id", "")
                 acq = team.get("acquisitions", {}) or {}
                 roster = team.get("roster", {})
-                swapped_out = swapped_out_by_team.get(team_id, set())
-                f_pts = d_pts = g_pts = b_pts = 0
+                f_pts = d_pts = g_pts = 0
                 for slug in (roster.get("F") or []):
                     if slug:
                         pts, _ = score_player(slug, team_id, acq)
@@ -640,12 +629,7 @@ def save_standings_snapshots():
                         pts, _ = score_player(slug, team_id, acq)
                         g_pts += pts
                         player_pts[slug] = round(pts)
-                for slug in (roster.get("B") or []):
-                    if slug and slug in swapped_out:
-                        pts, _ = score_player(slug, team_id, acq)
-                        b_pts += pts
-                        player_pts[slug] = round(pts)
-                total = f_pts + d_pts + g_pts + b_pts
+                total = f_pts + d_pts + g_pts
                 team_scores.append({
                     "team_id": team_id,
                     "name": team.get("name", "?"),
