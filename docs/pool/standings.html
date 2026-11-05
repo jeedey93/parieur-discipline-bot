@@ -3247,7 +3247,12 @@
       </div>`;
 
       const dressedSlugs = [...(team.roster.F||[]), ...(team.roster.D||[]), ...(team.roster.G||[])].filter(Boolean);
-      const teamYtd = dressedSlugs.reduce((s, slug) => s + (_playerYesterdayPtsBySlug[slug] ?? 0), 0);
+      const teamYtd = dressedSlugs.reduce((s, slug) => {
+        const p = slugMap()[slug];
+        const bySlug = _playerYesterdayPtsBySlug[slug] ?? 0;
+        const byId   = p ? (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) : 0;
+        return s + (bySlug || byId);
+      }, 0);
       const tabStrip = `<div class="detail-tabs">
         <div class="detail-tab ${_detailTab==='roster'?'active':''}" onclick="setDetailTab('roster')">Roster</div>
         <div class="detail-tab ${_detailTab==='cap'?'active':''}" onclick="setDetailTab('cap')">💰 Cap</div>
