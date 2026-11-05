@@ -3247,7 +3247,10 @@
       </div>`;
 
       const dressedSlugs = [...(team.roster.F||[]), ...(team.roster.D||[]), ...(team.roster.G||[])].filter(Boolean);
-      const teamYtd = dressedSlugs.reduce((s, slug) => {
+      const swappedOutBenchSlugs = new Set(_benchSwaps.filter(s => s.team_id === team.id).map(s => s.player_out_slug));
+      const activeBenchSlugs = (team.roster.B || []).filter(s => s && swappedOutBenchSlugs.has(s));
+      const ytdSlugs = [...dressedSlugs, ...activeBenchSlugs];
+      const teamYtd = ytdSlugs.reduce((s, slug) => {
         const p = slugMap()[slug];
         const bySlug = _playerYesterdayPtsBySlug[slug] ?? 0;
         const byId   = p ? (_playerYesterdayPts[Number(p.nhl_player_id)] ?? 0) : 0;
