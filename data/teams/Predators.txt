@@ -1,13 +1,13 @@
 ============================================================
 PREDATORS - LINEUP
-Last Updated: 2026-11-03 04:26 PM ET
+Last Updated: 2026-11-05 04:47 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Steven Stamkos — Ryan OReilly — Mavrik Bourque
 Line 2: Filip Forsberg — Shane Wright — Nils Hoglander
-Line 3: Vitali Pinchuk — Alexander Kerfoot — Reid Schaefer
+Line 3: Reid Schaefer — Alexander Kerfoot — Vitali Pinchuk
 Line 4: Ross Colton — Jack Drury — Adam Edstrom
 
 DEFENSE PAIRS:
@@ -25,7 +25,7 @@ SCRATCHED / INJURED:
 ----------------------------------------
   Nicolas Hague (scratched)
   Ilya Lyubushkin (scratched)
-  Jonathan Marchessault (scratched)
   William Trudeau (upper body) (injured)
+  Jonathan Marchessault (lower body) (injured)
 
 ============================================================

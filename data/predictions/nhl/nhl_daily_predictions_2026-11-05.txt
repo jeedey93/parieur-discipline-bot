@@ -1,0 +1,59 @@
+Here's an analytical comparison of the morning and noon prediction reports, followed by the unified final recommendations:
+
+---
+
+**Report Comparison & Key Observations:**
+
+1.  **Consistent Play:** The **Montréal Canadiens ML vs Utah Mammoth** was the only play recommended in both the morning and noon reports, indicating strong and sustained conviction.
+
+2.  **Added Plays (Noon Report):** The noon report introduced three new recommendations:
+    *   **Detroit Red Wings ML vs Vegas Golden Knights**
+    *   **Chicago Blackhawks vs Tampa Bay Lightning Over 6.5**
+    *   **Columbus Blue Jackets ML vs Dallas Stars**
+
+3.  **Removed Plays (Noon Report):** Two plays recommended in the morning report were absent from the noon report:
+    *   **Boston Bruins ML vs Pittsburgh Penguins** (Morning odds: 1.89, Noon odds: 1.91)
+    *   **Philadelphia Flyers ML vs New York Rangers** (Morning odds: 2.22, Noon odds: 2.19)
+
+4.  **Confidence Level Changes:**
+    *   **Montréal Canadiens ML:** Confidence increased significantly from Medium (55.0% Win Probability) in the morning to High (67% Win Probability) in the noon report. This was accompanied by an increase in units from 1u to 1.5u.
+
+5.  **Odds Changes Affecting Recommendations:**
+    *   **Montréal Canadiens ML:** The ML odds remained stable at 2.0 for the Canadiens.
+    *   **Detroit Red Wings ML:** The ML odds also remained stable at 2.2 for the Red Wings.
+    *   **Chicago Blackhawks vs Tampa Bay Lightning Over 6.5:** The Over odds shifted from 1.97 (morning) to 1.91 (noon).
+    *   **Columbus Blue Jackets ML:** The ML odds remained stable at 2.07 for the Blue Jackets.
+    *   **Philadelphia Flyers ML:** The odds for the Flyers shifted from 2.22 (morning) to 2.19 (noon). This play, originally out of our strict 1.60-2.20 odds range even in the morning, remained outside after the minor movement, and was subsequently removed from the noon recommendations.
+    *   **Boston Bruins ML:** The odds for the Bruins shifted from 1.89 (morning) to 1.91 (noon). Despite remaining within the acceptable odds range, this play was removed from the noon report's recommendations, suggesting a shift in model conviction or identification of better value elsewhere.
+
+---
+
+**Unified Final Recommendation List**
+
+🏆 **BET OF THE DAY**
+**Montréal Canadiens ML vs Utah Mammoth @ 2.0**
+Confidence Level: High, Units: 1.5u, Win Probability: 67%
+The Montréal Canadiens present a significant value opportunity today against the Utah Mammoth. This pick is heavily driven by a massive advantage in the goaltending matchup, with Canadiens' Jacob Fowler coming in red-hot with an Elite 0.938 SV% in his last five starts, significantly outperforming Utah's Sebastian Cossa, who has a Poor 0.865 SV% over the same period. Offensively, the Canadiens are showing strong momentum with key players like Lane Hutson, Cole Caufield, and Nick Suzuki all performing 🔥HOT in their last five games. Despite a slight negative home ice differential, the combination of elite goaltending and a surging offense suggests the market has significantly undervalued Montreal's true win probability here.
+
+The odds remained stable at 2.0, but confidence in this play increased from Medium (morning) to High (noon), and units increased from 1u to 1.5u due to updated goalie and player performance data.
+
+**Other Recommended Plays**
+
+**Detroit Red Wings ML vs Vegas Golden Knights @ 2.2**
+Confidence Level: High, Units: 1.5u, Win Probability: 64%
+The Detroit Red Wings offer excellent value at home against the Vegas Golden Knights. Detroit's starting goalie, Daniil Tarasov, has been in Elite form with a 0.931 SV% over his last five starts, giving them a considerable edge over Vegas' Adin Hill, who has posted a Below Average 0.891 SV% in his recent outings. The Red Wings also benefit from strong offensive play, with Lucas Raymond, Viktor Arvidsson, Moritz Seider, and Justin Faulk all currently 🔥HOT. While Vegas' overall team strength is notable, their recent form is declining, and Detroit's strong goaltending and offensive surge create a significant mispricing by the oddsmakers.
+
+This is a new play added in the noon report, with high confidence based on updated goalie and player performance data.
+
+**Chicago Blackhawks vs Tampa Bay Lightning Over 6.5 @ 1.91**
+Confidence Level: [Unknown] Units: [Unknown] | Win Probability: [Unknown]%
+Confidence Level: Medium, Units: 1u, Outcome Probability: 58%
+This game is poised for a higher-scoring affair, making the Over an attractive play. Both starting goalies, Tampa Bay's Andrei Vasilevskiy (Poor 0.871 SV% in last five) and Chicago's unconfirmed starter (assumed poor given current team form and unconfirmed status), suggest that goals will be readily available. The Lightning boast a potent offense with multiple 🔥HOT players like Nikita Kucherov and Brayden Point, which, combined with their below-average penalty kill, sets the stage for a high-event game. Chicago, despite a current 4-game losing streak and playing on a back-to-back, still has offensive threats in 🔥HOT Connor Bedard, contributing to the likelihood of exceeding the 6.5 goal total.
+
+This is a new play added in the noon report. The Over 6.5 odds moved from 1.97 (morning) to 1.91 (noon), making it slightly less favorable but still a recommended play with medium confidence.
+
+**Columbus Blue Jackets ML vs Dallas Stars @ 2.07**
+Confidence Level: Medium, Units: 1u, Win Probability: 54%
+The Columbus Blue Jackets are being undervalued in their home matchup against the Dallas Stars. Columbus benefits from exceptional goaltending in Cam Talbot, who has posted an Elite 0.935 SV% in his last five starts, giving them a significant advantage over Dallas' Casey DeSmith (Poor 0.887 SV% in last five). The Blue Jackets also show strong offensive form with multiple 🔥HOT players including Charlie Coyle, Kent Johnson, Zach Werenski, and Denton Mateychuk. Despite Dallas being a strong team overall and having several 🔥HOT players themselves, Talbot's standout performance and Columbus' home ice edge at these odds indicate a clear market inefficiency.
+
+This is a new play added in the noon report, with medium confidence based on updated goalie and player performance data. The odds remained stable at 2.07.
