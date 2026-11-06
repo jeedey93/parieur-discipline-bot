@@ -1744,8 +1744,12 @@
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
       const playerRowHtml = (pl) => {
-        const liveStr = pl.livePts > 0 ? `<span class="gm-player-pts live">+${pl.livePts} tonight</span>` : `<span class="gm-player-pts pool-season">${pl.seasonPts}pts</span>`;
-        return `<div class="gm-player-row"><span class="gm-player-name pool">${pl.name}</span>${liveStr}</div>`;
+        const right = isFut
+          ? `<span class="gm-player-pts" style="color:rgba(255,255,255,0.25)">${pl.pos || ''}</span>`
+          : pl.livePts > 0
+            ? `<span class="gm-player-pts live">+${pl.livePts}</span>`
+            : '';
+        return `<div class="gm-player-row"><span class="gm-player-name pool">${pl.name}</span>${right}</div>`;
       };
 
       const awayColHtml = awayPool.length
