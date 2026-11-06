@@ -1177,10 +1177,12 @@
         /* ── SCOREBOARD ── */
         .scoreboard { margin-bottom: 1rem; }
         .scoreboard-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.4rem; padding-left: 2px; }
-        .scoreboard-games { display: flex; flex-direction: column; gap: 0.4rem; }
-        .game-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
+        .scoreboard-games { display: flex; flex-direction: row; gap: 0.4rem; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+        .scoreboard-games::-webkit-scrollbar { display: none; }
+        .game-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; flex: 0 0 180px; }
         .game-card:hover { border-color: rgba(255,255,255,0.2); }
         .game-card.live { border-color: rgba(34,197,94,0.4); }
+        @media (min-width: 561px) { .game-card { flex: 0 0 210px; } }
         .game-card-main { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.7rem; }
         .game-team { display: flex; align-items: center; gap: 0.45rem; flex: 1; min-width: 0; }
         .game-team.home { flex-direction: row-reverse; }
@@ -1195,10 +1197,6 @@
         .game-pool-players { padding: 0 0.7rem 0.45rem; display: flex; flex-wrap: wrap; gap: 0.3rem; }
         .game-pool-chip { font-size: 0.67rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 2px 6px; color: rgba(255,255,255,0.6); white-space: nowrap; }
         .game-pool-chip.scoring { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
-        @media (min-width: 561px) {
-          .scoreboard-games { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
-          .game-card { flex: 0 1 220px; }
-        }
 
         /* ── GAME MODAL ── */
         #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
