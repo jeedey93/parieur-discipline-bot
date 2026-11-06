@@ -1174,6 +1174,37 @@
         .btn-refresh { font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 2px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--silver); border-radius: 6px; padding: 4px 14px; cursor: pointer; }
         .btn-refresh:hover { background: rgba(255,255,255,0.1); color: white; }
 
+        /* ── SCOREBOARD ── */
+        .scoreboard { margin-bottom: 1rem; }
+        .scoreboard-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.4rem; padding-left: 2px; }
+        .scoreboard-games { display: flex; flex-direction: column; gap: 0.4rem; }
+        .game-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
+        .game-card:hover { border-color: rgba(255,255,255,0.2); }
+        .game-card.live { border-color: rgba(34,197,94,0.4); }
+        .game-card-main { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.7rem; }
+        .game-team { display: flex; align-items: center; gap: 0.45rem; flex: 1; min-width: 0; }
+        .game-team.home { flex-direction: row-reverse; }
+        .game-team-logo { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
+        .game-team-abbrev { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1.5px; color: white; }
+        .game-team.home .game-team-abbrev { text-align: right; }
+        .game-score-block { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; min-width: 54px; flex-shrink: 0; }
+        .game-score { font-family: 'Bebas Neue', cursive; font-size: 1.35rem; letter-spacing: 2px; color: white; line-height: 1; }
+        .game-score.future { font-size: 0.78rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+        .game-status { font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+        .game-status.live-dot::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-right: 3px; vertical-align: middle; animation: pulse 1.5s infinite; }
+        .game-pool-players { padding: 0 0.7rem 0.45rem; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .game-pool-chip { font-size: 0.67rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 2px 6px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+        .game-pool-chip.scoring { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
+        .game-expand { padding: 0.5rem 0.7rem; border-top: 1px solid var(--line); }
+        .game-expand-section { margin-bottom: 0.4rem; }
+        .game-expand-title { font-size: 0.58rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.25rem; }
+        .game-goal-row { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.6); padding: 1px 0; }
+        .game-goal-row .pool-name { color: var(--green); font-weight: 700; }
+        @media (min-width: 561px) {
+          .scoreboard-games { flex-direction: row; flex-wrap: wrap; }
+          .game-card { flex: 1 1 calc(50% - 0.2rem); min-width: 200px; }
+        }
+
         /* ── INVALID LINK ── */
         #invalid-gate { position: fixed; inset: 0; z-index: 9999; background: var(--rink); display: none; align-items: center; justify-content: center; background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(26,58,110,0.6) 0%, transparent 70%); }
         #invalid-gate.show { display: flex; }
@@ -1318,6 +1349,8 @@
     let _livePts = {};        // nhl_player_id (number) → live pool pts tonight
     let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
+    let _liveBoxscores = {};  // game id → boxscore data (score, period, goals)
+    let _expandedGames = new Set(); // game ids with expanded goal list
     let _livePtsDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // date _livePts belongs to
     let _liveTimer = null;
     let _liveActive = false;
@@ -1388,6 +1421,8 @@
           if (!res.ok) return;
           const data = await res.json();
           const gs = data.gameState;
+          // Store boxscore for scoreboard regardless of state
+          _liveBoxscores[id] = data;
           if (gs === 'FUT' || gs === 'PRE') return;
           const isLiveNow = gs === 'LIVE' || gs === 'CRIT';
           if (isLiveNow) anyLive = true;
@@ -1454,6 +1489,158 @@
     function stopLivePolling() {
       _liveActive = false;
       if (_liveTimer) { clearInterval(_liveTimer); _liveTimer = null; }
+    }
+
+    async function fetchAllBoxscores() {
+      if (!_liveGames.length) return;
+      await Promise.all(_liveGames.map(async ({ id }) => {
+        try {
+          const res = await fetch(`${NHL_PROXY}?path=/v1/gamecenter/${id}/boxscore`);
+          if (res.ok) _liveBoxscores[id] = await res.json();
+        } catch(_) {}
+      }));
+      clearCache(); render();
+    }
+
+    function toggleGameExpand(gameId) {
+      if (_expandedGames.has(gameId)) _expandedGames.delete(gameId);
+      else _expandedGames.add(gameId);
+      clearCache(); render();
+    }
+
+    function buildScoreboard() {
+      if (!_liveGames.length) return '';
+      // Build nhl_player_id → { name, owner, poolPts } for quick lookup
+      const idToPool = {};
+      teams.forEach(t => {
+        const rp = rosterPlayers(t.roster);
+        [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => {
+          if (p.nhl_player_id) idToPool[Number(p.nhl_player_id)] = { name: formatName(p.player_name), owner: t.name, pts: _livePts[Number(p.nhl_player_id)] ?? 0 };
+        });
+      });
+
+      const cards = _liveGames.map(({ id, away, home }) => {
+        const bs = _liveBoxscores[id];
+        const gs = bs?.gameState || 'FUT';
+        const isLive = gs === 'LIVE' || gs === 'CRIT';
+        const isFinal = gs === 'OFF';
+        const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
+
+        // Score
+        const awayScore = bs?.awayTeam?.score ?? 0;
+        const homeScore = bs?.homeTeam?.score ?? 0;
+        const awayLogo = bs?.awayTeam?.logo || '';
+        const homeLogo = bs?.homeTeam?.logo || '';
+
+        // Period / clock
+        let statusHtml = '';
+        if (isFut) {
+          const startUTC = bs?.startTimeUTC;
+          if (startUTC) {
+            const timeStr = new Date(startUTC).toLocaleTimeString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', minute: '2-digit', hour12: true });
+            statusHtml = timeStr;
+          } else statusHtml = 'Tonight';
+        } else if (isLive) {
+          const period = bs?.period || '?';
+          const clock = bs?.clock?.timeRemaining || '';
+          const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : `P${period}`;
+          statusHtml = `${clock} ${pLabel}`;
+        } else if (isFinal) {
+          const lastPeriod = bs?.gameOutcome?.lastPeriodType;
+          statusHtml = lastPeriod === 'OT' ? 'Final/OT' : lastPeriod === 'SO' ? 'Final/SO' : 'Final';
+        }
+
+        // Pool players in this game
+        const ps = bs?.playerByGameStats || {};
+        const gamePlayerIds = new Set();
+        for (const side of ['awayTeam', 'homeTeam']) {
+          const sd = ps[side] || {};
+          for (const grp of ['forwards', 'defense', 'goalies']) {
+            for (const p of (sd[grp] || [])) { if (p.playerId) gamePlayerIds.add(Number(p.playerId)); }
+          }
+        }
+        // For FUT games, use roster data from NHL API isn't available — use teamsPlayingToday + allPlayers
+        const poolInGame = [];
+        if (isFut) {
+          const awayAbbr = bs?.awayTeam?.abbrev || away;
+          const homeAbbr = bs?.homeTeam?.abbrev || home;
+          const SLUG_TO_ABBREV = {
+            'anaheim-ducks':'ANA','boston-bruins':'BOS','buffalo-sabres':'BUF','calgary-flames':'CGY',
+            'carolina-hurricanes':'CAR','chicago-blackhawks':'CHI','colorado-avalanche':'COL',
+            'columbus-blue-jackets':'CBJ','dallas-stars':'DAL','detroit-red-wings':'DET',
+            'edmonton-oilers':'EDM','florida-panthers':'FLA','los-angeles-kings':'LAK',
+            'minnesota-wild':'MIN','montreal-canadiens':'MTL','nashville-predators':'NSH',
+            'new-jersey-devils':'NJD','new-york-islanders':'NYI','new-york-rangers':'NYR',
+            'ottawa-senators':'OTT','philadelphia-flyers':'PHI','pittsburgh-penguins':'PIT',
+            'san-jose-sharks':'SJS','seattle-kraken':'SEA','st-louis-blues':'STL',
+            'tampa-bay-lightning':'TBL','toronto-maple-leafs':'TOR','utah-hockey-club':'UTA',
+            'vancouver-canucks':'VAN','vegas-golden-knights':'VGK','washington-capitals':'WSH',
+            'winnipeg-jets':'WPG'
+          };
+          allPlayers.forEach(p => {
+            if (!p.nhl_player_id) return;
+            const abbr = SLUG_TO_ABBREV[p.team] || '';
+            if (abbr === awayAbbr || abbr === homeAbbr) {
+              if (idToPool[Number(p.nhl_player_id)]) poolInGame.push({ id: Number(p.nhl_player_id), ...idToPool[Number(p.nhl_player_id)] });
+            }
+          });
+        } else {
+          gamePlayerIds.forEach(pid => { if (idToPool[pid]) poolInGame.push({ id: pid, ...idToPool[pid] }); });
+        }
+        poolInGame.sort((a, b) => b.pts - a.pts);
+
+        const chipHtml = poolInGame.length
+          ? `<div class="game-pool-players">${poolInGame.map(pl => `<span class="game-pool-chip${pl.pts > 0 ? ' scoring' : ''}">${pl.name}${pl.pts > 0 ? ` +${pl.pts}` : ''}</span>`).join('')}</div>`
+          : '';
+
+        // Expanded: goal scorers
+        let expandHtml = '';
+        if (_expandedGames.has(id) && !isFut) {
+          const scoring = bs?.summary?.scoring || [];
+          const poolIds = new Set(poolInGame.map(p => p.id));
+          let goalRows = '';
+          scoring.forEach(period => {
+            (period.goals || []).forEach(g => {
+              const scorer = g.name?.default || g.firstName?.default + ' ' + g.lastName?.default || '?';
+              const scorerId = Number(g.playerId);
+              const assists = (g.assists || []).map(a => a.name?.default || (a.firstName?.default + ' ' + a.lastName?.default)).join(', ');
+              const isPool = poolIds.has(scorerId) || (g.assists || []).some(a => poolIds.has(Number(a.playerId)));
+              const time = g.timeInPeriod || '';
+              const pNum = g.periodDescriptor?.number || period.periodDescriptor?.number || '';
+              const pLabel = pNum == 4 ? 'OT' : pNum == 5 ? 'SO' : `P${pNum}`;
+              goalRows += `<div class="game-goal-row${isPool ? ' pool-name' : ''}">⚽ ${scorer}${assists ? ` (${assists})` : ''} — ${pLabel} ${time}</div>`;
+            });
+          });
+          if (goalRows) {
+            expandHtml = `<div class="game-expand"><div class="game-expand-section"><div class="game-expand-title">Goals</div>${goalRows}</div></div>`;
+          } else {
+            expandHtml = `<div class="game-expand"><div style="font-size:0.72rem;color:rgba(255,255,255,0.3)">No goals yet</div></div>`;
+          }
+        }
+
+        const logoHtml = (logo, abbr) => logo
+          ? `<img class="game-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="${abbr}" onerror="this.style.display='none'">`
+          : `<span style="font-family:'Bebas Neue';font-size:0.8rem;color:rgba(255,255,255,0.4)">${abbr}</span>`;
+
+        const scoreBlock = isFut
+          ? `<div class="game-score-block"><div class="game-score future">${statusHtml}</div></div>`
+          : `<div class="game-score-block"><div class="game-score">${awayScore}–${homeScore}</div><div class="game-status${isLive ? ' live-dot' : ''}">${statusHtml}</div></div>`;
+
+        return `<div class="game-card${isLive ? ' live' : ''}" onclick="toggleGameExpand(${id})">
+          <div class="game-card-main">
+            <div class="game-team away">${logoHtml(awayLogo, away)}<span class="game-team-abbrev">${away}</span></div>
+            ${scoreBlock}
+            <div class="game-team home">${logoHtml(homeLogo, home)}<span class="game-team-abbrev">${home}</span></div>
+          </div>
+          ${chipHtml}
+          ${expandHtml}
+        </div>`;
+      }).join('');
+
+      return `<div class="scoreboard">
+        <div class="scoreboard-label">Tonight's Games</div>
+        <div class="scoreboard-games">${cards}</div>
+      </div>`;
     }
     // ─────────────────────────────────────────────────────────────────────────
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
@@ -2257,6 +2444,7 @@
         if (!activeTeamId) activeTeamId = null; // start on leaderboard unless restored from session
         render();
         loadYesterdayPts(); // async — re-renders when done
+        fetchAllBoxscores(); // async — fetches game states for scoreboard
         startLivePolling(); // async — polls boxscores during game hours
       } catch(e) {
         console.error('load() failed:', e);
@@ -2279,6 +2467,7 @@
           <div class="view-tab ${activeView==='fa'?'active':''}"        onclick="setView('fa')">Free Agents</div>
         </div>
         <div id="view-standings" style="display:${activeView==='standings'?'block':'none'}">
+          ${buildScoreboard()}
           <div class="standings-nav">
             <div class="standings-layer ${activeTeam ? 'behind' : 'front'}" id="layer-list">
               ${buildPodium(sorted, leaderPts)}
