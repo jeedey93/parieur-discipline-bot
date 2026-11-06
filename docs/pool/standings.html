@@ -1747,22 +1747,39 @@
       const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
+      const posGroup = p => {
+        const n = normalizePos(p.pos || p.position || '');
+        if (n === 'G') return 'G';
+        if (n === 'D') return 'D';
+        return 'F';
+      };
+      const posLabel = g => g === 'G' ? 'Goalies' : g === 'D' ? 'Defencemen' : 'Forwards';
+
       const playerRowHtml = (pl) => {
         const right = isFut
-          ? `<span class="gm-player-pts" style="color:rgba(255,255,255,0.25)">${pl.pos || ''}</span>`
+          ? ''
           : pl.livePts > 0
             ? `<span class="gm-player-pts live">+${pl.livePts}</span>`
             : '';
         return `<div class="gm-player-row"><span class="gm-player-name pool">${pl.name}</span>${right}</div>`;
       };
 
-      const awayColHtml = awayPool.length
-        ? `<div><div class="gm-team-col-label">${awayAbbr}</div>${awayPool.map(playerRowHtml).join('')}</div>`
-        : `<div><div class="gm-team-col-label">${awayAbbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
+      const teamColHtml = (pool, abbr) => {
+        if (!pool.length) return `<div><div class="gm-team-col-label">${abbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
+        const groups = { F: [], D: [], G: [] };
+        pool.forEach(pl => groups[posGroup(pl)].push(pl));
+        let html = `<div><div class="gm-team-col-label">${abbr}</div>`;
+        ['F','D','G'].forEach(g => {
+          if (!groups[g].length) return;
+          html += `<div style="font-size:0.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin:0.4rem 0 0.2rem">${posLabel(g)}</div>`;
+          html += groups[g].map(playerRowHtml).join('');
+        });
+        html += '</div>';
+        return html;
+      };
 
-      const homeColHtml = homePool.length
-        ? `<div><div class="gm-team-col-label">${homeAbbr}</div>${homePool.map(playerRowHtml).join('')}</div>`
-        : `<div><div class="gm-team-col-label">${homeAbbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
+      const awayColHtml = teamColHtml(awayPool, awayAbbr);
+      const homeColHtml = teamColHtml(homePool, homeAbbr);
 
       // Goals from play-by-play
       let goalsHtml = '';
