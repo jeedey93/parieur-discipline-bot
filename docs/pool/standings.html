@@ -1389,6 +1389,7 @@
     let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
     let _liveBoxscores = {};  // game id → boxscore data (score, period, goals)
+    let _openGameModalId = null; // game id currently shown in modal (for auto-refresh)
     let _livePtsDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // date _livePts belongs to
     let _liveTimer = null;
     let _liveActive = false;
@@ -1512,6 +1513,7 @@
       _anyGameLive = anyLive;
       if (ptsChanged) persistLivePts();
       if (ptsChanged || liveChanged) { clearCache(); render(); }
+      if ((ptsChanged || liveChanged) && _openGameModalId) openGameModal(_openGameModalId);
     }
 
     function startLivePolling() {
@@ -1692,9 +1694,11 @@
 
     function closeGameModal() {
       document.getElementById('game-modal').classList.remove('show');
+      _openGameModalId = null;
     }
 
     async function openGameModal(gameId) {
+      _openGameModalId = gameId;
       const modal = document.getElementById('game-modal');
       const content = document.getElementById('gm-content');
       modal.classList.add('show');
