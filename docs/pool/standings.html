@@ -1195,15 +1195,49 @@
         .game-pool-players { padding: 0 0.7rem 0.45rem; display: flex; flex-wrap: wrap; gap: 0.3rem; }
         .game-pool-chip { font-size: 0.67rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 2px 6px; color: rgba(255,255,255,0.6); white-space: nowrap; }
         .game-pool-chip.scoring { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
-        .game-expand { padding: 0.5rem 0.7rem; border-top: 1px solid var(--line); }
-        .game-expand-section { margin-bottom: 0.4rem; }
-        .game-expand-title { font-size: 0.58rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.25rem; }
-        .game-goal-row { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.6); padding: 1px 0; }
-        .game-goal-row .pool-name { color: var(--green); font-weight: 700; }
         @media (min-width: 561px) {
           .scoreboard-games { flex-direction: row; flex-wrap: wrap; }
           .game-card { flex: 1 1 calc(50% - 0.2rem); min-width: 200px; }
         }
+
+        /* ── GAME MODAL ── */
+        #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        #game-modal.show { display: flex; }
+        .gm-sheet { background: var(--rink); border-radius: 18px 18px 0 0; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; padding: 1.2rem 1rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 18px; max-height: 80vh; } }
+        .gm-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; }
+        .gm-team { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0; }
+        .gm-team.home { flex-direction: row-reverse; }
+        .gm-logo { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+        .gm-team-name { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 2px; color: white; }
+        .gm-team.home .gm-team-name { text-align: right; }
+        .gm-score-block { display: flex; flex-direction: column; align-items: center; min-width: 70px; flex-shrink: 0; }
+        .gm-score { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 3px; color: white; line-height: 1; }
+        .gm-score.future { font-size: 0.9rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; color: rgba(255,255,255,0.5); }
+        .gm-status { font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 2px; }
+        .gm-status.live-dot::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-right: 3px; vertical-align: middle; animation: pulse 1.5s infinite; }
+        .gm-sog { display: flex; justify-content: space-between; font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.35); margin-bottom: 1rem; padding: 0 2px; }
+        .gm-section-title { font-size: 0.6rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin: 0.9rem 0 0.5rem; }
+        .gm-teams-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .gm-team-col-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.35rem; }
+        .gm-player-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); gap: 0.4rem; }
+        .gm-player-row:last-child { border-bottom: none; }
+        .gm-player-name { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.75); font-weight: 600; }
+        .gm-player-name.pool { color: white; }
+        .gm-player-pts { font-size: 0.7rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); white-space: nowrap; }
+        .gm-player-pts.live { color: var(--green); font-weight: 700; }
+        .gm-player-pts.pool-season { color: rgba(255,255,255,0.5); }
+        .gm-goal-row { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.55); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 0.5rem; align-items: flex-start; }
+        .gm-goal-row:last-child { border-bottom: none; }
+        .gm-goal-time { color: rgba(255,255,255,0.25); font-size: 0.7rem; white-space: nowrap; flex-shrink: 0; }
+        .gm-goal-scorer { color: white; font-weight: 700; }
+        .gm-goal-scorer.pool { color: var(--green); }
+        .gm-goal-assist.pool { color: var(--green); font-weight: 600; }
+        .gm-period-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin: 0.6rem 0 0.3rem; }
+        .gm-loading { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 2rem 0; letter-spacing: 1px; }
+        .gm-close { position: absolute; top: 0.8rem; right: 1rem; font-size: 1.4rem; color: rgba(255,255,255,0.4); cursor: pointer; line-height: 1; padding: 4px; }
+        .gm-close:hover { color: white; }
+        .gm-sheet { position: relative; }
 
         /* ── INVALID LINK ── */
         #invalid-gate { position: fixed; inset: 0; z-index: 9999; background: var(--rink); display: none; align-items: center; justify-content: center; background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(26,58,110,0.6) 0%, transparent 70%); }
@@ -1248,6 +1282,13 @@
 
 <div id="player-modal-overlay" class="player-popup-overlay" style="display:none" onclick="if(event.target===this)closePlayerModal()">
   <div class="player-popup" id="player-modal-box"></div>
+</div>
+
+<div id="game-modal" onclick="if(event.target===this)closeGameModal()">
+  <div class="gm-sheet">
+    <span class="gm-close" onclick="closeGameModal()">✕</span>
+    <div id="gm-content"><div class="gm-loading">Loading…</div></div>
+  </div>
 </div>
 
 <script>
@@ -1350,7 +1391,6 @@
     let _livePlayerIds = new Set(); // player ids currently in a live (non-final) game
     let _liveGames = [];      // [{ id, away, home }]
     let _liveBoxscores = {};  // game id → boxscore data (score, period, goals)
-    let _expandedGames = new Set(); // game ids with expanded goal list
     let _livePtsDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // date _livePts belongs to
     let _liveTimer = null;
     let _liveActive = false;
@@ -1502,20 +1542,93 @@
       clearCache(); render();
     }
 
-    function toggleGameExpand(gameId) {
-      if (_expandedGames.has(gameId)) _expandedGames.delete(gameId);
-      else _expandedGames.add(gameId);
-      clearCache(); render();
+    const SLUG_TO_ABBREV = {
+      'anaheim-ducks':'ANA','boston-bruins':'BOS','buffalo-sabres':'BUF','calgary-flames':'CGY',
+      'carolina-hurricanes':'CAR','chicago-blackhawks':'CHI','colorado-avalanche':'COL',
+      'columbus-blue-jackets':'CBJ','dallas-stars':'DAL','detroit-red-wings':'DET',
+      'edmonton-oilers':'EDM','florida-panthers':'FLA','los-angeles-kings':'LAK',
+      'minnesota-wild':'MIN','montreal-canadiens':'MTL','nashville-predators':'NSH',
+      'new-jersey-devils':'NJD','new-york-islanders':'NYI','new-york-rangers':'NYR',
+      'ottawa-senators':'OTT','philadelphia-flyers':'PHI','pittsburgh-penguins':'PIT',
+      'san-jose-sharks':'SJS','seattle-kraken':'SEA','st-louis-blues':'STL',
+      'tampa-bay-lightning':'TBL','toronto-maple-leafs':'TOR','utah-hockey-club':'UTA',
+      'vancouver-canucks':'VAN','vegas-golden-knights':'VGK','washington-capitals':'WSH',
+      'winnipeg-jets':'WPG'
+    };
+
+    function gameStatusText(bs) {
+      const gs = bs?.gameState || 'FUT';
+      if (gs === 'FUT' || gs === 'PRE' || !bs) {
+        const startUTC = bs?.startTimeUTC;
+        if (startUTC) return new Date(startUTC).toLocaleTimeString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', minute: '2-digit', hour12: true });
+        return 'Tonight';
+      }
+      if (gs === 'LIVE' || gs === 'CRIT') {
+        const period = bs?.period || '?';
+        const clock = bs?.clock?.timeRemaining || '';
+        const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : `P${period}`;
+        return `${clock} ${pLabel}`;
+      }
+      if (gs === 'OFF') {
+        const last = bs?.gameOutcome?.lastPeriodType;
+        return last === 'OT' ? 'Final/OT' : last === 'SO' ? 'Final/SO' : 'Final';
+      }
+      return '';
     }
 
-    function buildScoreboard() {
-      if (!_liveGames.length) return '';
-      // Build nhl_player_id → { name, owner, poolPts } for quick lookup
+    function buildPoolPlayersForGame(bs, away, home) {
       const idToPool = {};
       teams.forEach(t => {
         const rp = rosterPlayers(t.roster);
         [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => {
-          if (p.nhl_player_id) idToPool[Number(p.nhl_player_id)] = { name: formatName(p.player_name), owner: t.name, pts: _livePts[Number(p.nhl_player_id)] ?? 0 };
+          if (p.nhl_player_id) idToPool[Number(p.nhl_player_id)] = {
+            name: formatName(p.player_name), owner: t.name,
+            livePts: _livePts[Number(p.nhl_player_id)] ?? 0,
+            seasonPts: poolScoreOwned(p, teams.find(tt => tt.roster.F?.includes(p._slug) || tt.roster.D?.includes(p._slug) || tt.roster.G?.includes(p._slug)) || t, p._slug),
+            pos: p.position,
+          };
+        });
+      });
+
+      const gs = bs?.gameState || 'FUT';
+      const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
+      const awayAbbr = bs?.awayTeam?.abbrev || away;
+      const homeAbbr = bs?.homeTeam?.abbrev || home;
+
+      const awayPool = [], homePool = [];
+      if (isFut) {
+        allPlayers.forEach(p => {
+          if (!p.nhl_player_id) return;
+          const abbr = SLUG_TO_ABBREV[p.team] || '';
+          if (!idToPool[Number(p.nhl_player_id)]) return;
+          if (abbr === awayAbbr) awayPool.push({ id: Number(p.nhl_player_id), ...idToPool[Number(p.nhl_player_id)] });
+          else if (abbr === homeAbbr) homePool.push({ id: Number(p.nhl_player_id), ...idToPool[Number(p.nhl_player_id)] });
+        });
+      } else {
+        const ps = bs?.playerByGameStats || {};
+        for (const side of ['awayTeam', 'homeTeam']) {
+          const sd = ps[side] || {};
+          const arr = side === 'awayTeam' ? awayPool : homePool;
+          for (const grp of ['forwards', 'defense', 'goalies']) {
+            for (const p of (sd[grp] || [])) {
+              const pid = Number(p.playerId);
+              if (idToPool[pid]) arr.push({ id: pid, ...idToPool[pid] });
+            }
+          }
+        }
+      }
+      awayPool.sort((a, b) => b.seasonPts - a.seasonPts);
+      homePool.sort((a, b) => b.seasonPts - a.seasonPts);
+      return { awayPool, homePool, awayAbbr, homeAbbr };
+    }
+
+    function buildScoreboard() {
+      if (!_liveGames.length) return '';
+      const idToPool = {};
+      teams.forEach(t => {
+        const rp = rosterPlayers(t.roster);
+        [...rp.F, ...rp.D, ...rp.G].filter(Boolean).forEach(p => {
+          if (p.nhl_player_id) idToPool[Number(p.nhl_player_id)] = { name: formatName(p.player_name), livePts: _livePts[Number(p.nhl_player_id)] ?? 0 };
         });
       });
 
@@ -1523,117 +1636,54 @@
         const bs = _liveBoxscores[id];
         const gs = bs?.gameState || 'FUT';
         const isLive = gs === 'LIVE' || gs === 'CRIT';
-        const isFinal = gs === 'OFF';
         const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
-
-        // Score
         const awayScore = bs?.awayTeam?.score ?? 0;
         const homeScore = bs?.homeTeam?.score ?? 0;
         const awayLogo = bs?.awayTeam?.logo || '';
         const homeLogo = bs?.homeTeam?.logo || '';
+        const statusText = gameStatusText(bs);
+        const awayAbbr = bs?.awayTeam?.abbrev || away;
+        const homeAbbr = bs?.homeTeam?.abbrev || home;
 
-        // Period / clock
-        let statusHtml = '';
-        if (isFut) {
-          const startUTC = bs?.startTimeUTC;
-          if (startUTC) {
-            const timeStr = new Date(startUTC).toLocaleTimeString('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', minute: '2-digit', hour12: true });
-            statusHtml = timeStr;
-          } else statusHtml = 'Tonight';
-        } else if (isLive) {
-          const period = bs?.period || '?';
-          const clock = bs?.clock?.timeRemaining || '';
-          const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : `P${period}`;
-          statusHtml = `${clock} ${pLabel}`;
-        } else if (isFinal) {
-          const lastPeriod = bs?.gameOutcome?.lastPeriodType;
-          statusHtml = lastPeriod === 'OT' ? 'Final/OT' : lastPeriod === 'SO' ? 'Final/SO' : 'Final';
-        }
-
-        // Pool players in this game
-        const ps = bs?.playerByGameStats || {};
-        const gamePlayerIds = new Set();
-        for (const side of ['awayTeam', 'homeTeam']) {
-          const sd = ps[side] || {};
-          for (const grp of ['forwards', 'defense', 'goalies']) {
-            for (const p of (sd[grp] || [])) { if (p.playerId) gamePlayerIds.add(Number(p.playerId)); }
-          }
-        }
-        // For FUT games, use roster data from NHL API isn't available — use teamsPlayingToday + allPlayers
+        // Pool players in this game (for chips)
         const poolInGame = [];
         if (isFut) {
-          const awayAbbr = bs?.awayTeam?.abbrev || away;
-          const homeAbbr = bs?.homeTeam?.abbrev || home;
-          const SLUG_TO_ABBREV = {
-            'anaheim-ducks':'ANA','boston-bruins':'BOS','buffalo-sabres':'BUF','calgary-flames':'CGY',
-            'carolina-hurricanes':'CAR','chicago-blackhawks':'CHI','colorado-avalanche':'COL',
-            'columbus-blue-jackets':'CBJ','dallas-stars':'DAL','detroit-red-wings':'DET',
-            'edmonton-oilers':'EDM','florida-panthers':'FLA','los-angeles-kings':'LAK',
-            'minnesota-wild':'MIN','montreal-canadiens':'MTL','nashville-predators':'NSH',
-            'new-jersey-devils':'NJD','new-york-islanders':'NYI','new-york-rangers':'NYR',
-            'ottawa-senators':'OTT','philadelphia-flyers':'PHI','pittsburgh-penguins':'PIT',
-            'san-jose-sharks':'SJS','seattle-kraken':'SEA','st-louis-blues':'STL',
-            'tampa-bay-lightning':'TBL','toronto-maple-leafs':'TOR','utah-hockey-club':'UTA',
-            'vancouver-canucks':'VAN','vegas-golden-knights':'VGK','washington-capitals':'WSH',
-            'winnipeg-jets':'WPG'
-          };
           allPlayers.forEach(p => {
             if (!p.nhl_player_id) return;
             const abbr = SLUG_TO_ABBREV[p.team] || '';
-            if (abbr === awayAbbr || abbr === homeAbbr) {
-              if (idToPool[Number(p.nhl_player_id)]) poolInGame.push({ id: Number(p.nhl_player_id), ...idToPool[Number(p.nhl_player_id)] });
-            }
+            if ((abbr === awayAbbr || abbr === homeAbbr) && idToPool[Number(p.nhl_player_id)])
+              poolInGame.push({ id: Number(p.nhl_player_id), ...idToPool[Number(p.nhl_player_id)] });
           });
         } else {
-          gamePlayerIds.forEach(pid => { if (idToPool[pid]) poolInGame.push({ id: pid, ...idToPool[pid] }); });
-        }
-        poolInGame.sort((a, b) => b.pts - a.pts);
-
-        const chipHtml = poolInGame.length
-          ? `<div class="game-pool-players">${poolInGame.map(pl => `<span class="game-pool-chip${pl.pts > 0 ? ' scoring' : ''}">${pl.name}${pl.pts > 0 ? ` +${pl.pts}` : ''}</span>`).join('')}</div>`
-          : '';
-
-        // Expanded: goal scorers
-        let expandHtml = '';
-        if (_expandedGames.has(id) && !isFut) {
-          const scoring = bs?.summary?.scoring || [];
-          const poolIds = new Set(poolInGame.map(p => p.id));
-          let goalRows = '';
-          scoring.forEach(period => {
-            (period.goals || []).forEach(g => {
-              const scorer = g.name?.default || g.firstName?.default + ' ' + g.lastName?.default || '?';
-              const scorerId = Number(g.playerId);
-              const assists = (g.assists || []).map(a => a.name?.default || (a.firstName?.default + ' ' + a.lastName?.default)).join(', ');
-              const isPool = poolIds.has(scorerId) || (g.assists || []).some(a => poolIds.has(Number(a.playerId)));
-              const time = g.timeInPeriod || '';
-              const pNum = g.periodDescriptor?.number || period.periodDescriptor?.number || '';
-              const pLabel = pNum == 4 ? 'OT' : pNum == 5 ? 'SO' : `P${pNum}`;
-              goalRows += `<div class="game-goal-row${isPool ? ' pool-name' : ''}">⚽ ${scorer}${assists ? ` (${assists})` : ''} — ${pLabel} ${time}</div>`;
-            });
-          });
-          if (goalRows) {
-            expandHtml = `<div class="game-expand"><div class="game-expand-section"><div class="game-expand-title">Goals</div>${goalRows}</div></div>`;
-          } else {
-            expandHtml = `<div class="game-expand"><div style="font-size:0.72rem;color:rgba(255,255,255,0.3)">No goals yet</div></div>`;
+          const ps = bs?.playerByGameStats || {};
+          for (const side of ['awayTeam', 'homeTeam']) {
+            const sd = ps[side] || {};
+            for (const grp of ['forwards', 'defense', 'goalies']) {
+              for (const p of (sd[grp] || [])) { const pid = Number(p.playerId); if (idToPool[pid]) poolInGame.push({ id: pid, ...idToPool[pid] }); }
+            }
           }
         }
+        poolInGame.sort((a, b) => b.livePts - a.livePts);
 
         const logoHtml = (logo, abbr) => logo
           ? `<img class="game-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="${abbr}" onerror="this.style.display='none'">`
           : `<span style="font-family:'Bebas Neue';font-size:0.8rem;color:rgba(255,255,255,0.4)">${abbr}</span>`;
 
         const scoreBlock = isFut
-          ? `<div class="game-score-block"><div class="game-score future">${statusHtml}</div></div>`
-          : `<div class="game-score-block"><div class="game-score">${awayScore}–${homeScore}</div><div class="game-status${isLive ? ' live-dot' : ''}">${statusHtml}</div></div>`;
+          ? `<div class="game-score-block"><div class="game-score future">${statusText}</div></div>`
+          : `<div class="game-score-block"><div class="game-score">${awayScore}–${homeScore}</div><div class="game-status${isLive ? ' live-dot' : ''}">${statusText}</div></div>`;
 
-        return `<div class="game-card${isLive ? ' live' : ''}" onclick="toggleGameExpand(${id})">
+        const chipHtml = poolInGame.length
+          ? `<div class="game-pool-players">${poolInGame.map(pl => `<span class="game-pool-chip${pl.livePts > 0 ? ' scoring' : ''}">${pl.name}${pl.livePts > 0 ? ` +${pl.livePts}` : ''}</span>`).join('')}</div>`
+          : '';
+
+        return `<div class="game-card${isLive ? ' live' : ''}" onclick="openGameModal(${id})">
           <div class="game-card-main">
             <div class="game-team away">${logoHtml(awayLogo, away)}<span class="game-team-abbrev">${away}</span></div>
             ${scoreBlock}
             <div class="game-team home">${logoHtml(homeLogo, home)}<span class="game-team-abbrev">${home}</span></div>
           </div>
           ${chipHtml}
-          ${expandHtml}
         </div>`;
       }).join('');
 
@@ -1641,6 +1691,127 @@
         <div class="scoreboard-label">Tonight's Games</div>
         <div class="scoreboard-games">${cards}</div>
       </div>`;
+    }
+
+    function closeGameModal() {
+      document.getElementById('game-modal').classList.remove('show');
+    }
+
+    async function openGameModal(gameId) {
+      const modal = document.getElementById('game-modal');
+      const content = document.getElementById('gm-content');
+      modal.classList.add('show');
+      content.innerHTML = '<div class="gm-loading">Loading…</div>';
+
+      // Fetch play-by-play for goal detail
+      let pbp = null;
+      try {
+        const res = await fetch(`${NHL_PROXY}?path=/v1/gamecenter/${gameId}/play-by-play`);
+        if (res.ok) pbp = await res.json();
+      } catch(_) {}
+
+      const bs = _liveBoxscores[gameId] || pbp;
+      const gs = bs?.gameState || 'FUT';
+      const isLive = gs === 'LIVE' || gs === 'CRIT';
+      const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
+      const game = _liveGames.find(g => g.id === gameId) || {};
+      const away = game.away || '';
+      const home = game.home || '';
+
+      const awayLogo = bs?.awayTeam?.logo || '';
+      const homeLogo = bs?.homeTeam?.logo || '';
+      const awayAbbr = bs?.awayTeam?.abbrev || away;
+      const homeAbbr = bs?.homeTeam?.abbrev || home;
+      const awayName = bs?.awayTeam?.commonName?.default || awayAbbr;
+      const homeName = bs?.homeTeam?.commonName?.default || homeAbbr;
+      const awayScore = bs?.awayTeam?.score ?? 0;
+      const homeScore = bs?.homeTeam?.score ?? 0;
+      const awaySog = bs?.awayTeam?.sog ?? '—';
+      const homeSog = bs?.homeTeam?.sog ?? '—';
+      const statusText = gameStatusText(bs);
+
+      const logoHtml = (logo, abbr) => logo
+        ? `<img class="gm-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="${abbr}" onerror="this.style.display='none'">`
+        : '';
+
+      const scoreBlock = isFut
+        ? `<div class="gm-score-block"><div class="gm-score future">${statusText}</div></div>`
+        : `<div class="gm-score-block"><div class="gm-score">${awayScore}–${homeScore}</div><div class="gm-status${isLive ? ' live-dot' : ''}">${statusText}</div></div>`;
+
+      const sogHtml = !isFut
+        ? `<div class="gm-sog"><span>${awaySog} shots</span><span style="color:rgba(255,255,255,0.2)">SOG</span><span>${homeSog} shots</span></div>`
+        : '';
+
+      // Build pool players per team
+      const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
+      const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
+
+      const playerRowHtml = (pl) => {
+        const liveStr = pl.livePts > 0 ? `<span class="gm-player-pts live">+${pl.livePts} tonight</span>` : `<span class="gm-player-pts pool-season">${pl.seasonPts}pts</span>`;
+        return `<div class="gm-player-row"><span class="gm-player-name pool">${pl.name}</span>${liveStr}</div>`;
+      };
+
+      const awayColHtml = awayPool.length
+        ? `<div><div class="gm-team-col-label">${awayAbbr}</div>${awayPool.map(playerRowHtml).join('')}</div>`
+        : `<div><div class="gm-team-col-label">${awayAbbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
+
+      const homeColHtml = homePool.length
+        ? `<div><div class="gm-team-col-label">${homeAbbr}</div>${homePool.map(playerRowHtml).join('')}</div>`
+        : `<div><div class="gm-team-col-label">${homeAbbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
+
+      // Goals from play-by-play
+      let goalsHtml = '';
+      if (!isFut && pbp) {
+        const rosterMap = {};
+        (pbp.rosterSpots || []).forEach(p => { rosterMap[p.playerId] = (p.firstName?.default || '') + ' ' + (p.lastName?.default || ''); });
+        const goals = (pbp.plays || []).filter(p => p.typeDescKey === 'goal');
+        if (goals.length) {
+          // Group by period
+          const byPeriod = {};
+          goals.forEach(g => {
+            const pNum = g.periodDescriptor?.number || 0;
+            if (!byPeriod[pNum]) byPeriod[pNum] = [];
+            byPeriod[pNum].push(g);
+          });
+          goalsHtml = `<div class="gm-section-title">Goals</div>`;
+          Object.entries(byPeriod).forEach(([pNum, gs]) => {
+            const pLabel = pNum == 4 ? 'Overtime' : pNum == 5 ? 'Shootout' : `Period ${pNum}`;
+            goalsHtml += `<div class="gm-period-label">${pLabel}</div>`;
+            gs.forEach(g => {
+              const d = g.details || {};
+              const scorerId = d.scoringPlayerId;
+              const a1Id = d.assist1PlayerId;
+              const a2Id = d.assist2PlayerId;
+              const scorerName = rosterMap[scorerId] || '?';
+              const a1Name = a1Id ? rosterMap[a1Id] : null;
+              const a2Name = a2Id ? rosterMap[a2Id] : null;
+              const isPoolScorer = poolIds.has(scorerId);
+              const isPoolA1 = a1Id && poolIds.has(a1Id);
+              const isPoolA2 = a2Id && poolIds.has(a2Id);
+              const assists = [a1Name ? `<span class="${isPoolA1 ? 'gm-goal-assist pool' : ''}">${a1Name}</span>` : null, a2Name ? `<span class="${isPoolA2 ? 'gm-goal-assist pool' : ''}">${a2Name}</span>` : null].filter(Boolean).join(', ');
+              const time = g.timeInPeriod || '';
+              goalsHtml += `<div class="gm-goal-row">
+                <span class="gm-goal-time">${time}</span>
+                <span><span class="gm-goal-scorer${isPoolScorer ? ' pool' : ''}">${scorerName}</span>${assists ? ` (${assists})` : ''}</span>
+              </div>`;
+            });
+          });
+        } else {
+          goalsHtml = `<div class="gm-section-title">Goals</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.25);padding:4px 0">No goals yet</div>`;
+        }
+      }
+
+      content.innerHTML = `
+        <div class="gm-header">
+          <div class="gm-team away">${logoHtml(awayLogo, awayAbbr)}<span class="gm-team-name">${awayName}</span></div>
+          ${scoreBlock}
+          <div class="gm-team home">${logoHtml(homeLogo, homeAbbr)}<span class="gm-team-name">${homeName}</span></div>
+        </div>
+        ${sogHtml}
+        <div class="gm-section-title">Pool Players</div>
+        <div class="gm-teams-grid">${awayColHtml}${homeColHtml}</div>
+        ${goalsHtml}
+      `;
     }
     // ─────────────────────────────────────────────────────────────────────────
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
@@ -4471,7 +4642,7 @@
     load();
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closePlayerModal();
+      if (e.key === 'Escape') { closePlayerModal(); closeGameModal(); }
     });
 
     document.addEventListener('wheel', e => {
