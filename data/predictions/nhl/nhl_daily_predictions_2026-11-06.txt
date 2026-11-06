@@ -1,0 +1,30 @@
+As a sports betting analyst, I've reviewed the morning and noon prediction reports for November 6, 2026, noting key changes in odds, confidence, and recommended plays.
+
+The most significant shift between the two reports is the change in recommended bets. The morning report focused on a moneyline play, while the noon report introduced two Over/Under plays, citing updated goalie information as a primary driver. This suggests a more refined analysis as game time approaches.
+
+Specifically:
+*   The **Calgary Flames ML** was the Bet of the Day in the morning report at 1.79 odds, Medium confidence. By noon, the odds for Flames ML had dropped to 1.67, and this play was removed from the recommendations.
+*   The **Columbus Blue Jackets vs Buffalo Sabres Over 6.5** was added as the Bet of the Day in the noon report, with favorable odds at 2.0 and High confidence, improving from its morning odds of 1.95.
+*   The **Anaheim Ducks vs Calgary Flames Over 6.5** was also added in the noon report as an "Other Recommended Play," at 1.95 odds and Medium confidence. The morning odds for this Over were 1.98.
+
+This analysis indicates that the updated goalie information provided in the noon report led to a re-evaluation of game totals, highlighting new value opportunities. Given the later timestamp and specific goalie details, the noon recommendations take precedence for our final selections.
+
+---
+
+🏆 **BET OF THE DAY**
+**Columbus Blue Jackets vs Buffalo Sabres Over 6.5 @ 2.0**
+Confidence Level: High, Units: 1.5u, Win Probability: 59%
+
+This game presents a strong Over opportunity primarily due to goaltending and head-to-head history. Buffalo's starting goalie Ukko-Pekka Luukkonen has a poor .890 SV% in his last 5 starts, while Columbus's Jet Greaves is also struggling with a .892 SV% over his last 5 games. This goalie matchup strongly favors a high-scoring affair. Furthermore, the two head-to-head games this season between these teams have averaged a high 7.5 total goals, significantly above tonight's 6.5 line, indicating a historical tendency for these teams to play open games. Columbus is also on a back-to-back, which can sometimes lead to sloppier defensive play.
+
+This play was added in the noon report as the Bet of the Day, with the Over 6.5 odds improving from 1.95 (morning) to 2.0 (noon). Confidence is High.
+
+---
+
+**Other Recommended Plays**
+**Anaheim Ducks vs Calgary Flames Over 6.5 @ 1.95**
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
+
+We see value in the Over for the Ducks-Flames matchup as well. Anaheim's starting goalie Lukas Dostal has been in poor form with an .864 SV% in his last 5 starts, facing off against Calgary's Dustin Wolf who is average at .901 SV% in his last 5 outings. This disparity in goaltending quality, especially Dostal's recent struggles, points towards more goals. Both teams also possess potent power play units, with Anaheim at 36.2% and Calgary at 29.7%, suggesting an increased likelihood of special teams scoring. Anaheim's Cutter Gauthier is 🔥HOT with 11 points in his last 5 games, further boosting their offensive potential.
+
+This play was added in the noon report. The Over 6.5 odds slightly decreased from 1.98 (morning) to 1.95 (noon), with a Medium confidence level. The morning report had recommended the Calgary Flames ML for this game, but the noon report's updated analysis and specific goalie information led to a focus on the Over.
