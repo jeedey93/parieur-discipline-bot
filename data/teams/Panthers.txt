@@ -1,6 +1,6 @@
 ============================================================
 PANTHERS - LINEUP
-Last Updated: 2026-11-04 04:41 PM ET
+Last Updated: 2026-11-06 04:14 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -20,13 +20,5 @@ GOALIES:
 ----------------------------------------
   Jacob Markstrom
   Akira Schmid
-
-SCRATCHED / INJURED:
-----------------------------------------
-  Radko Gudas (scratched)
-  Cole Reinhardt (scratched)
-  Aleksander Barkov (knee) (injured)
-  Brad Marchand (knee) (injured)
-  Jonah Gadjovich (neck) (injured)
 
 ============================================================

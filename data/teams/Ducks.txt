@@ -1,11 +1,11 @@
 ============================================================
 DUCKS - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-06 04:14 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Alex Killorn — Leo Carlsson — Judd Caufield
+Line 1: Alex Killorn — Leo Carlsson — Judd Caulfield
 Line 2: Cutter Gauthier — Mikael Granlund — Beckett Sennecke
 Line 3: Nico Myatovic — Tim Washe — Sam Colangelo
 Line 4: Jeff Malott — Roger McQueen — Nikita Nesterenko
@@ -14,11 +14,11 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jackson La Combe — Drew Helleson
 Pair 2: Pavel Mintyukov — Noah Warren
-Pair 3: Travis Mitichell — Tristan Luneau
+Pair 3: Travis Mitchell — Tristan Luneau
 
 GOALIES:
 ----------------------------------------
-  Laurent Brossoit
   Lukas Dostal
+  Laurent Brossoit
 
 ============================================================
