@@ -1203,7 +1203,27 @@
         #game-modal.show { display: flex; }
         .gm-sheet { background: #0d1117; border-radius: 18px 18px 0 0; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); position: relative; }
         @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 18px; max-height: 85vh; } }
-        @media (min-width: 861px) { .gm-sheet { max-width: 540px; } }
+        @media (min-width: 861px) {
+          .gm-sheet { max-width: 720px; }
+          .gm-statusbar { font-size: 0.82rem; padding: 0.65rem 1.5rem; }
+          .gm-team-row { padding: 1.1rem 1.5rem; gap: 1.1rem; }
+          .gm-team-logo { width: 58px; height: 58px; }
+          .gm-team-fullname { font-size: 1.6rem; letter-spacing: 3px; }
+          .gm-team-sog { font-size: 0.78rem; }
+          .gm-team-score { font-size: 3rem; min-width: 48px; }
+          .gm-team-score.future { font-size: 1rem; }
+          .gm-pool-strip { padding: 0.7rem 1.5rem; gap: 0.45rem; }
+          .gm-pool-badge { font-size: 0.82rem; padding: 3px 10px; }
+          .gm-scoring-title { font-size: 1rem; padding: 1rem 1.5rem 0.6rem; }
+          .gm-period-header { font-size: 0.75rem; padding: 6px 1.5rem; }
+          .gm-goal-row { padding: 0.8rem 1.5rem; gap: 1rem; }
+          .gm-goal-headshot { width: 46px; height: 46px; }
+          .gm-goal-scorer { font-size: 1.05rem; }
+          .gm-goal-num { font-size: 0.85rem; }
+          .gm-goal-assists { font-size: 0.85rem; margin-top: 2px; }
+          .gm-goal-time { font-size: 0.9rem; }
+          .gm-no-goals { font-size: 0.9rem; padding: 0.9rem 1.5rem; }
+        }
         .gm-close { position: absolute; top: 0.85rem; right: 1rem; font-size: 1.3rem; color: rgba(255,255,255,0.35); cursor: pointer; line-height: 1; padding: 4px 6px; z-index: 1; }
         .gm-close:hover { color: white; }
         /* Status bar */
