@@ -1199,61 +1199,46 @@
         .game-pool-chip.scoring { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
 
         /* ── GAME MODAL ── */
-        #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); }
         #game-modal.show { display: flex; }
-        .gm-sheet { background: var(--rink); border-radius: 18px 18px 0 0; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; padding: 1.2rem 1rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 18px; max-height: 80vh; } }
-        @media (min-width: 861px) {
-          .gm-sheet { max-width: 820px; padding: 2rem 2rem 2.5rem; }
-          .gm-logo { width: 58px; height: 58px; }
-          .gm-team-name { font-size: 1.6rem; letter-spacing: 3px; }
-          .gm-score { font-size: 3.2rem; }
-          .gm-score.future { font-size: 1.2rem; }
-          .gm-status { font-size: 0.8rem; letter-spacing: 2px; }
-          .gm-sog { font-size: 0.9rem; margin-bottom: 1.4rem; }
-          .gm-section-title { font-size: 0.75rem; letter-spacing: 3px; margin: 1.2rem 0 0.7rem; }
-          .gm-team-col-label { font-size: 0.82rem; letter-spacing: 2.5px; margin-bottom: 0.5rem; }
-          .gm-player-row { padding: 6px 0; }
-          .gm-player-name { font-size: 1.05rem; }
-          .gm-player-pts { font-size: 0.95rem; }
-          .gm-period-label { font-size: 0.75rem; margin: 0.8rem 0 0.4rem; }
-          .gm-goal-row { font-size: 1rem; padding: 6px 0; }
-          .gm-goal-time { font-size: 0.88rem; }
-          .gm-teams-grid { gap: 2rem; margin-bottom: 0.75rem; }
-        }
-        .gm-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; }
-        .gm-team { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0; }
-        .gm-team.home { flex-direction: row-reverse; }
-        .gm-logo { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
-        .gm-team-name { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 2px; color: white; }
-        .gm-team.home .gm-team-name { text-align: right; }
-        .gm-score-block { display: flex; flex-direction: column; align-items: center; min-width: 70px; flex-shrink: 0; }
-        .gm-score { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 3px; color: white; line-height: 1; }
-        .gm-score.future { font-size: 0.9rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; color: rgba(255,255,255,0.5); }
-        .gm-status { font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 2px; }
-        .gm-status.live-dot::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-right: 3px; vertical-align: middle; animation: pulse 1.5s infinite; }
-        .gm-sog { display: flex; justify-content: space-between; font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.35); margin-bottom: 1rem; padding: 0 2px; }
-        .gm-section-title { font-size: 0.6rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin: 0.9rem 0 0.5rem; }
-        .gm-teams-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.5rem; }
-        .gm-team-col-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.35rem; }
-        .gm-player-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); gap: 0.4rem; }
-        .gm-player-row:last-child { border-bottom: none; }
-        .gm-player-name { font-size: 0.88rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.75); font-weight: 600; }
-        .gm-player-name.pool { color: white; }
-        .gm-player-pts { font-size: 0.82rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); white-space: nowrap; }
-        .gm-player-pts.live { color: var(--green); font-weight: 700; }
-        .gm-player-pts.pool-season { color: rgba(255,255,255,0.5); }
-        .gm-goal-row { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.55); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 0.5rem; align-items: flex-start; }
-        .gm-goal-row:last-child { border-bottom: none; }
-        .gm-goal-time { color: rgba(255,255,255,0.25); font-size: 0.7rem; white-space: nowrap; flex-shrink: 0; }
-        .gm-goal-scorer { color: white; font-weight: 700; }
-        .gm-goal-scorer.pool { color: var(--green); }
-        .gm-goal-assist.pool { color: var(--green); font-weight: 600; }
-        .gm-period-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin: 0.6rem 0 0.3rem; }
-        .gm-loading { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 2rem 0; letter-spacing: 1px; }
-        .gm-close { position: absolute; top: 0.8rem; right: 1rem; font-size: 1.4rem; color: rgba(255,255,255,0.4); cursor: pointer; line-height: 1; padding: 4px; }
+        .gm-sheet { background: #0d1117; border-radius: 18px 18px 0 0; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); position: relative; }
+        @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 18px; max-height: 85vh; } }
+        @media (min-width: 861px) { .gm-sheet { max-width: 540px; } }
+        .gm-close { position: absolute; top: 0.85rem; right: 1rem; font-size: 1.3rem; color: rgba(255,255,255,0.35); cursor: pointer; line-height: 1; padding: 4px 6px; z-index: 1; }
         .gm-close:hover { color: white; }
-        .gm-sheet { position: relative; }
+        /* Status bar */
+        .gm-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 1rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .gm-statusbar .live-dot::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; animation: pulse 1.5s infinite; }
+        /* Team rows */
+        .gm-team-row { display: flex; align-items: center; gap: 0.85rem; padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .gm-team-logo { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+        .gm-team-info { flex: 1; min-width: 0; }
+        .gm-team-fullname { font-family: 'Bebas Neue', cursive; font-size: 1.25rem; letter-spacing: 2px; color: white; line-height: 1.1; }
+        .gm-team-sog { font-size: 0.7rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); margin-top: 1px; }
+        .gm-team-score { font-family: 'Bebas Neue', cursive; font-size: 2.4rem; color: white; letter-spacing: 1px; line-height: 1; flex-shrink: 0; min-width: 36px; text-align: right; }
+        .gm-team-score.future { font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); letter-spacing: 0; }
+        /* Pool impact strip */
+        .gm-pool-strip { padding: 0.55rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+        .gm-pool-strip-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-right: 0.2rem; flex-shrink: 0; }
+        .gm-pool-badge { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+        .gm-pool-badge.scoring { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+        .gm-pool-badge.playing { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.08); }
+        /* Scoring summary */
+        .gm-scoring { padding: 0 0 1rem; }
+        .gm-scoring-title { font-size: 0.88rem; font-weight: 800; color: white; padding: 0.85rem 1rem 0.5rem; letter-spacing: 0.3px; }
+        .gm-period-header { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); padding: 5px 1rem; }
+        .gm-goal-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .gm-goal-row:last-child { border-bottom: none; }
+        .gm-goal-headshot { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: rgba(255,255,255,0.05); flex-shrink: 0; }
+        .gm-goal-info { flex: 1; min-width: 0; }
+        .gm-goal-scorer { font-size: 0.9rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: white; }
+        .gm-goal-scorer.pool { color: var(--green); }
+        .gm-goal-num { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 400; margin-left: 3px; }
+        .gm-goal-assists { font-size: 0.75rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); margin-top: 1px; }
+        .gm-goal-assists .pool { color: var(--green); font-weight: 600; }
+        .gm-goal-time { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+        .gm-loading { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 3rem 0; letter-spacing: 1px; }
+        .gm-no-goals { font-size: 0.82rem; color: rgba(255,255,255,0.25); padding: 0.75rem 1rem; font-family: 'Barlow Condensed', sans-serif; }
 
         /* ── INVALID LINK ── */
         #invalid-gate { position: fixed; inset: 0; z-index: 9999; background: var(--rink); display: none; align-items: center; justify-content: center; background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(26,58,110,0.6) 0%, transparent 70%); }
@@ -1722,7 +1707,7 @@
       modal.classList.add('show');
       content.innerHTML = '<div class="gm-loading">Loading…</div>';
 
-      // Fetch play-by-play for goal detail
+      // Fetch play-by-play for goal detail + headshots
       let pbp = null;
       try {
         const res = await fetch(`${NHL_PROXY}?path=/v1/gamecenter/${gameId}/play-by-play`);
@@ -1732,6 +1717,7 @@
       const bs = _liveBoxscores[gameId] || pbp;
       const gs = bs?.gameState || 'FUT';
       const isLive = gs === 'LIVE' || gs === 'CRIT';
+      const isFinal = gs === 'OFF' || gs === 'FINAL';
       const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
       const game = _liveGames.find(g => g.id === gameId) || {};
       const away = game.away || '';
@@ -1741,117 +1727,140 @@
       const homeLogo = bs?.homeTeam?.logo || '';
       const awayAbbr = bs?.awayTeam?.abbrev || away;
       const homeAbbr = bs?.homeTeam?.abbrev || home;
-      const awayName = bs?.awayTeam?.commonName?.default || awayAbbr;
-      const homeName = bs?.homeTeam?.commonName?.default || homeAbbr;
+      const awayFullName = (bs?.awayTeam?.placeName?.default || '') + ' ' + (bs?.awayTeam?.commonName?.default || awayAbbr);
+      const homeFullName = (bs?.homeTeam?.placeName?.default || '') + ' ' + (bs?.homeTeam?.commonName?.default || homeAbbr);
       const awayScore = bs?.awayTeam?.score ?? 0;
       const homeScore = bs?.homeTeam?.score ?? 0;
-      const awaySog = bs?.awayTeam?.sog ?? '—';
-      const homeSog = bs?.homeTeam?.sog ?? '—';
+      const awaySog = bs?.awayTeam?.sog ?? null;
+      const homeSog = bs?.homeTeam?.sog ?? null;
       const statusText = gameStatusText(bs);
-
-      const logoHtml = (logo, abbr) => logo
-        ? `<img class="gm-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="${abbr}" onerror="this.style.display='none'">`
-        : '';
-
-      const scoreBlock = isFut
-        ? `<div class="gm-score-block"><div class="gm-score future">${statusText}</div></div>`
-        : `<div class="gm-score-block"><div class="gm-score">${awayScore}–${homeScore}</div><div class="gm-status${isLive ? ' live-dot' : ''}">${statusText}</div></div>`;
-
-      const sogHtml = !isFut
-        ? `<div class="gm-sog"><span>${awaySog} shots</span><span style="color:rgba(255,255,255,0.2)">SOG</span><span>${homeSog} shots</span></div>`
-        : '';
 
       // Build pool players per team
       const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
-      const posGroup = p => {
-        const n = normalizePos(p.pos || p.position || '');
-        if (n === 'G') return 'G';
-        if (n === 'D') return 'D';
-        return 'F';
+      // Build roster map with headshots from play-by-play
+      const rosterMap = {}; // playerId → { name, headshot, team }
+      (pbp?.rosterSpots || []).forEach(p => {
+        rosterMap[p.playerId] = {
+          name: (p.firstName?.default || '') + ' ' + (p.lastName?.default || ''),
+          headshot: p.headshot || null,
+          teamAbbrev: p.teamAbbrev || '',
+        };
+      });
+
+      // ── Status bar ──
+      let statusBarHtml = '';
+      if (isLive) {
+        statusBarHtml = `<div class="gm-statusbar"><span class="live-dot">LIVE</span><span>${statusText}</span></div>`;
+      } else if (isFinal) {
+        statusBarHtml = `<div class="gm-statusbar"><span>Final</span><span>${awaySog !== null ? `${awaySog} – ${homeSog} shots` : ''}</span></div>`;
+      } else {
+        statusBarHtml = `<div class="gm-statusbar"><span>Upcoming</span><span>${statusText}</span></div>`;
+      }
+
+      // ── Team rows ──
+      const teamRow = (logo, fullName, score, sog, side) => {
+        const logoImg = logo
+          ? `<img class="gm-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="" onerror="this.style.display='none'">`
+          : `<div style="width:42px;height:42px;flex-shrink:0"></div>`;
+        const scoreEl = isFut
+          ? `<div class="gm-team-score future">${side === 'away' ? 'Away' : 'Home'}</div>`
+          : `<div class="gm-team-score">${score}</div>`;
+        const sogEl = !isFut && sog !== null
+          ? `<div class="gm-team-sog">${sog} shots</div>`
+          : '';
+        return `<div class="gm-team-row">
+          ${logoImg}
+          <div class="gm-team-info">
+            <div class="gm-team-fullname">${fullName.trim()}</div>
+            ${sogEl}
+          </div>
+          ${scoreEl}
+        </div>`;
       };
-      const posLabel = g => g === 'G' ? 'Goalies' : g === 'D' ? 'Defencemen' : 'Forwards';
 
-      const playerRowHtml = (pl) => {
-        const right = isFut
-          ? ''
-          : pl.livePts > 0
-            ? `<span class="gm-player-pts live">+${pl.livePts}</span>`
-            : '';
-        return `<div class="gm-player-row"><span class="gm-player-name pool">${pl.name}</span>${right}</div>`;
-      };
+      // ── Pool strip ──
+      const allPoolPlayers = [...awayPool, ...homePool];
+      let poolStripHtml = '';
+      if (allPoolPlayers.length) {
+        const badges = allPoolPlayers.map(pl => {
+          const isScoring = pl.livePts > 0;
+          const label = isScoring ? `${pl.name} +${pl.livePts}` : pl.name;
+          return `<span class="gm-pool-badge ${isScoring ? 'scoring' : 'playing'}">${label}</span>`;
+        }).join('');
+        poolStripHtml = `<div class="gm-pool-strip"><span class="gm-pool-strip-label">Pool</span>${badges}</div>`;
+      }
 
-      const teamColHtml = (pool, abbr) => {
-        if (!pool.length) return `<div><div class="gm-team-col-label">${abbr}</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.2);padding:4px 0">No pool players</div></div>`;
-        const groups = { F: [], D: [], G: [] };
-        pool.forEach(pl => groups[posGroup(pl)].push(pl));
-        let html = `<div><div class="gm-team-col-label">${abbr}</div>`;
-        ['F','D','G'].forEach(g => {
-          if (!groups[g].length) return;
-          html += `<div style="font-size:0.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin:0.4rem 0 0.2rem">${posLabel(g)}</div>`;
-          html += groups[g].map(playerRowHtml).join('');
-        });
-        html += '</div>';
-        return html;
-      };
-
-      const awayColHtml = teamColHtml(awayPool, awayAbbr);
-      const homeColHtml = teamColHtml(homePool, homeAbbr);
-
-      // Goals from play-by-play
-      let goalsHtml = '';
+      // ── Scoring summary ──
+      let scoringHtml = '';
       if (!isFut && pbp) {
-        const rosterMap = {};
-        (pbp.rosterSpots || []).forEach(p => { rosterMap[p.playerId] = (p.firstName?.default || '') + ' ' + (p.lastName?.default || ''); });
         const goals = (pbp.plays || []).filter(p => p.typeDescKey === 'goal');
         if (goals.length) {
-          // Group by period
           const byPeriod = {};
           goals.forEach(g => {
             const pNum = g.periodDescriptor?.number || 0;
             if (!byPeriod[pNum]) byPeriod[pNum] = [];
             byPeriod[pNum].push(g);
           });
-          goalsHtml = `<div class="gm-section-title">Goals</div>`;
-          Object.entries(byPeriod).forEach(([pNum, gs]) => {
-            const pLabel = pNum == 4 ? 'Overtime' : pNum == 5 ? 'Shootout' : `Period ${pNum}`;
-            goalsHtml += `<div class="gm-period-label">${pLabel}</div>`;
-            gs.forEach(g => {
+
+          let rows = '';
+          Object.entries(byPeriod).forEach(([pNum, pGoals]) => {
+            const pLabel = pNum == 4 ? 'OT' : pNum == 5 ? 'SO' : `${['','1st','2nd','3rd'][pNum] || pNum + 'th'} Period`;
+            rows += `<div class="gm-period-header">${pLabel}</div>`;
+            pGoals.forEach(g => {
               const d = g.details || {};
               const scorerId = d.scoringPlayerId;
               const a1Id = d.assist1PlayerId;
               const a2Id = d.assist2PlayerId;
-              const scorerName = rosterMap[scorerId] || '?';
-              const a1Name = a1Id ? rosterMap[a1Id] : null;
-              const a2Name = a2Id ? rosterMap[a2Id] : null;
+              const scorer = rosterMap[scorerId] || {};
+              const scorerName = scorer.name || '?';
+              const goalNum = d.scoringPlayerTotal ? `(${d.scoringPlayerTotal})` : '';
+              const a1 = a1Id ? rosterMap[a1Id] : null;
+              const a2 = a2Id ? rosterMap[a2Id] : null;
               const isPoolScorer = poolIds.has(scorerId);
               const isPoolA1 = a1Id && poolIds.has(a1Id);
               const isPoolA2 = a2Id && poolIds.has(a2Id);
-              const assists = [a1Name ? `<span class="${isPoolA1 ? 'gm-goal-assist pool' : ''}">${a1Name}</span>` : null, a2Name ? `<span class="${isPoolA2 ? 'gm-goal-assist pool' : ''}">${a2Name}</span>` : null].filter(Boolean).join(', ');
               const time = g.timeInPeriod || '';
-              goalsHtml += `<div class="gm-goal-row">
-                <span class="gm-goal-time">${time}</span>
-                <span><span class="gm-goal-scorer${isPoolScorer ? ' pool' : ''}">${scorerName}</span>${assists ? ` (${assists})` : ''}</span>
+
+              const headshotUrl = scorer.headshot
+                ? `/api/nhl-schedule?img=${encodeURIComponent(scorer.headshot)}`
+                : '';
+              const headshotImg = headshotUrl
+                ? `<img class="gm-goal-headshot" src="${headshotUrl}" alt="" onerror="this.src='';this.style.background='rgba(255,255,255,0.08)'">`
+                : `<div class="gm-goal-headshot"></div>`;
+
+              const assistParts = [
+                a1 ? `<span class="${isPoolA1 ? 'pool' : ''}">${a1.name}</span>` : null,
+                a2 ? `<span class="${isPoolA2 ? 'pool' : ''}">${a2.name}</span>` : null,
+              ].filter(Boolean);
+              const assistsHtml = assistParts.length
+                ? `<div class="gm-goal-assists">Assists: ${assistParts.join(', ')}</div>`
+                : `<div class="gm-goal-assists" style="color:rgba(255,255,255,0.2)">Unassisted</div>`;
+
+              rows += `<div class="gm-goal-row">
+                ${headshotImg}
+                <div class="gm-goal-info">
+                  <div class="gm-goal-scorer${isPoolScorer ? ' pool' : ''}">${scorerName}<span class="gm-goal-num">${goalNum}</span></div>
+                  ${assistsHtml}
+                </div>
+                <div class="gm-goal-time">${time}</div>
               </div>`;
             });
           });
+
+          scoringHtml = `<div class="gm-scoring"><div class="gm-scoring-title">Goals</div>${rows}</div>`;
         } else {
-          goalsHtml = `<div class="gm-section-title">Goals</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.25);padding:4px 0">No goals yet</div>`;
+          scoringHtml = `<div class="gm-scoring"><div class="gm-scoring-title">Goals</div><div class="gm-no-goals">No goals yet</div></div>`;
         }
       }
 
-      content.innerHTML = `
-        <div class="gm-header">
-          <div class="gm-team away">${logoHtml(awayLogo, awayAbbr)}<span class="gm-team-name">${awayName}</span></div>
-          ${scoreBlock}
-          <div class="gm-team home">${logoHtml(homeLogo, homeAbbr)}<span class="gm-team-name">${homeName}</span></div>
-        </div>
-        ${sogHtml}
-        <div class="gm-section-title">Pool Players</div>
-        <div class="gm-teams-grid">${awayColHtml}${homeColHtml}</div>
-        ${goalsHtml}
-      `;
+      content.innerHTML =
+        statusBarHtml +
+        teamRow(awayLogo, awayFullName, awayScore, awaySog, 'away') +
+        teamRow(homeLogo, homeFullName, homeScore, homeSog, 'home') +
+        poolStripHtml +
+        scoringHtml;
     }
     // ─────────────────────────────────────────────────────────────────────────
     let activeView = sessionStorage.getItem('pool_view') || 'standings';
