@@ -1587,7 +1587,7 @@
         return 'Tonight';
       }
       if (gs === 'LIVE' || gs === 'CRIT') {
-        const period = parseInt(bs?.period, 10) || 0;
+        const period = parseInt(bs?.periodDescriptor?.number, 10) || 0;
         const clock = bs?.clock?.timeRemaining || '';
         const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : (['','1st','2nd','3rd'][period] || period + 'th');
         return `${clock} ${pLabel}`;
