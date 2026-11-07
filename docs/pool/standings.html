@@ -1589,7 +1589,7 @@
       if (gs === 'LIVE' || gs === 'CRIT') {
         const period = bs?.period || '?';
         const clock = bs?.clock?.timeRemaining || '';
-        const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : `P${period}`;
+        const pLabel = period === 4 ? 'OT' : period === 5 ? 'SO' : `${['','1st','2nd','3rd'][period] || period + 'th'}`;
         return `${clock} ${pLabel}`;
       }
       if (gs === 'OFF') {
