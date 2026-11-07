@@ -1,32 +1,24 @@
 ============================================================
 STARS - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-07 02:50 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Jamie Benn — Wyatt Johnston — Mikko Rantanen
-Line 2: Jason Robertson — Roope Hintz — Arttu Hyry
-Line 3: Joel Kiviranta — Justin Hryckowian — Tyler Seguin
-Line 4: David Perron — Radek Faksa — Colin Blackwell
+Line 1: Jason Robertson — Roope Hintz — Arttu Hyry
+Line 2: Jamie Benn — Wyatt Johnston — Mikko Rantanen
+Line 3: Sam Steel — Justin Hryckowian — Tyler Seguin
+Line 4: Joel Kiviranta — Radek Faksa — David Perron
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Esa Lindell — Nils Lundkvist
-Pair 2: Thomas Harley — Tyler Myers
-Pair 3: Lian Bichsel — Trey Taylor
+Pair 1: Thomas Harley — Nils Lundkvist
+Pair 2: Lian Bichsel — Esa Lindell
+Pair 3: Trey Taylor — Tyler Myers
 
 GOALIES:
 ----------------------------------------
-  Casey De Smith
   Jake Oettinger
-
-SCRATCHED / INJURED:
-----------------------------------------
-  Sam Steel (scratched)
-  Kyle Capobianco (lower body) (injured)
-  Oskar BÃ¤ck (finger) (injured)
-  Matt Duchene (lower body) (injured)
-  Miro Heiskanen (upper body) (injured)
+  Casey De Smith
 
 ============================================================

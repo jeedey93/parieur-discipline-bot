@@ -1,12 +1,12 @@
 ============================================================
 KRAKEN - LINEUP
-Last Updated: 2026-11-04 04:41 PM ET
+Last Updated: 2026-11-07 02:50 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Bobby McMann — Matty Beniers — Jordan Eberle
-Line 2: Matthew Wood — Freddy Gaudreau — Chandler Stephenson
+Line 2: Matthew Wood — Frederick Gaudreau — Chandler Stephenson
 Line 3: Kaapo Kakko — Berkly Catton — Mackie Samoskevich
 Line 4: Jani Nyman — Ben Meyers — Ryan Winterton
 
@@ -20,13 +20,5 @@ GOALIES:
 ----------------------------------------
   Joey Daccord
   Philipp Grubauer
-
-SCRATCHED / INJURED:
-----------------------------------------
-  Cale Fleury (scratched)
-  Jacob Melanson (upper body) (injured)
-  Ryan Lindgren (upper body) (injured)
-  Jared McCann (lower body) (injured)
-  Curtis Douglas (upper body) (injured)
 
 ============================================================

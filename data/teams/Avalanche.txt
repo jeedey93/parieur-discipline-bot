@@ -1,6 +1,6 @@
 ============================================================
 AVALANCHE - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-07 02:50 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,9 +12,9 @@ Line 4: Parker Kelly — Fedor Svechkov — Logan OConnor
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Devon Toews — Cale Makar
-Pair 2: Brett Kulak — Noah Juulsen
-Pair 3: Sam Malinski — Brent Burns
+Pair 1: Brett Kulak — Cale Makar
+Pair 2: Devon Toews — Sam Malinski
+Pair 3: Noah Juulsen — Brent Burns
 
 GOALIES:
 ----------------------------------------
