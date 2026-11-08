@@ -1121,16 +1121,21 @@
       const allSlugs = [..._trade.a.map(p => p.slug), ..._trade.b.map(p => p.slug)];
       await Promise.all(allSlugs.map(fetchPlayerStats));
 
+      // Snapshot original acquisitions BEFORE any mutation (needed for pts-at-swap calc)
+      const origAcqA = JSON.parse(JSON.stringify(teamA.acquisitions || {}));
+      const origAcqB = JSON.parse(JSON.stringify(teamB.acquisitions || {}));
+
       // Helper: move a player from one team to another
       const movePlayer = (fromTeam, toTeam, slug, fromPos) => {
-        // Remove from all positions on fromTeam
+        // Remove from every position on fromTeam
         for (const key of ['F','D','G','B']) {
           fromTeam.roster[key] = (fromTeam.roster[key] || []).filter(s => s !== slug);
         }
-        // Determine destination position: keep same if dressed, bench if bench
+        // Destination: keep same slot (B stays B; F/D/G keeps position)
         const destPos = fromPos === 'B' ? 'B' : fromPos;
         if (!toTeam.roster[destPos]) toTeam.roster[destPos] = [];
-        toTeam.roster[destPos].push(slug);
+        // Avoid duplicates (safety check)
+        if (!toTeam.roster[destPos].includes(slug)) toTeam.roster[destPos].push(slug);
         // Set activation snapshot on receiving team
         const p = _players[slug];
         if (!toTeam.acquisitions) toTeam.acquisitions = {};
@@ -1151,22 +1156,39 @@
       });
       if (!patchRes.ok) throw new Error(`Roster patch failed: ${patchRes.status}`);
 
-      // Insert one pool_bench_swaps row per player pair (A→B and B→A)
-      // For a trade: each player going out has their pts-at-swap frozen
+      // Build one log row per outgoing player on each side
+      const tradeNote = note || `Trade: ${_trade.a.map(p=>p.name).join(', ')} → ${teamIdB} for ${_trade.b.map(p=>p.name).join(', ')}`;
       const swapRows = [];
 
-      // A's players go to B (player_out = from A, player_in = from B for same row)
-      // We record each outgoing player paired with the "main" incoming player (first of the other side)
-      // For trades, we record N rows where each outgoing player is logged once
       for (const outPl of _trade.a) {
-        const pOut  = _players[outPl.slug];
-        const oldAcq = teamA?.acquisitions?.[outPl.slug]?.stats_snapshot || null;
+        const pOut    = _players[outPl.slug];
+        const oldAcq  = origAcqA[outPl.slug]?.stats_snapshot || null;
         const snapPts = oldAcq ? calcPoolPts({ ...oldAcq, position: pOut?.position }) : 0;
         const outPts  = outPl.pos === 'B' ? 0 : Math.max(0, calcPoolPts(pOut) - snapPts);
-        // pair with first player coming back from B
-        const inPl  = _trade.b[0];
-        const pIn   = _players[inPl?.slug];
+        // pair display: each outgoing A player shown against all B players (first for the row)
+        const inPl = _trade.b[0];
+        const pIn  = _players[inPl?.slug];
         swapRows.push({
+          league_code: LEAGUE, team_id: teamIdA, swap_date: date,
+          player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
+          player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
+          player_out_pts_at_swap: outPts, reason: 'trade', note: tradeNote
+        });
+      }
+      for (const outPl of _trade.b) {
+        const pOut    = _players[outPl.slug];
+        const oldAcq  = origAcqB[outPl.slug]?.stats_snapshot || null;
+        const snapPts = oldAcq ? calcPoolPts({ ...oldAcq, position: pOut?.position }) : 0;
+        const outPts  = outPl.pos === 'B' ? 0 : Math.max(0, calcPoolPts(pOut) - snapPts);
+        const inPl = _trade.a[0];
+        const pIn  = _players[inPl?.slug];
+        swapRows.push({
+          league_code: LEAGUE, team_id: teamIdB, swap_date: date,
+          player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
+          player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
+          player_out_pts_at_swap: outPts, reason: 'trade', note: tradeNote
+        });
+      }
           league_code: LEAGUE, team_id: teamIdA, swap_date: date,
           player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
           player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
@@ -1174,22 +1196,6 @@
           note: note || `Trade: ${_trade.a.map(p=>p.name).join(', ')} → ${teamIdB} for ${_trade.b.map(p=>p.name).join(', ')}`
         });
       }
-      for (const outPl of _trade.b) {
-        const pOut  = _players[outPl.slug];
-        const oldAcq = teamB?.acquisitions?.[outPl.slug]?.stats_snapshot || null;
-        const snapPts = oldAcq ? calcPoolPts({ ...oldAcq, position: pOut?.position }) : 0;
-        const outPts  = outPl.pos === 'B' ? 0 : Math.max(0, calcPoolPts(pOut) - snapPts);
-        const inPl  = _trade.a[0];
-        const pIn   = _players[inPl?.slug];
-        swapRows.push({
-          league_code: LEAGUE, team_id: teamIdB, swap_date: date,
-          player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
-          player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
-          player_out_pts_at_swap: outPts, reason: 'trade',
-          note: note || `Trade: ${_trade.b.map(p=>p.name).join(', ')} → ${teamIdA} for ${_trade.a.map(p=>p.name).join(', ')}`
-        });
-      }
-
       const logRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps`, {
         method: 'POST', headers: sbHeaders(), body: JSON.stringify(swapRows)
       });
