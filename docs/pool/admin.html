@@ -340,22 +340,6 @@
 
     <div class="form-row" style="margin-top:0.75rem">
       <div class="form-group">
-        <label>Swap Type</label>
-        <div class="radio-group">
-          <label class="radio-btn" id="tr-lbl-swap">
-            <input type="radio" name="tr-type" value="swap" checked onchange="updateTradeRadio()">
-            🔄 Official Swap
-          </label>
-          <label class="radio-btn" id="tr-lbl-injury">
-            <input type="radio" name="tr-type" value="injury" onchange="updateTradeRadio()">
-            🩹 Injury
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
         <label>Note</label>
         <textarea id="tr-note" placeholder="Optional note about the trade…"></textarea>
       </div>
@@ -1031,11 +1015,7 @@
   // State: each side tracks which players are being sent away
   const _trade = { a: [], b: [] }; // [{ slug, pos, name }]
 
-  function updateTradeRadio() {
-    const val = document.querySelector('input[name="tr-type"]:checked')?.value;
-    document.getElementById('tr-lbl-swap').className   = 'radio-btn' + (val === 'swap'   ? ' selected-swap'   : '');
-    document.getElementById('tr-lbl-injury').className = 'radio-btn' + (val === 'injury' ? ' selected-injury' : '');
-  }
+  function updateTradeRadio() {} // no-op — trades are their own fixed category
 
   function onTradeTeamChange(side) {
     const teamId = document.getElementById(`tr-team-${side}`).value;
@@ -1125,8 +1105,8 @@
     const teamIdA = document.getElementById('tr-team-a').value;
     const teamIdB = document.getElementById('tr-team-b').value;
     const date    = document.getElementById('tr-date').value;
-    const reason  = document.querySelector('input[name="tr-type"]:checked').value;
     const note    = document.getElementById('tr-note').value.trim();
+    const reason  = 'trade';
 
     try {
       // Fetch fresh roster data
