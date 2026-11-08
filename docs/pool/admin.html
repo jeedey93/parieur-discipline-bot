@@ -346,6 +346,7 @@
     </div>
 
     <button class="btn btn-primary" id="tr-btn-confirm" onclick="confirmTrade()" disabled>Confirm Trade</button>
+    <div id="tr-hint" style="display:none;font-size:0.85rem;color:var(--gold);margin-top:0.5rem"></div>
     <div class="msg" id="tr-msg"></div>
   </div>
 
@@ -1092,8 +1093,19 @@
   function updateTradeConfirmBtn() {
     const teamA = document.getElementById('tr-team-a').value;
     const teamB = document.getElementById('tr-team-b').value;
-    const ok = teamA && teamB && teamA !== teamB && _trade.a.length > 0 && _trade.b.length > 0;
+    const sameTeam = teamA && teamB && teamA === teamB;
+    const ok = teamA && teamB && !sameTeam && _trade.a.length > 0 && _trade.b.length > 0;
     document.getElementById('tr-btn-confirm').disabled = !ok;
+    const hint = document.getElementById('tr-hint');
+    if (sameTeam) {
+      hint.textContent = '⚠️ Both teams are the same — select two different poolers.';
+      hint.style.display = 'block';
+    } else if (teamA && teamB && (_trade.a.length === 0 || _trade.b.length === 0)) {
+      hint.textContent = 'Add at least one player on each side.';
+      hint.style.display = 'block';
+    } else {
+      hint.style.display = 'none';
+    }
   }
 
   async function confirmTrade() {
