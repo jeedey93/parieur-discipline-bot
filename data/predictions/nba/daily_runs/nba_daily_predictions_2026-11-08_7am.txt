@@ -1,0 +1,39 @@
+Date: 2026-11-08
+
+Chicago Bulls vs Philadelphia 76ers
+Chicago Bulls ML (Home): 4.4, Philadelphia 76ers ML (Away): 1.23, O/U: 238.5 (Over: 1.94 / Under: 1.88)
+Spreads: Home None (1.94), Away -9.5 (1.95)
+------
+Detroit Pistons vs Los Angeles Lakers
+Detroit Pistons ML (Home): 1.54, Los Angeles Lakers ML (Away): 2.56, O/U: 221.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.92), Away 4.5 (1.97)
+------
+Minnesota Timberwolves vs Utah Jazz
+Minnesota Timberwolves ML (Home): 1.18, Utah Jazz ML (Away): 5.2, O/U: 224.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away 11.5 (1.91)
+------
+Dallas Mavericks vs Brooklyn Nets
+Dallas Mavericks ML (Home): 1.28, Brooklyn Nets ML (Away): 3.9, O/U: 220.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away 9.5 (1.94)
+------
+Milwaukee Bucks vs Boston Celtics
+Milwaukee Bucks ML (Home): 6.4, Boston Celtics ML (Away): 1.13, O/U: 223.5 (Over: 1.94 / Under: 1.88)
+Spreads: Home None (1.99), Away -12.5 (1.91)
+------
+Los Angeles Clippers vs New Orleans Pelicans
+Los Angeles Clippers ML (Home): 2.0, New Orleans Pelicans ML (Away): 1.85, O/U: 229.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -1.5 (1.94)
+------
+Sacramento Kings vs Miami Heat
+Sacramento Kings ML (Home): 3.7, Miami Heat ML (Away): 1.3, O/U: 238.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -8.5 (1.95)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Los Angeles Lakers +4.5 vs Detroit Pistons @ 1.97
+The Los Angeles Lakers, despite being the road team, demonstrate a superior overall record this season at 8-2 compared to the Detroit Pistons' 6-2. The Lakers also hold a slightly better away record (3-1, 0.750 win%) than the Pistons' home record (2-1, 0.667 win%), mitigating the traditional home-court advantage. While both teams are performing well recently, the Lakers have been incredibly efficient offensively, averaging 122.0 points over their last 10 games. The market appears to be slightly overvaluing the Pistons at home, as our model suggests the Lakers have a higher probability of winning outright than the implied odds, creating a significant edge on the spread.
+Confidence Level: High, Units: 1.5u, Win Probability: 57.7%
