@@ -1,0 +1,19 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-06.
+
+Here's the breakdown:
+
+1.  **Columbus Blue Jackets vs Buffalo Sabres Over 6.5 @ 2.0 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Columbus 2 @ Buffalo 5 (Total goals: 7)
+    *   Outcome: **WIN** (Total goals 7, which is greater than the line of 6.5)
+
+2.  **Anaheim Ducks vs Calgary Flames Over 6.5 @ 1.95 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Anaheim 5 @ Calgary 3 (Total goals: 8)
+    *   Outcome: **WIN** (Total goals 8, which is greater than the line of 6.5)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 0**
+*   **Total Pushes: 0**

@@ -1,33 +1,44 @@
 ============================================================
 ISLANDERS - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-07 02:50 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Simon Holmstrom — Bo Horvat — Kyle Palmieri
-Line 2: Emil Heineman — Brayden Schenn — Victor Eklund
-Line 3: Ondrej Palat — Jean-Gabriel Pageau — Anthony Duclair
+Line 1: Emil Heineman — Bo Horvat — Kyle Palmieri
+Line 2: Ondrej Palat — Brayden Schenn — Victor Eklund
+Line 3: Simon Holmstrom — Jean-Gabriel Pageau — Anthony Duclair
 Line 4: Kyle MacLean — Casey Cizikas — Mitchell Chaffee
+Line 5: Roman Kantserov — Connor Bedard — Tyler Bertuzzi
+Line 6: Oliver Moore — Anton Frondell — Frank Nazar
+Line 7: Teuvo Teravainen — Ryan Greene — Ryan Donato
+Line 8: Cole Smith — Jordan Greenway — Dillon Boucher
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Logan Stanley — Matthew Schaefer
 Pair 2: Adam Pelech — Tony De Angelo
-Pair 3: Matt Kessel — Scott Mayfield
+Pair 3: Ben Hutton — Matthew Kessel
+Pair 4: Alex Vlasic — Ian Cole
+Pair 5: Wyatt Kaiser — Artyom Levshunov
+Pair 6: Kevin Korchinski — Sam Rinzel
 
 GOALIES:
 ----------------------------------------
-  Semyon Varlamov
   Ilya Sorokin
+  Semyon Varlamov
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Ben Hutton (scratched)
-  Mathew Barzal (knee) (injured)
-  Alexander Romanov (torn right ACL) (injured)
+  Scott Mayfield (scratched)
   Ryan Pulock (upper body) (injured)
   Matias Maccelli (lower body) (injured)
   Cal Ritchie (lower body) (injured)
+  Mathew Barzal (knee) (injured)
+  Alexander Romanov (torn ACL) (injured)
+  Ethan Del Mastro (scratched)
+  Andrew Mangiapane (scratched)
+  Bowen Byram (upper body) (injured)
+  Patrick Kane (upper body) (injured)
 
 ============================================================
