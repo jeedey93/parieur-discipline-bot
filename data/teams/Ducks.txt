@@ -1,6 +1,6 @@
 ============================================================
 DUCKS - LINEUP
-Last Updated: 2026-11-06 04:14 PM ET
+Last Updated: 2026-11-08 03:09 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -13,12 +13,22 @@ Line 4: Jeff Malott — Roger McQueen — Nikita Nesterenko
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jackson La Combe — Drew Helleson
-Pair 2: Pavel Mintyukov — Noah Warren
-Pair 3: Travis Mitchell — Tristan Luneau
+Pair 2: Travis Mitchell — Tristan Luneau
+Pair 3: Pavel Mintyukov — Noah Warren
 
 GOALIES:
 ----------------------------------------
-  Lukas Dostal
+  Ville Husso
   Laurent Brossoit
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Tyson Hinds (scratched)
+  Frank Vatrano (scratched)
+  Lukas Dostal (scratched)
+  A.J. Greer (upper body) (injured)
+  Ian Moore (lower body) (injured)
+  Ryan Poehling (MCL) (injured)
+  Troy Terry (hip) (injured)
 
 ============================================================

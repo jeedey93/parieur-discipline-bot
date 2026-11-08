@@ -1,6 +1,6 @@
 ============================================================
 FLAMES - LINEUP
-Last Updated: 2026-11-06 04:14 PM ET
+Last Updated: 2026-11-08 03:09 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -12,13 +12,22 @@ Line 4: William Stromgren — Jonathan Castagna — Adam Klapka
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Kevin Bahl — Simon Nemec
+Pair 1: Joel Hanley — Simon Nemec
 Pair 2: Jake Middleton — Zach Whitecloud
 Pair 3: Yan Kuznetsov — Zayne Parekh
 
 GOALIES:
 ----------------------------------------
-  Dustin Wolf
   Devin Cooley
+  Dustin Wolf
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Maksim Tsyplakov (scratched)
+  Brayden Pachal (scratched)
+  Brennan Othmann (upper body) (injured)
+  Jonathan Huberdeau (hip) (injured)
+  Samuel Honzek (lower body) (injured)
+  Kevin Bahl (lower body) (injured)
 
 ============================================================

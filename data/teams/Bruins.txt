@@ -1,13 +1,13 @@
 ============================================================
 BRUINS - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-08 03:09 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: JJ Peterka — Pavel Zacha — David Pastrnak
-Line 2: Marat Khusnutdinov — Fraser Minten — Morgan Geekie
-Line 3: Casey Mittelstadt — Elias Lindholm — James Hagens
+Line 2: Mikey Eyssimont — Fraser Minten — Morgan Geekie
+Line 3: Casey Mittelstadt — Elias Lindholm — Marat Khusnutdinov
 Line 4: Tanner Jeannot — Sean Kuraly — Mark Kastelic
 
 DEFENSE PAIRS:
@@ -26,5 +26,6 @@ SCRATCHED / INJURED:
   Connor Clifton (scratched)
   Jonathan Aspirot (scratched)
   Matthew Poitras (upper body) (injured)
+  James Hagens (back) (injured)
 
 ============================================================
