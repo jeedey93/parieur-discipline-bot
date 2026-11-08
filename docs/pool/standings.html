@@ -960,6 +960,7 @@
         @media (min-width: 861px) { .swap-reason { font-size: 0.8rem; padding: 3px 9px; } }
         .swap-reason.injury  { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
         .swap-reason.swap { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
+        .swap-reason.trade { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
         .all-swaps { margin-top: 2rem; }
         .all-swaps-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; }
         .all-swaps-team { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.2rem; }
@@ -3819,6 +3820,8 @@
           reasonHtml = `<span class="swap-reason injury">🩹 Injury</span>`;
         } else if (s.reason === 'swap') {
           reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapNumbers[s.id]}</span>`;
+        } else if (s.reason === 'trade') {
+          reasonHtml = `<span class="swap-reason trade">🤝 Trade</span>`;
         } else if (s.reason === 'pickup') {
           const _pm = ['January','February','March','April','May','June','July','August','September','October','November','December'][new Date(s.swap_date).getUTCMonth()];
           reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 ${_pm} Pickup</span>`;
@@ -4028,6 +4031,7 @@
         const swapReasonPill = r._swapReason === 'injury'
           ? `<span class="swap-reason injury">🩹 Injury</span>`
           : r._swapReason === 'swap' ? `<span class="swap-reason swap">🔄 Swap</span>`
+          : r._swapReason === 'trade' ? `<span class="swap-reason trade">🤝 Trade</span>`
           : r._swapReason === 'pickup' ? `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`
           : '';
         const form5d = r.form5d ?? null;
@@ -4671,6 +4675,8 @@
           reasonBadge = `<span class="swap-reason injury">🩹 Injury</span>`;
         } else if (s.reason === 'swap') {
           reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
+        } else if (s.reason === 'trade') {
+          reasonBadge = `<span class="swap-reason trade">🤝 Trade</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row" data-reason="${s.reason}" data-team="${s.team_id}">
