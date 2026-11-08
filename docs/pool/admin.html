@@ -153,9 +153,23 @@
     .filter-btn:hover { background: rgba(255,255,255,0.09); color: rgba(255,255,255,0.7); }
     .filter-btn.active { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
 
-    @media (max-width: 500px) {
-      .form-row { flex-direction: column; }
+    .reason-trade { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+
+    /* ── TRADE SECTION ── */
+    .trade-side { flex: 1; min-width: 260px; }
+    .trade-side-title { font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; }
+    .trade-player-list { display: flex; flex-direction: column; gap: 0.35rem; min-height: 36px; margin-bottom: 0.5rem; }
+    .trade-player-chip {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: 8px;
+      padding: 0.4rem 0.75rem; font-size: 0.9rem; font-weight: 600;
     }
+    .trade-player-chip .chip-pos { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-left: 4px; }
+    .trade-player-chip .chip-remove { cursor: pointer; color: rgba(255,100,100,0.6); font-size: 1rem; line-height: 1; padding: 0 2px; }
+    .trade-player-chip .chip-remove:hover { color: #ff6b6b; }
+    .trade-add-select { width: 100%; margin-bottom: 0.35rem; }
+    .trade-add-btn { background: rgba(255,255,255,0.07); border: 1px solid var(--line); border-radius: 6px; color: rgba(255,255,255,0.6); font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 0.35rem 0.9rem; cursor: pointer; }
+    .trade-add-btn:hover { background: rgba(255,255,255,0.12); }
   </style>
 </head>
 <body>
@@ -280,13 +294,85 @@
     <div class="msg" id="pu-msg"></div>
   </div>
 
-  <!-- SECTION 3: SWAP LOG -->
+  <!-- SECTION 3: TRADE -->
+  <div class="section-title">Trade Between Poolers</div>
+  <div class="card">
+    <div class="form-row">
+      <div class="form-group" style="max-width:220px">
+        <label>Date</label>
+        <input type="date" id="tr-date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- TEAM A -->
+      <div class="trade-side">
+        <div class="trade-side-title">Team A — gives away</div>
+        <div class="form-group" style="margin-bottom:0.5rem">
+          <label>Team</label>
+          <select id="tr-team-a" onchange="onTradeTeamChange('a')">
+            <option value="">— Select team —</option>
+          </select>
+        </div>
+        <div class="trade-player-list" id="tr-players-a"></div>
+        <select id="tr-add-sel-a" class="trade-add-select" disabled>
+          <option value="">— Add player to trade —</option>
+        </select>
+        <button class="trade-add-btn" onclick="tradeAddPlayer('a')" id="tr-add-btn-a" disabled>+ Add</button>
+      </div>
+
+      <!-- TEAM B -->
+      <div class="trade-side">
+        <div class="trade-side-title">Team B — gives away</div>
+        <div class="form-group" style="margin-bottom:0.5rem">
+          <label>Team</label>
+          <select id="tr-team-b" onchange="onTradeTeamChange('b')">
+            <option value="">— Select team —</option>
+          </select>
+        </div>
+        <div class="trade-player-list" id="tr-players-b"></div>
+        <select id="tr-add-sel-b" class="trade-add-select" disabled>
+          <option value="">— Add player to trade —</option>
+        </select>
+        <button class="trade-add-btn" onclick="tradeAddPlayer('b')" id="tr-add-btn-b" disabled>+ Add</button>
+      </div>
+    </div>
+
+    <div class="form-row" style="margin-top:0.75rem">
+      <div class="form-group">
+        <label>Swap Type</label>
+        <div class="radio-group">
+          <label class="radio-btn" id="tr-lbl-swap">
+            <input type="radio" name="tr-type" value="swap" checked onchange="updateTradeRadio()">
+            🔄 Official Swap
+          </label>
+          <label class="radio-btn" id="tr-lbl-injury">
+            <input type="radio" name="tr-type" value="injury" onchange="updateTradeRadio()">
+            🩹 Injury
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Note</label>
+        <textarea id="tr-note" placeholder="Optional note about the trade…"></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="tr-btn-confirm" onclick="confirmTrade()" disabled>Confirm Trade</button>
+    <div class="msg" id="tr-msg"></div>
+  </div>
+
+  <!-- SECTION 4: SWAP LOG -->
   <div class="section-title">Swap History</div>
   <div class="filter-bar" id="swap-filter-bar">
     <button class="filter-btn active" data-filter="all" onclick="setSwapFilter('all')">All</button>
     <button class="filter-btn" data-filter="swap" onclick="setSwapFilter('swap')">🔄 Swaps</button>
     <button class="filter-btn" data-filter="injury" onclick="setSwapFilter('injury')">🩹 Injuries</button>
     <button class="filter-btn" data-filter="pickup" onclick="setSwapFilter('pickup')">📥 Pickups</button>
+    <button class="filter-btn" data-filter="trade" onclick="setSwapFilter('trade')">🤝 Trades</button>
   </div>
   <div class="swap-log" id="swap-log">
     <div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>
@@ -342,7 +428,11 @@
     const tomorrowStr = t.toLocaleDateString('en-CA');
     document.getElementById('swap-date').value = today;
     document.getElementById('pu-date').value   = tomorrowStr;
+    document.getElementById('tr-date').value   = today;
     updateRadioStyle();
+    updateTradeRadio();
+    renderTradeChips('a');
+    renderTradeChips('b');
     await loadScoring();
     await loadTeams();
     await loadSwapLog();
@@ -375,7 +465,7 @@
     const r = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
     const rows = await r.json();
     _rosters = rows[0];
-    for (const selId of ['sel-team', 'pu-sel-team']) {
+    for (const selId of ['sel-team', 'pu-sel-team', 'tr-team-a', 'tr-team-b']) {
       const sel = document.getElementById(selId);
       sel.innerHTML = '<option value="">— Select team —</option>';
       for (const t of _rosters.data.teams) {
@@ -648,6 +738,8 @@
         const d = new Date(s.swap_date);
         const monthName = MONTHS[d.getUTCMonth()];
         reasonHtml = `<span class="reason-badge reason-pickup">📥 ${monthName} Pickup</span>`;
+      } else if (s.reason === 'trade') {
+        reasonHtml = `<span class="reason-badge reason-trade">🤝 Trade</span>`;
       } else {
         reasonHtml = `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
       }
@@ -931,6 +1023,217 @@
       await loadSwapLog();
     } catch (err) {
       showMsg('pu-msg', 'error', `❌ ${err.message}`);
+      btn.disabled = false;
+    }
+  }
+
+  // ── TRADE ─────────────────────────────────────────────────────────────────
+  // State: each side tracks which players are being sent away
+  const _trade = { a: [], b: [] }; // [{ slug, pos, name }]
+
+  function updateTradeRadio() {
+    const val = document.querySelector('input[name="tr-type"]:checked')?.value;
+    document.getElementById('tr-lbl-swap').className   = 'radio-btn' + (val === 'swap'   ? ' selected-swap'   : '');
+    document.getElementById('tr-lbl-injury').className = 'radio-btn' + (val === 'injury' ? ' selected-injury' : '');
+  }
+
+  function onTradeTeamChange(side) {
+    const teamId = document.getElementById(`tr-team-${side}`).value;
+    const sel    = document.getElementById(`tr-add-sel-${side}`);
+    const btn    = document.getElementById(`tr-add-btn-${side}`);
+    _trade[side] = [];
+    renderTradeChips(side);
+    sel.innerHTML = '<option value="">— Add player to trade —</option>';
+    sel.disabled = true;
+    btn.disabled = true;
+    updateTradeConfirmBtn();
+    if (!teamId) return;
+
+    const team = _rosters.data.teams.find(t => t.id === teamId);
+    if (!team) return;
+
+    const otherSide = side === 'a' ? 'b' : 'a';
+    const otherTeamId = document.getElementById(`tr-team-${otherSide}`).value;
+
+    // All players on this team (dressed + bench), excluding same team on other side
+    const all = [
+      ...(team.roster.F || []).map(s => ({ slug: s, pos: 'F' })),
+      ...(team.roster.D || []).map(s => ({ slug: s, pos: 'D' })),
+      ...(team.roster.G || []).map(s => ({ slug: s, pos: 'G' })),
+      ...(team.roster.B || []).map(s => ({ slug: s, pos: 'B' })),
+    ].filter(x => x.slug);
+
+    for (const { slug, pos } of all) {
+      const name = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const opt  = document.createElement('option');
+      opt.value       = slug;
+      opt.dataset.pos = pos;
+      opt.textContent = `[${pos}] ${name}`;
+      sel.appendChild(opt);
+    }
+    sel.disabled = false;
+    btn.disabled = false;
+  }
+
+  function tradeAddPlayer(side) {
+    const sel  = document.getElementById(`tr-add-sel-${side}`);
+    const slug = sel.value;
+    if (!slug) return;
+    if (_trade[side].find(p => p.slug === slug)) return; // already added
+    const opt  = sel.options[sel.selectedIndex];
+    const pos  = opt.dataset.pos || 'F';
+    const name = opt.textContent.replace(/^\[[A-Z]+\] /, '');
+    _trade[side].push({ slug, pos, name });
+    sel.value = '';
+    renderTradeChips(side);
+    updateTradeConfirmBtn();
+  }
+
+  function tradeRemovePlayer(side, slug) {
+    _trade[side] = _trade[side].filter(p => p.slug !== slug);
+    renderTradeChips(side);
+    updateTradeConfirmBtn();
+  }
+
+  function renderTradeChips(side) {
+    const el = document.getElementById(`tr-players-${side}`);
+    if (!_trade[side].length) {
+      el.innerHTML = `<div style="font-size:0.8rem;color:rgba(255,255,255,0.2);padding:4px 0">No players selected</div>`;
+      return;
+    }
+    el.innerHTML = _trade[side].map(p =>
+      `<div class="trade-player-chip">
+        <span>${p.name}<span class="chip-pos">${p.pos}</span></span>
+        <span class="chip-remove" onclick="tradeRemovePlayer('${side}','${p.slug}')">×</span>
+      </div>`
+    ).join('');
+  }
+
+  function updateTradeConfirmBtn() {
+    const teamA = document.getElementById('tr-team-a').value;
+    const teamB = document.getElementById('tr-team-b').value;
+    const ok = teamA && teamB && teamA !== teamB && _trade.a.length > 0 && _trade.b.length > 0;
+    document.getElementById('tr-btn-confirm').disabled = !ok;
+  }
+
+  async function confirmTrade() {
+    const btn   = document.getElementById('tr-btn-confirm');
+    const msgEl = document.getElementById('tr-msg');
+    btn.disabled = true;
+    msgEl.style.display = 'none';
+
+    const teamIdA = document.getElementById('tr-team-a').value;
+    const teamIdB = document.getElementById('tr-team-b').value;
+    const date    = document.getElementById('tr-date').value;
+    const reason  = document.querySelector('input[name="tr-type"]:checked').value;
+    const note    = document.getElementById('tr-note').value.trim();
+
+    try {
+      // Fetch fresh roster data
+      const rosterRes  = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}&select=*`, { headers: sbHeaders() });
+      const rosterRows = await rosterRes.json();
+      const data       = JSON.parse(JSON.stringify(rosterRows[0].data));
+
+      const teamA = data.teams.find(t => t.id === teamIdA);
+      const teamB = data.teams.find(t => t.id === teamIdB);
+
+      // Fetch all player stats in parallel
+      const allSlugs = [..._trade.a.map(p => p.slug), ..._trade.b.map(p => p.slug)];
+      await Promise.all(allSlugs.map(fetchPlayerStats));
+
+      // Helper: move a player from one team to another
+      const movePlayer = (fromTeam, toTeam, slug, fromPos) => {
+        // Remove from all positions on fromTeam
+        for (const key of ['F','D','G','B']) {
+          fromTeam.roster[key] = (fromTeam.roster[key] || []).filter(s => s !== slug);
+        }
+        // Determine destination position: keep same if dressed, bench if bench
+        const destPos = fromPos === 'B' ? 'B' : fromPos;
+        if (!toTeam.roster[destPos]) toTeam.roster[destPos] = [];
+        toTeam.roster[destPos].push(slug);
+        // Set activation snapshot on receiving team
+        const p = _players[slug];
+        if (!toTeam.acquisitions) toTeam.acquisitions = {};
+        if (p) {
+          const snap = isGoalie(p)
+            ? { wins: p.wins ?? 0, shutouts: p.shutouts ?? 0, ot_losses: p.ot_losses ?? 0, goals: p.goals ?? 0, assists: p.assists ?? 0, games_played: p.games_played ?? 0 }
+            : { points: p.points ?? 0, goals: p.goals ?? 0, assists: p.assists ?? 0, games_played: p.games_played ?? 0 };
+          toTeam.acquisitions[slug] = { date, stats_snapshot: snap };
+        }
+      };
+
+      // Players A gives → go to B; players B gives → go to A
+      for (const pl of _trade.a) movePlayer(teamA, teamB, pl.slug, pl.pos);
+      for (const pl of _trade.b) movePlayer(teamB, teamA, pl.slug, pl.pos);
+
+      const patchRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${LEAGUE}`, {
+        method: 'PATCH', headers: sbHeaders(), body: JSON.stringify({ data })
+      });
+      if (!patchRes.ok) throw new Error(`Roster patch failed: ${patchRes.status}`);
+
+      // Insert one pool_bench_swaps row per player pair (A→B and B→A)
+      // For a trade: each player going out has their pts-at-swap frozen
+      const swapRows = [];
+
+      // A's players go to B (player_out = from A, player_in = from B for same row)
+      // We record each outgoing player paired with the "main" incoming player (first of the other side)
+      // For trades, we record N rows where each outgoing player is logged once
+      for (const outPl of _trade.a) {
+        const pOut  = _players[outPl.slug];
+        const oldAcq = teamA?.acquisitions?.[outPl.slug]?.stats_snapshot || null;
+        const snapPts = oldAcq ? calcPoolPts({ ...oldAcq, position: pOut?.position }) : 0;
+        const outPts  = outPl.pos === 'B' ? 0 : Math.max(0, calcPoolPts(pOut) - snapPts);
+        // pair with first player coming back from B
+        const inPl  = _trade.b[0];
+        const pIn   = _players[inPl?.slug];
+        swapRows.push({
+          league_code: LEAGUE, team_id: teamIdA, swap_date: date,
+          player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
+          player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
+          player_out_pts_at_swap: outPts, reason: 'trade',
+          note: note || `Trade: ${_trade.a.map(p=>p.name).join(', ')} → ${teamIdB} for ${_trade.b.map(p=>p.name).join(', ')}`
+        });
+      }
+      for (const outPl of _trade.b) {
+        const pOut  = _players[outPl.slug];
+        const oldAcq = teamB?.acquisitions?.[outPl.slug]?.stats_snapshot || null;
+        const snapPts = oldAcq ? calcPoolPts({ ...oldAcq, position: pOut?.position }) : 0;
+        const outPts  = outPl.pos === 'B' ? 0 : Math.max(0, calcPoolPts(pOut) - snapPts);
+        const inPl  = _trade.a[0];
+        const pIn   = _players[inPl?.slug];
+        swapRows.push({
+          league_code: LEAGUE, team_id: teamIdB, swap_date: date,
+          player_out_slug: outPl.slug, player_out_name: outPl.name, player_out_position: pOut?.position?.split(',')[0] || outPl.pos,
+          player_in_slug:  inPl.slug,  player_in_name:  inPl.name,  player_in_position:  pIn?.position?.split(',')[0]  || inPl.pos,
+          player_out_pts_at_swap: outPts, reason: 'trade',
+          note: note || `Trade: ${_trade.b.map(p=>p.name).join(', ')} → ${teamIdA} for ${_trade.a.map(p=>p.name).join(', ')}`
+        });
+      }
+
+      const logRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_bench_swaps`, {
+        method: 'POST', headers: sbHeaders(), body: JSON.stringify(swapRows)
+      });
+      if (!logRes.ok) throw new Error(`Log insert failed: ${logRes.status}`);
+
+      const aNames = _trade.a.map(p => p.name).join(', ');
+      const bNames = _trade.b.map(p => p.name).join(', ');
+      showMsg('tr-msg', 'success', `✅ Trade saved — ${teamIdA} sends ${aNames} to ${teamIdB} for ${bNames}.`);
+
+      // Reset
+      _trade.a = []; _trade.b = [];
+      for (const side of ['a','b']) {
+        document.getElementById(`tr-team-${side}`).value = '';
+        document.getElementById(`tr-add-sel-${side}`).innerHTML = '<option value="">— Add player to trade —</option>';
+        document.getElementById(`tr-add-sel-${side}`).disabled = true;
+        document.getElementById(`tr-add-btn-${side}`).disabled = true;
+        renderTradeChips(side);
+      }
+      document.getElementById('tr-note').value = '';
+      updateTradeConfirmBtn();
+      await loadTeams();
+      await loadSwapLog();
+    } catch (err) {
+      showMsg('tr-msg', 'error', `❌ ${err.message}`);
       btn.disabled = false;
     }
   }
