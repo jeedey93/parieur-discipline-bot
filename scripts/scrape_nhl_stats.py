@@ -568,7 +568,18 @@ def save_standings_snapshots():
                     key = (tr["team_id"], tr["player_to_slug"])
                     frozen_by_slug_team[key] = tr.get("points_accumulated_at_trade") or 0
 
-            # 5b. Load bench swaps — no longer scored (bench players excluded from pool total)
+            # 5b. Load bench swaps — benched-out players' pts are frozen at swap time
+            swaps_rows = supabase.table("pool_bench_swaps").select(
+                "team_id,player_out_position,player_out_pts_at_swap"
+            ).eq("league_code", code).execute().data
+            # Sum frozen pts per team (by position, matching JS teamSubScores logic)
+            bench_pts_by_team = {}
+            for sw in swaps_rows:
+                tid = sw.get("team_id")
+                pts = sw.get("player_out_pts_at_swap")
+                if tid is None or pts is None:
+                    continue
+                bench_pts_by_team[tid] = bench_pts_by_team.get(tid, 0) + pts
 
             # 6. Score each team
             def normalize_pos(pos):
@@ -629,7 +640,7 @@ def save_standings_snapshots():
                         pts, _ = score_player(slug, team_id, acq)
                         g_pts += pts
                         player_pts[slug] = round(pts)
-                total = f_pts + d_pts + g_pts
+                total = f_pts + d_pts + g_pts + bench_pts_by_team.get(team_id, 0)
                 team_scores.append({
                     "team_id": team_id,
                     "name": team.get("name", "?"),
