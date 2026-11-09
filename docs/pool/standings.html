@@ -4375,7 +4375,7 @@
       const basePts = Object.fromEntries((baseRow.standings || []).map(t => [t.team_id, t.pts ?? 0]));
       const weekly = (latest.standings || []).map(t => ({
         id: t.team_id, name: t.name,
-        pts: (t.pts ?? 0) - (basePts[t.team_id] ?? 0),
+        pts: Math.max(0, (t.pts ?? 0) - (basePts[t.team_id] ?? 0)),
       })).sort((a, b) => b.pts - a.pts);
       const maxPts = Math.max(...weekly.map(w => w.pts), 1);
       const daySpan = Math.round((latestDate - new Date(baseRow.snapshot_date)) / 86400000);
