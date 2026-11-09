@@ -118,7 +118,7 @@ def call_gemini(prompt):
     client = genai.Client(api_key=api_key)
     models_to_try = [
         "models/gemini-2.5-flash",
-        "models/gemini-3.8-flash",
+        "models/gemini-2.0-flash",
         "models/gemini-2.5-flash-lite",
         "models/gemini-2.5-pro",
     ]
@@ -149,6 +149,9 @@ def call_gemini(prompt):
                     break
                 else:
                     raise
+            except Exception as e:
+                print(f"⚠️ {model} error ({type(e).__name__}), trying next model...")
+                break
 
     print("❌ All Gemini models unavailable. Cancelling workflow.")
     sys.exit(1)

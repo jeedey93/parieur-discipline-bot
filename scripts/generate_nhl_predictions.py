@@ -1119,7 +1119,7 @@ def analyze_results(results_text, absences_text, recent_games, team_stats_text, 
     # Model fallback order — try each on 503, then give up
     models_to_try = [
         "models/gemini-2.5-flash",
-        "models/gemini-3.8-flash",
+        "models/gemini-2.0-flash",
         "models/gemini-2.5-flash-lite",
         "models/gemini-2.5-pro",
     ]
