@@ -1,14 +1,14 @@
 ============================================================
 GOLDEN KNIGHTS - LINEUP
-Last Updated: 2026-11-05 04:47 PM ET
+Last Updated: 2026-11-08 03:09 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Brett Howden — Jack Eichel — Mark Stone
 Line 2: Ivan Barbashev — William Karlsson — Mitch Marner
-Line 3: Trevor Connelly — Tomas Hertl — Braeden Bowman
-Line 4: Raphael Lavoie — Nic Dowd — Marc Gatcomb
+Line 3: Trevor Connelly — Tomas Hertl — Victor Olofsson
+Line 4: Braeden Bowman — Nic Dowd — Marc Gatcomb
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -23,9 +23,7 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Jonas Rondbjerg (scratched)
-  Viliam Kmec (scratched)
-  Victor Olofsson (lower body) (injured)
+  Raphael Lavoie (scratched)
   Parker Wotherspoon (upper body) (injured)
 
 ============================================================

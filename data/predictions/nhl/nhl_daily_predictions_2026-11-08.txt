@@ -1,0 +1,34 @@
+Here's an analysis comparing the morning and noon prediction reports, along with the final unified recommendation list:
+
+---
+
+🏆 **BET OF THE DAY**
+**Calgary Flames ML vs Philadelphia Flyers @ 1.97**
+Confidence Level: High, Units: 1.5u, Win Probability: 70%
+
+Today, the Calgary Flames host the Philadelphia Flyers. Calgary enters the game with elite goaltending from Devin Cooley, who boasts an impressive 0.951 SV% in his last 5 starts, significantly outperforming Philadelphia's Dan Vladar, who has a 0.893 SV% over the same span. This clear advantage in net is further amplified by Calgary's substantial home-ice strength, with a home win percentage of 0.556 compared to Philadelphia's dismal 0.125 road win percentage. Despite both teams coming off two losses, the underlying statistical matchup, particularly the elite goaltending and pronounced home advantage for the Flames, indicates a strong market inefficiency.
+
+Line moved from Calgary Flames ML @ 1.94 (morning) to @ 1.97 (noon), and Win Probability increased from 65% to 70%. The confidence level remained High.
+
+**Other Recommended Plays**
+
+**Tampa Bay Lightning vs Winnipeg Jets Over 6.5 @ 1.98**
+Confidence Level: High, Units: 1.5u, Win Probability: 59%
+
+This matchup features two teams with starting goalies in poor recent form: Andrei Vasilevskiy for Tampa Bay with a 0.872 SV% and Stuart Skinner for Winnipeg with a troubling 0.832 SV% in their last 5 starts. Their head-to-head history this season also points to high-scoring affairs, with their only game averaging 10 total goals against a line of 6.5. This significant discrepancy between the line and historical performance, combined with both netminders struggling, strongly supports the Over.
+
+This play was newly added in the noon report. The morning report had recommended Winnipeg Jets ML @ 2.18, but the noon odds for that play (2.21) are outside the recommended range of 1.60-2.20.
+
+**Vegas Golden Knights vs Buffalo Sabres Over 6.5 @ 1.97**
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
+
+Both Adin Hill of the Golden Knights (0.891 SV% in last 5 starts) and Colten Ellis of the Sabres (0.890 SV% in last 5 starts) are currently in below-average form, indicating potential for higher scoring. Vegas also possesses a strong power play at 27.8%, while Buffalo's penalty kill is struggling at 69.6%, creating a favorable matchup for special teams scoring. These factors combine to suggest the market has underestimated the scoring potential in this game.
+
+This play was newly added in the noon report. The morning report did not feature a recommendation for this game.
+
+**Pittsburgh Penguins vs Anaheim Ducks Over 7.0 @ 2.02**
+Confidence Level: Medium, Units: 1u, Win Probability: 55%
+
+This game pits two goalies, Arturs Silovs of the Penguins (0.888 SV% in last 5 starts) and Ville Husso of the Ducks (0.855 SV% in last 5 starts), who are both performing poorly, suggesting a high-scoring contest. While Anaheim is on a four-game winning streak and Pittsburgh is on a back-to-back, the crucial factor here for the total is the subpar goaltending on both sides. The market line of 7.0 appears too low given the recent struggles in net.
+
+This play was newly added in the noon report. The morning report had recommended Anaheim Ducks ML @ 1.82, but the noon report shifted focus to the Over, likely due to updated goalie performance information.

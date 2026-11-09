@@ -1,6 +1,6 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-11-06 04:14 PM ET
+Last Updated: 2026-11-08 03:09 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,7 +18,16 @@ Pair 3: Zach Metsa — Conor Timmins
 
 GOALIES:
 ----------------------------------------
-  Ukko-Pekka Luukkonen
   Colten Ellis
+  Ukko-Pekka Luukkonen
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Ryan McLeod (scratched)
+  Louis Crevier (scratched)
+  Konsta Helenius (upper body) (injured)
+  Justin Danforth (upper body) (injured)
+  Matt Grzelcyk (lower body) (injured)
+  Alex Lyon (upper body) (injured)
 
 ============================================================
