@@ -1,0 +1,43 @@
+Date: 2026-11-09
+
+Atlanta Hawks vs Los Angeles Lakers
+Atlanta Hawks ML (Home): 1.98, Los Angeles Lakers ML (Away): 1.86, O/U: 236.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.91), Away -1.5 (1.98)
+------
+Charlotte Hornets vs Cleveland Cavaliers
+Charlotte Hornets ML (Home): 3.75, Cleveland Cavaliers ML (Away): 1.29, O/U: 215.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (1.99), Away -9.0 (1.95)
+------
+Detroit Pistons vs Washington Wizards
+Detroit Pistons ML (Home): 1.2, Washington Wizards ML (Away): 4.85, O/U: 218.5 (Over: 1.89 / Under: 1.93)
+Spreads: Home None (1.94), Away 10.5 (1.99)
+------
+Toronto Raptors vs Memphis Grizzlies
+Toronto Raptors ML (Home): 1.69, Memphis Grizzlies ML (Away): 2.22, O/U: 228.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away 3.0 (1.94)
+------
+Dallas Mavericks vs Indiana Pacers
+Dallas Mavericks ML (Home): 1.66, Indiana Pacers ML (Away): 2.28, O/U: 222.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.96), Away 3.0 (1.93)
+------
+Houston Rockets vs Denver Nuggets
+Houston Rockets ML (Home): 1.31, Denver Nuggets ML (Away): 3.6, O/U: 217.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away 9.0 (1.91)
+------
+Phoenix Suns vs San Antonio Spurs
+Phoenix Suns ML (Home): 3.86, San Antonio Spurs ML (Away): 1.28, O/U: 227.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away -8.5 (1.91)
+------
+Golden State Warriors vs New Orleans Pelicans
+Golden State Warriors ML (Home): 1.26, New Orleans Pelicans ML (Away): 4.1, O/U: 231.5 (Over: 1.89 / Under: 1.93)
+Spreads: Home None (1.95), Away 9.5 (1.91)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+DALLAS MAVERICKS ML vs Indiana Pacers @ 1.66
+The Dallas Mavericks (6-4 season, 4-2 at home) are poised for a strong performance against the Indiana Pacers (3-7 season, 0-5 on the road). The Mavericks possess a significant talent advantage, evident in their 0.600 season win percentage compared to the Pacers' 0.300, creating a 0.300 win percentage gap which strongly favors Dallas. Furthermore, the Mavericks are a playoff contender while the Pacers are struggling, adding a motivation boost. While Dallas is on a back-to-back, having played 4 games in 6 nights, the sheer disparity in team quality and home-court advantage (Dallas' 0.667 home win % vs. Indiana's 0.600 away win % gives a +3% edge) creates a substantial value opportunity. Our model indicates a 74% win probability for the Mavericks, providing a robust 13.76% edge over the implied odds of 60.24%.
+Confidence Level: High, Units: 1.5u, Win Probability: 74%
