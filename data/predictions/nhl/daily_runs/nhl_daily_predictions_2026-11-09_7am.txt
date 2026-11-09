@@ -1,0 +1,28 @@
+Date: 2026-11-09
+
+New York Rangers @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.65, New York Rangers ML (Away): 2.26, O/U: 6.5 (Over: 1.88 / Under: 1.93)
+------
+Philadelphia Flyers @ Vancouver Canucks
+Vancouver Canucks ML (Home): 2.11, Philadelphia Flyers ML (Away): 1.74, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+New York Islanders @ San Jose Sharks
+San Jose Sharks ML (Home): 2.12, New York Islanders ML (Away): 1.73, O/U: 6.5 (Over: 1.98 / Under: 1.83)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+This is the 7am prediction run. Starting goalies are not announced until approximately 90 minutes before puck drop. We factor this uncertainty into our confidence levels, capping most plays at Medium confidence unless the edge is exceptionally strong (≥ 10%).
+
+BET OF THE DAY
+
+VANCOUVER CANUCKS ML vs PHILADELPHIA FLYERS @ 2.11
+The Canucks, despite their poor season record, present a strong value play at home against a fatigued Flyers team. While both teams have struggled recently, Vancouver benefits significantly from Philadelphia playing on a back-to-back with zero rest. This fatigue factor, combined with the Canucks' slight home-ice advantage as determined by win percentage splits, creates a market inefficiency. Our model indicates that the true probability of a Vancouver win is considerably higher than the implied odds, making this a clear value bet.
+Confidence Level: High, Units: 1.5u, Win Probability: 59%
+
+**Other Recommended Plays**
+
+SAN JOSE SHARKS ML vs NEW YORK ISLANDERS @ 2.12
+The San Jose Sharks, playing at home, offer a reasonable edge in what projects to be a closely contested game. Despite both teams having negative recent goal differentials and the Sharks being on a longer losing streak, the Islanders' slight away win percentage advantage is negated by San Jose's home performance. With both teams having equal rest, the market appears to slightly undervalue San Jose's chances on home ice. While starting goalies are TBD, the underlying metrics suggest a modest value play.
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
