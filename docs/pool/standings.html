@@ -1222,8 +1222,9 @@
           .gm-desktop-score.future { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
           /* Pool strip */
           .gm-pool-strip { padding: 0.85rem 3rem; gap: 0.7rem; }
-          .gm-pool-strip-label { font-size: 0.78rem; }
-          .gm-pool-badge { font-size: 1rem; padding: 5px 14px; border-radius: 6px; }
+          .gm-pool-team-logo { width: 26px; height: 26px; }
+          .gm-pool-sep { height: 22px; }
+          .gm-pool-badge { font-size: 1rem; padding: 4px 13px; border-radius: 6px; }
           /* Scoring: 2-col grid on wide modal */
           .gm-scoring { padding: 0 0 1.5rem; }
           .gm-scoring-title { font-size: 1.1rem; padding: 1.4rem 3rem 0.7rem; }
@@ -1246,11 +1247,13 @@
         .gm-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1.25rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
         .gm-statusbar .live-dot::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; vertical-align: middle; animation: pulse 1.5s infinite; }
         /* Pool impact strip */
-        .gm-pool-strip { padding: 0.6rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
-        .gm-pool-strip-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-right: 0.2rem; flex-shrink: 0; }
-        .gm-pool-badge { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; padding: 3px 9px; border-radius: 5px; white-space: nowrap; }
-        .gm-pool-badge.scoring { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
-        .gm-pool-badge.playing { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.08); }
+        .gm-pool-strip { padding: 0.65rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .gm-pool-group { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+        .gm-pool-team-logo { width: 20px; height: 20px; object-fit: contain; opacity: 0.75; flex-shrink: 0; }
+        .gm-pool-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.1); flex-shrink: 0; margin: 0 0.15rem; align-self: center; }
+        .gm-pool-badge { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; padding: 3px 9px; border-radius: 5px; border: 1px solid; white-space: nowrap; color: rgba(255,255,255,0.65); }
+        .gm-pool-badge.scoring { color: white; }
+        .gm-pool-badge.scoring strong { color: var(--green); font-weight: 700; }
         /* Scoring summary */
         .gm-scoring { padding: 0 0 1.25rem; }
         .gm-scoring-title { font-size: 0.92rem; font-weight: 800; color: white; padding: 0.9rem 1.25rem 0.55rem; letter-spacing: 0.5px; text-transform: uppercase; }
@@ -1781,7 +1784,7 @@
       const statusText = gameStatusText(bs);
 
       // Build pool players per team
-      const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
+      const { awayPool, homePool, awayAbbr, homeAbbr } = buildPoolPlayersForGame(bs, away, home);
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
       // Build teamId → abbrev map from boxscore
@@ -1853,15 +1856,30 @@
       const desktopScoreboard = `<div class="gm-teams-desktop">${desktopTeam(awayLogo, awayFullName, awaySog)}${desktopScoreBlock}${desktopTeam(homeLogo, homeFullName, homeSog)}</div>`;
 
       // ── Pool strip ──
-      const allPoolPlayers = [...awayPool, ...homePool];
+      const NHL_COLORS = {
+        ANA:'#F47A38',ARI:'#8C2633',BOS:'#FFB81C',BUF:'#003087',CAR:'#CC0000',CBJ:'#002654',
+        CGY:'#C8102E',CHI:'#CF0A2C',COL:'#6F263D',DAL:'#006847',DET:'#CE1126',EDM:'#FF4C00',
+        FLA:'#C8102E',LAK:'#111111',MIN:'#154734',MTL:'#AF1E2D',NJD:'#CE1126',NSH:'#FFB81C',
+        NYI:'#00539B',NYR:'#0038A8',OTT:'#C52032',PHI:'#F74902',PIT:'#CFC493',SEA:'#001628',
+        SJS:'#006D75',STL:'#002F87',TBL:'#002868',TOR:'#00205B',UTA:'#69B3E7',VAN:'#00843D',
+        VGK:'#B4975A',WPG:'#041E42',WSH:'#C8102E',
+      };
       let poolStripHtml = '';
-      if (allPoolPlayers.length) {
-        const badges = allPoolPlayers.map(pl => {
-          const isScoring = pl.livePts > 0;
-          const label = isScoring ? `${pl.name} +${pl.livePts}` : pl.name;
-          return `<span class="gm-pool-badge ${isScoring ? 'scoring' : 'playing'}">${label}</span>`;
-        }).join('');
-        poolStripHtml = `<div class="gm-pool-strip"><span class="gm-pool-strip-label">Pool</span>${badges}</div>`;
+      if (awayPool.length || homePool.length) {
+        const renderGroup = (players, abbr) => {
+          const color = NHL_COLORS[abbr] || 'rgba(255,255,255,0.15)';
+          const badges = players.map(pl => {
+            const isScoring = pl.livePts > 0;
+            const label = isScoring ? `${pl.name} <strong>+${pl.livePts}</strong>` : pl.name;
+            return `<span class="gm-pool-badge${isScoring ? ' scoring' : ''}" style="border-color:${color}40;background:${color}18">${label}</span>`;
+          }).join('');
+          const logoHtml = `<img class="gm-pool-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}">`;
+          return `<div class="gm-pool-group">${logoHtml}${badges}</div>`;
+        };
+        const awayGroup = awayPool.length ? renderGroup(awayPool, awayAbbr) : '';
+        const homeGroup = homePool.length ? renderGroup(homePool, homeAbbr) : '';
+        const sep = awayPool.length && homePool.length ? `<div class="gm-pool-sep"></div>` : '';
+        poolStripHtml = `<div class="gm-pool-strip">${awayGroup}${sep}${homeGroup}</div>`;
       }
 
       // ── Scoring summary ──
