@@ -968,15 +968,15 @@
         .bump-empty { text-align: center; color: rgba(255,255,255,0.25); font-size: 0.85rem; letter-spacing: 1px; padding: 3rem 0; }
 
         /* ── WEEKLY REVIEW ── */
-        .week-review { margin-bottom: 1.75rem; overflow-x: auto; }
+        .week-review { margin-bottom: 1.75rem; }
         .week-review-title { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.75rem; }
-        .week-grid { width: 100%; border-collapse: collapse; font-family: 'Barlow Condensed', sans-serif; }
-        .week-grid th { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0 0.5rem 0.5rem; text-align: center; white-space: nowrap; }
-        .week-grid th.col-name { text-align: left; padding-left: 0; min-width: 110px; }
+        .week-grid { width: 100%; border-collapse: collapse; font-family: 'Barlow Condensed', sans-serif; table-layout: fixed; }
+        .week-grid th { font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0 0.25rem 0.5rem; text-align: center; white-space: nowrap; }
+        .week-grid th.col-name { text-align: left; padding-left: 0; }
         .week-grid th.col-total { color: rgba(255,255,255,0.5); }
-        .week-grid td { font-size: 0.88rem; font-weight: 600; padding: 0.45rem 0.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
-        .week-grid td.col-name { text-align: left; padding-left: 0; color: white; font-size: 0.9rem; }
-        .week-grid td.col-total { font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1px; color: white; }
+        .week-grid td { font-size: 0.85rem; font-weight: 600; padding: 0.4rem 0.25rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .week-grid td.col-name { text-align: left; padding-left: 0; color: white; font-size: 0.88rem; }
+        .week-grid td.col-total { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: white; }
         .week-grid tr.winner td.col-total { color: var(--gold); }
         .week-grid tr.winner td.col-name { color: var(--gold); }
         .week-grid td.day-pts { color: rgba(255,255,255,0.35); }
@@ -4443,13 +4443,22 @@
         return { id, name, dayPts, total };
       }).sort((a, b) => b.total - a.total);
 
-      // Date headers — show Mon, Tue etc
+      // Date headers — just day initial + date number to stay compact
       const dayLabels = window.map(r => {
         const d = new Date(r.snapshot_date.length === 10 ? r.snapshot_date + 'T12:00:00' : r.snapshot_date);
-        return d.toLocaleDateString('en-CA', { weekday: 'short', month: 'numeric', day: 'numeric' });
+        const dayLetter = d.toLocaleDateString('en-CA', { weekday: 'short' }).charAt(0);
+        const dayNum = d.getDate();
+        return `${dayLetter}<br><span style="font-size:0.6rem;opacity:0.6">${dayNum}</span>`;
       });
 
       const headerCols = dayLabels.map(l => `<th class="col-day">${l}</th>`).join('');
+      // colgroup: name col flexible, day cols and total col fixed narrow
+      const numDays = window.length;
+      const colgroup = `<colgroup>
+        <col style="width:auto">
+        ${Array(numDays).fill('<col style="width:32px">').join('')}
+        <col style="width:40px">
+      </colgroup>`;
       const bodyRows = teamData.map((t, i) => {
         const isWinner = i === 0 && t.total > 0;
         const dayCells = t.dayPts.map(p =>
@@ -4466,6 +4475,7 @@
       return `<div class="week-review">
         <div class="week-review-title">🏆 Last ${daySpan} days — points per day</div>
         <table class="week-grid">
+          ${colgroup}
           <thead><tr>
             <th class="col-name">Team</th>
             ${headerCols}
