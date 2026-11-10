@@ -4460,9 +4460,20 @@
       const dates = rows.map(r => r.snapshot_date);
       const cols = dates.length;
 
+      // Bench swap frozen pts per team — add to every snapshot to match live standings
+      const benchPtsByTeam = {};
+      _benchSwaps.forEach(s => {
+        if (s.team_id && s.player_out_pts_at_swap != null)
+          benchPtsByTeam[s.team_id] = (benchPtsByTeam[s.team_id] || 0) + s.player_out_pts_at_swap;
+      });
+
       // Per-team data series
       const series = teamIds.map(id => {
-        const points = rows.map(row => (row.standings || []).find(t => t.team_id === id) || null);
+        const points = rows.map(row => {
+          const entry = (row.standings || []).find(t => t.team_id === id);
+          if (!entry) return null;
+          return { ...entry, pts: (entry.pts ?? 0) + (benchPtsByTeam[id] || 0) };
+        });
         const last = [...points].reverse().find(Boolean);
         return { id, color: teamMeta[id].color, name: teamMeta[id].name, points, last };
       });
