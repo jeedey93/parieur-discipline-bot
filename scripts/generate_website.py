@@ -1785,15 +1785,33 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
     # Players to Watch
     if players_to_watch:
         import html as html_module
+        import re as _re
         html += "<div class='ptw-section'>\n"
-        html += "<div class='ptw-toggle' onclick='this.closest(\".ptw-section\").classList.toggle(\"open\")'>\n"
-        html += "<span class='ptw-label'>👤 Players to Watch</span>\n"
-        html += "<span class='ptw-chevron'>▾</span>\n"
-        html += "</div>\n"
+        html += "<div class='ptw-header'><span class='ptw-label'>👤 Players to Watch</span></div>\n"
         html += "<ul class='ptw-list'>\n"
         for p in players_to_watch:
-            p_html = html_module.escape(p).replace('🔥HOT', '<span class="ptw-hot">🔥</span>').replace('🧊COLD', '<span class="ptw-cold">🧊</span>')
-            html += f"<li class='ptw-item'>{p_html}</li>\n"
+            team_m = _re.match(r'^(.+?)\s+\(([^)]+)\)\s*:\s*(.*)$', p)
+            if not team_m:
+                html += f"<li class='ptw-item'><div class='ptw-item-body'><span class='ptw-item-stat'>{html_module.escape(p)}</span></div></li>\n"
+                continue
+            full_name = html_module.escape(team_m.group(1).strip())
+            team = html_module.escape(team_m.group(2).strip())
+            rest = team_m.group(3).strip()
+            stat_m = _re.match(r'^\[([^\]]+)\]\.\s*(.*)$', rest) or _re.match(r'^([^.]+)\.\s*(.*)$', rest)
+            stat = stat_m.group(1).strip() if stat_m else rest
+            context = html_module.escape(stat_m.group(2).strip()) if stat_m else ''
+            is_hot = '🔥' in stat or 'HOT' in stat
+            is_cold = '🧊' in stat or 'COLD' in stat
+            cls = 'hot' if is_hot else ('cold' if is_cold else '')
+            icon = '🔥' if is_hot else ('🧊' if is_cold else '👤')
+            clean_stat = html_module.escape(_re.sub(r'🔥HOT|🧊COLD', '', stat, flags=_re.IGNORECASE).strip())
+            context_part = f' — {context}' if context else ''
+            html += (f"<li class='ptw-item {cls}'>"
+                     f"<span class='ptw-item-icon'>{icon}</span>"
+                     f"<div class='ptw-item-body'>"
+                     f"<span class='ptw-item-name'>{full_name}</span><span class='ptw-item-team'>{team}</span>"
+                     f"<div class='ptw-item-stat'><strong>{clean_stat}</strong>{context_part}</div>"
+                     f"</div></li>\n")
         html += "</ul>\n"
         html += "</div>\n"
 
@@ -1985,15 +2003,19 @@ def update_latest_predictions(preliminary=False):
     content += ".reasoning-content { flex: 1; display: block; }\n"
     content += ".reasoning-title { font-weight: 700; color: #1f2937; display: block; margin-bottom: 3px; font-size: 0.95em; }\n"
     content += ".reasoning-text { color: #6b7280; display: block; font-size: 0.95em; }\n"
-    content += ".ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }\n"
-    content += ".ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }\n"
-    content += ".ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }\n"
-    content += ".ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }\n"
-    content += ".ptw-section.open .ptw-chevron { transform: rotate(180deg); }\n"
-    content += ".ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }\n"
-    content += ".ptw-section.open .ptw-list { display: block; }\n"
-    content += ".ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }\n"
-    content += ".ptw-item:last-child { margin-bottom: 0; }\n"
+    content += ".ptw-section { margin-top: 14px; border-top: 1px solid #e5e7eb; padding-top: 12px; }\n"
+    content += ".ptw-header { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }\n"
+    content += ".ptw-label { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #2563eb; }\n"
+    content += ".ptw-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }\n"
+    content += ".ptw-item { display: flex; align-items: flex-start; gap: 8px; background: #f8fafc; border-radius: 8px; padding: 8px 10px; border-left: 3px solid #e2e8f0; }\n"
+    content += ".ptw-item.hot { border-left-color: #f97316; background: #fff7ed; }\n"
+    content += ".ptw-item.cold { border-left-color: #60a5fa; background: #eff6ff; }\n"
+    content += ".ptw-item-icon { font-size: 1em; flex-shrink: 0; margin-top: 1px; }\n"
+    content += ".ptw-item-body { flex: 1; min-width: 0; }\n"
+    content += ".ptw-item-name { font-weight: 700; font-size: 0.83em; color: #1e293b; }\n"
+    content += ".ptw-item-team { display: inline-block; font-size: 0.68em; font-weight: 700; background: #e2e8f0; color: #475569; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; letter-spacing: 0.5px; }\n"
+    content += ".ptw-item-stat { font-size: 0.78em; color: #64748b; margin-top: 2px; line-height: 1.4; }\n"
+    content += ".ptw-item-stat strong { color: #374151; font-weight: 700; }\n"
     content += ".yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }\n"
     content += ".result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }\n"
     content += ".result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }\n"

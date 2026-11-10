@@ -468,17 +468,19 @@ nav > div {
 }
 
 /* Players to Watch */
-.ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }
-.ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }
-.ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }
-.ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }
-.ptw-section.open .ptw-chevron { transform: rotate(180deg); }
-.ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }
-.ptw-section.open .ptw-list { display: block; }
-.ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }
-.ptw-item:last-child { margin-bottom: 0; }
-.ptw-hot { font-size: 1em; }
-.ptw-cold { font-size: 1em; }
+.ptw-section { margin-top: 14px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
+.ptw-header { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.ptw-label { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #2563eb; }
+.ptw-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ptw-item { display: flex; align-items: flex-start; gap: 8px; background: #f8fafc; border-radius: 8px; padding: 8px 10px; border-left: 3px solid #e2e8f0; }
+.ptw-item.hot { border-left-color: #f97316; background: #fff7ed; }
+.ptw-item.cold { border-left-color: #60a5fa; background: #eff6ff; }
+.ptw-item-icon { font-size: 1em; flex-shrink: 0; margin-top: 1px; }
+.ptw-item-body { flex: 1; min-width: 0; }
+.ptw-item-name { font-weight: 700; font-size: 0.83em; color: #1e293b; }
+.ptw-item-team { display: inline-block; font-size: 0.68em; font-weight: 700; background: #e2e8f0; color: #475569; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; letter-spacing: 0.5px; }
+.ptw-item-stat { font-size: 0.78em; color: #64748b; margin-top: 2px; line-height: 1.4; }
+.ptw-item-stat strong { color: #374151; font-weight: 700; }
 
 /* No games message */
 .no-games {
@@ -1707,6 +1709,7 @@ document.getElementById('currentDate').textContent = today.toLocaleDateString('e
 // Auto-generated on 2026-11-10 13:09:17
 // Auto-generated on 2026-11-10 08:36:49
 // Auto-generated on 2026-11-10 08:37:14
+// Auto-generated on 2026-11-10 08:44:53
 const picks = {
   nhl: [
   {
@@ -1717,29 +1720,22 @@ const picks = {
     confidence: 'Medium',
     stars: '⭐⭐⭐',
     winProbability: '52',
-    reasoning: `🏠**Senators Home Ice**
-Ottawa boasts an elite 0.750 home win percentage, a significant edge over Washington.
-
-📈**Goal Differential Edge**
-Ottawa has a +0.10 goal differential recently, compared to Washington's -0.10.
-
-💰**Market Undervalues OTT**
-The market is underpricing Ottawa's strong home record against a weaker road Capitals team.
-
-😴**Teams Well-Rested**
-Both teams last played on November 7th, ensuring no fatigue advantage for either side.
-
-🔥**Stutzle On Fire**
-Tim Stutzle is red-hot with 7 points in his last 5 games, leading Ottawa's offense.
-
-🔥**Batherson Scoring Threat**
-Drake Batherson adds to Ottawa's offense with 5 points in his last 5 games.
-
-🔥**Kyrou Drives WSH Offense**
-Jordan Kyrou is a key offensive contributor for Washington, tallying 6 points in his last 5 outings.
-
-🔥**Chychrun's Impact**
-Jakob Chychrun provides both defensive presence and recent scoring with 5 points in his last 5 games for Washington.`,
+    reasoning: `🏠 **Elite Home Edge**
+Ottawa boasts a 0.750 home win % against Washington's 0.500 road rate.
+📊 **Recent Goal Form**
+Senators have a +0.10 goal differential vs Capitals' -0.10 in recent games.
+💰 **Market Undervalued**
+Odds for Ottawa are mispriced, overlooking their formidable home record.
+😴 **Well-Rested Teams**
+Both teams last played November 7th, ensuring no fatigue advantage.
+🔥 **Stutzle Heating Up**
+Tim Stutzle is red-hot with 7 points in his last 5 games for Ottawa.
+🔥 **Batherson Scoring Threat**
+Drake Batherson brings consistent scoring, with 5 points in his last 5 games.
+🔥 **Kyrou Leads WSH**
+Jordan Kyrou is a key offensive contributor for Washington, 6 points in 5 games.
+🔥 **Chychrun's Impact**
+Jakob Chychrun contributes defensively and offensively with 5 points in 5 games.`,
     playersToWatch: [`Stutzle, Tim (OTT): [7 pts in last 5 games 🔥HOT]. His recent offensive burst could be a key factor for Ottawa.`,`Batherson, Drake (OTT): [5 pts in last 5 games 🔥HOT]. A consistent scoring threat for the Senators, crucial in tight matchups.`,`Kyrou, Jordan (WSH): [6 pts in last 5 games 🔥HOT]. He is a top offensive contributor for the Capitals and will look to generate scoring chances.`,`Chychrun, Jakob (WSH): [5 pts in last 5 games 🔥HOT]. His defensive presence and recent scoring contributions are vital for Washington.`],
     isBetOfDay: true
   },
@@ -1751,26 +1747,22 @@ Jakob Chychrun provides both defensive presence and recent scoring with 5 points
     confidence: 'Medium',
     stars: '⭐⭐⭐',
     winProbability: '61',
-    reasoning: `🏠**Blue Jackets Home Advantage**
-Columbus holds a substantial 0.667 home win percentage, providing a strong edge.
-
-⏰**Rest Advantage for CBJ**
-The Blue Jackets have had more rest, which could be a subtle factor in their favor.
-
-💰**Market Misprices CBJ**
-Columbus's odds are mispriced at home given their strong performance on home ice.
-
-🔥**Johnson's Consistent Offense**
-Kent Johnson has been a consistent offensive threat for Columbus with 6 points in his last 5 games.
-
-🔥**Werenski's Blue Line Power**
-Zach Werenski is critical to CBJ's scoring with 8 points in his last 5 games from the blue line.
-
-🔥**Tkachuk's Playmaking**
-Matthew Tkachuk drives much of Florida's offense, accumulating 6 points in his last 5 games.
-
-🔥**Reinhart's Scoring Threat**
-Sam Reinhart's goal-scoring ability makes him a constant threat with 7 points in his last 5 games.`,
+    reasoning: `🏠 **Strong Home Form**
+Columbus boasts an elite 0.667 home win percentage, providing a key advantage.
+😴 **Blue Jackets Rested**
+Columbus enters the game with more rest than the Florida Panthers.
+💰 **Market Mispricing**
+Odds for Columbus at home are undervalued despite their strong home performance.
+📈 **Panthers Recent Edge**
+Florida shows slightly better recent team form overall.
+🔥 **Johnson Offensive Threat**
+Kent Johnson is a consistent scoring threat for Columbus with 6 points in 5 games.
+🔥 **Werenski From Blueline**
+Zach Werenski is critical to CBJ scoring, tallying 8 points in his last 5.
+🔥 **Tkachuk Drives FLA**
+Matthew Tkachuk is a prolific playmaker, driving much of Florida's offense (6 pts in 5).
+🔥 **Reinhart Goal Scorer**
+Sam Reinhart is a constant scoring threat for Florida with 7 points in 5 games.`,
     playersToWatch: [`Johnson, Kent (CBJ): [6 pts in last 5 games 🔥HOT]. Johnson has been a consistent offensive threat for Columbus recently.`,`Werenski, Zach (CBJ): [8 pts in last 5 games 🔥HOT]. His offensive contributions from the blue line are critical to the Blue Jackets' scoring.`,`Tkachuk, Matthew (FLA): [6 pts in last 5 games 🔥HOT]. A prolific playmaker, he drives much of the Panthers' offense.`,`Reinhart, Sam (FLA): [7 pts in last 5 games 🔥HOT]. Reinhart's goal-scoring ability makes him a constant threat on the power play and at even strength.`],
     isBetOfDay: false
   },
@@ -1782,29 +1774,22 @@ Sam Reinhart's goal-scoring ability makes him a constant threat with 7 points in
     confidence: 'Medium',
     stars: '⭐⭐⭐',
     winProbability: '52',
-    reasoning: `📈**Canadiens Red-Hot Form**
-Montreal is red-hot with an 8-0-2 record over their last 10 games, including a 2-game win streak.
-
-📊**Improving Offensive Trend**
-The Canadiens show an impressive +3.20 offensive form trend, indicating strong scoring.
-
-💰**MTL Live Dog Value**
-Montreal presents positive edge and live dog value at current odds due to momentum and home advantage.
-
-🏠**Home Ice Momentum**
-Despite a slight gap, Montreal's current momentum and home advantage are key factors.
-
-🔥**Hutson's Offensive Surge**
-Lane Hutson, a key offensive defenseman, has been producing well with 7 points in his last 5 games.
-
-🔥**Suzuki Leads MTL Offense**
-Nick Suzuki leads the Canadiens' offense, crucial with 7 points in his last 5 games.
-
-🔥**Kaprizov's Primary Weapon**
-Kirill Kaprizov is Minnesota's primary offensive weapon, recording 8 points in his last 5 outings.
-
-🔥**Hughes' Exceptional Output**
-Quinn Hughes delivers exceptional offensive output from the blue line with 11 points in his last 5 games.`,
+    reasoning: `💰 **Positive Betting Edge**
+Montreal presents a live dog opportunity at current odds.
+🔥 **Canadiens Red-Hot**
+Montreal boasts an 8-0-2 record in last 10 games with a 2-game winning streak.
+📈 **Offensive Trend Up**
+Canadiens show an improving offensive trend (+3.20 form trend).
+🏠 **Home Ice Advantage**
+Montreal plays at home, leveraging their familiar surroundings.
+🔥 **Hutson Defensive Offense**
+Lane Hutson is a key offensive defenseman with 7 points in his last 5 games.
+🔥 **Suzuki Leads Attack**
+Nick Suzuki leads Canadiens offense, crucial with 7 points in last 5 games.
+🔥 **Kaprizov Primary Weapon**
+Kirill Kaprizov is Minnesota's main offensive threat, scoring 8 points in 5 games.
+🔥 **Hughes Blueline Power**
+Quinn Hughes has exceptional offensive output from the blue line, 11 points in 5 games.`,
     playersToWatch: [`Hutson, Lane (MTL): [7 pts in last 5 games 🔥HOT]. Hutson is a key offensive defenseman who has been producing well.`,`Suzuki, Nick (MTL): [7 pts in last 5 games 🔥HOT]. He leads the Canadiens offense and is crucial for their scoring output.`,`Kaprizov, Kirill (MIN): [8 pts in last 5 games 🔥HOT]. Kaprizov is Minnesota's primary offensive weapon and a constant scoring threat.`,`Hughes, Quinn (MIN): [11 pts in last 5 games 🔥HOT]. His exceptional offensive output from the blue line makes him a player to watch.`],
     isBetOfDay: false
   }
@@ -1818,20 +1803,18 @@ Quinn Hughes delivers exceptional offensive output from the blue line with 11 po
     confidence: 'High',
     stars: '⭐⭐⭐⭐',
     winProbability: '76',
-    reasoning: `🏠**Suns Home Court**
-Phoenix holds a 0.500 home win percentage, significantly better than the Clippers' road record.
-
-📉**Clippers Road Struggles**
-Los Angeles has a dreadful 0.000 away record, creating a substantial home/road gap.
-
-😴**Suns Fatigue Advantage**
-Phoenix is more rested, having played a day earlier than the Clippers.
-
-📊**Slight Quality Edge**
-The Suns hold a slight edge in overall team quality this season.
-
-💰**Market Undervalues PHX**
-The market has undervalued Phoenix's true win probability in this matchup.`,
+    reasoning: `🏠 **Huge Home Advantage**
+Phoenix holds a significant 0.500 home win % vs LAC's 0.000 away record.
+😴 **Suns More Rested**
+Phoenix last played Nov 7th, giving them a fatigue edge over the Clippers.
+📈 **Slight Quality Edge**
+Suns have a marginal overall team quality edge this season (0.333 vs 0.222 win %).
+💰 **Market Undervalues**
+The market has mispriced Suns' true win probability given these factors.
+❌ **Clippers Road Woes**
+Los Angeles has a dreadful 0.000 win percentage on the road.
+📉 **Both Teams Struggling**
+Both Suns (0.333) and Clippers (0.222) have poor season win percentages.`,
     playersToWatch: [],
     isBetOfDay: true
   },
@@ -1843,20 +1826,16 @@ The market has undervalued Phoenix's true win probability in this matchup.`,
     confidence: 'High',
     stars: '⭐⭐⭐⭐',
     winProbability: '59',
-    reasoning: `🏠**76ers Home Dominance**
-Philadelphia boasts an impressive 0.800 home win percentage, a significant home-court advantage.
-
-🔝**Top Contenders Clash**
-Both teams are top contenders with excellent season win percentages, indicating high talent.
-
-💰**Clear Market Edge**
-The 76ers' strong home play and league-best 9-2 record present a clear edge against the odds.
-
-📈**Celtics Strong Recent Form**
-Boston has been more dominant recently, with a +10.7 point differential in their last 10 games.
-
-🤝**Fatigue Is Neutral**
-Both teams played yesterday, so neither has a fatigue advantage.`,
+    reasoning: `🏠 **Dominant Home Court**
+Sixers boast an impressive 0.800 home win % with a strong differential.
+🏆 **League's Top Team**
+Philadelphia is the league's top team at 9-2 with an 0.818 season win %.
+📊 **Celtics Recent Form**
+Boston has been more dominant in their last 10 games with a +10.7 point differential.
+😴 **Fatigue Is Neutral**
+Both teams played yesterday, so neither holds a rest advantage.
+💰 **76ers Offer Edge**
+Philadelphia's strong home play gives them a clear edge against the odds.`,
     playersToWatch: [],
     isBetOfDay: false
   },
@@ -1868,23 +1847,18 @@ Both teams played yesterday, so neither has a fatigue advantage.`,
     confidence: 'Medium',
     stars: '⭐⭐⭐',
     winProbability: '58',
-    reasoning: `🏠**Knicks Home Dominance**
-New York has a 0.600 home win percentage, facing a winless Milwaukee team on the road.
-
-❌**Bucks Winless on Road**
-Milwaukee holds a 0.000 road win percentage, indicating massive home court advantage for NY.
-
-📊**Knicks Quality Gap**
-The Knicks (0.556 season win %) are significantly better than the struggling Bucks (0.100).
-
-🔥**NYK Strong Recent Form**
-New York has a positive +5.67 point differential over their last 10 games.
-
-📉**Bucks Dire Performance**
-Milwaukee shows a dismal -13.2 point differential in their last 10 games.
-
-💰**Value for Knicks Cover**
-Despite a large spread, the Bucks' dire form suggests good value for New York to cover.`,
+    reasoning: `🏠 **Massive Home Edge**
+Knicks boast a 0.600 home win % vs Bucks' dreadful 0.000 road record.
+📈 **Knicks Superior Play**
+New York (0.556 season win %) is significantly better than struggling Milwaukee (0.100).
+📊 **Knicks Recent Form**
+Knicks hold a strong +5.67 point differential over their last 10 games.
+📉 **Bucks Dire Form**
+Milwaukee has a dismal -13.2 point differential in their last 10 outings.
+💰 **Value on Spread**
+Despite a large -16.0 spread, Knicks offer good value to cover.
+❌ **Bucks Winless Road**
+Milwaukee has a 0.000 road win percentage this season.`,
     playersToWatch: [],
     isBetOfDay: false
   },
@@ -1896,20 +1870,18 @@ Despite a large spread, the Bucks' dire form suggests good value for New York to
     confidence: 'Medium',
     stars: '⭐⭐⭐',
     winProbability: '52',
-    reasoning: `📈**Blazers Recent Form**
-Portland shows strong recent form with a 6-3 record and a +5.55 point differential in their last 10 games.
-
-🔥**Offensive Momentum**
-The Blazers are showing strong offensive momentum, contributing to their recent success.
-
-💰**Market Overstates OKC**
-Market odds may be overstating Oklahoma City's road dominance, offering value for Portland.
-
-🏡**Defending Home Court**
-Portland looks to defend their home court against a strong opponent, despite a weaker home record.
-
-💪**Thunder's Strong Form**
-Oklahoma City also comes in with strong form, boasting an 8-2 record in their last 10.`,
+    reasoning: `🔥 **Blazers Strong Form**
+Portland is 6-3 in their last 10 games with a +5.55 point differential.
+📈 **Thunder Strong Form**
+Oklahoma City is a strong team, boasting an 8-2 record in their last 10 games.
+💰 **Market Overstated OKC**
+Odds may overstate OKC's road dominance, creating value for Portland at home.
+😴 **Teams Equally Rested**
+Both teams are equally rested, canceling out any fatigue advantage.
+🏠 **Defending Home Court**
+Portland aims to defend their home court against a strong opponent.
+🛣️ **Thunder's Road Prowess**
+Oklahoma City has a strong 0.600 road record.`,
     playersToWatch: [],
     isBetOfDay: false
   }
@@ -1953,6 +1925,36 @@ function renderPicks() {
   loadVoteCounts();
 }
 
+function renderPtwItem(raw) {
+  // Parse: "Name, Last (TEAM): [stat]. Context sentence."
+  // or:    "Name, Last (TEAM): stat. Context."
+  const teamMatch = raw.match(/^(.+?)\s+\(([^)]+)\)\s*:\s*(.*)$/);
+  if (!teamMatch) return `<li class='ptw-item'><div class='ptw-item-body'><span class='ptw-item-stat'>${raw}</span></div></li>`;
+
+  const fullName = teamMatch[1].trim();
+  const team = teamMatch[2].trim();
+  const rest = teamMatch[3].trim();
+
+  // Split stat (inside [...] or before the first period) from context
+  const statMatch = rest.match(/^\[([^\]]+)\]\.\s*(.*)$/) || rest.match(/^([^.]+)\.\s*(.*)$/);
+  const stat = statMatch ? statMatch[1].trim() : rest;
+  const context = statMatch ? statMatch[2].trim() : '';
+
+  const isHot = /🔥|HOT/i.test(stat);
+  const isCold = /🧊|COLD/i.test(stat);
+  const cls = isHot ? 'hot' : isCold ? 'cold' : '';
+  const icon = isHot ? '🔥' : isCold ? '🧊' : '👤';
+  const cleanStat = stat.replace(/🔥HOT|🧊COLD/gi, '').trim().replace(/\s+/g, ' ');
+
+  return `<li class='ptw-item ${cls}'>
+    <span class='ptw-item-icon'>${icon}</span>
+    <div class='ptw-item-body'>
+      <span class='ptw-item-name'>${fullName}</span><span class='ptw-item-team'>${team}</span>
+      <div class='ptw-item-stat'><strong>${cleanStat}</strong>${context ? ' — ' + context : ''}</div>
+    </div>
+  </li>`;
+}
+
 function renderTable(sport, picks) {
   const tableBody = document.getElementById(`${sport}TableBody`);
   const sportIcon = sport === 'nhl' ? '🏒' : '🏀';
@@ -1991,12 +1993,9 @@ function renderTable(sport, picks) {
         <div class='reasoning'>${formatReasoning(pick.reasoning)}</div>
         ${pick.playersToWatch && pick.playersToWatch.length ? `
         <div class='ptw-section'>
-          <div class='ptw-toggle' onclick='this.closest(".ptw-section").classList.toggle("open")'>
-            <span class='ptw-label'>👤 Players to Watch</span>
-            <span class='ptw-chevron'>▾</span>
-          </div>
+          <div class='ptw-header'><span class='ptw-label'>👤 Players to Watch</span></div>
           <ul class='ptw-list'>
-            ${pick.playersToWatch.map(p => `<li class='ptw-item'>${p.replace(/🔥HOT/g, '<span class="ptw-hot">🔥</span>').replace(/🧊COLD/g, '<span class="ptw-cold">🧊</span>')}</li>`).join('')}
+            ${pick.playersToWatch.map(p => renderPtwItem(p)).join('')}
           </ul>
         </div>` : ''}
       </td>

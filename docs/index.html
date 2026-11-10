@@ -225,15 +225,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .reasoning-content { flex: 1; display: block; }
 .reasoning-title { font-weight: 700; color: #1f2937; display: block; margin-bottom: 3px; font-size: 0.95em; }
 .reasoning-text { color: #6b7280; display: block; font-size: 0.95em; }
-.ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }
-.ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }
-.ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }
-.ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }
-.ptw-section.open .ptw-chevron { transform: rotate(180deg); }
-.ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }
-.ptw-section.open .ptw-list { display: block; }
-.ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }
-.ptw-item:last-child { margin-bottom: 0; }
+.ptw-section { margin-top: 14px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
+.ptw-header { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.ptw-label { font-size: 0.72em; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #2563eb; }
+.ptw-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ptw-item { display: flex; align-items: flex-start; gap: 8px; background: #f8fafc; border-radius: 8px; padding: 8px 10px; border-left: 3px solid #e2e8f0; }
+.ptw-item.hot { border-left-color: #f97316; background: #fff7ed; }
+.ptw-item.cold { border-left-color: #60a5fa; background: #eff6ff; }
+.ptw-item-icon { font-size: 1em; flex-shrink: 0; margin-top: 1px; }
+.ptw-item-body { flex: 1; min-width: 0; }
+.ptw-item-name { font-weight: 700; font-size: 0.83em; color: #1e293b; }
+.ptw-item-team { display: inline-block; font-size: 0.68em; font-weight: 700; background: #e2e8f0; color: #475569; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; letter-spacing: 0.5px; }
+.ptw-item-stat { font-size: 0.78em; color: #64748b; margin-top: 2px; line-height: 1.4; }
+.ptw-item-stat strong { color: #374151; font-weight: 700; }
 .yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }
 .result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }
 .result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
@@ -272,7 +276,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>Tuesday, November 10, 2026</div>
-<div class='blog-update-time'>⏱️ Last Updated at 8:39 AM</div>
+<div class='blog-update-time'>⏱️ Last Updated at 8:44 AM</div>
 <div style='margin-top: 30px; text-align: center;'>
 <div style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 50px; padding: 12px 28px; box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5); animation: pulse 2s ease-in-out infinite; border: 2px solid #fbbf24;'>
 <span style='color: #78350f; font-size: 1em; margin-right: 10px; font-weight: 700;'>📬 Daily Picks</span>
@@ -377,15 +381,12 @@ document.addEventListener('keydown', function(e) {
 <div class='pick-meta'>Confidence Level: Medium, Units: 1u, Win Probability: 63%</div>
 <div class='pick-description reasoning' data-raw='The Ottawa Senators present a strong value bet as they host the Washington Capitals. Our analysis shows Ottawa with a slight edge in recent goal differential (+0.10 compared to Washington&#x27;s -0.10) and a significant home-ice advantage, boasting an elite 0.750 home win percentage against Washington&#x27;s 0.500 away win rate. Both teams are well-rested, having last played on November 7th. The market appears to undervalue Ottawa&#x27;s formidable home record against a Capitals team that struggles slightly more on the road.'></div>
 <div class='ptw-section'>
-<div class='ptw-toggle' onclick='this.closest(".ptw-section").classList.toggle("open")'>
-<span class='ptw-label'>👤 Players to Watch</span>
-<span class='ptw-chevron'>▾</span>
-</div>
+<div class='ptw-header'><span class='ptw-label'>👤 Players to Watch</span></div>
 <ul class='ptw-list'>
-<li class='ptw-item'>Stutzle, Tim (OTT): [7 pts in last 5 games <span class="ptw-hot">🔥</span>]. His recent offensive burst could be a key factor for Ottawa.</li>
-<li class='ptw-item'>Batherson, Drake (OTT): [5 pts in last 5 games <span class="ptw-hot">🔥</span>]. A consistent scoring threat for the Senators, crucial in tight matchups.</li>
-<li class='ptw-item'>Kyrou, Jordan (WSH): [6 pts in last 5 games <span class="ptw-hot">🔥</span>]. He is a top offensive contributor for the Capitals and will look to generate scoring chances.</li>
-<li class='ptw-item'>Chychrun, Jakob (WSH): [5 pts in last 5 games <span class="ptw-hot">🔥</span>]. His defensive presence and recent scoring contributions are vital for Washington.</li>
+<li class='ptw-item hot'><span class='ptw-item-icon'>🔥</span><div class='ptw-item-body'><span class='ptw-item-name'>Stutzle, Tim</span><span class='ptw-item-team'>OTT</span><div class='ptw-item-stat'><strong>7 pts in last 5 games</strong> — His recent offensive burst could be a key factor for Ottawa.</div></div></li>
+<li class='ptw-item hot'><span class='ptw-item-icon'>🔥</span><div class='ptw-item-body'><span class='ptw-item-name'>Batherson, Drake</span><span class='ptw-item-team'>OTT</span><div class='ptw-item-stat'><strong>5 pts in last 5 games</strong> — A consistent scoring threat for the Senators, crucial in tight matchups.</div></div></li>
+<li class='ptw-item hot'><span class='ptw-item-icon'>🔥</span><div class='ptw-item-body'><span class='ptw-item-name'>Kyrou, Jordan</span><span class='ptw-item-team'>WSH</span><div class='ptw-item-stat'><strong>6 pts in last 5 games</strong> — He is a top offensive contributor for the Capitals and will look to generate scoring chances.</div></div></li>
+<li class='ptw-item hot'><span class='ptw-item-icon'>🔥</span><div class='ptw-item-body'><span class='ptw-item-name'>Chychrun, Jakob</span><span class='ptw-item-team'>WSH</span><div class='ptw-item-stat'><strong>5 pts in last 5 games</strong> — His defensive presence and recent scoring contributions are vital for Washington.</div></div></li>
 </ul>
 </div>
 </div>
