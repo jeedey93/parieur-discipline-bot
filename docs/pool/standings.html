@@ -1202,79 +1202,82 @@
         .game-pool-chip.scoring { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
 
         /* ── GAME MODAL ── */
-        #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); }
+        #game-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-end; justify-content: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); }
         #game-modal.show { display: flex; }
-        .gm-sheet { background: #0d1117; border-radius: 18px 18px 0 0; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); position: relative; }
-        @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 18px; max-height: 85vh; } }
+        .gm-sheet { background: #0d1117; border-radius: 22px 22px 0 0; width: 100%; max-width: 600px; max-height: 92vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.1); position: relative; }
+        @media (min-width: 561px) { #game-modal { align-items: center; } .gm-sheet { border-radius: 22px; max-height: 88vh; } }
         @media (min-width: 861px) {
-          .gm-sheet { max-width: 1100px; }
+          .gm-sheet { max-width: 1100px; max-height: 90vh; }
           /* Status bar */
-          .gm-statusbar { font-size: 1.1rem; padding: 0.85rem 2.5rem; letter-spacing: 1.5px; }
+          .gm-statusbar { font-size: 1rem; padding: 0.8rem 3rem; letter-spacing: 2px; }
           /* Scoreboard: side-by-side on desktop */
-          .gm-teams-desktop { display: flex; align-items: center; padding: 2.8rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 0; }
+          .gm-teams-desktop { display: flex; align-items: center; padding: 3rem 4rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 0; }
           .gm-teams-desktop { display: flex; }
           .gm-team-row { display: none; }
           .gm-desktop-team { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-          .gm-desktop-team-logo { width: 130px; height: 130px; object-fit: contain; }
-          .gm-desktop-team-name { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; letter-spacing: 3px; color: white; text-align: center; line-height: 1.1; }
-          .gm-desktop-team-sog { font-size: 1.05rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
-          .gm-desktop-score-block { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0 3rem; flex-shrink: 0; }
-          .gm-desktop-score { font-family: 'Bebas Neue', cursive; font-size: 9rem; letter-spacing: 8px; color: white; line-height: 1; }
-          .gm-desktop-score.future { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+          .gm-desktop-team-logo { width: 140px; height: 140px; object-fit: contain; }
+          .gm-desktop-team-name { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 3px; color: white; text-align: center; line-height: 1.1; }
+          .gm-desktop-team-sog { font-size: 0.95rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+          .gm-desktop-score-block { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0 3.5rem; flex-shrink: 0; }
+          .gm-desktop-score { font-family: 'Bebas Neue', cursive; font-size: 9.5rem; letter-spacing: 10px; color: white; line-height: 1; }
+          .gm-desktop-score.future { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
           /* Pool strip */
-          .gm-pool-strip { padding: 1rem 2.5rem; gap: 0.65rem; }
-          .gm-pool-strip-label { font-size: 0.82rem; }
-          .gm-pool-badge { font-size: 1.1rem; padding: 6px 16px; border-radius: 6px; }
-          /* Scoring */
-          .gm-scoring-title { font-size: 1.5rem; padding: 1.4rem 2.5rem 0.9rem; }
-          .gm-period-header { font-size: 1rem; padding: 8px 2.5rem; letter-spacing: 2px; }
-          .gm-goal-row { padding: 1.2rem 2.5rem; gap: 1.4rem; }
-          .gm-goal-headshot { width: 72px; height: 72px; }
-          .gm-goal-team-logo { width: 42px; height: 42px; }
-          .gm-goal-scorer { font-size: 1.5rem; }
-          .gm-goal-num { font-size: 1.2rem; }
-          .gm-goal-assists { font-size: 1.15rem; margin-top: 4px; }
-          .gm-goal-time { font-size: 1.3rem; }
-          .gm-no-goals { font-size: 1.15rem; padding: 1.3rem 2.5rem; }
-          .gm-loading { padding: 4rem 0; font-size: 1.25rem; }
+          .gm-pool-strip { padding: 0.85rem 3rem; gap: 0.7rem; }
+          .gm-pool-strip-label { font-size: 0.78rem; }
+          .gm-pool-badge { font-size: 1rem; padding: 5px 14px; border-radius: 6px; }
+          /* Scoring: 2-col grid on wide modal */
+          .gm-scoring { padding: 0 0 1.5rem; }
+          .gm-scoring-title { font-size: 1.1rem; padding: 1.4rem 3rem 0.7rem; }
+          .gm-period-header { font-size: 0.85rem; padding: 7px 3rem; letter-spacing: 2px; }
+          .gm-goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+          .gm-goal-row { padding: 1rem 3rem; gap: 1.2rem; }
+          .gm-goal-headshot { width: 64px; height: 64px; }
+          .gm-goal-team-logo { width: 38px; height: 38px; }
+          .gm-goal-scorer { font-size: 1.35rem; }
+          .gm-goal-num { font-size: 1.1rem; }
+          .gm-goal-assists { font-size: 1rem; margin-top: 4px; }
+          .gm-goal-time { font-size: 1.15rem; }
+          .gm-no-goals { font-size: 1.05rem; padding: 1.2rem 3rem; }
+          .gm-loading { padding: 4rem 0; font-size: 1.15rem; }
         }
-        .gm-close { position: absolute; top: -2.4rem; right: 0; font-size: 1.3rem; color: rgba(255,255,255,0.5); cursor: pointer; line-height: 1; padding: 4px 6px; }
+        .gm-close { position: absolute; top: -2.6rem; right: 0; font-size: 1.4rem; color: rgba(255,255,255,0.5); cursor: pointer; line-height: 1; padding: 4px 6px; }
         .gm-close:hover { color: white; }
         .gm-sheet { position: relative; }
         /* Status bar */
-        .gm-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 1rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
-        .gm-statusbar .live-dot::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; animation: pulse 1.5s infinite; }
-        /* Team rows */
-        .gm-team-row { display: flex; align-items: center; gap: 0.85rem; padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .gm-team-logo { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+        .gm-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1.25rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .gm-statusbar .live-dot::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; vertical-align: middle; animation: pulse 1.5s infinite; }
+        /* Mobile scoreboard: compact single-row per team */
+        .gm-team-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .gm-team-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
         .gm-team-info { flex: 1; min-width: 0; }
-        .gm-team-fullname { font-family: 'Bebas Neue', cursive; font-size: 1.25rem; letter-spacing: 2px; color: white; line-height: 1.1; }
-        .gm-team-sog { font-size: 0.7rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); margin-top: 1px; }
-        .gm-team-score { font-family: 'Bebas Neue', cursive; font-size: 2.4rem; color: white; letter-spacing: 1px; line-height: 1; flex-shrink: 0; min-width: 36px; text-align: right; }
+        .gm-team-fullname { font-family: 'Bebas Neue', cursive; font-size: 1.35rem; letter-spacing: 2px; color: white; line-height: 1.1; }
+        .gm-team-sog { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); margin-top: 2px; }
+        .gm-team-score { font-family: 'Bebas Neue', cursive; font-size: 2.8rem; color: white; letter-spacing: 1px; line-height: 1; flex-shrink: 0; min-width: 42px; text-align: right; }
         .gm-team-score.future { font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); letter-spacing: 0; }
         /* Pool impact strip */
-        .gm-pool-strip { padding: 0.55rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
-        .gm-pool-strip-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-right: 0.2rem; flex-shrink: 0; }
-        .gm-pool-badge { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+        .gm-pool-strip { padding: 0.6rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+        .gm-pool-strip-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-right: 0.2rem; flex-shrink: 0; }
+        .gm-pool-badge { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; padding: 3px 9px; border-radius: 5px; white-space: nowrap; }
         .gm-pool-badge.scoring { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
         .gm-pool-badge.playing { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.08); }
         /* Scoring summary */
-        .gm-scoring { padding: 0 0 1rem; }
-        .gm-scoring-title { font-size: 0.88rem; font-weight: 800; color: white; padding: 0.85rem 1rem 0.5rem; letter-spacing: 0.3px; }
-        .gm-period-header { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); padding: 5px 1rem; }
-        .gm-goal-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .gm-scoring { padding: 0 0 1.25rem; }
+        .gm-scoring-title { font-size: 0.92rem; font-weight: 800; color: white; padding: 0.9rem 1.25rem 0.55rem; letter-spacing: 0.5px; text-transform: uppercase; }
+        .gm-period-header { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); padding: 6px 1.25rem; }
+        .gm-goals-grid { display: block; }
+        .gm-goal-row { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .gm-goal-row:last-child { border-bottom: none; }
-        .gm-goal-headshot { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: rgba(255,255,255,0.05); flex-shrink: 0; }
-        .gm-goal-team-logo { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; opacity: 0.85; }
+        .gm-goal-headshot { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: rgba(255,255,255,0.05); flex-shrink: 0; }
+        .gm-goal-team-logo { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; opacity: 0.9; }
         .gm-goal-info { flex: 1; min-width: 0; }
-        .gm-goal-scorer { font-size: 0.9rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: white; }
+        .gm-goal-scorer { font-size: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: white; }
         .gm-goal-scorer.pool { color: var(--green); }
-        .gm-goal-num { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 400; margin-left: 3px; }
-        .gm-goal-assists { font-size: 0.75rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); margin-top: 1px; }
+        .gm-goal-num { font-size: 0.82rem; color: rgba(255,255,255,0.35); font-weight: 400; margin-left: 3px; }
+        .gm-goal-assists { font-size: 0.82rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); margin-top: 2px; }
         .gm-goal-assists .pool { color: var(--green); font-weight: 600; }
-        .gm-goal-time { font-size: 0.78rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+        .gm-goal-time { font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); flex-shrink: 0; }
         .gm-teams-desktop { display: none; }
-        .gm-no-goals { font-size: 0.82rem; color: rgba(255,255,255,0.25); padding: 0.75rem 1rem; font-family: 'Barlow Condensed', sans-serif; }
+        .gm-no-goals { font-size: 0.85rem; color: rgba(255,255,255,0.25); padding: 0.85rem 1.25rem; font-family: 'Barlow Condensed', sans-serif; }
 
         /* ── INVALID LINK ── */
         #invalid-gate { position: fixed; inset: 0; z-index: 9999; background: var(--rink); display: none; align-items: center; justify-content: center; background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(26,58,110,0.6) 0%, transparent 70%); }
@@ -1861,7 +1864,7 @@
           let rows = '';
           Object.entries(byPeriod).forEach(([pNum, pGoals]) => {
             const pLabel = pNum == 4 ? 'OT' : pNum == 5 ? 'SO' : `${['','1st','2nd','3rd'][pNum] || pNum + 'th'} Period`;
-            rows += `<div class="gm-period-header">${pLabel}</div>`;
+            let periodRows = '';
             pGoals.forEach(g => {
               const d = g.details || {};
               const scorerId = d.scoringPlayerId;
@@ -1897,7 +1900,7 @@
                 ? `<img class="gm-goal-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${teamAbbrev}_light.svg" alt="${teamAbbrev}">`
                 : '';
 
-              rows += `<div class="gm-goal-row">
+              periodRows += `<div class="gm-goal-row">
                 ${headshotImg}
                 ${teamLogoImg}
                 <div class="gm-goal-info">
@@ -1907,6 +1910,7 @@
                 <div class="gm-goal-time">${time}</div>
               </div>`;
             });
+            rows += `<div class="gm-period-header">${pLabel}</div><div class="gm-goals-grid">${periodRows}</div>`;
           });
 
           scoringHtml = `<div class="gm-scoring"><div class="gm-scoring-title">Goals</div>${rows}</div>`;
