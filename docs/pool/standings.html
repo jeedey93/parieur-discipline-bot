@@ -1212,8 +1212,6 @@
           .gm-statusbar { font-size: 1rem; padding: 0.8rem 3rem; letter-spacing: 2px; }
           /* Scoreboard: side-by-side on desktop */
           .gm-teams-desktop { display: flex; align-items: center; padding: 3rem 4rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 0; }
-          .gm-teams-desktop { display: flex; }
-          .gm-team-row { display: none; }
           .gm-desktop-team { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
           .gm-desktop-team-logo { width: 140px; height: 140px; object-fit: contain; }
           .gm-desktop-team-name { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 3px; color: white; text-align: center; line-height: 1.1; }
@@ -1246,14 +1244,6 @@
         /* Status bar */
         .gm-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1.25rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
         .gm-statusbar .live-dot::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; vertical-align: middle; animation: pulse 1.5s infinite; }
-        /* Mobile scoreboard: compact single-row per team */
-        .gm-team-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .gm-team-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
-        .gm-team-info { flex: 1; min-width: 0; }
-        .gm-team-fullname { font-family: 'Bebas Neue', cursive; font-size: 1.35rem; letter-spacing: 2px; color: white; line-height: 1.1; }
-        .gm-team-sog { font-size: 0.72rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); margin-top: 2px; }
-        .gm-team-score { font-family: 'Bebas Neue', cursive; font-size: 2.8rem; color: white; letter-spacing: 1px; line-height: 1; flex-shrink: 0; min-width: 42px; text-align: right; }
-        .gm-team-score.future { font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); letter-spacing: 0; }
         /* Pool impact strip */
         .gm-pool-strip { padding: 0.6rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
         .gm-pool-strip-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-right: 0.2rem; flex-shrink: 0; }
@@ -1276,7 +1266,20 @@
         .gm-goal-assists { font-size: 0.82rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.4); margin-top: 2px; }
         .gm-goal-assists .pool { color: var(--green); font-weight: 600; }
         .gm-goal-time { font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+        /* Mobile scoreboard */
+        .gm-mob-board { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.25rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 0.5rem; }
+        .gm-mob-team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; flex: 1; }
+        .gm-mob-team .gm-team-logo { width: 52px; height: 52px; }
+        .gm-mob-name { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1.5px; color: white; text-align: center; line-height: 1.1; }
+        .gm-mob-sog { font-size: 0.68rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; }
+        .gm-mob-score { font-family: 'Bebas Neue', cursive; font-size: 3.8rem; letter-spacing: 2px; color: white; line-height: 1; text-align: center; flex-shrink: 0; min-width: 120px; }
+        .gm-mob-dash { font-size: 2.2rem; color: rgba(255,255,255,0.3); margin: 0 4px; }
+        .gm-mob-vs { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-align: center; flex-shrink: 0; min-width: 60px; }
         .gm-teams-desktop { display: none; }
+        @media (min-width: 861px) {
+          .gm-mob-board { display: none; }
+          .gm-teams-desktop { display: flex; }
+        }
         .gm-no-goals { font-size: 0.85rem; color: rgba(255,255,255,0.25); padding: 0.85rem 1.25rem; font-family: 'Barlow Condensed', sans-serif; }
 
         /* ── INVALID LINK ── */
@@ -1803,26 +1806,33 @@
         statusBarHtml = `<div class="gm-statusbar"><span>Upcoming</span><span>${statusText}</span></div>`;
       }
 
-      // ── Team rows ──
-      const teamRow = (logo, fullName, score, sog, side) => {
-        const logoImg = logo
-          ? `<img class="gm-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(logo)}" alt="" onerror="this.style.display='none'">`
-          : `<div style="width:42px;height:42px;flex-shrink:0"></div>`;
+      // ── Mobile scoreboard: both teams in one compact row ──
+      const mobileScoreboard = (() => {
+        const awayLogoImg = awayLogo
+          ? `<img class="gm-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(awayLogo)}" alt="" onerror="this.style.display='none'">`
+          : `<div style="width:44px;height:44px;flex-shrink:0"></div>`;
+        const homeLogoImg = homeLogo
+          ? `<img class="gm-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(homeLogo)}" alt="" onerror="this.style.display='none'">`
+          : `<div style="width:44px;height:44px;flex-shrink:0"></div>`;
         const scoreEl = isFut
-          ? `<div class="gm-team-score future">${side === 'away' ? 'Away' : 'Home'}</div>`
-          : `<div class="gm-team-score">${score}</div>`;
-        const sogEl = !isFut && sog !== null
-          ? `<div class="gm-team-sog">${sog} shots</div>`
-          : '';
-        return `<div class="gm-team-row">
-          ${logoImg}
-          <div class="gm-team-info">
-            <div class="gm-team-fullname">${fullName.trim()}</div>
-            ${sogEl}
+          ? `<div class="gm-mob-vs">VS</div>`
+          : `<div class="gm-mob-score">${awayScore}<span class="gm-mob-dash">–</span>${homeScore}</div>`;
+        const awaySogEl = !isFut && awaySog !== null ? `<div class="gm-mob-sog">${awaySog} SOG</div>` : '';
+        const homeSogEl = !isFut && homeSog !== null ? `<div class="gm-mob-sog">${homeSog} SOG</div>` : '';
+        return `<div class="gm-mob-board">
+          <div class="gm-mob-team away">
+            ${awayLogoImg}
+            <div class="gm-mob-name">${awayFullName.trim()}</div>
+            ${awaySogEl}
           </div>
           ${scoreEl}
+          <div class="gm-mob-team home">
+            ${homeLogoImg}
+            <div class="gm-mob-name">${homeFullName.trim()}</div>
+            ${homeSogEl}
+          </div>
         </div>`;
-      };
+      })();
 
       // Desktop scoreboard: side-by-side with big centred score
       const desktopTeam = (logo, fullName, sog) => {
@@ -1922,8 +1932,7 @@
       content.innerHTML =
         statusBarHtml +
         desktopScoreboard +
-        teamRow(awayLogo, awayFullName, awayScore, awaySog, 'away') +
-        teamRow(homeLogo, homeFullName, homeScore, homeSog, 'home') +
+        mobileScoreboard +
         poolStripHtml +
         scoringHtml;
     }
