@@ -1775,13 +1775,18 @@
       const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
+      // Build teamId → abbrev map from boxscore
+      const teamIdToAbbrev = {};
+      if (bs?.awayTeam?.id && awayAbbr) teamIdToAbbrev[bs.awayTeam.id] = awayAbbr;
+      if (bs?.homeTeam?.id && homeAbbr) teamIdToAbbrev[bs.homeTeam.id] = homeAbbr;
+
       // Build roster map with headshots from play-by-play
-      const rosterMap = {}; // playerId → { name, headshot, team }
+      const rosterMap = {}; // playerId → { name, headshot, teamAbbrev }
       (pbp?.rosterSpots || []).forEach(p => {
         rosterMap[p.playerId] = {
           name: (p.firstName?.default || '') + ' ' + (p.lastName?.default || ''),
           headshot: p.headshot || null,
-          teamAbbrev: p.teamAbbrev || '',
+          teamAbbrev: teamIdToAbbrev[p.teamId] || '',
         };
       });
 
