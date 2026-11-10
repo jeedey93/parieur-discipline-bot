@@ -1695,6 +1695,7 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
     players_to_watch = []
 
     in_players = False
+    confidence_found = False
     for i in range(bet_start + 1, len(lines)):
         line = lines[i].strip()
         clean_line = line.strip('*').strip()
@@ -1714,6 +1715,7 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
         # Confidence line
         elif clean_line.startswith("Confidence") and not in_players:
             confidence_line = clean_line
+            confidence_found = True
         # Players to Watch block
         elif clean_line.lower().startswith("players to watch"):
             in_players = True
@@ -1721,8 +1723,8 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
             players_to_watch.append(clean_line.lstrip("- ").strip())
         elif in_players:
             break  # non-bullet line ends the block
-        # Description (lines between bet and confidence)
-        elif bet_line and not clean_line.startswith("Confidence") and not in_players:
+        # Description: collect lines between bet and confidence, AND bullet lines after confidence
+        elif bet_line and not in_players:
             if description:
                 description += "\n"
             description += line

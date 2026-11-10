@@ -48,7 +48,7 @@ Format the output similarly to your original report:
 🏆 **BET OF THE DAY**
 [Best play across both reports]
 
-[Justification for Bet of the Day]
+[Justification — preserve the emoji bullet point format from the source reports. Each bullet: emoji**Title**\nOne sentence. Do NOT convert bullets to prose paragraphs.]
 
 [Skip a line, then add brief note about morning to noon changes]
 
@@ -58,7 +58,7 @@ Format the output similarly to your original report:
 [For each play:]
 [Play header]
 
-[Justification]
+[Justification — same bullet format as above]
 
 [Skip a line, then add brief note about morning to noon changes]
 
