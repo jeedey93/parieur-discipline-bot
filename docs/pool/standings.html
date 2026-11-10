@@ -370,16 +370,14 @@
           cursor: pointer;
         }
         .podium-footer:hover { color: rgba(255,255,255,0.55); }
-        /* First card (leader/race) gets a larger, more prominent treatment */
+        /* First card in non-grouped insights spans full width */
         .insights .insight-card:first-child {
           grid-column: 1 / -1;
           padding: 0.7rem 1rem;
-          border-color: rgba(255,184,28,0.35);
-          background: rgba(255,184,28,0.05);
-          box-shadow: 0 0 24px rgba(255,184,28,0.05);
         }
-        .insights .insight-card:first-child:hover { background: rgba(255,184,28,0.09); }
         .insights .insight-card:first-child .insight-icon { font-size: 1rem; }
+        /* Last card spans full width when it's the only one in its row (odd count) */
+        .insights .insight-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
         @media (max-width: 600px) {
           .insights { gap: 0.4rem; margin-bottom: 1rem; }
           .insights .insight-card:first-child { padding: 0.5rem 0.65rem; }
@@ -406,8 +404,7 @@
         .insights-page-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 2px; color: white; }
         .insights-page-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .insights-full { margin-bottom: 2rem; }
-        .insights-grouped .insight-card:first-child { grid-column: unset; background: transparent; border-color: rgba(255,255,255,0.08); padding: 0.45rem 0.65rem; flex-direction: column; align-items: flex-start; }
-        .insights-grouped .insight-card:first-child:hover { background: rgba(255,255,255,0.05); }
+        .insights-grouped .insight-card:first-child { grid-column: unset; padding: 0.45rem 0.65rem; flex-direction: column; align-items: flex-start; }
         .insights-grouped .insight-card:first-child .insight-sub { margin-left: 0; text-align: left; }
         .insights-group { margin-bottom: 1.5rem; }
         .insights-group-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; padding-left: 0.1rem; }
