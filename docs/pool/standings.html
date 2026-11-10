@@ -1178,12 +1178,14 @@
         /* ── SCOREBOARD ── */
         .scoreboard { margin-bottom: 1rem; }
         .scoreboard-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.4rem; padding-left: 2px; }
-        .scoreboard-games { display: flex; flex-direction: row; gap: 0.4rem; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+        .scoreboard-games { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+        @media (min-width: 561px) { .scoreboard-games { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; flex-wrap: nowrap; } }
         .scoreboard-games::-webkit-scrollbar { display: none; }
-        .game-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; flex: 0 0 180px; }
+        .game-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
+        @media (max-width: 560px) { .game-card { width: 100%; } }
+        @media (min-width: 561px) { .game-card { flex: 0 0 210px; } }
         .game-card:hover { border-color: rgba(255,255,255,0.2); }
         .game-card.live { border-color: rgba(34,197,94,0.4); }
-        @media (min-width: 561px) { .game-card { flex: 0 0 210px; } }
         .game-card-main { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.7rem; }
         .game-team { display: flex; align-items: center; gap: 0.45rem; flex: 1; min-width: 0; }
         .game-team.home { flex-direction: row-reverse; }
@@ -1228,6 +1230,7 @@
           .gm-period-header { font-size: 0.85rem; padding: 7px 2rem; letter-spacing: 2px; }
           .gm-goal-row { padding: 1rem 2rem; gap: 1.2rem; }
           .gm-goal-headshot { width: 58px; height: 58px; }
+          .gm-goal-team-logo { width: 32px; height: 32px; }
           .gm-goal-scorer { font-size: 1.25rem; }
           .gm-goal-num { font-size: 1rem; }
           .gm-goal-assists { font-size: 1rem; margin-top: 3px; }
@@ -1262,6 +1265,7 @@
         .gm-goal-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .gm-goal-row:last-child { border-bottom: none; }
         .gm-goal-headshot { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: rgba(255,255,255,0.05); flex-shrink: 0; }
+        .gm-goal-team-logo { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; opacity: 0.85; }
         .gm-goal-info { flex: 1; min-width: 0; }
         .gm-goal-scorer { font-size: 0.9rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: white; }
         .gm-goal-scorer.pool { color: var(--green); }
@@ -1883,8 +1887,14 @@
                 ? `<div class="gm-goal-assists">Assists: ${assistParts.join(', ')}</div>`
                 : `<div class="gm-goal-assists" style="color:rgba(255,255,255,0.2)">Unassisted</div>`;
 
+              const teamAbbrev = scorer.teamAbbrev || '';
+              const teamLogoImg = teamAbbrev
+                ? `<img class="gm-goal-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${teamAbbrev}_light.svg" alt="${teamAbbrev}">`
+                : '';
+
               rows += `<div class="gm-goal-row">
                 ${headshotImg}
+                ${teamLogoImg}
                 <div class="gm-goal-info">
                   <div class="gm-goal-scorer${isPoolScorer ? ' pool' : ''}">${scorerName}<span class="gm-goal-num">${goalNum}</span></div>
                   ${assistsHtml}
