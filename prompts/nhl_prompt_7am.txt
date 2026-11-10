@@ -221,7 +221,15 @@ Format:
 BET OF THE DAY
 
 <TEAM/MARKET> <MARKET_TYPE> vs <OPPONENT> @ <ODDS>
-Write 4-5 sentences of analysis: first summarize teams, fatigue, momentum, matchup context, and absences, noting that starting goalies are not yet confirmed for this early run; then explain the edge, how factors combine, and why the market has mispriced this game. Make it accessible for beginner bettors.
+Write the analysis as 3-4 emoji bullet points. Each bullet must use this EXACT format (no leading asterisks or dashes — start directly with the emoji):
+[emoji]**[Short Title]**
+[One supporting sentence of explanation.]
+
+IMPORTANT: Each bullet starts directly with the emoji character — do NOT prefix with *, -, or spaces. Example:
+🏠**Home Ice Edge**
+Ottawa's 0.750 home win rate vs Washington's 0.500 away rate creates a clear advantage.
+
+Use these emojis: 🏠 for home ice, 📊 for recent form/stats, 😴 for fatigue/rest, ⚔️ for matchup/H2H, ❌ for absences, 📈 for value/edge/market. Note that starting goalies are not yet confirmed for this early run. Make it accessible for beginner bettors.
 Confidence Level: (High/Medium), Units: (1.5u/1u), Win Probability: XX%
 
 **Other Recommended Plays**
