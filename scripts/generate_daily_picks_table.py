@@ -255,6 +255,20 @@ def parse_pick_line(line, game_matchups):
     return None
 
 
+def extract_players_to_watch(section_text):
+    """Extract 'Players to Watch:' bullet list from a pick's section text.
+    Returns a list of strings like ['K. Kaprizov (MIN): 7pts in last 5 🔥HOT. ...']
+    """
+    players = []
+    m = re.search(r'Players to Watch:\s*\n((?:\s*-[^\n]+\n?)+)', section_text, re.IGNORECASE)
+    if m:
+        for line in m.group(1).splitlines():
+            line = line.strip().lstrip('- ').strip()
+            if line:
+                players.append(line)
+    return players
+
+
 def parse_prediction_file(file_path, sport):
     """Parse a prediction file and extract picks."""
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -310,6 +324,7 @@ def parse_prediction_file(file_path, sport):
                 break
 
         reasoning = ' '.join(reasoning_lines).strip()
+        players_to_watch = extract_players_to_watch(section_text)
 
         pick_data = parse_pick_line(pick_line, game_matchups)
         if pick_data:
@@ -336,6 +351,7 @@ def parse_prediction_file(file_path, sport):
                     'stars': confidence[0],
                     'win_probability': win_probability,
                     'reasoning': reasoning,
+                    'players_to_watch': players_to_watch,
                     'is_bet_of_day': True
                 })
 
@@ -393,6 +409,7 @@ def parse_prediction_file(file_path, sport):
                         reasoning_lines.append(line)
 
                 reasoning = ' '.join(reasoning_lines).strip()
+                players_to_watch = extract_players_to_watch(section_text)
 
             pick_data = parse_pick_line(pick_line, game_matchups)
             if pick_data:
@@ -419,6 +436,7 @@ def parse_prediction_file(file_path, sport):
                         'stars': confidence[0],
                         'win_probability': win_probability,
                         'reasoning': reasoning,
+                        'players_to_watch': players_to_watch,
                         'time': 'TBD',
                         'is_bet_of_day': False
                     })
@@ -469,6 +487,12 @@ def generate_javascript_data(nhl_picks, nba_picks):
         for pick in picks:
             win_prob = pick.get('win_probability') or ''
             is_bet_of_day = 'true' if pick.get('is_bet_of_day', False) else 'false'
+            ptw = pick.get('players_to_watch') or []
+            # Escape backticks and backslashes for template literal
+            ptw_js = '[' + ','.join(
+                '`' + p.replace('\\', '\\\\').replace('`', '\\`') + '`'
+                for p in ptw
+            ) + ']'
             js_picks.append(f"""  {{
     game: '{pick['game']}',
     pick: '{pick['pick']}',
@@ -478,6 +502,7 @@ def generate_javascript_data(nhl_picks, nba_picks):
     stars: '{pick['stars']}',
     winProbability: '{win_prob}',
     reasoning: `{pick['reasoning']}`,
+    playersToWatch: {ptw_js},
     isBetOfDay: {is_bet_of_day}
   }}""")
         return ',\n'.join(js_picks)

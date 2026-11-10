@@ -467,6 +467,19 @@ nav > div {
   font-size: 0.95em;
 }
 
+/* Players to Watch */
+.ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }
+.ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }
+.ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }
+.ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }
+.ptw-section.open .ptw-chevron { transform: rotate(180deg); }
+.ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }
+.ptw-section.open .ptw-list { display: block; }
+.ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }
+.ptw-item:last-child { margin-bottom: 0; }
+.ptw-hot { font-size: 1em; }
+.ptw-cold { font-size: 1em; }
+
 /* No games message */
 .no-games {
   text-align: center;
@@ -1774,6 +1787,16 @@ function renderTable(sport, picks) {
       </td>
       <td data-label='Key Reasoning'>
         <div class='reasoning'>${formatReasoning(pick.reasoning)}</div>
+        ${pick.playersToWatch && pick.playersToWatch.length ? `
+        <div class='ptw-section'>
+          <div class='ptw-toggle' onclick='this.closest(".ptw-section").classList.toggle("open")'>
+            <span class='ptw-label'>👤 Players to Watch</span>
+            <span class='ptw-chevron'>▾</span>
+          </div>
+          <ul class='ptw-list'>
+            ${pick.playersToWatch.map(p => `<li class='ptw-item'>${p.replace(/🔥HOT/g, '<span class="ptw-hot">🔥</span>').replace(/🧊COLD/g, '<span class="ptw-cold">🧊</span>')}</li>`).join('')}
+          </ul>
+        </div>` : ''}
       </td>
       <td data-label='Actions'>
         <div class='actions-cell'>

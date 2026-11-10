@@ -63,3 +63,9 @@ Format the output similarly to your original report:
 [Skip a line, then add brief note about morning to noon changes]
 
 Include a brief note about changes from morning to noon for each play (e.g., "Confidence increased due to line movement" or "New play added at noon based on updated odds"). Always skip a line before adding this brief note.
+
+PLAYERS TO WATCH (MANDATORY — preserve from morning/noon reports)
+
+Each morning prediction already includes a "Players to Watch:" block inside each play. You MUST preserve these blocks in your unified output. After the Confidence/Units/Win Probability + change note for each play, include the Players to Watch section exactly as it appeared in the noon report (or morning if noon is absent).
+
+If neither morning nor noon report contains a Players to Watch block for a given play, omit that block silently — do not invent players.
