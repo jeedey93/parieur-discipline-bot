@@ -4517,14 +4517,6 @@
       // Sort by latest pts desc for legend order
       series.sort((a, b) => (b.last?.pts ?? 0) - (a.last?.pts ?? 0));
 
-      // DEBUG: compare chart pts vs live standings
-      console.table(series.map(s => ({
-        name: s.name,
-        chart_pts: s.last?.pts ?? null,
-        live_pts: livePtsByTeam[s.id],
-        snapshot_raw: (() => { const t = rows[rows.length-1]?.standings?.find(t => t.team_id === s.id); return t?.pts ?? null; })(),
-      })));
-
       const isPts = _bumpMode === 'pts';
 
       // Value extractor
