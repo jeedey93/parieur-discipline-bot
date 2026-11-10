@@ -1,45 +1,58 @@
 Date: 2026-11-10
 
 Colorado Avalanche @ Toronto Maple Leafs
-Toronto Maple Leafs ML (Home): 2.27, Colorado Avalanche ML (Away): 1.64, O/U: 6.5 (Over: 1.86 / Under: 1.94)
+Toronto Maple Leafs ML (Home): 2.28, Colorado Avalanche ML (Away): 1.63, O/U: 6.5 (Over: 1.86 / Under: 1.95)
 ------
 Minnesota Wild @ Montréal Canadiens
 Montréal Canadiens ML (Home): 2.03, Minnesota Wild ML (Away): 1.8, O/U: 6.0 (Over: 1.83 / Under: 1.98)
 ------
 Washington Capitals @ Ottawa Senators
-Ottawa Senators ML (Home): 1.8, Washington Capitals ML (Away): 2.02, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+Ottawa Senators ML (Home): 1.81, Washington Capitals ML (Away): 2.02, O/U: 6.0 (Over: 1.83 / Under: 1.99)
 ------
 New Jersey Devils @ Winnipeg Jets
-Winnipeg Jets ML (Home): 2.22, New Jersey Devils ML (Away): 1.67, O/U: 6.0 (Over: 1.85 / Under: 1.96)
+Winnipeg Jets ML (Home): 2.22, New Jersey Devils ML (Away): 1.67, O/U: 6.0 (Over: 1.85 / Under: 1.97)
 ------
 Florida Panthers @ Columbus Blue Jackets
-Columbus Blue Jackets ML (Home): 1.94, Florida Panthers ML (Away): 1.87, O/U: 6.0 (Over: 1.98 / Under: 1.84)
+Columbus Blue Jackets ML (Home): 1.94, Florida Panthers ML (Away): 1.87, O/U: 6.0 (Over: 1.96 / Under: 1.85)
 ------
 Detroit Red Wings @ St Louis Blues
-St Louis Blues ML (Home): 1.7, Detroit Red Wings ML (Away): 2.16, O/U: 6.0 (Over: 2.0 / Under: 1.82)
+St Louis Blues ML (Home): 1.7, Detroit Red Wings ML (Away): 2.16, O/U: 6.0 (Over: 1.98 / Under: 1.83)
 ------
 Nashville Predators @ Los Angeles Kings
 Los Angeles Kings ML (Home): 1.73, Nashville Predators ML (Away): 2.12, O/U: 6.0 (Over: 1.83 / Under: 1.98)
 ------
 
 AI Analysis Summary:
-Today's Date is 2026-11-10.
 Current Roster Data Verified.
-NHL Player Absences by Team: None.
-Starting goalies are TBD and this uncertainty is factored into the confidence levels.
+Goalie matchups are TBD for all games, and this uncertainty is factored into the confidence levels. No key player absences reported.
 
 BET OF THE DAY
 
-COLUMBUS BLUE JACKETS ML vs FLORIDA PANTHERS @ 1.94
-The Columbus Blue Jackets present a strong value opportunity tonight. Despite Florida's slightly better overall recent form, Columbus boasts a massive home-ice advantage, with a 0.667 home win percentage against Florida's 0.417 away win percentage, creating a significant gap. Crucially, the Panthers are on the second leg of a back-to-back, while Columbus is well-rested with 3 days off. This fatigue discrepancy, combined with Columbus's strong home splits, gives them a substantial edge that the market has not fully priced into the 1.94 odds.
-Confidence Level: High, Units: 1.5u, Win Probability: 65%
-
-**Other Recommended Plays**
-
-OTTAWA SENATORS ML vs WASHINGTON CAPITALS @ 1.80
-The Ottawa Senators are playing at home where they hold an impressive 0.750 win percentage. They face a Washington Capitals team with a negative goal differential over their last 10 games, and Washington's road form is only 0.500 this season. Ottawa's superior home record creates a significant home-ice advantage gap of +0.250 over Washington's road performance. With both teams equally rested, Ottawa's strong home play and recent form suggest they are undervalued at 1.80 odds, offering a clear edge over the implied probability.
+Ottawa Senators ML vs Washington Capitals @ 1.81
+The Ottawa Senators present a strong value bet as they host the Washington Capitals. Our analysis shows Ottawa with a slight edge in recent goal differential (+0.10 compared to Washington's -0.10) and a significant home-ice advantage, boasting an elite 0.750 home win percentage against Washington's 0.500 away win rate. Both teams are well-rested, having last played on November 7th. The market appears to undervalue Ottawa's formidable home record against a Capitals team that struggles slightly more on the road.
 Confidence Level: Medium, Units: 1u, Win Probability: 63%
+Players to Watch:
+- Stutzle, Tim (OTT): [7 pts in last 5 games 🔥HOT]. His recent offensive burst could be a key factor for Ottawa.
+- Batherson, Drake (OTT): [5 pts in last 5 games 🔥HOT]. A consistent scoring threat for the Senators, crucial in tight matchups.
+- Kyrou, Jordan (WSH): [6 pts in last 5 games 🔥HOT]. He is a top offensive contributor for the Capitals and will look to generate scoring chances.
+- Chychrun, Jakob (WSH): [5 pts in last 5 games 🔥HOT]. His defensive presence and recent scoring contributions are vital for Washington.
 
-MONTRÉAL CANADIENS ML vs MINNESOTA WILD @ 2.03
-As per our mandatory directive, we are highlighting the Montréal Canadiens in their home matchup against the Minnesota Wild. Both teams come into this game with comparable recent form and positive goal differentials, though Minnesota holds a slight edge in defensive play. Montréal's home record is respectable at 0.556, however, Minnesota's away record is slightly better at 0.583, negating a significant home-ice boost. With no head-to-head history this season and both teams well-rested, the play on the Canadiens ML at 2.03 provides a slight statistical edge over the implied probability, qualifying as our mandatory Montreal play.
-Confidence Level: Medium, Units: 1u, Win Probability: 54%
+Other Recommended Plays
+
+Columbus Blue Jackets ML vs Florida Panthers @ 1.94
+The Columbus Blue Jackets, despite a negative goal differential over their last 10 games, hold a substantial home-ice advantage against the Florida Panthers, reflected in their elite 0.667 home win percentage. Florida's recent form is slightly better, but Columbus has had more rest coming into this game, which could be a subtle factor in their favor. The odds for Columbus at home are mispriced given their strong performance at home ice.
+Confidence Level: Medium, Units: 1u, Win Probability: 61%
+Players to Watch:
+- Johnson, Kent (CBJ): [6 pts in last 5 games 🔥HOT]. Johnson has been a consistent offensive threat for Columbus recently.
+- Werenski, Zach (CBJ): [8 pts in last 5 games 🔥HOT]. His offensive contributions from the blue line are critical to the Blue Jackets' scoring.
+- Tkachuk, Matthew (FLA): [6 pts in last 5 games 🔥HOT]. A prolific playmaker, he drives much of the Panthers' offense.
+- Reinhart, Sam (FLA): [7 pts in last 5 games 🔥HOT]. Reinhart's goal-scoring ability makes him a constant threat on the power play and at even strength.
+
+Montréal Canadiens ML vs Minnesota Wild @ 2.03
+As per the mandatory Montreal priority, this play has been identified with a positive edge. The Canadiens have been red-hot, boasting an 8-0-2 record over their last 10 games with an improving offensive trend (+3.20 form trend) and a current two-game winning streak. While Minnesota also displays strong recent form, Montreal's current momentum and home advantage, even with a slight negative home-ice gap compared to Minnesota's road play, make them a live dog at these odds.
+Confidence Level: Medium, Units: 1u, Win Probability: 52%
+Players to Watch:
+- Hutson, Lane (MTL): [7 pts in last 5 games 🔥HOT]. Hutson is a key offensive defenseman who has been producing well.
+- Suzuki, Nick (MTL): [7 pts in last 5 games 🔥HOT]. He leads the Canadiens offense and is crucial for their scoring output.
+- Kaprizov, Kirill (MIN): [8 pts in last 5 games 🔥HOT]. Kaprizov is Minnesota's primary offensive weapon and a constant scoring threat.
+- Hughes, Quinn (MIN): [11 pts in last 5 games 🔥HOT]. His exceptional offensive output from the blue line makes him a player to watch.
