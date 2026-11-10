@@ -4460,31 +4460,12 @@
       const dates = rows.map(r => r.snapshot_date);
       const cols = dates.length;
 
-      // Bench swap frozen pts per team — add to every snapshot to match live standings
-      const benchPtsByTeam = {};
-      _benchSwaps.forEach(s => {
-        if (s.team_id && s.player_out_pts_at_swap != null)
-          benchPtsByTeam[s.team_id] = (benchPtsByTeam[s.team_id] || 0) + s.player_out_pts_at_swap;
-      });
-
-      // Acquisition frozen pts per team (trade window pts locked per player)
-      const acqFrozenByTeam = {};
-      teams.forEach(t => {
-        let total = 0;
-        const acqs = t.acquisitions || {};
-        Object.values(acqs).forEach(acq => {
-          if (acq?.frozen_points) total += acq.frozen_points;
-        });
-        if (total) acqFrozenByTeam[t.id] = total;
-      });
-
-      // Per-team data series
+      // Per-team data series — use snapshot pts directly (scraper already includes bench swap frozen pts)
       const series = teamIds.map(id => {
-        const extra = (benchPtsByTeam[id] || 0) + (acqFrozenByTeam[id] || 0);
         const points = rows.map(row => {
           const entry = (row.standings || []).find(t => t.team_id === id);
           if (!entry) return null;
-          return { ...entry, pts: (entry.pts ?? 0) + extra };
+          return { ...entry };
         });
         const last = [...points].reverse().find(Boolean);
         return { id, color: teamMeta[id].color, name: teamMeta[id].name, points, last };
@@ -4498,8 +4479,6 @@
         name: s.name,
         chart_pts: s.last?.pts ?? null,
         live_pts: teamTotalPts(teams.find(t => t.id === s.id)),
-        bench_extra: benchPtsByTeam[s.id] || 0,
-        acq_extra: acqFrozenByTeam[s.id] || 0,
         snapshot_raw: (() => { const t = rows[rows.length-1]?.standings?.find(t => t.team_id === s.id); return t?.pts ?? null; })(),
       })));
 
