@@ -235,6 +235,23 @@ Header Format:
 - Puck Line: "<TEAM> <SPREAD> vs <OPPONENT> @ <ODDS>"
 - Totals: "<TEAM> vs <OPPONENT> Over/Under <TOTAL> @ <ODDS>"
 
+PLAYERS TO WATCH (MANDATORY — include inside each recommended play)
+
+After the Confidence/Units/Win Probability line for EACH play (Bet of the Day and all other plays), output a "Players to Watch" subsection for that specific game. Use ONLY players from {{PLAYER_FORM}} — do NOT invent or recall players.
+
+Format for each play (append immediately after the confidence line):
+
+Players to Watch:
+- Player Name (TEAM): [stat — e.g. "7 pts in last 5 games 🔥HOT"]. [One sentence on why they matter tonight.]
+- Player Name (TEAM): ...
+(3-5 players per game, mixing both teams. Prioritize 🔥HOT and 🧊COLD players.)
+
+Rules:
+- Only use players explicitly listed in {{PLAYER_FORM}}
+- Always show the team abbreviation in parentheses after each name
+- Keep each bullet to 1 sentence of context max
+- If {{PLAYER_FORM}} has no data for a game's teams, write: "Players to Watch: No player data available."
+
 DATA TO ANALYZE
 {{RESULTS_TEXT}}
 {{TEAM_STATS}}
@@ -246,3 +263,4 @@ DATA TO ANALYZE
 {{RECENT_RESULTS}}
 {{RECENT_GAMES}}
 {{ABSENCES}}
+{{PLAYER_FORM}}
