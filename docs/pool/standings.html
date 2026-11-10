@@ -4460,12 +4460,20 @@
       const dates = rows.map(r => r.snapshot_date);
       const cols = dates.length;
 
-      // Per-team data series — use snapshot pts directly (scraper already includes bench swap frozen pts)
+      // Build live pts lookup by team_id for the latest point
+      const livePtsByTeam = {};
+      teams.forEach(t => { livePtsByTeam[t.id] = teamTotalPts(t); });
+
+      // Per-team data series — use snapshot pts for history, live pts for the latest point
       const series = teamIds.map(id => {
-        const points = rows.map(row => {
+        const points = rows.map((row, i) => {
           const entry = (row.standings || []).find(t => t.team_id === id);
           if (!entry) return null;
-          return { ...entry };
+          // Replace last snapshot with live total so today's pts are accurate
+          const pts = (i === rows.length - 1 && livePtsByTeam[id] != null)
+            ? livePtsByTeam[id]
+            : (entry.pts ?? 0);
+          return { ...entry, pts };
         });
         const last = [...points].reverse().find(Boolean);
         return { id, color: teamMeta[id].color, name: teamMeta[id].name, points, last };
@@ -4478,7 +4486,7 @@
       console.table(series.map(s => ({
         name: s.name,
         chart_pts: s.last?.pts ?? null,
-        live_pts: teamTotalPts(teams.find(t => t.id === s.id)),
+        live_pts: livePtsByTeam[s.id],
         snapshot_raw: (() => { const t = rows[rows.length-1]?.standings?.find(t => t.team_id === s.id); return t?.pts ?? null; })(),
       })));
 
