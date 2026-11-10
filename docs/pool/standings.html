@@ -1218,6 +1218,7 @@
           .gm-desktop-team-sog { font-size: 0.95rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
           .gm-desktop-score-block { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0 3.5rem; flex-shrink: 0; }
           .gm-desktop-score { font-family: 'Bebas Neue', cursive; font-size: 9.5rem; letter-spacing: 10px; color: white; line-height: 1; }
+          .gm-desktop-time { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.45); text-transform: uppercase; text-align: center; margin-top: 0.2rem; }
           .gm-desktop-score.future { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
           /* Pool strip */
           .gm-pool-strip { padding: 0.85rem 3rem; gap: 0.7rem; }
@@ -1272,7 +1273,9 @@
         .gm-mob-team .gm-team-logo { width: 52px; height: 52px; }
         .gm-mob-name { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1.5px; color: white; text-align: center; line-height: 1.1; }
         .gm-mob-sog { font-size: 0.68rem; font-family: 'Barlow Condensed', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; }
-        .gm-mob-score { font-family: 'Bebas Neue', cursive; font-size: 3.8rem; letter-spacing: 2px; color: white; line-height: 1; text-align: center; flex-shrink: 0; min-width: 120px; }
+        .gm-mob-score-block { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; flex-shrink: 0; min-width: 120px; }
+        .gm-mob-score { font-family: 'Bebas Neue', cursive; font-size: 3.8rem; letter-spacing: 2px; color: white; line-height: 1; text-align: center; }
+        .gm-mob-time { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; text-align: center; }
         .gm-mob-dash { font-size: 2.2rem; color: rgba(255,255,255,0.3); margin: 0 4px; }
         .gm-mob-vs { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-align: center; flex-shrink: 0; min-width: 60px; }
         .gm-teams-desktop { display: none; }
@@ -1799,7 +1802,7 @@
       // ── Status bar ──
       let statusBarHtml = '';
       if (isLive) {
-        statusBarHtml = `<div class="gm-statusbar"><span class="live-dot">LIVE</span><span>${statusText}</span></div>`;
+        statusBarHtml = `<div class="gm-statusbar"><span class="live-dot">LIVE</span></div>`;
       } else if (isFinal) {
         statusBarHtml = `<div class="gm-statusbar"><span>Final</span><span>${awaySog !== null ? `${awaySog} – ${homeSog} shots` : ''}</span></div>`;
       } else {
@@ -1814,9 +1817,10 @@
         const homeLogoImg = homeLogo
           ? `<img class="gm-team-logo" src="/api/nhl-schedule?img=${encodeURIComponent(homeLogo)}" alt="" onerror="this.style.display='none'">`
           : `<div style="width:44px;height:44px;flex-shrink:0"></div>`;
+        const timeEl = isLive ? `<div class="gm-mob-time">${statusText}</div>` : '';
         const scoreEl = isFut
           ? `<div class="gm-mob-vs">VS</div>`
-          : `<div class="gm-mob-score">${awayScore}<span class="gm-mob-dash">–</span>${homeScore}</div>`;
+          : `<div class="gm-mob-score-block"><div class="gm-mob-score">${awayScore}<span class="gm-mob-dash">–</span>${homeScore}</div>${timeEl}</div>`;
         const awaySogEl = !isFut && awaySog !== null ? `<div class="gm-mob-sog">${awaySog} SOG</div>` : '';
         const homeSogEl = !isFut && homeSog !== null ? `<div class="gm-mob-sog">${homeSog} SOG</div>` : '';
         return `<div class="gm-mob-board">
@@ -1842,9 +1846,10 @@
         const sogEl = !isFut && sog !== null ? `<div class="gm-desktop-team-sog">${sog} SOG</div>` : '';
         return `<div class="gm-desktop-team">${logoImg}<div class="gm-desktop-team-name">${fullName.trim()}</div>${sogEl}</div>`;
       };
+      const desktopTimeEl = isLive ? `<div class="gm-desktop-time">${statusText}</div>` : '';
       const desktopScoreBlock = isFut
         ? `<div class="gm-desktop-score-block"><div class="gm-desktop-score future">${statusText}</div></div>`
-        : `<div class="gm-desktop-score-block"><div class="gm-desktop-score">${awayScore} – ${homeScore}</div></div>`;
+        : `<div class="gm-desktop-score-block"><div class="gm-desktop-score">${awayScore} – ${homeScore}</div>${desktopTimeEl}</div>`;
       const desktopScoreboard = `<div class="gm-teams-desktop">${desktopTeam(awayLogo, awayFullName, awaySog)}${desktopScoreBlock}${desktopTeam(homeLogo, homeFullName, homeSog)}</div>`;
 
       // ── Pool strip ──
