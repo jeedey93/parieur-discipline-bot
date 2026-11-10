@@ -970,19 +970,26 @@
         /* ── WEEKLY REVIEW ── */
         .week-review { margin-bottom: 1.75rem; }
         .week-review-title { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.75rem; }
-        .week-grid { width: 100%; border-collapse: collapse; font-family: 'Barlow Condensed', sans-serif; table-layout: fixed; }
-        .week-grid th { font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0 0.25rem 0.5rem; text-align: center; white-space: nowrap; }
+        .week-grid { width: 100%; border-collapse: collapse; font-family: 'Barlow Condensed', sans-serif; table-layout: auto; }
+        .week-grid th { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0 0.75rem 0.6rem; text-align: center; white-space: nowrap; }
         .week-grid th.col-name { text-align: left; padding-left: 0; }
         .week-grid th.col-total { color: rgba(255,255,255,0.5); }
-        .week-grid td { font-size: 0.85rem; font-weight: 600; padding: 0.4rem 0.25rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .week-grid td.col-name { text-align: left; padding-left: 0; color: white; font-size: 0.88rem; }
-        .week-grid td.col-total { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: white; }
+        .week-grid td { font-size: 0.95rem; font-weight: 600; padding: 0.5rem 0.75rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); white-space: nowrap; }
+        .week-grid td.col-name { text-align: left; padding-left: 0; color: white; font-size: 1rem; }
+        .week-grid td.col-total { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; letter-spacing: 1px; color: white; }
         .week-grid tr.winner td.col-total { color: var(--gold); }
         .week-grid tr.winner td.col-name { color: var(--gold); }
         .week-grid td.day-pts { color: rgba(255,255,255,0.35); }
         .week-grid td.day-pts.has-pts { color: var(--green); }
         .week-grid td.day-pts.zero { color: rgba(255,255,255,0.15); }
         .week-grid tr:hover td { background: rgba(255,255,255,0.02); }
+        @media (max-width: 600px) {
+          .week-grid { table-layout: fixed; }
+          .week-grid th { font-size: 0.68rem; padding: 0 0.25rem 0.5rem; letter-spacing: 1px; }
+          .week-grid td { font-size: 0.85rem; padding: 0.4rem 0.25rem; overflow: hidden; text-overflow: ellipsis; }
+          .week-grid td.col-name { font-size: 0.88rem; }
+          .week-grid td.col-total { font-size: 1rem; }
+        }
         .bump-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 1rem; }
         .bump-legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; font-weight: 600; color: var(--silver); }
         .bump-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
