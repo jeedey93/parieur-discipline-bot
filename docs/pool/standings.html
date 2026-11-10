@@ -1784,7 +1784,7 @@
       const statusText = gameStatusText(bs);
 
       // Build pool players per team
-      const { awayPool, homePool, awayAbbr, homeAbbr } = buildPoolPlayersForGame(bs, away, home);
+      const { awayPool, homePool } = buildPoolPlayersForGame(bs, away, home);
       const poolIds = new Set([...awayPool, ...homePool].map(p => p.id));
 
       // Build teamId → abbrev map from boxscore
