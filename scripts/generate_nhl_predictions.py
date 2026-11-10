@@ -642,7 +642,8 @@ def get_nhl_special_teams_stats():
 def get_rest_days_for_team(team_name):
     """
     Get the number of rest days since team's last game.
-    Returns int (0 = back-to-back, 1 = one day rest, etc.) or None on error.
+    Returns (int, str) tuple: (rest_days, last_game_date_str) or (None, None) on error.
+    rest_days: 0 = back-to-back, 1 = one day rest, etc.
     """
     try:
         NHL_TEAM_ABBREV_MAP = {
@@ -658,12 +659,12 @@ def get_rest_days_for_team(team_name):
 
         team_abbrev = NHL_TEAM_ABBREV_MAP.get(team_name)
         if not team_abbrev:
-            return None
+            return None, None
 
         url = f'https://api-web.nhle.com/v1/club-schedule-season/{team_abbrev}/now'
         response = api_call_with_retry(url)
         if not response:
-            return None
+            return None, None
 
         data = response.json()
         completed_games = [
@@ -672,21 +673,21 @@ def get_rest_days_for_team(team_name):
             and g.get('gameType') == 2
         ]
         if not completed_games:
-            return None
+            return None, None
 
         completed_games.sort(key=lambda x: x.get('gameDate', ''), reverse=True)
         last_game_date_str = completed_games[0].get('gameDate', '')
         if not last_game_date_str:
-            return None
+            return None, None
 
         today = date.today()
         last_game_date = date.fromisoformat(last_game_date_str[:10])
         rest_days = (today - last_game_date).days - 1
-        return rest_days
+        return rest_days, last_game_date_str[:10]
 
     except Exception as e:
         print(f"⚠️ Error getting rest days for {team_name}: {e}")
-        return None
+        return None, None
 
 
 def get_playoff_series_status(season='20262027'):
@@ -1552,20 +1553,21 @@ with open(filename, "w") as f:
                 special_teams_text += "  No special teams data\n"
 
             # Fetch rest days for each team
-            away_rest = get_rest_days_for_team(away_short)
+            away_rest, away_last_game = get_rest_days_for_team(away_short)
             time.sleep(0.5)
-            home_rest = get_rest_days_for_team(home_short)
+            home_rest, home_last_game = get_rest_days_for_team(home_short)
             time.sleep(0.5)
 
-            def rest_label(rest_days):
+            def rest_label(rest_days, last_game_date):
                 if rest_days is None:
                     return "Unknown"
+                date_str = f" (last game: {last_game_date})" if last_game_date else ""
                 if rest_days <= 0:
-                    return "Back-to-Back (0 rest days)"
-                return f"{rest_days} rest day(s)"
+                    return f"Back-to-Back — played yesterday{date_str}"
+                return f"{rest_days} rest day(s){date_str} — NOT a back-to-back"
 
-            special_teams_text += f"\n{away_team} Rest: {rest_label(away_rest)}\n"
-            special_teams_text += f"{home_team} Rest: {rest_label(home_rest)}\n"
+            special_teams_text += f"\n{away_team} Rest: {rest_label(away_rest, away_last_game)}\n"
+            special_teams_text += f"{home_team} Rest: {rest_label(home_rest, home_last_game)}\n"
 
 
         print("NHL Matchups and Odds:")
