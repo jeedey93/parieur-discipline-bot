@@ -1768,7 +1768,17 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
         return html
 
     # Standard NHL/NBA card
-    html = "<div class='pick-card'>\n"
+    import html as html_module
+    import re as _re
+    odds_from_line = _re.search(r'@\s*([\d.]+)\s*$', bet_line)
+    data_odds = html_module.escape(odds_from_line.group(1) if odds_from_line else '', quote=True)
+    # data-game = matchup (teams only, strip market type and odds)
+    # data-pick = full bet line without odds
+    bet_no_odds = _re.sub(r'\s*@\s*[\d.]+\s*$', '', bet_line).strip()
+    vs_game_match = _re.search(r'vs\s+(.+?)(?:\s+(?:Over|Under|ML|[+-]\d)|$)', bet_no_odds, _re.IGNORECASE)
+    data_game = html_module.escape(bet_no_odds, quote=True)
+    data_pick = html_module.escape(bet_no_odds, quote=True)
+    html = f"<div class='pick-card' data-game='{data_game}' data-pick='{data_pick}' data-odds='{data_odds}'>\n"
 
     # Card content container (will grow to fill space)
     html += "<div style='flex-grow: 1;'>\n"
