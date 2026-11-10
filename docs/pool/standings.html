@@ -968,19 +968,21 @@
         .bump-empty { text-align: center; color: rgba(255,255,255,0.25); font-size: 0.85rem; letter-spacing: 1px; padding: 3rem 0; }
 
         /* ── WEEKLY REVIEW ── */
-        .week-review { margin-bottom: 1.75rem; }
-        .week-review-title { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.6rem; }
-        .week-review-rows { display: flex; flex-direction: column; gap: 0.35rem; }
-        .week-review-row { display: grid; grid-template-columns: 22px 1fr 80px 52px; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
-        .week-review-row.winner { background: rgba(255,184,28,0.06); border-color: rgba(255,184,28,0.2); }
-        .week-review-rank { font-family: 'Bebas Neue', cursive; font-size: 0.9rem; color: var(--silver); text-align: center; }
-        .week-review-rank.r1 { color: var(--gold); }
-        .week-review-name { font-size: 0.88rem; font-weight: 700; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .week-review-bar-wrap { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
-        .week-review-bar { height: 100%; border-radius: 3px; background: rgba(255,255,255,0.25); transition: width 0.4s; }
-        .week-review-row.winner .week-review-bar { background: var(--gold); }
-        .week-review-pts { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 1px; color: var(--silver); text-align: right; }
-        .week-review-row.winner .week-review-pts { color: var(--gold); }
+        .week-review { margin-bottom: 1.75rem; overflow-x: auto; }
+        .week-review-title { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 0.75rem; }
+        .week-grid { width: 100%; border-collapse: collapse; font-family: 'Barlow Condensed', sans-serif; }
+        .week-grid th { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0 0.5rem 0.5rem; text-align: center; white-space: nowrap; }
+        .week-grid th.col-name { text-align: left; padding-left: 0; min-width: 110px; }
+        .week-grid th.col-total { color: rgba(255,255,255,0.5); }
+        .week-grid td { font-size: 0.88rem; font-weight: 600; padding: 0.45rem 0.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
+        .week-grid td.col-name { text-align: left; padding-left: 0; color: white; font-size: 0.9rem; }
+        .week-grid td.col-total { font-family: 'Bebas Neue', cursive; font-size: 1.05rem; letter-spacing: 1px; color: white; }
+        .week-grid tr.winner td.col-total { color: var(--gold); }
+        .week-grid tr.winner td.col-name { color: var(--gold); }
+        .week-grid td.day-pts { color: rgba(255,255,255,0.35); }
+        .week-grid td.day-pts.has-pts { color: var(--green); }
+        .week-grid td.day-pts.zero { color: rgba(255,255,255,0.15); }
+        .week-grid tr:hover td { background: rgba(255,255,255,0.02); }
         .bump-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 1rem; }
         .bump-legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; font-weight: 600; color: var(--silver); }
         .bump-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -4416,28 +4418,61 @@
       const latest = rows[rows.length - 1];
       const latestDate = new Date(latest.snapshot_date);
       const cutoff = new Date(latestDate); cutoff.setDate(cutoff.getDate() - 7);
-      // Find the snapshot closest to (but not after) 7 days ago
-      const baseRow = [...rows].reverse().find(r => new Date(r.snapshot_date) <= cutoff) || rows[0];
-      const basePts = Object.fromEntries((baseRow.standings || []).map(t => [t.team_id, t.pts ?? 0]));
-      const weekly = (latest.standings || []).map(t => ({
-        id: t.team_id, name: t.name,
-        pts: Math.max(0, (t.pts ?? 0) - (basePts[t.team_id] ?? 0)),
-      })).sort((a, b) => b.pts - a.pts);
-      const maxPts = Math.max(...weekly.map(w => w.pts), 1);
-      const daySpan = Math.round((latestDate - new Date(baseRow.snapshot_date)) / 86400000);
-      const rows_html = weekly.map((w, i) => {
-        const isWinner = i === 0 && w.pts > 0;
-        const pct = Math.max(0, (w.pts / maxPts) * 100).toFixed(1);
-        return `<div class="week-review-row${isWinner ? ' winner' : ''}">
-          <div class="week-review-rank${i === 0 ? ' r1' : ''}">${i === 0 && w.pts > 0 ? '👑' : i + 1}</div>
-          <div class="week-review-name">${w.name}</div>
-          <div class="week-review-bar-wrap"><div class="week-review-bar" style="width:${pct}%"></div></div>
-          <div class="week-review-pts">${w.pts > 0 ? '+' + w.pts : w.pts}</div>
-        </div>`;
+
+      // Get the last 7 snapshots (up to 7 days)
+      const window = rows.filter(r => new Date(r.snapshot_date) > cutoff);
+      if (!window.length) return '';
+      // Base is the snapshot just before the window
+      const baseRow = rows.find(r => r === rows[rows.indexOf(window[0]) - 1]) || rows[0];
+
+      // Collect all team ids
+      const teamIds = [...new Set((latest.standings || []).map(t => t.team_id))];
+
+      // For each team, compute pts gained per day in window
+      const teamData = teamIds.map(id => {
+        const name = (latest.standings || []).find(t => t.team_id === id)?.name || id;
+        const basePts = (baseRow.standings || []).find(t => t.team_id === id)?.pts ?? 0;
+        let prev = basePts;
+        const dayPts = window.map(row => {
+          const cur = (row.standings || []).find(t => t.team_id === id)?.pts ?? prev;
+          const gained = Math.max(0, cur - prev);
+          prev = cur;
+          return gained;
+        });
+        const total = dayPts.reduce((s, v) => s + v, 0);
+        return { id, name, dayPts, total };
+      }).sort((a, b) => b.total - a.total);
+
+      // Date headers — show Mon, Tue etc
+      const dayLabels = window.map(r => {
+        const d = new Date(r.snapshot_date.length === 10 ? r.snapshot_date + 'T12:00:00' : r.snapshot_date);
+        return d.toLocaleDateString('en-CA', { weekday: 'short', month: 'numeric', day: 'numeric' });
+      });
+
+      const headerCols = dayLabels.map(l => `<th class="col-day">${l}</th>`).join('');
+      const bodyRows = teamData.map((t, i) => {
+        const isWinner = i === 0 && t.total > 0;
+        const dayCells = t.dayPts.map(p =>
+          `<td class="day-pts ${p > 0 ? 'has-pts' : 'zero'}">${p > 0 ? '+' + p : '–'}</td>`
+        ).join('');
+        return `<tr class="${isWinner ? 'winner' : ''}">
+          <td class="col-name">${isWinner ? '👑 ' : ''}${t.name}</td>
+          ${dayCells}
+          <td class="col-total">${t.total > 0 ? '+' + t.total : t.total}</td>
+        </tr>`;
       }).join('');
+
+      const daySpan = window.length;
       return `<div class="week-review">
-        <div class="week-review-title">🏆 Last ${daySpan} days</div>
-        <div class="week-review-rows">${rows_html}</div>
+        <div class="week-review-title">🏆 Last ${daySpan} days — points per day</div>
+        <table class="week-grid">
+          <thead><tr>
+            <th class="col-name">Team</th>
+            ${headerCols}
+            <th class="col-total">Total</th>
+          </tr></thead>
+          <tbody>${bodyRows}</tbody>
+        </table>
       </div>`;
     }
 
