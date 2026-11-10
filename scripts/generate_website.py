@@ -1692,29 +1692,37 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
     bet_line = ""
     confidence_line = ""
     description = ""
+    players_to_watch = []
 
+    in_players = False
     for i in range(bet_start + 1, len(lines)):
         line = lines[i].strip()
         clean_line = line.strip('*').strip()
 
         # Stop immediately if we hit another section (like "**Other Recommended Plays**")
-        # Use clean_line so bold-wrapped bet lines aren't mistaken for section headers
-        if line.startswith("**") and clean_line and not clean_line.startswith("[") and bet_line:
+        if line.startswith("**") and clean_line and not clean_line.startswith("[") and bet_line and not in_players:
             break
 
         if not clean_line:
+            if in_players:
+                break  # blank line ends players block
             continue
 
         # First non-empty line after BET OF THE DAY is the bet
         if not bet_line and not clean_line.startswith("Confidence"):
             bet_line = clean_line
         # Confidence line
-        elif clean_line.startswith("Confidence"):
+        elif clean_line.startswith("Confidence") and not in_players:
             confidence_line = clean_line
-            # Stop after getting confidence - we have everything we need
-            break
+        # Players to Watch block
+        elif clean_line.lower().startswith("players to watch"):
+            in_players = True
+        elif in_players and clean_line.startswith("-"):
+            players_to_watch.append(clean_line.lstrip("- ").strip())
+        elif in_players:
+            break  # non-bullet line ends the block
         # Description (lines between bet and confidence)
-        elif bet_line and not clean_line.startswith("Confidence"):
+        elif bet_line and not clean_line.startswith("Confidence") and not in_players:
             if description:
                 description += "\n"
             description += line
@@ -1773,6 +1781,21 @@ def extract_bet_of_day_from_prediction(content, sport_name, sport_emoji):
     if description:
         import html as html_module
         html += f"<div class='pick-description reasoning' data-raw='{html_module.escape(description, quote=True)}'></div>\n"
+
+    # Players to Watch
+    if players_to_watch:
+        import html as html_module
+        html += "<div class='ptw-section'>\n"
+        html += "<div class='ptw-toggle' onclick='this.closest(\".ptw-section\").classList.toggle(\"open\")'>\n"
+        html += "<span class='ptw-label'>👤 Players to Watch</span>\n"
+        html += "<span class='ptw-chevron'>▾</span>\n"
+        html += "</div>\n"
+        html += "<ul class='ptw-list'>\n"
+        for p in players_to_watch:
+            p_html = html_module.escape(p).replace('🔥HOT', '<span class="ptw-hot">🔥</span>').replace('🧊COLD', '<span class="ptw-cold">🧊</span>')
+            html += f"<li class='ptw-item'>{p_html}</li>\n"
+        html += "</ul>\n"
+        html += "</div>\n"
 
     html += "</div>\n"  # Close content container
 
@@ -1962,6 +1985,15 @@ def update_latest_predictions(preliminary=False):
     content += ".reasoning-content { flex: 1; display: block; }\n"
     content += ".reasoning-title { font-weight: 700; color: #1f2937; display: block; margin-bottom: 3px; font-size: 0.95em; }\n"
     content += ".reasoning-text { color: #6b7280; display: block; font-size: 0.95em; }\n"
+    content += ".ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }\n"
+    content += ".ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }\n"
+    content += ".ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }\n"
+    content += ".ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }\n"
+    content += ".ptw-section.open .ptw-chevron { transform: rotate(180deg); }\n"
+    content += ".ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }\n"
+    content += ".ptw-section.open .ptw-list { display: block; }\n"
+    content += ".ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }\n"
+    content += ".ptw-item:last-child { margin-bottom: 0; }\n"
     content += ".yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }\n"
     content += ".result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }\n"
     content += ".result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }\n"

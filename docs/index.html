@@ -225,6 +225,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 .reasoning-content { flex: 1; display: block; }
 .reasoning-title { font-weight: 700; color: #1f2937; display: block; margin-bottom: 3px; font-size: 0.95em; }
 .reasoning-text { color: #6b7280; display: block; font-size: 0.95em; }
+.ptw-section { margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; }
+.ptw-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; gap: 8px; }
+.ptw-label { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #2563eb; }
+.ptw-chevron { font-size: 0.85em; color: #9ca3af; transition: transform 0.2s; }
+.ptw-section.open .ptw-chevron { transform: rotate(180deg); }
+.ptw-list { display: none; list-style: none; margin: 8px 0 0 0; padding: 0; }
+.ptw-section.open .ptw-list { display: block; }
+.ptw-item { font-size: 0.82em; color: #374151; line-height: 1.55; padding: 5px 0 5px 10px; border-left: 3px solid #2563eb; margin-bottom: 5px; }
+.ptw-item:last-child { margin-bottom: 0; }
 .yesterday-section { background: #f9fafb; border-radius: 12px; padding: 30px; margin: 40px 0; border: 1px solid #e5e7eb; }
 .result-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 5px solid #e5e7eb; transition: all 0.2s; }
 .result-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
@@ -263,7 +272,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv
 <div class='blog-title'>🎯 Parieur Discipliné</div>
 <div class='blog-subtitle'>AI-Powered NHL & NBA Betting Predictions</div>
 <div class='blog-date'>Tuesday, November 10, 2026</div>
-<div class='blog-update-time'>⏱️ Last Updated at 8:10 AM</div>
+<div class='blog-update-time'>⏱️ Last Updated at 8:39 AM</div>
 <div style='margin-top: 30px; text-align: center;'>
 <div style='display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 50px; padding: 12px 28px; box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5); animation: pulse 2s ease-in-out infinite; border: 2px solid #fbbf24;'>
 <span style='color: #78350f; font-size: 1em; margin-right: 10px; font-weight: 700;'>📬 Daily Picks</span>
@@ -314,9 +323,9 @@ document.addEventListener('keydown', function(e) {
 <div class='stats-grid'>
 <div class='stat-card'>
 <div class='stat-label'>Yesterday</div>
-<div class='stat-value'>0%</div>
-<div class='stat-record'>0W - 4L</div>
-<div class='stat-record' style='margin-top: 5px; color: #ef4444; font-weight: 600;'>-4.00 units</div>
+<div class='stat-value'>50%</div>
+<div class='stat-record'>2W - 2L</div>
+<div class='stat-record' style='margin-top: 5px; color: #10b981; font-weight: 600;'>+0.92 units</div>
 </div>
 <div class='stat-card'>
 <div class='stat-label'>This Week</div>
@@ -364,9 +373,21 @@ document.addEventListener('keydown', function(e) {
 <div class='pick-card'>
 <div style='flex-grow: 1;'>
 <div class='pick-badge badge-nhl'>🏒 NHL</div>
-<div class='pick-title'>COLUMBUS BLUE JACKETS ML vs FLORIDA PANTHERS @ 1.94</div>
-<div class='pick-meta'>Confidence Level: High, Units: 1.5u, Win Probability: 65%</div>
-<div class='pick-description reasoning' data-raw='The Columbus Blue Jackets present a strong value opportunity tonight. Despite Florida&#x27;s slightly better overall recent form, Columbus boasts a massive home-ice advantage, with a 0.667 home win percentage against Florida&#x27;s 0.417 away win percentage, creating a significant gap. Crucially, the Panthers are on the second leg of a back-to-back, while Columbus is well-rested with 3 days off. This fatigue discrepancy, combined with Columbus&#x27;s strong home splits, gives them a substantial edge that the market has not fully priced into the 1.94 odds.'></div>
+<div class='pick-title'>Ottawa Senators ML vs Washington Capitals @ 1.81</div>
+<div class='pick-meta'>Confidence Level: Medium, Units: 1u, Win Probability: 63%</div>
+<div class='pick-description reasoning' data-raw='The Ottawa Senators present a strong value bet as they host the Washington Capitals. Our analysis shows Ottawa with a slight edge in recent goal differential (+0.10 compared to Washington&#x27;s -0.10) and a significant home-ice advantage, boasting an elite 0.750 home win percentage against Washington&#x27;s 0.500 away win rate. Both teams are well-rested, having last played on November 7th. The market appears to undervalue Ottawa&#x27;s formidable home record against a Capitals team that struggles slightly more on the road.'></div>
+<div class='ptw-section'>
+<div class='ptw-toggle' onclick='this.closest(".ptw-section").classList.toggle("open")'>
+<span class='ptw-label'>👤 Players to Watch</span>
+<span class='ptw-chevron'>▾</span>
+</div>
+<ul class='ptw-list'>
+<li class='ptw-item'>Stutzle, Tim (OTT): [7 pts in last 5 games <span class="ptw-hot">🔥</span>]. His recent offensive burst could be a key factor for Ottawa.</li>
+<li class='ptw-item'>Batherson, Drake (OTT): [5 pts in last 5 games <span class="ptw-hot">🔥</span>]. A consistent scoring threat for the Senators, crucial in tight matchups.</li>
+<li class='ptw-item'>Kyrou, Jordan (WSH): [6 pts in last 5 games <span class="ptw-hot">🔥</span>]. He is a top offensive contributor for the Capitals and will look to generate scoring chances.</li>
+<li class='ptw-item'>Chychrun, Jakob (WSH): [5 pts in last 5 games <span class="ptw-hot">🔥</span>]. His defensive presence and recent scoring contributions are vital for Washington.</li>
+</ul>
+</div>
 </div>
 <button class='share-button' onclick='event.stopPropagation(); handleShare("featured-pick-nhl", "NHL")' id='share-btn-featured-pick-nhl'>
 <span style='font-size: 1.5em;'>📤</span>
@@ -458,27 +479,32 @@ document.addEventListener('keydown', function(e) {
 <div id='yesterday-results'>
 <div class='section-header'>
 <div class='section-title'>📋 Yesterday's Results</div>
-<div class='section-subtitle'>Performance breakdown for Wednesday, September 30, 2026</div>
+<div class='section-subtitle'>Performance breakdown for Sunday, November 8, 2026</div>
 </div>
 <div class='yesterday-section'>
 <h3 style='color: #dc2626; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: 700;'>🏒 NHL Results</h3>
 
 <div class='results-grid'>
-<div class='result-tile result-tile-loss result-tile-featured'>
+<div class='result-tile result-tile-win result-tile-featured'>
 <div class='botd-badge'>🔥 BET OF THE DAY</div>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>Pittsburgh Penguins vs Philadelphia Flyers Unde...</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Calgary Flames ML vs Philadelphia Flyers</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.46u</div>
+</div>
+<div class='result-tile result-tile-win'>
+<div class='result-tile-emoji'>✅</div>
+<div class='result-tile-bet'>Tampa Bay Lightning vs Winnipeg Jets Over 6.5</div>
+<div class='result-tile-units' style='color: #10b981;'>+1.47u</div>
 </div>
 <div class='result-tile result-tile-loss'>
 <div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>Los Angeles Kings vs Colorado Avalanche Under 6.5</div>
+<div class='result-tile-bet'>Vegas Golden Knights vs Buffalo Sabres Over 6.5</div>
 <div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
 </div>
-<div class='result-tile result-tile-loss'>
-<div class='result-tile-emoji'>❌</div>
-<div class='result-tile-bet'>New York Islanders ML vs Toronto Maple Leafs</div>
-<div class='result-tile-units' style='color: #ef4444;'>-1.00u</div>
+<div class='result-tile result-tile-push'>
+<div class='result-tile-emoji'>↔️</div>
+<div class='result-tile-bet'>Pittsburgh Penguins vs Anaheim Ducks Over 7.0</div>
+<div class='result-tile-units' style='color: #f59e0b;'>0.00u</div>
 </div>
 </div>
 
