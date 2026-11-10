@@ -1,24 +1,31 @@
 ============================================================
 BLUE JACKETS - LINEUP
-Last Updated: 2026-11-06 04:14 PM ET
+Last Updated: 2026-11-10 04:10 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Matthew Knies — Adam Fantilli — Kent Johnson
-Line 2: Valeri Nichushkin — Luca Del Bel Belluz — Conor Garland
+Line 1: Matthew Knies — Sean Monahan — Kent Johnson
+Line 2: Valeri Nichushkin — Adam Fantilli — Dmitri Voronkov
 Line 3: Cole Sillinger — Charlie Coyle — Mathieu Olivier
-Line 4: Dmitri Voronkov — Sean Monahan — Ryan Lomberg
+Line 4: Jack Williams — Steven Lorentz — Ryan Lomberg
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Zach Werenski — Damon Severson
 Pair 2: Ivan Provorov — Denton Mateychuk
-Pair 3: Jake Christiansen — Dante Fabbro
+Pair 3: Dante Fabbro — Erik Gudbranson
 
 GOALIES:
 ----------------------------------------
-  Jet Greaves
   Cam Talbot
+  Jet Greaves
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Luca Del Bel Belluz (scratched)
+  Jake Christiansen (scratched)
+  Isac Lundestrom (lower body) (injured)
+  Conor Garland (upper body) (injured)
 
 ============================================================

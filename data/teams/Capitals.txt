@@ -1,6 +1,6 @@
 ============================================================
 CAPITALS - LINEUP
-Last Updated: 2026-11-07 02:50 PM ET
+Last Updated: 2026-11-10 04:10 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -20,5 +20,13 @@ GOALIES:
 ----------------------------------------
   Logan Thompson
   Charlie Lindgren
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Ethen Frank (scratched)
+  Ivan Miroshnichenko (scratched)
+  Justin Holl (scratched)
+  Rasmus Sandin (knee) (injured)
+  Vincent Desharnais (appendectomy) (injured)
 
 ============================================================

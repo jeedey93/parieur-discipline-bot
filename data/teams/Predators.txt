@@ -1,6 +1,6 @@
 ============================================================
 PREDATORS - LINEUP
-Last Updated: 2026-11-07 02:50 PM ET
+Last Updated: 2026-11-10 04:10 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -20,5 +20,12 @@ GOALIES:
 ----------------------------------------
   Juuse Saros
   Justus Annunen
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Nicolas Hague (scratched)
+  Ilya Lyubushkin (scratched)
+  Jonathan Marchessault (lower body) (injured)
+  William Trudeau (upper body) (injured)
 
 ============================================================
