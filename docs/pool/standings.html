@@ -3822,6 +3822,8 @@
           reasonHtml = `<span class="swap-reason swap">🔄 Swap #${swapNumbers[s.id]}</span>`;
         } else if (s.reason === 'trade') {
           reasonHtml = `<span class="swap-reason trade">🤝 Trade</span>`;
+        } else if (s.reason === 'free') {
+          reasonHtml = `<span class="swap-reason" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.25);">🆓 Free Move</span>`;
         } else if (s.reason === 'pickup') {
           const _pm = ['January','February','March','April','May','June','July','August','September','October','November','December'][new Date(s.swap_date).getUTCMonth()];
           reasonHtml = `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 ${_pm} Pickup</span>`;
@@ -4032,6 +4034,7 @@
           ? `<span class="swap-reason injury">🩹 Injury</span>`
           : r._swapReason === 'swap' ? `<span class="swap-reason swap">🔄 Swap</span>`
           : r._swapReason === 'trade' ? `<span class="swap-reason trade">🤝 Trade</span>`
+          : r._swapReason === 'free' ? `<span class="swap-reason" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.25);">🆓 Free Move</span>`
           : r._swapReason === 'pickup' ? `<span class="swap-reason" style="background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.25);">📥 Pickup</span>`
           : '';
         const form5d = r.form5d ?? null;
@@ -4677,6 +4680,8 @@
           reasonBadge = `<span class="swap-reason swap">🔄 Swap #${swapCounters[s.id]}</span>`;
         } else if (s.reason === 'trade') {
           reasonBadge = `<span class="swap-reason trade">🤝 Trade</span>`;
+        } else if (s.reason === 'free') {
+          reasonBadge = `<span class="swap-reason" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.25);">🆓 Free Move</span>`;
         }
         const teamName = teams.find(t => t.id === s.team_id)?.name ?? s.team_id;
         return `<div class="swap-row" data-reason="${s.reason}" data-team="${s.team_id}">
@@ -4704,6 +4709,7 @@
             <button onclick="setSwapFilter('all')"    id="sf-all"    class="swap-filter-btn active">All</button>
             <button onclick="setSwapFilter('swap')"   id="sf-swap"   class="swap-filter-btn">🔄 Official</button>
             <button onclick="setSwapFilter('injury')" id="sf-injury" class="swap-filter-btn">🩹 Injury</button>
+            <button onclick="setSwapFilter('free')"   id="sf-free"   class="swap-filter-btn">🆓 Free Move</button>
           </div>
         </div>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.75rem">${teamBtns}</div>
@@ -4734,6 +4740,7 @@
         if (filter === 'all')               show = true;
         else if (filter === 'swap')         show = reason === 'swap';
         else if (filter === 'injury')       show = reason === 'injury';
+        else if (filter === 'free')         show = reason === 'free';
         else if (filter.startsWith('team:')) show = team === filter.slice(5);
         row.style.display = show ? '' : 'none';
       });

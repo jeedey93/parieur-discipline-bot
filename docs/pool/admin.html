@@ -116,6 +116,7 @@
     .reason-swap   { background: rgba(125,180,255,0.1); color: var(--blue); border: 1px solid rgba(125,180,255,0.2); }
     .reason-injury { background: rgba(255,184,28,0.12); color: var(--gold); border: 1px solid rgba(255,184,28,0.25); }
     .reason-pickup { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+    .reason-free   { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
 
     /* ── FREE AGENT SEARCH ── */
     .fa-search-row { display: flex; gap: 0.5rem; align-items: flex-end; margin-bottom: 0.75rem; }
@@ -232,6 +233,10 @@
           <label class="radio-btn" id="lbl-injury">
             <input type="radio" name="swap-type" value="injury" onchange="updateRadioStyle()">
             🩹 Injury
+          </label>
+          <label class="radio-btn" id="lbl-free">
+            <input type="radio" name="swap-type" value="free" onchange="updateRadioStyle()">
+            🆓 Free Move
           </label>
         </div>
       </div>
@@ -358,6 +363,7 @@
     <button class="filter-btn" data-filter="injury" onclick="setSwapFilter('injury')">🩹 Injuries</button>
     <button class="filter-btn" data-filter="pickup" onclick="setSwapFilter('pickup')">📥 Pickups</button>
     <button class="filter-btn" data-filter="trade" onclick="setSwapFilter('trade')">🤝 Trades</button>
+    <button class="filter-btn" data-filter="free" onclick="setSwapFilter('free')">🆓 Free Moves</button>
   </div>
   <div class="swap-log" id="swap-log">
     <div style="color:rgba(255,255,255,0.3);font-size:0.9rem">Loading…</div>
@@ -593,6 +599,7 @@
     const val = document.querySelector('input[name="swap-type"]:checked')?.value;
     document.getElementById('lbl-swap').className   = 'radio-btn' + (val === 'swap'   ? ' selected-swap'   : '');
     document.getElementById('lbl-injury').className = 'radio-btn' + (val === 'injury' ? ' selected-injury' : '');
+    document.getElementById('lbl-free').className   = 'radio-btn' + (val === 'free'   ? ' selected-swap'   : '');
   }
 
   // ── CONFIRM SWAP ──────────────────────────────────────────────────────────
@@ -725,6 +732,8 @@
         reasonHtml = `<span class="reason-badge reason-pickup">📥 ${monthName} Pickup</span>`;
       } else if (s.reason === 'trade') {
         reasonHtml = `<span class="reason-badge reason-trade">🤝 Trade</span>`;
+      } else if (s.reason === 'free') {
+        reasonHtml = `<span class="reason-badge reason-free">🆓 Free Move</span>`;
       } else {
         reasonHtml = `<span class="reason-badge reason-swap">🔄 ${s.reason === 'swap' ? 'Swap' : s.reason}</span>`;
       }
