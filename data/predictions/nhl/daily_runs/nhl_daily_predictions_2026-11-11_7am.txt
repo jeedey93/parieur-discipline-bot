@@ -1,0 +1,80 @@
+Date: 2026-11-11
+
+Tampa Bay Lightning @ Buffalo Sabres
+Buffalo Sabres ML (Home): 2.05, Tampa Bay Lightning ML (Away): 1.78, O/U: 6.5 (Over: 1.85 / Under: 1.97)
+------
+New York Rangers @ Calgary Flames
+Calgary Flames ML (Home): 2.09, New York Rangers ML (Away): 1.75, O/U: 6.0 (Over: 2.01 / Under: 1.81)
+------
+Philadelphia Flyers @ Edmonton Oilers
+Edmonton Oilers ML (Home): 1.51, Philadelphia Flyers ML (Away): 2.59, O/U: 6.0 (Over: 1.84 / Under: 1.97)
+------
+Utah Mammoth @ Vegas Golden Knights
+Vegas Golden Knights ML (Home): 1.79, Utah Mammoth ML (Away): 2.03, O/U: 6.5 (Over: 1.95 / Under: 1.86)
+------
+Nashville Predators @ Anaheim Ducks
+Anaheim Ducks ML (Home): 1.68, Nashville Predators ML (Away): 2.19, O/U: 6.5 (Over: 1.75 / Under: 2.08)
+------
+Pittsburgh Penguins @ San Jose Sharks
+San Jose Sharks ML (Home): 2.13, Pittsburgh Penguins ML (Away): 1.72, O/U: 6.5 (Over: 1.74 / Under: 2.1)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+*Note: Starting goaltenders are not announced until approximately 90 minutes before puck drop. Our analysis factors in this uncertainty, and confidence levels are capped accordingly.*
+
+BET OF THE DAY
+
+Calgary Flames ML vs New York Rangers @ 2.09
+Confidence Level: High, Units: 1.5u, Win Probability: 63%
+Players to Watch:
+- Fox, Adam (NYR): 6pts in last 5GP 🔥HOT. He is a prolific defenseman creating offense for the Rangers.
+- Zibanejad, Mika (NYR): 5pts in last 5GP 🔥HOT. As a top-line center, his performance is critical for New York's scoring.
+- Parekh, Zayne (CGY): 5pts in last 5GP 🔥HOT. This defenseman is stepping up offensively for the Flames.
+- Coronato, Matt (CGY): 1pts in last 5GP 🧊COLD. He needs to find his scoring touch to contribute more for Calgary.
+🏠**Dominant Home Ice**
+Calgary boasts a 0.600 home win percentage against New York's poor 0.222 road record, creating a significant 0.378 gap in home/away performance.
+📊**Calgary's Stronger Form**
+The Flames have a positive goal differential of +0.3 in their last 10 games, while the Rangers have a negative differential of -0.6, indicating better recent play from Calgary.
+📈**Significant Value**
+Our model's estimated win probability of 63% for the Flames presents a substantial +15.2% edge over the implied odds of 47.8%.
+
+**Other Recommended Plays**
+
+San Jose Sharks ML vs Pittsburgh Penguins @ 2.13
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+Players to Watch:
+- Karlsson, Erik (PIT): 6pts in last 5GP 🔥HOT. The offensive defenseman is consistently producing for the Penguins.
+- Malkin, Evgeni (PIT): 7pts in last 5GP 🔥HOT. His recent scoring is vital for Pittsburgh's struggling offense.
+- Celebrini, Macklin (SJS): 5pts in last 5GP 🔥HOT. The young star is consistently involved in San Jose's offensive plays.
+- Trouba, Jacob (SJS): 1pts in last 5GP 🧊COLD. His defensive contributions are crucial, but offensive output has been low recently.
+🏠**Home Ice Advantage for Sharks**
+San Jose's 0.444 home win rate compared to Pittsburgh's very low 0.200 road win rate results in a 0.244 gap, giving the Sharks a strong home ice edge.
+📈**Strong Value Bet**
+With an estimated win probability of 60%, there is a +13.0% edge against the implied odds of 47.0% for the Sharks.
+
+Buffalo Sabres ML vs Tampa Bay Lightning @ 2.05
+Confidence Level: Medium, Units: 1u, Win Probability: 55%
+Players to Watch:
+- Kucherov, Nikita (TBL): 7pts in last 5GP 🔥HOT. He is a primary offensive threat for the Lightning.
+- Guentzel, Jake (TBL): 5pts in last 5GP 🔥HOT. His recent scoring surge boosts Tampa Bay's attack.
+- Thompson, Tage (BUF): 9pts in last 5GP 🔥HOT. The Sabres captain is in excellent form and a key offensive driver.
+- Benson, Zach (BUF): 7pts in last 5GP 🔥HOT. His recent assists are crucial for Buffalo's offensive generation.
+🏠**Modest Home Ice Edge**
+Buffalo's home win percentage of 0.444 compared to Tampa Bay's road win percentage of 0.333 creates a 0.111 gap, providing a slight advantage for the Sabres at home.
+📊**Sabres Showing Improvement**
+Buffalo's recent form trend shows a +0.80 improving trajectory in total goals, indicating they are heating up.
+📈**Favorable Odds**
+Our model estimates Buffalo's true win probability at 55%, yielding a +6.2% edge over the implied probability of 48.8% from the odds.
+
+Pittsburgh Penguins vs San Jose Sharks Under 6.5 @ 2.1
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
+Players to Watch:
+- Karlsson, Erik (PIT): 6pts in last 5GP 🔥HOT. The offensive defenseman is consistently producing for the Penguins.
+- Malkin, Evgeni (PIT): 7pts in last 5GP 🔥HOT. His recent scoring is vital for Pittsburgh's struggling offense.
+- Celebrini, Macklin (SJS): 5pts in last 5GP 🔥HOT. The young star is consistently involved in San Jose's offensive plays.
+- Trouba, Jacob (SJS): 1pts in last 5GP 🧊COLD. His defensive contributions are crucial, but offensive output has been low recently.
+📊**Low Scoring Trend**
+The combined average goals scored by both teams in their last 10 games is 5.5, which is significantly below the line of 6.5, suggesting an Under trend.
+📈**Value on the Under**
+With an estimated probability of 53% for the Under, there's a +5.4% edge against the implied probability of 47.6%.
