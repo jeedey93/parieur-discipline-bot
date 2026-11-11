@@ -361,7 +361,12 @@ def parse_prediction_file(file_path, sport):
         plays_text = other_plays_section.group(1)
 
         # Find all pick lines with team names and @ odds (with or without bold markers)
-        pick_lines = re.findall(r'(?:\*\*)?([A-Z][^*\n]+@\s*[\d.]+)(?:\*\*)?', plays_text)
+        # Exclude meta-commentary lines like "Line moved from X @ ..." or "This play was..."
+        pick_lines_raw = re.findall(r'(?:\*\*)?([A-Z][^*\n]+@\s*[\d.]+)(?:\*\*)?', plays_text)
+        pick_lines = [
+            p for p in pick_lines_raw
+            if not re.match(r'^(Line moved|This play|Odds remained|The morning)', p.strip(), re.IGNORECASE)
+        ]
 
         for raw_pick_line in pick_lines:
             raw_pick_line = raw_pick_line.strip()
@@ -369,8 +374,9 @@ def parse_prediction_file(file_path, sport):
 
             # Search using the raw line to match original text
             escaped_pick = re.escape(raw_pick_line)
-            # Match section text up to the next pick line or end of string (greedy to capture all lines including Win Probability)
-            section_match = re.search(rf'(?:\*\*)?{escaped_pick}(?:\*\*)?\s*\n(.*?)(?=\n(?:\*\*)?[A-Z][^\n]+@\s*[\d.]|\Z)', plays_text, re.DOTALL)
+            # Match section text up to the next REAL pick line (bold-wrapped or followed by Confidence),
+            # excluding meta-commentary lines like "Line moved from ..."
+            section_match = re.search(rf'(?:\*\*)?{escaped_pick}(?:\*\*)?\s*\n(.*?)(?=\n(?:\*\*)[A-Z][^\n]+@\s*[\d.]|\Z)', plays_text, re.DOTALL)
 
             # For the last pick the non-greedy match may stop early — retry with greedy match
             if section_match:

@@ -17,7 +17,7 @@ PREDICTIONS_DIR = "data/predictions"
 LATEST_PREDICTIONS_MD = "docs/index.md"  # Adjust if needed
 
 def extract_bet_of_the_day(section_lines):
-    """Extracts the Bet of the Day bet and justification from a section.
+    """Extracts the Bet of the Day bet, justification, and Players to Watch from a section.
 
     Handles format like:
         🏆 **BET OF THE DAY**
@@ -25,9 +25,13 @@ def extract_bet_of_the_day(section_lines):
         Confidence Level: Medium, Units: 1u, Win Probability: 60%
         The Capitals are well-rested and have shown strong form...
         *Changes: ...*
+        Players to Watch:
+        - Player Name (TEAM): [stat]. Context.
     """
+    import re
     bet = None
     justification_lines = []
+    players_to_watch = []
     odds_value = None
     for i, line in enumerate(section_lines):
         stripped = line.strip()
@@ -42,6 +46,7 @@ def extract_bet_of_the_day(section_lines):
                     # Collect justification: all meaningful lines after the bet
                     # until we hit "Other Recommended Plays", a section break (---),
                     # or another header
+                    in_ptw = False
                     for k in range(j+1, len(section_lines)):
                         jline = section_lines[k].strip()
                         # Stop at section boundaries
@@ -51,16 +56,30 @@ def extract_bet_of_the_day(section_lines):
                            jline.startswith('### ') or \
                            jline.startswith('🏆'):
                             break
-                        if jline:
-                            # Extract odds from change notes before skipping
-                            if jline.startswith('*Change') or jline.startswith('*Changes'):
-                                # Try to extract odds: "to 1.77 (noon)" or "same as morning (1.67)"
-                                import re
-                                odds_match = re.search(r'to (\d+\.\d+) \(noon\)|same as morning \((\d+\.\d+)\)', jline)
-                                if odds_match and not odds_value:
-                                    odds_value = odds_match.group(1) or odds_match.group(2)
-                                continue
-                            justification_lines.append(jline)
+                        if not jline:
+                            if in_ptw:
+                                in_ptw = False
+                            continue
+                        # Detect Players to Watch block
+                        if jline.startswith('Players to Watch:') or jline == 'Players to Watch':
+                            in_ptw = True
+                            continue
+                        if in_ptw:
+                            if jline.startswith('- '):
+                                players_to_watch.append(jline[2:].strip())
+                            else:
+                                in_ptw = False
+                            continue
+                        # Extract odds from change notes before skipping
+                        if jline.startswith('*Change') or jline.startswith('*Changes'):
+                            odds_match = re.search(r'to (\d+\.\d+) \(noon\)|same as morning \((\d+\.\d+)\)', jline)
+                            if odds_match and not odds_value:
+                                odds_value = odds_match.group(1) or odds_match.group(2)
+                            continue
+                        # Skip line movement commentary lines
+                        if re.match(r'^(Line moved|This play|The recommendation|Odds remained)', jline):
+                            continue
+                        justification_lines.append(jline)
                     break
             break
 
@@ -71,7 +90,7 @@ def extract_bet_of_the_day(section_lines):
     if odds_value and bet and '@' not in bet:
         bet = f"{bet} @ {odds_value}"
 
-    return bet, justification
+    return bet, justification, players_to_watch
 
 def get_latest_file(folder, prefix, ext="txt"):
     """Find the latest prediction file by date in filename (YYYY-MM-DD suffix)."""
@@ -220,16 +239,28 @@ def summarize_justifications(nhl_just, nba_just):
 
 
 
-def build_gemini_prompt(nhl_bet, nhl_just, nba_bet, nba_just):
+def _format_ptw_block(players_to_watch):
+    """Format a Players to Watch list into text block."""
+    if not players_to_watch:
+        return ""
+    lines = ["Players to Watch:"]
+    for p in players_to_watch:
+        lines.append(f"- {p}")
+    return "\n" + "\n".join(lines)
+
+
+def build_gemini_prompt(nhl_bet, nhl_just, nhl_ptw, nba_bet, nba_just, nba_ptw):
     """Builds the dual bet of the day prompt from a template file."""
     prompt_path = os.path.join("prompts", "bet_of_the_day.txt")
     with open(prompt_path, "r", encoding="utf-8") as f:
         template = f.read()
+    nhl_just_with_ptw = nhl_just + _format_ptw_block(nhl_ptw)
+    nba_just_with_ptw = nba_just + _format_ptw_block(nba_ptw)
     return template.format(
         nhl_bet=nhl_bet,
-        nhl_just=nhl_just,
+        nhl_just=nhl_just_with_ptw,
         nba_bet=nba_bet,
-        nba_just=nba_just
+        nba_just=nba_just_with_ptw
     ).strip()
 
 
@@ -246,20 +277,21 @@ def save_to_file(content):
 
     print(f"✅ Saved to: {filepath}")
 
-def build_single_pick_prompt(sport, emoji, bet, just):
+def build_single_pick_prompt(sport, emoji, bet, just, ptw=None):
     """Build output when only one sport has a pick."""
+    ptw_block = _format_ptw_block(ptw or [])
     return f"""🔥 BET OF THE DAY 🤖📊 One pick. Full discipline. Same standard.
 ⸻
 🎯 PICK – {sport} {emoji} {bet}
-{just}
+{just}{ptw_block}
 ⸻
 We follow the value. We protect the bankroll. Discipline > emotion. 🎯
 """.strip()
 
 def main():
     nhl_section, nba_section = get_sections_from_index()
-    nhl_bet, nhl_just = extract_bet_of_the_day(nhl_section)
-    nba_bet, nba_just = extract_bet_of_the_day(nba_section)
+    nhl_bet, nhl_just, nhl_ptw = extract_bet_of_the_day(nhl_section)
+    nba_bet, nba_just, nba_ptw = extract_bet_of_the_day(nba_section)
 
     if not nhl_bet and not nba_bet:
         print("No Bet of the Day entries found for today.")
@@ -268,17 +300,17 @@ def main():
     if nhl_bet and nba_bet:
         # Both picks available — dual format
         nhl_just, nba_just = summarize_justifications(nhl_just, nba_just)
-        output = build_gemini_prompt(nhl_bet, nhl_just, nba_bet, nba_just)
+        output = build_gemini_prompt(nhl_bet, nhl_just, nhl_ptw, nba_bet, nba_just, nba_ptw)
     elif nba_bet:
         # Only NBA pick
         print("ℹ️  No NHL pick today — outputting NBA only.")
         _, nba_just = summarize_justifications(None, nba_just)
-        output = build_single_pick_prompt("NBA", "🏀", nba_bet, nba_just)
+        output = build_single_pick_prompt("NBA", "🏀", nba_bet, nba_just, nba_ptw)
     else:
         # Only NHL pick
         print("ℹ️  No NBA pick today — outputting NHL only.")
         nhl_just, _ = summarize_justifications(nhl_just, None)
-        output = build_single_pick_prompt("NHL", "🏒", nhl_bet, nhl_just)
+        output = build_single_pick_prompt("NHL", "🏒", nhl_bet, nhl_just, nhl_ptw)
 
     print(output)
     save_to_file(output)

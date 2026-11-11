@@ -1574,11 +1574,25 @@ def format_dual_bet(raw_text):
         # Determine pick number
         pick_num = "1" if "#1" in header else "2"
 
-        # Parse confidence and description
+        # Parse confidence, description, and Players to Watch
         confidence_text = ""
         description_text = ""
+        players_to_watch = []
         odds_value = None
+        in_ptw = False
         for line in body_lines:
+            stripped = line.strip()
+            # Detect "Players to Watch:" section
+            if stripped.startswith("Players to Watch:") or stripped == "Players to Watch":
+                in_ptw = True
+                continue
+            if in_ptw:
+                if stripped.startswith("- "):
+                    players_to_watch.append(stripped[2:].strip())
+                else:
+                    in_ptw = False
+                    # Don't fall through — change-note lines go to neither description nor PTW
+                continue
             if "Confidence Level:" in line or "Confidence:" in line:
                 # Extract only the short confidence summary: "Confidence Level: X, Units: Xu, Win Probability: XX%"
                 # The line may be preceded by a long paragraph — find where "Confidence Level:" starts
@@ -1647,6 +1661,39 @@ def format_dual_bet(raw_text):
         if description_text:
             import html as html_module
             md += f"<div class='pick-description reasoning' data-raw='{html_module.escape(description_text.strip(), quote=True)}'></div>\n"
+
+        # Players to Watch
+        if players_to_watch:
+            import html as html_module
+            import re as _re
+            md += "<div class='ptw-section'>\n"
+            md += "<div class='ptw-header'><span class='ptw-label'>👤 Players to Watch</span></div>\n"
+            md += "<ul class='ptw-list'>\n"
+            for p in players_to_watch:
+                team_m = _re.match(r'^(.+?)\s+\(([^)]+)\)\s*:\s*(.*)$', p)
+                if not team_m:
+                    md += f"<li class='ptw-item'><div class='ptw-item-body'><span class='ptw-item-stat'>{html_module.escape(p)}</span></div></li>\n"
+                    continue
+                full_name = html_module.escape(team_m.group(1).strip())
+                team = html_module.escape(team_m.group(2).strip())
+                rest = team_m.group(3).strip()
+                stat_m = _re.match(r'^\[([^\]]+)\]\.\s*(.*)$', rest) or _re.match(r'^([^.]+)\.\s*(.*)$', rest)
+                stat = stat_m.group(1).strip() if stat_m else rest
+                context = html_module.escape(stat_m.group(2).strip()) if stat_m else ''
+                is_hot = '🔥' in stat or 'HOT' in stat
+                is_cold = '🧊' in stat or 'COLD' in stat
+                cls = 'hot' if is_hot else ('cold' if is_cold else '')
+                icon = '🔥' if is_hot else ('🧊' if is_cold else '👤')
+                clean_stat = html_module.escape(_re.sub(r'🔥HOT|🧊COLD', '', stat, flags=_re.IGNORECASE).strip())
+                context_part = f' — {context}' if context else ''
+                md += (f"<li class='ptw-item {cls}'>"
+                       f"<span class='ptw-item-icon'>{icon}</span>"
+                       f"<div class='ptw-item-body'>"
+                       f"<span class='ptw-item-name'>{full_name}</span><span class='ptw-item-team'>{team}</span>"
+                       f"<div class='ptw-item-stat'><strong>{clean_stat}</strong>{context_part}</div>"
+                       f"</div></li>\n")
+            md += "</ul>\n"
+            md += "</div>\n"
 
         # Add share button
         pick_id = f"featured-pick-{pick_num}"
