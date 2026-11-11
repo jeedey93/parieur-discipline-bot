@@ -1,14 +1,15 @@
 ============================================================
 KRAKEN - LINEUP
-Last Updated: 2026-11-07 02:50 PM ET
+Last Updated: 2026-11-11 04:43 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Bobby McMann — Matty Beniers — Jordan Eberle
-Line 2: Matthew Wood — Frederick Gaudreau — Chandler Stephenson
-Line 3: Kaapo Kakko — Berkly Catton — Mackie Samoskevich
-Line 4: Jani Nyman — Ben Meyers — Ryan Winterton
+Line 2: Jani Nyman — Chandler Stephenson — Mackie Samoskevich
+Line 3: Kaapo Kakko — Berkly Catton — Matthew Wood
+Line 4: Ben Meyers — Frederick Gaudreau — Ryan Winterton
+Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -20,5 +21,16 @@ GOALIES:
 ----------------------------------------
   Joey Daccord
   Philipp Grubauer
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Cale Fleury (scratched)
+  Jagger Firkus (scratched)
+  Logan Morrison (scratched)
+  Nikke Kokko (scratched)
+  Jacob Melanson (upper body) (injured)
+  Ryan Lindgren (upper body) (injured)
+  Jared McCann (lower body) (injured)
+  Curtis Douglas (upper body) (injured)
 
 ============================================================

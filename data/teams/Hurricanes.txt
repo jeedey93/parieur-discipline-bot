@@ -1,6 +1,6 @@
 ============================================================
 HURRICANES - LINEUP
-Last Updated: 2026-11-07 02:50 PM ET
+Last Updated: 2026-11-11 04:43 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,18 +14,19 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jacob Slavin — Jalen Chatfield
 Pair 2: KAndre Miller — Sean Walker
-Pair 3: Shayne Gostisbehere — Alexander Nikishin
+Pair 3: Shayne Gostisbehere — Juuso Valimaki
 
 GOALIES:
 ----------------------------------------
-  Pyotr Kochetkov
   Brandon Bussi
+  Pyotr Kochetkov
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Mike Reilly (scratched)
-  Juuso Valimaki (scratched)
+  Alexander Nikishin (scratched)
   Nicolas Deslauriers (scratched)
+  Cayden Primeau (scratched)
   Jordan Staal (calf) (injured)
 
 ============================================================

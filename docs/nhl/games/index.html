@@ -1475,7 +1475,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='header'>
 <h1>🏒 NHL Games Today</h1>
 <p>Wednesday, November 11, 2026</p>
-<p>⏱️ Last Updated at 6:41 AM</p>
+<p>⏱️ Last Updated at 4:43 PM</p>
 </div>
 
 <div class='container'>
@@ -1549,6 +1549,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='signals-row'>
 <div class='prediction-indicator away-favored'>↗ Trending: TBL</div>
 <div class='ou-signal over-signal'>📈 Over 6.5</div>
+<div class='goalie-advantage-badge away-advantage'>🥅 Goalie Edge: TBL</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -1558,7 +1559,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/TBL_light.svg' alt='Tampa Bay Lightning' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Tampa Bay Lightning <span class='team-rank'>(8th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020293-away' data-team-name='Tampa Bay Lightning' data-lines-content='<div class=&#39;lineup-line&#39;>Brandon Hagel — Anthony Cirelli — Nikita Kucherov</div><div class=&#39;lineup-line&#39;>Jake Guentzel — Sam OReilly — Yanni Gourde</div><div class=&#39;lineup-line&#39;>Ilya Mikheyev — Zemgus Girgensons — Pontus Holmberg</div><div class=&#39;lineup-line&#39;>Jeffrey Viel — Conor Geekie — Scott Sabourin</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>J.J. Moser — John Carlson</div><div class=&#39;lineup-line defense-line&#39;>Ryan McDonagh — Erik Cernak</div><div class=&#39;lineup-line defense-line&#39;>Victor Hedman — Charle-Edouard DAstous</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Andrei Vasilevskiy</div><div class=&#39;lineup-line goalie-line&#39;>Dennis Hildeby</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>11-4-2 <span class='positive-form'>(6-2-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-sol'>SOL</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span></span></div>
@@ -1599,10 +1600,30 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Andrei Vasilevskiy</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>8-4-1</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>2.85</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.883</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>3-1-1</div>
+<div class='stat-compact'>3.00 GAA</div>
+<div class='stat-compact'>0.883 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Emil Lilleberg (scratched)</div>
+<div class='absence-item'>Max Crozier (scratched)</div>
+<div class='absence-item'>Gage Goncalves (scratched)</div>
+<div class='absence-item'>Brayden Point (lower body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1611,7 +1632,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/BUF_light.svg' alt='Buffalo Sabres' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Buffalo Sabres <span class='team-rank'>(19th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020293-home' data-team-name='Buffalo Sabres' data-lines-content='<div class=&#39;lineup-line&#39;>Peyton Krebs — Josh Norris — Tage Thompson</div><div class=&#39;lineup-line&#39;>Zach Benson — Noah Ostlund — Jack Quinn</div><div class=&#39;lineup-line&#39;>Jason Zucker — Ryan McLeod — Josh Doan</div><div class=&#39;lineup-line&#39;>Beck Malenstyn — Tyson Kozak — Sam Carrick</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Rasmus Dahlin — Mattias Samuelsson</div><div class=&#39;lineup-line defense-line&#39;>Olen Zellweger — Owen Power</div><div class=&#39;lineup-line defense-line&#39;>Zach Metsa — Conor Timmins</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Ukko-Pekka Luukkonen</div><div class=&#39;lineup-line goalie-line&#39;>Colten Ellis</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>8-6-3 <span class='positive-form'>(5-3-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span></span></div>
@@ -1652,10 +1673,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Ukko-Pekka Luukkonen</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>5-3-3</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.27</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.878</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>2-1-2</div>
+<div class='stat-compact'>3.00 GAA</div>
+<div class='stat-compact'>0.900 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Jiri Kulich (scratched)</div>
+<div class='absence-item'>Louis Crevier (scratched)</div>
+<div class='absence-item'>Konsta Helenius (upper body)</div>
+<div class='absence-item'>Justin Danforth (upper body)</div>
+<div class='absence-item'>Matt Grzelcyk (lower body)</div>
+<div class='absence-item'>Alex Lyon (upper body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1689,6 +1732,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='matchup'>New York Rangers vs Calgary Flames</div>
 <div class='signals-row'>
 <div class='prediction-indicator home-favored'>↗ Trending: CGY</div>
+<div class='goalie-advantage-badge home-advantage'>🥅 Goalie Edge: CGY</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -1698,7 +1742,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/NYR_light.svg' alt='New York Rangers' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>New York Rangers <span class='team-rank'>(16th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020294-away' data-team-name='New York Rangers' data-lines-content='<div class=&#39;lineup-line&#39;>Gabe Perreault — Mika Zibanejad — Alexis Lafreniere</div><div class=&#39;lineup-line&#39;>Tye Kartye — J.T. Miller — Pavel Dorofeyev</div><div class=&#39;lineup-line&#39;>Will Cuylle — Noah Laba — Oliver Bjorkstrand</div><div class=&#39;lineup-line&#39;>Eeli Tolvanen — Glenn Gawdin — Jaroslav Chmelar</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Vladislav Gavrikov — Adam Fox</div><div class=&#39;lineup-line defense-line&#39;>Marcus Pettersson — Braden Schneider</div><div class=&#39;lineup-line defense-line&#39;>Matthew Roberson — Scott Morrow</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Joonas Korpisalo</div><div class=&#39;lineup-line goalie-line&#39;>Dylan Garand</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>10-8-1 <span class='negative-form'>(4-5-1)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span></span></div>
@@ -1739,10 +1783,34 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Joonas Korpisalo</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>1-0-0</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.04</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.893</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>1-0-0</div>
+<div class='stat-compact'>3.00 GAA</div>
+<div class='stat-compact'>0.893 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Matt Rempe (scratched)</div>
+<div class='absence-item'>Luke Glendening (scratched)</div>
+<div class='absence-item'>Marc Del Gaizo (scratched)</div>
+<div class='absence-item'>Sean Durzi (undisclosed)</div>
+<div class='absence-item'>Igor Shesterkin (lower body)</div>
+<div class='absence-item'>Alberts Smits (upper body)</div>
+<div class='absence-item'>Adam Sykora (lower body)</div>
+<div class='absence-item'>Joseph Veleno (lower body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1751,7 +1819,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/CGY_light.svg' alt='Calgary Flames' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Calgary Flames <span class='team-rank'>(24th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020294-home' data-team-name='Calgary Flames' data-lines-content='<div class=&#39;lineup-line&#39;>Joel Farabee — Mikael Backlund — Matt Coronato</div><div class=&#39;lineup-line&#39;>Yegor Sharangovich — Morgan Frost — Aydar Suniev</div><div class=&#39;lineup-line&#39;>Matvei Gridin — Martin Pospisil — Ryan Strome</div><div class=&#39;lineup-line&#39;>Brennan Othmann — Jonathan Castagna — Adam Klapka</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Joel Hanley — Simon Nemec</div><div class=&#39;lineup-line defense-line&#39;>Jake Middleton — Zach Whitecloud</div><div class=&#39;lineup-line defense-line&#39;>Yan Kuznetsov — Zayne Parekh</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Devin Cooley</div><div class=&#39;lineup-line goalie-line&#39;>Dustin Wolf</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>8-9-1 <span class='positive-form'>(6-3-1)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-otl'>OTL</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span></span></div>
@@ -1792,10 +1860,31 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Devin Cooley</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>5-3-0</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>2.71</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.914</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>4-1-0</div>
+<div class='stat-compact'>1.60 GAA</div>
+<div class='stat-compact'>0.943 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Maksim Tsyplakov (scratched)</div>
+<div class='absence-item'>William Stromgren (scratched)</div>
+<div class='absence-item'>Brayden Pachal (scratched)</div>
+<div class='absence-item'>Jonathan Huberdeau (hip)</div>
+<div class='absence-item'>Kevin Bahl (lower body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1812,8 +1901,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Total</div>
-<div class='odds-value'><span>Over 5.5</span><span>1.82</span></div>
-<div class='odds-value'><span>Under 5.5</span><span>2.02</span></div>
+<div class='odds-value'><span>Over 5.5</span><span>1.80</span></div>
+<div class='odds-value'><span>Under 5.5</span><span>2.05</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Spread</div>
@@ -1829,6 +1918,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='matchup'>Philadelphia Flyers vs Edmonton Oilers</div>
 <div class='signals-row'>
 <div class='prediction-indicator home-favored'>↗ Trending: EDM</div>
+<div class='goalie-advantage-badge home-advantage'>🥅 Goalie Edge: EDM</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -1838,7 +1928,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/PHI_light.svg' alt='Philadelphia Flyers' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Philadelphia Flyers <span class='team-rank'>(27th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020295-away' data-team-name='Philadelphia Flyers' data-lines-content='<div class=&#39;lineup-line&#39;>Michael Bunting — Christian Dvorak — Owen Tippett</div><div class=&#39;lineup-line&#39;>Tyson Foerster — Trevor Zegras — Travis Konecny</div><div class=&#39;lineup-line&#39;>Porter Martone — Noah Cates — Matvei Michkov</div><div class=&#39;lineup-line&#39;>Denver Barkey — Sean Couturier — Noel Acciari</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Travis Sanheim — Jamie Drysdale</div><div class=&#39;lineup-line defense-line&#39;>Cam York — Oliver Bonk</div><div class=&#39;lineup-line defense-line&#39;>Nick Seeler — Rasmus Ristolainen</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Dan Vladar</div><div class=&#39;lineup-line goalie-line&#39;>Joseph Woll</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>5-10-5 <span class='neutral-form'>(4-4-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-otl'>OTL</span><span class='game-result game-result-win'>W</span></span></div>
@@ -1879,10 +1969,30 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Dan Vladar</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>3-4-3</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.27</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.880</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>2-1-2</div>
+<div class='stat-compact'>3.00 GAA</div>
+<div class='stat-compact'>0.866 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Simon Benoit (scratched)</div>
+<div class='absence-item'>David Jiricek (scratched)</div>
+<div class='absence-item'>Cole Knuble (scratched)</div>
+<div class='absence-item'>Nikita Grebenkin (back)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1891,7 +2001,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/EDM_light.svg' alt='Edmonton Oilers' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Edmonton Oilers <span class='team-rank'>(3rd)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020295-home' data-team-name='Edmonton Oilers' data-lines-content='<div class=&#39;lineup-line&#39;>Vasily Podkolzin — Connor McDavid — Leon Draisaitl</div><div class=&#39;lineup-line&#39;>Kasperi Kapanen — Ryan Nugent-Hopkins — Zach Hyman</div><div class=&#39;lineup-line&#39;>Colton Dach — Jason Dickinson — Trent Frederic</div><div class=&#39;lineup-line&#39;>Alex Formenton — Owen Michaels — Mathieu Joseph</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Mattias Ekholm — Evan Bouchard</div><div class=&#39;lineup-line defense-line&#39;>Ryan Shea — Connor Murphy</div><div class=&#39;lineup-line defense-line&#39;>Shakir Mukhamadullin — Ty Emberson</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Tristan Jarry</div><div class=&#39;lineup-line goalie-line&#39;>Devon Levi</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>13-3-3 <span class='positive-form'>(6-2-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-sol'>SOL</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span></span></div>
@@ -1932,10 +2042,34 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Tristan Jarry</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>4-1-3</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>2.57</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.902</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>2-1-2</div>
+<div class='stat-compact'>2.40 GAA</div>
+<div class='stat-compact'>0.910 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Filip Hallander (scratched)</div>
+<div class='absence-item'>Max Jones (scratched)</div>
+<div class='absence-item'>Jake Walman (scratched)</div>
+<div class='absence-item'>Frederik Andersen (undisclosed)</div>
+<div class='absence-item'>Isaac Howard (lower body)</div>
+<div class='absence-item'>Mattias Janmark (undisclosed)</div>
+<div class='absence-item'>Alec Regula (undisclosed)</div>
+<div class='absence-item'>Matthew Savoie (undisclosed)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -1947,8 +2081,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='odds-grid'>
 <div class='odds-card'>
 <div class='odds-label'>Moneyline</div>
-<div class='odds-value'><span>Philadelphia Flyers</span><span>2.80</span></div>
-<div class='odds-value'><span>Edmonton Oilers</span><span>1.46</span></div>
+<div class='odds-value'><span>Philadelphia Flyers</span><span>2.60</span></div>
+<div class='odds-value'><span>Edmonton Oilers</span><span>1.52</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Total</div>
@@ -1957,8 +2091,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Spread</div>
-<div class='odds-value'><span>Philadelphia Flyers +1.5</span><span>1.68</span></div>
-<div class='odds-value'><span>Edmonton Oilers -1.5</span><span>2.24</span></div>
+<div class='odds-value'><span>Philadelphia Flyers +1.5</span><span>1.62</span></div>
+<div class='odds-value'><span>Edmonton Oilers -1.5</span><span>2.36</span></div>
 </div>
 </div>
 </div>
@@ -1982,6 +2116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='prediction-indicator home-favored'>↗ Trending: VGK</div>
 <div class='h2h-totals-badge high-scoring'>⚡ H2H Avg: 9.0 goals</div>
 <div class='streak-badge win-streak'>🔥 VGK 3W Streak</div>
+<div class='goalie-advantage-badge home-advantage'>🥅 Goalie Edge: VGK</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -1991,7 +2126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/UTA_light.svg' alt='Utah Mammoth' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Utah Mammoth <span class='team-rank'>(15th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020296-away' data-team-name='Utah Mammoth' data-lines-content='<div class=&#39;lineup-line&#39;>Anders Lee — Barrett Hayton — Clayton Keller</div><div class=&#39;lineup-line&#39;>Logan Cooley — Vincent Trocheck — Lawson Crouse</div><div class=&#39;lineup-line&#39;>Jack McBain — Nick Schmaltz — Dylan Guenther</div><div class=&#39;lineup-line&#39;>Michael Carcone — Kevin Stenlund — Liam OBrien</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Mikhail Sergachev — Mackenzie Weegar</div><div class=&#39;lineup-line defense-line&#39;>Dmitri Simashev — Andrew Peeke</div><div class=&#39;lineup-line defense-line&#39;>Nick De Simone — Artem Duda</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Sebastian Cossa</div><div class=&#39;lineup-line goalie-line&#39;>Karel Vejmelka</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>10-7-1 <span class='negative-form'>(4-5-1)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-otl'>OTL</span><span class='game-result game-result-loss'>L</span></span></div>
@@ -2032,10 +2167,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Sebastian Cossa</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>4-1-1</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.30</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.871</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>3-0-1</div>
+<div class='stat-compact'>3.50 GAA</div>
+<div class='stat-compact'>0.879 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Ben Mc Cartney (scratched)</div>
+<div class='absence-item'>Gregor Biber (scratched)</div>
+<div class='absence-item'>Kailer Yamamoto (upper body)</div>
+<div class='absence-item'>Maveric Lamoureux (shoulder)</div>
+<div class='absence-item'>John Marino (upper body)</div>
+<div class='absence-item'>Nate Schmidt (upper body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -2044,7 +2201,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/VGK_light.svg' alt='Vegas Golden Knights' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Vegas Golden Knights <span class='team-rank'>(6th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020296-home' data-team-name='Vegas Golden Knights' data-lines-content='<div class=&#39;lineup-line&#39;>Trevor Connelly — Jack Eichel — Mark Stone</div><div class=&#39;lineup-line&#39;>Brett Howden — William Karlsson — Mitch Marner</div><div class=&#39;lineup-line&#39;>Ivan Barbashev — Tomas Hertl — Victor Olofsson</div><div class=&#39;lineup-line&#39;>Braeden Bowman — Nic Dowd — Marc Gatcomb</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Shea Theodore — Brayden McNabb</div><div class=&#39;lineup-line defense-line&#39;>Jeremy Lauzon — Rasmus Andersson</div><div class=&#39;lineup-line defense-line&#39;>Parker Wotherspoon — Dylan Coghlan</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Carter Hart</div><div class=&#39;lineup-line goalie-line&#39;>Adin Hill</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>12-5-2 <span class='positive-form'>(5-3-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-loss'>L</span><span class='game-result game-result-sol'>SOL</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span></span></div>
@@ -2085,10 +2242,28 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Carter Hart</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>5-3-2</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>2.49</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.900</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>2-1-2</div>
+<div class='stat-compact'>2.60 GAA</div>
+<div class='stat-compact'>0.895 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Raphael Lavoie (scratched)</div>
+<div class='absence-item'>Noah Hanifin (undisclosed)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -2105,13 +2280,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Total</div>
-<div class='odds-value'><span>Over 6.5</span><span>1.95</span></div>
-<div class='odds-value'><span>Under 6.5</span><span>1.87</span></div>
+<div class='odds-value'><span>Over 6.5</span><span>1.98</span></div>
+<div class='odds-value'><span>Under 6.5</span><span>1.85</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Spread</div>
-<div class='odds-value'><span>Utah Mammoth +1.5</span><span>1.43</span></div>
-<div class='odds-value'><span>Vegas Golden Knights -1.5</span><span>2.90</span></div>
+<div class='odds-value'><span>Utah Mammoth +1.5</span><span>1.42</span></div>
+<div class='odds-value'><span>Vegas Golden Knights -1.5</span><span>2.95</span></div>
 </div>
 </div>
 </div>
@@ -2125,6 +2300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='b2b-badge'>⚠️ NSH on Back-to-Back</div>
 <div class='streak-badge win-streak'>🔥 NSH 5W Streak</div>
 <div class='streak-badge win-streak'>🔥 ANA 5W Streak</div>
+<div class='goalie-advantage-badge home-advantage'>🥅 Goalie Edge: ANA</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -2134,7 +2310,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/NSH_light.svg' alt='Nashville Predators' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Nashville Predators <span class='team-rank'>(11th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020297-away' data-team-name='Nashville Predators' data-lines-content='<div class=&#39;lineup-line&#39;>Steven Stamkos — Ryan OReilly — Mavrik Bourque</div><div class=&#39;lineup-line&#39;>Filip Forsberg — Shane Wright — Nils Hoglander</div><div class=&#39;lineup-line&#39;>Reid Schaefer — Alexander Kerfoot — Vitali Pinchuk</div><div class=&#39;lineup-line&#39;>Ross Colton — Jack Drury — Adam Edstrom</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Roman Josi — Adam Wilsby</div><div class=&#39;lineup-line defense-line&#39;>Brady Skjei — Nick Perbix</div><div class=&#39;lineup-line defense-line&#39;>Daemon Hunt — Jayden Struble</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Justus Annunen</div><div class=&#39;lineup-line goalie-line&#39;>Juuse Saros</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>9-4-5 <span class='positive-form'>(6-2-2)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span></span></div>
@@ -2175,10 +2351,30 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Justus Annunen</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>3-1-0</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.40</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.874</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>3-1-0</div>
+<div class='stat-compact'>3.50 GAA</div>
+<div class='stat-compact'>0.874 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Nicolas Hague (scratched)</div>
+<div class='absence-item'>Ilya Lyubushkin (scratched)</div>
+<div class='absence-item'>Jonathan Marchessault (lower body)</div>
+<div class='absence-item'>William Trudeau (upper body)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -2187,7 +2383,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/ANA_light.svg' alt='Anaheim Ducks' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Anaheim Ducks <span class='team-rank'>(14th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020297-home' data-team-name='Anaheim Ducks' data-lines-content='<div class=&#39;lineup-line&#39;>Alex Killorn — Leo Carlsson — Judd Caulfield</div><div class=&#39;lineup-line&#39;>Cutter Gauthier — Mikael Granlund — Beckett Sennecke</div><div class=&#39;lineup-line&#39;>Nikita Nesterenko — Tim Washe — Troy Terry</div><div class=&#39;lineup-line&#39;>Jeff Malott — Roger McQueen — Sam Colangelo</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Jackson La Combe — Drew Helleson</div><div class=&#39;lineup-line defense-line&#39;>Pavel Mintyukov — Noah Warren</div><div class=&#39;lineup-line defense-line&#39;>Travis Mitchell — Tristan Luneau</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Laurent Brossoit</div><div class=&#39;lineup-line goalie-line&#39;>Ville Husso</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>10-7-1 <span class='positive-form'>(6-3-1)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-win'>W</span></span></div>
@@ -2228,10 +2424,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Laurent Brossoit</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>4-0-0</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.26</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.877</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>4-0-0</div>
+<div class='stat-compact'>3.25 GAA</div>
+<div class='stat-compact'>0.877 SV%</div>
 </div>
 </div>
+</div>
+</div>
+<div class='absences-section'>
+<div class='absences-title'>⚕️ Out</div>
+<div class='absence-item'>Tyson Hinds (scratched)</div>
+<div class='absence-item'>Frank Vatrano (scratched)</div>
+<div class='absence-item'>Lukas Dostal (scratched)</div>
+<div class='absence-item'>A.J. Greer (upper body)</div>
+<div class='absence-item'>Ian Moore (lower body)</div>
+<div class='absence-item'>Ryan Poehling (MCL)</div>
 </div>
 <div class='stat-games'>Last 10 games</div>
 </div>
@@ -2243,18 +2461,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='odds-grid'>
 <div class='odds-card'>
 <div class='odds-label'>Moneyline</div>
-<div class='odds-value'><span>Nashville Predators</span><span>2.24</span></div>
-<div class='odds-value'><span>Anaheim Ducks</span><span>1.68</span></div>
+<div class='odds-value'><span>Nashville Predators</span><span>2.20</span></div>
+<div class='odds-value'><span>Anaheim Ducks</span><span>1.70</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Total</div>
-<div class='odds-value'><span>Over 6.5</span><span>1.82</span></div>
-<div class='odds-value'><span>Under 6.5</span><span>2.02</span></div>
+<div class='odds-value'><span>Over 6.5</span><span>1.77</span></div>
+<div class='odds-value'><span>Under 6.5</span><span>2.10</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Spread</div>
-<div class='odds-value'><span>Nashville Predators +1.5</span><span>1.52</span></div>
-<div class='odds-value'><span>Anaheim Ducks -1.5</span><span>2.60</span></div>
+<div class='odds-value'><span>Nashville Predators +1.5</span><span>1.51</span></div>
+<div class='odds-value'><span>Anaheim Ducks -1.5</span><span>2.64</span></div>
 </div>
 </div>
 </div>
@@ -2266,6 +2484,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='signals-row'>
 <div class='prediction-indicator away-favored'>↗ Trending: PIT</div>
 <div class='ou-signal under-signal'>📉 Under 6.5</div>
+<div class='goalie-advantage-badge home-advantage'>🥅 Goalie Edge: SJS</div>
 </div>
 <div class='key-insights'>
 <div class='insights-title'>📊 Key Insights</div>
@@ -2275,7 +2494,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/PIT_light.svg' alt='Pittsburgh Penguins' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>Pittsburgh Penguins <span class='team-rank'>(29th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020298-away' data-team-name='Pittsburgh Penguins' data-lines-content='<div class=&#39;lineup-line&#39;>Rickard Rakell — Sidney Crosby — Evgeni Malkin</div><div class=&#39;lineup-line&#39;>Tommy Novak — Ben Kindel — Egor Chinakhov</div><div class=&#39;lineup-line&#39;>Ville Koivunen — Hendrix Lapierre — Justin Brazeau</div><div class=&#39;lineup-line&#39;>Connor Dewar — Blake Lizotte — Nick Robertson</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Spencer Stastney — Erik Karlsson</div><div class=&#39;lineup-line defense-line&#39;>Samuel Girard — Kaedan Korczak</div><div class=&#39;lineup-line defense-line&#39;>Declan Carlile — Kris Letang</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Sergei Murashov</div><div class=&#39;lineup-line goalie-line&#39;>Arturs Silovs</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>6-10-2 <span class='negative-form'>(3-6-1)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span><span class='game-result game-result-loss'>L</span></span></div>
@@ -2316,8 +2535,21 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Sergei Murashov</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>1-4-1</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.52</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.880</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>1-3-1</div>
+<div class='stat-compact'>3.60 GAA</div>
+<div class='stat-compact'>0.871 SV%</div>
+</div>
 </div>
 </div>
 </div>
@@ -2328,7 +2560,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src='https://assets.nhle.com/logos/nhl/svg/SJS_light.svg' alt='San Jose Sharks' class='team-logo' />
 <div class='team-name-container'>
 <div class='team-name'>San Jose Sharks <span class='team-rank'>(26th)</span></div>
-<button class='daily-lines-btn' disabled title='Lines not available yet'>📋 Daily Lines</button>
+<button class='daily-lines-btn' data-lines-id='lines-2026020298-home' data-team-name='San Jose Sharks' data-lines-content='<div class=&#39;lineup-line&#39;>Michael Misa — Macklin Celebrini — Will Smith</div><div class=&#39;lineup-line&#39;>Mason Marchment — Alexander Wennberg — Kiefer Sherwood</div><div class=&#39;lineup-line&#39;>Ivar Stenberg — Ty Dellandrea — Tyler Toffoli</div><div class=&#39;lineup-line&#39;>Barclay Goodrow — Zack Ostapchuk — Collin Graf</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line defense-line&#39;>Darnell Nurse — Michael Kesselring</div><div class=&#39;lineup-line defense-line&#39;>Sam Dickinson — Jacob Trouba</div><div class=&#39;lineup-line defense-line&#39;>Dmitry Orlov — Eric Pohlkamp</div><div class=&#39;lineup-spacer&#39;></div><div class=&#39;lineup-line goalie-line&#39;>Yaroslav Askarov</div><div class=&#39;lineup-line goalie-line&#39;>Alex Nedeljkovic</div>'>📋 Daily Lines</button>
 </div>
 <div class='team-record'>8-11-1 <span class='negative-form'>(3-7-0)</span></div>
 <div class='last-5-games'>Last 5 Games: <span class='last-5-results'><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-loss'>L</span><span class='game-result game-result-win'>W</span></span></div>
@@ -2369,8 +2601,21 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='stat-tile goalie-tile'>
 <div class='stat-label'>Starting Goalie</div>
 <div class='goalie-header'>
-<div class='goalie-name'>TBD</div>
-<div class='goalie-status unconfirmed'>Unconfirmed</div>
+<div class='goalie-name'>Yaroslav Askarov</div>
+<div class='goalie-status confirmed'>Confirmed</div>
+</div>
+<div class='goalie-stats-compact'>
+<div class='season-stats'>
+<div class='stat-item'><span class='stat-label'>Record</span><span class='stat-value'>5-8-0</span></div>
+<div class='stat-item'><span class='stat-label'>GAA</span><span class='stat-value'>3.22</span></div>
+<div class='stat-item'><span class='stat-label'>SV%</span><span class='stat-value'>0.889</span></div>
+</div>
+<div class='last5-divider'>Last 5 Starts</div>
+<div class='last5-stats'>
+<div class='stat-compact'>2-3-0</div>
+<div class='stat-compact'>3.40 GAA</div>
+<div class='stat-compact'>0.872 SV%</div>
+</div>
 </div>
 </div>
 </div>
@@ -2384,18 +2629,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class='odds-grid'>
 <div class='odds-card'>
 <div class='odds-label'>Moneyline</div>
-<div class='odds-value'><span>Pittsburgh Penguins</span><span>1.74</span></div>
-<div class='odds-value'><span>San Jose Sharks</span><span>2.14</span></div>
+<div class='odds-value'><span>Pittsburgh Penguins</span><span>1.70</span></div>
+<div class='odds-value'><span>San Jose Sharks</span><span>2.20</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Total</div>
-<div class='odds-value'><span>Over 6.5</span><span>1.77</span></div>
-<div class='odds-value'><span>Under 6.5</span><span>2.10</span></div>
+<div class='odds-value'><span>Over 6.5</span><span>1.74</span></div>
+<div class='odds-value'><span>Under 6.5</span><span>2.14</span></div>
 </div>
 <div class='odds-card'>
 <div class='odds-label'>Spread</div>
-<div class='odds-value'><span>Pittsburgh Penguins -1.5</span><span>2.70</span></div>
-<div class='odds-value'><span>San Jose Sharks +1.5</span><span>1.49</span></div>
+<div class='odds-value'><span>Pittsburgh Penguins -1.5</span><span>2.64</span></div>
+<div class='odds-value'><span>San Jose Sharks +1.5</span><span>1.51</span></div>
 </div>
 </div>
 </div>
