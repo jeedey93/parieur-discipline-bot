@@ -1,0 +1,27 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-10.
+
+Here's the breakdown:
+
+1.  **Columbus Blue Jackets ML vs Florida Panthers @ 2.05 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Florida 4 @ Columbus 1 (Total goals: 5)
+    *   Outcome: **LOSS** (Columbus lost the game.)
+
+2.  **Ottawa Senators ML vs Washington Capitals @ 1.91 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Washington 3 @ Ottawa 2 (Total goals: 5)
+    *   Outcome: **LOSS** (Ottawa lost the game.)
+
+3.  **Minnesota Wild vs Montréal Canadiens Under 6.0 @ 1.98 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Minnesota 2 @ Montréal 1 (Total goals: 3)
+    *   Outcome: **WIN** (Total goals (3) were less than 6.0.)
+
+4.  **Winnipeg Jets ML vs New Jersey Devils @ 2.18 - Confidence: High, Units: 1.5u**
+    *   Actual Result: New Jersey 2 @ Winnipeg 4 (Total goals: 6)
+    *   Outcome: **WIN** (Winnipeg won the game.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**
