@@ -893,6 +893,7 @@
         .pm-srow td.green { color: var(--green) !important; }
         .pm-srow td.blue  { color: var(--blue) !important; }
         .pm-srow td.gold  { color: var(--gold) !important; }
+        .pm-srow td.red   { color: var(--red) !important; }
         .pm-srow td.white { color: white !important; font-weight: 700; }
         .pm-srow td.dim   { color: rgba(255,255,255,0.35) !important; font-size: 0.78rem; }
 
@@ -2412,13 +2413,15 @@
 
         if (isGoalie) {
           const hw = d.fullW ?? 0; const hso = d.fullSo ?? 0; const hotl = d.fullOtl ?? 0;
+          const hl = d.fullL != null ? d.fullL : Math.max(0, (d.fullGp ?? 0) - hw - hotl);
           const pw = d.w ?? 0;    const pso = d.so ?? 0;    const potl = d.otl ?? 0;
-          const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="blue">${hw}</td><td class="gold">${hso}</td><td class="blue">${hotl}</td></tr>`;
-          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
+          const pl = Math.max(0, poolGp - pw - potl);
+          const fullRow = `<tr class="pm-srow full"><td>2026-27 Season</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="blue">${hw}</td><td class="red">${hl}</td><td class="gold">${hso}</td><td class="blue">${hotl}</td></tr>`;
+          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (my team)</td><td></td><td>${poolGp}</td><td class="green">${pw}</td><td class="red">${pl}</td><td class="gold">${pso}</td><td class="green">${potl}</td></tr>` : '';
           fullStatsHtml = `
             <div class="pm-season-table">
-              <div class="pm-section-label">STATS NHL 2026-27</div>
-              <table><thead><tr><th>Saison</th><th>Équipe</th><th>PJ</th><th>V</th><th>BL</th><th>OTL</th></tr></thead>
+              <div class="pm-section-label">NHL STATS 2026-27</div>
+              <table><thead><tr><th>Season</th><th>Team</th><th>GP</th><th>W</th><th>L</th><th>SO</th><th>OTL</th></tr></thead>
               <tbody>${fullRow}${poolRow}</tbody></table>
             </div>`;
         } else {
@@ -2426,12 +2429,12 @@
           const pg = d.g  ?? 0;  const pa = d.a  ?? 0;  const ppts = typeof d.pts === 'number' ? d.pts : (pg + pa);
           const ppg82 = fgp > 0 ? (hpts / fgp).toFixed(2) : '—';
           const poolPpg = poolGp > 0 ? (ppts / poolGp).toFixed(2) : '—';
-          const fullRow = `<tr class="pm-srow full"><td>2026-27 réel</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="pink">${hg}</td><td class="pink">${ha}</td><td class="white">${hpts}</td><td class="dim">${ppg82}</td></tr>`;
-          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (ma team)</td><td></td><td>${poolGp}</td><td class="green">${pg}</td><td class="green">${pa}</td><td class="green">${ppts}</td><td class="dim">${poolPpg}</td></tr>` : '';
+          const fullRow = `<tr class="pm-srow full"><td>2026-27 Season</td><td>${abbr||'—'}</td><td>${fgp}</td><td class="pink">${hg}</td><td class="pink">${ha}</td><td class="white">${hpts}</td><td class="dim">${ppg82}</td></tr>`;
+          const poolRow = poolGp > 0 ? `<tr class="pm-srow pool"><td>Pool (my team)</td><td></td><td>${poolGp}</td><td class="green">${pg}</td><td class="green">${pa}</td><td class="green">${ppts}</td><td class="dim">${poolPpg}</td></tr>` : '';
           fullStatsHtml = `
             <div class="pm-season-table">
-              <div class="pm-section-label">STATS NHL 2026-27</div>
-              <table><thead><tr><th>Saison</th><th>Équipe</th><th>PJ</th><th>B</th><th>A</th><th>PTS</th><th>PPG</th></tr></thead>
+              <div class="pm-section-label">NHL STATS 2026-27</div>
+              <table><thead><tr><th>Season</th><th>Team</th><th>GP</th><th>G</th><th>A</th><th>PTS</th><th>PPG</th></tr></thead>
               <tbody>${fullRow}${poolRow}</tbody></table>
             </div>`;
         }
@@ -2464,7 +2467,7 @@
         last5Html = `
           <div class="pm-last5">
             <div class="pm-last5-header">
-              <span class="pm-section-label" style="margin:0">DERNIERS 5 MATCHS</span>
+              <span class="pm-section-label" style="margin:0">LAST 5 GAMES</span>
               <span class="pm-last5-total" style="color:${posColor}">${streakEmoji} +${last5Total} pts</span>
             </div>
             <div class="pm-bar-chart">${bars}</div>
@@ -2477,7 +2480,7 @@
       const ytdVal = d.ytd != null ? d.ytd : null;
       const ytdDisplay = ytdVal == null ? null : ytdVal > 0 ? `+${ytdVal}` : '0';
       const ytdChip = ytdDisplay != null
-        ? `<div class="pm-chip ytd${ytdVal > 0 ? ' green' : ''}">Hier&nbsp;${ytdDisplay}</div>`
+        ? `<div class="pm-chip ytd${ytdVal > 0 ? ' green' : ''}">Ytd&nbsp;${ytdDisplay}</div>`
         : '';
 
       const capStr = d.capHit ? `$${(d.capHit / 1e6).toFixed(2)}M` : null;
@@ -2524,7 +2527,7 @@
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
         <div class="pm-actions">
           ${nhlBtn}
-          ${d.isCurrent ? `<button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Partager</button>` : ''}
+          ${d.isCurrent ? `<button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Share</button>` : ''}
         </div>
       `;
 
@@ -2540,7 +2543,7 @@
       showPlayerModal({ name: formatName(p.player_name), pos: normalizePos(p.position), nhlTeam: p.team, nhlId, isCurrent: true,
         gp: p.games_played, g: p.goals, a: p.assists, w: p.wins, so: p.shutouts,
         pts: poolScore(p), ppg: null, ytd: _playerYesterdayPts[nhlId] ?? null, capHit: p.cap_hit, tenure: null, owner: null,
-        fullGp: p.games_played, fullG: p.goals, fullA: p.assists, fullPts: p.points, fullW: p.wins, fullSo: p.shutouts, fullOtl: p.ot_losses });
+        fullGp: p.games_played, fullG: p.goals, fullA: p.assists, fullPts: p.points, fullW: p.wins, fullSo: p.shutouts, fullOtl: p.ot_losses, fullL: null });
     }
     function rosterPlayers(rs) {
       const m = slugMap();
@@ -4095,7 +4098,7 @@
         const formBadge = isInjured ? '' : rawBadge;
         const injuryBadge = isInjured ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">❌</span>` : '';
         const _fp = r.slug ? slugMap()[r.slug] : null;
-        const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null }).replace(/'/g, '&#39;');
+        const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null, fullL: _fp?.losses ?? null }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}${hasLive ? ' live' : ''}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapReasonPill}${swapDateChip}</span>
