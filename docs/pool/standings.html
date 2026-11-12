@@ -1535,10 +1535,17 @@
                 if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
               }
             }
+            // For live games, only the goalie currently in net should show as live.
+            // Find the goalie with the most TOI — that's who's in net right now.
+            const goaliesWithToi = (sideData.goalies || []).filter(g => g.toi && g.toi !== '00:00' && g.toi !== '0:00');
+            const toiSecs = t => { const [m, s] = (t || '0:00').split(':').map(Number); return (m || 0) * 60 + (s || 0); };
+            const currentGoalieId = isLiveNow && goaliesWithToi.length
+              ? Number(goaliesWithToi.reduce((best, g) => toiSecs(g.toi) >= toiSecs(best.toi) ? g : best).playerId)
+              : null;
             for (const g of (sideData.goalies || [])) {
               const id = Number(g.playerId);
               if (!id || !g.toi || g.toi === '00:00' || g.toi === '0:00') continue;
-              if (isLiveNow) newLiveIds.add(id);
+              if (isLiveNow && id === currentGoalieId) newLiveIds.add(id);
               const decision = (g.decision || '').toUpperCase();
               if (!isOver) continue; // only score goalies once game is final
               const isWin = decision === 'W';
