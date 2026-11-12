@@ -471,12 +471,12 @@ def main():
         yesterday_str = (today - timedelta(days=1)).isoformat()
         YDAY_FILE = "docs/data/player_yesterday_pts.json"
 
-        # Collect all unique nhl_player_ids across all pool rosters (including bench)
+        # Collect dressed roster slugs only — bench players don't score
         all_leagues = supabase.table("pool_rosters").select("league_code,data").execute().data
         all_slugs = set()
         for row in all_leagues:
             for team in (row.get("data") or {}).get("teams", []):
-                for pos in ("F", "D", "G", "B"):
+                for pos in ("F", "D", "G"):
                     all_slugs.update(s for s in (team.get("roster") or {}).get(pos, []) if s)
 
         # Build slug → (nhl_player_id, position) from player_map
