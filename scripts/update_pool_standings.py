@@ -126,7 +126,7 @@ Scouting report:"""
     models = [
         "models/gemini-2.5-flash",
         "models/gemini-2.5-flash-lite",
-        "models/gemini-2.0-flash",
+        "models/gemini-3.8-flash",
         "models/gemini-2.5-flash-lite",
     ]
     for model in models:
@@ -235,7 +235,7 @@ Weekly pool summary:"""
     models = [
         "models/gemini-2.5-flash",
         "models/gemini-2.5-flash-lite",
-        "models/gemini-2.0-flash",
+        "models/gemini-3.8-flash",
         "models/gemini-2.5-flash-lite",
     ]
     for model in models:
