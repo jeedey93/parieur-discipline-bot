@@ -288,7 +288,13 @@ def main():
     # Fetch all players
     players_res = supabase.table("nhl_players").select(
         "puckpedia_slug,player_name,position,goals,assists,points,wins,ot_losses,shutouts,games_played,nhl_player_id"
-    ).limit(1000).execute()
+    ).in_("puckpedia_slug", list({
+        slug
+        for sub in submissions
+        for pos in ("F", "D", "G", "B")
+        for slug in (sub.get("roster") or {}).get(pos, [])
+        if slug
+    })).execute()
     player_map = {p["puckpedia_slug"]: p for p in players_res.data}
 
     # Score everyone and build current ranking (by total pts)
