@@ -287,7 +287,7 @@ def main():
 
     # Fetch all players
     players_res = supabase.table("nhl_players").select(
-        "puckpedia_slug,player_name,position,goals,assists,points,wins,ot_losses,shutouts,games_played"
+        "puckpedia_slug,player_name,position,goals,assists,points,wins,ot_losses,shutouts,games_played,nhl_player_id"
     ).limit(1000).execute()
     player_map = {p["puckpedia_slug"]: p for p in players_res.data}
 
@@ -482,9 +482,10 @@ def main():
             pos = normalize_pos(pos)
             if pos == "G":
                 decision = (g.get("decision") or "").upper()
-                so = 1 if g.get("shutouts") or g.get("shots_against", 1) and not g.get("goals_against") else 0
                 wins = 1 if decision == "W" else 0
-                return wins * 2 + so * 3
+                otl  = 1 if decision == "O" else 0  # game log uses 'O' for OTL
+                so   = g.get("shutouts") or 0
+                return wins * 2 + otl * 1 + so * 3
             if pos == "D":
                 return (g.get("goals") or 0) * 2 + (g.get("assists") or 0)
             return (g.get("points") or 0) or ((g.get("goals") or 0) + (g.get("assists") or 0))
