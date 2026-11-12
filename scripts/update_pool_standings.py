@@ -387,15 +387,16 @@ def main():
     today_str = today.isoformat()
 
     # Build per-player pool pts snapshot: slug → pts today
+    # Include bench (B) players so bench-swapped players are tracked correctly.
     player_pts_snapshot = {}
     for s in scored:
         roster = s.get("roster") or {}
-        for pos in ("F", "D", "G"):
+        for pos in ("F", "D", "G", "B"):
             for slug in (roster.get(pos) or []):
                 if slug and slug not in player_pts_snapshot:
                     p = player_map.get(slug)
                     if p:
-                        player_pts_snapshot[slug] = playerPoolScore_py(p, pos)
+                        player_pts_snapshot[slug] = playerPoolScore_py(p, p.get("position") or pos)
 
     # Replace today's entry if already present (idempotent re-runs)
     history = [h for h in history if h["date"] != today_str]
@@ -464,12 +465,12 @@ def main():
         yesterday_str = (today - timedelta(days=1)).isoformat()
         YDAY_FILE = "docs/data/player_yesterday_pts.json"
 
-        # Collect all unique nhl_player_ids across all pool rosters
+        # Collect all unique nhl_player_ids across all pool rosters (including bench)
         all_leagues = supabase.table("pool_rosters").select("league_code,data").execute().data
         all_slugs = set()
         for row in all_leagues:
             for team in (row.get("data") or {}).get("teams", []):
-                for pos in ("F", "D", "G"):
+                for pos in ("F", "D", "G", "B"):
                     all_slugs.update(s for s in (team.get("roster") or {}).get(pos, []) if s)
 
         # Build slug → (nhl_player_id, position) from player_map
