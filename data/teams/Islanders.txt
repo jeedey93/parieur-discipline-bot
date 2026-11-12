@@ -1,20 +1,20 @@
 ============================================================
 ISLANDERS - LINEUP
-Last Updated: 2026-11-09 06:55 PM ET
+Last Updated: 2026-11-12 04:43 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Simon Holmstrom — Bo Horvat — Kyle Palmieri
 Line 2: Emil Heineman — Brayden Schenn — Victor Eklund
-Line 3: Ondrej Palat — Jean-Gabriel Pageau — Anthony Duclair
-Line 4: Kyle MacLean — Casey Cizikas — Mitchell Chaffee
+Line 3: Ondrej Palat — Casey Cizikas — Anthony Duclair
+Line 4: Matias Maccelli — Kyle MacLean — Mitchell Chaffee
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Adam Pelech — Matthew Schaefer
-Pair 2: Logan Stanley — Tony De Angelo
-Pair 3: Ben Hutton — Matthew Kessel
+Pair 1: Logan Stanley — Matthew Schaefer
+Pair 2: Adam Pelech — Ryan Pulock
+Pair 3: Ben Hutton — Tony De Angelo
 
 GOALIES:
 ----------------------------------------
@@ -24,10 +24,10 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Scott Mayfield (scratched)
+  Matthew Kessel (scratched)
+  Jean-Gabriel Pageau (lower body) (injured)
   Mathew Barzal (knee) (injured)
   Alexander Romanov (torn right ACL) (injured)
-  Ryan Pulock (upper body) (injured)
-  Matias Maccelli (lower body) (injured)
   Cal Ritchie (lower body) (injured)
 
 ============================================================
