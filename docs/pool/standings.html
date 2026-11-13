@@ -194,6 +194,13 @@
           flex: 1; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
           font-weight: 600; color: white; letter-spacing: 0.3px;
         }
+        .psearch-stats {
+          display: flex; gap: 0.75rem; flex-shrink: 0;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem;
+        }
+        .psearch-stat { display: flex; flex-direction: column; align-items: center; min-width: 28px; }
+        .psearch-stat-val { font-weight: 700; color: white; line-height: 1; }
+        .psearch-stat-lbl { font-size: 0.6rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-top: 1px; }
         .psearch-team {
           font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
           letter-spacing: 0.5px; color: rgba(255,255,255,0.4);
@@ -2780,7 +2787,13 @@
                <div class="psearch-headshot-fallback" style="display:none">👤</div>
              </div>`
           : `<div class="psearch-headshot-wrap"><div class="psearch-headshot-fallback">👤</div></div>`;
-        const d = JSON.stringify({
+        const statVal1 = p.games_played ?? '—';
+        const statVal2 = pos === 'G' ? (p.wins ?? '—') : (p.points ?? '—');
+        const statLbl2 = pos === 'G' ? 'W' : 'PTS';
+        const statsHtml = `<div class="psearch-stats">
+          <div class="psearch-stat"><span class="psearch-stat-val">${statVal1}</span><span class="psearch-stat-lbl">GP</span></div>
+          <div class="psearch-stat"><span class="psearch-stat-val">${statVal2}</span><span class="psearch-stat-lbl">${statLbl2}</span></div>
+        </div>`;
           name: formatName(p.player_name), pos, nhlTeam: p.team,
           nhlId: nhlId, isCurrent: true,
           gp: p.games_played, g: p.goals, a: p.assists, w: p.wins, so: p.shutouts, otl: p.ot_losses,
@@ -2795,6 +2808,7 @@
           <span class="psearch-name">${formatName(p.player_name)}</span>
           <span class="psearch-pos ${pos}">${pos}</span>
           ${teamLogoHtml}
+          ${statsHtml}
           ${ownerHtml}
         </div>`;
       }).join('');
