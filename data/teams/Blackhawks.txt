@@ -1,19 +1,20 @@
 ============================================================
 BLACKHAWKS - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-13 04:09 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Roman Kantserov — Connor Bedard — Tyler Bertuzzi
-Line 2: Andrew Mangiapane — Anton Frondell — Teuvo Teravainen
+Line 2: Andrew Mangiapane — Anton Frondell — Patrick Kane
 Line 3: Oliver Moore — Frank Nazar — Ryan Donato
 Line 4: Cole Smith — Ryan Greene — Jordan Greenway
+Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Alex Vlasic — Ian Cole
-Pair 2: Ethan Del Mastro — Artyom Levshunov
+Pair 2: Kevin Korchinski — Artyom Levshunov
 Pair 3: Wyat Kaiser — Sam Rinzel
 
 GOALIES:
@@ -24,8 +25,8 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Dillon Boucher (scratched)
-  Kevin Korchinski (scratched)
+  Ethan Del Mastro (scratched)
+  Teuvo Teravainen (scratched)
   Bowen Byram (upper body) (injured)
-  Patrick Kane (upper body) (injured)
 
 ============================================================
