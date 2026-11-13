@@ -1,0 +1,27 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-12.
+
+Here's the breakdown:
+
+1.  **NEW JERSEY DEVILS ML vs WASHINGTON CAPITALS @ 1.62 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Washington 2 @ New Jersey 5 (Total goals: 7)
+    *   Outcome: **WIN** (New Jersey won the game.)
+
+2.  **OTTAWA SENATORS ML vs COLORADO AVALANCHE @ 1.9 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Colorado 3 @ Ottawa 4 (Total goals: 7)
+    *   Outcome: **WIN** (Ottawa won the game.)
+
+3.  **COLUMBUS BLUE JACKETS ML vs TAMPA BAY LIGHTNING @ 1.96 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Tampa Bay 3 @ Columbus 1 (Total goals: 4)
+    *   Outcome: **LOSS** (Columbus lost the game.)
+
+4.  **UTAH MAMMOTH ML vs ST LOUIS BLUES @ 2.03 - Confidence: Medium, Units: 1u**
+    *   Actual Result: St. Louis 1 @ Utah 0 (Total goals: 1)
+    *   Outcome: **LOSS** (Utah lost the game.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**

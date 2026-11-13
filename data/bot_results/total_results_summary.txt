@@ -1,7 +1,7 @@
-Total Results Summary (2026-11-12)
+Total Results Summary (2026-11-13)
 
 NBA:
-TOTAL: 41 wins, 39 losses
+TOTAL: 41 wins, 41 losses
 Game Date (results for games played on this date):
 2026-09-29: 0 wins, 0 losses
 2026-09-30: 0 wins, 0 losses
@@ -44,9 +44,10 @@ Game Date (results for games played on this date):
 2026-11-09: 0 wins, 1 loss
 2026-11-10: 1 win, 1 loss
 2026-11-11: 2 wins, 2 losses
+2026-11-12: 0 wins, 2 losses
 
 NHL:
-TOTAL: 41 wins, 45 losses
+TOTAL: 43 wins, 47 losses
 Game Date (results for games played on this date):
 2026-09-30: 0 wins, 3 losses
 2026-10-01: 0 wins, 1 loss
@@ -87,6 +88,7 @@ Game Date (results for games played on this date):
 2026-11-08: 2 wins, 1 loss
 2026-11-10: 2 wins, 2 losses
 2026-11-11: 1 win, 3 losses
+2026-11-12: 2 wins, 2 losses
 
 NFL:
 TOTAL: 0 wins, 0 losses
