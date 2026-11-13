@@ -1450,19 +1450,23 @@
     let _anyGameLive = false; // true when at least one game is in progress
 
     // Restore persisted live pts for today (survives page refresh until DB stats update)
-    // Only restore during game hours (noon–2am Montreal) — outside that window games are
-    // finished and the DB stats already include last night, so live overlay would double-count.
+    // Don't clear on non-game-hours — the DB scrape runs ~8am Montreal, so pts from last
+    // night should survive until then. The updated_at check in load() clears them once safe.
     (function restorePersistedLivePts() {
-      if (!isGameHour()) {
-        localStorage.removeItem(_LIVE_PTS_KEY);
-        return;
-      }
       try {
         const raw = localStorage.getItem(_LIVE_PTS_KEY);
         if (!raw) return;
         const { date, pts } = JSON.parse(raw);
-        if (date === _livePtsDate && pts && typeof pts === 'object') {
+        const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+        const yesterdayStr = (() => { const d = new Date(); d.setDate(d.getDate() - 1); return d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); })();
+        // Only restore pts from today or yesterday (overnight gap) — discard anything older
+        if (date !== todayStr && date !== yesterdayStr) {
+          localStorage.removeItem(_LIVE_PTS_KEY);
+          return;
+        }
+        if (pts && typeof pts === 'object') {
           _livePts = Object.fromEntries(Object.entries(pts).map(([k, v]) => [Number(k), v]));
+          _livePtsDate = date;
         }
       } catch(_) {}
     })();
@@ -2663,7 +2667,7 @@
         .then(r => r.json())
         .then(rows => { const n = rows[0]?.name; if (n) { _leagueName = n; document.getElementById('league-badge').textContent = `${n} · ${_leagueCode}`; document.title = `${n} | Parieur Discipliné`; } })
         .catch(() => {});
-      // Last updated timestamp
+      // Last updated timestamp — also clears live pts once DB has updated for that game date
       fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=updated_at&order=updated_at.desc&limit=1`, { headers: sbHeaders() })
         .then(r => r.json())
         .then(rows => {
@@ -2672,6 +2676,19 @@
           const d = new Date(ts);
           const el = document.getElementById('last-updated');
           if (el) el.textContent = 'Stats updated ' + d.toLocaleString('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+          // If the DB was updated after the live pts date, the season stats already include
+          // last night's games — safe to clear the live overlay so it doesn't double-count.
+          try {
+            const raw = localStorage.getItem(_LIVE_PTS_KEY);
+            if (!raw) return;
+            const { date } = JSON.parse(raw);
+            const dbDateStr = d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+            if (dbDateStr > date) {
+              localStorage.removeItem(_LIVE_PTS_KEY);
+              _livePts = {};
+              clearCache(); render();
+            }
+          } catch(_) {}
         }).catch(() => {});
       try {
         let cacheHit = false;
