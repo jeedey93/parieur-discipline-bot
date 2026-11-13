@@ -1522,7 +1522,7 @@
           if (gs === 'FUT' || gs === 'PRE') return;
           const isLiveNow = gs === 'LIVE' || gs === 'CRIT';
           if (isLiveNow) anyLive = true;
-          const isOver = gs === 'OFF';
+          const isOver = gs === 'OFF' || gs === 'FINAL';
           const isOT = (data.gameOutcome?.lastPeriodType === 'OT') || (data.gameOutcome?.lastPeriodType === 'SO');
           const ps = data.playerByGameStats || {};
           for (const side of ['awayTeam', 'homeTeam']) {
