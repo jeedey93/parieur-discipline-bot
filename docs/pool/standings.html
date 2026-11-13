@@ -4178,16 +4178,17 @@
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
         const swapDate = new Date(s.swap_date);
         const tenure = `Season start → ${fmt(swapDate)}`;
-        const swapGp = p?.games_played ?? 0;
-        const swapG  = p?.goals ?? 0;
-        const swapA  = p?.assists ?? 0;
+        const swapStats = s.stats_at_swap || null;
+        const swapGp = swapStats ? (swapStats.games_played ?? null) : null;
+        const swapG  = swapStats ? (swapStats.goals ?? null) : null;
+        const swapA  = swapStats ? (swapStats.assists ?? null) : null;
         const swapPos2 = normalizePos(s.player_out_position);
-        const col1v = swapGp || '—';
-        const col2v = swapPos2 === 'G' ? (p?.wins ?? '—') : (swapG || '—');
-        const col3v = swapPos2 === 'G' ? (p?.ot_losses ?? '—') : (swapA || '—');
-        const swapSo  = p?.shutouts ?? 0;
-        const swapOtl = p?.ot_losses ?? 0;
-        const swapPpg = swapPos2 !== 'G' && swapGp > 0 && typeof (s.player_out_pts_at_swap) === 'number'
+        const col1v = swapGp != null ? swapGp : '—';
+        const col2v = swapPos2 === 'G' ? (swapStats?.wins != null ? swapStats.wins : '—') : (swapG != null ? swapG : '—');
+        const col3v = swapPos2 === 'G' ? (swapStats?.ot_losses != null ? swapStats.ot_losses : '—') : (swapA != null ? swapA : '—');
+        const swapSo  = swapStats?.shutouts ?? 0;
+        const swapOtl = swapStats?.ot_losses ?? 0;
+        const swapPpg = swapPos2 !== 'G' && swapGp != null && swapGp > 0 && typeof (s.player_out_pts_at_swap) === 'number'
           ? (s.player_out_pts_at_swap / swapGp).toFixed(2) : null;
         return { isCurrent: false, cls: 'past', name: s.player_out_name, logo, vsLogo: '',
           tenure, col1: col1v, col2: col2v, col3: col3v,
