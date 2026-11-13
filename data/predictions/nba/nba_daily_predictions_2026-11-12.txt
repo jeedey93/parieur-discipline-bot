@@ -1,0 +1,28 @@
+Here is your unified sports betting analysis for 2026-11-12, combining insights from the morning and noon prediction reports:
+
+🏆 **BET OF THE DAY**
+**Phoenix Suns -6.5 vs Charlotte Hornets @ 1.91**
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
+🏠**Home Court Edge**
+The Phoenix Suns hold a significant home court advantage with a 4-3 (0.571) home record, contrasting sharply with the Charlotte Hornets' poor 1-3 (0.250) away record, creating a 0.321 gap that favors the Suns. Starting goalies not yet announced.
+📊**Form vs Fatigue**
+While both teams show negative recent point differentials, the Suns benefit from having a rested Charlotte team, as the Suns themselves are playing their 4th game in 6 nights.
+📈**Market Inefficiency**
+Our model projects the Suns to cover the -6.5 spread with a 58% probability, creating a +5.64% edge over the implied probability of 52.36% from the 1.91 odds.
+
+This play was newly added as the Bet of the Day in the noon report. The spread for Phoenix remained -6.5 from morning to noon, while the odds slightly improved from 1.94 (morning, for CHA +6.5) to 1.91 (noon, for PHX -6.5 as recommended play).
+
+**Other Recommended Plays**
+
+**Detroit Pistons -10.0 vs Washington Wizards @ 1.94**
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+📊**Dominant Form & Quality**
+The Detroit Pistons hold a significantly better season record of 7-3 (0.700 win%) compared to the Washington Wizards' 4-8 (0.333 win%), a substantial 0.367 win percentage gap favoring Detroit.
+🏠**Elite Road Performance**
+Detroit boasts an impressive 4-1 (0.800) away record, demonstrating their strength on the road against Washington, who have a negative home-court advantage against elite road teams.
+😴**Fatigue Advantage**
+The Washington Wizards are playing on a back-to-back, having played yesterday, while the Detroit Pistons have had 3 days of rest, providing a crucial physical edge.
+📈**Strong Recent Performance**
+The Pistons' +8.1 point differential over their last 10 games (7-3 record) highlights their recent dominance, contrasting sharply with the Wizards' -7.3 differential and 3-7 record.
+
+This play was the Bet of the Day in the morning report with a High confidence level. The line moved from Pistons -10.5 @ 1.95 (morning) to Pistons -10.0 @ 1.94 (noon). This play was not explicitly recommended in the noon report, suggesting a potential decrease in model confidence despite the favorable line movement, but still qualifies based on the morning's strong conviction.
