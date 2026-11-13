@@ -135,6 +135,8 @@
           border-radius: 14px; overflow: hidden;
           box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
+        @media (min-width: 700px) { .psearch-box { max-width: 700px; } }
+        @media (min-width: 1000px) { .psearch-box { max-width: 860px; } }
         .psearch-input-row {
           display: flex; align-items: center; gap: 0.5rem;
           padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -145,6 +147,8 @@
           font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
           color: white; letter-spacing: 0.5px;
         }
+        @media (min-width: 700px) { .psearch-input { font-size: 1.3rem; } }
+        @media (min-width: 700px) { .psearch-input-row { padding: 1rem 1.25rem; } }
         .psearch-input::placeholder { color: rgba(255,255,255,0.3); }
         .psearch-close {
           background: none; border: none; color: rgba(255,255,255,0.4);
