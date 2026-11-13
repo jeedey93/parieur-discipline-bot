@@ -120,7 +120,9 @@
           background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
           color: rgba(255,255,255,0.7); border-radius: 6px; padding: 8px 12px;
           cursor: pointer; transition: background 0.2s, border-color 0.2s;
+          width: 100%;
         }
+        @media (min-width: 560px) { .btn-search { width: auto; } }
         .btn-search:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: white; }
         /* Player search overlay */
         .psearch-overlay {
