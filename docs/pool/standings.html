@@ -2759,6 +2759,15 @@
         );
         if (!res.ok) throw new Error(res.status);
         const players = await res.json();
+        // Rostered players first, then free agents; within each group sort by pts/wins desc
+        players.sort((a, b) => {
+          const aOwned = !!slugOwner[a.puckpedia_slug];
+          const bOwned = !!slugOwner[b.puckpedia_slug];
+          if (aOwned !== bOwned) return aOwned ? -1 : 1;
+          const aVal = normalizePos(a.position) === 'G' ? (a.wins ?? 0) : (a.points ?? 0);
+          const bVal = normalizePos(b.position) === 'G' ? (b.wins ?? 0) : (b.points ?? 0);
+          return bVal - aVal;
+        });
         renderPlayerSearchResults(players, slugOwner);
       } catch(e) {
         document.getElementById('psearch-results').innerHTML = '<div class="psearch-hint">Error loading results</div>';
