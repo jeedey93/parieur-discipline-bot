@@ -1549,10 +1549,11 @@
               const decision = (g.decision || '').toUpperCase();
               if (!isOver) continue; // only score goalies once game is final
               const isWin = decision === 'W';
+              const isOTL = decision === 'O'; // boxscore API uses 'O' for OTL/SOL
               let pts = 0;
               if (isWin) pts += _scoring.g_wins;
-              if (isOT && decision === 'L') pts += _scoring.g_otl;
-              if (g.goalsAgainst === 0 && isWin) pts += _scoring.g_shutouts;
+              if (isOT && isOTL) pts += _scoring.g_otl;
+              if (g.goalsAgainst === 0 && (isWin || isOTL)) pts += _scoring.g_shutouts;
               pts += (g.goals || 0) * _scoring.g_goals + (g.assists || 0) * _scoring.g_assists;
               if (pts > 0) newPts[id] = (newPts[id] || 0) + pts;
             }
