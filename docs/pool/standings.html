@@ -115,6 +115,82 @@
           cursor: pointer; transition: background 0.2s, border-color 0.2s;
         }
         .btn-sync:hover { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.5); }
+        .btn-search {
+          font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 1.5px;
+          background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+          color: rgba(255,255,255,0.7); border-radius: 6px; padding: 8px 12px;
+          cursor: pointer; transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-search:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: white; }
+        /* Player search overlay */
+        .psearch-overlay {
+          position: fixed; inset: 0; z-index: 1100;
+          background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+          display: flex; flex-direction: column; align-items: center;
+          padding-top: 80px; padding-left: 1rem; padding-right: 1rem;
+        }
+        .psearch-box {
+          width: 100%; max-width: 520px;
+          background: #1a1a2e; border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 14px; overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        .psearch-input-row {
+          display: flex; align-items: center; gap: 0.5rem;
+          padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .psearch-input-row svg { flex-shrink: 0; color: rgba(255,255,255,0.35); }
+        .psearch-input {
+          flex: 1; background: none; border: none; outline: none;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
+          color: white; letter-spacing: 0.5px;
+        }
+        .psearch-input::placeholder { color: rgba(255,255,255,0.3); }
+        .psearch-close {
+          background: none; border: none; color: rgba(255,255,255,0.4);
+          cursor: pointer; font-size: 1.2rem; padding: 2px 4px; line-height: 1;
+        }
+        .psearch-close:hover { color: white; }
+        .psearch-results { max-height: 420px; overflow-y: auto; }
+        .psearch-hint {
+          padding: 1.5rem 1rem; text-align: center;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
+          color: rgba(255,255,255,0.3); letter-spacing: 0.5px;
+        }
+        .psearch-row {
+          display: flex; align-items: center; gap: 0.75rem;
+          padding: 0.7rem 1rem; cursor: pointer;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+          transition: background 0.15s;
+        }
+        .psearch-row:last-child { border-bottom: none; }
+        .psearch-row:hover { background: rgba(255,255,255,0.05); }
+        .psearch-pos {
+          font-family: 'Bebas Neue', cursive; font-size: 0.75rem; letter-spacing: 1px;
+          width: 22px; text-align: center; flex-shrink: 0;
+        }
+        .psearch-pos.F { color: #60a5fa; }
+        .psearch-pos.D { color: #f97316; }
+        .psearch-pos.G { color: #a78bfa; }
+        .psearch-name {
+          flex: 1; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+          font-weight: 600; color: white; letter-spacing: 0.3px;
+        }
+        .psearch-team {
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+          letter-spacing: 0.5px; color: rgba(255,255,255,0.4);
+          white-space: nowrap;
+        }
+        .psearch-team.owner {
+          color: var(--gold); background: rgba(255,184,28,0.08);
+          border: 1px solid rgba(255,184,28,0.2);
+          border-radius: 5px; padding: 2px 7px;
+        }
+        .psearch-team.fa {
+          color: var(--green); background: rgba(34,197,94,0.07);
+          border: 1px solid rgba(34,197,94,0.2);
+          border-radius: 5px; padding: 2px 7px;
+        }
         .view-count {
           font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600;
           color: rgba(255,255,255,0.3); letter-spacing: 0.5px; white-space: nowrap;
@@ -1316,6 +1392,7 @@
         <h1>Pool <span>Standings</span></h1>
         <div class="header-controls">
             <div class="view-count" id="view-count"></div>
+            <button class="btn-search" onclick="openPlayerSearch()" title="Search players">🔍 Search</button>
             <button class="btn-sync" id="share-btn" onclick="shareStandings()" title="Share standings as image">📸 Share</button>
         </div>
     </header>
@@ -1333,6 +1410,19 @@
 
 <div id="player-modal-overlay" class="player-popup-overlay" style="display:none" onclick="if(event.target===this)closePlayerModal()">
   <div class="player-popup" id="player-modal-box"></div>
+</div>
+
+<div id="psearch-overlay" class="psearch-overlay" style="display:none" onclick="if(event.target===this)closePlayerSearch()">
+  <div class="psearch-box">
+    <div class="psearch-input-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="psearch-input" class="psearch-input" type="text" placeholder="Search any NHL player…" autocomplete="off" oninput="onPlayerSearchInput(this.value)" onkeydown="if(event.key==='Escape')closePlayerSearch()">
+      <button class="psearch-close" onclick="closePlayerSearch()">✕</button>
+    </div>
+    <div class="psearch-results" id="psearch-results">
+      <div class="psearch-hint">Type a player name</div>
+    </div>
+  </div>
 </div>
 
 <div id="game-modal" onclick="if(event.target===this)closeGameModal()">
@@ -2557,6 +2647,105 @@
         pts: poolScore(p), ppg: null, ytd: _playerYesterdayPts[nhlId] ?? null, capHit: p.cap_hit, tenure: null, owner: null,
         fullGp: p.games_played, fullG: p.goals, fullA: p.assists, fullPts: p.points, fullW: p.wins, fullSo: p.shutouts, fullOtl: p.ot_losses, fullL: null });
     }
+
+    // ── Player search ────────────────────────────────────────────────────────
+    let _allRostersSlugMap = null; // slug → { ownerName, pos } across all leagues
+    let _psearchTimer = null;
+
+    async function buildAllRostersSlugMap() {
+      if (_allRostersSlugMap) return _allRostersSlugMap;
+      _allRostersSlugMap = {};
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?select=league_code,data`, { headers: sbHeaders() });
+        if (!res.ok) return _allRostersSlugMap;
+        const rows = await res.json();
+        for (const row of rows) {
+          for (const team of (row.data?.teams || [])) {
+            const name = team.name || team.id;
+            for (const pos of ['F','D','G','B']) {
+              for (const slug of (team.roster?.[pos] || [])) {
+                if (slug) _allRostersSlugMap[slug] = { ownerName: name, pos };
+              }
+            }
+          }
+        }
+      } catch(_) {}
+      return _allRostersSlugMap;
+    }
+
+    function openPlayerSearch() {
+      buildAllRostersSlugMap(); // preload in background
+      document.getElementById('psearch-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('psearch-input').focus(), 50);
+    }
+
+    function closePlayerSearch() {
+      document.getElementById('psearch-overlay').style.display = 'none';
+      document.getElementById('psearch-input').value = '';
+      document.getElementById('psearch-results').innerHTML = '<div class="psearch-hint">Type a player name</div>';
+      document.body.style.overflow = '';
+      if (_psearchTimer) { clearTimeout(_psearchTimer); _psearchTimer = null; }
+    }
+
+    function onPlayerSearchInput(val) {
+      if (_psearchTimer) clearTimeout(_psearchTimer);
+      const q = val.trim();
+      if (q.length < 2) {
+        document.getElementById('psearch-results').innerHTML = '<div class="psearch-hint">Type a player name</div>';
+        return;
+      }
+      document.getElementById('psearch-results').innerHTML = '<div class="psearch-hint">Searching…</div>';
+      _psearchTimer = setTimeout(() => doPlayerSearch(q), 280);
+    }
+
+    async function doPlayerSearch(q) {
+      const slugOwner = await buildAllRostersSlugMap();
+      try {
+        const encoded = encodeURIComponent(q);
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/nhl_players?player_name=ilike.*${encoded}*&select=puckpedia_slug,player_name,position,cap_hit,team,goals,assists,points,wins,shutouts,ot_losses,games_played,nhl_player_id,last5_game_pts,injury_status&order=games_played.desc&limit=20`,
+          { headers: sbHeaders() }
+        );
+        if (!res.ok) throw new Error(res.status);
+        const players = await res.json();
+        renderPlayerSearchResults(players, slugOwner);
+      } catch(e) {
+        document.getElementById('psearch-results').innerHTML = '<div class="psearch-hint">Error loading results</div>';
+      }
+    }
+
+    function renderPlayerSearchResults(players, slugOwner) {
+      const el = document.getElementById('psearch-results');
+      if (!players.length) { el.innerHTML = '<div class="psearch-hint">No players found</div>'; return; }
+      el.innerHTML = players.map(p => {
+        const pos = normalizePos(p.position);
+        const owned = slugOwner[p.puckpedia_slug];
+        const ownerHtml = owned
+          ? `<span class="psearch-team owner">${owned.ownerName}</span>`
+          : `<span class="psearch-team fa">Free Agent</span>`;
+        const nhlTeamAbbr = p.team ? (TEAM_ABBR[p.team] || p.team) : '';
+        const nhlTeamHtml = nhlTeamAbbr
+          ? `<span class="psearch-team" style="margin-right:0.25rem">${nhlTeamAbbr}</span>`
+          : '';
+        const d = JSON.stringify({
+          name: formatName(p.player_name), pos, nhlTeam: p.team,
+          nhlId: p.nhl_player_id ? Number(p.nhl_player_id) : null, isCurrent: true,
+          gp: p.games_played, g: p.goals, a: p.assists, w: p.wins, so: p.shutouts, otl: p.ot_losses,
+          pts: poolScore(p), ytd: p.nhl_player_id ? (_playerYesterdayPts[Number(p.nhl_player_id)] ?? null) : null,
+          capHit: p.cap_hit, tenure: null,
+          owner: owned ? owned.ownerName : null,
+          fullGp: p.games_played, fullG: p.goals, fullA: p.assists, fullPts: p.points,
+          fullW: p.wins, fullSo: p.shutouts, fullOtl: p.ot_losses, fullL: null,
+        }).replace(/'/g, '&#39;');
+        return `<div class="psearch-row" onclick="closePlayerSearch();showPlayerModal(JSON.parse(this.dataset.d))" data-d='${d}'>
+          <span class="psearch-pos ${pos}">${pos}</span>
+          <span class="psearch-name">${formatName(p.player_name)}</span>
+          ${nhlTeamHtml}${ownerHtml}
+        </div>`;
+      }).join('');
+    }
+
     function rosterPlayers(rs) {
       const m = slugMap();
       const resolve = s => (s && m[s]) ? { ...m[s], _slug: s } : null;
