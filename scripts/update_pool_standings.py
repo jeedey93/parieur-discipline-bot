@@ -479,10 +479,15 @@ def main():
                 for pos in ("F", "D", "G"):
                     all_slugs.update(s for s in (team.get("roster") or {}).get(pos, []) if s)
 
-        # Build slug → (nhl_player_id, position) from player_map
+        # Build slug → (nhl_player_id, position) from a fresh query covering all pool_rosters slugs
+        # (player_map only covers pool_2027_submissions, missing players like Hofer who are in P27A)
+        yday_players_res = supabase.table("nhl_players").select(
+            "puckpedia_slug,position,nhl_player_id"
+        ).in_("puckpedia_slug", list(all_slugs)).execute()
         slug_to_id = {}
-        for slug, p in player_map.items():
-            if slug in all_slugs and p.get("nhl_player_id"):
+        for p in yday_players_res.data:
+            slug = p["puckpedia_slug"]
+            if p.get("nhl_player_id"):
                 slug_to_id[slug] = (p["nhl_player_id"], (p.get("position") or "F"))
 
         def score_game_for_pool(g: dict, pos: str) -> int:
