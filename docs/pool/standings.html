@@ -2794,6 +2794,7 @@
           <div class="psearch-stat"><span class="psearch-stat-val">${statVal1}</span><span class="psearch-stat-lbl">GP</span></div>
           <div class="psearch-stat"><span class="psearch-stat-val">${statVal2}</span><span class="psearch-stat-lbl">${statLbl2}</span></div>
         </div>`;
+        const d = JSON.stringify({
           name: formatName(p.player_name), pos, nhlTeam: p.team,
           nhlId: nhlId, isCurrent: true,
           gp: p.games_played, g: p.goals, a: p.assists, w: p.wins, so: p.shutouts, otl: p.ot_losses,
