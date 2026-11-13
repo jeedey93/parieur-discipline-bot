@@ -2655,21 +2655,14 @@
     async function buildAllRostersSlugMap() {
       if (_allRostersSlugMap) return _allRostersSlugMap;
       _allRostersSlugMap = {};
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?select=league_code,data`, { headers: sbHeaders() });
-        if (!res.ok) return _allRostersSlugMap;
-        const rows = await res.json();
-        for (const row of rows) {
-          for (const team of (row.data?.teams || [])) {
-            const name = team.name || team.id;
-            for (const pos of ['F','D','G','B']) {
-              for (const slug of (team.roster?.[pos] || [])) {
-                if (slug) _allRostersSlugMap[slug] = { ownerName: name, pos };
-              }
-            }
+      for (const team of (teams || [])) {
+        const name = team.name || team.id;
+        for (const pos of ['F','D','G','B']) {
+          for (const slug of (team.roster?.[pos] || [])) {
+            if (slug) _allRostersSlugMap[slug] = { ownerName: name, pos };
           }
         }
-      } catch(_) {}
+      }
       return _allRostersSlugMap;
     }
 
@@ -2909,6 +2902,7 @@
             B: Array.isArray(t.roster?.B) ? t.roster.B : Array(6).fill(null),
           }
         }));
+        _allRostersSlugMap = null; // invalidate search cache when teams reload
         currentTrades = [];
         const tRes = await fetch(`${SUPABASE_URL}/rest/v1/player_trades?league_code=eq.${_leagueCode}&select=team_id,player_to_slug,player_to_name,player_to_position,date_from_acquired,date_traded,points_accumulated_at_trade&order=date_from_acquired.asc`,
           { headers: sbHeaders() });
