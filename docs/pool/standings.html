@@ -4175,8 +4175,15 @@
       function posBlock(pos, label, val) {
         const r = posRankForTeam(team, pos);
         const { text: rankText, cls: rankCls } = posRankLabel(r, n);
+        const posLive = live[pos] ?? 0;
+        const rp3 = rosterPlayers(team.roster);
+        const posPlayers = pos === 'F' ? rp3.F : pos === 'D' ? rp3.D : rp3.G;
+        const posHasLive = posPlayers.filter(Boolean).some(p => p.nhl_player_id && _livePlayerIds.has(Number(p.nhl_player_id)));
+        const posLiveHtml = posHasLive || posLive > 0
+          ? `<span class="detail-live-badge">${posHasLive ? '<span class="detail-live-dot"></span>' : ''}${posLive > 0 ? '+' + posLive : ''}</span>`
+          : '';
         return `<div class="pos-score-block ${pos}${r === 1 ? ' rank-1st' : ''}">
-          <div class="pos-score-val">${val}</div>
+          <div class="pos-score-val-row"><span class="pos-score-val">${val}</span>${posLiveHtml}</div>
           <div class="pos-score-label">${label}</div>
           <div class="pos-rank-badge ${rankCls}">${rankText}</div>
         </div>`;
