@@ -2733,7 +2733,7 @@
                 const lid = d.nhlId ? Number(d.nhlId) : null;
                 const isLive = lid && _livePlayerIds.has(lid);
                 const livePts = lid ? (_livePts[lid] ?? 0) : 0;
-                if (!isLive && livePts === 0) return '';
+                if (!isLive) return '';
                 return `<span class="pm-live-inline"><span class="pm-live-inline-val">${livePts > 0 ? '+' + livePts : '—'}</span><span class="pm-live-inline-label"><span class="pm-live-dot"></span>Live</span></span>`;
               })()}
             </div>
@@ -4524,7 +4524,7 @@
       const currentRows = rowData.filter(r => r.isCurrent);
       const total    = rowData.reduce((s, r) => s + (typeof r.pts === 'number' ? r.pts : 0), 0);
       const totalLive = currentRows.reduce((s, r) => s + (r.nhlId ? (_livePts[r.nhlId] ?? 0) : 0), 0);
-      const totalLiveGP = currentRows.reduce((s, r) => s + (r.nhlId && (_livePts[r.nhlId] > 0 || _livePlayerIds.has(Number(r.nhlId))) ? 1 : 0), 0);
+      const totalLiveGP = currentRows.reduce((s, r) => s + (r.nhlId && _livePlayerIds.has(Number(r.nhlId)) ? 1 : 0), 0);
       const totalGP  = currentRows.reduce((s, r) => s + (r.gp || 0), 0);
       const totalG   = currentRows.reduce((s, r) => s + (r.g  || 0), 0);
       const totalA   = currentRows.reduce((s, r) => s + (r.a  || 0), 0);
