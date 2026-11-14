@@ -1,0 +1,50 @@
+Here is an analysis of the morning and noon prediction reports, along with a unified final recommendation list:
+
+**Analysis of Report Changes:**
+
+1.  **Bet of the Day Shift:** The "Bet of the Day" changed from the New York Rangers vs Vancouver Canucks Over 6.5 (morning) to the Nashville Predators vs Vegas Golden Knights Over 6.0 (noon). This indicates a shift in the AI's highest conviction play based on updated data or market movements.
+2.  **Odds Movement:**
+    *   **New York Rangers @ Vancouver Canucks:** The Over 6.5 odds slightly increased from 1.96 (morning) to 1.98 (noon). The New York Rangers ML decreased from 1.47 to 1.46, and the Under 6.5 decreased from 1.85 to 1.83.
+    *   **Nashville Predators @ Vegas Golden Knights:** The Vegas Golden Knights ML odds increased from 1.56 to 1.63. The Nashville Predators ML decreased significantly from 2.46 to 2.29. The Over 6.0 odds slightly decreased from 1.91 to 1.90, while the Under 6.0 odds increased from 1.90 to 1.91.
+3.  **Confidence/Win Probability Changes:**
+    *   For the New York Rangers vs Vancouver Canucks Over 6.5, the Confidence Level remained Medium, and Win Probability remained 54%.
+    *   For the Nashville Predators vs Vegas Golden Knights Over 6.0, the play was elevated to "Bet of the Day" in the noon report with Medium confidence and a Win Probability of 58%. While not explicitly stated as a recommended play in the morning, the implicit confidence increased.
+4.  **Goaltending Information:** The noon report provided specific starting goalie names and recent performance for the Nashville Predators vs Vegas Golden Knights game (Juuse Saros, Adin Hill), which was "TBD" in the morning report's general summary, allowing for more specific analysis.
+
+---
+
+🏆 **BET OF THE DAY**
+**Nashville Predators vs Vegas Golden Knights Over 6.0 @ 1.9**
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
+📊**H2H High Scoring**
+The head-to-head matchup between these two teams this season resulted in 7 goals in their single game, already exceeding tonight's 6.0 line.
+📈**Elite Goaltending with Offensive Potency**
+Despite Nashville's starting goalie Juuse Saros playing at an elite level with a .936 SV% in his last 5 games, the overall matchup between these two potent offenses points to goals. Adin Hill for the Golden Knights holds an average .901 SV% over his last 5 starts and will be tested against a potent Nashville offense.
+⚡**Power Play Efficiency**
+Both teams possess highly efficient power plays (Predators 26.6%, Golden Knights 27.9%), creating numerous scoring opportunities that the market appears to be underestimating for this contest.
+
+Line moved from Over 6.0 @ 1.91 (morning) to Over 6.0 @ 1.9 (noon), confidence increased from 'Not a Bet of the Day' to Medium, and Win Probability increased to 58%.
+
+Players to Watch:
+- Juuse Saros (NSH): [0.936 SV% in last 5 games 🔥HOT]. His elite goaltending will be key in a potentially high-scoring affair, but the overall matchup points to goals.
+- Adin Hill (VGK): [0.901 SV% in last 5 games]. Hill's average form will be tested against a potent Nashville offense.
+- Roman Josi (NSH): [8pts in last 5GP 🔥HOT]. Josi is driving offense from the backend for the Predators, contributing heavily to their current success.
+- Jack Eichel (VGK): [6pts in last 5GP 🔥HOT]. Eichel continues to be a primary offensive catalyst for the Golden Knights.
+- Mitch Marner (VGK): [8pts in last 5GP 🔥HOT]. Marner is in red-hot form and will be crucial for Vegas' scoring, particularly on the power play.
+
+**Other Recommended Plays**
+**New York Rangers vs Vancouver Canucks Over 6.5 @ 1.98**
+Confidence Level: Medium, Units: 1u, Win Probability: 54%
+📊**H2H High Scoring**
+The lone head-to-head game this season saw 8 goals, significantly above tonight's total line.
+📈**Favorable Offensive Matchup**
+Despite both teams having negative goal differentials recently, Vancouver's poor defense (4.5 GA/game last 10) combined with New York's decent offense (3.1 GS/game last 10) points towards goals.
+
+Line moved from Over 6.5 @ 1.96 (morning) to Over 6.5 @ 1.98 (noon), confidence remained Medium, and Win Probability remained 54%.
+
+Players to Watch:
+- Adam Fox (NYR): 6pts in last 5GP 🔥HOT. This defenseman is a consistent offensive driver for the Rangers.
+- Mika Zibanejad (NYR): 6pts in last 5GP 🔥HOT. A top-line center who continues to produce at a high rate.
+- Brock Boeser (VAN): 5pts in last 5GP 🔥HOT. Vancouver's leading scorer is in good form and will be crucial for their offense.
+- Linus Karlsson (VAN): 1pts in last 5GP 🧊COLD. He needs to elevate his play to help spark the struggling Canucks.
+- Will Cuylle (NYR): 1pts in last 5GP 🧊COLD. The young forward will look to break out of his recent slump against a weaker defense.
