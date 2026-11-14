@@ -1,20 +1,21 @@
 ============================================================
 MAMMOTH - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-14 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Clayton Keller — Nick Schmaltz — Daniil But
-Line 2: Jack McBain — Vincent Trocheck — Lawson Crouse
-Line 3: Anders Lee — Barrett Hayton — Kailer Yamamoto
-Line 4: Liam OBrien — Kevin Stenlund — Michael Carcone
+Line 1: Anders Lee — Vincent Trocheck — Clayton Keller
+Line 2: Daniil But — Barrett Hayton — Kailer Yamamoto
+Line 3: Michael Carcone — Jack McBain — Lawson Crouse
+Line 4: Liam OBrien — Kevin Stenlund — Ben McCartney
+Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Mikhail Sergachev — Mackenzie Weegar
 Pair 2: Dmitri Simashev — Andrew Peeke
-Pair 3: Artem Duda — Nick De Simone
+Pair 3: Artem Duda — Zac Jones
 
 GOALIES:
 ----------------------------------------
@@ -23,10 +24,10 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Zac Jones (scratched)
-  Ben McCartney (scratched)
+  Nick De Simone (scratched)
   Dylan Guenther (upper body) (injured)
   Logan Cooley (upper body) (injured)
+  Nick Schmaltz (lower body) (injured)
   Nate Schmidt (upper body) (injured)
   John Marino (upper body) (injured)
   Maveric Lamoureux (shoulder) (injured)

@@ -1,6 +1,6 @@
 ============================================================
 BRUINS - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-14 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,7 +14,7 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Hampus Lindholm — Charlie McAvoy
 Pair 2: Nikita Zadorov — William Borgen
-Pair 3: Frederic Brunet — Mason Lohrei
+Pair 3: Frederic Brunet — Connor Clifton
 
 GOALIES:
 ----------------------------------------
@@ -23,9 +23,9 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Connor Clifton (scratched)
   Jonathan Aspirot (scratched)
   Sean Kuraly (scratched)
+  Mason Lohrei (scratched)
   James Hagens (back) (injured)
 
 ============================================================

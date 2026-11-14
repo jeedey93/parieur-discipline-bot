@@ -1,0 +1,74 @@
+Here is a comparative analysis of the morning and noon prediction reports, followed by the unified final recommendations.
+
+**Report Comparison Insights:**
+
+*   **Shifting Conviction**: The most significant change between reports is the Bet of the Day. The morning report favored the New York Islanders vs Anaheim Ducks Under 6.5, while the noon report completely shifted focus to the Colorado Avalanche ML against the Montréal Canadiens.
+*   **Goalie Information Impact**: The noon report's Bet of the Day for Colorado Avalanche ML was heavily influenced by confirmed starting goaltenders (Mackenzie Blackwood for Colorado and Jakub Dobes for Montréal), which was TBD in the morning. This update, combined with returning star players for Colorado, likely triggered the change in prediction.
+*   **Player Injury Updates**: The noon report specifically highlights Nathan MacKinnon and Cale Makar returning for Colorado and Chris Kreider being out for Montréal, which decisively swung the recommendation in the Colorado vs Montréal game. The morning report only mentioned MacKinnon and Makar as Day-To-Day.
+*   **Odds Movement & Dropped Plays**: Several plays recommended in the morning (St Louis Blues ML, Pittsburgh Penguins ML) were dropped from the noon report's recommendations, despite their odds remaining within a favorable range. The Under 6.5 for Islanders/Ducks also saw its odds increase, but was no longer recommended by noon.
+
+---
+
+🏆 **BET OF THE DAY**
+**Colorado Avalanche ML vs Montréal Canadiens @ 2.15**
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
+
+*   Starting goaltenders Mackenzie Blackwood for Colorado (.925 SV% in his last 5 starts, an Elite performance) and Jakub Dobes for Montréal (.840 SV% in his last 5, a Poor performance) present a significant advantage for the Avalanche.
+*   While Montréal enjoys home ice advantage (a slight +3% for them) and has a better recent goal differential and form trend (+1% overall for them in each category in terms of form), Colorado's top offensive talents, Nathan MacKinnon and Cale Makar, are both 🔥HOT and expected to return from day-to-day injuries, providing a substantial boost.
+*   The Canadiens are also missing Chris Kreider (lower body), which slightly dampens their offensive potential despite multiple 🔥HOT players like Cole Caufield (6 pts in L5) and Nick Suzuki (6 pts in L5).
+*   The market seems to be underestimating Colorado's ability to win on the road with their elite goaltending and returning star power.
+
+This play was a new Bet of the Day in the noon report, flipping from Montréal ML in the morning due to updated player injury status (Nathan MacKinnon and Cale Makar returning for Colorado, Chris Kreider out for Montréal) and confirmed starting goalies (Mackenzie Blackwood for Colorado, Jakub Dobes for Montréal). Odds for Colorado ML moved from 1.95 (morning) to 2.15 (noon). Confidence remained Medium, but Win Probability decreased from 58% (for MTL) to 53% (for COL).
+
+Players to Watch:
+- Mackenzie Blackwood (COL): [0.925 SV% in last 5 games, Elite goaltender]. His exceptional recent form could steal this game for the Avalanche.
+- Nathan MacKinnon (COL): [5 pts in last 5 games 🔥HOT]. His expected return from injury provides a massive offensive boost.
+- Cale Makar (COL): [9 pts in last 5 games 🔥HOT]. Another key offensive defenseman whose return from injury significantly impacts the game.
+- Cole Caufield (MTL): [6 pts in last 5 games 🔥HOT]. A significant scoring threat for the Canadiens, capable of creating offense.
+- Nick Suzuki (MTL): [6 pts in last 5 games 🔥HOT]. The Canadiens' captain is playing well and will be crucial for their offensive production.
+
+**Other Recommended Plays**
+
+**New York Islanders vs Anaheim Ducks Under 6.5 @ 2.12**
+Confidence Level: High, Units: 1.5u, Win Probability: 58%
+*   📊**H2H Under Trend** The head-to-head matchup this season saw an average of 5.0 total goals in one game, indicating a tendency for lower-scoring contests compared to the current line of 6.5.
+*   ⚔️**Defensive Matchup** Despite strong individual offensive players, the defensive strategies employed in this matchup historically point towards a tighter, lower-scoring game.
+*   📈**Strong Market Edge** The significant +9.22% edge over implied probability suggests a clear mispricing by the market on this total.
+
+This play was the Bet of the Day in the morning report at odds 2.05 (Under 6.5), with High confidence. It was removed from the noon report's recommendations, but the odds for Under 6.5 have moved favorably to 2.12.
+
+Players to Watch:
+- Granlund, Mikael (ANA): 12pts in last 5GP 🔥HOT. His recent offensive surge will challenge the projected low total.
+- Gauthier, Cutter (ANA): 11pts in last 5GP 🔥HOT. A primary scoring threat for the Ducks, but faces a strong Islanders defense.
+- Schenn, Brayden (NYI): 7pts in last 5GP 🔥HOT. An in-form forward for the Islanders, vital for their offensive contributions.
+- Horvat, Bo (NYI): 4pts in last 5GP. A consistent offensive contributor for the Islanders.
+- Judd Caulfield (ANA): 1pts in last 5GP 🧊COLD. His recent dip in scoring production may contribute to fewer goals in the game.
+
+**St Louis Blues ML vs Florida Panthers @ 1.88**
+Confidence Level: Medium, Units: 1u, Win Probability: 58%
+*   🏠**Home Ice Advantage** St. Louis holds a significant home-ice advantage, with a home win percentage of 0.625 against Florida's away win percentage of 0.462, creating a +4% probability boost.
+*   📊**Form Against Opportunity** While no recent team form data is available for either team, the Blues' strong home record provides a solid foundation for this value bet.
+*   📈**Value in the Line** A calculated edge of +6.19% over the implied probability indicates that the market is underestimating St. Louis's chances at home.
+
+This play was recommended in the morning report at odds 1.93 with Medium confidence. It was removed from the noon report's recommendations, and the odds have slightly decreased to 1.88.
+
+Players to Watch:
+- Tkachuk, Matthew (FLA): 7pts in last 5GP 🔥HOT. A dynamic forward who leads the Panthers' offense.
+- Verhaeghe, Carter (FLA): 7pts in last 5GP 🔥HOT. Provides crucial secondary scoring for Florida.
+- Reinhart, Sam (FLA): 6pts in last 5GP 🔥HOT. Another key offensive player for the Panthers.
+- St Louis Blues Key Players: No data available.
+
+**Pittsburgh Penguins ML vs Ottawa Senators @ 2.11**
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
+*   🏠**Marginal Home Edge** Pittsburgh has a 0.500 home win percentage which, combined with Ottawa's 0.500 away win percentage, provides a minimal +1% home ice advantage.
+*   📊**Motivation Factor** Ottawa, as a playoff contender (0.650 points %), is expected to have higher motivation than Pittsburgh (0.421 points %), but Pittsburgh's ML odds offer value given their historical strength.
+*   📈**Favorable Odds** Despite a small negative differential in recent goal scoring for both teams, the +5.15% edge on the Penguins' moneyline presents a valuable betting opportunity.
+
+This play was recommended in the morning report at odds 2.09 with Medium confidence. It was removed from the noon report's recommendations, but the odds have slightly increased to 2.11.
+
+Players to Watch:
+- Malkin, Evgeni (PIT): 6pts in last 5GP 🔥HOT. A veteran center who remains a key offensive driver for the Penguins.
+- Letang, Kris (PIT): 5pts in last 5GP 🔥HOT. An offensive defenseman who sparks Pittsburgh's attack from the blue line.
+- Pinto, Shane (OTT): 6pts in last 5GP 🔥HOT. A critical scoring forward for the Senators, driving their offense.
+- Chabot, Thomas (OTT): 5pts in last 5GP 🔥HOT. Provides significant offensive contributions from the defensive corps.
+- Cozens, Dylan (OTT): 1pts in last 5GP 🧊COLD. His recent scoring slump could impact Ottawa's overall offensive output.

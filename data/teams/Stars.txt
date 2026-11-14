@@ -1,6 +1,6 @@
 ============================================================
 STARS - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-14 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -9,13 +9,12 @@ Line 1: Jason Robertson — Roope Hintz — Arttu Hyry
 Line 2: Jamie Benn — Wyatt Johnston — Mikko Rantanen
 Line 3: Sam Steel — Justin Hryckowian — Tyler Seguin
 Line 4: Joel Kiviranta — Radek Faksa — David Perron
-Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Thomas Harley — Nils Lundkvist
-Pair 2: Lian Bichsel — Esa Lindell
-Pair 3: Trey Taylor — Tyler Myers
+Pair 2: Esa Lindell — Tyler Myers
+Pair 3: Trey Taylor — Kyle Burroughs
 
 GOALIES:
 ----------------------------------------
@@ -25,10 +24,11 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Colin Blackwell (scratched)
-  Remi Poirier (scratched)
+  RÃ©mi Poirier (scratched)
   Kyle Capobianco (lower body) (injured)
   Miro Heiskanen (upper body) (injured)
   Oskar Back (finger) (injured)
   Matt Duchene (lower body) (injured)
+  Lian Bichsel (lower body) (injured)
 
 ============================================================
