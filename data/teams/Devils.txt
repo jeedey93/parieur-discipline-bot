@@ -1,6 +1,6 @@
 ============================================================
 DEVILS - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-14 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,11 +14,19 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jonas Seigenthaler — Luke Hughes
 Pair 2: Declan Chisholm — Dougie Hamilton
-Pair 3: Brenden Dillon — Vladislav Kolyachonok
+Pair 3: Brenden Dillon — Anton Silaev
 
 GOALIES:
 ----------------------------------------
-  Connor Hellebuyc
+  Connor Hellebuyck
   Jake Allen
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Amadeus Lombardi (scratched)
+  Anthony Mantha (throat) (injured)
+  Brett Pesce (illness) (injured)
+  Johnathan Kovacevic (lower body) (injured)
+  Vladislav Kolyachonok (illness) (injured)
 
 ============================================================

@@ -1,6 +1,6 @@
 ============================================================
 WILD - LINEUP
-Last Updated: 2026-11-12 04:43 PM ET
+Last Updated: 2026-11-14 02:40 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -9,19 +9,12 @@ Line 1: Kirill Kaprizov — Joel Eriksson Ek — Matt Boldy
 Line 2: Maxim Shabanov — Danila Yurov — Yakov Trenin
 Line 3: Blake Coleman — Michael McCarron — Bobby Brink
 Line 4: Marcus Foligno — Ryan Hartman — Nick Foligno
-Line 5: Easton Cowan — Auston Matthews — Jack Roslovic
-Line 6: Ryan Tverberg — John Tavares — William Nylander
-Line 7: Gavin McKenna — Nick Paul — Dakota Joshua
-Line 8: Brandon Duhaime — Teddy Blueger — Zack MacEwen
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Quinn Hughes — Jonas Brodin
-Pair 2: Olli Maatta — Jared Spurgeon
-Pair 3: Matt Kiersted — Zach Bogosian
-Pair 4: Oliver Ekman-Larsson — Troy Stecher
-Pair 5: Jake McCabe — Darren Raddysh
-Pair 6: Dakota Mermis — Cole McWard
+Pair 1: Quinn Hughes — Brock Faber
+Pair 2: Jared Spurgeon — Jonas Brodin
+Pair 3: Olli Maatta — Zach Bogosian
 
 GOALIES:
 ----------------------------------------
@@ -32,15 +25,7 @@ SCRATCHED / INJURED:
 ----------------------------------------
   Nico Sturm (scratched)
   David Spacek (scratched)
-  Brock Faber (skull fracture) (injured)
+  Matt Kiersted (scratched)
   Filip Gustavsson (lower body) (injured)
-  Chris Tanev (scratched)
-  Max Domi (undisclosed) (injured)
-  Kirill Marchenko (lower body) (injured)
-  Marshall Rifai (lower body) (injured)
-  Nick Blankenburg (upper body) (injured)
-  Jack Roslovic (lower body) (injured)
-  Morgan Rielly (lower body) (injured)
-  Colton Sissons (lower body) (injured)
 
 ============================================================
