@@ -2917,6 +2917,7 @@
           pts: poolScore(p), ytd: nhlId ? (_playerYesterdayPts[nhlId] ?? null) : null,
           capHit: p.cap_hit, tenure: null,
           owner: owned ? owned.ownerName : null,
+          form5d: p.last5_game_pts ?? null,
           fullGp: p.games_played, fullG: p.goals, fullA: p.assists, fullPts: p.points,
           fullW: p.wins, fullSo: p.shutouts, fullOtl: p.ot_losses, fullL: null,
         }).replace(/'/g, '&#39;');
@@ -4352,7 +4353,7 @@
           actualPos: swapPos2,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
-          ppg: swapPpg, ytd: null, _fromSwap: true, _swapReason: s.reason ?? null };
+          ppg: swapPpg, ytd: null, form5d: p?.last5_game_pts ?? null, _fromSwap: true, _swapReason: s.reason ?? null };
       }) : [];
       if (!trades.length && !currentNoDraft.length && !swapOutRows.length) return '';
 
@@ -4411,7 +4412,7 @@
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
           ppg: (isCurrent && typeof pts === 'number' && gp > 0) ? (pts / gp).toFixed(2) : null,
-          form5d: isCurrent ? (p?.last5_game_pts ?? null) : null,
+          form5d: p?.last5_game_pts ?? null,
           ytd: isCurrent ? ((_playerYesterdayPtsBySlug[p?.puckpedia_slug] || 0) || (_playerYesterdayPts[Number(p?.nhl_player_id)] ?? 0)) : null,
           injuryStatus: isCurrent ? (p?.injury_status || null) : null });
       });
