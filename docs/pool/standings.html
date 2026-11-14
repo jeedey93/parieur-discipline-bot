@@ -901,6 +901,29 @@
           display: flex; gap: 0.5rem; padding: 0.75rem 1.1rem;
           border-bottom: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap;
         }
+        .pm-swap-history {
+          padding: 0.85rem 1.1rem 0.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pm-swap-row {
+          display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+          padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem;
+        }
+        .pm-swap-row:last-child { border-bottom: none; }
+        .pm-swap-date { color: rgba(255,255,255,0.35); min-width: 80px; flex-shrink: 0; }
+        .pm-swap-arrow { font-weight: 700; flex-shrink: 0; }
+        .pm-swap-arrow.out { color: #f87171; }
+        .pm-swap-arrow.in  { color: #4ade80; }
+        .pm-swap-counter { color: white; flex: 1; }
+        .pm-swap-pts { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+        .pm-swap-reason {
+          font-size: 0.72rem; padding: 1px 7px; border-radius: 4px; flex-shrink: 0;
+        }
+        .pm-swap-reason.injury { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+        .pm-swap-reason.trade  { background: rgba(96,165,250,0.1); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+        .pm-swap-reason.pickup { background: rgba(34,197,94,0.1);  color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+        .pm-swap-reason.swap   { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
         .pm-chip {
           font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
           background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
@@ -2684,6 +2707,37 @@
         ${fullStatsHtml}
         ${last5Html}
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
+        ${(() => {
+          if (!d.slug) return '';
+          const swaps = _benchSwaps.filter(s =>
+            s.player_in_slug === d.slug || s.player_out_slug === d.slug
+          ).sort((a, b) => b.swap_date.localeCompare(a.swap_date));
+          if (!swaps.length) return '';
+          const fmt = dt => new Date(dt.length === 10 ? dt + 'T12:00:00' : dt).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+          const reasonLabel = r => {
+            if (r === 'injury') return '<span class="pm-swap-reason injury">🩹 Injury</span>';
+            if (r === 'trade')  return '<span class="pm-swap-reason trade">🤝 Trade</span>';
+            if (r === 'pickup') return '<span class="pm-swap-reason pickup">📥 Pickup</span>';
+            return '<span class="pm-swap-reason swap">🔄 Swap</span>';
+          };
+          const rows = swaps.map(s => {
+            const wasOut = s.player_out_slug === d.slug;
+            const counterpartName = wasOut ? s.player_in_name : s.player_out_name;
+            const arrow = wasOut ? '→ Bench' : '→ Dressed';
+            const ptsLabel = wasOut ? `${s.player_out_pts_at_swap ?? '—'} pts frozen` : '';
+            return `<div class="pm-swap-row">
+              <span class="pm-swap-date">${fmt(s.swap_date)}</span>
+              <span class="pm-swap-arrow ${wasOut ? 'out' : 'in'}">${arrow}</span>
+              <span class="pm-swap-counter">↔ ${formatName(counterpartName)}</span>
+              ${reasonLabel(s.reason)}
+              ${ptsLabel ? `<span class="pm-swap-pts">${ptsLabel}</span>` : ''}
+            </div>`;
+          }).join('');
+          return `<div class="pm-swap-history">
+            <div class="pm-section-label">SWAP HISTORY</div>
+            ${rows}
+          </div>`;
+        })()}
         <div class="pm-actions">
           ${nhlBtn}
           ${d.isCurrent ? `<button class="pm-btn share" id="pm-share-btn" onclick="sharePlayerCard(this)">📤 Share</button>` : ''}
