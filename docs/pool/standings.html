@@ -609,6 +609,12 @@
           font-family: 'Bebas Neue', cursive; font-size: 1.1rem; letter-spacing: 1px;
           color: #f87171; line-height: 1;
         }
+        @media (min-width: 861px) {
+          .pos-score-block.T .detail-live-badge { font-size: 2rem; gap: 6px; }
+          .pos-score-block.T .detail-live-dot   { width: 10px; height: 10px; }
+          .pos-score-block:not(.T) .detail-live-badge { font-size: 1.5rem; gap: 5px; }
+          .pos-score-block:not(.T) .detail-live-dot   { width: 8px; height: 8px; }
+        }
         .detail-live-dot {
           width: 7px; height: 7px; border-radius: 50%; background: #f87171; flex-shrink: 0;
           animation: live-pulse 1.2s ease-in-out infinite;
