@@ -2864,7 +2864,15 @@
           { headers: sbHeaders() }
         );
         if (!res.ok) throw new Error(res.status);
-        const players = await res.json();
+        let players = await res.json();
+        // Dedup by puckpedia_slug — keep the row with more games_played
+        const seen = new Map();
+        for (const p of players) {
+          const key = p.puckpedia_slug || p.player_name;
+          const prev = seen.get(key);
+          if (!prev || (p.games_played ?? 0) > (prev.games_played ?? 0)) seen.set(key, p);
+        }
+        players = [...seen.values()];
         // Rostered players first, then free agents; within each group sort by pts/wins desc
         players.sort((a, b) => {
           const aOwned = !!slugOwner[a.puckpedia_slug];
