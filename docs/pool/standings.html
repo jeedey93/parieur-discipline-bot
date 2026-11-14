@@ -2865,14 +2865,22 @@
         );
         if (!res.ok) throw new Error(res.status);
         let players = await res.json();
-        // Dedup by puckpedia_slug — keep the row with more games_played
-        const seen = new Map();
+        // Dedup: prefer by nhl_player_id (most reliable), fall back to puckpedia_slug.
+        // Keep the row with more games_played when duplicates exist.
+        const seenById = new Map();
+        const seenBySlug = new Map();
         for (const p of players) {
-          const key = p.puckpedia_slug || p.player_name;
-          const prev = seen.get(key);
-          if (!prev || (p.games_played ?? 0) > (prev.games_played ?? 0)) seen.set(key, p);
+          const idKey = p.nhl_player_id ? Number(p.nhl_player_id) : null;
+          const slugKey = p.puckpedia_slug || null;
+          if (idKey) {
+            const prev = seenById.get(idKey);
+            if (!prev || (p.games_played ?? 0) > (prev.games_played ?? 0)) seenById.set(idKey, p);
+          } else if (slugKey) {
+            const prev = seenBySlug.get(slugKey);
+            if (!prev || (p.games_played ?? 0) > (prev.games_played ?? 0)) seenBySlug.set(slugKey, p);
+          }
         }
-        players = [...seen.values()];
+        players = [...seenById.values(), ...seenBySlug.values()];
         // Rostered players first, then free agents; within each group sort by pts/wins desc
         players.sort((a, b) => {
           const aOwned = !!slugOwner[a.puckpedia_slug];
