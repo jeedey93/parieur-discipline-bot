@@ -755,6 +755,7 @@
           .pm-pts-header-val { font-size: clamp(2rem, 5vw, 2.8rem); }
           .pm-pts-header-label { font-size: 0.72rem; }
           .pm-close { width: 34px; height: 34px; font-size: 1.1rem; top: 1.1rem; right: 1.1rem; }
+          .pm-cap-badge { top: 3.4rem; right: 1.1rem; font-size: 0.9rem; }
           .pm-pts-pill { padding: 2px 12px 3px; border-radius: 7px; margin-left: 0.6rem; }
           .pm-pts-pill-val { font-size: 1.6rem; }
           .pm-pts-pill-label { font-size: 0.65rem; }
@@ -855,6 +856,14 @@
           transition: background 0.15s, color 0.15s;
         }
         .pm-close:hover { background: rgba(255,255,255,0.14); color: white; }
+        .pm-cap-badge {
+          position: absolute; top: 3rem; right: 0.85rem;
+          font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+          font-weight: 700; letter-spacing: 0.5px;
+          color: rgba(255,255,255,0.55);
+          background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 5px; padding: 2px 8px;
+        }
         /* pts pill inline with name */
         .pm-pts-pill {
           display: inline-flex; align-items: baseline; gap: 0.3rem;
@@ -2700,7 +2709,6 @@
       const ppgStr = d.ppg ? `${d.ppg} PPG` : null;
       const chips = [
         hotBadge,
-        capStr ? `<div class="pm-chip cap">💰 ${capStr}</div>` : '',
         ppgStr ? `<div class="pm-chip">${ppgStr}</div>` : '',
         ytdChip,
         statusChip,
@@ -2739,6 +2747,7 @@
             ${opponentAbbr ? `<div class="pm-tonight-row"><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" class="pm-tonight-logo"><span class="pm-tonight-text">Tonight vs ${opponentAbbr}</span></div>` : ''}
           </div>
           <button class="pm-close" onclick="closePlayerModal()">✕</button>
+          ${capStr ? `<div class="pm-cap-badge">${capStr}</div>` : ''}
         </div>
         ${injuryBanner}
         ${fullStatsHtml}
