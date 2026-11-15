@@ -1,0 +1,27 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-14.
+
+Here's the breakdown:
+
+1.  **Colorado Avalanche ML vs Montréal Canadiens @ 2.15 - Confidence Level: Medium, Units: 1u**
+    *   Actual Result: Colorado 4 @ Montréal 1 (Total goals: 5)
+    *   Outcome: **WIN** (Colorado won the game outright.)
+
+2.  **New York Islanders vs Anaheim Ducks Under 6.5 @ 2.12 - Confidence Level: High, Units: 1.5u**
+    *   Actual Result: New York 6 @ Anaheim 2 (Total goals: 8)
+    *   Outcome: **LOSS** (Total goals were 8, which is over 6.5.)
+
+3.  **St Louis Blues ML vs Florida Panthers @ 1.88 - Confidence Level: Medium, Units: 1u**
+    *   Actual Result: Florida 4 @ St. Louis 1 (Total goals: 5)
+    *   Outcome: **LOSS** (St. Louis lost the game outright.)
+
+4.  **Pittsburgh Penguins ML vs Ottawa Senators @ 2.11 - Confidence Level: Medium, Units: 1u**
+    *   Actual Result: Ottawa 4 @ Pittsburgh 1 (Total goals: 5)
+    *   Outcome: **LOSS** (Pittsburgh lost the game outright.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 3**
+*   **Total Pushes: 0**
