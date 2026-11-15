@@ -1676,15 +1676,17 @@
     let _anyGameLive = false; // true when at least one game is in progress
 
     // Live pts are persisted to localStorage for the current day only.
-    // They are cleared when the date changes (midnight Montreal) so yesterday's
-    // pts never show up on a new day — even on a cached page.
+    // Yesterday's pts are restored during the overnight gap (midnight → DB update)
+    // and cleared once the DB updated_at confirms last night's stats are baked in.
     (function restorePersistedLivePts() {
       try {
         const raw = localStorage.getItem(_LIVE_PTS_KEY);
         if (!raw) return;
         const { date, pts } = JSON.parse(raw);
         const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-        if (date !== todayStr) {
+        const yesterdayStr = (() => { const d = new Date(); d.setDate(d.getDate() - 1); return d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); })();
+        // Discard anything older than yesterday
+        if (date !== todayStr && date !== yesterdayStr) {
           localStorage.removeItem(_LIVE_PTS_KEY);
           return;
         }
@@ -3088,6 +3090,19 @@
           const d = new Date(ts);
           const el = document.getElementById('last-updated');
           if (el) el.textContent = 'Stats updated ' + d.toLocaleString('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+          // Once the DB has been updated for a date newer than the stored live pts date,
+          // last night's stats are baked into season totals — clear the overlay.
+          try {
+            const raw = localStorage.getItem(_LIVE_PTS_KEY);
+            if (!raw) return;
+            const { date } = JSON.parse(raw);
+            const dbDateStr = d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
+            if (dbDateStr > date) {
+              localStorage.removeItem(_LIVE_PTS_KEY);
+              _livePts = {};
+              clearCache(); render();
+            }
+          } catch(_) {}
         }).catch(() => {});
       try {
         let cacheHit = false;
