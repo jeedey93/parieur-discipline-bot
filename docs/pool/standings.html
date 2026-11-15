@@ -4463,7 +4463,7 @@
         const p = m[t.player_to_slug] ? { ...m[t.player_to_slug], _slug: t.player_to_slug } : null;
         const abbr = p ? TEAM_ABBR[p.team] : null;
         const opponentAbbr = isCurrent && abbr ? tonightMatchups[abbr] : null;
-        const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
+        const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.4);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:24px;height:24px;object-fit:contain;opacity:0.85;margin-left:2px;">` : '';
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
         const acqDate = t.date_from_acquired ? new Date(t.date_from_acquired) : ACTIVE_ACQUIRED_FALLBACK_DATE;
         const tenureTooltip = isCurrent
@@ -4492,7 +4492,7 @@
       currentNoDraft.forEach(p => {
         const abbr = TEAM_ABBR[p.team];
         const opponentAbbr = abbr ? tonightMatchups[abbr] : null;
-        const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:16px;height:16px;object-fit:contain;opacity:0.7;">` : '';
+        const vsLogo = opponentAbbr ? `<span style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.4);font-family:'Barlow Condensed',sans-serif;line-height:1;margin-left:0.25rem">vs</span><img src="https://assets.nhle.com/logos/nhl/svg/${opponentAbbr}_dark.svg" alt="${opponentAbbr}" title="vs ${opponentAbbr} tonight" style="width:24px;height:24px;object-fit:contain;opacity:0.85;margin-left:2px;">` : '';
         const logo = abbr ? `<img src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
         let gp, g, a, w, so, otl, pts;
         if (isBench) {
