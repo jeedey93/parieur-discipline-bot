@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>Pool Standings | Parieur Discipliné</title>
     <link rel="icon" type="image/png" href="../parieur_discipline_icon_1024.png">
   <link rel="apple-touch-icon" href="../parieur_discipline_icon_1024.png">
@@ -1678,9 +1675,9 @@
     let _currentModalData = null; // set by showPlayerModal, read by sharePlayerCard
     let _anyGameLive = false; // true when at least one game is in progress
 
-    // Restore persisted live pts for today only (survives page refresh until DB stats update).
-    // Yesterday's pts are never restored — the DB scrape runs ~8am Montreal so by the time
-    // users open the page the season stats already include last night's games.
+    // Live pts are persisted to localStorage for the current day only.
+    // They are cleared when the date changes (midnight Montreal) so yesterday's
+    // pts never show up on a new day — even on a cached page.
     (function restorePersistedLivePts() {
       try {
         const raw = localStorage.getItem(_LIVE_PTS_KEY);
@@ -3091,19 +3088,6 @@
           const d = new Date(ts);
           const el = document.getElementById('last-updated');
           if (el) el.textContent = 'Stats updated ' + d.toLocaleString('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
-          // If the DB was updated after the live pts date, the season stats already include
-          // last night's games — safe to clear the live overlay so it doesn't double-count.
-          try {
-            const raw = localStorage.getItem(_LIVE_PTS_KEY);
-            if (!raw) return;
-            const { date } = JSON.parse(raw);
-            const dbDateStr = d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-            if (dbDateStr > date) {
-              localStorage.removeItem(_LIVE_PTS_KEY);
-              _livePts = {};
-              clearCache(); render();
-            }
-          } catch(_) {}
         }).catch(() => {});
       try {
         let cacheHit = false;
