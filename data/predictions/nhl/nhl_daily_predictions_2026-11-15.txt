@@ -1,0 +1,60 @@
+Here is a comparison and unified recommendation list based on the morning and noon prediction reports:
+
+**Summary of Changes:**
+
+*   **Removed/Reduced Conviction:** The Nashville Predators vs San Jose Sharks Under 6.5 was the "Bet of the Day" in the morning report but was not featured in the noon report's recommendations, although the odds were updated.
+*   **Added/Increased Conviction:** The noon report introduced two new recommended plays: Edmonton Oilers ML vs Philadelphia Flyers (as the new "Bet of the Day") and Vancouver Canucks vs Vegas Golden Knights Over 6.5 (as an "Other Recommended Play").
+*   **Odds Movement:** Some odds shifted between the morning and noon reports, which influenced the updated recommendations. Specifically, Edmonton Oilers ML odds moved from 1.65 to 1.71, Vancouver/Vegas Over 6.5 moved from 1.95 to 1.96, and Nashville/San Jose Under 6.5 moved from 1.91 to 1.85.
+
+---
+
+🏆 **BET OF THE DAY**
+**Edmonton Oilers ML vs Philadelphia Flyers @ 1.71**
+Confidence Level: Medium, Units: 1u, Win Probability: 65%
+
+The Edmonton Oilers start confirmed goaltender Tristan Jarry (3-0-2, 1.60 GAA, .942 SV% over his last 5 starts), who holds a decisive netminding advantage over Philadelphia Flyers confirmed starter Dan Vladar (1-1-3, 3.40 GAA, .843 SV% over his last 5 starts). While both clubs enter on back-to-back schedules, Edmonton carries a 4-game winning streak and an unblemished 8-0-1 road record into Philadelphia, while the Flyers have sputtered to a 3-4-3 mark on home ice. Edmonton's offense is surging behind Connor McDavid, who is 🔥HOT with 10 points in his last 5 games, and Leon Draisaitl, also 🔥HOT with 9 points in his last 5 games, whereas Philadelphia top center Trevor Zegras is 🧊COLD with just 1 point in his last 5 outings. Furthermore, Edmonton’s league-leading 32.9% power play creates an overwhelming mismatch against Philadelphia's middle-of-the-pack penalty kill. With our model projecting a 65% win probability against a 58.5% implied probability at 1.71 odds, this +6.5% edge represents the day's highest-probability wager.
+
+This play was added at noon based on updated goalie confirmations and roster data. The odds for Edmonton Oilers ML moved from 1.65 (morning) to 1.71 (noon).
+
+Players to Watch:
+- Connor McDavid (EDM): 10 pts in last 5 games 🔥HOT. Leads the NHL with 50 points in 21 games and dominates every shift with unmatched transition speed.
+- Leon Draisaitl (EDM): 9 pts in last 5 games 🔥HOT. Lethal power-play triggerman who already has 18 goals on the campaign.
+- Evan Bouchard (EDM): 9 pts in last 5 games 🔥HOT. Controls the blue line and quarterbacks Edmonton's lethal top power-play unit.
+- Trevor Zegras (PHI): 1 pt in last 5 games 🧊COLD. Key playmaker struggling for production as the Flyers' offense falters.
+- Matvei Michkov (PHI): 16 pts in 22 games. Leads Philadelphia with 11 goals and remains their most dangerous individual scoring threat.
+
+**Other Recommended Plays**
+
+**Vancouver Canucks vs Vegas Golden Knights Over 6.5 @ 1.96**
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+
+Confirmed starting netminders Kevin Lankinen for the Vancouver Canucks (0-4-0, 5.00 GAA, .823 SV% over his last 5 starts) and Carter Hart for the Vegas Golden Knights (2-1-2, 2.80 GAA, .874 SV% over his last 5 starts) both sit squarely in the poor quality tier with sub-.895 save percentages. Vancouver has lost 7 straight contests while surrendering a staggering 4.40 goals per game over their last 10 outings, largely driven by an NHL-worst 62.7% penalty kill. Vegas boasts a lethal 27.4% power play and enters with five separate 🔥HOT skaters, including Mitch Marner (7 points in his last 5 games) and Jack Eichel (6 points in his last 5 games). With both netminders leaking goals and a severe special teams mismatch pitting a top-tier Vegas man advantage against Vancouver's porous penalty kill, conditions are ideal for a high-scoring track meet. Against an implied probability of 51.0% at 1.96 odds, our model projects a 60% probability of clearing 6.5 goals, unlocking a premium +9.0% market edge.
+
+This play was added at noon based on updated goalie confirmations and roster data. The odds for Over 6.5 moved from 1.95 (morning) to 1.96 (noon).
+
+Players to Watch:
+- Mitch Marner (VGK): 7 pts in last 5 games 🔥HOT. Orchestrates the Golden Knights' offense with elite playmaking and 21 assists on the season.
+- Jack Eichel (VGK): 6 pts in last 5 games 🔥HOT. Dynamic center driving high-danger scoring chances at both five-on-five and on the man advantage.
+- Tomas Hertl (VGK): 7 pts in last 5 games 🔥HOT. Physical net-front presence with 9 goals this year who capitalizes heavily on loose pucks.
+- Brock Boeser (VAN): 5 pts in last 5 games 🔥HOT. Top offensive catalyst for Vancouver with 7 goals and 18 points on the season.
+- Filip Hronek (VAN): 1 pt in last 5 games 🧊COLD. Top-pair defenseman whose offensive contributions have dried up during Vancouver's 7-game slide.
+
+**Nashville Predators vs San Jose Sharks Under 6.5 @ 1.85**
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
+
+Starting goalies not yet announced.
+📊**Historical Under Trend**
+The head-to-head average total goals this season is 5.0, significantly under the 6.5 line, pointing towards a lower-scoring affair.
+📈**Favorable Matchup for Low Scoring**
+Both teams' recent game trends average combined total goals at 5.85, indicating a strong propensity for games staying under the set total.
+😴**Fatigue Factor for Sharks**
+San Jose is on a back-to-back, which often leads to less offensive potency and more conservative play, further supporting the Under.
+
+This play was the Bet of the Day in the morning report at 1.91 odds. The noon report did not feature this play as a recommendation, and the odds for Under 6.5 moved from 1.91 (morning) to 1.85 (noon).
+
+Players to Watch:
+- Roman Josi (NSH): 6pts in last 5GP 🔥HOT. Josi's offensive contributions are key for Nashville, but even with his hot streak, the overall team trends point to lower scoring.
+- Steven Stamkos (NSH): 5pts in last 5GP 🔥HOT. Stamkos has been finding the net, but San Jose's recent defensive structure has been tighter.
+- Macklin Celebrini (SJS): 7pts in last 5GP 🔥HOT. Celebrini is a bright spot for San Jose, whose individual skill can create offense despite team-wide low scoring trends.
+- Dmitry Orlov (SJS): 7pts in last 5GP 🔥HOT. Orlov's recent offensive burst from the blueline could be a factor, but will likely be matched by Nashville's strong defense.
+- Michael Misa (SJS): 1pt in last 5GP 🧊COLD. Misa's recent cold streak highlights the Sharks' struggle to consistently generate offense, which aligns with an Under prediction.
