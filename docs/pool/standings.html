@@ -1572,7 +1572,7 @@
     const SUPABASE_URL = 'https://fifurqlitkywtmhgtzeu.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZnVycWxpdGt5d3RtaGd0emV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDIyMjQsImV4cCI6MjA5MjI3ODIyNH0.KPVPj1qwbSJJMyLR_-AhDcRs0vi2sUU6qbFQ-kH53C0';
     const PW_PLAIN = 'parieur2026'; // kept for pool.html admin only — not used here
-    const CACHE_KEY = 'hp_players_v15_' + new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // busts daily
+    const CACHE_KEY = 'hp_players_v16_' + new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); // busts daily
     const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min within a day
     const ACTIVE_ACQUIRED_FALLBACK_DATE = new Date('2025-09-01T00:00:00Z');
 
@@ -2216,7 +2216,13 @@
 
     function slugMap() {
       if (!_cache.slugMap) {
-        _cache.slugMap = Object.fromEntries(allPlayers.map(p => [p.puckpedia_slug, p]));
+        const m = {};
+        for (const p of allPlayers) {
+          if (p.puckpedia_slug) m[p.puckpedia_slug] = p;
+          // register all known aliases (e.g. old slug before dedup)
+          (p._slugAliases || []).forEach(s => { if (s && !m[s]) m[s] = p; });
+        }
+        _cache.slugMap = m;
       }
       return _cache.slugMap;
     }
@@ -3109,14 +3115,28 @@
             { headers: sbHeaders() });
           if (!res.ok) throw new Error(res.status);
           allPlayers = await res.json();
-          // Dedup by nhl_player_id — keep row with most GP
-          const _seen = new Map();
+          // Dedup by nhl_player_id — keep row with most GP; collect all aliases per player
+          const _seen = new Map();    // key → winning player
+          const _aliases = new Map(); // key → [all slugs seen]
           for (const p of allPlayers) {
             const key = p.nhl_player_id ? Number(p.nhl_player_id) : (p.puckpedia_slug || p.player_name);
             const prev = _seen.get(key);
-            if (!prev || (p.games_played ?? 0) > (prev.games_played ?? 0)) _seen.set(key, p);
+            const prevGP = prev ? (prev.games_played ?? 0) : -1;
+            const curGP = p.games_played ?? 0;
+            // prefer more GP; on tie prefer shorter slug (canonical, no numeric suffix)
+            const prefer = !prev || curGP > prevGP ||
+              (curGP === prevGP && (p.puckpedia_slug || '').length < (prev.puckpedia_slug || '').length);
+            if (prefer) _seen.set(key, p);
+            const slugList = _aliases.get(key) || [];
+            if (p.puckpedia_slug && !slugList.includes(p.puckpedia_slug)) slugList.push(p.puckpedia_slug);
+            _aliases.set(key, slugList);
           }
           allPlayers = [..._seen.values()];
+          // Attach alias list to each player so slugMap can register all known slugs
+          allPlayers.forEach(p => {
+            const key = p.nhl_player_id ? Number(p.nhl_player_id) : (p.puckpedia_slug || p.player_name);
+            p._slugAliases = _aliases.get(key) || [];
+          });
           try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: allPlayers })); } catch(_) {}
         }
         clearCache();
