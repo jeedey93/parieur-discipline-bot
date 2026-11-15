@@ -1675,27 +1675,16 @@
     let _currentModalData = null; // set by showPlayerModal, read by sharePlayerCard
     let _anyGameLive = false; // true when at least one game is in progress
 
-    // Restore persisted live pts for today (survives page refresh until DB stats update)
-    // Don't clear on non-game-hours — the DB scrape runs ~8am Montreal, so pts from last
-    // night should survive until then. The updated_at check in load() clears them once safe.
+    // Restore persisted live pts for today only (survives page refresh until DB stats update).
+    // Yesterday's pts are never restored — the DB scrape runs ~8am Montreal so by the time
+    // users open the page the season stats already include last night's games.
     (function restorePersistedLivePts() {
       try {
         const raw = localStorage.getItem(_LIVE_PTS_KEY);
         if (!raw) return;
         const { date, pts } = JSON.parse(raw);
-        const nowMontreal = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour12: false });
         const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
-        const yesterdayStr = (() => { const d = new Date(); d.setDate(d.getDate() - 1); return d.toLocaleDateString('en-CA', { timeZone: 'America/Toronto' }); })();
-        const hourMontreal = parseInt(new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto', hour: '2-digit', hour12: false }));
-        // Only restore yesterday's pts during the overnight window (midnight–10am Montreal)
-        // After 10am the DB scrape has run and the updated_at check will clear them anyway,
-        // but restoring stale pts before that check fires causes a visible flash.
-        if (date === yesterdayStr && hourMontreal >= 10) {
-          localStorage.removeItem(_LIVE_PTS_KEY);
-          return;
-        }
-        // Discard anything older than yesterday
-        if (date !== todayStr && date !== yesterdayStr) {
+        if (date !== todayStr) {
           localStorage.removeItem(_LIVE_PTS_KEY);
           return;
         }
