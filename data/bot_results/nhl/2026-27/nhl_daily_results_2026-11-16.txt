@@ -1,0 +1,23 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-15.
+
+Here's the breakdown:
+
+1.  **Edmonton Oilers ML vs Philadelphia Flyers @ 1.71 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Edmonton 5 @ Philadelphia 2 (Total goals: 7)
+    *   Outcome: **WIN** (Edmonton won the game)
+
+2.  **Vancouver Canucks vs Vegas Golden Knights Over 6.5 @ 1.96 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Vancouver 6 @ Vegas 3 (Total goals: 9)
+    *   Outcome: **WIN** (Total goals 9, which is over 6.5)
+
+3.  **Nashville Predators vs San Jose Sharks Under 6.5 @ 1.85 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Nashville 2 @ San Jose 4 (Total goals: 6)
+    *   Outcome: **WIN** (Total goals 6, which is under 6.5)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 3**
+*   **Total Losses: 0**
+*   **Total Pushes: 0**
