@@ -1,0 +1,55 @@
+### Report Comparison & Market Movement Analysis
+
+1. **Consistency**: No plays appeared identically in both reports. The morning report recommended the Under 6.0 in the Canadiens vs. Rangers matchup, while the noon report shifted to the Rangers Moneyline after starting netminders were officially announced.
+2. **Added/Removed Plays**: 
+   - **Removed**: Montréal Canadiens vs. New York Rangers Under 6.0 @ 1.91 was removed at noon.
+   - **Added**: Vancouver Canucks vs. Utah Mammoth Over 6.5 @ 1.88 was added as the new Bet of the Day; New York Rangers ML vs. Montréal Canadiens @ 1.93 was added to recommended plays.
+3. **Confidence Level Changes**: The morning Under 6.0 play held a 54% win probability at Medium confidence. At noon, goalie confirmations produced higher model confidence: Vancouver/Utah Over 6.5 reached 60.19% and Rangers ML reached 57.0%.
+4. **Odds Movement**:
+   - Vancouver @ Utah Total: Over 6.5 shortened from 1.91 (morning) to 1.88 (noon).
+   - New York Rangers ML: Remained unchanged at 1.93.
+
+---
+
+🏆 **BET OF THE DAY**
+
+**Vancouver Canucks vs Utah Mammoth Over 6.5 @ 1.88**
+Confidence Level: [Unknown] Units: [Unknown] | Win Probability: [Unknown]%
+
+🥅**Favorable Goaltending Matchup**
+Vancouver starting goaltender Nikita Tolopilo (.881 season SV%) and Utah starter Karel Vejmelka (.860 Last 5 SV%) both grade in the poor tier, creating a +5% model edge toward the Over.
+⚡**Special Teams Mismatch**
+Utah's potent 34.7% Power Play holds a massive statistical advantage against Vancouver's weak 62.0% Penalty Kill, driving an additional +2% edge for goal production.
+
+Confidence Level: Medium, Units: 1u, Win Probability: 60.19%
+
+Line moved from 1.91 (morning) to 1.88 (noon); newly added as Bet of the Day at noon with 60.19% win probability following starting goalie confirmations.
+
+Players to Watch:
+- Boeser, Brock (VAN): 6pts in last 5GP 🔥HOT. He is a primary offensive threat for the Canucks and will be looking to capitalize on weak goaltending.
+- Hoglander, Nils (VAN): 5pts in last 5GP 🔥HOT. His recent offensive surge could contribute significantly to the scoring.
+- Lekkerimäki, Jonathan (VAN): 7G 9A 16pts in 22GP. A consistent offensive contributor for Vancouver throughout the season.
+
+---
+
+**Other Recommended Plays**
+
+**New York Rangers ML vs Montréal Canadiens @ 1.93**
+Confidence Level: [Unknown] Units: [Unknown] | Win Probability: [Unknown]%
+
+🥅**Starting Goalie Advantage**
+Rangers starter Joonas Korpisalo brings an elite .931 Last 5 SV%, giving New York a decisive +5% edge in net over Montréal starter Jacob Fowler (.906 Last 5 SV%).
+🏟️**Home Ice Dominance**
+The New York Rangers hold an impressive 8-2-0 record at Madison Square Garden, showing strong execution on home ice.
+🩹**Canadiens Roster Depletion**
+The Montréal Canadiens enter the matchup compromised by notable roster absences, including Chris Kreider and Josh Anderson.
+
+Confidence Level: Medium, Units: 1u, Win Probability: 57.0%
+
+Odds remained steady at 1.93 from morning to noon; newly added as a recommended play at noon with 57.0% win probability following starting goalie confirmations.
+
+Players to Watch:
+- Zibanejad, Mika (NYR): 7pts in last 5GP 🔥HOT. His recent scoring spree makes him a crucial offensive weapon for the Rangers.
+- Lafreniere, Alexis (NYR): 6pts in last 5GP 🔥HOT. Another in-form forward for New York who can create scoring opportunities.
+- Caufield, Cole (MTL): 5pts in last 5GP 🔥HOT. Montréal's leading scorer remains a threat despite the team's injuries and will challenge the Rangers' defense.
+- Suzuki, Nick (MTL): 5pts in last 5GP 🔥HOT. Captain Suzuki is also on a hot streak and provides crucial offensive output for the Canadiens.

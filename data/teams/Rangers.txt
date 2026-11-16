@@ -1,6 +1,6 @@
 ============================================================
 RANGERS - LINEUP
-Last Updated: 2026-11-13 04:09 PM ET
+Last Updated: 2026-11-16 06:52 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,22 +14,21 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Vladislav Gavrikov — Adam Fox
 Pair 2: Marcus Pettersson — Braden Schneider
-Pair 3: Matthew Roberson — Scott Morrow
+Pair 3: Matthew Robertson — Scott Morrow
 
 GOALIES:
 ----------------------------------------
-  Dylan Garand
   Joonas Korpisalo
+  Dylan Garand
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Marcel Del Gaizo (scratched)
-  Luke Glendening (scratched)
   Matt Rempe (scratched)
-  Sean Durzi (undisclosed) (injured)
+  Marc Del Gaizo (scratched)
+  Luke Glendening (scratched)
   Igor Shesterkin (lower body) (injured)
-  Alberts Smits (upper body) (injured)
-  Adam Sykora (lower body) (injured)
   Joseph Veleno (lower body) (injured)
+  Alberts Smits (upper body) (injured)
+  Sean Durzi (undisclosed) (injured)
 
 ============================================================
