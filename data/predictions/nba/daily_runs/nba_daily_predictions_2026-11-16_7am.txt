@@ -1,0 +1,61 @@
+Date: 2026-11-16
+
+Boston Celtics vs Orlando Magic
+Boston Celtics ML (Home): 1.27, Orlando Magic ML (Away): 3.95, O/U: 212.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away 9.0 (1.91)
+------
+Cleveland Cavaliers vs Chicago Bulls
+Cleveland Cavaliers ML (Home): 1.27, Chicago Bulls ML (Away): 3.96, O/U: 241.5 (Over: 1.88 / Under: 1.93)
+Spreads: Home None (1.93), Away 9.0 (1.96)
+------
+Washington Wizards vs Memphis Grizzlies
+Washington Wizards ML (Home): 2.36, Memphis Grizzlies ML (Away): 1.62, O/U: 229.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away -3.5 (1.9)
+------
+Brooklyn Nets vs Philadelphia 76ers
+Brooklyn Nets ML (Home): 2.9, Philadelphia 76ers ML (Away): 1.43, O/U: 225.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -6.0 (1.94)
+------
+Miami Heat vs Houston Rockets
+Miami Heat ML (Home): 2.08, Houston Rockets ML (Away): 1.79, O/U: 230.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -2.0 (1.94)
+------
+Minnesota Timberwolves vs Portland Trail Blazers
+Minnesota Timberwolves ML (Home): 1.74, Portland Trail Blazers ML (Away): 2.16, O/U: 228.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away 2.0 (1.94)
+------
+New Orleans Pelicans vs Golden State Warriors
+New Orleans Pelicans ML (Home): 2.34, Golden State Warriors ML (Away): 1.63, O/U: 225.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away -3.0 (1.91)
+------
+Denver Nuggets vs Phoenix Suns
+Denver Nuggets ML (Home): 1.23, Phoenix Suns ML (Away): 4.43, O/U: 227.5 (Over: 1.87 / Under: 1.94)
+Spreads: Home None (1.95), Away 10.5 (1.91)
+------
+
+AI Analysis Summary:
+Current Roster Data Unavailable
+
+BET OF THE DAY
+
+Memphis Grizzlies ML vs Washington Wizards @ 1.62
+🏠**Road Dominance vs Home Struggles**
+The Grizzlies are undefeated on the road at 6-0 (1.000 win rate), whereas the Wizards have struggled at home with a 2-4 (.333) record.
+📊**Form and Talent Disparity**
+Memphis sits at 9-4 on the season with a +8.2 net point differential over their last 10 games (121.1 scored, 112.9 allowed), while Washington is 4-10 with a -10.2 differential over their last 10 games.
+😴**Fatigue Mismatch**
+Washington is playing on zero days of rest after hosting Houston yesterday, while Memphis had yesterday off and enters with a rest advantage.
+📈**Strong Market Edge**
+Our model projects Memphis with a 68% win probability, providing a +6.3% edge over the 61.7% implied probability at 1.62 odds.
+Confidence Level: Medium, Units: 1u, Win Probability: 68%
+
+**Other Recommended Plays**
+
+Miami Heat ML vs Houston Rockets @ 2.08
+😴**Brutal Road Back-to-Back Spot**
+Houston is playing their second consecutive road game on back-to-back nights after facing Washington yesterday, while Miami enters rested with an off day yesterday.
+📊**High-Scoring Form**
+Miami has won 7 of their last 10 games while producing an explosive 121.6 points per contest over that stretch.
+📈**Plus-Money Value**
+Our model assigns Miami a 55% win probability at home, creating a +6.9% edge against the 48.1% implied probability at 2.08 odds.
+Confidence Level: Medium, Units: 1u, Win Probability: 55%
