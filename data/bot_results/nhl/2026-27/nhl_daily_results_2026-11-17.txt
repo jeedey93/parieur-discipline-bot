@@ -1,0 +1,19 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-16.
+
+Here's the breakdown:
+
+1.  **Vancouver Canucks vs Utah Mammoth Over 6.5 @ 1.88 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Vancouver 3 @ Utah 2 (Total goals: 5)
+    *   Outcome: **LOSS** (Total goals 5, which is less than 6.5)
+
+2.  **New York Rangers ML vs Montréal Canadiens @ 1.93 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Montréal 1 @ New York 3 (Total goals: 4)
+    *   Outcome: **WIN** (New York Rangers won the game)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 1**
+*   **Total Pushes: 0**
