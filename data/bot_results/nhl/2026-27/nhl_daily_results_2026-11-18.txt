@@ -1,0 +1,31 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-17.
+
+Here's the breakdown:
+
+1.  **BOSTON BRUINS ML vs LOS ANGELES KINGS @ 1.62 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Los Angeles 3 @ Boston 0 (Total goals: 3)
+    *   Outcome: **LOSS** (Boston lost the game)
+
+2.  **VEGAS GOLDEN KNIGHTS ML vs DALLAS STARS @ 1.83 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Dallas 4 @ Vegas 3 (Total goals: 7)
+    *   Outcome: **LOSS** (Vegas lost the game)
+
+3.  **NASHVILLE PREDATORS vs MINNESOTA WILD Under 6.0 @ 1.88 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Nashville 3 @ Minnesota 7 (Total goals: 10)
+    *   Outcome: **LOSS** (Total goals 10 exceeded the Under 6.0 line)
+
+4.  **CHICAGO BLACKHAWKS ML vs TORONTO MAPLE LEAFS @ 2.11 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Toronto 3 @ Chicago 6 (Total goals: 9)
+    *   Outcome: **WIN** (Chicago won the game)
+
+5.  **CALGARY FLAMES ML vs SAN JOSE SHARKS @ 2.07 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Calgary 5 @ San Jose 2 (Total goals: 7)
+    *   Outcome: **WIN** (Calgary won the game)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 3**
+*   **Total Pushes: 0**
