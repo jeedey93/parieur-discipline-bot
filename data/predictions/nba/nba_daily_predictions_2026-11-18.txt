@@ -1,0 +1,42 @@
+Here's the comparative analysis and unified recommendation list based on the provided reports:
+
+The primary objective is to identify consistent, high-conviction plays within the specified odds range (1.60-2.20) and confidence levels (High/Medium), while adhering to strict formatting and player-naming requirements.
+
+**Summary of Report Changes:**
+
+*   **Bet of the Day Shift:** The "Bet of the Day" changed from Memphis Grizzlies ML (Morning: 2.64 odds, High Confidence) to Los Angeles Lakers vs Utah Jazz Over 231.5 (Noon: 1.91 odds, Medium Confidence). The Morning BOTD is outside the eligible odds range (1.60-2.20) and therefore cannot be included in the final recommendations. The Noon BOTD falls within the range.
+*   **Odds and Line Movements:**
+    *   **Cleveland Cavaliers vs Memphis Grizzlies:** Cavs ML slightly up (1.51 to 1.52), Grizzlies ML slightly down (2.64 to 2.62). O/U moved from 235.5 (morning) to 237.5 (noon), with Over odds slightly decreasing and Under odds slightly increasing. Grizzlies spread moved from +5.0 @ 1.91 to +4.5 @ 1.96.
+    *   **Indiana Pacers vs Houston Rockets:** Pacers ML up (3.35 to 3.5), Rockets ML down (1.34 to 1.32). O/U remained 224.5.
+    *   **Orlando Magic vs Philadelphia 76ers:** Magic ML down (2.06 to 1.93), 76ers ML up (1.81 to 1.93), indicating the game is now considered a pick'em on the moneyline. 76ers spread moved from -1.5 @ 1.92 to -1.0 @ 1.93. O/U moved from 222.5 to 221.5.
+    *   **Brooklyn Nets vs Chicago Bulls:** Nets ML up (1.65 to 1.75), Bulls ML down (2.3 to 2.14). O/U moved from 238.5 to 239.5. Bulls spread moved from +2.5 @ 1.95 to +1.5 @ 1.95.
+    *   **Toronto Raptors vs Washington Wizards:** Raptors ML up (1.39 to 1.51), Wizards ML down (3.1 to 2.66). O/U moved from 227.5 to 225.5. Wizards spread moved from +6.5 @ 1.95 to +5.0 @ 1.94.
+    *   **New Orleans Pelicans vs Detroit Pistons:** Pelicans ML down (3.2 to 2.48), Pistons ML up (1.37 to 1.57). O/U moved from 228.5 to 225.5. Pistons spread moved from -7.5 @ 1.93 to -4.5 @ 1.95.
+    *   **Oklahoma City Thunder vs Atlanta Hawks:** Thunder ML down (1.43 to 1.4), Hawks ML up (2.94 to 3.05). O/U moved from 227.5 to 228.5.
+    *   **Dallas Mavericks vs Golden State Warriors:** Mavericks ML up (1.45 to 1.52), Warriors ML down (2.84 to 2.62). O/U moved from 222.5 to 225.5. Warriors spread moved from +6.0 @ 1.94 to +4.5 @ 1.94.
+    *   **Denver Nuggets vs Boston Celtics:** Nuggets ML up (2.22 to 2.24), Celtics ML down (1.69 to 1.68). O/U moved from 222.5 to 220.5. Celtics spread remained -2.5 @ 1.94.
+    *   **Los Angeles Lakers vs Utah Jazz:** Lakers ML down (1.25 to 1.17), Jazz ML up (4.1 to 5.4). O/U moved from 228.5 to 231.5.
+    *   **Sacramento Kings vs Phoenix Suns:** Kings ML up (3.1 to 3.15), Suns ML down (1.39 to 1.38). O/U moved from 228.5 to 227.5. Suns spread moved from -6.5 @ 1.94 to -7.0 @ 1.94.
+
+Due to the strict requirements regarding explicit confidence levels, available units, win probabilities, and original justifications, only the "Bet of the Day" entries from the reports qualify as actual "plays" for the final recommendation list. The Morning Bet of the Day (Memphis Grizzlies ML @ 2.64) falls outside the allowed odds range (1.60-2.20). Therefore, only the Noon Bet of the Day is eligible.
+
+---
+
+🏆 **BET OF THE DAY**
+
+**Los Angeles Lakers vs Utah Jazz Over 231.5 @ 1.91**
+Confidence Level: Medium, Units: 1u, Win Probability: 57%
+📊**High-Scoring Trends**
+Both teams have shown a propensity for higher-scoring games recently, with the Lakers averaging 122.1 points scored and the Jazz 106.9 points scored over their last 10 games.
+⚔️**H2H Over Dominance**
+Their only head-to-head matchup this season totaled 255 points, significantly exceeding the current line of 231.5 and indicating a strong historical tendency for the Over in this specific matchup.
+📈**Defensive Vulnerabilities**
+Both teams exhibit defensive vulnerabilities, with the Lakers allowing 115.4 points and the Jazz allowing 115.8 points per game over their last 10 contests.
+
+This play was introduced as the new Bet of the Day in the noon report. There was no specific play or recommendation for this game in the morning report.
+
+PLAYERS TO WATCH
+LeBron James (LAL): Continues to defy age with elite playmaking and scoring.
+Anthony Davis (LAL): Dominant force in the paint on both ends.
+Lauri Markkanen (UTA): Leading scorer for the Jazz with versatile offense.
+Jordan Clarkson (UTA): Instant offense off the bench.
