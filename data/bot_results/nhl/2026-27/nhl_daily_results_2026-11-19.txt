@@ -1,0 +1,23 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-18.
+
+Here's the breakdown:
+
+1.  **Detroit Red Wings ML vs Boston Bruins @ 1.92 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Boston 4 @ Detroit 1 (Total goals: 5)
+    *   Outcome: **LOSS** (Boston won the game, Detroit did not)
+
+2.  **Colorado Avalanche vs Utah Mammoth Under 6.5 @ 1.81 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Colorado 1 @ Utah 4 (Total goals: 5)
+    *   Outcome: **WIN** (Total goals 5, which is less than 6.5)
+
+3.  **Montréal Canadiens vs New Jersey Devils Under 6.0 @ 1.94 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Montréal 3 @ New Jersey 2 (Total goals: 5)
+    *   Outcome: **WIN** (Total goals 5, which is less than 6.0)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 1**
+*   **Total Pushes: 0**

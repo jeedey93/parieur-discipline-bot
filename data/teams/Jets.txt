@@ -1,6 +1,6 @@
 ============================================================
 JETS - LINEUP
-Last Updated: 2026-11-17 05:48 PM ET
+Last Updated: 2026-11-19 04:19 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,13 +8,13 @@ FORWARD LINES:
 Line 1: Kyle Connor — Mark Scheifele — Gabriel Vilardi
 Line 2: Cole Perfetti — Brayden Yager — Dawson Mercer
 Line 3: Alex Iafallo — Adam Lowry — Viggo BjÃ¶rck
-Line 4: Cole Koepke — Morgan Barron — Nino Niederreiter
+Line 4: Cole Koepke — Morgan Barron — Danny Zhilkin
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Dylan Samberg — Neal Pionk
-Pair 2: Josh Morrissey — Mario Ferraro
-Pair 3: Henry Thrun — Haydn Fleury
+Pair 1: Josh Morrissey — Mario Ferraro
+Pair 2: Dylan Samberg — Neal Pionk
+Pair 3: Henry Thrun — Tyrel Bauer
 
 GOALIES:
 ----------------------------------------
@@ -24,8 +24,8 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Clay Stevenson (scratched)
-  Tyrel Bauer (scratched)
-  Danny Zhilkin (scratched)
+  Haydn Fleury (scratched)
+  Nino Niederreiter (scratched)
   Nick Bjugstad (undisclosed) (injured)
   Vladislav Namestnikov (lower body) (injured)
   Elias Salomonsson (personal) (injured)

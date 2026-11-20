@@ -1,31 +1,31 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-11-17 05:48 PM ET
+Last Updated: 2026-11-19 04:19 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Zach Benson — Jiri Kulich — Tage Thompson
-Line 2: Ryan McLeod — Noah Ostlund — Jack Quinn
-Line 3: Josh Norris — Peyton Krebs — Josh Doan
-Line 4: Beck Malenstyn — Tyson Kozak — Jason Zucker
+Line 2: Peyton Krebs — Noah Ostlund — Jack Quinn
+Line 3: Jason Zucker — Josh Norris — Josh Doan
+Line 4: Beck Malenstyn — Tyson Kozak — Sam Carrick
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Rasmus Dahlin — Mattias Samuelsson
 Pair 2: Conor Timmins — Owen Power
-Pair 3: Olen Zellweger — Zach Metsa
+Pair 3: Olen Zellweger — Louis Crevier
 
 GOALIES:
 ----------------------------------------
+  Ukko-Pekka Luukkonen
   Alex Lyon
-  Colten Ellis
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Louis Crevier (scratched)
-  Sam Carrick (scratched)
-  Ukko-Pekka Luukkonen (scratched)
+  Zach Metsa (scratched)
+  Ryan McLeod (scratched)
+  Colten Ellis (scratched)
   Konsta Helenius (upper body) (injured)
   Justin Danforth (upper body) (injured)
   Matt Grzelcyk (lower body) (injured)

@@ -1,11 +1,11 @@
 ============================================================
 BRUINS - LINEUP
-Last Updated: 2026-11-17 05:48 PM ET
+Last Updated: 2026-11-18 05:12 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: JJ Peterka — Pavel Zacha — David Pastrnl
+Line 1: JJ Peterka — Pavel Zacha — David Pastrnak
 Line 2: Michael Eyssiont — Fraser Minten — Morgan Geekie
 Line 3: Casey Mittelstadt — Elias Lindholm — Marat Khusnutdinov
 Line 4: Tanner Jeannot — Sean Kuraly — Mark Kastelic
@@ -18,8 +18,8 @@ Pair 3: Mason Lohrei — Connor Clifton
 
 GOALIES:
 ----------------------------------------
-  Michael Di Pietro
   Jeremy Swayman
+  Michael Di Pietro
 
 SCRATCHED / INJURED:
 ----------------------------------------
