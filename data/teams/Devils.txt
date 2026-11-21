@@ -1,13 +1,13 @@
 ============================================================
 DEVILS - LINEUP
-Last Updated: 2026-11-18 05:12 PM ET
+Last Updated: 2026-11-21 03:04 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Arseny Gritsyuk — Jack Hughes — Jesper Bratt
 Line 2: Timo Meier — Nico Hischier — Luke Evangelista
-Line 3: Stefan Noesen — Evan Rodrigues — Connor Brown
+Line 3: Evan Rodrigues — Amadeus Lombardi — Connor Brown
 Line 4: Jesper Boqvist — Cody Glass — Lenni Hameenaho
 
 DEFENSE PAIRS:
@@ -20,5 +20,12 @@ GOALIES:
 ----------------------------------------
   Connor Hellebuyck
   Jake Allen
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Stefan Noesen (scratched)
+  Vladislav Kolyachonok (scratched)
+  Anthony Mantha (throat) (injured)
+  Johnathan Kovacevic (ankle) (injured)
 
 ============================================================

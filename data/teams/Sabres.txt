@@ -1,6 +1,6 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-11-19 04:19 PM ET
+Last Updated: 2026-11-21 03:04 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,16 +14,16 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Rasmus Dahlin — Mattias Samuelsson
 Pair 2: Conor Timmins — Owen Power
-Pair 3: Olen Zellweger — Louis Crevier
+Pair 3: Olen Zellweger — Zach Metsa
 
 GOALIES:
 ----------------------------------------
-  Ukko-Pekka Luukkonen
   Alex Lyon
+  Ukko-Pekka Luukkonen
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Zach Metsa (scratched)
+  Louis Crevier (scratched)
   Ryan McLeod (scratched)
   Colten Ellis (scratched)
   Konsta Helenius (upper body) (injured)
