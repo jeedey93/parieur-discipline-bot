@@ -1,0 +1,50 @@
+As a sports betting analyst, I've reviewed both the morning and noon prediction reports to identify key line movements, confidence shifts, and optimal betting opportunities for today.
+
+Here's a detailed comparison and the unified final recommendation list:
+
+**Morning vs. Noon Report Analysis:**
+Confidence Level: [Unknown] Units: [Unknown] | Win Probability: [Unknown]%
+
+*   **Atlanta Hawks vs Detroit Pistons:** The Atlanta Hawks ML was the "BET OF THE DAY" in the morning at 2.12 odds. By noon, the Hawks ML odds shifted slightly to 2.08, while Detroit's ML moved from 1.76 to 1.79. The O/U decreased from 224.5 to 223.5. The Hawks ML at 2.08 still falls within our acceptable odds range and retains its medium confidence from the morning report.
+*   **Miami Heat vs Oklahoma City Thunder:** The Miami Heat ML dropped from 1.66 in the morning to 1.58 by noon, moving it outside our preferred odds range (1.60-2.20). Oklahoma City Thunder ML increased from 2.28 to 2.44, remaining outside the range. The O/U remained at 231.5.
+*   **Washington Wizards vs Orlando Magic:** No significant recommendations from either report that fit the odds criteria.
+*   **Chicago Bulls vs Denver Nuggets:** No significant recommendations from either report that fit the odds criteria.
+*   **Utah Jazz vs Dallas Mavericks:** This game saw a new "BET OF THE DAY" emerge in the noon report: Dallas Mavericks vs Utah Jazz Under 226.5 at 1.94 odds. In the morning, the O/U was 225.5 with Under odds at 1.91. The ML odds for both teams also shifted, with Jazz ML moving from 2.02 to 2.14, and Mavericks ML from 1.83 to 1.75.
+*   **New York Knicks vs Indiana Pacers:** No significant recommendations from either report that fit the odds criteria.
+*   **Golden State Warriors vs Boston Celtics:** No significant recommendations from either report that fit the odds criteria.
+
+**Key Changes:**
+*   The overall "Bet of the Day" shifted from Atlanta Hawks ML in the morning to Dallas Mavericks vs Utah Jazz Under 226.5 in the noon report, indicating a stronger conviction or updated value finding.
+*   Several money lines moved, affecting their suitability for our recommendation criteria (e.g., Miami Heat ML dropping out of range).
+*   Over/Under lines adjusted slightly in some games.
+
+---
+
+🏆 **BET OF THE DAY**
+**Dallas Mavericks vs Utah Jazz Under 226.5 @ 1.94**
+Confidence Level: Medium, Units: 1u, Win Probability: 56.55%
+
+Starting goalies not yet announced.
+💨**Fatigue Favors Under**
+The Dallas Mavericks are on a road back-to-back, which typically leads to lower scoring outputs, contributing a +2% edge to the Under.
+⚔️**H2H Trend for Under**
+The single head-to-head matchup this season finished with a total of 212 points, which is significantly below today's line of 226.5, providing a strong +3% edge for the Under.
+📊**Market Inefficiency**
+With an estimated true probability of 56.55% against implied odds of 51.55%, there's a +5% edge on the Under.
+
+This play was a new Bet of the Day in the noon report. The Over/Under line moved from 225.5 (morning) to 226.5 (noon), with Under odds changing from 1.91 to 1.94. Confidence for this play is Medium.
+
+---
+
+**Other Recommended Plays**
+**Atlanta Hawks ML vs Detroit Pistons @ 2.08**
+Confidence Level: Medium, Units: 1u, Win Probability: 53%
+
+🏠**Home Court Impact**
+Despite being the home team, Atlanta's 4-3 home record (0.571 Win%) is worse than Detroit's impressive 7-2 road record (0.778 Win%), leading to a -2% adjustment against the Hawks.
+📊**Recent Form Disparity**
+Atlanta's recent +1.5 point differential (116.2 Avg Scored - 114.7 Avg Allowed) is significantly lower than Detroit's +5.5 (116.8 Avg Scored - 111.3 Avg Allowed), indicating Detroit is in better recent form.
+📈**Value Found**
+Our estimated win probability for the Hawks is 53%, providing a +5.83% edge over the implied probability of 47.17% from the 2.12 odds.
+
+The line for Atlanta Hawks ML moved from 2.12 (morning) to 2.08 (noon). This play was the Bet of the Day in the morning report, with confidence remaining Medium.

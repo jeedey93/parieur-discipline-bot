@@ -1,6 +1,6 @@
 ============================================================
 SABRES - LINEUP
-Last Updated: 2026-11-21 03:04 PM ET
+Last Updated: 2026-11-22 03:16 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,14 +18,14 @@ Pair 3: Olen Zellweger — Zach Metsa
 
 GOALIES:
 ----------------------------------------
-  Alex Lyon
   Ukko-Pekka Luukkonen
+  Colten Ellis
 
 SCRATCHED / INJURED:
 ----------------------------------------
   Louis Crevier (scratched)
   Ryan McLeod (scratched)
-  Colten Ellis (scratched)
+  Alex Lyon (scratched)
   Konsta Helenius (upper body) (injured)
   Justin Danforth (upper body) (injured)
   Matt Grzelcyk (lower body) (injured)

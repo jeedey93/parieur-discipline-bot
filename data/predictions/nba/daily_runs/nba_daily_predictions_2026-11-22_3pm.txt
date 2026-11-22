@@ -1,0 +1,44 @@
+Date: 2026-11-22
+
+Atlanta Hawks vs Detroit Pistons
+Atlanta Hawks ML (Home): 2.08, Detroit Pistons ML (Away): 1.79, O/U: 223.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away -2.0 (1.94)
+------
+Miami Heat vs Oklahoma City Thunder
+Miami Heat ML (Home): 1.58, Oklahoma City Thunder ML (Away): 2.44, O/U: 231.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home None (1.94), Away 4.0 (1.94)
+------
+Washington Wizards vs Orlando Magic
+Washington Wizards ML (Home): 2.66, Orlando Magic ML (Away): 1.51, O/U: 219.5 (Over: 1.94 / Under: 1.88)
+Spreads: Home None (1.95), Away -4.5 (1.88)
+------
+Chicago Bulls vs Denver Nuggets
+Chicago Bulls ML (Home): 4.6, Denver Nuggets ML (Away): 1.22, O/U: 236.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home None (1.99), Away -9.5 (1.91)
+------
+Utah Jazz vs Dallas Mavericks
+Utah Jazz ML (Home): 2.14, Dallas Mavericks ML (Away): 1.75, O/U: 226.5 (Over: 1.88 / Under: 1.94)
+Spreads: Home None (1.98), Away -1.5 (1.92)
+------
+New York Knicks vs Indiana Pacers
+New York Knicks ML (Home): 1.34, Indiana Pacers ML (Away): 3.35, O/U: 213.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (1.95), Away 7.5 (1.95)
+------
+Golden State Warriors vs Boston Celtics
+Golden State Warriors ML (Home): 3.85, Boston Celtics ML (Away): 1.28, O/U: 210.5 (Over: 1.93 / Under: 1.89)
+Spreads: Home None (1.95), Away -8.5 (1.95)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+Dallas Mavericks vs Utah Jazz Under 226.5 @ 1.94
+💨**Fatigue Favors Under**
+The Dallas Mavericks are on a road back-to-back, which typically leads to lower scoring outputs, contributing a +2% edge to the Under.
+⚔️**H2H Trend for Under**
+The single head-to-head matchup this season finished with a total of 212 points, which is significantly below today's line of 226.5, providing a strong +3% edge for the Under.
+📊**Market Inefficiency**
+With an estimated true probability of 56.55% against implied odds of 51.55%, there's a +5% edge on the Under.
+Confidence Level: Medium, Units: 1u, Win Probability: 56.55%
