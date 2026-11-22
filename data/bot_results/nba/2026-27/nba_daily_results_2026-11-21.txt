@@ -1,0 +1,25 @@
+As a disciplined NBA betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-20.
+
+Here's the breakdown:
+
+1.  **Detroit Pistons -7.0 vs Toronto Raptors @ 1.96 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Toronto Raptors 105 @ Detroit Pistons 102
+    *   Outcome: **LOSS** (Pistons lost by 3 points, failing to cover the -7.0 spread)
+
+2.  **Brooklyn Nets +6.5 vs Orlando Magic @ 1.94 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Orlando Magic 113 @ Brooklyn Nets 111
+    *   Outcome: **WIN** (Nets lost by 2 points, which is within the +6.5 spread)
+
+3.  **Chicago Bulls ML vs Washington Wizards @ 1.76 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Washington Wizards 98 @ Chicago Bulls 94
+    *   Outcome: **LOSS** (Bulls lost the game, failing to win outright)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 1**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**
+
+---

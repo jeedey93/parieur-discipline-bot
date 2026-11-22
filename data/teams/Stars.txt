@@ -1,19 +1,19 @@
 ============================================================
 STARS - LINEUP
-Last Updated: 2026-11-19 04:19 PM ET
+Last Updated: 2026-11-22 03:16 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Jason Robertson — Wyatt Johnston — Mikko Rantanen
-Line 2: Jamie Benn — Roope Hintz — Arttu Hyry
+Line 1: Jamie Benn — Wyatt Johnston — Mikko Rantanen
+Line 2: Jason Robertson — Roope Hintz — Arttu Hyry
 Line 3: Sam Steel — Justin Hryckowian — Tyler Seguin
 Line 4: Joel Kiviranta — Radek Faksa — David Perron
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Thomas Harley — Nils Lundkvist
-Pair 2: Esa Lindell — Miro Heiskanen
+Pair 1: Esa Lindell — Miro Heiskanen
+Pair 2: Thomas Harley — Nils Lundkvist
 Pair 3: Trey Taylor — Kyle Burroughs
 
 GOALIES:
@@ -29,6 +29,6 @@ SCRATCHED / INJURED:
   Lian Bichsel (lower body) (injured)
   Kyle Capobianco (lower body) (injured)
   Matt Duchene (lower body) (injured)
-  Tyler (injured)
+  Tyler Myers (upper body) (injured)
 
 ============================================================

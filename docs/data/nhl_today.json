@@ -1,1 +1,1 @@
-{"date": "2026-11-20", "matchups": {}, "games": []}
+{"date": "2026-11-22", "matchups": {"CAR": "NYR", "NYR": "CAR", "BUF": "TBL", "TBL": "BUF", "EDM": "STL", "STL": "EDM", "PIT": "DAL", "DAL": "PIT", "CHI": "VAN", "VAN": "CHI"}, "games": [{"id": 2026020373, "away": "CAR", "home": "NYR"}, {"id": 2026020374, "away": "BUF", "home": "TBL"}, {"id": 2026020375, "away": "EDM", "home": "STL"}, {"id": 2026020376, "away": "PIT", "home": "DAL"}, {"id": 2026020377, "away": "CHI", "home": "VAN"}]}

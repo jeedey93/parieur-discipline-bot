@@ -1,14 +1,14 @@
 ============================================================
 KINGS - LINEUP
-Last Updated: 2026-11-19 04:19 PM ET
+Last Updated: 2026-11-21 03:04 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Alex Turcotte — Alex Laferriere — Adrian Kempe
+Line 1: Andre Lee — Alex Laferriere — Adrian Kempe
 Line 2: Kevin Fiala — Quinton Byfield — Mats Zuccarello
-Line 3: Samuel Helenius — Erik Haula — Joel Armia
-Line 4: Andre Lee — Scott Laughton — Corey Perry
+Line 3: Alex Turcotte — Erik Haula — Joel Armia
+Line 4: Scott Laughton — Samuel Helenius — Corey Perry
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -18,8 +18,8 @@ Pair 3: Mikey Anderson — Brian Dumoulin
 
 GOALIES:
 ----------------------------------------
-  Darcy Kuemper
   Anton Forsberg
+  Darcy Kuemper
 
 SCRATCHED / INJURED:
 ----------------------------------------

@@ -1,0 +1,61 @@
+As a sports betting analyst, I've reviewed both the morning (7:00 AM) and noon (12:00 PM) prediction reports for November 21, 2026. Here's my consolidated analysis and final recommendations:
+
+The noon report provided crucial updates, particularly regarding starting goaltender matchups and recent player form, which significantly influenced several confidence levels and win probabilities. We saw consistency in two key plays from morning to noon, while two new plays emerged in the later report, highlighting evolving market dynamics. The Montréal Canadiens vs Philadelphia Flyers Over 6.0, while appearing in the morning report, was not carried forward into the noon recommendations, indicating a shift in conviction.
+
+Here are the unified final recommendations, adhering to the specified odds range (1.60-2.20 inclusive), ranked by win probability, and featuring a maximum of five plays:
+
+---
+
+🏆 **BET OF THE DAY**
+
+**Nashville Predators ML vs Pittsburgh Penguins @ 1.72**
+Confidence Level: High, Units: 1.5u, Win Probability: 79%
+Nashville Predators goaltender Juuse Saros is in Elite form with a 0.943 SV% in his last 5 starts, facing Pittsburgh Penguins' Sergei Murashov who is struggling with a Poor 0.882 SV% in his last 5. This significant goaltending mismatch grants a major advantage to the Predators. Beyond the crease, Nashville benefits from a substantial home-ice advantage over Pittsburgh and a positive recent goal differential, while the Penguins are on a 2-game losing streak and will be without Evgeni Malkin (upper body). The Predators are also more rested, having 3 days off compared to Pittsburgh's 1. All these factors combine to create a significant edge that the odds do not fully reflect.
+
+Confidence level remained High. Odds moved from 1.73 (morning) to 1.72 (noon), and Win Probability increased from 68% to 79%.
+
+Players to Watch:
+- Juuse Saros (NSH): [0.943 SV% in last 5 games 🔥HOT]. Saros's elite performance in net is a cornerstone of this pick.
+- Nils Hoglander (NSH): [5 pts in last 5 games 🔥HOT]. Hoglander's recent offensive surge adds to Nashville's scoring potential.
+- Evgeni Malkin (PIT): [Out · Upper Body · Returns 2026-11-25]. Malkin's absence due to injury significantly hampers Pittsburgh's offensive capabilities.
+- Kris Letang (PIT): [6 pts in last 5 games 🔥HOT]. Despite Malkin's absence, Letang has been offensively productive from the blueline.
+
+---
+
+**Other Recommended Plays**
+
+**Boston Bruins ML vs Washington Capitals @ 1.76**
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+The Boston Bruins, with Jeremy Swayman (0.898 SV% in last 5), have a clear goaltending advantage over Washington Capitals' Charlie Lindgren, who has struggled with a Poor 0.852 SV% in his last 5 starts. Boston also boasts a strong home record and is more rested with 2 days off compared to Washington's 1, enhancing their home ice advantage. While both teams have hot players like David Pastrnak (BOS) and Ryan Leonard (WSH), the Capitals are on a 4-game losing streak which further diminishes their implied probability in this matchup.
+
+Confidence level remained High. Odds moved from 1.80 (morning) to 1.76 (noon), and Win Probability increased from 64% to 68%.
+
+Players to Watch:
+- David Pastrnak (BOS): [6 pts in last 5 games 🔥HOT]. Pastrnak is a consistent offensive threat who can drive play for Boston.
+- Pavel Zacha (BOS): [5 pts in last 5 games 🔥HOT]. Zacha's recent hot streak contributes to the Bruins' scoring depth.
+- Ryan Leonard (WSH): [5 pts in last 5 games 🔥HOT]. Leonard is a key offensive player for the Capitals and needs to be strong tonight.
+- Cole Hutson (WSH): [7 pts in last 5 games 🔥HOT]. Hutson's strong offensive output from the blueline is crucial for Washington.
+
+**San Jose Sharks ML vs Seattle Kraken @ 1.88**
+Confidence Level: High, Units: 1.5u, Win Probability: 67%
+San Jose Sharks' Alex Nedeljkovic (0.893 SV% in last 5) is trending better than Seattle Kraken's Joey Daccord, who has a poor 0.859 SV% over his last 5 outings, giving the Sharks a goaltending edge. San Jose also benefits from being significantly more rested, with 3 days off compared to Seattle's 1. The Sharks also show an improving form trend and have multiple key players like Macklin Celebrini and Will Smith who are playing at a high level offensively. This combination of better goaltending, rest, and player form creates value on the home side.
+
+This play was added in the noon report, reflecting updated goalie form and player performance.
+
+Players to Watch:
+- Macklin Celebrini (SJS): [6 pts in last 5 games 🔥HOT]. Celebrini is leading the charge for the Sharks' offense with a stellar recent performance.
+- Will Smith (SJS): [6 pts in last 5 games 🔥HOT]. Smith's offensive production makes him a key player to watch for San Jose.
+- Joey Daccord (SEA): [3.0 GAA, 0.859 SV% in last 5 starts]. Daccord's struggles in net could open the door for a high-scoring night for the Sharks.
+- Berkly Catton (SEA): [6 pts in last 5 games 🔥HOT]. Catton is a primary offensive threat for the Kraken, even if the team's overall form is declining.
+
+**Florida Panthers ML vs Buffalo Sabres @ 1.69**
+Confidence Level: Medium, Units: 1u, Win Probability: 66%
+The Florida Panthers enter this contest with goaltender Jacob Markstrom performing at an average level (0.906 SV% in last 5), which is a notable advantage over Buffalo Sabres' Alex Lyon (0.898 SV% in last 5). Florida has a strong home record and benefits from superior rest, having 3 days off compared to Buffalo's 1. Despite a recent 2-game losing streak, the Panthers possess a deep offense with several players like Matthew Tkachuk and Sam Reinhart currently playing at a 🔥HOT level, providing them a strong offensive upside against a less stable opponent.
+
+This play was added in the noon report, reflecting updated goalie information and rest advantage.
+
+Players to Watch:
+- Matthew Tkachuk (FLA): [6 pts in last 5 games 🔥HOT]. Tkachuk is a consistent point-producer and critical to the Panthers' offensive success.
+- Sam Reinhart (FLA): [5 pts in last 5 games 🔥HOT]. Reinhart's hot hand in scoring makes him a significant threat.
+- Tage Thompson (BUF): [5 pts in last 5 games 🔥HOT]. Thompson is Buffalo's offensive leader and can create scoring chances.
+- Jack Quinn (BUF): [6 pts in last 5 games 🔥HOT]. Quinn has been productive recently, adding secondary scoring for the Sabres.

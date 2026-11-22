@@ -1,14 +1,14 @@
 ============================================================
 BLUES - LINEUP
-Last Updated: 2026-11-19 04:19 PM ET
+Last Updated: 2026-11-22 03:16 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Jake Neighbours — Robert Thomas — Jimmy Snuggerud
-Line 2: Dylan Holloway — Mason McTavish — Connor McMichael
+Line 2: Dylan Holloway — Mason McTavish — Dalibor Dvorsky
 Line 3: Aleksanteri Kaskimaki — Pavel Buchnevich — Jonatan Berggren
-Line 4: Dalibor Dvorsky — Pius Suter — Alexey Toropchenko
+Line 4: Alexey Toropchenko — Pius Suter — Ross Johnston
 
 DEFENSE PAIRS:
 ----------------------------------------
@@ -20,5 +20,13 @@ GOALIES:
 ----------------------------------------
   Joel Hofer
   Jordan Binnington
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Nathan Walker (scratched)
+  Calle Rosen (scratched)
+  Tyler Tucker (knee) (injured)
+  Dillon Dube (neck) (injured)
+  Connor McMichael (undisclosed) (injured)
 
 ============================================================

@@ -1,0 +1,95 @@
+Date: 2026-11-21
+
+Edmonton Oilers @ Carolina Hurricanes
+Carolina Hurricanes ML (Home): 1.55, Edmonton Oilers ML (Away): 2.4, O/U: 10.5 (Over: 1.55 / Under: 2.3)
+------
+Chicago Blackhawks @ Calgary Flames
+Calgary Flames ML (Home): 1.65, Chicago Blackhawks ML (Away): 2.26, O/U: 5.5 (Over: 1.83 / Under: 1.98)
+------
+Buffalo Sabres @ Florida Panthers
+Florida Panthers ML (Home): 1.69, Buffalo Sabres ML (Away): 2.18, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+Pittsburgh Penguins @ Nashville Predators
+Nashville Predators ML (Home): 1.72, Pittsburgh Penguins ML (Away): 2.13, O/U: 6.5 (Over: 1.93 / Under: 1.88)
+------
+Washington Capitals @ Boston Bruins
+Boston Bruins ML (Home): 1.76, Washington Capitals ML (Away): 2.08, O/U: 6.5 (Over: 1.83 / Under: 1.98)
+------
+Columbus Blue Jackets @ Toronto Maple Leafs
+Toronto Maple Leafs ML (Home): 1.83, Columbus Blue Jackets ML (Away): 1.98, O/U: 6.0 (Over: 1.83 / Under: 1.98)
+------
+Philadelphia Flyers @ Montréal Canadiens
+Montréal Canadiens ML (Home): 1.65, Philadelphia Flyers ML (Away): 2.25, O/U: 6.0 (Over: 1.99 / Under: 1.83)
+------
+Los Angeles Kings @ Ottawa Senators
+Ottawa Senators ML (Home): 1.57, Los Angeles Kings ML (Away): 2.43, O/U: 5.5 (Over: 1.88 / Under: 1.93)
+------
+New York Islanders @ Detroit Red Wings
+Detroit Red Wings ML (Home): 2.07, New York Islanders ML (Away): 1.76, O/U: 6.0 (Over: 1.95 / Under: 1.86)
+------
+New Jersey Devils @ St Louis Blues
+St Louis Blues ML (Home): 2.06, New Jersey Devils ML (Away): 1.77, O/U: 6.0 (Over: 1.92 / Under: 1.89)
+------
+Vegas Golden Knights @ Winnipeg Jets
+Winnipeg Jets ML (Home): 2.11, Vegas Golden Knights ML (Away): 1.74, O/U: 6.5 (Over: 1.98 / Under: 1.83)
+------
+Anaheim Ducks @ Utah Mammoth
+Utah Mammoth ML (Home): 1.6, Anaheim Ducks ML (Away): 2.36, O/U: 7.0 (Over: 2.1 / Under: 1.75)
+------
+Minnesota Wild @ Vancouver Canucks
+Vancouver Canucks ML (Home): 3.28, Minnesota Wild ML (Away): 1.34, O/U: 6.5 (Over: 1.93 / Under: 1.88)
+------
+Seattle Kraken @ San Jose Sharks
+San Jose Sharks ML (Home): 1.88, Seattle Kraken ML (Away): 1.93, O/U: 6.5 (Over: 1.92 / Under: 1.89)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+Today's slate presents several intriguing matchups, and our models have identified a few spots where the market appears to be underestimating key team strengths, particularly in goaltending and recent form. We're focusing on teams with strong netminders and offensive momentum, especially when facing opponents struggling between the pipes or dealing with significant absences.
+
+---
+BET OF THE DAY
+
+**NASHVILLE PREDATORS ML vs PITTSBURGH PENGUINS @ 1.72**
+Nashville Predators goaltender Juuse Saros is in Elite form with a 0.943 SV% in his last 5 starts, facing Pittsburgh Penguins' Sergei Murashov who is struggling with a Poor 0.882 SV% in his last 5. This significant goaltending mismatch grants a major advantage to the Predators. Beyond the crease, Nashville benefits from a substantial home-ice advantage over Pittsburgh and a positive recent goal differential, while the Penguins are on a 2-game losing streak and will be without Evgeni Malkin (upper body). The Predators are also more rested, having 3 days off compared to Pittsburgh's 1. All these factors combine to create a significant edge that the odds do not fully reflect.
+Confidence Level: High, Units: 1.5u, Win Probability: 79%
+
+Players to Watch:
+- Juuse Saros (NSH): [0.943 SV% in last 5 games 🔥HOT]. Saros's elite performance in net is a cornerstone of this pick.
+- Nils Hoglander (NSH): [5 pts in last 5 games 🔥HOT]. Hoglander's recent offensive surge adds to Nashville's scoring potential.
+- Evgeni Malkin (PIT): [Out · Upper Body · Returns 2026-11-25]. Malkin's absence due to injury significantly hampers Pittsburgh's offensive capabilities.
+- Kris Letang (PIT): [6 pts in last 5 games 🔥HOT]. Despite Malkin's absence, Letang has been offensively productive from the blueline.
+
+---
+Other Recommended Plays
+
+**BOSTON BRUINS ML vs WASHINGTON CAPITALS @ 1.76**
+The Boston Bruins, with Jeremy Swayman (0.898 SV% in last 5), have a clear goaltending advantage over Washington Capitals' Charlie Lindgren, who has struggled with a Poor 0.852 SV% in his last 5 starts. Boston also boasts a strong home record and is more rested with 2 days off compared to Washington's 1, enhancing their home ice advantage. While both teams have hot players like David Pastrnak (BOS) and Ryan Leonard (WSH), the Capitals are on a 4-game losing streak which further diminishes their implied probability in this matchup.
+Confidence Level: High, Units: 1.5u, Win Probability: 68%
+
+Players to Watch:
+- David Pastrnak (BOS): [6 pts in last 5 games 🔥HOT]. Pastrnak is a consistent offensive threat who can drive play for Boston.
+- Pavel Zacha (BOS): [5 pts in last 5 games 🔥HOT]. Zacha's recent hot streak contributes to the Bruins' scoring depth.
+- Ryan Leonard (WSH): [5 pts in last 5 games 🔥HOT]. Leonard is a key offensive player for the Capitals and needs to be strong tonight.
+- Cole Hutson (WSH): [7 pts in last 5 games 🔥HOT]. Hutson's strong offensive output from the blueline is crucial for Washington.
+
+**SAN JOSE SHARKS ML vs SEATTLE KRAKEN @ 1.88**
+San Jose Sharks' Alex Nedeljkovic (0.893 SV% in last 5) is trending better than Seattle Kraken's Joey Daccord, who has a poor 0.859 SV% over his last 5 outings, giving the Sharks a goaltending edge. San Jose also benefits from being significantly more rested, with 3 days off compared to Seattle's 1. The Sharks also show an improving form trend and have multiple key players like Macklin Celebrini and Will Smith who are playing at a high level offensively. This combination of better goaltending, rest, and player form creates value on the home side.
+Confidence Level: High, Units: 1.5u, Win Probability: 67%
+
+Players to Watch:
+- Macklin Celebrini (SJS): [6 pts in last 5 games 🔥HOT]. Celebrini is leading the charge for the Sharks' offense with a stellar recent performance.
+- Will Smith (SJS): [6 pts in last 5 games 🔥HOT]. Smith's offensive production makes him a key player to watch for San Jose.
+- Joey Daccord (SEA): [3.0 GAA, 0.859 SV% in last 5 starts]. Daccord's struggles in net could open the door for a high-scoring night for the Sharks.
+- Berkly Catton (SEA): [6 pts in last 5 games 🔥HOT]. Catton is a primary offensive threat for the Kraken, even if the team's overall form is declining.
+
+**FLORIDA PANTHERS ML vs BUFFALO SABRES @ 1.69**
+The Florida Panthers enter this contest with goaltender Jacob Markstrom performing at an average level (0.906 SV% in last 5), which is a notable advantage over Buffalo Sabres' Alex Lyon (0.898 SV% in last 5). Florida has a strong home record and benefits from superior rest, having 3 days off compared to Buffalo's 1. Despite a recent 2-game losing streak, the Panthers possess a deep offense with several players like Matthew Tkachuk and Sam Reinhart currently playing at a 🔥HOT level, providing them a strong offensive upside against a less stable opponent.
+Confidence Level: Medium, Units: 1u, Win Probability: 66%
+
+Players to Watch:
+- Matthew Tkachuk (FLA): [6 pts in last 5 games 🔥HOT]. Tkachuk is a consistent point-producer and critical to the Panthers' offensive success.
+- Sam Reinhart (FLA): [5 pts in last 5 games 🔥HOT]. Reinhart's hot hand in scoring makes him a significant threat.
+- Tage Thompson (BUF): [5 pts in last 5 games 🔥HOT]. Thompson is Buffalo's offensive leader and can create scoring chances.
+- Jack Quinn (BUF): [6 pts in last 5 games 🔥HOT]. Quinn has been productive recently, adding secondary scoring for the Sabres.
