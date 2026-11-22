@@ -448,18 +448,27 @@ def main():
             clean_stats = {k: v for k, v in stats.items() if not k.startswith("_")}
 
             # Traded player: already in DB under a different team — just update.
+            # Use player landing page to get combined season totals across all teams.
             # Also sync any duplicate rows (e.g. old slug kept when NHL renamed the player URL).
             if player_id and player_id in player_id_to_slug:
                 existing_slug = player_id_to_slug[player_id]
+                # Fetch combined season totals (all teams) from player landing page
+                combined = fetch_player_season_stats(int(player_id)) if player_id else None
+                if combined:
+                    combined_stats = {k: v for k, v in combined.items() if not k.startswith("_")}
+                    print(f"      🔀  Traded: {full_name!r} → {slug} (combined: {combined_stats.get('games_played')} GP, {combined_stats.get('points')} pts)")
+                    time.sleep(0.05)
+                else:
+                    combined_stats = clean_stats
+                    print(f"      🔀  Traded: {full_name!r} → {slug}")
                 updates.append({
                     "puckpedia_slug": existing_slug,
                     "team":           slug,
                     "updated_at":     now,
                     "injury_status":  injury_status,
                     "last5_game_pts": json.dumps(last5) if last5 is not None else None,
-                    **clean_stats,
+                    **combined_stats,
                 })
-                print(f"      🔀  Traded: {full_name!r} → {slug}")
                 # Sync any additional duplicate slug rows for the same player
                 for dup_slug in player_id_to_all_slugs.get(player_id, []):
                     if dup_slug != existing_slug:
@@ -469,7 +478,7 @@ def main():
                             "updated_at":     now,
                             "injury_status":  injury_status,
                             "last5_game_pts": json.dumps(last5) if last5 is not None else None,
-                            **clean_stats,
+                            **combined_stats,
                         })
                         print(f"      🔁  Synced duplicate slug: {dup_slug!r}")
                 total_matched += 1
