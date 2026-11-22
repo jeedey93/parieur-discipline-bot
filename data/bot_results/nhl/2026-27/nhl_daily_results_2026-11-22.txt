@@ -1,0 +1,27 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-21.
+
+Here's the breakdown:
+
+1.  **Nashville Predators ML vs Pittsburgh Penguins @ 1.72 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Pittsburgh 3 @ Nashville 4 (Total goals: 7)
+    *   Outcome: **WIN** (Nashville won the game.)
+
+2.  **Boston Bruins ML vs Washington Capitals @ 1.76 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Washington 5 @ Boston 7 (Total goals: 12)
+    *   Outcome: **WIN** (Boston won the game.)
+
+3.  **San Jose Sharks ML vs Seattle Kraken @ 1.88 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Seattle 3 @ San Jose 4 (Total goals: 7)
+    *   Outcome: **WIN** (San Jose won the game.)
+
+4.  **Florida Panthers ML vs Buffalo Sabres @ 1.69 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Buffalo 3 @ Florida 4 (Total goals: 7)
+    *   Outcome: **WIN** (Florida won the game.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 4**
+*   **Total Losses: 0**
+*   **Total Pushes: 0**
