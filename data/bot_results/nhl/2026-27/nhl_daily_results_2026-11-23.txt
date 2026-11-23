@@ -1,0 +1,19 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-22.
+
+Here's the breakdown:
+
+1.  **Vancouver Canucks ML vs Chicago Blackhawks @ 1.94 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Chicago 6 @ Vancouver 3 (Total goals: 9)
+    *   Outcome: **LOSS** (Vancouver lost the game)
+
+2.  **Edmonton Oilers ML vs St Louis Blues @ 2.0 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Edmonton 4 @ St. Louis 5 (Total goals: 9)
+    *   Outcome: **LOSS** (Edmonton lost the game)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 0**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**
