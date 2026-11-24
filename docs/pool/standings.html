@@ -5525,9 +5525,9 @@
         const pl = m[slug];
         const name = pl ? (pl.player_name || slug.split('/').pop().replace(/-/g,' ')) : slug.split('/').pop().replace(/-/g,' ');
         const pos = pl ? normalizePos(pl.position) : '?';
-        const posColors = { F: { bg: 'rgba(255,122,138,0.1)', border: 'rgba(255,122,138,0.3)', text: 'var(--pink)' },
-                            D: { bg: 'rgba(125,180,255,0.1)', border: 'rgba(125,180,255,0.3)', text: 'var(--blue)' },
-                            G: { bg: 'rgba(255,184,28,0.1)',  border: 'rgba(255,184,28,0.3)',  text: 'var(--gold)' } };
+        const posColors = { F: { bg: 'rgba(255,122,138,0.08)', border: 'rgba(255,122,138,0.25)', text: 'var(--pink)' },
+                            D: { bg: 'rgba(125,180,255,0.08)', border: 'rgba(125,180,255,0.25)', text: 'var(--blue)' },
+                            G: { bg: 'rgba(255,184,28,0.08)',  border: 'rgba(255,184,28,0.25)',  text: 'var(--gold)' } };
         const c = posColors[pos] || posColors.F;
         const pts = pl ? (() => {
           const s = _scoring || {};
@@ -5535,16 +5535,30 @@
           if (pos === 'D') return (pl.goals||0)*(s.d_goals??2)+(pl.assists||0)*(s.d_assists??1);
           return (pl.points||0)*(s.f_points??1);
         })() : null;
-        const team = pl?.team || '';
-        const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-        return `<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.6rem;background:${c.bg};border:1px solid ${c.border};border-radius:8px">
-          <div style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Bebas Neue',cursive;font-size:0.75rem;color:rgba(255,255,255,0.5)">${initials}</div>
+        const nhlId  = pl?.nhl_player_id || null;
+        const abbr   = pl?.team ? (TEAM_ABBR[pl.team] || null) : null;
+        const headshotSrc = nhlId ? `https://assets.nhle.com/mugs/nhl/latest/${nhlId}.png` : null;
+        const logoSrc     = abbr  ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg`  : null;
+        const initials = name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+        const avatar = headshotSrc
+          ? `<div style="position:relative;width:44px;height:44px;flex-shrink:0">
+               <div style="width:44px;height:44px;border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)">
+                 <img src="${headshotSrc}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center"
+                   onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,cursive;font-size:1rem;color:rgba(255,255,255,0.4)\'>${initials}</div>'">
+               </div>
+               ${logoSrc ? `<img src="${logoSrc}" alt="${abbr}" style="position:absolute;bottom:-3px;right:-3px;width:18px;height:18px;border-radius:4px;background:rgba(7,17,31,0.9);padding:1px">` : ''}
+             </div>`
+          : `<div style="width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Bebas Neue',cursive;font-size:1rem;color:rgba(255,255,255,0.35)">${initials}</div>`;
+
+        return `<div style="display:flex;align-items:center;gap:0.65rem;padding:0.55rem 0.65rem;background:${c.bg};border:1px solid ${c.border};border-radius:10px">
+          ${avatar}
           <div style="flex:1;min-width:0">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.88rem;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(name)}</div>
-            <div style="display:flex;align-items:center;gap:0.4rem;margin-top:1px">
-              <span style="font-family:'Bebas Neue',cursive;font-size:0.65rem;letter-spacing:1px;color:${c.text};background:${c.bg};border:1px solid ${c.border};border-radius:3px;padding:0 4px">${pos}</span>
-              ${team ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);letter-spacing:0.5px">${escHtml(team)}</span>` : ''}
-              ${pts !== null ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-left:auto">${pts}pts</span>` : ''}
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2">${escHtml(name)}</div>
+            <div style="display:flex;align-items:center;gap:0.35rem;margin-top:3px">
+              <span style="font-family:'Bebas Neue',cursive;font-size:0.65rem;letter-spacing:1px;color:${c.text};background:${c.bg};border:1px solid ${c.border};border-radius:3px;padding:0 5px;line-height:1.6">${pos}</span>
+              ${abbr ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.35);font-weight:600;letter-spacing:0.5px">${abbr}</span>` : ''}
+              ${pts !== null ? `<span style="font-size:0.72rem;color:rgba(255,255,255,0.45);margin-left:auto;white-space:nowrap">${pts} pts</span>` : ''}
             </div>
           </div>
         </div>`;
