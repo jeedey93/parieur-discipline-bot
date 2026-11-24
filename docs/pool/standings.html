@@ -629,14 +629,12 @@
         /* ── POS SCORES BAR ── */
         .pos-scores-bar { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
         @media (min-width: 861px) { .pos-scores-bar { gap: 1rem; margin-bottom: 1.75rem; } }
-        @media (max-width: 380px) { .pos-scores-bar { gap: 0.25rem; } }
         .pos-score-block {
-          flex: 1; min-width: 0; background: rgba(255,255,255,0.03);
+          flex: 1; background: rgba(255,255,255,0.03);
           border: 1px solid var(--line); border-radius: 8px;
-          padding: 0.6rem 0.5rem; text-align: center;
+          padding: 0.6rem 0.75rem; text-align: center;
           position: relative; overflow: hidden;
         }
-        @media (min-width: 480px) { .pos-score-block { padding: 0.6rem 0.75rem; } }
         @media (min-width: 861px) { .pos-score-block { padding: 1.25rem 1.5rem; border-radius: 12px; } }
         .pos-score-block.F { border-color: rgba(255,122,138,0.2); }
         .pos-score-block.D { border-color: rgba(125,180,255,0.2); }
