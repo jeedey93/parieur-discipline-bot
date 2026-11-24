@@ -1148,7 +1148,7 @@
         }
         .trade-cta-btn:hover { background: rgba(255,184,28,0.16); border-color: rgba(255,184,28,0.5); }
 
-.cap-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .cap-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         .cap-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 0.3rem 0.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .cap-table th.right, .cap-table td.right { text-align: right; }
         .cap-table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.85); vertical-align: middle; }
@@ -4325,6 +4325,7 @@
               <span class="detail-gap-label${rank === 1 ? ' leader' : ''}">${gap}</span>
               ${teamYtd > 0 ? `<span class="detail-badge" style="color:var(--green);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08)">+${teamYtd} yesterday</span>` : ''}
               ${(() => { const sc = _benchSwaps.filter(s => s.team_id === team.id && s.reason === 'swap').length; const full = sc >= 5; return `<span class="detail-badge" style="color:${full ? 'var(--red)' : 'var(--blue)'};border-color:${full ? 'rgba(239,68,68,0.3)' : 'rgba(125,180,255,0.25)'};background:${full ? 'rgba(239,68,68,0.08)' : 'rgba(125,180,255,0.08)'}">${sc}/5 swaps</span>`; })()}
+            </div>
           </div>
         </div>
         <div class="pos-scores-bar">
