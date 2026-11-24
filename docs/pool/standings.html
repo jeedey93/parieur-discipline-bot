@@ -1546,6 +1546,10 @@
         </div>
     </header>
     <div id="last-updated" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:1px;color:rgba(255,255,255,0.25);text-transform:uppercase;margin:-0.5rem 0 1rem;padding:0 0.25rem"></div>
+    <div id="trade-banner" style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;background:rgba(255,184,28,0.08);border:1px solid rgba(255,184,28,0.25);border-radius:10px;display:none;align-items:center;justify-content:space-between;gap:0.75rem;cursor:pointer" onclick="openTradeModal()">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold);letter-spacing:0.5px">🤝 <span id="trade-banner-count"></span> pending trade proposal<span id="trade-banner-s"></span></span>
+      <span style="font-family:'Bebas Neue',cursive;font-size:0.8rem;letter-spacing:2px;color:rgba(255,184,28,0.6)">View →</span>
+    </div>
     <div id="content">
         <div style="margin-bottom:1.25rem">
             <div class="skeleton-row"></div>
@@ -1642,7 +1646,7 @@
     if (!_leagueCode) window.location.replace('/pool');
     let _leagueName = null;
 
-    let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [];
+    let allPlayers = [], teams = [], currentTrades = [], activeTeamId = null, _benchSwaps = [], _proposals = {};
     let _lastSnapshot = {}; // team_id -> { pts, rank } from most recent daily snapshot (today)
     let _prevDaySnapshot = {}; // team_id -> { pts, rank } from previous day's snapshot (for rank arrows)
     let _yesterdaySnapshot = {}; // team_id -> pts from previous day's snapshot
@@ -3169,6 +3173,7 @@
             B: Array.isArray(t.roster?.B) ? t.roster.B : Array(6).fill(null),
           }
         }));
+        _proposals = rows[0].data.proposals || {};
         _allRostersSlugMap = null; // invalidate search cache when teams reload
         currentTrades = [];
         const tRes = await fetch(`${SUPABASE_URL}/rest/v1/player_trades?league_code=eq.${_leagueCode}&select=team_id,player_to_slug,player_to_name,player_to_position,date_from_acquired,date_traded,points_accumulated_at_trade&order=date_from_acquired.asc`,
@@ -3239,6 +3244,7 @@
         } catch(_) {}
         if (!activeTeamId) activeTeamId = null; // start on leaderboard unless restored from session
         render();
+        updateTradeBanner();
         loadYesterdayPts(); // async — re-renders when done
         fetchAllBoxscores(); // async — fetches game states for scoreboard
         startLivePolling(); // async — polls boxscores during game hours
@@ -5470,6 +5476,108 @@
         if (btn.textContent !== '✅ Copied!') btn.textContent = '📸 Share';
       }
     }
+
+    // ── TRADE PROPOSALS BANNER + MODAL ──────────────────────────────────────
+    function updateTradeBanner() {
+      const pending = Object.values(_proposals).filter(p => p.status === 'pending');
+      const banner = document.getElementById('trade-banner');
+      if (!pending.length) { banner.style.display = 'none'; return; }
+      document.getElementById('trade-banner-count').textContent = pending.length;
+      document.getElementById('trade-banner-s').textContent = pending.length !== 1 ? 's' : '';
+      banner.style.display = 'flex';
+    }
+
+    function openTradeModal() {
+      const pending = Object.values(_proposals).filter(p => p.status === 'pending');
+      const m = slugMap();
+      const myTeamId = localStorage.getItem(`myTeam_${_leagueCode}`);
+      const body = document.getElementById('trade-modal-body');
+
+      body.innerHTML = pending.map(p => {
+        const renderSlugs = slugs => slugs.map(s => {
+          const pl = m[s];
+          const name = pl ? (pl.player_name || s.split('/').pop().replace(/-/g,' ')) : s.split('/').pop().replace(/-/g,' ');
+          const pos = pl ? normalizePos(pl.position) : '—';
+          const posColor = pos === 'F' ? 'var(--pink)' : pos === 'D' ? 'var(--blue)' : 'var(--gold)';
+          return `<span style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 7px;font-size:0.82rem;font-weight:600">
+            <span style="font-family:'Bebas Neue',cursive;font-size:0.7rem;color:${posColor}">${pos}</span>${escHtml(name)}
+          </span>`;
+        }).join(' ');
+
+        const date = new Date(p.createdAt).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+        const isMine = myTeamId && p.fromTeamId === myTeamId;
+        const isRecipient = myTeamId && p.toTeamId === myTeamId;
+        const actionBtn = isMine
+          ? `<button onclick="withdrawProposal('${escHtml(p.id)}')" style="font-family:'Bebas Neue',cursive;font-size:0.75rem;letter-spacing:1.5px;background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.25);color:var(--red);border-radius:5px;padding:4px 10px;cursor:pointer">Withdraw</button>`
+          : isRecipient
+          ? `<button onclick="withdrawProposal('${escHtml(p.id)}')" style="font-family:'Bebas Neue',cursive;font-size:0.75rem;letter-spacing:1.5px;background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.25);color:var(--red);border-radius:5px;padding:4px 10px;cursor:pointer">Decline</button>`
+          : '';
+        return `<div id="proposal-card-${escHtml(p.id)}" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:0.85rem 1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem">
+            <span style="font-family:'Bebas Neue',cursive;font-size:0.95rem;letter-spacing:2px;color:white">${escHtml(p.fromTeamName)} <span style="color:rgba(255,255,255,0.3)">→</span> ${escHtml(p.toTeamName)}</span>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+              <span style="font-size:0.72rem;color:rgba(255,255,255,0.3);letter-spacing:0.5px">${date}</span>
+              ${actionBtn}
+            </div>
+          </div>
+          ${p.offeredSlugs?.length ? `<div style="margin-bottom:0.4rem"><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:4px">Offers</span><div style="display:flex;flex-wrap:wrap;gap:4px">${renderSlugs(p.offeredSlugs)}</div></div>` : ''}
+          ${p.requestedSlugs?.length ? `<div><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:4px">Requests</span><div style="display:flex;flex-wrap:wrap;gap:4px">${renderSlugs(p.requestedSlugs)}</div></div>` : ''}
+          ${p.note ? `<div style="margin-top:0.5rem;font-size:0.82rem;color:rgba(255,255,255,0.45);font-style:italic">"${escHtml(p.note)}"</div>` : ''}
+        </div>`;
+      }).join('') || '<div style="text-align:center;color:rgba(255,255,255,0.3);font-size:0.9rem;padding:1rem 0">No pending proposals.</div>';
+
+      document.getElementById('trade-modal-link').href = `trade-proposal.html?league=${encodeURIComponent(_leagueCode)}`;
+      document.getElementById('trade-modal-overlay').style.display = 'flex';
+    }
+
+    async function withdrawProposal(id) {
+      const p = _proposals[id];
+      const myTeamId = localStorage.getItem(`myTeam_${_leagueCode}`);
+      const isRecipient = p && myTeamId && p.toTeamId === myTeamId;
+      const label = isRecipient ? 'Decline this trade proposal?' : 'Withdraw this trade proposal?';
+      if (!confirm(label)) return;
+      try {
+        const rRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: sbHeaders() });
+        const rows = await rRes.json();
+        const data = rows[0]?.data || {};
+        const props = data.proposals || {};
+        if (!props[id]) return;
+        delete props[id];
+        data.proposals = props;
+        await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?on_conflict=league_code`, {
+          method: 'POST',
+          headers: { ...sbHeaders(), 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+          body: JSON.stringify({ league_code: _leagueCode, data, updated_at: new Date().toISOString() }),
+        });
+        _proposals = props;
+        const card = document.getElementById(`proposal-card-${id}`);
+        if (card) card.remove();
+        updateTradeBanner();
+        const remaining = document.getElementById('trade-modal-body').children.length;
+        if (!remaining) closeTradeModal();
+      } catch(e) {
+        alert('Failed to withdraw proposal.');
+      }
+    }
+
+    function closeTradeModal() {
+      document.getElementById('trade-modal-overlay').style.display = 'none';
+    }
 </script>
+
+<!-- Trade proposals modal -->
+<div id="trade-modal-overlay" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closeTradeModal()">
+  <div style="background:#0d1b2e;border:1px solid rgba(255,255,255,0.12);border-radius:14px;width:100%;max-width:520px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)">
+      <span style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:3px;color:white">Pending <span style="color:var(--gold)">Trades</span></span>
+      <button onclick="closeTradeModal()" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.3rem;cursor:pointer;line-height:1;padding:2px 6px">&times;</button>
+    </div>
+    <div id="trade-modal-body" style="overflow-y:auto;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:0.75rem"></div>
+    <div style="padding:0.75rem 1.25rem;border-top:1px solid rgba(255,255,255,0.08);text-align:right">
+      <a id="trade-modal-link" href="#" style="font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:2px;color:var(--gold);text-decoration:none;opacity:0.7">Open Trade Page →</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
