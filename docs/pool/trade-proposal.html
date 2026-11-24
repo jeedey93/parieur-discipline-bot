@@ -921,6 +921,7 @@
         ...(team.roster.F || []),
         ...(team.roster.D || []),
         ...(team.roster.G || []),
+        ...(team.roster.B || []),
       ].filter(Boolean))];
       return slugs.map(slug => {
         const p = playerFromSlug(slug);
