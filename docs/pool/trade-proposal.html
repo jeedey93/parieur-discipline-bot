@@ -610,6 +610,43 @@
           color: rgba(255,255,255,0.25);
           cursor: not-allowed; transform: none;
         }
+        .btn-accept {
+          font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 1.5px;
+          padding: 7px 16px; border-radius: 7px; border: none;
+          background: var(--green); color: var(--rink);
+          cursor: pointer; transition: background 0.15s;
+        }
+        .btn-accept:hover { background: #34d371; }
+        .btn-withdraw, .btn-decline {
+          font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 1.5px;
+          padding: 6px 14px; border-radius: 7px;
+          border: 1px solid rgba(255,255,255,0.12); background: transparent;
+          color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.15s;
+        }
+        .btn-withdraw:hover, .btn-decline:hover {
+          background: rgba(200,16,46,0.08); border-color: rgba(200,16,46,0.3); color: #ff7a8a;
+        }
+        .pc-del-inline {
+          font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 1.5px;
+          padding: 6px 14px; border-radius: 7px;
+          border: 1px solid rgba(255,255,255,0.1); background: transparent;
+          color: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.15s;
+        }
+        .pc-del-inline:hover { color: #ff7a8a; border-color: rgba(200,16,46,0.3); }
+        .pc-confirm-row {
+          display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+          padding: 0.65rem 0.9rem; border-top: 1px solid rgba(255,255,255,0.06);
+          font-size: 12px;
+        }
+        .pc-confirm-side { color: rgba(255,255,255,0.4); }
+        .pc-confirm-side.confirmed { color: var(--green); }
+        .pc-confirm-sep { color: rgba(255,255,255,0.2); }
+        .pc-ready-badge {
+          margin-left: auto; font-family: 'Bebas Neue', cursive; font-size: 10px; letter-spacing: 1.5px;
+          background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
+          color: var(--green); border-radius: 20px; padding: 2px 10px;
+        }
+        .prop-card.both-ready { border-color: rgba(34,197,94,0.3); }
 
         /* Feed empty */
         .feed-empty {
@@ -659,14 +696,7 @@
             <div class="team-dropdown" id="team-dropdown"></div>
         </div>
 
-        <!-- View tabs -->
-        <div class="view-tabs">
-            <button class="vtab active" id="vtab-build" onclick="setView('build')">New Proposal</button>
-            <button class="vtab" id="vtab-feed" onclick="setView('feed')">
-                Proposals
-                <span id="feed-badge" style="display:none;margin-left:6px;background:rgba(255,184,28,0.18);color:var(--gold);border-radius:20px;padding:1px 7px;font-size:10px;letter-spacing:1px;vertical-align:middle;"></span>
-            </button>
-        </div>
+        <span id="feed-badge" style="display:none"></span>
     </div>
 </header>
 
@@ -771,11 +801,14 @@
     </div><!-- #view-build -->
 
     <!-- ══════════════════════════
-         FEED VIEW
+         PROPOSALS SECTION
     ══════════════════════════ -->
-    <div id="view-feed" style="display:none">
+    <div id="view-feed" style="margin-top:2rem">
         <div class="feed-toprow">
-            <span class="feed-count" id="feed-count"></span>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <span style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:3px;color:white">Trade Proposals</span>
+              <span class="feed-count" id="feed-count" style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.5px"></span>
+            </div>
             <div class="feed-filters">
                 <button class="ff act" onclick="setFeedFilter('all',this)">All</button>
                 <button class="ff" onclick="setFeedFilter('recv',this)">Received</button>
@@ -1045,10 +1078,6 @@
        VIEW SWITCHING
     ══════════════════════════════════════════ */
     function setView(v) {
-      document.getElementById('view-build').style.display = v === 'build' ? '' : 'none';
-      document.getElementById('view-feed').style.display  = v === 'feed'  ? '' : 'none';
-      document.getElementById('vtab-build').classList.toggle('active', v === 'build');
-      document.getElementById('vtab-feed').classList.toggle('active',  v === 'feed');
       if (v === 'feed') renderFeed();
     }
 
@@ -1284,6 +1313,7 @@
       const badge = document.getElementById('feed-badge');
       badge.textContent   = total;
       badge.style.display = total ? 'inline-block' : 'none';
+      renderFeed();
     }
 
     function setFeedFilter(f, el) {
@@ -1314,8 +1344,10 @@
     }
 
     function buildCard(p) {
-      const isSent = MY_TEAM && p.fromTeamId === MY_TEAM.id;
-      const dateStr = new Date(p.createdAt).toLocaleDateString('en-CA', { month:'short', day:'numeric' });
+      const isSent    = MY_TEAM && p.fromTeamId === MY_TEAM.id;
+      const isRecip   = MY_TEAM && p.toTeamId   === MY_TEAM.id;
+      const dateStr   = new Date(p.createdAt).toLocaleDateString('en-CA', { month:'short', day:'numeric' });
+      const bothReady = p.acceptedFrom && p.acceptedTo;
 
       function playerRow(slug) {
         const info = playerFromSlug(slug);
@@ -1335,43 +1367,77 @@
       const offerHTML = offered.length   ? offered.map(playerRow).join('')   : `<div class="pc-empty">Nothing offered</div>`;
       const reqHTML   = requested.length ? requested.map(playerRow).join('') : `<div class="pc-empty">Nothing requested</div>`;
 
-      const footer = p.status === 'pending'
-        ? `<div class="pc-foot">
-            ${!isSent ? `<button class="btn-counter" onclick="counterProposal('${escH(p.id)}')">Counter</button>` : ''}
-            <button class="btn-exec" id="exec-${escH(p.id)}" onclick="executeTrade('${escH(p.id)}')">⇄ Execute</button>
-          </div>`
-        : '';
+      // Dual-confirm row
+      const fromCheck = p.acceptedFrom ? '✅' : '☑️';
+      const toCheck   = p.acceptedTo   ? '✅' : '☑️';
+      const fromCanAccept = isRecip && !p.acceptedFrom;
+      const toCanAccept   = isRecip && !p.acceptedTo;
+      const confirmRow = p.status === 'pending' ? `
+        <div class="pc-confirm-row">
+          <span class="pc-confirm-side ${p.acceptedFrom ? 'confirmed' : ''}">${fromCheck} ${escH(p.fromTeamName)}</span>
+          <span class="pc-confirm-sep">·</span>
+          <span class="pc-confirm-side ${p.acceptedTo ? 'confirmed' : ''}">${toCheck} ${escH(p.toTeamName)}</span>
+          ${bothReady ? '<span class="pc-ready-badge">Ready for commish</span>' : ''}
+        </div>` : '';
 
-      const dirClass  = isSent ? 'dir-sent' : 'dir-recv';
-      const dirLabel  = isSent ? 'Sent' : (MY_TEAM && p.toTeamId === MY_TEAM.id ? 'Received' : '');
-      const cardClass = `prop-card ${dirClass}${p.status === 'accepted' ? ' accepted' : ''}`;
+      // Action buttons
+      let actionBtns = '';
+      if (p.status === 'pending') {
+        if (isRecip && !p.acceptedTo) {
+          actionBtns += `<button class="btn-accept" onclick="acceptProposal('${escH(p.id)}','to')">✓ Confirm</button>`;
+        }
+        if (isSent) {
+          actionBtns += `<button class="btn-withdraw" onclick="deleteProposal('${escH(p.id)}')">Withdraw</button>`;
+        } else if (isRecip) {
+          actionBtns += `<button class="btn-decline" onclick="deleteProposal('${escH(p.id)}')">Decline</button>`;
+        }
+        if (!isSent && !isRecip) {
+          actionBtns += `<button class="pc-del-inline" onclick="deleteProposal('${escH(p.id)}')">Remove</button>`;
+        }
+      }
+      const footer = actionBtns ? `<div class="pc-foot">${actionBtns}</div>` : '';
+
+      const cardClass = `prop-card${isSent ? ' dir-sent' : isRecip ? ' dir-recv' : ''}${bothReady ? ' both-ready' : ''}${p.status === 'accepted' ? ' accepted' : ''}`;
 
       return `<div class="${cardClass}">
         <div class="pc-head">
-          ${dirLabel ? `<span class="dir-badge ${isSent ? 'sent' : 'recv'}">${dirLabel}</span>` : ''}
           <div class="pc-teams">
             <span>${escH(p.fromTeamName)}</span>
-            <span class="pc-teams-sep">→</span>
+            <span class="pc-teams-sep">⇄</span>
             <span>${escH(p.toTeamName)}</span>
           </div>
-          <span class="pc-status ${escH(p.status)}">${p.status.toUpperCase()}</span>
           <span class="pc-date">${dateStr}</span>
-          <button class="pc-del" onclick="deleteProposal('${escH(p.id)}')" title="Delete">✕</button>
+          ${!isSent && !isRecip ? `<button class="pc-del" onclick="deleteProposal('${escH(p.id)}')" title="Delete">✕</button>` : ''}
         </div>
         <div class="pc-body">
           <div class="pc-side">
-            <div class="pc-side-label offer">${escH(p.fromTeamName)}</div>
+            <div class="pc-side-label offer">${escH(p.fromTeamName)} gives</div>
             ${offerHTML}
           </div>
           <div class="pc-arrow-col">⇄</div>
           <div class="pc-side">
-            <div class="pc-side-label req">${escH(p.toTeamName)}</div>
+            <div class="pc-side-label req">${escH(p.toTeamName)} gives</div>
             ${reqHTML}
           </div>
         </div>
         ${p.note ? `<div class="pc-note">"${escH(p.note)}"</div>` : ''}
+        ${confirmRow}
         ${footer}
       </div>`;
+    }
+
+    async function acceptProposal(id, side) {
+      const p = proposals[id];
+      if (!p) return;
+      if (side === 'from') p.acceptedFrom = true;
+      if (side === 'to')   p.acceptedTo   = true;
+      if (p.acceptedFrom && p.acceptedTo) p.status = 'accepted';
+      try {
+        await saveProposals();
+        renderFeed();
+      } catch(e) {
+        console.error('acceptProposal failed', e);
+      }
     }
 
     async function deleteProposal(id) {
