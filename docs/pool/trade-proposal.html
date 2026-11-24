@@ -950,22 +950,13 @@
     async function load() {
       if (!_leagueCode) { showError('No league code in URL. Add <code>?league=YOUR_CODE</code> to the URL.'); return; }
       try {
-        const [rRes, pRes, sRes] = await Promise.all([
+        const [rRes, sRes] = await Promise.all([
           fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: SB_HEADERS }),
-          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played,nhl_player_id&limit=2000`, { headers: SB_HEADERS }),
           fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl,g_goals,g_assists`, { headers: SB_HEADERS }),
         ]);
         if (!rRes.ok) throw new Error(`pool_rosters ${rRes.status}`);
         const rRows = await rRes.json();
         if (!rRows.length) { showError('No data found for this league.'); return; }
-
-        if (pRes.ok) {
-          const players = await pRes.json();
-          players.forEach(p => {
-            _playerMap[p.puckpedia_slug] = p;
-            _playerMap[`/player/${p.puckpedia_slug}`] = p;
-          });
-        }
 
         if (sRes.ok) {
           const sRows = await sRes.json();
@@ -984,8 +975,28 @@
             F: Array.isArray(t.roster?.F) ? t.roster.F : [],
             D: Array.isArray(t.roster?.D) ? t.roster.D : [],
             G: Array.isArray(t.roster?.G) ? t.roster.G : [],
+            B: Array.isArray(t.roster?.B) ? t.roster.B : [],
           },
         }));
+
+        // Collect every slug across all rosters and fetch only those players
+        const allSlugs = [...new Set(allTeams.flatMap(t =>
+          [...t.roster.F, ...t.roster.D, ...t.roster.G, ...t.roster.B].filter(Boolean)
+        ))];
+        if (allSlugs.length) {
+          const slugList = allSlugs.map(s => encodeURIComponent(s)).join(',');
+          const pRes = await fetch(
+            `${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played,nhl_player_id&puckpedia_slug=in.(${slugList})`,
+            { headers: SB_HEADERS }
+          );
+          if (pRes.ok) {
+            const players = await pRes.json();
+            players.forEach(p => {
+              _playerMap[p.puckpedia_slug] = p;
+              _playerMap[`/player/${p.puckpedia_slug}`] = p;
+            });
+          }
+        }
 
         TEAM_ROSTERS = {};
         allTeams.forEach(t => { TEAM_ROSTERS[t.id] = rosterToList(t, tradingBlock); });
