@@ -814,6 +814,15 @@
     let _allTeams = [];
     let _tradingBlock = {};
     let _allPlayerCache = null;
+    let _scoring = { f_points:1, d_goals:2, d_assists:1, g_wins:2, g_shutouts:3, g_otl:1, g_goals:1, g_assists:1 };
+
+    function poolPts(p) {
+      if (!p) return 0;
+      const pos = normPos(p.position);
+      if (pos === 'G') return (p.wins||0)*_scoring.g_wins + (p.shutouts||0)*_scoring.g_shutouts + (p.ot_losses||0)*_scoring.g_otl + (p.goals||0)*_scoring.g_goals + (p.assists||0)*_scoring.g_assists;
+      if (pos === 'D') return (p.goals||0)*_scoring.d_goals + (p.assists||0)*_scoring.d_assists;
+      return (p.points||0)*_scoring.f_points;
+    }
 
     /* ══════════════════════════════════════════
        STATE
@@ -871,7 +880,7 @@
           slug,
           name:    p ? formatName(p.player_name) : slugToName(slug),
           pos,
-          pts:     p ? (p.points ?? 0) : 0,
+          pts:     poolPts(p),
           cap:     p ? ((p.cap_hit ?? 0) / 1e6) : 0,
           onBlock: !!tradingBlock[slug],
         };
@@ -891,9 +900,10 @@
     async function load() {
       if (!_leagueCode) { showError('No league code in URL. Add <code>?league=YOUR_CODE</code> to the URL.'); return; }
       try {
-        const [rRes, pRes] = await Promise.all([
+        const [rRes, pRes, sRes] = await Promise.all([
           fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: SB_HEADERS }),
-          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,games_played&order=cap_hit.desc&limit=1000`, { headers: SB_HEADERS }),
+          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played&order=cap_hit.desc&limit=1000`, { headers: SB_HEADERS }),
+          fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl,g_goals,g_assists`, { headers: SB_HEADERS }),
         ]);
         if (!rRes.ok) throw new Error(`pool_rosters ${rRes.status}`);
         const rRows = await rRes.json();
@@ -905,6 +915,11 @@
             _playerMap[p.puckpedia_slug] = p;
             _playerMap[`/player/${p.puckpedia_slug}`] = p;
           });
+        }
+
+        if (sRes.ok) {
+          const sRows = await sRes.json();
+          if (sRows.length) Object.assign(_scoring, sRows[0]);
         }
 
         const data = rRows[0].data || {};
@@ -1306,7 +1321,7 @@
         const info = playerFromSlug(slug);
         const name = info ? formatName(info.player_name) : slugToName(slug);
         const pos  = info ? normPos(info.position) : 'F';
-        const pts  = info ? (info.points ?? 0) : 0;
+        const pts  = poolPts(info);
         const cap  = info ? ((info.cap_hit ?? 0) / 1e6) : 0;
         return `<div class="pc-player">
           <span class="pos-tag ${pos}">${pos}</span>
