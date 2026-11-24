@@ -108,30 +108,46 @@ def fetch_player_season_stats(player_id: int) -> dict | None:
     except Exception:
         return None
 
-    # Find this season's regular-season totals — never fall back to featuredStats
-    # since that returns the most recent season with games, which may be last year.
+    # Find this season's regular-season totals — sum ALL rows for this season
+    # since traded players have one row per team (e.g. Nashville + Seattle).
+    # Never fall back to featuredStats as it may return last year's data.
     season_int = int(SEASON)
-    for st in d.get("seasonTotals", []):
-        if st.get("season") == season_int and st.get("gameTypeId") == GAMETYPE and st.get("leagueAbbrev") == "NHL":
-            pos_raw = (d.get("position") or "C").upper()
-            pos = "D" if pos_raw in ("D", "LD", "RD") else ("G" if pos_raw == "G" else "F")
-            first = d.get("firstName", {}).get("default", "")
-            last  = d.get("lastName",  {}).get("default", "")
-            return {
-                "nhl_player_id": player_id,
-                "games_played":  st.get("gamesPlayed", 0),
-                "goals":         st.get("goals", 0),
-                "assists":       st.get("assists", 0),
-                "points":        st.get("points", 0),
-                "wins":          st.get("wins"),
-                "ot_losses":     st.get("otLosses") or st.get("overtimeLosses"),
-                "shutouts":      st.get("shutouts"),
-                "save_pct":      st.get("savePctg") or st.get("savePercentage"),
-                "gaa":           st.get("goalsAgainstAvg"),
-                "_position":     pos,
-                "_first":        first,
-                "_last":         last,
-            }
+    season_rows = [
+        st for st in d.get("seasonTotals", [])
+        if st.get("season") == season_int and st.get("gameTypeId") == GAMETYPE and st.get("leagueAbbrev") == "NHL"
+    ]
+    if season_rows:
+        pos_raw = (d.get("position") or "C").upper()
+        pos = "D" if pos_raw in ("D", "LD", "RD") else ("G" if pos_raw == "G" else "F")
+        first = d.get("firstName", {}).get("default", "")
+        last  = d.get("lastName",  {}).get("default", "")
+        # Sum across all team stints this season
+        gp      = sum(st.get("gamesPlayed", 0) or 0 for st in season_rows)
+        goals   = sum(st.get("goals", 0) or 0 for st in season_rows)
+        assists = sum(st.get("assists", 0) or 0 for st in season_rows)
+        points  = sum(st.get("points", 0) or 0 for st in season_rows)
+        wins    = sum(st.get("wins", 0) or 0 for st in season_rows) or None
+        otl     = sum((st.get("otLosses") or st.get("overtimeLosses") or 0) for st in season_rows) or None
+        so      = sum(st.get("shutouts", 0) or 0 for st in season_rows) or None
+        # For rate stats (save_pct, gaa) use the most recent team's row
+        last_row = season_rows[-1]
+        save_pct = last_row.get("savePctg") or last_row.get("savePercentage")
+        gaa      = last_row.get("goalsAgainstAvg")
+        return {
+            "nhl_player_id": player_id,
+            "games_played":  gp,
+            "goals":         goals,
+            "assists":       assists,
+            "points":        points,
+            "wins":          wins,
+            "ot_losses":     otl,
+            "shutouts":      so,
+            "save_pct":      save_pct,
+            "gaa":           gaa,
+            "_position":     pos,
+            "_first":        first,
+            "_last":         last,
+        }
 
     # Player has genuinely 0 GP this season — return zeroed stats so DB stays accurate
     pos_raw = (d.get("position") or "C").upper()
