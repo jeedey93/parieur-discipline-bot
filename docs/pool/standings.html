@@ -1134,6 +1134,20 @@
         .detail-tab:hover { color: white; background: rgba(255,255,255,0.05); }
         .detail-tab.active { background: rgba(255,184,28,0.12); color: var(--gold); border-color: rgba(255,184,28,0.3); }
 
+        .trade-cta {
+          text-align: center;
+          padding: 1.5rem 0 0.5rem;
+        }
+        .trade-cta-btn {
+          display: inline-flex; align-items: center; gap: 7px;
+          font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 2px;
+          background: rgba(255,184,28,0.08); border: 1px solid rgba(255,184,28,0.25);
+          color: var(--gold); border-radius: 10px; padding: 10px 24px;
+          text-decoration: none; white-space: nowrap;
+          transition: background 0.15s, border-color 0.15s;
+        }
+        .trade-cta-btn:hover { background: rgba(255,184,28,0.16); border-color: rgba(255,184,28,0.5); }
+
         .btn-propose-trade {
           display: inline-flex; align-items: center; gap: 5px;
           font-family: 'Bebas Neue', cursive; font-size: 0.82rem; letter-spacing: 1.5px;
@@ -3275,6 +3289,9 @@
             <div class="standings-layer ${activeTeam ? 'behind' : 'front'}" id="layer-list">
               ${buildPodium(sorted, leaderPts)}
               ${buildLeaderboard(sorted, leaderPts)}
+              <div class="trade-cta">
+                <a href="trade-proposal.html?league=${encodeURIComponent(_leagueCode)}" class="trade-cta-btn">🤝 Propose a Trade</a>
+              </div>
             </div>
             ${activeTeam ? `<div class="standings-layer front" id="layer-detail">
               <button class="detail-back-btn" onclick="clearTeam()">
