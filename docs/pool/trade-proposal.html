@@ -251,9 +251,9 @@
         .player-list { flex: 1; overflow-y: auto; max-height: 300px; }
 
         .pr {
-          display: grid; grid-template-columns: 18px 1fr auto 40px;
+          display: grid; grid-template-columns: 18px 34px 1fr 40px;
           gap: 9px; align-items: center;
-          padding: 9px 14px;
+          padding: 7px 14px;
           border-bottom: 1px solid rgba(255,255,255,0.03);
           cursor: pointer; transition: background 0.1s;
           position: relative;
@@ -833,6 +833,22 @@
       'Content-Type': 'application/json'
     };
     const _leagueCode = new URLSearchParams(window.location.search).get('league') || null;
+
+    const TEAM_ABBR = {
+      'anaheim-ducks':'ANA','boston-bruins':'BOS','buffalo-sabres':'BUF','calgary-flames':'CGY',
+      'carolina-hurricanes':'CAR','chicago-blackhawks':'CHI','colorado-avalanche':'COL',
+      'columbus-blue-jackets':'CBJ','dallas-stars':'DAL','detroit-red-wings':'DET',
+      'edmonton-oilers':'EDM','florida-panthers':'FLA','los-angeles-kings':'LAK',
+      'minnesota-wild':'MIN','montreal-canadiens':'MTL','nashville-predators':'NSH',
+      'new-jersey-devils':'NJD','new-york-islanders':'NYI','new-york-rangers':'NYR',
+      'ottawa-senators':'OTT','philadelphia-flyers':'PHI','pittsburgh-penguins':'PIT',
+      'san-jose-sharks':'SJS','seattle-kraken':'SEA','st-louis-blues':'STL',
+      'tampa-bay-lightning':'TBL','toronto-maple-leafs':'TOR','utah-hockey-club':'UTA','utah-mammoth':'UTA',
+      'vancouver-canucks':'VAN','vegas-golden-knights':'VGK','washington-capitals':'WSH','winnipeg-jets':'WPG',
+    };
+    function teamAbbr(teamSlug) { return teamSlug ? (TEAM_ABBR[teamSlug] || null) : null; }
+    function headshotUrl(nhlId) { return nhlId ? `https://assets.nhle.com/mugs/nhl/latest/${nhlId}.png` : null; }
+    function logoUrl(abbr)      { return abbr   ? `https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg`  : null; }
     const _targetParam = new URLSearchParams(window.location.search).get('target') || null;
 
     /* ══════════════════════════════════════════
@@ -935,7 +951,7 @@
       try {
         const [rRes, pRes, sRes] = await Promise.all([
           fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: SB_HEADERS }),
-          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played&order=cap_hit.desc&limit=1000`, { headers: SB_HEADERS }),
+          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played,nhl_player_id&order=cap_hit.desc&limit=1000`, { headers: SB_HEADERS }),
           fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl,g_goals,g_assists`, { headers: SB_HEADERS }),
         ]);
         if (!rRes.ok) throw new Error(`pool_rosters ${rRes.status}`);
@@ -1035,7 +1051,16 @@
       _tradingBlock = tradingBlock || _tradingBlock;
       localStorage.setItem(`myTeam_${_leagueCode}`, team.id);
 
-      document.getElementById('team-avatar').textContent    = initials(team.name);
+      const avatarEl = document.getElementById('team-avatar');
+      const firstAbbr = MY_ROSTER.map(s => {
+        const info = _playerMap[s] || _playerMap[`/player/${s}`];
+        return info ? teamAbbr(info.team) : null;
+      }).find(a => a);
+      if (firstAbbr) {
+        avatarEl.innerHTML = `<img src="https://assets.nhle.com/logos/nhl/svg/${firstAbbr}_dark.svg" style="width:22px;height:22px;object-fit:contain" onerror="this.parentNode.textContent='${initials(team.name).replace(/'/g,"\\'")}'" alt="${escH(firstAbbr)}">`;
+      } else {
+        avatarEl.textContent = initials(team.name);
+      }
       document.getElementById('team-badge-name').textContent = team.name;
     }
 
@@ -1130,13 +1155,28 @@
         const isSel = sel.has(p.slug);
         const rowClass = [isSel ? selClass : '', p.onBlock ? 'on-block' : ''].filter(Boolean).map(c => ' ' + c).join('');
         const blockTag = p.onBlock ? `<span class="block-tag">BLOCK</span>` : '';
+        const info   = playerFromSlug(p.slug);
+        const nhlId  = info?.nhl_player_id || null;
+        const abbr   = info ? teamAbbr(info.team) : null;
+        const hs     = headshotUrl(nhlId);
+        const logo   = logoUrl(abbr);
+        const ini    = p.name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+        const avatarHtml = hs
+          ? `<div style="position:relative;width:34px;height:34px;flex-shrink:0">
+               <div style="width:34px;height:34px;border-radius:7px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)">
+                 <img src="${hs}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center"
+                   onerror="this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,cursive;font-size:0.85rem;color:rgba(255,255,255,0.3)\\'>${ini}</div>'">
+               </div>
+               ${logo ? `<img src="${logo}" alt="" style="position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border-radius:3px;background:rgba(7,17,31,0.9);padding:1px">` : ''}
+             </div>`
+          : `<div style="width:34px;height:34px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Bebas Neue',cursive;font-size:0.85rem;color:rgba(255,255,255,0.3)">${ini}</div>`;
         return `<div class="pr${rowClass}" onclick="togglePlayer('${side}','${escH(p.slug)}')">
           <div class="pr-check">${isSel ? '✓' : ''}</div>
+          ${avatarHtml}
           <div class="pr-info">
             <div class="pr-name">${escH(p.name)}${blockTag}</div>
-            <div class="pr-meta">$${p.cap.toFixed(2)}M · ${p.pts} pts</div>
+            <div class="pr-meta">${abbr ? abbr + ' · ' : ''}${p.pts} pts</div>
           </div>
-          <div class="pos-tag ${p.pos}">${p.pos}</div>
           <div class="pr-pts-wrap">
             <div class="pr-pts">${p.pts}</div>
             <div class="pr-pts-label">PTS</div>
@@ -1350,15 +1390,37 @@
       const bothReady = p.acceptedFrom && p.acceptedTo;
 
       function playerRow(slug) {
-        const info = playerFromSlug(slug);
-        const name = info ? formatName(info.player_name) : slugToName(slug);
-        const pos  = info ? normPos(info.position) : 'F';
-        const pts  = poolPts(info);
-        const cap  = info ? ((info.cap_hit ?? 0) / 1e6) : 0;
-        return `<div class="pc-player">
-          <span class="pos-tag ${pos}">${pos}</span>
-          <span class="pc-p-name">${escH(name)}</span>
-          <span class="pc-p-stat">${pts}pts · $${cap.toFixed(2)}M</span>
+        const info  = playerFromSlug(slug);
+        const name  = info ? formatName(info.player_name) : slugToName(slug);
+        const pos   = info ? normPos(info.position) : 'F';
+        const pts   = poolPts(info);
+        const abbr  = info ? teamAbbr(info.team) : null;
+        const nhlId = info?.nhl_player_id || null;
+        const hs    = headshotUrl(nhlId);
+        const logo  = logoUrl(abbr);
+        const ini   = name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+        const posC  = pos==='F' ? {bg:'rgba(255,122,138,0.1)',bd:'rgba(255,122,138,0.25)',tx:'var(--pink)'}
+                    : pos==='D' ? {bg:'rgba(125,180,255,0.1)',bd:'rgba(125,180,255,0.25)',tx:'var(--blue)'}
+                    :             {bg:'rgba(255,184,28,0.1)', bd:'rgba(255,184,28,0.25)', tx:'var(--gold)'};
+        const avatar = hs
+          ? `<div style="position:relative;width:40px;height:40px;flex-shrink:0">
+               <div style="width:40px;height:40px;border-radius:9px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)">
+                 <img src="${hs}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center"
+                   onerror="this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,cursive;font-size:0.95rem;color:rgba(255,255,255,0.35)\\'>${ini}</div>'">
+               </div>
+               ${logo ? `<img src="${logo}" alt="" style="position:absolute;bottom:-2px;right:-2px;width:16px;height:16px;border-radius:3px;background:rgba(7,17,31,0.9);padding:1px">` : ''}
+             </div>`
+          : `<div style="width:40px;height:40px;border-radius:9px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Bebas Neue',cursive;font-size:0.95rem;color:rgba(255,255,255,0.3)">${ini}</div>`;
+        return `<div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.55rem;background:${posC.bg};border:1px solid ${posC.bd};border-radius:9px;margin-bottom:5px">
+          ${avatar}
+          <div style="flex:1;min-width:0">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2">${escH(name)}</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:2px">
+              <span style="font-family:'Bebas Neue',cursive;font-size:0.6rem;letter-spacing:1px;color:${posC.tx};background:${posC.bg};border:1px solid ${posC.bd};border-radius:3px;padding:0 4px;line-height:1.6">${pos}</span>
+              ${abbr ? `<span style="font-size:0.68rem;color:rgba(255,255,255,0.3);font-weight:600;letter-spacing:0.5px">${abbr}</span>` : ''}
+              <span style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-left:auto;white-space:nowrap">${pts} pts</span>
+            </div>
+          </div>
         </div>`;
       }
 
@@ -1367,18 +1429,25 @@
       const offerHTML = offered.length   ? offered.map(playerRow).join('')   : `<div class="pc-empty">Nothing offered</div>`;
       const reqHTML   = requested.length ? requested.map(playerRow).join('') : `<div class="pc-empty">Nothing requested</div>`;
 
-      // Dual-confirm row
-      const fromCheck = p.acceptedFrom ? '✅' : '☑️';
-      const toCheck   = p.acceptedTo   ? '✅' : '☑️';
-      const fromCanAccept = isRecip && !p.acceptedFrom;
-      const toCanAccept   = isRecip && !p.acceptedTo;
-      const confirmRow = p.status === 'pending' ? `
-        <div class="pc-confirm-row">
-          <span class="pc-confirm-side ${p.acceptedFrom ? 'confirmed' : ''}">${fromCheck} ${escH(p.fromTeamName)}</span>
-          <span class="pc-confirm-sep">·</span>
-          <span class="pc-confirm-side ${p.acceptedTo ? 'confirmed' : ''}">${toCheck} ${escH(p.toTeamName)}</span>
-          ${bothReady ? '<span class="pc-ready-badge">Ready for commish</span>' : ''}
-        </div>` : '';
+      // Team logos for header
+      function teamLogoHtml(teamId, teamName) {
+        // Try to find any player on this team to get the abbr
+        const anyPlayer = Object.values(_playerMap).find(pl => {
+          // check by looking through proposals for the team
+          return false; // we'll use a simpler approach below
+        });
+        return `<span style="font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:1.5px;color:rgba(255,255,255,0.8)">${escH(teamName)}</span>`;
+      }
+
+      // Dual-confirm chips (integrated into header)
+      function confirmChip(accepted, canConfirm, teamName, propId, side) {
+        if (accepted) return `<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.78rem;color:var(--green);font-weight:700;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:3px 10px">✅ ${escH(teamName)}</span>`;
+        if (canConfirm) return `<button onclick="acceptProposal('${escH(propId)}','${side}')" style="display:inline-flex;align-items:center;gap:4px;font-size:0.78rem;font-family:'Bebas Neue',cursive;letter-spacing:1px;color:var(--green);background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);border-radius:20px;padding:3px 10px;cursor:pointer;transition:background 0.15s">☑️ ${escH(teamName)} — Confirm</button>`;
+        return `<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.78rem;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:3px 10px">☑️ ${escH(teamName)}</span>`;
+      }
+
+      const confirmFrom = p.status === 'pending' ? confirmChip(p.acceptedFrom, false,    p.fromTeamName, p.id, 'from') : '';
+      const confirmTo   = p.status === 'pending' ? confirmChip(p.acceptedTo,   isRecip,  p.toTeamName,   p.id, 'to')   : '';
 
       // Action buttons
       let actionBtns = '';
@@ -1401,13 +1470,15 @@
 
       return `<div class="${cardClass}">
         <div class="pc-head">
-          <div class="pc-teams">
-            <span>${escH(p.fromTeamName)}</span>
-            <span class="pc-teams-sep">⇄</span>
-            <span>${escH(p.toTeamName)}</span>
+          <div style="display:flex;align-items:center;gap:0.5rem;flex:1;min-width:0">
+            <span style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escH(p.fromTeamName)}</span>
+            <span style="color:rgba(255,255,255,0.2);flex-shrink:0">⇄</span>
+            <span style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escH(p.toTeamName)}</span>
           </div>
-          <span class="pc-date">${dateStr}</span>
-          ${!isSent && !isRecip ? `<button class="pc-del" onclick="deleteProposal('${escH(p.id)}')" title="Delete">✕</button>` : ''}
+          <div style="display:flex;align-items:center;gap:0.4rem;flex-shrink:0">
+            <span class="pc-date">${dateStr}</span>
+            ${!isSent && !isRecip ? `<button class="pc-del" onclick="deleteProposal('${escH(p.id)}')" title="Delete">✕</button>` : ''}
+          </div>
         </div>
         <div class="pc-body">
           <div class="pc-side">
@@ -1421,7 +1492,11 @@
           </div>
         </div>
         ${p.note ? `<div class="pc-note">"${escH(p.note)}"</div>` : ''}
-        ${confirmRow}
+        ${p.status === 'pending' ? `<div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding:10px 15px;border-top:1px solid rgba(255,255,255,0.05)">
+          ${confirmFrom}
+          ${confirmTo}
+          ${bothReady ? '<span style="margin-left:auto;font-family:\'Bebas Neue\',cursive;font-size:0.68rem;letter-spacing:1.5px;color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:3px 10px">✓ Ready for commish</span>' : ''}
+        </div>` : ''}
         ${footer}
       </div>`;
     }
