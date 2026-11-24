@@ -1562,7 +1562,7 @@
     </header>
     <div id="last-updated" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:1px;color:rgba(255,255,255,0.25);text-transform:uppercase;margin:-0.5rem 0 1rem;padding:0 0.25rem"></div>
     <div id="trade-banner" style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;background:rgba(255,184,28,0.08);border:1px solid rgba(255,184,28,0.25);border-radius:10px;align-items:center;justify-content:space-between;gap:0.75rem;cursor:pointer" onclick="openTradeModal()">
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold);letter-spacing:0.5px">🤝 <span id="trade-banner-count"></span> pending trade proposal<span id="trade-banner-s"></span></span>
+      <span id="trade-banner-text" style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold);letter-spacing:0.5px">🤝</span>
       <span style="font-family:'Bebas Neue',cursive;font-size:0.8rem;letter-spacing:2px;color:rgba(255,184,28,0.6)">View →</span>
     </div>
     <div id="content">
@@ -5504,14 +5504,17 @@
       const pending = Object.values(_proposals).filter(p => p.status === 'pending');
       const banner = document.getElementById('trade-banner');
       if (!pending.length) { banner.style.display = 'none'; return; }
-      const ready = pending.filter(p => p.acceptedFrom && p.acceptedTo).length;
+      const ready   = pending.filter(p => p.acceptedFrom && p.acceptedTo).length;
       const waiting = pending.length - ready;
-      let countHtml = '';
-      if (ready) countHtml += `<span style="color:var(--green)">✓ ${ready} ready for commish</span>`;
-      if (ready && waiting) countHtml += ' · ';
-      if (waiting) countHtml += `${waiting} pending trade proposal${waiting !== 1 ? 's' : ''}`;
-      document.getElementById('trade-banner-count').innerHTML = countHtml;
-      document.getElementById('trade-banner-s').textContent = '';
+      let text = '🤝 ';
+      if (ready && waiting) {
+        text += `${ready} ready for commish · ${waiting} pending trade proposal${waiting !== 1 ? 's' : ''}`;
+      } else if (ready) {
+        text += `${ready} trade proposal${ready !== 1 ? 's' : ''} ready for commish`;
+      } else {
+        text += `${waiting} pending trade proposal${waiting !== 1 ? 's' : ''}`;
+      }
+      document.getElementById('trade-banner-text').textContent = text;
       banner.style.display = 'flex';
     }
 
