@@ -800,6 +800,7 @@
       'Content-Type': 'application/json'
     };
     const _leagueCode = new URLSearchParams(window.location.search).get('league') || null;
+    const _targetParam = new URLSearchParams(window.location.search).get('target') || null;
 
     /* ══════════════════════════════════════════
        LIVE DATA
@@ -931,6 +932,13 @@
 
         setMyTeam(chosen, allTeams, tradingBlock);
         renderTeamDropdown();
+
+        // Pre-select target from URL param if present
+        if (_targetParam) {
+          const targetTeam = allTeams.find(t => t.id === _targetParam);
+          if (targetTeam && targetTeam.id !== chosen.id) selectTarget(targetTeam.id, targetTeam.name);
+        }
+
         renderTargetPills();
         renderPanel('offer', MY_ROSTER);
         updateSummaryBar();
