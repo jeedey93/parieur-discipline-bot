@@ -951,7 +951,7 @@
       try {
         const [rRes, pRes, sRes] = await Promise.all([
           fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: SB_HEADERS }),
-          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played,nhl_player_id&order=cap_hit.desc&limit=1000`, { headers: SB_HEADERS }),
+          fetch(`${SUPABASE_URL}/rest/v1/nhl_players?select=puckpedia_slug,player_name,position,cap_hit,team,points,goals,assists,wins,shutouts,ot_losses,games_played,nhl_player_id&limit=2000`, { headers: SB_HEADERS }),
           fetch(`${SUPABASE_URL}/rest/v1/pool_settings?league_code=eq.${_leagueCode}&select=f_points,d_goals,d_assists,g_wins,g_shutouts,g_otl,g_goals,g_assists`, { headers: SB_HEADERS }),
         ]);
         if (!rRes.ok) throw new Error(`pool_rosters ${rRes.status}`);
