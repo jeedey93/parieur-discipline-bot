@@ -5482,8 +5482,14 @@
       const pending = Object.values(_proposals).filter(p => p.status === 'pending');
       const banner = document.getElementById('trade-banner');
       if (!pending.length) { banner.style.display = 'none'; return; }
-      document.getElementById('trade-banner-count').textContent = pending.length;
-      document.getElementById('trade-banner-s').textContent = pending.length !== 1 ? 's' : '';
+      const ready = pending.filter(p => p.acceptedFrom && p.acceptedTo).length;
+      const waiting = pending.length - ready;
+      let countHtml = '';
+      if (ready) countHtml += `<span style="color:var(--green)">✓ ${ready} ready for commish</span>`;
+      if (ready && waiting) countHtml += ' · ';
+      if (waiting) countHtml += `${waiting} pending trade proposal${waiting !== 1 ? 's' : ''}`;
+      document.getElementById('trade-banner-count').innerHTML = countHtml;
+      document.getElementById('trade-banner-s').textContent = '';
       banner.style.display = 'flex';
     }
 
@@ -5507,15 +5513,37 @@
         const date = new Date(p.createdAt).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
         const isMine = myTeamId && p.fromTeamId === myTeamId;
         const isRecipient = myTeamId && p.toTeamId === myTeamId;
+        const bothAccepted = p.acceptedFrom && p.acceptedTo;
+
+        // Checkmark for sender side
+        const ckFrom = p.acceptedFrom
+          ? `<span title="${escHtml(p.fromTeamName)}" style="font-size:1.1rem;cursor:default">✅</span>`
+          : isMine
+            ? `<button title="Accept as ${escHtml(p.fromTeamName)}" onclick="acceptProposal('${escHtml(p.id)}','from')" style="background:none;border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:2px 6px;cursor:pointer;font-size:1rem;line-height:1">☑️</button>`
+            : `<span title="${escHtml(p.fromTeamName)} hasn't confirmed" style="font-size:1.1rem;opacity:0.3;cursor:default">☑️</span>`;
+
+        // Checkmark for recipient side
+        const ckTo = p.acceptedTo
+          ? `<span title="${escHtml(p.toTeamName)}" style="font-size:1.1rem;cursor:default">✅</span>`
+          : isRecipient
+            ? `<button title="Accept as ${escHtml(p.toTeamName)}" onclick="acceptProposal('${escHtml(p.id)}','to')" style="background:none;border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:2px 6px;cursor:pointer;font-size:1rem;line-height:1">☑️</button>`
+            : `<span title="${escHtml(p.toTeamName)} hasn't confirmed" style="font-size:1.1rem;opacity:0.3;cursor:default">☑️</span>`;
+
         const actionBtn = isMine
           ? `<button onclick="withdrawProposal('${escHtml(p.id)}')" style="font-family:'Bebas Neue',cursive;font-size:0.75rem;letter-spacing:1.5px;background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.25);color:var(--red);border-radius:5px;padding:4px 10px;cursor:pointer">Withdraw</button>`
           : isRecipient
           ? `<button onclick="withdrawProposal('${escHtml(p.id)}')" style="font-family:'Bebas Neue',cursive;font-size:0.75rem;letter-spacing:1.5px;background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.25);color:var(--red);border-radius:5px;padding:4px 10px;cursor:pointer">Decline</button>`
           : '';
-        return `<div id="proposal-card-${escHtml(p.id)}" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:0.85rem 1rem">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem">
+
+        const cardBorder = bothAccepted ? 'rgba(34,197,94,0.35)' : 'rgba(255,255,255,0.09)';
+        const readyBadge = bothAccepted ? `<span style="font-family:'Bebas Neue',cursive;font-size:0.72rem;letter-spacing:1.5px;color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:5px;padding:2px 8px">Ready for commish</span>` : '';
+
+        return `<div id="proposal-card-${escHtml(p.id)}" style="background:rgba(255,255,255,0.03);border:1px solid ${cardBorder};border-radius:10px;padding:0.85rem 1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;gap:0.5rem;flex-wrap:wrap">
             <span style="font-family:'Bebas Neue',cursive;font-size:0.95rem;letter-spacing:2px;color:white">${escHtml(p.fromTeamName)} <span style="color:rgba(255,255,255,0.3)">→</span> ${escHtml(p.toTeamName)}</span>
             <div style="display:flex;align-items:center;gap:0.5rem">
+              ${ckFrom}${ckTo}
+              ${readyBadge}
               <span style="font-size:0.72rem;color:rgba(255,255,255,0.3);letter-spacing:0.5px">${date}</span>
               ${actionBtn}
             </div>
@@ -5562,6 +5590,29 @@
 
     function closeTradeModal() {
       document.getElementById('trade-modal-overlay').style.display = 'none';
+    }
+
+    async function acceptProposal(id, side) {
+      try {
+        const rRes = await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?league_code=eq.${_leagueCode}&select=data`, { headers: sbHeaders() });
+        const rows = await rRes.json();
+        const data = rows[0]?.data || {};
+        const props = data.proposals || {};
+        if (!props[id]) return;
+        if (side === 'from') props[id].acceptedFrom = true;
+        else props[id].acceptedTo = true;
+        data.proposals = props;
+        await fetch(`${SUPABASE_URL}/rest/v1/pool_rosters?on_conflict=league_code`, {
+          method: 'POST',
+          headers: { ...sbHeaders(), 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+          body: JSON.stringify({ league_code: _leagueCode, data, updated_at: new Date().toISOString() }),
+        });
+        _proposals = props;
+        updateTradeBanner();
+        openTradeModal(); // re-render modal with updated state
+      } catch(e) {
+        alert('Failed to save confirmation.');
+      }
     }
 </script>
 

@@ -1238,6 +1238,8 @@
         requestedSlugs: [...state.requested],
         note:           document.getElementById('proposal-note').value.trim().slice(0,200),
         status:         'pending',
+        acceptedFrom:   true,
+        acceptedTo:     false,
         createdAt:      new Date().toISOString(),
       };
 
