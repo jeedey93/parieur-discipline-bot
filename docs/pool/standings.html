@@ -1175,11 +1175,12 @@
         .swap-row-meta { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
         .swap-date { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
         @media (min-width: 861px) { .swap-date { font-size: 0.78rem; } }
-        .swap-move { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; }
-        @media (min-width: 861px) { .swap-move { font-size: 1rem; gap: 0.65rem; } }
+        .swap-move { display: flex; flex-direction: column; gap: 0.2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; }
+        @media (min-width: 861px) { .swap-move { flex-direction: row; align-items: center; font-size: 1rem; gap: 0.65rem; } }
         .swap-in  { color: var(--green); display: inline-flex; align-items: center; gap: 3px; }
         .swap-out { color: rgba(255,80,80,0.8); display: inline-flex; align-items: center; gap: 3px; }
-        .swap-arrow { color: rgba(255,255,255,0.2); font-size: 0.9rem; }
+        .swap-arrow { color: rgba(255,255,255,0.2); font-size: 0.75rem; padding-left: 2px; }
+        @media (min-width: 861px) { .swap-arrow { font-size: 0.9rem; padding-left: 0; } }
         .swap-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; font-style: italic; }
         @media (min-width: 861px) { .swap-note { font-size: 0.82rem; } }
         .swap-reason { display: inline-flex; align-items: center; gap: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; }
@@ -4400,7 +4401,7 @@
             </div>
             <div class="swap-move">
               <span class="swap-in">${inLogo}${s.player_in_name}</span>
-              <span class="swap-arrow">←</span>
+              <span class="swap-arrow">↑ replaces</span>
               <span class="swap-out">${outLogo}${s.player_out_name}</span>
             </div>
             ${s.note ? `<div class="swap-note">${s.note}</div>` : ''}
