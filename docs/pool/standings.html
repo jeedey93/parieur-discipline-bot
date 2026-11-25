@@ -4799,10 +4799,13 @@
             const injParts = (p.injury_status || '').split(' · ');
             const injStatus   = injParts[0] || '';
             const injBodyPart = injParts[1] || '—';
-            const injReturn   = injParts[2] ? injParts[2].replace('Returns ', '') : '—';
+            const injReturnRaw = injParts[2] ? injParts[2].replace('Returns ', '') : '—';
+            const injReturn = injReturnRaw !== '—' && /^\d{4}-\d{2}-\d{2}/.test(injReturnRaw)
+              ? new Date(injReturnRaw + (injReturnRaw.length === 10 ? 'T12:00:00' : '')).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' })
+              : injReturnRaw;
             let injIn = '—';
-            if (injReturn !== '—') {
-              const days = Math.ceil((new Date(injReturn) - new Date()) / 86400000);
+            if (injReturnRaw !== '—') {
+              const days = Math.ceil((new Date(injReturnRaw) - new Date()) / 86400000);
               if (days <= 0)       injIn = 'Soon';
               else if (days < 14)  injIn = `${days}d`;
               else if (days < 60)  injIn = `${Math.round(days / 7)}w`;
