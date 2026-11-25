@@ -1,0 +1,15 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-24.
+
+Here's the breakdown:
+
+1.  **Edmonton Oilers ML vs Vegas Golden Knights @ 2.04 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Vegas 5 @ Edmonton 3 (Total goals: 8)
+    *   Outcome: **LOSS** (Edmonton lost the game, so the ML bet did not win.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 0**
+*   **Total Losses: 1**
+*   **Total Pushes: 0**

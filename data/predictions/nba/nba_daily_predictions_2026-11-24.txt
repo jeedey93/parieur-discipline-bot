@@ -1,0 +1,26 @@
+As a sports betting analyst, I've reviewed the morning and noon prediction reports for November 24th, 2026.
+
+**1. Consistency:** No plays appeared in both reports. The noon report stated "No NBA games today or no odds available," indicating a complete absence of data or market closures by midday.
+
+**2. Added/Removed Plays:** All plays presented in the morning report were effectively removed or became unavailable in the noon report.
+
+**3. Confidence Level Changes:** Not applicable, as no plays were common to both reports.
+
+**4. Odds Changes:** Not applicable, as no plays were common to both reports.
+
+**Unified Final Recommendation List:**
+
+Given that the noon report provided no available games or odds, I am basing the recommendations solely on the morning report. The filtering criteria (medium/high confidence, odds between 1.60 and 2.20 inclusive, max 5 plays, no opposing sides) have been applied. Only one play from the morning report's "BET OF THE DAY" qualified under these strict rules, as it was the only one with explicit confidence levels.
+
+🏆 **BET OF THE DAY**
+**Orlando Magic ML vs Detroit Pistons @ 2.2**
+Confidence Level: Medium, Units: 1u, Win Probability: 49%
+
+🏠**Home Court Mispricing**
+The Orlando Magic have an abysmal home record of 1-5 (0.167 Win%), contrasting sharply with the Detroit Pistons' strong 0.700 Away Win% this season.
+📊**Team Quality Discrepancy**
+The Detroit Pistons (0.625 Win%) hold a significant edge over the Orlando Magic (0.438 Win%) in overall season performance, reflecting a clear talent gap.
+📈**Recent Performance Disadvantage**
+Detroit's recent form shows a +2.9 point differential in their last 10 games, while Orlando has a negative -1.2 differential, indicating better current play from the Pistons.
+
+This play was identified as the 'Bet of the Day' in the morning report. No updated odds or analysis were available in the noon report as no NBA games or odds were listed.

@@ -1,34 +1,25 @@
 ============================================================
 OILERS - LINEUP
-Last Updated: 2026-11-22 03:16 PM ET
+Last Updated: 2026-11-24 05:58 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
-Line 1: Vasily Podkolzin — Connor McDavid — Leon Draisaitl
-Line 2: Kasperi Kapanen — Colton Dach — Zach Hyman
-Line 3: Filip Hallander — Jason Dickinson — Mathieu Joseph
+Line 1: Ryan Nugent-Hopkins — Connor McDavid — Kasperi Kapanen
+Line 2: Vasily Podkolzin — Leon Draisaitl — Mathieu Joseph
+Line 3: Filip Hallander — Jason Dickinson — Colton Dach
 Line 4: Alex Formenton — Owen Michaels — Trent Frederic
+Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Mattias Ekholm — Evan Bouchard
 Pair 2: Ryan Shea — Connor Murphy
-Pair 3: Shakir Mukhamadullin — Ty Emberson
+Pair 3: Shakir Mukhamadullin — Jake Walman
 
 GOALIES:
 ----------------------------------------
-  Tristan Jarry
   Devon Levi
-
-SCRATCHED / INJURED:
-----------------------------------------
-  Max Jones (scratched)
-  Jake Walman (scratched)
-  Ryan Nugent-Hopkins (undisclosed) (injured)
-  Frederik Andersen (knee) (injured)
-  Mattias Janmark (shoulder) (injured)
-  Alec Regula (undisclosed) (injured)
-  Matt Savoie (lower body) (injured)
+  Tristan Jarry
 
 ============================================================
