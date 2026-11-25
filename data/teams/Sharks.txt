@@ -1,31 +1,30 @@
 ============================================================
 SHARKS - LINEUP
-Last Updated: 2026-11-23 07:43 PM ET
+Last Updated: 2026-11-25 05:17 PM ET
 ============================================================
 
 FORWARD LINES:
 ----------------------------------------
 Line 1: Ivar Stenberg — Macklin Celebrini — Will Smith
 Line 2: Michael Misa — Alexander Wennberg — Tyler Toffoli
-Line 3: Mason Marchment — Ty Dellandrea — Adam Gaudette
-Line 4: Barclay Goodrow — Zack Ostapchuk — Brett Leason
-Line 5: (function() { var container = document.query Selector([data-ad-story-part][data-ad-position="20"]); if (!container) return; var is App Context = container.get Attribute(data-app-context) === true; var is Mobile = window.match Media((max-width: 768px)).matches; if (!is Mobile && !is App Context) { var grid Outer = container.closest(.d3-l-grid — outer); if (grid Outer) { grid Outer.style.display = none; grid Outer.style.margin = 0; grid Outer.style.padding = 0; grid Outer.style.gap = 0; var next Sibling = grid Outer.next Element Sibling; if (next Sibling) { var body = next Sibling.query Selector(.nhl-c-article__body); if (body) { body.style.margin Top = var( — nhl-markdown-content-vertical-spacing, 1rem); } } } return; } container.style.display = ; })();
+Line 3: Mason Marchment — Ty Dellandrea — Collin Graf
+Line 4: Barclay Goodrow — Zack Ostapchuk — Adam Gaudette
 
 DEFENSE PAIRS:
 ----------------------------------------
-Pair 1: Darnell Nurse — Michael Kesselring
+Pair 1: Darnell Nurse — Eric Pohlkamp
 Pair 2: Nolan Allan — Sam Dickinson
-Pair 3: Dmitry Orlov — Eric Pohlkamp
+Pair 3: Dmitry Orlov — Michael Kesselring
 
 GOALIES:
 ----------------------------------------
-  Yaroslav Askarov
   Alex Nedeljkovic
+  Yaroslav Askarov
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Collin Graf (scratched)
   Libor Hajek (scratched)
+  Brett Leason (scratched)
   Igor Chernyshov (upper body) (injured)
   Kiefer Sherwood (upper body) (injured)
   Jacob Trouba (lower body) (injured)

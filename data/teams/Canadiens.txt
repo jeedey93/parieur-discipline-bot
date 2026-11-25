@@ -1,6 +1,6 @@
 ============================================================
 CANADIENS - LINEUP
-Last Updated: 2026-11-23 07:43 PM ET
+Last Updated: 2026-11-25 05:17 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,11 +18,13 @@ Pair 3: Arber Xhekaj — Adam Engstrom
 
 GOALIES:
 ----------------------------------------
-  Jakub Dobes
   Jacob Fowler
+  Jakub Dobes
 
 SCRATCHED / INJURED:
 ----------------------------------------
+  Brett Berard (scratched)
+  David Reinbacher (scratched)
   Chris Kreider (lower body) (injured)
   Josh Anderson (lower body) (injured)
   Ivan Demidov (lower body) (injured)
