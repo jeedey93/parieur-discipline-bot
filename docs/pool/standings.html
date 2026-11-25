@@ -2665,9 +2665,12 @@
 
       // Injury banner
       const isInjured = d.isCurrent && d.injuryStatus && d.injuryStatus !== 'Active';
-      const injuryBanner = isInjured
-        ? `<div class="pm-injury-banner">❌ ${d.injuryStatus}</div>`
-        : '';
+      const injuryBanner = isInjured ? (() => {
+        const status = d.injuryStatus.replace(/Returns (\d{4}-\d{2}-\d{2})/, (_, iso) =>
+          'Returns ' + new Date(iso + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' })
+        );
+        return `<div class="pm-injury-banner">❌ ${status}</div>`;
+      })() : '';
 
       // Past player chip
       const statusChip = !d.isCurrent
