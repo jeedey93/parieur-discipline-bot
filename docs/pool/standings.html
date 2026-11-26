@@ -4470,21 +4470,23 @@
         const swapDate = new Date(s.swap_date);
         const tenure = `Season start → ${fmt(swapDate)}`;
         const swapStats = s.stats_at_swap || null;
-        const swapGp = swapStats ? (swapStats.games_played ?? null) : null;
-        const swapG  = swapStats ? (swapStats.goals ?? null) : null;
-        const swapA  = swapStats ? (swapStats.assists ?? null) : null;
+        const { snapshot: acqSnap } = _resolveSnapshot(team, s.player_out_slug);
+        const swapGp = swapStats ? Math.max(0, (swapStats.games_played ?? 0) - (acqSnap.games_played ?? 0)) : null;
+        const swapG  = swapStats ? Math.max(0, (swapStats.goals ?? 0)        - (acqSnap.goals ?? 0))        : null;
+        const swapA  = swapStats ? Math.max(0, (swapStats.assists ?? 0)      - (acqSnap.assists ?? 0))      : null;
         const swapPos2 = normalizePos(s.player_out_position);
+        const swapW   = swapStats ? Math.max(0, (swapStats.wins ?? 0)        - (acqSnap.wins ?? 0))         : 0;
+        const swapSo  = swapStats ? Math.max(0, (swapStats.shutouts ?? 0)    - (acqSnap.shutouts ?? 0))     : 0;
+        const swapOtl = swapStats ? Math.max(0, (swapStats.ot_losses ?? 0)   - (acqSnap.ot_losses ?? 0))   : 0;
         const col1v = swapGp != null ? swapGp : '—';
-        const col2v = swapPos2 === 'G' ? (swapStats?.wins != null ? swapStats.wins : '—') : (swapG != null ? swapG : '—');
-        const col3v = swapPos2 === 'G' ? (swapStats?.ot_losses != null ? swapStats.ot_losses : '—') : (swapA != null ? swapA : '—');
-        const swapSo  = swapStats?.shutouts ?? 0;
-        const swapOtl = swapStats?.ot_losses ?? 0;
+        const col2v = swapPos2 === 'G' ? (swapW != null ? swapW : '—') : (swapG != null ? swapG : '—');
+        const col3v = swapPos2 === 'G' ? (swapOtl != null ? swapOtl : '—') : (swapA != null ? swapA : '—');
         const swapPpg = swapPos2 !== 'G' && swapGp != null && swapGp > 0 && typeof (s.player_out_pts_at_swap) === 'number'
           ? (s.player_out_pts_at_swap / swapGp).toFixed(2) : null;
         return { isCurrent: false, cls: 'past', name: s.player_out_name, logo, vsLogo: '',
           tenure, col1: col1v, col2: col2v, col3: col3v,
           pts: s.player_out_pts_at_swap ?? '—',
-          gp: swapGp, g: swapG, a: swapA, w: p?.wins ?? 0, so: swapSo, otl: swapOtl,
+          gp: swapGp, g: swapG, a: swapA, w: swapW, so: swapSo, otl: swapOtl,
           actualPos: swapPos2,
           nhlId: p?.nhl_player_id || null, slug: p?.puckpedia_slug || null,
           capHit: p?.cap_hit || null, nhlTeam: p?.team || null, owner: team.name,
