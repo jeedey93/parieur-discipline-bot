@@ -1,0 +1,31 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-25.
+
+Here's the breakdown:
+
+1.  **Minnesota Wild ML vs Utah Mammoth @ 1.69 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Utah 4 @ Minnesota 3 (Total goals: 7)
+    *   Outcome: **LOSS** (Minnesota lost the game.)
+
+2.  **New York Islanders ML vs St Louis Blues @ 1.75 - Confidence: Medium, Units: 1u**
+    *   Actual Result: St. Louis 2 @ New York 3 (Total goals: 5)
+    *   Outcome: **WIN** (New York Islanders won the game.)
+
+3.  **Colorado Avalanche ML vs Montréal Canadiens @ 1.85 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Montréal 0 @ Colorado 6 (Total goals: 6)
+    *   Outcome: **WIN** (Colorado Avalanche won the game.)
+
+4.  **Tampa Bay Lightning ML vs Carolina Hurricanes @ 1.94 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Carolina 3 @ Tampa Bay 1 (Total goals: 4)
+    *   Outcome: **LOSS** (Tampa Bay lost the game.)
+
+5.  **Nashville Predators @ Dallas Stars Under 5.5 @ 2.00 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Nashville 3 @ Dallas 1 (Total goals: 4)
+    *   Outcome: **WIN** (Total goals (4) were under the line of 5.5.)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 3**
+*   **Total Losses: 2**
+*   **Total Pushes: 0**
