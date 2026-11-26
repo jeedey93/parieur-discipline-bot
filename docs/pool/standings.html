@@ -2804,6 +2804,28 @@
         </div>
         ${injuryBanner}
         ${fullStatsHtml}
+        ${d.stints && d.stints.length >= 2 ? (() => {
+          const fmtS = iso => new Date(iso.length === 10 ? iso + 'T12:00:00' : iso).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+          const pos = d.pos;
+          const isG = pos === 'G';
+          const isD = pos === 'D';
+          const rows = d.stints.map((s, i) => {
+            const ptsLabel = isG
+              ? [s.w != null ? `${s.w}W` : null, s.so != null ? `${s.so}SO` : null, s.otl != null ? `${s.otl}OTL` : null].filter(Boolean).join(' / ') || '—'
+              : (s.pts != null ? s.pts + ' pts' : '—');
+            return `<tr>
+              <td style="color:var(--silver);font-size:0.72rem;letter-spacing:1px;">STINT ${i+1}</td>
+              <td style="color:rgba(255,255,255,0.55);font-size:0.78rem;">${s.tenure || '—'}</td>
+              <td>${s.gp ?? '—'}</td>
+              <td style="color:var(--gold);font-weight:700;">${ptsLabel}</td>
+            </tr>`;
+          }).join('');
+          return `<div class="pm-season-table">
+            <div class="pm-section-label">POOL STINTS</div>
+            <table><thead><tr><th>#</th><th>Period</th><th>GP</th><th>${isG ? 'W/SO/OTL' : 'Pool Pts'}</th></tr></thead>
+            <tbody>${rows}</tbody></table>
+          </div>`;
+        })() : ''}
         ${last5Html}
         ${chips ? `<div class="pm-extra">${chips}</div>` : ''}
         ${(() => {
@@ -4569,16 +4591,52 @@
       // Add bench-swapped-out players as past rows
       swapOutRows.forEach(r => rowData.push(r));
 
+      // Merge rows for the same slug (player dressed → benched → dressed again)
+      const mergedMap = {};
+      rowData.forEach(r => {
+        const key = r.slug || r.name; // fall back to name if no slug
+        if (!mergedMap[key]) {
+          mergedMap[key] = { ...r, stints: [{ tenure: r.tenure, pts: r.pts, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl }] };
+        } else {
+          const base = mergedMap[key];
+          // Always keep isCurrent=true if any stint is current
+          if (r.isCurrent) { base.isCurrent = true; base.cls = 'current'; }
+          // Sum numeric stats
+          if (typeof r.pts === 'number') base.pts = (typeof base.pts === 'number' ? base.pts : 0) + r.pts;
+          base.gp  = (base.gp  || 0) + (r.gp  || 0);
+          base.g   = (base.g   || 0) + (r.g   || 0);
+          base.a   = (base.a   || 0) + (r.a   || 0);
+          base.w   = (base.w   || 0) + (r.w   || 0);
+          base.so  = (base.so  || 0) + (r.so  || 0);
+          base.otl = (base.otl || 0) + (r.otl || 0);
+          // Recompute derived columns and ppg
+          if (pos === 'G') { base.col1 = base.gp; base.col2 = base.w; base.col3 = base.otl; }
+          else             { base.col1 = base.gp; base.col2 = base.g; base.col3 = base.a; }
+          base.ppg = (typeof base.pts === 'number' && base.gp > 0) ? (base.pts / base.gp).toFixed(2) : null;
+          // Keep most recent tenure label (current stint wins)
+          if (r.isCurrent) base.tenure = r.tenure;
+          // Carry over live/injury data from current stint
+          if (r.isCurrent) {
+            base.vsLogo = r.vsLogo || base.vsLogo;
+            base.injuryStatus = r.injuryStatus;
+            base.form5d = r.form5d;
+            base.ytd = r.ytd;
+          }
+          base.stints.push({ tenure: r.tenure, pts: r.pts, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl });
+        }
+      });
+      const mergedRowData = Object.values(mergedMap);
+
       // Sort: current players first, then by selected field desc, past players always last
       const sortKey = { pts:'pts', gp:'gp', g:'g', a:'a', w:'w', so:'so', otl:'otl' }[sortField] || 'pts';
-      rowData.sort((a, b) => {
+      mergedRowData.sort((a, b) => {
         if (a.isCurrent !== b.isCurrent) return a.isCurrent ? -1 : 1;
         const av = typeof a[sortKey] === 'number' ? a[sortKey] : -1;
         const bv = typeof b[sortKey] === 'number' ? b[sortKey] : -1;
         return bv - av;
       });
 
-      const renderedRows = rowData.map(r => {
+      const renderedRows = mergedRowData.map(r => {
         const ytdVal = r.ytd != null ? r.ytd : null;
         const ytdHtml = ytdVal == null
           ? `<span class="hist-ytd zero">—</span>`
@@ -4613,7 +4671,7 @@
         const formBadge = isInjured ? '' : rawBadge;
         const injuryBadge = isInjured ? `<span style="font-size:0.8rem;cursor:default" title="${r.injuryStatus}">❌</span>` : '';
         const _fp = r.slug ? slugMap()[r.slug] : null;
-        const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null, fullL: _fp?.losses ?? null }).replace(/'/g, '&#39;');
+        const modalData = JSON.stringify({ name: r.name, pos: r.actualPos||pos, nhlTeam: r.nhlTeam, nhlId: r.nhlId, isCurrent: r.isCurrent, gp: r.gp, g: r.g, a: r.a, w: r.w, so: r.so, otl: r.otl, pts: r.pts, ppg: r.ppg, ytd: r.ytd, capHit: r.capHit, tenure: r.tenure, owner: r.owner, slug: r.slug, form5d: r.form5d ?? null, injuryStatus: r.injuryStatus ?? null, fullGp: _fp?.games_played ?? null, fullG: _fp?.goals ?? null, fullA: _fp?.assists ?? null, fullPts: _fp?.points ?? null, fullW: _fp?.wins ?? null, fullSo: _fp?.shutouts ?? null, fullOtl: _fp?.ot_losses ?? null, fullL: _fp?.losses ?? null, stints: (r.stints && r.stints.length > 1) ? r.stints : null }).replace(/'/g, '&#39;');
         return `<div class="hist-row ${r.cls}${hasLive ? ' live' : ''}">
           <span class="hist-pos ${r.actualPos||pos}">${r.actualPos||pos}</span>
           <span class="hist-name${r.isCurrent?'':' past'}" title="${r.tenure}" onclick="showPlayerModal(JSON.parse(this.dataset.d))" data-d='${modalData}' style="cursor:pointer">${r.logo}${r.name}${r.vsLogo||''}${liveHtml}${injuryBadge}${formBadge}${swapReasonPill}${swapDateChip}</span>
