@@ -1,6 +1,6 @@
 ============================================================
 CAPITALS - LINEUP
-Last Updated: 2026-11-25 05:17 PM ET
+Last Updated: 2026-11-27 04:55 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -14,7 +14,7 @@ DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Jakob Chychrun — Matt Roy
 Pair 2: Martin Fehervary — Timothy Liljegren
-Pair 3: Cole Hutson — Jack St. Ivany
+Pair 3: Cole Hutson — Vincent Desharnais
 
 GOALIES:
 ----------------------------------------
@@ -24,9 +24,9 @@ GOALIES:
 SCRATCHED / INJURED:
 ----------------------------------------
   Ethen Frank (scratched)
-  Justin Holl (scratched)
+  Jack St. Ivany (scratched)
+  Clay Stevenson (scratched)
   Rasmus Sandin (knee) (injured)
   Jordan Kyrou (upper body) (injured)
-  Vincent Desharnais (appendectomy) (injured)
 
 ============================================================
