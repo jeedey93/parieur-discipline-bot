@@ -4469,14 +4469,14 @@
         const swapDate = new Date(s.swap_date);
         const tenure = `Season start → ${fmt(swapDate)}`;
         const swapStats = s.stats_at_swap || null;
-        const { snapshot: acqSnap } = _resolveSnapshot(team, s.player_out_slug);
-        const swapGp = swapStats ? Math.max(0, (swapStats.games_played ?? 0) - (acqSnap.games_played ?? 0)) : null;
-        const swapG  = swapStats ? Math.max(0, (swapStats.goals ?? 0)        - (acqSnap.goals ?? 0))        : null;
-        const swapA  = swapStats ? Math.max(0, (swapStats.assists ?? 0)      - (acqSnap.assists ?? 0))      : null;
         const swapPos2 = normalizePos(s.player_out_position);
-        const swapW   = swapStats ? Math.max(0, (swapStats.wins ?? 0)        - (acqSnap.wins ?? 0))         : 0;
-        const swapSo  = swapStats ? Math.max(0, (swapStats.shutouts ?? 0)    - (acqSnap.shutouts ?? 0))     : 0;
-        const swapOtl = swapStats ? Math.max(0, (swapStats.ot_losses ?? 0)   - (acqSnap.ot_losses ?? 0))   : 0;
+        // stats_at_swap stores absolute stats at bench time — use directly
+        const swapGp  = swapStats ? (swapStats.games_played ?? null) : null;
+        const swapG   = swapStats ? (swapStats.goals    ?? null) : null;
+        const swapA   = swapStats ? (swapStats.assists  ?? null) : null;
+        const swapW   = swapStats ? (swapStats.wins      ?? 0)   : 0;
+        const swapSo  = swapStats ? (swapStats.shutouts  ?? 0)   : 0;
+        const swapOtl = swapStats ? (swapStats.ot_losses ?? 0)   : 0;
         const col1v = swapGp != null ? swapGp : '—';
         const col2v = swapPos2 === 'G' ? (swapW != null ? swapW : '—') : (swapG != null ? swapG : '—');
         const col3v = swapPos2 === 'G' ? (swapOtl != null ? swapOtl : '—') : (swapA != null ? swapA : '—');
