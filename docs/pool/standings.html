@@ -4191,7 +4191,7 @@
           <div class="lb-stat lb-col-hide-mobile" style="color:rgba(255,255,255,0.5)">${ppg > 0 ? ppg.toFixed(2) : '—'}</div>
           ${tonightHtml}
           <div class="lb-stat delta ${ytdCls}">${ytdLabel}</div>
-          <div class="lb-stat ${rankNum===1?'gap leader':'gap'}">${gapVal}</div>
+          <div class="lb-stat ${rankNum===1?'gap leader':'gap'} lb-col-hide-mobile">${gapVal}</div>
         </div>`;
         return rankNum === 3 && n > 3 && col === 'pts' && dir === -1 ? row + `<div class="lb-tier-divider"></div>` : row;
       }).join('');
@@ -4208,7 +4208,7 @@
           ${hdr('ppg', 'PPG', ' lb-col-hide-mobile')}
           ${hdr('tonight', '🏒', '', 'color:var(--gold);opacity:0.7')}
           ${hdr('ytd', 'Ytd', '', 'color:var(--green);opacity:0.7')}
-          ${hdr('gap', 'Gap')}
+          ${hdr('gap', 'Gap', ' lb-col-hide-mobile')}
         </div>
         ${rowsHtml}
       </div>`;
