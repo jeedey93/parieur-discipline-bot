@@ -2481,7 +2481,17 @@
     }
 
     function poolScoreOwned(p, team, slug) {
-      const { snapshot: s, frozen } = _resolveSnapshot(team, slug);
+      const { snapshot: s, frozen: frozenAcq } = _resolveSnapshot(team, slug);
+      // Add pts from past stints where this player was benched and then re-dressed.
+      // A "completed" bench stint = player_out_slug matches AND player is currently dressed (not still on bench).
+      // We detect this by checking that the player's current slot is F/D/G, not B.
+      const isCurrentlyDressed = [...(team.roster.F||[]), ...(team.roster.D||[]), ...(team.roster.G||[])].includes(slug);
+      const frozenSwaps = isCurrentlyDressed
+        ? _benchSwaps
+            .filter(sw => sw.team_id === team.id && sw.player_out_slug === slug && typeof sw.player_out_pts_at_swap === 'number')
+            .reduce((sum, sw) => sum + sw.player_out_pts_at_swap, 0)
+        : 0;
+      const frozen = Math.max(frozenAcq, frozenSwaps);
       const pos = normalizePos(p.position);
       let delta;
       if (pos === 'G') {
@@ -3105,10 +3115,11 @@
       if (_cache.subScores[team.id]) return _cache.subScores[team.id];
       const r = rosterPlayers(team.roster);
       const sg = players => players.filter(Boolean).reduce((s, p) => s + poolScoreOwned(p, team, p._slug), 0);
-      // Add points for players who were benched OUT (their pts are locked at player_out_pts_at_swap).
-      // Players activated FROM bench are already fully scored via poolScoreOwned in sg(r.G/F/D).
+      // Add pts from players who were benched and are STILL on the bench (not re-dressed).
+      // Re-dressed players are scored via poolScoreOwned which now includes their frozen pts.
+      const dressedSlugs = new Set([...(team.roster.F||[]), ...(team.roster.D||[]), ...(team.roster.G||[])].filter(Boolean));
       const benchByPos = { F: 0, D: 0, G: 0 };
-      _benchSwaps.filter(s => s.team_id === team.id).forEach(s => {
+      _benchSwaps.filter(s => s.team_id === team.id && !dressedSlugs.has(s.player_out_slug)).forEach(s => {
         const pts = s.player_out_pts_at_swap;
         if (typeof pts !== 'number') return;
         const pos = normalizePos(s.player_out_position);
