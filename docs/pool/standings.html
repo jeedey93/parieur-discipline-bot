@@ -2515,6 +2515,30 @@
       };
     }
 
+    // Returns aggregated pool stats across ALL stints (past + current) for a player on a team.
+    // Past stints use stats_at_swap minus their acquisition snapshot; current stint uses ownedStatsDelta.
+    function ownedStatsAllStints(p, team, slug) {
+      const cur = ownedStatsDelta(p, team, slug);
+      // Find all bench-out swaps for this slug on this team (past stints)
+      const pastSwaps = _benchSwaps.filter(s => s.team_id === team.id && s.player_out_slug === slug && s.stats_at_swap);
+      if (!pastSwaps.length) return cur;
+      // For each past swap: stats at bench time minus acquisition snapshot for that window
+      let gp = cur.gamesPlayed, g = cur.goals, a = cur.assists, w = cur.wins, so = cur.shutouts, otl = cur.otLosses;
+      pastSwaps.forEach(s => {
+        const sa = s.stats_at_swap;
+        // Find acquisition snapshot for this window (the re-activation before this bench-out)
+        const acq = team?.acquisitions?.[slug];
+        const snap = acq?.stats_snapshot || _zeroSnapshot();
+        gp += Math.max(0, (sa.games_played ?? 0) - (snap.games_played ?? 0));
+        g  += Math.max(0, (sa.goals ?? 0)        - (snap.goals ?? 0));
+        a  += Math.max(0, (sa.assists ?? 0)       - (snap.assists ?? 0));
+        w  += Math.max(0, (sa.wins ?? 0)          - (snap.wins ?? 0));
+        so += Math.max(0, (sa.shutouts ?? 0)      - (snap.shutouts ?? 0));
+        otl += Math.max(0, (sa.ot_losses ?? 0)    - (snap.ot_losses ?? 0));
+      });
+      return { ...cur, gamesPlayed: gp, goals: g, assists: a, wins: w, shutouts: so, otLosses: otl };
+    }
+
     function ownedStatsLabel(p, team, slug) {
       const d = ownedStatsDelta(p, team, slug);
       if (d.pos === 'G') return `${d.gamesPlayed}GP · ${d.wins}W · ${d.shutouts}SO`;
@@ -4822,9 +4846,9 @@
             const p = item.player;
             const abbr = TEAM_ABBR[p.team];
             const logo = abbr ? `<img class="top-player-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">` : '';
-            const d = ownedStatsDelta(p, item.team, p._slug);
-            const s1 = d.pos === 'G' ? d.wins   : d.goals;
-            const s2 = d.pos === 'G' ? d.shutouts : d.assists;
+            const d = ownedStatsAllStints(p, item.team, p._slug);
+            const s1 = d.pos === 'G' ? d.wins      : d.goals;
+            const s2 = d.pos === 'G' ? d.shutouts  : d.assists;
             return `<div class="top-player-row">
               <div class="top-player-rank">${i+1}</div>
               <div class="top-player-info">${logo}
