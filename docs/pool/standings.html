@@ -1957,8 +1957,8 @@
         const isFut = gs === 'FUT' || gs === 'PRE' || !bs;
         const awayScore = bs?.awayTeam?.score ?? 0;
         const homeScore = bs?.homeTeam?.score ?? 0;
-        const awayLogo = bs?.awayTeam?.logo || '';
-        const homeLogo = bs?.homeTeam?.logo || '';
+        const awayLogo = (bs?.awayTeam?.logo || '').replace('_light.svg', '_dark.svg');
+        const homeLogo = (bs?.homeTeam?.logo || '').replace('_light.svg', '_dark.svg');
         const statusText = gameStatusText(bs);
         const awayAbbr = bs?.awayTeam?.abbrev || away;
         const homeAbbr = bs?.homeTeam?.abbrev || home;
@@ -2038,8 +2038,8 @@
       const away = game.away || '';
       const home = game.home || '';
 
-      const awayLogo = bs?.awayTeam?.logo || '';
-      const homeLogo = bs?.homeTeam?.logo || '';
+      const awayLogo = (bs?.awayTeam?.logo || '').replace('_light.svg', '_dark.svg');
+      const homeLogo = (bs?.homeTeam?.logo || '').replace('_light.svg', '_dark.svg');
       const awayAbbr = bs?.awayTeam?.abbrev || away;
       const homeAbbr = bs?.homeTeam?.abbrev || home;
       const awayFullName = (bs?.awayTeam?.placeName?.default || '') + ' ' + (bs?.awayTeam?.commonName?.default || awayAbbr);
