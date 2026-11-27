@@ -1,6 +1,6 @@
 ============================================================
 GOLDEN KNIGHTS - LINEUP
-Last Updated: 2026-11-24 05:58 PM ET
+Last Updated: 2026-11-27 04:55 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -20,5 +20,11 @@ GOALIES:
 ----------------------------------------
   Carter Hart
   Adin Hill
+
+SCRATCHED / INJURED:
+----------------------------------------
+  Lukas Cromier (scratched)
+  Raphael Lavoie (scratched)
+  Noah Hanifin (undisclosed) (injured)
 
 ============================================================

@@ -1,6 +1,6 @@
 ============================================================
 KINGS - LINEUP
-Last Updated: 2026-11-23 07:43 PM ET
+Last Updated: 2026-11-27 04:55 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -8,13 +8,20 @@ FORWARD LINES:
 Line 1: Artemi Panarin — Alex Laferriere — Adrian Kempe
 Line 2: Kevin Fiala — Quinton Byfield — Mats Zuccarello
 Line 3: Trevor Moore — Erik Haula — Joel Armia
-Line 4: Andre Lee — Scott Laughton — Corey Perry
+Line 4: Andre Lee — Alex Turcotte — Corey Perry
+Line 5: Alex Killorn — Mikael Granlund — Troy Terry
+Line 6: Cutter Gauthier — Roger McQueen — Beckett Sennecke
+Line 7: Jeff Malott — Tim Washe — Judd Caulfield
+Line 8: Frank Vatrano — Nikita Nesterenko — Nico Myatovic
 
 DEFENSE PAIRS:
 ----------------------------------------
 Pair 1: Mikey Anderson — Drew Doughty
-Pair 2: Brandt Clarke — Brian Dumoulin
+Pair 2: Brian Dumoulin — Brandt Clarke
 Pair 3: Joel Edmundson — Cody Ceci
+Pair 4: Jackson La Combe — Drew Helleson
+Pair 5: Stian Solberg — Tristan Luneau
+Pair 6: Pavel Mintyukov — Ian Moore
 
 GOALIES:
 ----------------------------------------
@@ -23,8 +30,12 @@ GOALIES:
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Samuel Helenius (scratched)
-  Alex Turcotte (scratched)
-  Erik Gustaffson (upper body) (injured)
+  Tyson Hinds (scratched)
+  Ville Husso (scratched)
+  Sam Colangelo (scratched)
+  A.J. Greer (upper body) (injured)
+  Ryan Poehling (MCL) (injured)
+  Beckett Sennecke (upper body) (injured)
+  Leo Carlsson (upper body) (injured)
 
 ============================================================

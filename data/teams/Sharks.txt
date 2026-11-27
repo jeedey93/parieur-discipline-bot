@@ -1,6 +1,6 @@
 ============================================================
 SHARKS - LINEUP
-Last Updated: 2026-11-25 05:17 PM ET
+Last Updated: 2026-11-27 04:55 PM ET
 ============================================================
 
 FORWARD LINES:
@@ -18,13 +18,13 @@ Pair 3: Dmitry Orlov — Michael Kesselring
 
 GOALIES:
 ----------------------------------------
-  Alex Nedeljkovic
   Yaroslav Askarov
+  Alex Nedeljkovic
 
 SCRATCHED / INJURED:
 ----------------------------------------
-  Libor Hajek (scratched)
-  Brett Leason (scratched)
+  Luca Cagnoni (scratched)
+  Cam Lund (scratched)
   Igor Chernyshov (upper body) (injured)
   Kiefer Sherwood (upper body) (injured)
   Jacob Trouba (lower body) (injured)
