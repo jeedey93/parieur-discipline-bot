@@ -1,0 +1,89 @@
+Date: 2026-11-27
+
+New York Knicks vs Miami Heat
+New York Knicks ML (Home): 1.56, Miami Heat ML (Away): 2.51, O/U: 222.5 (Over: 1.88 / Under: 1.93)
+Spreads: Home None (1.95), Away 4.5 (1.94)
+------
+Detroit Pistons vs Milwaukee Bucks
+Detroit Pistons ML (Home): 1.27, Milwaukee Bucks ML (Away): 4.0, O/U: 219.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away 9.0 (1.91)
+------
+Indiana Pacers vs Philadelphia 76ers
+Indiana Pacers ML (Home): 2.34, Philadelphia 76ers ML (Away): 1.63, O/U: 230.5 (Over: 1.88 / Under: 1.94)
+Spreads: Home None (1.91), Away -3.5 (1.93)
+------
+Toronto Raptors vs Brooklyn Nets
+Toronto Raptors ML (Home): 1.27, Brooklyn Nets ML (Away): 4.0, O/U: 219.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.93), Away 9.5 (1.94)
+------
+Boston Celtics vs Atlanta Hawks
+Boston Celtics ML (Home): 1.28, Atlanta Hawks ML (Away): 3.9, O/U: 222.5 (Over: 1.94 / Under: 1.88)
+Spreads: Home None (1.95), Away 8.5 (1.95)
+------
+Minnesota Timberwolves vs Memphis Grizzlies
+Minnesota Timberwolves ML (Home): 1.61, Memphis Grizzlies ML (Away): 2.38, O/U: 221.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.93), Away 3.5 (1.98)
+------
+Phoenix Suns vs Dallas Mavericks
+Phoenix Suns ML (Home): 1.76, Dallas Mavericks ML (Away): 2.12, O/U: 227.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.99), Away 2.0 (1.91)
+------
+San Antonio Spurs vs Los Angeles Lakers
+San Antonio Spurs ML (Home): 1.46, Los Angeles Lakers ML (Away): 2.8, O/U: 225.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.91), Away 5.5 (1.99)
+------
+Utah Jazz vs Denver Nuggets
+Utah Jazz ML (Home): 4.5, Denver Nuggets ML (Away): 1.22, O/U: 228.5 (Over: 1.85 / Under: 1.96)
+Spreads: Home None (1.91), Away -10.5 (1.95)
+------
+Los Angeles Clippers vs New Orleans Pelicans
+Los Angeles Clippers ML (Home): 1.65, New Orleans Pelicans ML (Away): 2.3, O/U: 231.5 (Over: 1.91 / Under: 1.91)
+Spreads: Home None (1.94), Away 3.0 (1.94)
+------
+Portland Trail Blazers vs Golden State Warriors
+Portland Trail Blazers ML (Home): 1.27, Golden State Warriors ML (Away): 3.95, O/U: 221.5 (Over: 1.95 / Under: 1.87)
+Spreads: Home None (1.94), Away 9.5 (1.95)
+------
+
+AI Analysis Summary:
+Current Roster Data Verified.
+
+BET OF THE DAY
+
+New York Knicks -4.5 vs Miami Heat @ 1.95
+🏠**Strong Home Advantage**
+The Knicks boast a 7-3 home record (0.700 win%) compared to the Heat's 4-4 away record (0.500 win%), creating a significant 0.200 gap in home/away performance.
+📊**Superior Recent Form**
+The Knicks have a +7.7 point differential over their last 10 games (8-2 record), slightly better than the Heat's +5.3 differential from their matching 8-2 record.
+📈**Significant Market Inefficiency**
+Our model projects the Knicks to cover the -4.5 spread with a 65% probability, significantly outperforming the implied 51.3% from the 1.95 odds.
+Confidence Level: High, Units: 1.5u, Win Probability: 65%
+
+**Other Recommended Plays**
+
+Brooklyn Nets +9.5 vs Toronto Raptors @ 1.94
+🏠**Unfavorable Home/Away Split**
+The Raptors have a poor 2-7 home record (0.222 win%) while the Nets' 3-7 away record (0.300 win%) is actually better on the road, creating a negative home court gap that slightly favors the Nets.
+📈**Underestimated Underdog Value**
+Our analysis indicates the Nets have a 65% chance to cover the +9.5 spread, presenting a substantial edge over the implied 51.5% probability at 1.94 odds.
+😴**Raptors More Rested**
+The Raptors had 3 days rest coming into this game after playing on November 23rd, while the Nets played on November 25th, giving the Raptors a rest advantage.
+Confidence Level: High, Units: 1.5u, Win Probability: 65%
+
+Memphis Grizzlies +3.5 vs Minnesota Timberwolves @ 1.98
+📊**Elite Recent Performance**
+The Grizzlies' impressive +12.3 point differential over their last 10 games (8-2 record) surpasses the Timberwolves' +9.7 differential (8-2 record), indicating strong recent form.
+⚔️**Evenly Matched Season Records**
+Both teams hold identical 14-5 (0.737) season records, suggesting a highly competitive matchup where the market might be overestimating the home team's outright win potential.
+📈**Clear Spread Value**
+Our model estimates the Grizzlies have a 60% chance to cover the +3.5 spread, offering a solid edge against the implied 50.5% probability from the 1.98 odds.
+Confidence Level: High, Units: 1.5u, Win Probability: 60%
+
+Philadelphia 76ers vs Indiana Pacers Over 230.5 @ 1.88
+⚔️**High-Scoring Head-to-Head**
+The season series average total points for 76ers vs Pacers is 239, significantly exceeding the current line of 230.5 points by more than 8 points.
+📊**Both Teams with Weak Defense**
+Both the 76ers (119.9 Avg Allowed) and the Pacers (115.8 Avg Allowed) have been giving up over 115 points per game in their last 10 outings, pointing to a high-scoring affair.
+😴**Well-Rested Offenses**
+Both teams had one day of rest, removing any fatigue concerns that might depress scoring and slightly leaning towards the Over.
+Confidence Level: Medium, Units: 1u, Win Probability: 59%
