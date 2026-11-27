@@ -2140,7 +2140,7 @@
             const label = isScoring ? `${pl.name} <strong>+${pl.livePts}</strong>` : pl.name;
             return `<span class="gm-pool-badge${isScoring ? ' scoring' : ''}" style="border-color:${color}40;background:${color}18">${label}</span>`;
           }).join('');
-          const logoHtml = `<img class="gm-pool-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_light.svg" alt="${abbr}">`;
+          const logoHtml = `<img class="gm-pool-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${abbr}_dark.svg" alt="${abbr}">`;
           return `<div class="gm-pool-group">${logoHtml}${badges}</div>`;
         };
         const awayGroup = awayPool.length ? renderGroup(awayPool, awayAbbr) : '';
@@ -2197,7 +2197,7 @@
 
               const teamAbbrev = scorer.teamAbbrev || '';
               const teamLogoImg = teamAbbrev
-                ? `<img class="gm-goal-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${teamAbbrev}_light.svg" alt="${teamAbbrev}">`
+                ? `<img class="gm-goal-team-logo" src="https://assets.nhle.com/logos/nhl/svg/${teamAbbrev}_dark.svg" alt="${teamAbbrev}">`
                 : '';
 
               periodRows += `<div class="gm-goal-row">
