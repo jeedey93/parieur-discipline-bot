@@ -465,6 +465,15 @@
           font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
           color: rgba(255,255,255,0.3); margin-top: 0.2rem;
         }
+        .podium-live {
+          display: inline-flex; align-items: center; gap: 3px;
+          font-family: 'Bebas Neue', cursive; font-size: 0.85rem; letter-spacing: 1px;
+          color: #f87171; margin-top: 0.2rem;
+        }
+        .podium-live-dot {
+          width: 5px; height: 5px; border-radius: 50%; background: #f87171;
+          animation: pulse-dot 1.4s ease-in-out infinite;
+        }
         .podium-footer {
           text-align: center; padding: 0.5rem 0 0.25rem;
           font-size: 0.75rem; color: rgba(255,255,255,0.3);
@@ -716,7 +725,7 @@
         .hist-header-row { background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.35rem 0.75rem; }
         .hist-row { border-bottom: 1px solid rgba(255,255,255,0.04); }
         .hist-row:last-child { border-bottom: none; }
-        .hist-row.past    { opacity: 0.45; }
+        .hist-row.past    { opacity: 0.58; }
         .hist-row.current { background: rgba(34,197,94,0.04); }
         .hist-row.live    { background: rgba(34,197,94,0.10); border-left: 2px solid var(--green); }
         .hist-row.total   { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.1); opacity: 1; }
@@ -1180,7 +1189,7 @@
         .swap-in  { color: var(--green); display: inline-flex; align-items: center; gap: 3px; }
         .swap-out { color: rgba(255,80,80,0.8); display: inline-flex; align-items: center; gap: 3px; }
         .swap-arrow { color: rgba(255,255,255,0.2); font-size: 0.75rem; }
-        .swap-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); font-style: italic; }
+        .swap-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60ch; }
         @media (min-width: 861px) { .swap-note { font-size: 0.82rem; } }
         .swap-reason { display: inline-flex; align-items: center; gap: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; }
         @media (min-width: 861px) { .swap-reason { font-size: 0.75rem; padding: 2px 10px; } }
@@ -1374,6 +1383,9 @@
         /* ── DETAIL RANK ROW ── */
         .detail-rank-row {
           display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+        }
+        @media (max-width: 500px) {
+          .detail-rank-row .detail-badge { display: none; }
         }
         .detail-rank-pill {
           font-family: 'Bebas Neue', cursive; font-size: 0.82rem; letter-spacing: 1.5px;
@@ -3676,10 +3688,17 @@
       const block = (t, rank, cls, medal) => {
         const p = pts(t);
         const gap = rank === 1 ? '' : `<div class="podium-gap">−${leaderPts - p} pts</div>`;
+        const live = liveTeamPts(t);
+        const isLive = [...(t.roster.F||[]), ...(t.roster.D||[]), ...(t.roster.G||[])].filter(Boolean)
+          .some(slug => { const pl = slugMap()[slug]; return pl?.nhl_player_id && _livePlayerIds.has(Number(pl.nhl_player_id)); });
+        const liveHtml = (isLive || live > 0)
+          ? `<div class="podium-live">${isLive ? '<span class="podium-live-dot"></span>' : ''}${live > 0 ? '+' + live : ''}</div>`
+          : '';
         return `<div class="podium-block ${cls}" onclick="selectTeam('${encodeURIComponent(t.id)}')">
           <div class="podium-medal">${medal}</div>
           <div class="podium-name">${t.name}</div>
           <div class="podium-pts">${p}</div>
+          ${liveHtml}
           ${gap}
         </div>`;
       };
