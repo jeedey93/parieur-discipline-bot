@@ -1,0 +1,31 @@
+As a disciplined NHL betting analyst, I have reviewed the AI's predictions against the actual game results for 2026-11-27.
+
+Here's the breakdown:
+
+1.  **Buffalo Sabres ML vs Pittsburgh Penguins @ 1.74 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Pittsburgh 6 @ Buffalo 3 (Total goals: 9)
+    *   Outcome: **LOSS** (Buffalo did not win)
+
+2.  **Florida Panthers vs Washington Capitals Over 4.5 @ 1.69 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Florida 3 @ Washington 2 (Total goals: 5)
+    *   Outcome: **WIN** (Total goals 5, which is over 4.5)
+
+3.  **Pittsburgh Penguins vs Buffalo Sabres Under 6.5 @ 2.0 - Confidence: High, Units: 1.5u**
+    *   Actual Result: Pittsburgh 6 @ Buffalo 3 (Total goals: 9)
+    *   Outcome: **LOSS** (Total goals 9, which is over 6.5)
+
+4.  **Winnipeg Jets vs New York Islanders Over 6.5 @ 1.93 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Winnipeg 3 @ New York 1 (Total goals: 4)
+    *   Outcome: **LOSS** (Total goals 4, which is under 6.5)
+
+5.  **Winnipeg Jets ML vs New York Islanders @ 1.97 - Confidence: Medium, Units: 1u**
+    *   Actual Result: Winnipeg 3 @ New York 1 (Total goals: 4)
+    *   Outcome: **WIN** (Winnipeg won the game)
+
+---
+
+**Summary of AI Prediction Performance:**
+
+*   **Total Wins: 2**
+*   **Total Losses: 3**
+*   **Total Pushes: 0**
